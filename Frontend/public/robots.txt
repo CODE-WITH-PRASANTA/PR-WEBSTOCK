@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block admin or private pages (recommended)
+Disallow: /admin/
+Disallow: /dashboard/
+
+# Sitemap location
+Sitemap: https://prwebstock.com/sitemap.xml
+Host: https://prwebstock.com
