@@ -2,23 +2,33 @@ import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-// Icons
+// Icons (React Icons)
 import { AiFillHeart } from "react-icons/ai";
-import { FaUserCircle, FaShoppingCart,FaEnvelope,FaPhone, FaBars, FaTimes } from "react-icons/fa";
-import { FiSearch } from "react-icons/fi";
+import {
+  FaUserCircle,
+  FaShoppingCart,
+  FaEnvelope,
+  FaPhone,
+  FaBars,
+  FaTimes,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaInstagram,
+  FaWhatsapp,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { MdCategory, MdLocalOffer } from "react-icons/md";
 import { FaHome, FaBlog, FaFire } from "react-icons/fa";
 
 import logo from "../../assets/PR WEBSTOCK.webp";
-import image from "../../assets/PR WEBSTOCK.webp";
+// use the uploaded file path provided in conversation
+const uploadedImagePath = "/mnt/data/457bd679-da27-477c-9f1d-af23a1543f78.png";
 
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [query, setQuery] = useState("");
   const [openCat, setOpenCat] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("main"); // "main" or "categories"
   const [openQuotePanel, setOpenQuotePanel] = useState(false);
 
   const dropdownRef = useRef(null);
@@ -58,7 +68,6 @@ const Navbar = () => {
     const handleResize = () => {
       if (window.innerWidth > 992) {
         setMobileMenuOpen(false);
-        setActiveTab("main");
       }
     };
     window.addEventListener("resize", handleResize);
@@ -75,104 +84,99 @@ const Navbar = () => {
   }, [openQuotePanel]);
 
   const toggleMobileMenu = () => setMobileMenuOpen((s) => !s);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-    setActiveTab("main");
-  };
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
-  // Portal content for overlay + panel
   const portalNode = typeof document !== "undefined" ? document.body : null;
 
   const panel = (
-    <>
-      <div
-        className={`quote-info-overlay ${openQuotePanel ? "show" : ""}`}
-        onClick={() => setOpenQuotePanel(false)}
-        aria-hidden={!openQuotePanel}
-      />
+  <>
+    <div
+      className={`quote-info-overlay ${openQuotePanel ? "show" : ""}`}
+      onClick={() => setOpenQuotePanel(false)}
+      aria-hidden={!openQuotePanel}
+    />
 
-      <aside
-        className={`quote-info-panel ${openQuotePanel ? "open" : ""}`}
-        aria-hidden={!openQuotePanel}
-      >
-        <div className="quote-info-inner">
-          <button
-            className="quote-info-close"
-            onClick={() => setOpenQuotePanel(false)}
-            aria-label="Close info panel"
-          >
-            <FaTimes />
-          </button>
+    <aside
+      className={`quote-info-panel ${openQuotePanel ? "open" : ""}`}
+      aria-hidden={!openQuotePanel}
+    >
+      <div className="quote-info-inner">
+        <button
+          className="quote-info-close"
+          onClick={() => setOpenQuotePanel(false)}
+          aria-label="Close info panel"
+        >
+          <FaTimes />
+        </button>
 
-          <div className="quote-info-logo">
-            <img src={logo} alt="Logo" />
+        {/* Logo */}
+        <div className="quote-info-logo">
+          <img src={logo} alt="Logo" />
+        </div>
+
+        {/* Description */}
+        <p className="quote-info-desc">
+          We provide fast & reliable quotes for temple decor, brass idols, handicrafts, pooja items and more.
+          Reach out anytime — we’re happy to help.
+        </p>
+
+        {/* Contact Section */}
+        <h3 className="quote-info-title">Get In Touch</h3>
+
+        <ul className="quote-info-list">
+          <li>
+            <span className="quote-info-icon"><FaEnvelope /></span>
+            <div>
+              <p className="muted">Email</p>
+              <p>prwebstock.com@gmail.com</p>
+            </div>
+          </li>
+          <li>
+            <span className="quote-info-icon"><FaPhone /></span>
+            <div>
+              <p className="muted">Phone</p>
+              <p>+91 63725 45244</p>
+            </div>
+          </li>
+        </ul>
+
+        {/* Blog Section */}
+        <h3 className="quote-info-title">Latest Blog</h3>
+
+        <div className="quote-news-list">
+          <div className="quote-news-item">
+            <img src={uploadedImagePath} alt="blog-1" />
+            <div>
+              <span className="quote-news-date">December 3, 2023</span>
+              <p className="quote-news-text">A very warm welcome to our new Treasurer</p>
+            </div>
           </div>
 
-          <p className="quote-info-desc">
-            We provide fast & reliable quotes for temple decor, brass idols, handicrafts and more.
-            Reach out anytime — we’re happy to help.
-          </p>
-
-          <h3 className="quote-info-title">Get In Touch</h3>
-
-          <ul className="quote-info-list">
-            <li>
-              <span className="quote-info-icon"><FaEnvelope /></span>
-              <div>
-                <p className="muted">Email</p>
-                <p>support@yourdomain.com</p>
-              </div>
-            </li>
-            <li>
-              <span className="quote-info-icon"><FaPhone /></span>
-              <div>
-                <p className="muted">Phone</p>
-                <p>+91 98765 43210</p>
-              </div>
-            </li>
-          </ul>
-
-          <h3 className="quote-info-title">Latest News</h3>
-
-          <div className="quote-news-list">
-            <div className="quote-news-item">
-              <img src={image} alt="news 1" />
-              <div>
-                <span className="quote-news-date">December 3, 2023</span>
-                <p className="quote-news-text">A very warm welcome to our new Treasurer</p>
-              </div>
-            </div>
-
-            <div className="quote-news-item">
-              <img src={image} alt="news 2" />
-              <div>
-                <span className="quote-news-date">February 15, 2023</span>
-                <p className="quote-news-text">German kinder and garten mean child</p>
-              </div>
+          <div className="quote-news-item">
+            <img src={uploadedImagePath} alt="blog-2" />
+            <div>
+              <span className="quote-news-date">February 15, 2023</span>
+              <p className="quote-news-text">German kinder and garten mean child</p>
             </div>
           </div>
         </div>
-      </aside>
-    </>
-  );
+      </div>
+    </aside>
+  </>
+);
+
 
   return (
     <>
       <header className="navbar-header" role="banner">
         {/* TOP NAV */}
         <div className="navbar-top navbar-container">
-          {/* --- TOP ROW: logo (left) + mobile icons (right) --- */}
           <div className="navbar-top-row">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
               <img src={logo} alt="Brand Logo" />
             </Link>
 
-            {/* mobile-only right bar (visible on smaller screens) */}
+            {/* mobile-only right bar (icons + mobile socials) */}
             <div className="navbar-right-bar navbar-right-bar--mobile">
               <button
                 className="topbar-hamburger"
@@ -182,59 +186,121 @@ const Navbar = () => {
                 {mobileMenuOpen ? <FaTimes /> : <FaBars />}
               </button>
 
-              <Link to="/wishlist" className="icon-link" aria-label="Wishlist">
-                <AiFillHeart />
-              </Link>
-              <Link to="/account" className="icon-link" aria-label="Account">
-                <FaUserCircle />
-              </Link>
-              <Link to="/cart" className="icon-link" aria-label="Cart">
-                <FaShoppingCart />
-              </Link>
+              {/* mobile social icons (visible on small screens) */}
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="social-icon"
+              >
+                <FaFacebookF />
+              </a>
+
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="social-icon"
+              >
+                <FaInstagram />
+              </a>
+
+              <a
+                href="https://wa.me/916372545244"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="social-icon"
+              >
+                <FaWhatsapp />
+              </a>
+
+              <a
+                href="https://www.linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="social-icon"
+              >
+                <FaLinkedinIn />
+              </a>
             </div>
           </div>
 
-          {/* --- SEARCH (center on desktop, below top-row on mobile) --- */}
-          <form
-            className="navbar-search"
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log("search:", query);
-            }}
-            role="search"
-            aria-label="Site search"
+          {/* CONTACT INFO */}
+          <div
+            className="navbar-contact"
+            role="region"
+            aria-label="Contact information"
+            data-uploaded-img={uploadedImagePath}
           >
-            <input
-              type="text"
-              placeholder="Search..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search"
-            />
-            <button type="submit" aria-label="Search button">
-              <FiSearch />
-            </button>
-          </form>
-
-          {/* --- Desktop-only right bar (placed in its own column on desktop) --- */}
-          <div className="navbar-right-bar navbar-right-bar--desktop">
-            <button
-              className="topbar-hamburger"
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              onClick={toggleMobileMenu}
+            <a
+              className="contact-item contact-phone"
+              href="tel:+916372545244"
+              aria-label="Call +91-6372-545-244"
             >
-              {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-            </button>
+              <FaPhone className="contact-svg" aria-hidden="true" style={{ transform: "rotate(90deg)" }} />
+              <span className="contact-text">+91-6372 545 244</span>
+            </a>
 
-            <Link to="/wishlist" className="icon-link" aria-label="Wishlist">
-              <AiFillHeart />
-            </Link>
-            <Link to="/account" className="icon-link" aria-label="Account">
-              <FaUserCircle />
-            </Link>
-            <Link to="/cart" className="icon-link" aria-label="Cart">
-              <FaShoppingCart />
-            </Link>
+            <a
+              className="contact-item contact-email"
+              href="mailto:prwebstock.com@gmail.com"
+              aria-label="Email prwebstock.com at gmail"
+            >
+              <FaEnvelope className="contact-svg" aria-hidden="true" />
+              <span className="contact-text">prwebstock.com@gmail.com</span>
+            </a>
+
+            <div className="contact-item contact-location" aria-label="Office location">
+              <FaMapMarkerAlt className="contact-svg" aria-hidden="true" />
+              <address className="contact-text">#721 , Nexus Esplanade , Bhubaneswar</address>
+            </div>
+          </div>
+
+          {/* Desktop-only Social Media Bar */}
+          <div className="navbar-right-bar navbar-right-bar--desktop social-bar">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="social-icon"
+            >
+              <FaFacebookF />
+            </a>
+
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="social-icon"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://wa.me/916372545244"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="social-icon"
+            >
+              <FaWhatsapp />
+            </a>
+
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="social-icon"
+            >
+              <FaLinkedinIn />
+            </a>
           </div>
         </div>
 
@@ -242,7 +308,6 @@ const Navbar = () => {
 
         {/* BOTTOM NAV */}
         <div className="navbar-bottom navbar-container">
-          {/* Category Button */}
           <button
             ref={catBtnRef}
             className={`navbar-category-btn ${openCat ? "open" : ""}`}
@@ -250,58 +315,49 @@ const Navbar = () => {
             aria-haspopup="true"
             aria-expanded={openCat}
           >
-            <FaBars /> &nbsp; Categories
+            <FaBars /> &nbsp; Services
           </button>
 
-          {/* Links */}
           <nav className="navbar-links" aria-label="Primary">
-            <Link to="/"><FaHome /> Home</Link>
-            <Link to="/shop"><MdCategory /> Shop</Link>
-            <Link to="/blog"><FaBlog /> Blog</Link>
-            <Link to="/best-sellers"><FaFire /> Best Sellers</Link>
-            <Link to="/sale"><MdLocalOffer /> Sale</Link>
-            <Link to="/about"><FaUserCircle /> About</Link>
-            <Link to="/contact"><AiFillHeart /> Contact</Link>
+            <Link to="/"> Home</Link>
+            <Link to="/about"> About</Link>
+            <Link to="/product"> Industry Work</Link>
+            <Link to="/pricing"> Pricing</Link>
+            <Link to="/career">Career</Link>
+            <Link to="/sale">Blog</Link>
+            <Link to="/contact">Contact</Link>
           </nav>
 
-          {/* Quote Button */}
+          {/* Restore Get Free Demo button for desktop (hidden on mobile by CSS) */}
           <div className="quote-box-wrapper">
             <button
               className="quote-box-icon-btn"
               onClick={() => setOpenQuotePanel(true)}
               aria-label="Open info panel"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect y="4" width="24" height="2" rx="1" fill="currentColor" />
                 <rect y="11" width="24" height="2" rx="1" fill="currentColor" />
                 <rect y="18" width="24" height="2" rx="1" fill="currentColor" />
               </svg>
             </button>
 
+            {/* THIS is the Get Free Demo button visible on desktop/laptop */}
             <Link to="/get-quote" className="navbar-quote-btn">
-              Get Free Quotes
+              Get Free Demo
             </Link>
           </div>
         </div>
 
         {/* CATEGORY DROPDOWN */}
-        <div
-          ref={dropdownRef}
-          className={`navbar-category-dropdown ${openCat ? "show" : ""}`}
-        >
+        <div ref={dropdownRef} className={`navbar-category-dropdown ${openCat ? "show" : ""}`}>
           <ul>
-            <li><a href="/category/statues">God Murtis</a></li>
-            <li><a href="/category/pooja">Pooja Items</a></li>
-            <li><a href="/category/brass">Brass Idols</a></li>
-            <li><a href="/category/handicraft">Handicraft</a></li>
-            <li><a href="/category/temple">Temple Decor</a></li>
-            <li><a href="/category/jewelry">Spiritual Jewelry</a></li>
+            <li><a href="/services/web-development">Web Development</a></li>
+            <li><a href="/services/app-development">App Development</a></li>
+            <li><a href="/services/crm">CRM Software</a></li>
+            <li><a href="/services/seo">Seo</a></li>
+            <li><a href="/services/digital-marketing">Digital Marketing</a></li>
+            
           </ul>
         </div>
 
@@ -315,83 +371,31 @@ const Navbar = () => {
               <button className="drawer-close" onClick={closeMobileMenu} aria-label="Close menu"><FaTimes /></button>
             </div>
 
-            <div className="drawer-search">
-              <form onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="search"
-                  placeholder="Search..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-                <button aria-label="Search"><FiSearch /></button>
-              </form>
-            </div>
+            {/* Mobile drawer: direct nav links (no tabs, no "Main" text) */}
+            <nav className="drawer-links" style={{ marginTop: 12 }}>
+              <Link to="/" onClick={closeMobileMenu}> Home</Link>
+              <Link to="/about" onClick={closeMobileMenu}> About</Link>
+              <Link to="/industry-work" onClick={closeMobileMenu}> Industry Work</Link>
+              <Link to="/pricing" onClick={closeMobileMenu}> Pricing</Link>
+              <Link to="/career" onClick={closeMobileMenu}> Career</Link>
+              <Link to="/sale" onClick={closeMobileMenu}> Blog</Link>
+              <Link to="/contact" onClick={closeMobileMenu}> Contact</Link>
+            </nav>
 
-            {/* Tab Navigation */}
-            <div className="drawer-tabs">
-              <button
-                className={`drawer-tab ${activeTab === "main" ? "active" : ""}`}
-                onClick={() => handleTabClick("main")}
-              >
-                Main Menu
-              </button>
-              <button
-                className={`drawer-tab ${activeTab === "categories" ? "active" : ""}`}
-                onClick={() => handleTabClick("categories")}
-              >
-                Categories
-              </button>
-            </div>
-
-            {/* Tab Content */}
-            <div className="drawer-content">
-              {/* Main Menu Content */}
-              <div className={`drawer-tab-pane ${activeTab === "main" ? "active" : ""}`}>
-                <nav className="drawer-links">
-                  <Link to="/" onClick={closeMobileMenu}><FaHome /> Home</Link>
-                  <Link to="/shop" onClick={closeMobileMenu}><MdCategory /> Shop</Link>
-                  <Link to="/blog" onClick={closeMobileMenu}><FaBlog /> Blog</Link>
-                  <Link to="/best-sellers" onClick={closeMobileMenu}><FaFire /> Best Sellers</Link>
-                  <Link to="/sale" onClick={closeMobileMenu}><MdLocalOffer /> Sale</Link>
-                  <Link to="/about" onClick={closeMobileMenu}><FaUserCircle /> About</Link>
-                  <Link to="/contact" onClick={closeMobileMenu}><AiFillHeart /> Contact</Link>
-
-                  <Link to="/get-quote" className="drawer-quote" onClick={closeMobileMenu}>Get Free Quotes</Link>
-                </nav>
-              </div>
-
-              {/* Categories Content */}
-              <div className={`drawer-tab-pane ${activeTab === "categories" ? "active" : ""}`}>
-                <nav className="drawer-links">
-                  <Link to="/category/statues" onClick={closeMobileMenu}>God Murtis</Link>
-                  <Link to="/category/pooja" onClick={closeMobileMenu}>Pooja Items</Link>
-                  <Link to="/category/brass" onClick={closeMobileMenu}>Brass Idols</Link>
-                  <Link to="/category/handicraft" onClick={closeMobileMenu}>Handicraft</Link>
-                  <Link to="/category/temple" onClick={closeMobileMenu}>Temple Decor</Link>
-                  <Link to="/category/jewelry" onClick={closeMobileMenu}>Spiritual Jewelry</Link>
-
-                  <Link to="/get-quote" className="drawer-quote" onClick={closeMobileMenu}>Get Free Quotes</Link>
-                </nav>
-              </div>
-            </div>
-
-            <div className="drawer-footer">
-              <Link to="/wishlist" aria-label="Wishlist" onClick={closeMobileMenu}><AiFillHeart /></Link>
-              <Link to="/account" aria-label="Account" onClick={closeMobileMenu}><FaUserCircle /></Link>
-              <Link to="/cart" aria-label="Cart" onClick={closeMobileMenu}><FaShoppingCart /></Link>
+            {/* social icons with stagger animation */}
+            <div className="drawer-footer drawer-footer--social">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon" onClick={closeMobileMenu}><FaFacebookF /></a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon" onClick={closeMobileMenu}><FaInstagram /></a>
+              <a href="https://wa.me/916372545244" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon" onClick={closeMobileMenu}><FaWhatsapp /></a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon" onClick={closeMobileMenu}><FaLinkedinIn /></a>
             </div>
           </div>
 
           {/* scrim to close drawer when clicking outside (mobile) */}
-          <button
-            className="drawer-scrim"
-            onClick={closeMobileMenu}
-            aria-hidden={!mobileMenuOpen}
-          />
+          <button className="drawer-scrim" onClick={closeMobileMenu} aria-hidden={!mobileMenuOpen} />
         </aside>
       </header>
 
-      {/* render the overlay + panel into document.body via portal for bulletproof stacking */}
       {portalNode ? ReactDOM.createPortal(panel, portalNode) : null}
     </>
   );
