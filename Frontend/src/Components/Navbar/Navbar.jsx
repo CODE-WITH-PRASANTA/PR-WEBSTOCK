@@ -20,7 +20,7 @@ import {
 import { MdCategory, MdLocalOffer } from "react-icons/md";
 import { FaHome, FaBlog, FaFire } from "react-icons/fa";
 
-import logo from "../../assets/PR WEBSTOCK.webp";
+import logo from "../../assets/Black Logo.webp";
 // use the uploaded file path provided in conversation
 const uploadedImagePath = "/mnt/data/457bd679-da27-477c-9f1d-af23a1543f78.png";
 
@@ -135,7 +135,7 @@ const Navbar = () => {
             <span className="quote-info-icon"><FaPhone /></span>
             <div>
               <p className="muted">Phone</p>
-              <p>+91 63725 45244</p>
+              <p>+91 77898 01327</p>
             </div>
           </li>
         </ul>
@@ -208,7 +208,7 @@ const Navbar = () => {
               </a>
 
               <a
-                href="https://wa.me/916372545244"
+                href="https://wa.me/917789801327"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -238,11 +238,11 @@ const Navbar = () => {
           >
             <a
               className="contact-item contact-phone"
-              href="tel:+916372545244"
-              aria-label="Call +91-6372-545-244"
+              href="tel:+917789801327"
+              aria-label="Call +91-7789-801-327"
             >
               <FaPhone className="contact-svg" aria-hidden="true" style={{ transform: "rotate(90deg)" }} />
-              <span className="contact-text">+91-6372 545 244</span>
+              <span className="contact-text">+91-7789 801 327</span>
             </a>
 
             <a
@@ -283,7 +283,7 @@ const Navbar = () => {
             </a>
 
             <a
-              href="https://wa.me/916372545244"
+              href="https://wa.me/917789801327"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
@@ -386,7 +386,7 @@ const Navbar = () => {
             <div className="drawer-footer drawer-footer--social">
               <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon" onClick={closeMobileMenu}><FaFacebookF /></a>
               <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon" onClick={closeMobileMenu}><FaInstagram /></a>
-              <a href="https://wa.me/916372545244" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon" onClick={closeMobileMenu}><FaWhatsapp /></a>
+              <a href="https://wa.me/917789801327" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon" onClick={closeMobileMenu}><FaWhatsapp /></a>
               <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon" onClick={closeMobileMenu}><FaLinkedinIn /></a>
             </div>
           </div>

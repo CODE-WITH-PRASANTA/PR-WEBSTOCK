@@ -51,11 +51,9 @@ a { text-decoration: none; color: inherit; }
 }
 
 .navbar-logo img {
-  height: 60px;
   border-radius: 12px;
   object-fit: contain;
   width: 100px;
-  padding: 4px;
 }
 
 /* right bar - base styles used for both mobile and desktop copies */
@@ -297,6 +295,7 @@ a { text-decoration: none; color: inherit; }
   overflow-y: auto;
   border-right: 1px solid var(--brand-border);
 }
+
 
 .mobile-drawer.open .drawer-inner { transform: translateX(0); }
 
@@ -693,7 +692,7 @@ button:focus, a:focus, input:focus {
   align-items: center;
   justify-content: space-between;
   transition: 0.25s ease;
-  color: #7A2E1B;
+  color: #2563eb;
 }
 .quote-box-icon-btn:hover { background: #f2f2f2; border-color: #c8c8c8; }
 
@@ -720,7 +719,7 @@ button:focus, a:focus, input:focus {
   border: none; background: #111; color: #fff; display:flex; align-items:center; justify-content:center;
   cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); z-index: 1000000 !important;
 }
-.quote-info-logo img { width: 100px; display: block; margin-bottom: 14px; }
+.quote-info-logo img { width: 200px; display: block; margin-bottom: 14px; }
 .quote-info-desc { color: #414141; line-height: 1.55; margin-bottom: 18px; font-size: 14px; }
 .quote-info-title { font-size: 20px; font-weight: 800; margin: 18px 0 10px; color: #111; position: relative; }
 .quote-info-title::after { content: ""; display: block; width: 46px; height: 4px; background: #2563eb; margin-top: 8px; border-radius: 3px; }
@@ -765,6 +764,7 @@ button:focus, a:focus, input:focus {
   animation: fadeInUp 0.46s ease forwards;
 }
 
+
 /* stagger delays — slower/visible one-by-one effect */
 .mobile-drawer.open .drawer-footer .social-icon:nth-child(1) { animation-delay: 0.12s; }
 .mobile-drawer.open .drawer-footer .social-icon:nth-child(2) { animation-delay: 0.28s; }
@@ -781,3 +781,5 @@ button:focus, a:focus, input:focus {
     transform: translateY(0) scale(1);
   }
 }
+
+
