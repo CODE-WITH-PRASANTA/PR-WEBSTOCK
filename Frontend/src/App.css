@@ -1,0 +1,40 @@
+/* ================================
+   Global Reset
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================================
+   Global Body Styling
+================================ */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #f8f9fa;       /* Light clean background */
+  color: #212529;                  /* Dark readable text */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;              /* Prevent horizontal scroll */
+}
+
+/* ================================
+   Scrollbar Styles (Modern Look)
+================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e9ecef;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b1b1b1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8a8a8a;
+}
