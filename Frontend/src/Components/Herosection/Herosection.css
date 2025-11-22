@@ -21,7 +21,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 60px;
-  padding: 40px 0px 40px 28px;
+  padding: 40px 0px 0px 28px;
   background: linear-gradient(180deg, var(--bg-1) 0%, #f3f7fb 100%);
   color: var(--text);
   min-height: calc(85vh - 10px);

@@ -1,0 +1,36 @@
+.news-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background: #222;
+  padding: 10px 0;
+}
+
+.news-marquee {
+  display: flex;
+  gap: 40px;
+  white-space: nowrap;
+  animation: scroll 18s linear infinite;
+}
+
+.news-item {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  color: #4a68ff;
+  font-size: 22px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
