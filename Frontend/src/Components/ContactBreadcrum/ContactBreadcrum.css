@@ -1,0 +1,146 @@
+/* ===== HERO WRAPPER ===== */
+
+.contact-hero {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  min-height: 380px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(circle at top left, #12356b 0, #02040a 40%),
+    radial-gradient(circle at top right, #0d1b33 0, #02040a 55%),
+    #02040a;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 60px 6vw;
+
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  overflow: hidden;
+}
+
+/* Dark overlay */
+.contact-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(18, 53, 107, 0.6), transparent 45%),
+              radial-gradient(circle at top right, rgba(5, 10, 30, 0.7), transparent 50%),
+              rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+/* ===== CONTENT (TEXT) ===== */
+
+.contact-hero-content {
+  position: relative;
+  z-index: 2;
+  transform: translateY(-20px);
+}
+
+/* Breadcrumb pill */
+.contact-breadcrumb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(10, 20, 40, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+
+.crumb-active {
+  color: #5f8cff;
+  font-weight: 600;
+}
+
+.crumb-separator {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.crumb {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Main heading */
+.contact-hero-title {
+  margin-top: 26px;
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+/* ===== FLOATING ARROW BUTTON ===== */
+
+.contact-scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 78px;
+  border-radius: 999px;
+  border: 1.4px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  z-index: 3;
+
+  animation: heroFloat 2.2s ease-in-out infinite;
+}
+
+/* Up–down floating animation */
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+
+.contact-scroll-arrow {
+  font-size: 20px;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+.contact-scroll-indicator:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .contact-hero {
+    padding: 50px 5vw;
+    height: 55vh;
+  }
+
+  .contact-hero-content {
+    transform: translateY(-10px);
+  }
+
+  .contact-hero-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+
+  .contact-scroll-indicator {
+    bottom: 30px;
+  }
+}
