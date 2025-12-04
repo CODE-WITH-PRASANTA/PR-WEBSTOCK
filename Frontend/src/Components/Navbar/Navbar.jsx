@@ -20,7 +20,7 @@ import {
 import { MdCategory, MdLocalOffer } from "react-icons/md";
 import { FaHome, FaBlog, FaFire } from "react-icons/fa";
 
-import logo from "../../assets/Black Logo.webp";
+import logo from "../../assets/Black-Logo.png";
 // use the uploaded file path provided in conversation
 const uploadedImagePath = "/mnt/data/457bd679-da27-477c-9f1d-af23a1543f78.png";
 

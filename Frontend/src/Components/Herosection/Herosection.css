@@ -11,8 +11,6 @@
   --glass: rgba(255,255,255,0.86);
 }
 
-/* Reset box-sizing */
-* { box-sizing: border-box; }
 
 /* HERO GRID */
 .hero {
