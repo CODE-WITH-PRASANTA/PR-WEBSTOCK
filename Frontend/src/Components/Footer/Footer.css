@@ -67,7 +67,6 @@
   grid-template-columns: 1.2fr 1fr 1.2fr;
   gap: 40px;
   padding: 30px 0 50px;
-  align-items: start;
 }
 
 /* Enhanced Column Styling */
@@ -86,10 +85,7 @@
 
 .zenfy-footer-col:hover {
   transform: translateY(-5px);
-  box-shadow: 
-    0 12px 40px rgba(99, 114, 241, 0.1),
-    0 4px 20px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  
 }
 
 /* Left Column - Services */
@@ -613,12 +609,7 @@
     );
     border-top-color: rgba(99, 114, 241, 0.2);
   }
-  
-  .zenfy-footer-col {
-    border-color: rgba(99, 114, 241, 0.1);
-    background: var(--card-bg);
-  }
-  
+
   .zenfy-contact-card {
     background: rgba(30, 41, 59, 0.5);
   }
