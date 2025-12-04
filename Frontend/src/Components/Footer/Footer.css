@@ -1,0 +1,629 @@
+:root{
+  --bg: #fbf9f8;
+  --muted: #6b7280;
+  --accent: #6372F1;
+  --accent-2: #8B5CF6;
+  --accent-3: #EC4899;
+  --dark: #0f172a;
+  --panel: #fff;
+  --radius: 16px;
+  --card-bg: rgba(255, 255, 255, 0.7);
+}
+
+/* Modern Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Animated Background Gradient */
+@keyframes zenfy-footer-gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.zenfy-footer {
+  background: linear-gradient(
+    135deg,
+    #fbf9f8 0%,
+    #f3f6fb 25%,
+    #f0f2ff 50%,
+    #f3f6fb 75%,
+    #fbf9f8 100%
+  );
+  background-size: 200% 200%;
+  animation: zenfy-footer-gradientShift 20s ease infinite;
+  color: var(--dark);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  padding: 60px 5% 30px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(99, 114, 241, 0.1);
+}
+
+/* Subtle floating elements */
+.zenfy-footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(99, 114, 241, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.zenfy-footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Modern Grid Layout */
+.zenfy-footer-columns {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 40px;
+  padding: 30px 0 50px;
+  align-items: start;
+}
+
+/* Enhanced Column Styling */
+.zenfy-footer-col {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.03),
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zenfy-footer-col:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 40px rgba(99, 114, 241, 0.1),
+    0 4px 20px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Left Column - Services */
+.zenfy-footer-heading {
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--dark) 0%, #374151 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.zenfy-accent-line {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  border-radius: 2px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.zenfy-accent-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: zenfy-footer-shimmer 3s infinite;
+}
+
+@keyframes zenfy-footer-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+.zenfy-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.zenfy-service-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(99, 114, 241, 0.03);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.zenfy-service-item:hover {
+  background: rgba(99, 114, 241, 0.08);
+  border-color: rgba(99, 114, 241, 0.1);
+  transform: translateX(5px);
+}
+
+.zenfy-service-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.zenfy-service-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+/* Contact Cards - HORIZONTAL LAYOUT */
+.zenfy-contact-cards {
+  display: flex;                 /* horizontal layout */
+  gap: 18px;                     /* spacing between cards */
+  width: 100%;
+  justify-content: space-between;
+  align-items: stretch;          /* make cards same height */
+  margin-top: 8px;
+}
+
+/* Each card is flexible so they share available space */
+.zenfy-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  
+  border-radius: 12px;
+  
+  transition: all 0.3s ease;
+  flex: 1 1 0;                   /* allow cards to grow/shrink equally */
+  max-width: 360px;              /* optional: keep cards from growing overly wide */
+  min-width: 180px;              /* optional: keep them readable */
+}
+
+.zenfy-contact-card:hover {
+  
+  transform: translateY(-2px);
+}
+
+.zenfy-contact-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(99, 114, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border-radius: 12px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.zenfy-contact-info {
+  flex: 1;
+}
+
+.zenfy-contact-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.zenfy-contact-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* Center Column - Logo & Brand */
+.zenfy-footer-col-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 40px 30px;
+}
+
+.zenfy-brand-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.zenfy-logo-orb {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(99, 114, 241, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: zenfy-footer-pulse 4s ease-in-out infinite;
+}
+
+@keyframes zenfy-footer-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.zenfy-brand-logo {
+  position: relative;
+  z-index: 2;
+ 
+  
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  
+}
+
+/* logo image that replaces the inner Z */
+.zenfy-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px; /* optional */
+}
+
+/* brand name wordmark image */
+.zenfy-brand-name {
+  font-size: 36px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--dark), #374151);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* If you add a wordmark image */
+.zenfy-brand-text-img {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+/* fallback spacing for tagline */
+.zenfy-brand-tagline {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 200px;
+  line-height: 1.5;
+}
+
+/* Right Column - About & Reviews */
+.zenfy-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.zenfy-about-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--dark) 30%, #4b5563 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.zenfy-about-desc {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 30px;
+  font-size: 15px;
+  padding-right: 20px;
+}
+
+/* Reviews Section */
+.zenfy-reviews-section {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid rgba(99, 114, 241, 0.1);
+}
+
+.zenfy-reviews-title {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.zenfy-review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.zenfy-review-card {
+  padding: 20px;
+  background: rgba(99, 114, 241, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(99, 114, 241, 0.05);
+  transition: all 0.3s ease;
+}
+
+.zenfy-review-card:hover {
+  background: rgba(99, 114, 241, 0.05);
+  border-color: rgba(99, 114, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+.zenfy-review-platform {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.zenfy-platform-logo {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--dark);
+}
+
+.zenfy-platform-logo.google {
+  color: #1a73e8;
+  font-weight: 700;
+}
+
+.zenfy-star-rating {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.zenfy-star {
+  color: #ffb020;
+  font-size: 16px;
+}
+
+.zenfy-review-count {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Bottom Section */
+.zenfy-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(99, 114, 241, 0.1);
+  margin-top: 20px;
+}
+
+.zenfy-copyright {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.zenfy-copyright strong {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.zenfy-credit-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.zenfy-credit-link:hover {
+  color: var(--accent-2);
+}
+
+.zenfy-footer-links {
+  display: flex;
+  gap: 25px;
+}
+
+.zenfy-footer-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.zenfy-footer-link:hover {
+  color: var(--accent);
+}
+
+.zenfy-footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.3s ease;
+}
+
+.zenfy-footer-link:hover::after {
+  width: 100%;
+}
+
+/* Social Links */
+.zenfy-social-links {
+  display: flex;
+  gap: 15px;
+  margin-left: 30px;
+}
+
+.zenfy-social-link {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99, 114, 241, 0.05);
+  border-radius: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.zenfy-social-link:hover {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .zenfy-footer-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .zenfy-footer-col-logo {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+  
+  .zenfy-brand-container {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .zenfy-footer-columns {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  /* revert contact cards to stacked on small screens */
+  .zenfy-contact-cards {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .zenfy-contact-card {
+    max-width: 100%;
+  }
+  
+  .zenfy-services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .zenfy-review-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .zenfy-footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .zenfy-footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .zenfy-social-links {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .zenfy-footer {
+    padding: 40px 20px 25px;
+  }
+  
+  .zenfy-footer-col {
+    padding: 25px 20px;
+  }
+  
+  .zenfy-about-title {
+    font-size: 26px;
+  }
+  
+  .zenfy-brand-name {
+    font-size: 28px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --muted: #94a3b8;
+    --dark: #f1f5f9;
+    --card-bg: rgba(30, 41, 59, 0.7);
+  }
+  
+  .zenfy-footer {
+    background: linear-gradient(
+      135deg,
+      #0f172a 0%,
+      #1e293b 25%,
+      #1e1b4b 50%,
+      #1e293b 75%,
+      #0f172a 100%
+    );
+    border-top-color: rgba(99, 114, 241, 0.2);
+  }
+  
+  .zenfy-footer-col {
+    border-color: rgba(99, 114, 241, 0.1);
+    background: var(--card-bg);
+  }
+  
+  .zenfy-contact-card {
+    background: rgba(30, 41, 59, 0.5);
+  }
+  
+  .zenfy-reviews-section {
+    background: rgba(30, 41, 59, 0.5);
+  }
+}
