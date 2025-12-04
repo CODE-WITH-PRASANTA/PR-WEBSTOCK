@@ -178,13 +178,7 @@ const Navbar = () => {
 
             {/* mobile-only right bar (icons + mobile socials) */}
             <div className="navbar-right-bar navbar-right-bar--mobile">
-              <button
-                className="topbar-hamburger"
-                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                onClick={toggleMobileMenu}
-              >
-                {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-              </button>
+              
 
               {/* mobile social icons (visible on small screens) */}
               <a
@@ -226,6 +220,13 @@ const Navbar = () => {
               >
                 <FaLinkedinIn />
               </a>
+              <button
+                className="topbar-hamburger"
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                onClick={toggleMobileMenu}
+              >
+                {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+              </button>
             </div>
           </div>
 
