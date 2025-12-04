@@ -14,14 +14,14 @@ const News = () => {
         {items.map((text, index) => (
           <div key={index} className="news-item">
             {text}
-            <span className="dot">•</span>
+            <span className="news-dot">•</span>
           </div>
         ))}
         {/* Duplicate for seamless infinite loop */}
         {items.map((text, index) => (
           <div key={`dup-${index}`} className="news-item">
             {text}
-            <span className="dot">•</span>
+            <span className="news-dot">•</span>
           </div>
         ))}
       </div>

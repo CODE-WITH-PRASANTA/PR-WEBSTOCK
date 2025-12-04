@@ -51,11 +51,9 @@ a { text-decoration: none; color: inherit; }
 }
 
 .navbar-logo img {
-  height: 60px;
   border-radius: 12px;
   object-fit: contain;
-  width: 100px;
-  padding: 4px;
+  width: 150px;
 }
 
 /* right bar - base styles used for both mobile and desktop copies */
@@ -278,8 +276,42 @@ a { text-decoration: none; color: inherit; }
   display: none;
   z-index: 2100;
 }
+/* ============= SMOOTH & PROFESSIONAL MOBILE DRAWER ============= */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  z-index: 2100;
 
-.mobile-drawer.open { display: flex; }
+  /* Hidden default */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.mobile-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.drawer-inner {
+  width: 320px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--brand-soft) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.45s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 5px 0 25px rgba(0,0,0,0.18);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 2110;
+  position: relative;
+  overflow-y: auto;
+  border-right: 1px solid var(--brand-border);
+}
+
+.mobile-drawer.open .drawer-inner {
+  transform: translateX(0);
+}
 
 /* Elegant slide-in animation for drawer inner */
 .mobile-drawer .drawer-inner {
@@ -297,6 +329,7 @@ a { text-decoration: none; color: inherit; }
   overflow-y: auto;
   border-right: 1px solid var(--brand-border);
 }
+
 
 .mobile-drawer.open .drawer-inner { transform: translateX(0); }
 
@@ -693,7 +726,7 @@ button:focus, a:focus, input:focus {
   align-items: center;
   justify-content: space-between;
   transition: 0.25s ease;
-  color: #7A2E1B;
+  color: #2563eb;
 }
 .quote-box-icon-btn:hover { background: #f2f2f2; border-color: #c8c8c8; }
 
@@ -720,7 +753,7 @@ button:focus, a:focus, input:focus {
   border: none; background: #111; color: #fff; display:flex; align-items:center; justify-content:center;
   cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,0.12); z-index: 1000000 !important;
 }
-.quote-info-logo img { width: 100px; display: block; margin-bottom: 14px; }
+.quote-info-logo img { width: 200px; display: block; margin-bottom: 14px; }
 .quote-info-desc { color: #414141; line-height: 1.55; margin-bottom: 18px; font-size: 14px; }
 .quote-info-title { font-size: 20px; font-weight: 800; margin: 18px 0 10px; color: #111; position: relative; }
 .quote-info-title::after { content: ""; display: block; width: 46px; height: 4px; background: #2563eb; margin-top: 8px; border-radius: 3px; }
@@ -765,6 +798,7 @@ button:focus, a:focus, input:focus {
   animation: fadeInUp 0.46s ease forwards;
 }
 
+
 /* stagger delays — slower/visible one-by-one effect */
 .mobile-drawer.open .drawer-footer .social-icon:nth-child(1) { animation-delay: 0.12s; }
 .mobile-drawer.open .drawer-footer .social-icon:nth-child(2) { animation-delay: 0.28s; }
@@ -781,3 +815,5 @@ button:focus, a:focus, input:focus {
     transform: translateY(0) scale(1);
   }
 }
+
+

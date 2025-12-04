@@ -1,10 +1,7 @@
 import React from "react";
-import "./HeroSection.css";
+import "./Herosection.css";
+import GoogleLogo from '../../assets/google.webp'
 
-/**
- * Rotating text used around the play button.
- * Adjust the string to change characters — spacing and separators recommended (e.g. " • ").
- */
 const rotatingText = "S T R A T E G Y  •  D E S I G N  •  S C A L E  •  ";
 
 const HeroSection = () => {
@@ -64,7 +61,7 @@ const HeroSection = () => {
 
             <div className="gr-main">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgbU-2vlopMJjYfDnc0iW9q2ZEA4F-Y0YypjCAJJfLWo-MekEvPWVZMwxKapD8Ve3RC0I&usqp=CAU"
+                src={GoogleLogo}
                 alt="Google logo"
                 className="gr-logo"
                 loading="lazy"
