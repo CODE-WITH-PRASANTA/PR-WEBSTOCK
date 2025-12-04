@@ -1,3 +1,6 @@
+/* ----------------------------- */
+/* File: src/components/Footer/Footer.css */
+
 :root{
   --bg: #fbf9f8;
   --muted: #6b7280;
@@ -85,7 +88,6 @@
 
 .zenfy-footer-col:hover {
   transform: translateY(-5px);
-  
 }
 
 /* Left Column - Services */
@@ -245,47 +247,46 @@
 
 .zenfy-brand-container {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 320px;   /* increased container size to accommodate larger bg emblem */
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.zenfy-logo-orb {
+/* Larger, centered background emblem */
+.zenfy-bglogo-img{
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(99, 114, 241, 0.1) 0%, transparent 70%);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;     /* increased width */
+  height: 300px;    /* increased height */
+  /* object-fit: cover; */
+  
+  /* filter: blur(0.6px) saturate(1.05); */
+  z-index: 1;
   border-radius: 50%;
-  animation: zenfy-footer-pulse 4s ease-in-out infinite;
-}
-
-@keyframes zenfy-footer-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.1); opacity: 0.8; }
 }
 
 .zenfy-brand-logo {
   position: relative;
-  z-index: 2;
- 
-  
-  
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
+  margin: 0 auto;
+}
+
+/* Foreground logo — centered and smaller than the background emblem */
+.zenfy-logo-img {
+  width: 140px;     /* set explicit size for clear visual hierarchy */
+  height: 140px;
+  object-fit: contain;
+  display: block;
   
 }
 
-/* logo image that replaces the inner Z */
-.zenfy-logo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  border-radius: 12px; /* optional */
-}
-
-/* brand name wordmark image */
 .zenfy-brand-name {
   font-size: 36px;
   font-weight: 900;
@@ -299,13 +300,6 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-}
-
-/* If you add a wordmark image */
-.zenfy-brand-text-img {
-  width: 160px;
-  height: auto;
-  display: block;
 }
 
 /* fallback spacing for tagline */
@@ -525,8 +519,8 @@
   }
   
   .zenfy-brand-container {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
   }
 }
 

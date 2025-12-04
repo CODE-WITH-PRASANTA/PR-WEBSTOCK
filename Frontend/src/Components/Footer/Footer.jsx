@@ -1,3 +1,4 @@
+// File: src/components/Footer/Footer.jsx
 import React from 'react';
 import './Footer.css';
 import { 
@@ -11,6 +12,7 @@ import {
   FaInstagram 
 } from 'react-icons/fa';
 import logo from '../../assets/prwebstock_logo.png'
+import bglogo from '../../assets/footer-logo-bg.png'
 
 const services = [
   { name: 'Managed Services', icon: '⚡' },
@@ -87,21 +89,25 @@ const Footer = () => {
           {/* Center Column - Logo */}
           <div className="zenfy-footer-col zenfy-footer-col-logo">
             <div className="zenfy-brand-container" aria-hidden="true">
-              <div className="zenfy-logo-orb"></div>
 
+              {/* Background logo (larger, centered and subtle) */}
+              <img
+                src={bglogo}
+                alt="Zenfy background emblem"
+                className="zenfy-bglogo-img"
+                aria-hidden="true"
+              />
+
+              {/* Foreground logo placed centered on top of background emblem */}
               <div className="zenfy-brand-logo" aria-hidden="false">
-                {/* Replace src with your logo path (public folder or imported asset) */}
                 <img
                   src={logo}
                   alt="Zenfy logo"
                   className="zenfy-logo-img"
                 />
               </div>
+              
             </div>
-
-            
-
-            
           </div>
           
           {/* Right Column - About & Reviews */}
@@ -136,7 +142,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* You placed contact cards below the columns — kept that placement */}
+        {/* Contact cards */}
         <div className="zenfy-contact-cards" role="group" aria-label="Contact information">
           {contactInfo.map((contact, index) => (
             <div key={index} className="zenfy-contact-card">
@@ -185,3 +191,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
