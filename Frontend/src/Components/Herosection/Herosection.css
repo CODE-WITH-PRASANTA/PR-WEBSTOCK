@@ -19,10 +19,8 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 60px;
-  padding: 40px 0px 0px 28px;
   background: linear-gradient(180deg, var(--bg-1) 0%, #f3f7fb 100%);
   color: var(--text);
-  min-height: calc(85vh - 10px);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   overflow: hidden;
 }
@@ -247,7 +245,7 @@
   filter: blur(6px);
   pointer-events: none;
 }
-.hero-right:hover .hero-image {
+.hero-right:hover {
   transform: scale(1.01) translateY(-3px);
   box-shadow: 0 40px 90px rgba(10,20,30,0.16);
 }
@@ -257,24 +255,44 @@
   animation: entrance .9s cubic-bezier(.2,.9,.2,1) both;
 }
 @keyframes entrance { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
 /* ------------------ RESPONSIVE ------------------ */
 /* hide image + ring on small screens */
 @media (max-width: 980px) {
-  .hero { grid-template-columns: 1fr; padding: 34px 18px; text-align: left; gap: 26px; min-height: auto; }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 34px 18px; /* already set */
+    text-align: left;
+    gap: 26px;
+    min-height: auto;
+  }
   .hero-right { display: none; }
   .video-area { display: none; }
-  .hero-left { align-items: left ; }
+  .hero-left { align-items: left; }
   .btn-primary { width: 100%; max-width: 360px; }
-  .google-review { align-items: center; text-align: center; min-width: unset; padding: 12px; }
+  .google-review {
+    align-items: center;
+    text-align: center;
+    min-width: unset;
+    padding: 12px;
+  }
   .gr-main { justify-content: center; }
   .gr-logo { width: 64px; }
   .gr-rating { font-size: 1px; }
+  .gr-top{display: block;}
 }
 
 /* large screens tweaks */
 @media (min-width: 1600px) {
-  .hero { padding: 80px 120px; gap: 80px; }
-  .hero-title { font-size: 54px; }
+  .hero {
+    padding: 10px 120px;
+    gap: 80px;
+  }
   .hero-image { border-radius: 14px; }
+}
+
+/* add padding on max-width 1600px */
+@media (max-width: 1600px) {
+  .hero {
+    padding: 0 30px;  /* <-- you can adjust value here */
+  }
 }
