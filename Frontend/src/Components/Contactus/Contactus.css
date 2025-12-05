@@ -1,0 +1,197 @@
+/* ContactUs.css (updated with unique variable names and class prefixes) */
+
+:root{
+  --zen-dark-bg: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  --zen-muted: #94a3b8;
+  --zen-accent: #6366f1;
+  --zen-accent-light: #8b5cf6;
+  --zen-card-bg: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  --zen-card-border: rgba(15,23,42,0.08);
+  --zen-white: #ffffff;
+  --zen-radius: 12px;
+  --zen-radius-card: 16px;
+  --zen-max-width: 1400px;
+  --zen-transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Section */
+.zen-section {
+  background: var(--zen-dark-bg);
+  color: var(--zen-white);
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible;
+  /* padding: 120px 24px; */
+  margin-top: 180px;
+}
+
+.zen-inner {
+  max-width: var(--zen-max-width);
+  margin: 0 auto;
+  display: grid;
+  /* Right column increased width to create the visual like your screenshot */
+  grid-template-columns: 1fr 760px; /* desktop: left flexible, right 760px */
+  gap: 60px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* Small decorative top line */
+.zen-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+}
+
+/* Animation helpers */
+.zen-animated .zen-left-inner > * {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.zen-animated .zen-right .zen-form-card {
+  opacity: 0;
+  transform: translateX(30px);
+  animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 0.15s;
+}
+
+@keyframes slideInLeft { to { opacity: 1; transform: translateX(0);} }
+@keyframes slideInRight { to { opacity: 1; transform: translateX(0);} }
+
+.zen-fade-in { opacity: 0; animation: fadeIn 0.6s cubic-bezier(0.4,0,0.2,1) forwards; animation-delay: var(--zen-delay, 0s);} 
+@keyframes fadeIn { to { opacity: 1; } }
+
+.zen-slide-up { opacity: 0; transform: translateY(20px); animation: slideUp 0.6s cubic-bezier(0.4,0,0.2,1) forwards; animation-delay: var(--zen-delay, 0s); }
+@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+.zen-fade-in-scale { opacity: 0; transform: scale(0.8); animation: fadeInScale 0.38s cubic-bezier(0.4,0,0.2,1) forwards; animation-delay: var(--zen-delay, 0s);} 
+@keyframes fadeInScale { to { opacity: 1; transform: scale(1); } }
+
+/* Left column */
+.zen-left { padding: 40px 0; }
+.zen-left-inner { max-width: 600px; }
+
+.zen-subtle { display: inline-flex; align-items: center; gap: 12px; color: #c7d2ff; font-weight: 700; font-size: 14px; letter-spacing: 1px; margin-bottom: 24px; text-transform: uppercase; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%); padding: 12px 24px; border-radius: 50px; border: 1px solid rgba(99, 102, 241, 0.12); }
+.zen-subtle-icon { font-size: 16px; opacity: 0.85; }
+
+.zen-title { margin: 0 0 24px 0; font-size: 56px; line-height: 1.04; font-weight: 800; color: #fff; letter-spacing: -0.6px; background: linear-gradient(135deg, #fff 0%, #c7d2ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.zen-desc { margin: 0 0 40px 0; color: #cbd5e1; font-size: 18px; line-height: 1.7; font-weight: 400; max-width: 520px; }
+
+.zen-contact-blocks { margin-top: 20px; display: flex; flex-direction: column; gap: 18px; }
+.zen-contact-row { display: flex; gap: 16px; align-items: center; color: #e2e8f0; }
+.zen-icon { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%); color: #8b5cf6; flex-shrink: 0; border: 1px solid rgba(99, 102, 241, 0.12); }
+.zen-contact-text { font-size: 16px; }
+.zen-contact-label { color: var(--zen-muted); font-size: 14px; margin-bottom: 6px; font-weight: 500; }
+.zen-contact-value { color: #ffffff; font-weight: 700; font-size: 18px; }
+
+/* Social */
+.zen-social { margin-top: 40px; }
+.zen-social-title { color: #e2e8f0; margin-bottom: 16px; font-weight: 600; font-size: 16px; }
+.zen-social-icons { margin-top: 8px; display: flex; gap: 12px; align-items: center; }
+
+/* Social button: designed to hold react-icons components directly */
+.zen-social-btn {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%);
+  color: #c7d2ff;
+  text-decoration: none;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  transition: var(--zen-transition);
+  position: relative;
+  overflow: hidden;
+  font-size: 18px; /* icon fallback size */
+}
+
+.zen-social-btn svg { display: block; width: 20px; height: 20px; }
+
+/* shimmer effect */
+.zen-social-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); transition: left 0.55s ease; }
+.zen-social-btn:hover::before { left: 100%; }
+
+/* hover: brand-like accent + lift */
+.zen-social-btn:hover { background: linear-gradient(135deg, var(--zen-accent) 0%, var(--zen-accent-light) 100%); color: white; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25); }
+
+/* Right column / form card — positioned to overlap visually like the provided image */
+.zen-right {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 40px;
+  position: relative;
+  top: -120px; /* controlled overlap that looks like the screenshot */
+}
+
+/* Form card can expand to use the wider right column */
+.zen-form-card {
+  width: 100%;
+  max-width: 760px; /* increased to match the column width */
+  background: var(--zen-card-bg);
+  border-radius: var(--zen-radius-card);
+  padding: 40px;
+  box-shadow: 0 32px 64px rgba(2,6,23,0.2);
+  border: 1px solid rgba(226,232,240,0.8);
+  backdrop-filter: blur(8px);
+  position: relative;
+  margin-top: -30px;
+}
+
+.zen-form-title { margin: 0 0 16px 0; font-size: 28px; color: #0f172a; font-weight: 800; line-height: 1.2; }
+.zen-sep { border: none; height: 1px; background: linear-gradient(90deg, rgba(99,102,241,0.25), rgba(139,92,246,0.25), rgba(99,102,241,0.25)); margin: 20px 0 28px 0; }
+
+.zen-form { width: 100%; }
+.zen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.zen-field { display: flex; flex-direction: column; gap: 8px; }
+.zen-field.full { grid-column: 1 / -1; }
+.zen-label { font-size: 14px; color: #475569; font-weight: 600; }
+.zen-field input, .zen-field textarea { border-radius: 10px; border: 1.5px solid rgba(226,232,240,0.9); padding: 14px 16px; font-size: 15px; background: #fff; color: #0f172a; outline: none; transition: var(--zen-transition); font-family: inherit; }
+.zen-field input::placeholder, .zen-field textarea::placeholder { color: #94a3b8; }
+.zen-field input:focus, .zen-field textarea:focus { border-color: var(--zen-accent); box-shadow: 0 10px 26px rgba(99,102,241,0.12); transform: translateY(-2px); }
+.zen-field textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+
+.zen-form-actions { display: flex; justify-content: flex-start; margin-top: 22px; }
+.zen-submit { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--zen-accent) 0%, var(--zen-accent-light) 100%); color: #fff; padding: 14px 28px; border-radius: 12px; border: none; font-weight: 700; font-size: 15px; cursor: pointer; transition: var(--zen-transition); position: relative; overflow: hidden; }
+.zen-submit::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); transition: left 0.5s ease; }
+.zen-submit:hover::before { left: 100%; }
+.zen-submit:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(99,102,241,0.22); }
+.zen-submit-arrow { display: flex; align-items: center; justify-content: center; transition: transform 0.28s ease; }
+.zen-submit:hover .zen-submit-arrow { transform: translateX(6px); }
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .zen-inner { gap: 40px; grid-template-columns: 1fr 520px; } /* reduce right width a bit on medium desktops */
+  .zen-title { font-size: 48px; }
+  .zen-right { top: -40px; }
+  .zen-form-card { max-width: 520px; }
+}
+
+@media (max-width: 992px) {
+  .zen-inner { grid-template-columns: 1fr; gap: 48px; } /* stacks columns */
+  .zen-right { justify-content: center; top: 0; } /* remove negative offset when stacked */
+  .zen-form-card { margin: 0 auto; max-width: 600px; } /* center and limit card width */
+  .zen-title { font-size: 42px; }
+}
+
+@media (max-width: 768px) {
+  .zen-section { padding: 80px 20px; margin-top: 0px; }
+  .zen-title { font-size: 34px; }
+  .zen-grid { grid-template-columns: 1fr; gap: 14px; }
+  .zen-form-card { padding: 24px; max-width: 100%; }
+  .zen-right { top: 0; }
+  .zen-social-icons { gap: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zen-animated .zen-left-inner > *, .zen-animated .zen-right .zen-form-card, .zen-fade-in, .zen-slide-up, .zen-fade-in-scale { animation: none; opacity: 1; transform: none; }
+  .zen-social-btn::before, .zen-submit::before { display: none; }
+}

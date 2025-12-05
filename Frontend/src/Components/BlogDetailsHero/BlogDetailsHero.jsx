@@ -12,7 +12,7 @@ import avatarImg from '../../assets/comment2.webp'; // small circular avatar —
 
 const BlogDetailsHero = () => {
   return (
-    <section className="blog-hero">
+    <section className="BlogDetails-hero">
       <div className="hero-inner">
         {/* category badge — top-left over image */}
         <span className="hero-badge" aria-hidden>Creative</span>
