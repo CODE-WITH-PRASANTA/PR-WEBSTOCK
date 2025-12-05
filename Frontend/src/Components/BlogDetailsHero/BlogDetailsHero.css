@@ -1,0 +1,201 @@
+/* BlogDetailsHero.css
+   Styles the hero image, top-left badge, and the author/meta row beneath it.
+   Designed to match the provided screenshot: large image with rounded corners,
+   small black rounded "Creative" badge top-left, and the author + stats row below.
+*/
+
+.blog-hero {
+  width: 100%;
+  padding: 0 0 18px 0;
+  box-sizing: border-box;
+}
+
+.hero-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Badge in the top-left corner of the image (overlapping) */
+.hero-badge {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  z-index: 6;
+  display: inline-block;
+  padding: 8px 14px;
+  background: rgba(8, 10, 12, 0.95);
+  color: #fff;
+  font-weight: 700;
+  font-style: italic;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.12);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  pointer-events: none;
+}
+
+/* Hero image container */
+.hero-media {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 8px 28px rgba(2,6,23,0.06);
+}
+
+.hero-media-img {
+  display: block;
+  width: 100%;
+  height: 420px; /* desktop size to match screenshot */
+  object-fit: cover;
+  object-position: center;
+  transition: transform 340ms ease;
+}
+
+/* subtle hover zoom */
+.hero-media-img:hover {
+  transform: scale(1.02);
+}
+
+/* meta row under the image */
+.hero-meta-row {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* author block (left) */
+.author-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* circular avatar */
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  background: #fff;
+}
+
+/* author text */
+.author-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.by-label {
+  color: var(--muted, #6b7280);
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 2px;
+}
+
+/* If not using react-router, replace Link with anchor; this style works for either */
+.author-name {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.author-name:hover,
+.author-name:focus {
+  text-decoration: underline;
+}
+
+/* post stats (right) */
+.post-stats {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted, #6b7280);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* each stat */
+.stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted, #6b7280);
+}
+
+/* separators between stats */
+.stat-sep {
+  color: rgba(6,10,15,0.08);
+  font-weight: 700;
+}
+
+/* icons */
+.stat-icon {
+  font-size: 15px;
+  vertical-align: middle;
+  color: rgba(15,23,42,0.6);
+}
+
+/* stat text */
+.stat-text {
+  color: rgba(15,23,42,0.85);
+  font-weight: 600;
+}
+/* Tablet */
+@media (max-width: 992px) {
+  .hero-media-img {
+    height: 340px;
+  }
+  
+  .hero-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .post-stats {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hero-media-img {
+    height: 260px;
+  }
+
+  .author-block {
+    gap: 10px;
+  }
+
+  .post-stats {
+    gap: 10px;
+  }
+
+  .stat {
+    gap: 6px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 420px) {
+  .hero-media-img {
+    height: 200px;
+  }
+
+  .hero-meta-row {
+    gap: 10px;
+  }
+
+  .author-avatar {
+    width: 38px;
+    height: 38px;
+  }
+}

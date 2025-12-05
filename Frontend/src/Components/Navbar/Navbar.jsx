@@ -325,7 +325,7 @@ const Navbar = () => {
             <Link to="/product"> Industry Work</Link>
             <Link to="/pricing"> Pricing</Link>
             <Link to="/career">Career</Link>
-            <Link to="/sale">Blog</Link>
+            <Link to="/blog">Blog</Link>
             <Link to="/contact">Contact</Link>
           </nav>
 
