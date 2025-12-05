@@ -3,178 +3,149 @@ import "./PriceAndPlans.css";
 
 const plans = [
   {
+    id: "basic",
     name: "Basic Plan",
-    priceMonthly: 80,
-    priceYearly: 800,
+    monthly: 80,
     features: [
-      { text: "Website Audit Identify opportunities optimization.", included: true },
-      {
-        text: "Social Media Management Establish a presence on key platforms.",
-        included: true
-      },
-      {
-        text: "Basic SEO Optimization Improve search engine visibility.",
-        included: true
-      },
-      {
-        text: "Monthly Analytics Report Track and measure your online performance.",
-        included: true
-      },
-      {
-        text: "Third-Party API Setup (All Google Map API).",
-        included: false
-      },
-      {
-        text: "Bi-Monthly Analytics Review Actionable insights.",
-        included: false
-      }
-    ]
+      "Website Audit Identif opportunities optimization.",
+      "Social Media Management Establish a presence on key platforms.",
+      "Basic SEO Optimization Improve search engine visibility.",
+      "Monthly Analytics Report Track and measure your online performance.",
+      "Third-Party API Setup (All Google Map API).",
+      "Bi-Monthly Analytics Review Actionable insights.",
+    ],
+    included: [true, true, true, true, false, false],
   },
+
   {
+    id: "standard",
     name: "Standard Plan",
-    priceMonthly: 120,
-    priceYearly: 1200,
-    featured: true,
-    badge: "30% Off",
+    monthly: 120,
+    badge: "30% OFF", // Ribbon shown on middle card
     features: [
-      { text: "Website Audit Identify opportunities optimization.", included: true },
-      {
-        text: "Social Media Management Establish a presence on key platforms.",
-        included: true
-      },
-      {
-        text: "Basic SEO Optimization Improve search engine visibility.",
-        included: true
-      },
-      {
-        text: "Monthly Analytics Report Track and measure your online performance.",
-        included: true
-      },
-      {
-        text: "Third-Party API Setup (All Google Map API).",
-        included: true
-      },
-      {
-        text: "Bi-Monthly Analytics Review Actionable insights.",
-        included: false
-      }
-    ]
+      "Website Audit Identif opportunities optimization.",
+      "Social Media Management Establish a presence on key platforms.",
+      "Basic SEO Optimization Improve search engine visibility.",
+      "Monthly Analytics Report Track and measure your online performance.",
+      "Third-Party API Setup (All Google Map API).",
+      "Bi-Monthly Analytics Review Actionable insights.",
+    ],
+    included: [true, true, true, true, true, false],
   },
+
   {
+    id: "premium",
     name: "Premium Plan",
-    priceMonthly: 180,
-    priceYearly: 1800,
+    monthly: 180,
     features: [
-      { text: "Website Audit Identify opportunities optimization.", included: true },
-      {
-        text: "Social Media Management Establish a presence on key platforms.",
-        included: true
-      },
-      {
-        text: "Basic SEO Optimization Improve search engine visibility.",
-        included: true
-      },
-      {
-        text: "Monthly Analytics Report Track and measure your online performance.",
-        included: true
-      },
-      {
-        text: "Third-Party API Setup (All Google Map API).",
-        included: true
-      },
-      {
-        text: "Bi-Monthly Analytics Review Actionable insights.",
-        included: true
-      }
-    ]
-  }
+      "Website Audit Identif opportunities optimization.",
+      "Social Media Management Establish a presence on key platforms.",
+      "Basic SEO Optimization Improve search engine visibility.",
+      "Monthly Analytics Report Track and measure your online performance.",
+      "Third-Party API Setup (All Google Map API).",
+      "Bi-Monthly Analytics Review Actionable insights.",
+    ],
+    included: [true, true, true, true, true, true],
+  },
 ];
 
-const PricingPlans = () => {
-  const [billing, setBilling] = useState("monthly"); // 'monthly' | 'yearly'
+const PriceAndPlans = () => {
+  const [billing, setBilling] = useState("monthly");
+
+  // 20% OFF yearly
+  const getDisplayPrice = (monthly) =>
+    billing === "monthly" ? monthly : Math.round(monthly * 0.8);
 
   return (
-    <section className="plans-wrapper">
-      <div className="plans-inner">
-        {/* Toggle pill */}
-        <div className="billing-toggle">
+    <section className="pp-section">
+      {/* BILLING TOGGLE */}
+      <div className="pp-toggle-wrapper">
+        <div className="pp-toggle-pill">
+
+          {/* Monthly Button */}
           <button
-            className={`billing-btn ${
-              billing === "monthly" ? "billing-btn-active" : ""
+            className={`pp-toggle-btn ${
+              billing === "monthly" ? "pp-toggle-btn-active" : ""
             }`}
             onClick={() => setBilling("monthly")}
           >
             Billed Monthly
           </button>
+
+          {/* Yearly Button (With 20% OFF Ribbon) */}
           <button
-            className={`billing-btn ${
-              billing === "yearly" ? "billing-btn-active" : ""
-            }`}
+            className={`pp-toggle-btn ${
+              billing === "yearly" ? "pp-toggle-btn-active" : ""
+            } yearly-btn`}
             onClick={() => setBilling("yearly")}
           >
             Billed Yearly
+            {billing === "yearly" && (
+              <span className="pp-yearly-discount">20% OFF</span>
+            )}
           </button>
         </div>
+      </div>
 
-        {/* Cards */}
-        <div className="plans-grid">
-          {plans.map((plan) => {
-            const price =
-              billing === "monthly" ? plan.priceMonthly : plan.priceYearly;
+      {/*  PLAN CARDS  */}
+      <div className="pp-grid">
+        {plans.map((plan, index) => {
+          const price = getDisplayPrice(plan.monthly);
 
-            return (
-              <article
-                key={plan.name}
-                className={`plan-card ${plan.featured ? "plan-card-featured" : ""}`}
-              >
-                {/* Badge for middle card */}
-                {plan.badge && (
-                  <div className="plan-badge">
-                    <span>{plan.badge}</span>
-                  </div>
-                )}
+          return (
+            <article
+              key={plan.id}
+              className={`pp-card ${index === 1 ? "pp-featured-card" : ""}`}
+            >
+              {/* 30% OFF badge only for Standard Plan */}
+              {index === 1 && (
+                <div className="pp-ribbon">
+                  <span>30% OFF</span>
+                </div>
+              )}
 
-                <div className="plan-header">
-                  <h3 className="plan-name">{plan.name}</h3>
-                  <div className="plan-price-row">
-                    <span className="plan-price">${price}</span>
-                    <span className="plan-price-sub">
-                      /{billing === "monthly" ? "Monthly" : "Yearly"} Investment
+              <div className="pp-card-header">
+                <h3>{plan.name}</h3>
+
+                <div className="pp-price-row">
+                  <span className="pp-price">${price}</span>
+                  <span className="pp-price-text">
+                    /Monthly Investment
+                    {billing === "yearly" && (
+                      <span className="pp-yearly-note"> (billed yearly)</span>
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              <ul className="pp-features">
+                {plan.features.map((text, i) => (
+                  <li key={i} className="pp-feature-item">
+                    <span
+                      className={`pp-feature-icon ${
+                        plan.included[i] ? "yes" : "no"
+                      }`}
+                    >
+                      {plan.included[i] ? "✓" : "✕"}
                     </span>
-                  </div>
-                </div>
+                    {text}
+                  </li>
+                ))}
+              </ul>
 
-                <ul className="plan-features">
-                  {plan.features.map((feat, idx) => (
-                    <li key={idx} className="plan-feature">
-                      <span
-                        className={`feature-icon ${
-                          feat.included ? "icon-yes" : "icon-no"
-                        }`}
-                      >
-                        {feat.included ? "✓" : "✕"}
-                      </span>
-                      <span className="feature-text">{feat.text}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="plan-footer">
-                  <button
-                    className={`plan-cta ${
-                      plan.featured ? "plan-cta-primary" : ""
-                    }`}
-                  >
-                    Pick This Package
-                  </button>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+              <div className="pp-card-footer">
+                <button
+                  className={`pp-cta-btn ${index === 1 ? "pp-cta-primary" : ""}`}
+                >
+                  Pick This Package
+                </button>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
 };
 
-export default PricingPlans;
+export default PriceAndPlans;

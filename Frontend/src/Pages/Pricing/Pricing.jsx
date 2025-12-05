@@ -7,7 +7,6 @@ const Pricing = () => {
     <div>
        <PricePlansBreadcrum />
        <PriceAndPlans />
-      
     </div>
   )
 }

@@ -1,193 +1,190 @@
-.plans-wrapper {
-  background: #f8fafc;
-  padding: 80px 6vw 100px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+/* SECTION */
+.pp-section {
+  padding: 80px 6vw;
+  background: #f5f7fb;
+  font-family: "Inter", sans-serif;
 }
 
-.plans-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
+/* ---------------------- */
+/* BILLING TOGGLE */
+/* ---------------------- */
 
-/* Billing toggle pill */
-
-.billing-toggle {
-  width: fit-content;
-  margin: 0 auto 40px;
-  padding: 4px;
-  background: #ffffff;
-  border-radius: 999px;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+.pp-toggle-wrapper {
   display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
 }
 
-.billing-btn {
+.pp-toggle-pill {
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 50px;
+  display: flex;
+  position: relative;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+.pp-toggle-btn {
+  padding: 10px 26px;
+  font-size: 15px;
   border: none;
   background: transparent;
-  padding: 10px 26px;
-  border-radius: 999px;
-  font-size: 14px;
   cursor: pointer;
-  color: #64748b;
-  transition: all 0.2s ease;
+  border-radius: 50px;
+  color: #6b7280;
+  transition: 0.2s;
+  position: relative;
 }
 
-.billing-btn-active {
+/* Active */
+.pp-toggle-btn-active {
   background: #2563ff;
-  color: #ffffff;
+  color: #fff !important;
   box-shadow: 0 10px 25px rgba(37, 99, 255, 0.45);
 }
 
-/* Cards grid */
-
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-}
-
-/* Card base */
-
-.plan-card {
+/* 20% OFF badge on Yearly */
+.yearly-btn {
   position: relative;
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
-.plan-card-featured {
-  background: #e4edff;
+.pp-yearly-discount {
+  position: absolute;
+  top: -22px;
+  right: 10px;
+  background: #ffe4e6;
+  color: #ff1040;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 700;
 }
 
-/* Badge on featured card */
+/* ---------------------- */
+/* PRICING GRID */
+/* ---------------------- */
 
-.plan-badge {
+.pp-grid {
+  display: grid;
+  max-width: 1180px;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+/* PLAN CARD */
+.pp-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  padding-bottom: 20px;
+  position: relative;
+}
+
+/* MIDDLE FEATURED CARD */
+.pp-featured-card {
+  background: #e7efff;
+}
+
+/* 30% Off Ribbon */
+.pp-ribbon {
   position: absolute;
   top: 0;
-  right: 26px;
+  right: 30px;
+}
+
+.pp-ribbon span {
+  display: inline-block;
   background: #2563ff;
-  color: #ffffff;
-  padding: 12px 18px 22px;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
+  color: white;
+  padding: 10px 18px 22px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* Header */
-
-.plan-header {
-  padding: 26px 30px 22px;
-  border-bottom: 1px solid #e2e8f0;
+/* HEADER */
+.pp-card-header {
+  padding: 26px 32px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.plan-name {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.plan-price-row {
+.pp-price-row {
   display: flex;
   align-items: baseline;
   gap: 6px;
 }
 
-.plan-price {
-  font-size: 36px;
+.pp-price {
+  font-size: 42px;
   font-weight: 800;
 }
 
-.plan-price-sub {
+.pp-price-text {
   font-size: 13px;
-  color: #64748b;
+  color: #6b7280;
 }
 
-/* Features */
+.pp-yearly-note {
+  color: #2563ff;
+  font-weight: 600;
+}
 
-.plan-features {
+/* FEATURES */
+.pp-features {
   list-style: none;
-  padding: 20px 30px 12px;
-  margin: 0;
-  flex: 1;
+  padding: 22px 32px 10px;
 }
 
-.plan-feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 8px 0;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.plan-feature:last-child {
-  border-bottom: none;
-}
-
-.feature-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
+.pp-feature-item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.pp-feature-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 700;
 }
 
-.icon-yes {
-  background: #2563ff1a;
+.pp-feature-icon.yes {
+  background: #e0edff;
   color: #2563ff;
 }
 
-.icon-no {
+.pp-feature-icon.no {
   background: #fee2e2;
   color: #ef4444;
 }
 
-.feature-text {
-  font-size: 14px;
-  color: #475569;
-  line-height: 1.6;
+/* FOOTER BUTTON */
+.pp-card-footer {
+  padding: 20px 32px;
+  text-align: center;
 }
 
-/* Footer */
-
-.plan-footer {
-  padding: 22px 30px 26px;
-  display: flex;
-  justify-content: center;
-}
-
-.plan-cta {
-  border-radius: 999px;
-  border: 1px solid #0f172a;
-  background: #ffffff;
-  padding: 10px 28px;
-  font-size: 14px;
+.pp-cta-btn {
+  padding: 10px 26px;
+  border-radius: 50px;
+  border: 1px solid #111;
+  background: #fff;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s;
 }
 
-.plan-cta-primary {
+.pp-cta-primary {
   background: #2563ff;
   border-color: #2563ff;
-  color: #ffffff;
-}
-
-.plan-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 15px rgba(15, 23, 42, 0.12);
-}
-
-/* Responsive */
-
-@media (max-width: 1024px) {
-  .plans-grid {
-    grid-template-columns: 1fr;
-  }
+  color: #fff;
 }
