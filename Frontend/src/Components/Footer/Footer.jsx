@@ -11,7 +11,7 @@ import {
   FaLinkedinIn, 
   FaInstagram 
 } from 'react-icons/fa';
-import logo from '../../assets/prwebstock_logo.png'
+import logo from '../../assets/PR WEBS6TOCK WHITE PNG.png'
 import bglogo from '../../assets/footer-logo-bg.png'
 
 const services = [

@@ -260,8 +260,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;     /* increased width */
-  height: 300px;    /* increased height */
+  width: 400px;     /* increased width */
+  height: 400px;    /* increased height */
   /* object-fit: cover; */
   
   /* filter: blur(0.6px) saturate(1.05); */
@@ -280,8 +280,8 @@
 
 /* Foreground logo — centered and smaller than the background emblem */
 .zenfy-logo-img {
-  width: 140px;     /* set explicit size for clear visual hierarchy */
-  height: 140px;
+  width: 200px;     /* set explicit size for clear visual hierarchy */
+  height: 200px;
   object-fit: contain;
   display: block;
   

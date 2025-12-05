@@ -21,12 +21,11 @@
   box-sizing: border-box;
   position: relative;
   overflow: visible;
-  /* padding: 120px 24px; */
 }
 
 .zen-inner {
   max-width: var(--zen-max-width);
-  margin: 0 auto;
+  /* margin: 0 auto; */
   display: grid;
   /* Right column increased width to create the visual like your screenshot */
   grid-template-columns: 1fr 760px; /* desktop: left flexible, right 760px */
