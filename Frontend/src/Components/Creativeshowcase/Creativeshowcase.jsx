@@ -242,7 +242,7 @@ const CreativeShowcase = () => {
 
                   <div className="cs-card-content">
                     <span className="cs-card-tag">{item.tag}</span>
-                    <h3 className="cs-card-title">{item.title}</h3>
+                    <h3 className="creativeshowcase-title">{item.title}</h3>
                     <p className="cs-card-description">{item.description}</p>
                     <a href="#learn" className="cs-card-link">
                       Learn More

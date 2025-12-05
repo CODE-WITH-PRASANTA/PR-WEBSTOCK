@@ -40,7 +40,7 @@
 }
 
 /* the ring of characters (rotates slowly) */
-.badge-ring {
+.hero-badge-ring {
   position: absolute;
   width: 140px; /* Decreased from 180px */
   height: 140px; /* Decreased from 180px */
@@ -54,7 +54,7 @@
 }
 
 /* each char positioned by CSS var --char-rotate */
-.badge_char {
+.hero-badge_char {
   position: absolute;
   left: 45%;
   top: 44%;
@@ -127,7 +127,7 @@
   z-index: 5; /* under the center-ring but above background */
 }
 
-.badge {
+.herosec-badge {
   display: inline-block;
   font-size: 13px;
   padding: 8px 14px;
@@ -139,7 +139,7 @@
   letter-spacing: 0.3px;
 }
 
-.hero-title {
+.hero-sec-title {
   font-size: clamp(28px, 4.6vw, 44px);
   font-weight: 800;
   line-height: 1.;
@@ -226,7 +226,7 @@
   justify-content: center;
   z-index: 2;
 }
-.hero-image {
+.herosec-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -287,7 +287,7 @@
     padding: 10px 120px;
     gap: 80px;
   }
-  .hero-image { border-radius: 14px; }
+  .herosec-img { border-radius: 14px; }
 }
 
 /* add padding on max-width 1600px */

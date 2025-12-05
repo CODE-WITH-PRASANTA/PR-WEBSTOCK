@@ -2,7 +2,7 @@ import React from "react";
 import "./BlogBreadcrum.css";
 import PricingBanner from "../../assets/Breadcrum.webp";
 
-const blog = ({ onArrowClick }) => {
+const BlogBreadcrum = ({ onArrowClick }) => {
   return (
     <section
       className="blog-hero"
@@ -31,4 +31,4 @@ const blog = ({ onArrowClick }) => {
   );
 };
 
-export default blog;
+export default BlogBreadcrum;

@@ -1,0 +1,219 @@
+:root{
+  --bg: #fbf4ee;
+  --panel-bg: #ffffff;
+  --muted: #9d9a98;
+  --accent-blue: #1e66ff;
+  --headline: #111111;
+  --headline-secondary: #5e6a6f;
+  --soft-shadow: 0 18px 30px rgba(22,17,15,0.06);
+  --small-shadow: 0 8px 18px rgba(22,17,15,0.06);
+}
+
+.wp-section{
+  background: var(--bg);
+  padding: 72px 20px 110px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--headline);
+}
+
+.wp-container{
+  margin: 0 auto;
+  position: relative;
+}
+
+.wp-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.95);
+  padding: 8px 18px;
+  border-radius: 22px;
+  box-shadow: var(--small-shadow);
+  font-weight: 700;
+  color: #c14b4b;
+  font-size: 13px;
+  margin: 6px auto 26px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.wp-badge-star{ font-size: 14px; }
+
+/* headings */
+.wp-header{
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.wp-title-line1{
+  font-size: 64px;
+  margin: 0;
+  font-weight: 800;
+  line-height: 0.95;
+}
+
+.wp-title-line2{
+  font-size: 40px;
+  margin-top: 4px;
+  font-weight: 800;
+  color: var(--headline-secondary);
+}
+
+.wp-timeline-wrap{
+  position: relative;
+  padding-top: 48px;
+  padding-bottom: 36px;
+}
+
+/* connector line (hidden on small screens where scroller is used) */
+.wp-connector{
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  top: 54px;
+  height: 2px;
+  background: rgba(255,255,255,0.75);
+  z-index: 1;
+}
+
+/* DESKTOP grid */
+.wp-steps{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
+  z-index: 2;
+  position: relative;
+}
+
+.wp-step{
+  text-align: center;
+  padding: 0 12px;
+}
+
+.wp-step-circle{
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  background: var(--panel-bg);
+  margin: 0 auto 18px;
+  box-shadow: var(--soft-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wp-step-label{
+  font-size: 12px;
+  color: #9aa2a6;
+}
+
+.wp-step-number{
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent-blue);
+}
+
+.wp-step-title{
+  font-size: 20px;
+  font-weight: 800;
+  margin: 8px 0 12px;
+}
+
+.wp-step-text{
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+/* CTA area */
+.wp-cta{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* Changed from button -> container so inner icons are interactive without nesting */
+.wp-cta-pill{
+  background: var(--panel-bg);
+  padding: 12px 18px;
+  border-radius: 46px;
+  box-shadow: 0 20px 30px rgba(22,17,15,0.06);
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 560px;
+  justify-content: center;
+}
+
+/* the clickable icon buttons inside the pill */
+.wp-cta-icon-btn{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: inherit;
+  transition: transform .12s ease, opacity .12s ease;
+}
+
+.wp-cta-icon-btn:disabled{ opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.wp-cta-icon-btn:not(:disabled):active{ transform: translateY(1px); }
+
+.wp-cta-icon{ font-size: 20px; opacity: .85; pointer-events: none; }
+
+.wp-cta-text{
+  font-weight: 700;
+  font-size: 18px;
+  user-select: none;
+}
+
+/* Hide native scrollbar when scroller mode is active */
+.wp-steps{ scrollbar-width: none; -ms-overflow-style: none; }
+.wp-steps::-webkit-scrollbar{ display: none; }
+
+/* SCROLLER MODE (tablet + mobile) */
+@media (max-width: 1024px){
+  .wp-steps{
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 18px;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+  }
+
+  .wp-step{
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  /* Hide connector when steps are stacked horizontally */
+  .wp-connector{ display: none; }
+
+  /* Make pill responsive and keep icons visible */
+  .wp-cta-pill{ min-width: auto; padding-left: 18px; padding-right: 18px; width: auto; }
+
+  /* On small screens, reduce the pill min-width to allow full-width pill if desired */
+  @media (max-width: 480px){
+    .wp-cta-pill{ width: 100%; box-sizing: border-box; padding-left: 12px; padding-right: 12px; min-width: auto; }
+    .wp-cta-text{ font-size: 16px; }
+  }
+}
+
+/* Optional: active step subtle lift */
+.wp-step.active .wp-step-circle{ transform: translateY(-6px); transition: transform .36s cubic-bezier(.2,.9,.2,1); }
+
+/* focus accessibility */
+.wp-cta-icon-btn:focus{ outline: 3px solid rgba(30,102,255,0.12); outline-offset: 4px; border-radius: 999px; }
