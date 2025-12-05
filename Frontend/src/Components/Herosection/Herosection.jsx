@@ -10,11 +10,11 @@ const HeroSection = () => {
 
       {/* ========== CENTER ROTATING RING + PLAY BUTTON ========== */}
       <div className="video-area" aria-hidden="false">
-        <div className="badge-ring" aria-hidden="true">
+        <div className="hero-badge-ring" aria-hidden="true">
           {rotatingText.split("").map((char, i) => (
             <span
               key={i}
-              className="badge_char"
+              className="hero-badge_char"
               style={{ "--char-rotate": `${i * (360 / rotatingText.length)}deg` }}
             >
               {char}
@@ -34,9 +34,9 @@ const HeroSection = () => {
 
       {/* ========== LEFT CONTENT (1fr) ========== */}
       <div className="hero-left">
-        <div className="badge">✨ EXPERTISE YOU CAN TRUST</div>
+        <div className="herosec-badge">✨ EXPERTISE YOU CAN TRUST</div>
 
-        <h1 className="hero-title">
+        <h1 className="hero-sec-title">
           Empowering your brand in <br /> the digital universe
         </h1>
 
@@ -80,7 +80,7 @@ const HeroSection = () => {
         <img
           src="https://zenfy-next-js.vercel.app/assets/img/home1/banner-img1.jpg"
           alt="Office workspace"
-          className="hero-image"
+          className="herosec-img"
           loading="eager"
         />
         <div className="decor-circle" aria-hidden="true" />

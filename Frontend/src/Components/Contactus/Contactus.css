@@ -26,10 +26,9 @@
 }
 
 .zen-inner {
-  max-width: var(--zen-max-width);
   margin: 0 auto;
+  max-width: var(--zen-max-width);
   display: grid;
-  /* Right column increased width to create the visual like your screenshot */
   grid-template-columns: 1fr 760px; /* desktop: left flexible, right 760px */
   gap: 60px;
   align-items: start;

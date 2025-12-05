@@ -22,11 +22,9 @@ const Home = () => {
       <Creativeshowcase/>
       <Blueprint/>
       <Successinthefield/>
-      <Workflowinsights/>
+      {/* <Workflowinsights/> */}
       <Clientstories/>
       <Innovationdiaries/>
-      
-      
     </div>
   )
 }

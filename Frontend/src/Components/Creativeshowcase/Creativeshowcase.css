@@ -190,7 +190,7 @@
   padding: 22px;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
 }
-.cs-card-title { margin: 8px 0 8px 0; font-size: 20px; font-weight: 800; color: var(--cs-primary); line-height: 1.15; }
+.creativeshowcase-title { margin: 8px 0 8px 0; font-size: 20px; font-weight: 800; color: var(--cs-primary); line-height: 1.15; }
 .cs-card-description { margin: 0 0 16px 0; color: var(--cs-text-light); font-size: 14px; line-height: 1.5; }
 .cs-card-link { text-decoration: none; font-weight: 700; font-size: 13px; color: var(--cs-secondary); display: inline-flex; align-items: center; gap: 8px; }
 
