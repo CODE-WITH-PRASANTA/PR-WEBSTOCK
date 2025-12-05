@@ -25,8 +25,8 @@ const Home = () => {
       <Workflowinsights/>
       <Clientstories/>
       <Innovationdiaries/>
-      <Contactus/>
-      <Footer/>
+      
+      
     </div>
   )
 }
