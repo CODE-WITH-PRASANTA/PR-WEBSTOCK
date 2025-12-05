@@ -1,0 +1,133 @@
+/* ---------- WRAPPER ---------- */
+.software-wrapper {
+  padding: 5rem 12rem;
+  background: #ffffff;
+  font-family: "Inter", sans-serif;
+  color: #111827;
+}
+
+/* ---------- PART 1 GRID ---------- */
+.software-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 6rem;
+}
+
+.sw-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  line-height: 1.15;
+}
+
+.sw-highlight {
+  color: #374151;
+  font-weight: 400;
+}
+
+.sw-text {
+  font-size: 1.05rem;
+  color: #6b7280;
+  line-height: 1.7;
+  max-width: 550px;
+  margin-bottom: 2.5rem;
+}
+
+/* FEATURE LIST (bullets with blue dot) */
+.sw-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 2rem;
+}
+
+.sw-list-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sw-list-grid li {
+  font-size: 1rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.sw-list-grid li::before {
+  content: "●";
+  color: #2563eb;
+  font-size: 0.7rem;
+  margin-right: 0.6rem;
+}
+
+/* Image */
+.sw-img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* ---------- PART 2 : FAQ GRID ---------- */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Image */
+.faq-img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* FAQ */
+.faq-item {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.2rem 0;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.faq-plus {
+  font-size: 1.5rem;
+  color: #111;
+}
+
+/* Hidden answer (collapsed) */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-top: 0;
+  transition: max-height 0.4s ease, margin-top 0.3s ease;
+}
+
+/* Open answer */
+.faq-answer.open {
+  max-height: 300px;
+  margin-top: 1rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+  .software-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}

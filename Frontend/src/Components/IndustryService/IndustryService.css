@@ -1,0 +1,142 @@
+.sf-section {
+  background-color: #ffffff;
+  padding: 4.5rem 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.sf-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+/* LEFT SIDE */
+
+.sf-left {
+  max-width: 460px;
+}
+
+.sf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.8rem;
+}
+
+.sf-badge-text {
+  font-weight: 600;
+}
+
+.sf-badge-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background-color: #f97373;
+}
+
+.sf-title {
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  color: #111827;
+  font-weight: 700;
+}
+
+.sf-title-light {
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.sf-description {
+  margin: 0;
+  margin-top: 0.5rem;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: #6b7280;
+}
+
+/* RIGHT SIDE LIST */
+
+.sf-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.sf-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sf-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sf-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background-color: #e5edff; /* light bluish circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.sf-item-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  color: #111827;
+}
+
+.sf-item-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #6b7280;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+  .sf-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .sf-left {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .sf-container {
+    padding: 0 1.5rem;
+  }
+
+  .sf-title {
+    font-size: 2.1rem;
+  }
+}

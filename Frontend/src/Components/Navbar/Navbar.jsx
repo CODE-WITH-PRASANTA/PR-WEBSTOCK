@@ -322,10 +322,10 @@ const Navbar = () => {
           <nav className="navbar-links" aria-label="Primary">
             <Link to="/"> Home</Link>
             <Link to="/about"> About</Link>
-            <Link to="/product"> Industry Work</Link>
+            <Link to="/industry-work"> Industry Work</Link>
             <Link to="/pricing"> Pricing</Link>
             <Link to="/career">Career</Link>
-            <Link to="/sale">Blog</Link>
+            <Link to="/blogs">Blog</Link>
             <Link to="/contact">Contact</Link>
           </nav>
 
@@ -379,7 +379,7 @@ const Navbar = () => {
               <Link to="/industry-work" onClick={closeMobileMenu}> Industry Work</Link>
               <Link to="/pricing" onClick={closeMobileMenu}> Pricing</Link>
               <Link to="/career" onClick={closeMobileMenu}> Career</Link>
-              <Link to="/sale" onClick={closeMobileMenu}> Blog</Link>
+              <Link to="/blogs" onClick={closeMobileMenu}> Blog</Link>
               <Link to="/contact" onClick={closeMobileMenu}> Contact</Link>
             </nav>
 
