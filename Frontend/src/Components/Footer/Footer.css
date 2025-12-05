@@ -582,33 +582,3 @@
     font-size: 28px;
   }
 }
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --muted: #94a3b8;
-    --dark: #f1f5f9;
-    --card-bg: rgba(30, 41, 59, 0.7);
-  }
-  
-  .zenfy-footer {
-    background: linear-gradient(
-      135deg,
-      #0f172a 0%,
-      #1e293b 25%,
-      #1e1b4b 50%,
-      #1e293b 75%,
-      #0f172a 100%
-    );
-    border-top-color: rgba(99, 114, 241, 0.2);
-  }
-
-  .zenfy-contact-card {
-    background: rgba(30, 41, 59, 0.5);
-  }
-  
-  .zenfy-reviews-section {
-    background: rgba(30, 41, 59, 0.5);
-  }
-}
