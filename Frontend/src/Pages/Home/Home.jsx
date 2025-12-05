@@ -6,6 +6,11 @@ import Oursolutions from '../../Components/Oursolutions/Oursolutions'
 import Creativeshowcase from '../../Components/Creativeshowcase/Creativeshowcase'
 import Contactus from '../../Components/Contactus/Contactus'
 import Footer from '../../Components/Footer/Footer'
+import Blueprint from '../../Components/Blueprint/Blueprint'
+import Successinthefield from '../../Components/Successinthefield/Successinthefield'
+import Innovationdiaries from '../../Components/Innovationdiaries/Innovationdiaries'
+import Clientstories from '../../Components/Clientstories/Clientstories'
+import Workflowinsights from '../../Components/Workflowinsights/Workflowinsights'
 
 const Home = () => {
   return (
@@ -15,6 +20,11 @@ const Home = () => {
       <Homeabout/>
       <Oursolutions/>
       <Creativeshowcase/>
+      <Blueprint/>
+      <Successinthefield/>
+      <Workflowinsights/>
+      <Clientstories/>
+      <Innovationdiaries/>
       <Contactus/>
       <Footer/>
     </div>
