@@ -1,0 +1,220 @@
+/* MAIN SECTION */
+.careerbrowsejob-section {
+  background: #ffffff;
+  padding: 10px 10px;
+  font-family: "Inter", sans-serif;
+  color: #111;
+}
+
+/* GRID LAYOUT */
+.careerbrowsejob-container {
+  max-width: 1350px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* LEFT CONTENT */
+.careerbrowsejob-heading {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.careerbrowsejob-sub {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+/* FORM */
+.careerbrowsejob-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* INPUT */
+.careerbrowsejob-input {
+  position: relative;
+}
+
+.careerbrowsejob-input input {
+  width: 100%;
+  padding: 15px 20px 15px 48px;
+  border-radius: 10px;
+  border: 1.4px solid #ddd;
+  background: #fafafa;
+  font-size: 15px;
+  color: #111;
+}
+
+.careerbrowsejob-input input::placeholder {
+  color: #999;
+}
+
+.careerbrowsejob-input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 18px;
+}
+
+/* SELECT */
+.careerbrowsejob-select {
+  position: relative;
+}
+
+.careerbrowsejob-select select {
+  width: 100%;
+  padding: 15px 48px 15px 20px;
+  border-radius: 10px;
+  border: 1.4px solid #ddd;
+  background: #fafafa;
+  font-size: 15px;
+  color: #111;
+  appearance: none;
+}
+
+.careerbrowsejob-select-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+}
+
+/* SEARCH BUTTON */
+.careerbrowsejob-btn {
+  margin-top: 6px;
+  padding: 15px 20px;
+    width: 180px;
+
+  background: #111;
+  color: #ffcc00;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.2s ease;
+}
+
+.careerbrowsejob-btn:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+/* RIGHT WHITE CARD */
+.careerbrowsejob-rightcard {
+  background: #fafafa;
+  border-radius: 26px;
+  padding: 50px 40px;
+  border: 1.4px solid #e8e8e8;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.careerbrowsejob-card-title {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.careerbrowsejob-card-desc {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.careerbrowsejob-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* CARD BUTTON */
+.careerbrowsejob-card-btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #111;
+  color: #ffcc00;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.careerbrowsejob-card-btn:hover {
+  background: #000;
+}
+/* Large Tablets */
+@media (max-width: 1200px) {
+  .careerbrowsejob-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .careerbrowsejob-rightcard {
+    max-width: 600px;
+    margin: auto;
+  }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .careerbrowsejob-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .careerbrowsejob-btn {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .careerbrowsejob-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .careerbrowsejob-rightcard {
+    padding: 40px 28px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .careerbrowsejob-container {
+    max-width: 100%;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .careerbrowsejob-select,
+  .careerbrowsejob-select select {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+  }
+}

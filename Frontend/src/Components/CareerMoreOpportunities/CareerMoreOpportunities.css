@@ -1,0 +1,146 @@
+/* Section background & wrapper */
+.careermoreopportunities-section {
+  padding: 80px 20px;
+  background: #f5efe5; /* use your paper texture image here if needed */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #111;
+}
+
+.careermoreopportunities-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  column-gap: 80px;
+  align-items: center;
+}
+
+/* Left side */
+.careermoreopportunities-left {
+  text-align: left;
+}
+
+.careermoreopportunities-title {
+  font-size: 54px;
+  line-height: 1.05;
+  font-weight: 800;
+  margin: 0 0 24px;
+}
+
+.careermoreopportunities-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #555;
+  margin: 0 0 32px;
+}
+
+/* Button */
+.careermoreopportunities-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: #ffcc00;
+  color: #111;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.careermoreopportunities-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Right side */
+.careermoreopportunities-right {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+/* Feature row */
+.careermoreopportunities-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+/* Icon square */
+.careermoreopportunities-feature-iconwrap {
+  width: 70px;
+  height: 70px;
+  border-radius: 14px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.careermoreopportunities-feature-icon {
+  color: #ffcc00;
+  font-size: 30px;
+}
+
+/* Feature text */
+.careermoreopportunities-feature-content {
+  text-align: left;
+}
+
+.careermoreopportunities-feature-title {
+  margin: 4px 0 10px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.careermoreopportunities-feature-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #555;
+}
+/* Tablet */
+@media (max-width: 1024px) {
+  .careermoreopportunities-container {
+    grid-template-columns: 1fr;
+    column-gap: 40px;
+    row-gap: 40px;
+    text-align: left;
+  }
+
+  .careermoreopportunities-right {
+    gap: 28px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .careermoreopportunities-container {
+    grid-template-columns: 1fr;
+  }
+
+  .careermoreopportunities-left,
+  .careermoreopportunities-right {
+    text-align: left;
+  }
+
+  .careermoreopportunities-feature {
+    gap: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .careermoreopportunities-feature-iconwrap {
+    width: 60px;
+    height: 60px;
+  }
+
+  .careermoreopportunities-feature-icon {
+    font-size: 26px;
+  }
+}
