@@ -90,28 +90,33 @@ const IconCost = () => (
 );
 
 export default function Homeabout() {
-  const expertisePoints = [
-    {
-      icon: <IconInnovation />,
-      title: "Expertise and Innovation",
-      description: "We pride ourselves staying at the front of innovation, constantly pushing boundaries a redefining what's possible."
-    },
-    {
-      icon: <IconTransparency />,
-      title: "Transparent Process",
-      description: "Our transparent process is designed to demystify the journey from concept to delivery."
-    },
-    {
-      icon: <IconClient />,
-      title: "Client-Centric Approach",
-      description: "Our dedicated team takes the time to listen, & collaborate, ensuring that every interaction a step towards your success."
-    },
-    {
-      icon: <IconCost />,
-      title: "Cost-Effective",
-      description: "Our commitment to providing cost-effective solutions is ingrained in our mission."
-    }
-  ];
+const expertisePoints = [
+  {
+    icon: <IconInnovation />,
+    title: "Expertise & Innovation",
+    description:
+      "We deliver modern, high-performance websites and applications powered by the latest technologies, creative thinking, and future-ready strategies.",
+  },
+  {
+    icon: <IconTransparency />,
+    title: "Transparent Development",
+    description:
+      "From planning to delivery, every step is fully transparent — ensuring clarity, honesty, and complete peace of mind throughout your project.",
+  },
+  {
+    icon: <IconClient />,
+    title: "Client-First Approach",
+    description:
+      "We work closely with every client, understanding their goals and creating custom solutions that genuinely support business growth and success.",
+  },
+  {
+    icon: <IconCost />,
+    title: "Cost-Effective Solutions",
+    description:
+      "Premium quality doesn’t have to be expensive. We provide budget-friendly, scalable, and value-driven digital solutions for all businesses.",
+  },
+];
+
 
   return (
     <div className="homeabout-container">
@@ -123,22 +128,30 @@ export default function Homeabout() {
               <span className="ha-badge-icon">✦</span> EXPERTISE YOU CAN TRUST <span className="ha-badge-icon">✦</span>
             </span>
 
-            <h1 className="ha-title">
-              We are a Startup agency working
-              with young talents on delivering
-              unique ideas and creative work.
-            </h1>
+           <h1 className="ha-title">
+                Custom Websites & Applications  
+                Built With Premium Quality and 3+ Years of Trusted Expertise
+              </h1>
 
-            <p className="ha-lead">
-              Where innovation meets passion in a journey that started with a
-              simple idea and a shared dream. Founded in recent year we embarked
-              on a mission to bring the new innovation and introduce the
-              technology. From humble beginnings to our current aspirations,
-              every step has been fueled by a relentless commitment.
-            </p>
+              <p className="ha-lead">
+                PR WEBSTOCK Pvt. Ltd. is a government-registered software development company  
+                (CIN: U62010OD2025OPC051339) trusted by startups and businesses across India.  
+                With 3+ years of industry experience, we specialize in custom website development,  
+                mobile applications, CRM systems, and complete digital transformation solutions.
+                <br /><br />
+                Our mission is to deliver modern, scalable, and high-performance digital products  
+                that help brands grow and stay competitive. With 80+ successful clients and  
+                a 98% satisfaction rate, we ensure every project is genuine, fully optimized,  
+                and delivered with top-tier quality.
+                <br /><br />
+                From strategy to deployment, our team follows a professional, well-structured  
+                process to build reliable solutions — backed by 24/7 customer support  
+                and fast response times for your business needs.
+              </p>
+
 
             <button className="ha-cta">
-              <span>Our Story</span>
+              <span>Discover Our Journey</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

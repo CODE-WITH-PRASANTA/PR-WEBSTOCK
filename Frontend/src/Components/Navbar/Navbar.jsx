@@ -257,7 +257,7 @@ const Navbar = () => {
 
             <div className="contact-item contact-location" aria-label="Office location">
               <FaMapMarkerAlt className="contact-svg" aria-hidden="true" />
-              <address className="contact-text">#721 , Nexus Esplanade , Bhubaneswar</address>
+              <address className="contact-text">Unit 32 , Nexus Esplanade , Bhubaneswar</address>
             </div>
           </div>
 
@@ -325,7 +325,7 @@ const Navbar = () => {
             <Link to="/industry-work"> Industry Work</Link>
             <Link to="/pricing"> Pricing</Link>
             <Link to="/career">Career</Link>
-            <Link to="/blogs">Blog</Link>
+            <Link to="/blog">Blog</Link>
             <Link to="/contact">Contact</Link>
           </nav>
 
@@ -353,7 +353,7 @@ const Navbar = () => {
         {/* CATEGORY DROPDOWN */}
         <div ref={dropdownRef} className={`navbar-category-dropdown ${openCat ? "show" : ""}`}>
           <ul>
-            <li><a href="/services/web-development">Web Development</a></li>
+            <li><a href="/service">Web Development</a></li>
             <li><a href="/services/app-development">App Development</a></li>
             <li><a href="/services/crm">CRM Software</a></li>
             <li><a href="/services/seo">Seo</a></li>

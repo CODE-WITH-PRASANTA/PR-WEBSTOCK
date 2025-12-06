@@ -30,7 +30,7 @@
   margin: 0 auto;
   display: flex;
   gap: 80px;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   position: relative;
   z-index: 1;
@@ -62,7 +62,7 @@
 }
 
 .ha-title {
-  font-size: 56px;
+  font-size: 45px;
   line-height: 1.1;
   font-weight: 800;
   color: #0f172a;
@@ -523,7 +523,7 @@
 
 @media (max-width: 576px) {
   .ha-section, .expertise-section {
-    padding: 64px 20px;
+    padding: 40px 20px;
   }
   
   .ha-title, .expertise-title {

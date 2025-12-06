@@ -12,7 +12,7 @@
 /* Container */
 .os-section {
   background: var(--os-bg);
-  padding: 96px 28px 120px;
+  padding: 50px 8px 50px;
   box-sizing: border-box;
   width: 100%;
   font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;

@@ -2,15 +2,15 @@ import React from "react";
 import "./Herosection.css";
 import GoogleLogo from '../../assets/google.webp'
 
-const rotatingText = "S T R A T E G Y  •  D E S I G N  •  S C A L E  •  ";
+const rotatingText = "S T R A T E G Y  •  D E S I G N  •  B U I L D  •  ";
 
 const HeroSection = () => {
   return (
-    <section className="hero" role="region" aria-label="Hero - Empowering your brand">
+    <section className="herosec" role="region" aria-label="Hero - Digital Growth Solutions">
 
-      {/* ========== CENTER ROTATING RING + PLAY BUTTON ========== */}
+      {/* Rotating Badge */}
       <div className="video-area" aria-hidden="false">
-        <div className="hero-badge-ring" aria-hidden="true">
+        <div className="hero-badge-ring">
           {rotatingText.split("").map((char, i) => (
             <span
               key={i}
@@ -23,28 +23,29 @@ const HeroSection = () => {
         </div>
 
         <div className="play-wrap">
-          <button className="play-btn" aria-label="Play video">
-            {/* You can replace this with an inline SVG or image if you prefer */}
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <button className="play-btn" aria-label="Play intro video">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
               <path d="M8 5v14l11-7L8 5z" fill="#444" />
             </svg>
           </button>
         </div>
       </div>
 
-      {/* ========== LEFT CONTENT (1fr) ========== */}
+      {/* Left Content */}
       <div className="hero-left">
         <div className="herosec-badge">✨ EXPERTISE YOU CAN TRUST</div>
 
         <h1 className="hero-sec-title">
-          Empowering your brand in <br /> the digital universe
+          Empowering Startups & Businesses with<br />
+          High-Performance Websites, Apps & Digital Growth Solutions
         </h1>
 
         <p className="hero-desc">
-          Join us as we carve a path to success, driven by passion, powered by
-          innovation, and fueled by the collective spirit of our team. We
-          believe in the power of bold ideas—and we're here to turn them into
-          reality.
+          At PR WEBSTOCK, we help startups and growing businesses build a powerful 
+          digital presence with world-class Website Development, Mobile Applications, 
+          CRM Solutions, SEO, Digital Marketing, and Social Media Management.  
+          Our mission is to turn ideas into impactful digital products with 
+          strategy-driven design, modern technology, and 24/7 dedicated support.
         </p>
 
         <div className="hero-actions">
@@ -52,40 +53,47 @@ const HeroSection = () => {
             Free Consultation
           </button>
 
-          {/* Google review card */}
-          <div className="google-review" aria-label="Google review">
-            <div className="gr-top">
-              <span className="gr-label">Review On</span>
-              <div className="gr-stars" aria-hidden="true">★★★★★</div>
+          {/* Updated Google Review Card */}
+         <div 
+            className="google-review-card"
+            aria-label="Google customer reviews"
+            onClick={() => window.open("https://share.google/g1EaGINZXjs9j8qaO", "_blank")}
+          >
+            <div className="gr-header">
+              <span className="gr-title">Trusted by Businesses</span>
+              <span className="gr-stars">★★★★★</span>
             </div>
 
-            <div className="gr-main">
+            <div className="gr-body">
               <img
                 src={GoogleLogo}
-                alt="Google logo"
+                alt="Google rating badge"
                 className="gr-logo"
                 loading="lazy"
               />
-              <div className="gr-meta">
-                
-                <div className="gr-count">(50 reviews)</div>
+              <div className="gr-info">
+                <span className="gr-count">50+ Verified Google Reviews</span>
+                <span className="gr-link">View on Google →</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* ========== RIGHT IMAGE (1fr) ========== */}
-      <div className="hero-right" aria-hidden="true">
+      {/* Right Image */}
+      <div className="hero-right">
         <img
           src="https://zenfy-next-js.vercel.app/assets/img/home1/banner-img1.jpg"
-          alt="Office workspace"
+          alt="Digital workspace environment"
           className="herosec-img"
           loading="eager"
         />
-        <div className="decor-circle" aria-hidden="true" />
+        <div className="decor-circle" />
       </div>
+
     </section>
+
   );
 };
 

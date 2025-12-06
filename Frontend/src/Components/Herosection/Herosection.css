@@ -13,7 +13,7 @@
 
 
 /* HERO GRID */
-.hero {
+.herosec { 
   position: relative; /* required for absolute video-area */
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -140,7 +140,6 @@
 }
 
 .hero-sec-title {
-  font-size: clamp(28px, 4.6vw, 44px);
   font-weight: 800;
   line-height: 1.;
   margin: 6px 0 0;
@@ -184,37 +183,79 @@
   transform: translateY(-4px);
   box-shadow: 0 20px 60px rgba(37,99,235,0.16);
 }
-
-/* ------------------ GOOGLE REVIEW ------------------ */
-.google-review {
+/* ================================
+   GOOGLE REVIEW – PROFESSIONAL DESIGN
+   ================================ */
+.google-review-card {
   display: flex;
   flex-direction: column;
-  /* gap: 10px; */
-  /* min-width: 220px; */
-  /* background: var(--glass); */
-  border-radius: 12px;
-  padding: 10px 12px;
-  /* box-shadow: 0 10px 30px rgba(16,24,40,0.06); */
-  /* border: 1px solid rgba(16,24,40,0.04); */
-  align-items: flex-start;
-  backdrop-filter: blur(6px);
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  max-width: 260px;
+  width: 100%;
 }
 
-.gr-top {
+/* HEADER */
+.gr-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  width: 100%;
   justify-content: space-between;
 }
-.gr-label { font-size: 13px; color: var(--muted); font-weight: 700; letter-spacing: 0.6px; }
-.gr-stars { color: var(--gold); font-weight: 800; letter-spacing: 1px; font-size: 14px; }
 
-.gr-main { display: flex; align-items: center; gap: 12px; width: 100%; }
-.gr-logo { width: 78px; height: auto; object-fit: contain; border-radius: 6px; box-shadow: 0 8px 18px rgba(16,24,40,0.06); background: transparent; }
-.gr-meta { display: flex; flex-direction: column; gap: 4px; }
-.gr-rating { font-weight: 800; font-size: 18px; color: var(--text); }
-.gr-count { font-size: 13px; color: var(--muted); font-weight: 700; }
+.gr-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.3px;
+}
+
+.gr-stars {
+  color: #f59e0b;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* BODY */
+.gr-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gr-logo {
+  width: 72px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* INFO TEXT */
+.gr-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gr-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.gr-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  opacity: 0.9;
+}
 
 /* ------------------ RIGHT IMAGE ------------------ */
 .hero-right {
@@ -255,10 +296,11 @@
   animation: entrance .9s cubic-bezier(.2,.9,.2,1) both;
 }
 @keyframes entrance { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
 /* ------------------ RESPONSIVE ------------------ */
 /* hide image + ring on small screens */
 @media (max-width: 980px) {
-  .hero {
+  .herosec { 
     grid-template-columns: 1fr;
     padding: 34px 18px; /* already set */
     text-align: left;
@@ -283,16 +325,143 @@
 
 /* large screens tweaks */
 @media (min-width: 1600px) {
-  .hero {
+  .herosec { 
     padding: 10px 120px;
     gap: 80px;
   }
   .herosec-img { border-radius: 14px; }
 }
 
+<<<<<<< HEAD
 /* add padding on max-width 1600px */
 @media (max-width: 1600px) {
-  .hero {
-    padding: 0 30px;  /* <-- you can adjust value here */
+  .herosec { 
+    padding: 0px 100px;  /* <-- you can adjust value here */
   }
 }
+
+/* =========================================================
+   RESPONSIVE — PROFESSIONAL AGENCY LEVEL
+   ========================================================= */
+
+/* ===================== TABLET & BELOW (max-width: 980px) ===================== */
+@media (max-width: 980px) {
+
+  .herosec { 
+    grid-template-columns: 1fr;
+    padding: 10px 10px;
+    text-align: left;
+    gap: 32px;
+  }
+
+  .hero-left {
+    align-items: flex-start;
+  }
+
+  .hero-sec-title {
+    font-size: 32px;
+    line-height: 1.25;
+    max-width: 90%;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 95%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  /* Hide Right Image + Rotating Circle */
+  .hero-right,
+  .video-area {
+    display: none;
+  }
+
+  /* Google Review Responsive */
+  .google-review-card {
+    max-width: 100%;
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .gr-body {
+    justify-content: flex-start;
+  }
+
+  .gr-logo {
+    width: 60px;
+  }
+
+  .gr-title {
+    font-size: 12px;
+  }
+
+  .gr-count {
+    font-size: 12px;
+  }
+
+  .gr-link {
+    font-size: 11px;
+  }
+}
+
+
+/* ===================== MOBILE (max-width: 680px) ===================== */
+@media (max-width: 680px) {
+
+  .hero-sec-title {
+    font-size: 28px;
+    line-height: 1.3;
+    max-width: 100%;
+  }
+
+  .gr-logo {
+    width: 54px;
+  }
+
+  .google-review-card {
+    padding: 12px 14px;
+  }
+
+  .gr-link {
+    font-size: 10.5px;
+  }
+}
+
+
+/* ===================== SMALL MOBILE (max-width: 480px) ===================== */
+@media (max-width: 480px) {
+
+
+  .hero-sec-title {
+    font-size: 24px;
+    line-height: 1.32;
+  }
+
+  .google-review-card {
+    padding: 12px 12px;
+    gap: 10px;
+  }
+
+  .gr-logo {
+    width: 50px;
+  }
+
+  .gr-title {
+    font-size: 11px;
+  }
+}
+=======
+>>>>>>> 41337b1bf053e8f8ad570b7c000a6a9df3d3086d
+
