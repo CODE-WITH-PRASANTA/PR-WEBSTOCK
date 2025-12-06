@@ -505,80 +505,153 @@
   color: white;
   transform: translateY(-2px);
 }
-
-/* Responsive Design */
-@media (max-width: 1200px) {
+/* -------------------------------------------------
+   RESPONSIVE — LARGE TABLETS (max-width: 1024px)
+------------------------------------------------- */
+@media (max-width: 1024px) {
   .zenfy-footer-columns {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
-  
+
   .zenfy-footer-col-logo {
-    grid-column: 1 / -1;
-    order: -1;
+    grid-column: span 2;
   }
-  
+
   .zenfy-brand-container {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
+  }
+
+  .zenfy-logo-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .zenfy-bglogo-img {
+    width: 330px;
+    height: 330px;
   }
 }
 
+
+/* -------------------------------------------------
+   RESPONSIVE — TABLETS (max-width: 768px)
+------------------------------------------------- */
 @media (max-width: 768px) {
+  
+
   .zenfy-footer-columns {
     grid-template-columns: 1fr;
     gap: 25px;
   }
-  
-  /* revert contact cards to stacked on small screens */
+
+  .zenfy-footer-col {
+    padding: 24px;
+  }
+
+  .zenfy-brand-container {
+    width: 240px;
+    height: 240px;
+  }
+
+  .zenfy-bglogo-img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .zenfy-logo-img {
+    width: 140px;
+    height: 140px;
+  }
+
   .zenfy-contact-cards {
     flex-direction: column;
-    align-items: stretch;
+    gap: 16px;
   }
+
   .zenfy-contact-card {
     max-width: 100%;
   }
-  
-  .zenfy-services-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .zenfy-review-grid {
-    grid-template-columns: 1fr;
-  }
-  
+
   .zenfy-footer-bottom {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     text-align: center;
   }
-  
-  .zenfy-footer-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-  
+
   .zenfy-social-links {
     margin-left: 0;
+  }
+}
+
+
+/* -------------------------------------------------
+   RESPONSIVE — MOBILE 480px
+------------------------------------------------- */
+@media (max-width: 480px) {
+  .zenfy-footer {
+    padding: 5px 1%;
+  }
+  .zenfy-footer-heading {
+    font-size: 22px;
+  }
+
+  .zenfy-about-title {
+    font-size: 24px;
+  }
+
+  .zenfy-brand-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .zenfy-bglogo-img {
+    width: 240px;
+    height: 240px;
+  }
+
+  .zenfy-logo-img {
+    width: 120px;
+    height: 120px;
+  }
+
+ 
+
+  .zenfy-footer-links {
+    gap: 10px;
+  }
+
+  .zenfy-social-links {
     justify-content: center;
   }
 }
 
-@media (max-width: 480px) {
-  .zenfy-footer {
-    padding: 40px 20px 25px;
+
+/* -------------------------------------------------
+   RESPONSIVE — VERY SMALL DEVICES (max-width: 360px)
+------------------------------------------------- */
+@media (max-width: 360px) {
+  .zenfy-brand-container {
+    width: 170px;
+    height: 170px;
   }
-  
-  .zenfy-footer-col {
-    padding: 25px 20px;
+
+  .zenfy-bglogo-img {
+    width: 200px;
+    height: 200px;
   }
-  
-  .zenfy-about-title {
-    font-size: 26px;
+
+  .zenfy-logo-img {
+    width: 100px;
+    height: 100px;
   }
-  
-  .zenfy-brand-name {
-    font-size: 28px;
+
+  .zenfy-contact-card {
+    padding: 14px;
+  }
+
+  .zenfy-service-text {
+    font-size: 13px;
   }
 }

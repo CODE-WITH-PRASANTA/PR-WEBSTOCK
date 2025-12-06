@@ -9,11 +9,12 @@
   --small-shadow: 0 8px 18px rgba(22,17,15,0.06);
 }
 
-.wp-section{
+.wp-section {
   background: var(--bg);
-  padding: 72px 20px 110px;
+  padding: 50px 20px 50px;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--headline);
+  margin-bottom: 10px;
 }
 
 .wp-container{
@@ -64,6 +65,88 @@
   position: relative;
   padding-top: 48px;
   padding-bottom: 36px;
+}
+/* ====================================================
+   RESPONSIVE — Working Process Section (Clean & Simple)
+==================================================== */
+
+/* Tablets & Medium Screens */
+@media (max-width: 992px) {
+
+  .wp-title-line1 {
+    font-size: 48px;
+  }
+
+  .wp-title-line2 {
+    font-size: 30px;
+  }
+
+  .wp-section {
+    padding: 60px 16px 90px;
+  }
+
+  .wp-header {
+    margin-bottom: 36px;
+  }
+
+  .wp-timeline-wrap {
+    padding-top: 36px;
+    padding-bottom: 28px;
+  }
+}
+
+/* Large Mobile */
+@media (max-width: 768px) {
+
+  .wp-title-line1 {
+    font-size: 38px;
+    line-height: 1.05;
+  }
+
+  .wp-title-line2 {
+    font-size: 24px;
+  }
+
+  .wp-section {
+    padding: 50px 14px 80px;
+  }
+
+  .wp-header {
+    margin-bottom: 28px;
+  }
+
+  .wp-timeline-wrap {
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+  .wp-title-line1 {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .wp-title-line2 {
+    font-size: 20px;
+  }
+
+  .wp-section {
+    padding: 0px 0px 0px;
+  }
+.wp-step-text{
+  max-width: none !important;
+}
+  .wp-header {
+    margin-bottom: 22px;
+  }
+
+  .wp-timeline-wrap {
+    padding-top: 20px;
+    padding-bottom: 0px;
+  }
 }
 
 /* connector line (hidden on small screens where scroller is used) */

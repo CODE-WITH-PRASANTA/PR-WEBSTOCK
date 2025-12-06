@@ -11,38 +11,47 @@ const AboutUsCoreValues = () => {
     <section className="about-us-core-values">
       <div className="about-us-core-values__grid">
 
+        {/* VALUE 1 */}
         <div className="about-us-core-values__item">
           <img src={iconImg1} className="about-us-core-values__icon" alt="" />
-          <h3 className="about-us-core-values__title">Expertise and Innovation</h3>
+          <h3 className="about-us-core-values__title">Innovation Through Clean Code</h3>
           <p className="about-us-core-values__desc">
-            We pride ourselves staying at the front of innovation, constantly pushing
-            boundaries and redefining what's possible.
+            PR WEBSTOCK builds every digital product using modern tech and clean,
+            scalable code. We innovate with purpose—ensuring performance, security,
+            and long-term growth for every business we serve.
           </p>
         </div>
 
+        {/* VALUE 2 */}
         <div className="about-us-core-values__item">
           <img src={iconImg2} className="about-us-core-values__icon" alt="" />
-          <h3 className="about-us-core-values__title">Transparent Process</h3>
+          <h3 className="about-us-core-values__title">Transparent & Reliable Workflow</h3>
           <p className="about-us-core-values__desc">
-            Our transparent process is designed to demystify the journey from
-            concept to delivery.
+            From planning to deployment, our process is fully transparent—
+            real-time updates, clear communication, and accountability at every
+            stage to ensure a smooth and predictable delivery.
           </p>
         </div>
 
+        {/* VALUE 3 */}
         <div className="about-us-core-values__item">
           <img src={iconImg3} className="about-us-core-values__icon" alt="" />
-          <h3 className="about-us-core-values__title">Client-Centric Approach</h3>
+          <h3 className="about-us-core-values__title">Client-First Development Approach</h3>
           <p className="about-us-core-values__desc">
-            Our dedicated team takes the time to listen & collaborate, ensuring that
-            every interaction is a step toward your success.
+            We design and develop with your business goals in mind. Every decision,
+            feature, and design element is tailored to maximize user experience and
+            deliver measurable results for your brand.
           </p>
         </div>
 
+        {/* VALUE 4 */}
         <div className="about-us-core-values__item">
           <img src={iconImg4} className="about-us-core-values__icon" alt="" />
-          <h3 className="about-us-core-values__title">Cost-Effective</h3>
+          <h3 className="about-us-core-values__title">Cost-Efficient, High-Value Solutions</h3>
           <p className="about-us-core-values__desc">
-            Our commitment to cost-effective solutions is ingrained in our mission.
+            We deliver premium-quality websites, apps, and software at competitive
+            pricing—ensuring every business, from startups to enterprises, gets the
+            best return on investment.
           </p>
         </div>
 

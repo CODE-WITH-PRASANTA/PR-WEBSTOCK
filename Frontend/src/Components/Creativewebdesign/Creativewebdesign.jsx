@@ -25,19 +25,19 @@ const Creativewebdesign = () => {
   }, []);
 
   return (
-    <section className="Creativewebdesign__section">
-      <div className="Creativewebdesign__inner">
+    <section className="Creativewebdesign-root Creativewebdesign-section">
+      <div className="Creativewebdesign-inner">
 
         {/* Left decorative column */}
-        <div className="Creativewebdesign__left">
+        <div className="Creativewebdesign-left">
           <div
-            className="Creativewebdesign__marker"
+            className="Creativewebdesign-marker"
             aria-hidden="true"
             ref={markerRef}
           >
             {/* SVG Decorative Element */}
             <svg
-              className="Creativewebdesign__svg"
+              className="Creativewebdesign-svg"
               width="180"
               height="180"
               viewBox="0 0 180 180"
@@ -91,32 +91,32 @@ const Creativewebdesign = () => {
         </div>
 
         {/* Right Content Column */}
-        <div className="Creativewebdesign__right">
-          <h2 id="creative-heading" className="Creativewebdesign__title">
+        <div className="Creativewebdesign-right">
+          <h2 id="creative-heading" className="Creativewebdesign-title">
             Your search for creative web design ends at Webomindapps, 
             the best website designing company in Bangalore
           </h2>
 
-          <div className="Creativewebdesign__media">
+          <div className="Creativewebdesign-media">
             <img
               src={innerimage}
               alt="Team discussing web design at Webomindapps office"
-              className="Creativewebdesign__image"
+              className="Creativewebdesign-image"
               ref={imageRef}
               loading="lazy"
               decoding="async"
             />
 
             <article
-              className="Creativewebdesign__card"
+              className="Creativewebdesign-card"
               aria-labelledby="card-heading"
               role="complementary"
             >
-              <h3 id="card-heading" className="Creativewebdesign__card-title">
+              <h3 id="card-heading" className="Creativewebdesign-card-title">
                 Webomindapps — Creative web design company in Bangalore
               </h3>
 
-              <p className="Creativewebdesign__card-text">
+              <p className="Creativewebdesign-card-text">
                 Webomindapps is a top web design company in Bangalore, dedicated to providing a
                 wide range of professional web designing services. Our expertise lies in creating
                 websites that are optimized and run flawlessly across all devices and screen sizes.

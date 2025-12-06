@@ -1,62 +1,60 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
-import "./AwardsSection.css"; // make sure this path matches where you paste the CSS
+import "./AwardsSection.css"; // same CSS file — you can rename later
 
-const awardsData = [
-  { year: "2024", title: "Innovation Ignition Award", subtitle: "Site Of The Day" },
-  { year: "2024", title: "CSS Design Award", subtitle: "Site Of The Month" },
-  { year: "2024", title: "Masterpiece Maker", subtitle: "Awards Jury 2024" },
-  { year: "2024", title: "Alchemy Achievement", subtitle: "Site Of The Day" },
+const industries = [
+  { name: "Healthcare & Hospitals", desc: "Custom software, booking systems, and patient management.", icon: "🏥" },
+  { name: "Schools & Education", desc: "ERP, LMS platforms, websites, and student portals.", icon: "🎓" },
+  { name: "Real Estate", desc: "Property listing platforms, CRM, and lead automation.", icon: "🏡" },
+  { name: "E-Commerce", desc: "Fully functional online stores with payment gateway integration.", icon: "🛒" },
+  { name: "Travel & Flight Booking", desc: "Visa platforms, flight search systems, and booking engines.", icon: "✈️" },
+  { name: "NGO & Social Organizations", desc: "Donation portals, cause-driven websites, and CRM solutions.", icon: "🤝" },
+  { name: "Brand & Corporate Websites", desc: "High-performance, modern, fast-loading business websites.", icon: "💼" },
+  { name: "Custom Software & CRM", desc: "Tailored business solutions built for automation and scale.", icon: "⚙️" }
 ];
 
-const AwardsSection = () => {
+const IndustriesSection = () => {
   return (
     <section className="awards-wrap">
       <div className="awards-inner">
+
+        {/* LEFT SIDE – Intro */}
         <aside className="awards-left">
           <div className="badge">
             <span className="badge-dot" />
-            <span className="badge-text">OUR AWARD TIME</span>
+            <span className="badge-text">INDUSTRIES WE SERVE</span>
           </div>
 
-          <h1 className="headline">
-            Celebrating Zenfy's<br />
-            <span className="muted">Award-Winning</span><br />
-            Excellence.
+          <h1 className="awardsec-headline">
+            Powering Digital Growth Across<br />
+            <span className="muted">Multiple Industries</span>
           </h1>
 
-          <a className="about-link" href="#about">
-            About Us More <span className="chev">↗</span>
+          <p className="industry-info">
+            PR WEBSTOCK delivers scalable digital solutions for businesses across 
+            healthcare, education, travel, real estate, online commerce, NGOs, 
+            corporate brands, and custom enterprise automation.
+          </p>
+
+          <a className="about-link" href="/services/web-development">
+            Explore Our Services <span className="chev">↗</span>
           </a>
         </aside>
 
-        <main className="awards-right" aria-label="Awards timeline">
-          <div className="timeline-track">
-            <div className="timeline-pin" />
-            <div className="timeline-scroll">
-              {awardsData.map((a, idx) => (
-                <article key={idx} className="timeline-item">
-                  <div className="item-content">
-                    <div className="item-year">{a.year}</div>
-                    <h3 className="item-title">{a.title}</h3>
-                    <div className="item-sub">{a.subtitle}</div>
-                  </div>
-
-                  <button className="open-btn" aria-label={`Open ${a.title}`}>
-                    <div className="open-ring">
-                      <FiArrowRight />
-                    </div>
-                  </button>
-                </article>
-              ))}
-              {/* add spacing at bottom so last item isn't cramped */}
-              <div style={{ height: 40 }} />
+        {/* RIGHT SIDE – Industries Grid */}
+        <main className="industries-grid" aria-label="Industries list">
+          {industries.map((item, idx) => (
+            <div key={idx} className="industry-card">
+              <div className="industry-icon">{item.icon}</div>
+              <h3 className="industry-title">{item.name}</h3>
+              <p className="industry-desc">{item.desc}</p>
             </div>
-          </div>
+          ))}
         </main>
+
       </div>
     </section>
   );
 };
 
-export default AwardsSection;
+export default IndustriesSection;

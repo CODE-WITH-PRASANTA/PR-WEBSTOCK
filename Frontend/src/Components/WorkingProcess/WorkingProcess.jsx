@@ -3,38 +3,41 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { GiRoundStar } from "react-icons/gi";
 import "./WorkingProcess.css";
 
+
 const steps = [
   {
-    title: "Client Consultation",
+    title: "Requirement Understanding",
     text:
-      "Sed accumsan sem cursus luctus porta. amem Phasellu du enim, efficitur quis velit ac, fringilla posuere leo fusci.",
+      "We start with a simple conversation to understand what you need — your business goals, the purpose of the project, target users, and the features you expect. This helps us see your vision clearly before we begin.",
     number: "01",
   },
   {
-    title: "Strategy Development",
+    title: "Project Planning & Strategy",
     text:
-      "Sed accumsan sem cursus luctus porta. amem Phasellu du enim, efficitur quis velit ac, fringilla posuere leo fusci.",
+      "Once we understand your idea, we prepare a clear plan — timeline, modules, technology stack, and estimated milestones. You always know what will happen, when it will happen, and how the project will move forward.",
     number: "02",
   },
   {
-    title: "Market Research",
+    title: "UI/UX & System Architecture",
     text:
-      "Sed accumsan sem cursus luctus porta. amem Phasellu du enim, efficitur quis velit ac, fringilla posuere leo fusci.",
+      "We create simple, clean UI designs and map the user flow so your customers get an easy and smooth experience. Along with that, we plan the full system architecture to ensure the project remains fast, scalable, and secure.",
     number: "03",
   },
   {
-    title: "Campaign Planning",
+    title: "Development & Integration",
     text:
-      "Sed accumsan sem cursus luctus porta. amem Phasellu du enim, efficitur quis velit ac, fringilla posuere leo fusci.",
+      "Our development team starts building your website or application module by module. We integrate APIs, set up the database, and write clean, maintainable code. You can see the progress regularly and share feedback anytime.",
     number: "04",
   },
   {
-    title: "Optimize & Launch",
+    title: "Testing, Launch & Support",
     text:
-      "Sed accumsan sem cursus luctus porta. amem Phasellu du enim, efficitur quis velit ac, fringilla posuere leo fusci.",
+      "After development, we thoroughly test everything — functionality, speed, UI, and security. Once everything is perfect, we launch the project and continue to support you with updates, improvements, and maintenance.",
     number: "05",
   },
 ];
+
+
 
 const WorkingProcess = () => {
   const stepsRef = useRef(null);
@@ -99,10 +102,11 @@ const WorkingProcess = () => {
           <GiRoundStar className="wp-badge-star" />
         </div>
 
-        <header className="wp-header">
-          <h1 className="wp-title-line1">Bringing the best IT</h1>
-          <h2 className="wp-title-line2">Vendors To You.</h2>
+       <header className="wp-header">
+          <h1 className="wp-title-line1">PR WEBSTOCK Working Process</h1>
+          <h2 className="wp-title-line2">How We Turn Ideas Into Successful Digital Solutions</h2>
         </header>
+
 
         <div className="wp-timeline-wrap">
           <div className="wp-connector" />

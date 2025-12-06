@@ -1,6 +1,7 @@
 import React from "react";
 import "./Herosection.css";
 import GoogleLogo from '../../assets/google.webp'
+import herobanner from '../../assets/hero-banner.webp'
 
 const rotatingText = "S T R A T E G Y  •  D E S I G N  •  B U I L D  •  ";
 
@@ -84,7 +85,7 @@ const HeroSection = () => {
       {/* Right Image */}
       <div className="hero-right">
         <img
-          src="https://zenfy-next-js.vercel.app/assets/img/home1/banner-img1.jpg"
+          src={herobanner}
           alt="Digital workspace environment"
           className="herosec-img"
           loading="eager"

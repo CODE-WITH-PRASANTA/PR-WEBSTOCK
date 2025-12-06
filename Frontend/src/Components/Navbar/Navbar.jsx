@@ -353,7 +353,7 @@ const Navbar = () => {
         {/* CATEGORY DROPDOWN */}
         <div ref={dropdownRef} className={`navbar-category-dropdown ${openCat ? "show" : ""}`}>
           <ul>
-            <li><a href="/service">Web Development</a></li>
+            <li><a href="/services/web-development">Web Development</a></li>
             <li><a href="/services/app-development">App Development</a></li>
             <li><a href="/services/crm">CRM Software</a></li>
             <li><a href="/services/seo">Seo</a></li>
