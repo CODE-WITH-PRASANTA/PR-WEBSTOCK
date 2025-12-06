@@ -11,6 +11,7 @@ import Blog from "./Pages/Blog/Blog";
 import Footer from "./Components/Footer/Footer";
 import ContactUs from "./Components/Contactus/Contactus";
 import BlogDetails from "./Pages/BlogDetails/BlogDetails";
+import Service from "./Pages/Service/Service";
 
 import ScrollToTop from "./ScrollToTop";
 import PageLoader from "./Components/PageLoader/PageLoader"; 
@@ -44,6 +45,7 @@ function AppContent() {
         <Route path="/career" element={<Career />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/details" element={<BlogDetails />} />
+        <Route path="/service" element={<Service />} />
       </Routes>
       <ContactUs />
       <Footer />

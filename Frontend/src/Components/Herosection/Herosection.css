@@ -332,6 +332,7 @@
   .herosec-img { border-radius: 14px; }
 }
 
+<<<<<<< HEAD
 /* add padding on max-width 1600px */
 @media (max-width: 1600px) {
   .herosec { 
@@ -461,4 +462,6 @@
     font-size: 11px;
   }
 }
+=======
+>>>>>>> 41337b1bf053e8f8ad570b7c000a6a9df3d3086d
 
