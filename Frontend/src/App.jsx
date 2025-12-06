@@ -12,6 +12,10 @@ import Footer from "./Components/Footer/Footer";
 import ContactUs from "./Components/Contactus/Contactus";
 import BlogDetails from "./Pages/BlogDetails/BlogDetails";
 import Service from "./Pages/Service/Service";
+import AppDevelopment from "./Pages/AppDevelopment/AppDevelopment";
+import GetFreeDemo from "./Pages/GetFreeDemo/GetFreeDemo";
+
+
 
 import ScrollToTop from "./ScrollToTop";
 import PageLoader from "./Components/PageLoader/PageLoader"; 
@@ -46,6 +50,8 @@ function AppContent() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/details" element={<BlogDetails />} />
         <Route path="/service" element={<Service />} />
+        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/get-quote" element={<GetFreeDemo />} />
       </Routes>
       <ContactUs />
       <Footer />

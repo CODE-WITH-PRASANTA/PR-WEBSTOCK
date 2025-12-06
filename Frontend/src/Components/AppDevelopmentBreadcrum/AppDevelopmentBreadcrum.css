@@ -1,0 +1,215 @@
+:root{
+  --accent: #fff;
+  --accent-strong: rgba(255,255,255,0.98);
+  --muted: rgba(255,255,255,0.98);
+  --glass: rgba(255,255,255,0.04);
+  --shadow: 0 10px 30px rgba(3,3,3,0.45);
+  --transition: 300ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* Apply Lato font */
+.App-breadcrum {
+  font-family: 'Lato', sans-serif !important;
+}
+
+/* Container */
+.App-breadcrum {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--accent);
+  background: #0b0b0b;
+}
+
+/* Video */
+.App-breadcrum__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+  filter: saturate(0.95) contrast(0.95);
+}
+
+/* Overlay */
+.App-breadcrum__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg,
+    rgba(6,10,12,0.92) 0%,
+    rgba(6,10,12,0.82) 20%,
+    rgba(6,10,12,0.6) 45%,
+    rgba(6,10,12,0.4) 65%,
+    rgba(6,10,12,0.35) 100%);
+}
+
+/* Content */
+.App-breadcrum__content {
+  position: relative;
+  z-index: 3;
+  max-width: 720px;
+  padding: 56px 28px;
+  margin-left: 56px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: var(--shadow);
+}
+
+/* Title */
+.App-breadcrum__title {
+  margin: 0 0 14px 0;
+  font-size: 2.6rem;
+  line-height: 1.03;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--accent-strong);
+}
+
+/* Subtitle */
+.App-breadcrum__subtitle {
+  margin: 0 0 26px 0;
+  max-width: 620px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.98);
+}
+
+/* CTA */
+.App-breadcrum__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--accent);
+  padding: 6px 2px 14px 0;
+  cursor: pointer;
+  transition: color var(--transition);
+  outline: none;
+}
+
+/* CTA Text */
+.App-breadcrum__cta-text {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 15px;
+  color: var(--accent-strong);
+}
+
+/* Icons */
+.App-breadcrum__icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  position: relative;
+}
+
+.App-breadcrum__icons .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform var(--transition), opacity var(--transition), color var(--transition);
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.icon--initial {
+  opacity: 1;
+  transform: translate(-50%, -52%) scale(1);
+  font-size: 16px;
+  color: rgba(255,255,255,0.88);
+}
+
+.icon--hover {
+  opacity: 0;
+  transform: translate(-30%, -50%) scale(0.95);
+  font-size: 18px;
+  color: var(--accent-strong);
+}
+
+/* Underline */
+.App-breadcrum__cta::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: rgba(255,255,255,0.28);
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: height var(--transition), background var(--transition), transform var(--transition);
+  border-radius: 2px;
+}
+
+/* Hover */
+.App-breadcrum__cta:hover,
+.App-breadcrum__cta:focus {
+  color: var(--accent-strong);
+}
+
+.App-breadcrum__cta:hover .icon--initial,
+.App-breadcrum__cta:focus .icon--initial {
+  opacity: 0;
+  transform: translate(-60%, -52%) scale(0.9) rotate(-10deg);
+}
+
+.App-breadcrum__cta:hover .icon--hover,
+.App-breadcrum__cta:focus .icon--hover {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.App-breadcrum__cta:hover::after,
+.App-breadcrum__cta:focus::after {
+  height: 3px;
+  bottom: -8px;
+  background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0.85));
+  transform: scaleX(1.02);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.45);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .App-breadcrum {
+    min-height: 340px;
+  }
+  .App-breadcrum__content {
+    margin-left: 32px;
+    padding: 40px 22px;
+    border-radius: 12px;
+  }
+  .App-breadcrum__title { font-size: 2.05rem; }
+}
+
+@media (max-width: 700px) {
+  .App-breadcrum {
+    min-height: 260px;
+    align-items: flex-end;
+  }
+  .App-breadcrum__overlay {
+    background: linear-gradient(180deg,
+      rgba(6,10,12,0.86) 0%,
+      rgba(6,10,12,0.78) 30%,
+      rgba(6,10,12,0.95) 100%);
+  }
+  .App-breadcrum__content {
+    margin-left: 0px;
+    padding: 18px;
+    max-width: calc(100% - 30px);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  }
+  .App-breadcrum__title { font-size: 1.25rem; margin-bottom: 8px; }
+  .App-breadcrum__subtitle { font-size: 14px; }
+}
