@@ -257,7 +257,7 @@ const Navbar = () => {
 
             <div className="contact-item contact-location" aria-label="Office location">
               <FaMapMarkerAlt className="contact-svg" aria-hidden="true" />
-              <address className="contact-text">#721 , Nexus Esplanade , Bhubaneswar</address>
+              <address className="contact-text">Unit 32 , Nexus Esplanade , Bhubaneswar</address>
             </div>
           </div>
 
@@ -322,7 +322,7 @@ const Navbar = () => {
           <nav className="navbar-links" aria-label="Primary">
             <Link to="/"> Home</Link>
             <Link to="/about"> About</Link>
-            <Link to="/product"> Industry Work</Link>
+            <Link to="/industry-work"> Industry Work</Link>
             <Link to="/pricing"> Pricing</Link>
             <Link to="/career">Career</Link>
             <Link to="/blog">Blog</Link>
@@ -379,7 +379,7 @@ const Navbar = () => {
               <Link to="/industry-work" onClick={closeMobileMenu}> Industry Work</Link>
               <Link to="/pricing" onClick={closeMobileMenu}> Pricing</Link>
               <Link to="/career" onClick={closeMobileMenu}> Career</Link>
-              <Link to="/sale" onClick={closeMobileMenu}> Blog</Link>
+              <Link to="/blogs" onClick={closeMobileMenu}> Blog</Link>
               <Link to="/contact" onClick={closeMobileMenu}> Contact</Link>
             </nav>
 

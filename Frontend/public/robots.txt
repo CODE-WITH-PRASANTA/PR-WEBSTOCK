@@ -1,10 +1,13 @@
 User-agent: *
 Allow: /
 
-# Block admin or private pages (recommended)
+# Block sensitive pages (recommended)
 Disallow: /admin/
 Disallow: /dashboard/
+Disallow: /api/   # Optional (if you do not want Google to crawl backend API routes)
 
 # Sitemap location
-Sitemap: https://prwebstock.com/sitemap.xml
-Host: https://prwebstock.com
+Sitemap: https://www.prwebstock.com/sitemap.xml
+
+# Preferred domain
+Host: https://www.prwebstock.com

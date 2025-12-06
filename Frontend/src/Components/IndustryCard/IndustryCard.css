@@ -1,0 +1,94 @@
+/* Full component padding (matches screenshot) */
+.industry-grid-wrapper {
+  padding: 7rem 12rem; /* top and sides padding */
+  background-color: #f9fafb;
+}
+
+/* 4-column grid like screenshot */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem; /* spacing between cards */
+}
+
+/* Card – rectangle like screenshot (NOT square) */
+.industry-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* Hover effect */
+.industry-card:hover {
+  border-color: #2563eb;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+  transform: translateY(-3px);
+}
+
+/* Image aspect ratio matches your reference */
+.industry-card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* perfect match with screenshot */
+  overflow: hidden;
+}
+
+/* Image styling */
+.industry-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.industry-card-image-wrapper:hover .industry-card-image {
+  transform: scale(1.05);
+}
+
+/* Content area (spacing like screenshot) */
+.industry-card-content {
+  padding: 1.25rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.industry-card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111827;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+/* Text hover color */
+.industry-card-content:hover .industry-card-title {
+  color: #2563eb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .industry-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .industry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .industry-grid {
+    grid-template-columns: 1fr;
+  }
+}

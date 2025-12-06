@@ -82,41 +82,54 @@ const IconSupport = () => (
 const cards = [
   { 
     icon: <IconWeb />, 
-    title: 'Web & App Development', 
-    desc: 'Revolutionize your digital presence with our Web & App Development services—innovative solutions, user-centric experiences.',
-    gradient: 'linear-gradient(135deg, #8b5cf6, #6366f1)'
+    title: 'Website Development', 
+    desc: 'We create fully custom, SEO-optimized, mobile-responsive websites tailored to your brand. PR WEBSTOCK builds high-performance websites that enhance credibility, improve conversions, and support long-term business growth. Trusted by 80+ clients across industries.',
+    gradient: 'linear-gradient(135deg, #8b5cf6, #6366f1)',
+    link: '/services/web-development'
   },
-  { 
-    icon: <IconConsult />, 
-    title: 'Consulting Services', 
-    desc: 'Strategic guidance for success: Elevate your business with our expert Consulting Services, tailored for growth and innovation.',
-    gradient: 'linear-gradient(135deg, #10b981, #059669)'
-  },
-  { 
-    icon: <IconShield />, 
-    title: 'Cyber Security', 
-    desc: 'Guard your digital fortress with our Cyber Security solutions—ensuring robust protection against evolving threats.',
-    gradient: 'linear-gradient(135deg, #f59e0b, #d97706)'
-  },
+
   { 
     icon: <IconCloud />, 
-    title: 'Cloud & DevOps', 
-    desc: 'Reliable cloud architecture and DevOps automation to scale faster, reduce downtime, and ship features more often.',
-    gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)'
+    title: 'Application Development', 
+    desc: 'We develop reliable and scalable mobile & web applications with clean UI/UX, secure backend architecture, and smooth performance. Our apps are designed for startups, enterprises, and businesses looking to digitize operations with modern technology.',
+    gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+    link: '/services/app-development'
   },
+
   { 
     icon: <IconAnalytics />, 
-    title: 'Data & Analytics', 
-    desc: 'Turn data into decisions with analytics, dashboards, and machine learning to drive measurable business outcomes.',
-    gradient: 'linear-gradient(135deg, #8b5cf6, #7c3aed)'
+    title: 'SEO & Digital Marketing', 
+    desc: 'Rank higher, grow faster. Our SEO and digital marketing solutions help businesses increase visibility, generate organic leads, and build a strong online brand. Includes keyword strategy, Google ranking optimization, paid ads, and content marketing.',
+    gradient: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+    link: '/services/seo'
   },
+
+  { 
+    icon: <IconConsult />, 
+    title: 'Social Media Management', 
+    desc: 'We manage your social media professionally with content planning, brand strategy, reels, paid ads, and weekly reports. Build trust, grow engagement, and convert followers into real customers with PR WEBSTOCK’s expert SMM services.',
+    gradient: 'linear-gradient(135deg, #10b981, #059669)',
+    link: '/services/digital-marketing'
+  },
+
+  { 
+    icon: <IconShield />, 
+    title: 'Payment Gateway (PhonePe Partner)', 
+    desc: 'PR WEBSTOCK is an official PhonePe Payment Gateway Partner. We provide fast onboarding, integration, merchant approval, settlement setup, and API documentation support for businesses. Ideal for eCommerce, apps, service platforms, and startups.',
+    gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
+    link: '/services/payment-gateway'
+  },
+
   { 
     icon: <IconSupport />, 
-    title: 'Managed IT & Support', 
-    desc: '24/7 managed IT and customer support to keep operations running, systems secure, and customers satisfied.',
-    gradient: 'linear-gradient(135deg, #ef4444, #dc2626)'
+    title: '24/7 IT Support & Maintenance', 
+    desc: 'Round-the-clock monitoring, bug fixing, uptime management, cloud support, and security maintenance. We ensure your website, application, CRM, or portal stays fast, secure, and running smoothly every day — with an average 3-minute response time.',
+    gradient: 'linear-gradient(135deg, #ef4444, #dc2626)',
+    link: '/services/support'
   }
 ];
+
+
 
 const Oursolutions = () => {
   const getDelay = (index) => {
@@ -138,10 +151,14 @@ const Oursolutions = () => {
               <span className="os-badge-icon">✦</span> EXPERTISE YOU CAN TRUST <span className="os-badge-icon">✦</span>
             </div>
             <h2 id="os-heading" className="os-title">Explore Our Solutions</h2>
-            <p className="os-subtitle">
-              Comprehensive digital solutions designed to elevate your business, 
-              enhance security, and drive growth through cutting-edge technology.
+           <p className="os-subtitle">
+              Discover premium IT services crafted by PR WEBSTOCK — a trusted software company delivering 
+              Website Development, Application Development, SEO, Digital Marketing, Social Media Management, 
+              and PhonePe Payment Gateway onboarding. We help businesses grow with secure, scalable and 
+              high-performance digital solutions.
             </p>
+
+
           </div>
 
           <div className="os-head-right">
@@ -190,8 +207,8 @@ const Oursolutions = () => {
                   <div className="os-divider-glow" style={{ background: c.gradient }} />
                 </div>
 
-                <a className="os-card-link" href="#explore" aria-label={`Explore more about ${c.title}`}>
-                  <span className="os-card-link-text">EXPLORE MORE</span>
+               <a className="os-card-link" href={c.link} aria-label={`Learn more about ${c.title}`}>
+                  <span className="os-card-link-text">LEARN MORE</span>
                   <span className="os-card-link-arrow">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                       <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

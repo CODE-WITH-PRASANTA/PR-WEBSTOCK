@@ -9,14 +9,15 @@
   display: flex;
   gap: 40px;
   white-space: nowrap;
-  animation: scroll 18s linear infinite;
+  min-width: max-content;   /* 🔥 IMPORTANT */
+  animation: scroll 60s linear infinite;
 }
 
 .news-item {
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
 }
@@ -26,11 +27,12 @@
   font-size: 22px;
 }
 
+/* PERFECT infinite scroll */
 @keyframes scroll {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-50%);   /* 🔥 Smooth back-to-back scrolling */
   }
 }

@@ -1,44 +1,102 @@
-// Updated Blueprint.jsx: Heading and Next/Previous on the same line
-import React from "react";
+import React, { useState } from "react";
 import "./Blueprint.css";
 
 const cardsData = [
   {
     title: "Understanding Your Vision",
     lead:
-      "Unlocking insights, shaping solutions — comprehend complex ideas effortlessly with our vision for clarity and innovation.",
+      "PR WEBSTOCK begins every project by deeply understanding your business goals, brand identity, and expectations so we can deliver the perfect solution.",
     items: [
-      "Sustainability and Responsibility",
-      "Customer-Centric Approach",
-      "Businesses can partner with affiliates",
+      "Clear project requirement discussion",
+      "Understanding your brand identity",
+      "Setting goals & expectations"
     ],
-    icon: "vision",
+    icon: "vision"
+  },
+  {
+    title: "Budget Finalization & Legal Agreement",
+    lead:
+      "Our legal & management team prepares a transparent agreement and finalizes budget, timeline, and project scope with absolute clarity.",
+    items: [
+      "Final budget approval",
+      "Legal documentation",
+      "Timeline & project scope confirmation"
+    ],
+    icon: "contract"
   },
   {
     title: "Collaborative Planning",
     lead:
-      "Streamline teamwork with Collaborative Planning, fostering efficiency and synergy in achieving shared goals seamlessly.",
+      "Our team collaborates to create a smooth project roadmap, ensuring efficient workflow and perfect task distribution.",
     items: [
-      "Sustainability and Responsibility",
-      "Customer-Centric Approach",
-      "Businesses can partner with affiliates",
+      "Strategic planning",
+      "Task & resource allocation",
+      "Full project roadmap creation"
     ],
-    icon: "collab",
+    icon: "collab"
   },
   {
-    title: "Customized Solutions",
+    title: "Customized UI/UX & Brand-Oriented Design",
     lead:
-      "Tailored solutions for your unique needs, delivering personalized results that elevate your experience and surpass expectations.",
+      "We design a clean, modern, brand-oriented UI/UX tailored exactly for your business and customer experience.",
     items: [
-      "Sustainability and Responsibility",
-      "Customer-Centric Approach",
-      "Businesses can partner with affiliates",
+      "Custom UI/UX design",
+      "Brand theme & color integration",
+      "High-converting layout"
     ],
-    icon: "custom",
+    icon: "design"
   },
+  {
+    title: "Backend Development & API Integration",
+    lead:
+      "We build a robust backend, connect databases, and integrate required APIs to bring the full functionality to life.",
+    items: [
+      "Fast & secure backend",
+      "Database architecture",
+      "API development & integration"
+    ],
+    icon: "backend"
+  },
+  {
+    title: "Admin Panel & Project Control",
+    lead:
+      "We build a powerful admin dashboard that gives you full control of users, content, data, bookings, and more.",
+    items: [
+      "Secure admin account",
+      "Project-wide control system",
+      "Real-time data management"
+    ],
+    icon: "admin"
+  },
+  {
+    title: "Final Delivery, Hosting & Support",
+    lead:
+      "Once testing is complete, we host your project and provide 24/7 support with 1-year free maintenance.",
+    items: [
+      "Secure hosting & deployment",
+      "Final QC & approval",
+      "24/7 support + free 1-year maintenance"
+    ],
+    icon: "delivery"
+  }
 ];
 
+
 export default function Blueprint() {
+  const [index, setIndex] = useState(0);
+
+  const nextSlide = () => {
+    setIndex((prev) =>
+      prev + 1 >= cardsData.length ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setIndex((prev) =>
+      prev - 1 < 0 ? cardsData.length - 1 : prev - 1
+    );
+  };
+
   return (
     <section className="bpx-wrap">
       {/* meta */}
@@ -51,23 +109,29 @@ export default function Blueprint() {
       {/* title + controls inline */}
       <div className="bpx-title-row bpx-title-inline">
         <h1 className="bpx-title">Our Operational Blueprint</h1>
-        <div className="bpx-controls" role="group" aria-label="Controls">
-          <button className="bpx-circle" aria-label="Previous">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M15 6L9 12l6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <div className="bpx-controls">
+          <button className="bpx-circle" onClick={prevSlide}>
+            <svg width="12" height="12" viewBox="0 0 24 24">
+              <path d="M15 6L9 12l6 6" stroke="currentColor" strokeWidth="1.6" />
             </svg>
           </button>
 
-          <button className="bpx-circle" aria-label="Next">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <button className="bpx-circle" onClick={nextSlide}>
+            <svg width="12" height="12" viewBox="0 0 24 24">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.6" />
             </svg>
           </button>
         </div>
       </div>
 
+      {/* SLIDER CONTAINER */}
       <div className="bpx-grid">
-        <div className="bpx-cards">
+        <div
+          className="bpx-cards slider-track"
+          style={{
+            transform: `translateX(-${index * 33.33}%)`
+          }}
+        >
           {cardsData.map((c, idx) => (
             <article className="bpx-card" key={idx}>
               <div className="bpx-icon">{renderIcon(c.icon)}</div>
@@ -92,27 +156,80 @@ export default function Blueprint() {
 }
 
 function renderIcon(name) {
-  if (name === "vision") {
-    return (
-      <svg className="bpx-svg" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M9 18h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 2a6 6 0 00-4 10.7V14a2 2 0 002 2h4a2 2 0 002-2v-1.3A6 6 0 0012 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    );
+  const iconProps = {
+    width: 40,
+    height: 40,
+    stroke: "currentColor",
+    strokeWidth: "1.6",
+    fill: "none"
+  };
+
+  switch (name) {
+    case "vision":
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" />
+        </svg>
+      );
+
+    case "contract":
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <rect x="4" y="3" width="16" height="18" rx="2" />
+          <path d="M8 7h8M8 12h6M8 17h5" />
+        </svg>
+      );
+
+    case "collab":
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <circle cx="8" cy="8" r="3" />
+          <circle cx="16" cy="8" r="3" />
+          <path d="M4 20c0-3 4-5 8-5s8 2 8 5" />
+        </svg>
+      );
+
+    case "design":
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <path d="M4 20h16" />
+          <path d="M12 3l7 7-7 7-7-7 7-7z" />
+        </svg>
+      );
+
+    case "backend":
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <path d="M7 8h10M7 12h7M7 16h5" />
+        </svg>
+      );
+
+    case "admin":
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <circle cx="12" cy="7" r="3" />
+          <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
+        </svg>
+      );
+
+    case "delivery":
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <path d="M3 7h13v10H3z" />
+          <path d="M16 10h4l1 3v4h-5" />
+          <circle cx="7.5" cy="17.5" r="1.5" />
+          <circle cx="17.5" cy="17.5" r="1.5" />
+        </svg>
+      );
+
+    default:
+      return (
+        <svg {...iconProps} viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+      );
   }
-  if (name === "collab") {
-    return (
-      <svg className="bpx-svg" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M3 12l5 5 13-13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
-      </svg>
-    );
-  }
-  return (
-    <svg className="bpx-svg" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="M12 8v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M9 5l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.2" opacity="0.9" />
-    </svg>
-  );
 }
+

@@ -1,0 +1,114 @@
+/* Pure white full screen */
+.page-loader {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Loader box */
+.loader-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Brand text */
+.loader-brand {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #2563eb;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: slideUp 0.5s ease forwards 0.2s;
+}
+
+/* Loading text */
+.loader-text {
+  font-size: 14px;
+  color: #5b5b5b;
+  margin-top: -2px;
+  animation: fadeText 1.6s infinite ease-in-out;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from { transform: translateY(6px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Pulsating text animation */
+@keyframes fadeText {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ============================================
+   RESPONSIVENESS
+===============================================*/
+
+/* Tablets & small laptops */
+@media (max-width: 992px) {
+  .loader-brand {
+    font-size: 17px;
+    letter-spacing: 1.5px;
+  }
+  .loader-text {
+    font-size: 13px;
+  }
+}
+
+/* Large mobile screens */
+@media (max-width: 768px) {
+  .loader-brand {
+    font-size: 16px;
+    margin-top: 8px;
+    letter-spacing: 1.2px;
+  }
+  .loader-text {
+    font-size: 12px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .loader-box {
+    gap: 4px;
+  }
+
+  .loader-brand {
+    font-size: 15px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  .loader-text {
+    font-size: 11px;
+  }
+}
+
+/* Extra small screens (very old devices) */
+@media (max-width: 360px) {
+  .loader-brand {
+    font-size: 14px;
+  }
+  .loader-text {
+    font-size: 10px;
+  }
+}
