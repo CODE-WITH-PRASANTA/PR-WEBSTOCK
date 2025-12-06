@@ -9,6 +9,9 @@ import IndustryWork from "./Pages/IndustryWork/IndustryWork";
 import Career from "./Pages/Career/Career";
 import React from "./Pages/Career/Career";
 import Blog from "./Pages/Blog/Blog";
+import Footer from "./Components/Footer/Footer";
+import ContactUs from "./Components/Contactus/Contactus";
+import BlogDetails from "./Pages/BlogDetails/BlogDetails";
 
 function App() {
   return (
@@ -23,8 +26,11 @@ function App() {
         <Route path="/career" element={<Career />} />
         <Route path="/blogs" element={<Blog />} />
       </Routes>
+      <ContactUs/>
+      <Footer/>
     </Router>
   );
 }
 
 export default App;
+ 

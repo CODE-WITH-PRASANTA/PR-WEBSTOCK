@@ -22,13 +22,13 @@
   position: relative;
   overflow: visible;
   /* padding: 120px 24px; */
+  margin-top: 180px;
 }
 
 .zen-inner {
-  max-width: var(--zen-max-width);
   margin: 0 auto;
+  max-width: var(--zen-max-width);
   display: grid;
-  /* Right column increased width to create the visual like your screenshot */
   grid-template-columns: 1fr 760px; /* desktop: left flexible, right 760px */
   gap: 60px;
   align-items: start;
@@ -182,7 +182,7 @@
 }
 
 @media (max-width: 768px) {
-  .zen-section { padding: 80px 20px; }
+  .zen-section { padding: 80px 20px; margin-top: 0px; }
   .zen-title { font-size: 34px; }
   .zen-grid { grid-template-columns: 1fr; gap: 14px; }
   .zen-form-card { padding: 24px; max-width: 100%; }

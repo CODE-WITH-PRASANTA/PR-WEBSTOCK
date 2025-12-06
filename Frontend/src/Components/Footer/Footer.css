@@ -260,8 +260,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;     /* increased width */
-  height: 300px;    /* increased height */
+  width: 400px;     /* increased width */
+  height: 400px;    /* increased height */
   /* object-fit: cover; */
   
   /* filter: blur(0.6px) saturate(1.05); */
@@ -280,8 +280,8 @@
 
 /* Foreground logo — centered and smaller than the background emblem */
 .zenfy-logo-img {
-  width: 140px;     /* set explicit size for clear visual hierarchy */
-  height: 140px;
+  width: 200px;     /* set explicit size for clear visual hierarchy */
+  height: 200px;
   object-fit: contain;
   display: block;
   
@@ -580,35 +580,5 @@
   
   .zenfy-brand-name {
     font-size: 28px;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --muted: #94a3b8;
-    --dark: #f1f5f9;
-    --card-bg: rgba(30, 41, 59, 0.7);
-  }
-  
-  .zenfy-footer {
-    background: linear-gradient(
-      135deg,
-      #0f172a 0%,
-      #1e293b 25%,
-      #1e1b4b 50%,
-      #1e293b 75%,
-      #0f172a 100%
-    );
-    border-top-color: rgba(99, 114, 241, 0.2);
-  }
-
-  .zenfy-contact-card {
-    background: rgba(30, 41, 59, 0.5);
-  }
-  
-  .zenfy-reviews-section {
-    background: rgba(30, 41, 59, 0.5);
   }
 }
