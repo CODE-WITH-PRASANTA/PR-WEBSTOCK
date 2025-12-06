@@ -4,7 +4,7 @@
   --brand-light-bg: #f0f9ff;
   --brand-border: #bfdbfe;
   --brand-soft: #eff6ff;
-  --max-width: 1350px;
+  --max-width: 1400px;
 }
 
 /* hide the hamburger in the desktop/right-bar only (keep mobile hamburger) */
@@ -707,11 +707,7 @@ a { text-decoration: none; color: inherit; }
   .navbar-contact .contact-location { display: none; }
 }
 
-/* accessibility focus */
-button:focus, a:focus, input:focus {
-  outline: 3px solid rgba(122,46,27,0.16);
-  outline-offset: 2px;
-}
+
 
 /* Wrapper: aligns icon + button */
 .quote-box-wrapper { display: flex; align-items: center; gap: 12px; }
