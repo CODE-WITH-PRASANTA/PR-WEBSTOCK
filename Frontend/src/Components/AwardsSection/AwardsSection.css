@@ -1,182 +1,194 @@
-/* AwardsSection.css - refined light layout to match screenshot
-   Replace your existing CSS with this file. It keeps the component background transparent
-   so the section inherits page background, while styling the internal layout to match the
-   clean, two-column design shown in the image. */
+/* ---------------------------------
+   PR WEBSTOCK — INDUSTRIES SECTION
+----------------------------------- */
 
-:root{
+:root {
+  --text-dark: #0b0b0b;
+  --text-muted: #6d6f72;
+  --border: #e6e6e6;
+  --card-bg: #ffffff;
   --bg: transparent;
-  --panel-bg: #ffffff;
-  --muted: #6b6f73;
-  --accent-blue: #2d6bf6;
-  --line: #e9e9e9;
-  --text: #0b0b0b;
-  --card-border: #efefef;
-  --radius: 10px;
-  --gap: 32px;
-  --transition: 180ms ease;
-  --open-btn-outline: rgba(0,0,0,0.06);
+  --accent: #2d6bf6;
+  --radius: 14px;
+  --transition: 0.25s ease;
 }
 
-.awards-wrap{
+/* MAIN WRAPPER */
+.awards-wrap {
   background: var(--bg);
-  color: var(--text);
-  padding: 56px 32px;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  padding: 60px 30px;
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
 }
 
-.awards-inner{
-  max-width: 1240px;
+.awards-inner {
+  max-width: 1440px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 420px 1fr;
-  gap: var(--gap);
+  gap: 50px;
   align-items: start;
 }
+/* LEFT SIDE — INTRO SECTION */
+.awards-left {
+  padding-right: 8px;
+}
 
-/* LEFT COLUMN */
-.awards-left{ padding-right: 8px; }
-
-.badge{
+/* Badge */
+.badge {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--card-border);
-  background: transparent;
-  color: var(--muted);
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 1px solid #e6e6e6;
+  background: #ffffff00;
   font-weight: 600;
   font-size: 13px;
+  color: #6d6f72;
   margin-bottom: 22px;
 }
-.badge-dot{ width: 10px; height: 10px; background: var(--accent-blue); border-radius: 50%; }
 
-.headline{
-  font-size: 72px;
-  line-height: 0.95;
-  margin: 0 0 26px 0;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -1px;
+.badge-dot {
+  width: 10px;
+  height: 10px;
+  background: #2d6bf6;
+  border-radius: 50%;
 }
-.headline .muted{ color: var(--muted); font-weight: 700; display: inline-block; }
 
-.about-link{
+/* HEADLINE (Updated class: awardsec-headline) */
+.awardsec-headline {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 24px 0;
+  color: #0b0b0b;
+  letter-spacing: -0.5px;
+}
+
+.awardsec-headline .muted {
+  color: #71757a;
+  font-weight: 700;
+}
+
+/* Description paragraph */
+.industry-info {
+  font-size: 16px;
+  color: #6d6f72;
+  line-height: 1.55;
+  margin-bottom: 26px;
+  max-width: 420px;
+}
+
+/* Services link */
+.about-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: var(--text);
-  font-weight: 600;
-  border-bottom: 1px solid #111;
+  color: #0b0b0b;
+  border-bottom: 1px solid #0b0b0b;
   padding-bottom: 6px;
+  font-weight: 600;
   font-size: 16px;
-  width: fit-content;
+  transition: opacity 0.25s ease;
 }
 
-/* RIGHT COLUMN */
-.awards-right{ position: relative; }
+.about-link:hover {
+  opacity: 0.7;
+}
 
-.timeline-track{
-  position: relative;
-  padding: 24px 18px;
+/* RESPONSIVE */
+@media (max-width: 1050px) {
+  .awardsec-headline {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 520px) {
+  .awardsec-headline {
+    font-size: 32px;
+  }
+  .industry-info {
+    font-size: 14px;
+  }
+}
+
+/* RIGHT SIDE — INDUSTRY GRID */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+/* INDUSTRY CARD */
+.industry-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-}
-
-/* vertical timeline line (keeps visual center in right column) */
-.timeline-pin{
-  position: absolute;
-  left: 44px; /* adjust to align with item markers */
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: var(--line);
-}
-.timeline-pin::before{
-  content: "✺";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 18px;
-  color: var(--muted);
-  opacity: 0.85;
-}
-
-.timeline-scroll{
-  max-height: 640px;
-  overflow: auto;
-  padding-left: 88px; /* room for line and markers */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
-}
-.timeline-scroll::-webkit-scrollbar{ display: none; } /* hide webkit scrollbar */
-
-.timeline-item{
+  padding: 22px 20px;
+  transition: var(--transition);
   position: relative;
-  padding: 32px 34px;
-  margin: 0;
-  border-bottom: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  background: transparent;
+  cursor: pointer;
 }
 
-/* circular marker on the line */
-.timeline-item::before{
-  content: "";
+.industry-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(45, 107, 246, 0.35);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+/* ICON */
+.industry-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+/* TITLE */
+.industry-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+/* DESCRIPTION */
+.industry-desc {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* ARROW */
+.industry-arrow {
   position: absolute;
-  left: 44px; /* match timeline-pin */
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid var(--line);
-  z-index: 0; /* keep marker behind text */
+  right: 16px;
+  bottom: 14px;
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: var(--transition);
 }
 
-.timeline-item .item-content{ position: relative; z-index: 1; }
-
-.item-content{ flex: 1 1 auto; min-width: 0; }
-.item-year{ color: var(--muted); font-weight: 700; margin-bottom: 8px; font-size: 16px; }
-.item-title{ margin: 0; font-size: 34px; font-weight: 800; color: var(--text); line-height: 1.05; }
-.item-sub{ margin-top: 12px; color: var(--muted); font-size: 16px; }
-
-/* circular outline button on the far right */
-.open-btn{
-  width: 56px; height: 56px; min-width: 56px;
-  display: inline-grid; place-items: center;
-  border-radius: 999px; background: transparent;
-  border: 1px solid var(--open-btn-outline); cursor: pointer;
-  margin-left: 18px; transition: transform var(--transition), border-color var(--transition);
-}
-.open-btn:hover{ transform: translateX(6px); border-color: rgba(45,107,246,0.14); }
-.open-btn:focus{ outline: 3px solid rgba(45,107,246,0.12); }
-.open-ring svg{ width: 20px; height: 20px; color: var(--muted); }
-
-/* small spacer so last item isn't cramped */
-.timeline-scroll > div[style]{ height: 40px; }
-
-/* responsive */
-@media (max-width: 1050px){
-  .awards-inner{ grid-template-columns: 1fr; }
-  .headline{ font-size: 48px; margin-bottom: 18px; }
-  .timeline-pin{ left: 28px; }
-  .timeline-item::before{ left: 28px; }
-  .timeline-scroll{ padding-left: 58px; }
-  .open-btn{ width: 48px; height: 48px; min-width: 48px; }
-}
-@media (max-width: 520px){
-  .headline{ font-size: 32px; }
-  .badge{ font-size: 12px; padding: 6px 10px; }
-  .item-title{ font-size: 22px; }
-  .item-year, .item-sub{ font-size: 14px; }
-  .timeline-scroll{ padding-left: 46px; }
-  .timeline-pin{ left: 20px; }
-  .timeline-item::before{ left: 20px; }
+.industry-card:hover .industry-arrow {
+  color: var(--accent);
+  transform: translateX(4px);
 }
 
-@media (prefers-reduced-motion: reduce){ *{ transition: none !important; animation: none !important; } }
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .awards-inner {
+    grid-template-columns: 1fr;
+  }
+  .awardsec-headline {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 520px) {
+  .awardsec-headline {
+    font-size: 32px;
+  }
+  .industry-card {
+    padding: 18px;
+  }
+}
