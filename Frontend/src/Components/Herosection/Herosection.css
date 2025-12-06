@@ -290,9 +290,4 @@
   .herosec-img { border-radius: 14px; }
 }
 
-/* add padding on max-width 1600px */
-@media (max-width: 1600px) {
-  .hero {
-    padding: 0 30px;  /* <-- you can adjust value here */
-  }
-}
+
