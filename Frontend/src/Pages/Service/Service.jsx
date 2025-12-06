@@ -3,6 +3,7 @@ import Servicebreadcrum from '../../Components/Servicebreadcrum/Servicebreadcrum
 import Webdesignexcellence from '../../Components/Webdesignexcellence/Webdesignexcellence'
 import Creativewebdesign from '../../Components/Creativewebdesign/Creativewebdesign.JSX'
 import Websitedesignservices from '../../Components/Websitedesignservices/Websitedesignservices'
+import Servicesweoffer from '../../Components/Servicesweoffer/Servicesweoffer'
 
 
 
@@ -13,6 +14,7 @@ const Service = () => {
         <Creativewebdesign/>
         <Webdesignexcellence/>
         <Websitedesignservices/>
+        <Servicesweoffer/>
     </>
   )
 }
