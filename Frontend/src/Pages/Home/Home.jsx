@@ -125,7 +125,7 @@ const Home = () => {
       <Oursolutions />
       {/* <Creativeshowcase /> */}
       <Blueprint />
-      <Successinthefield />
+      {/* <Successinthefield /> */}
       <Clientstories />
       <Innovationdiaries />
 

@@ -1,0 +1,241 @@
+/* ---------- SECTION & WRAPPER ---------- */
+
+.process-section {
+  background-color: #e7f0fb; /* light blue background */
+  padding: 5rem 0 4.5rem;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.process-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 3rem;
+}
+
+/* ---------- BADGE ---------- */
+
+.process-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.75rem;
+}
+
+.badge-text {
+  font-weight: 600;
+}
+
+.badge-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background-color: #f97373;
+}
+
+/* ---------- TITLES ---------- */
+
+.process-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+}
+
+.process-subtitle {
+  font-size: 2rem;
+  margin: 0.4rem 0 0;
+  color: #374151;
+}
+
+/* ---------- TIMELINE ---------- */
+
+.process-timeline {
+  position: relative;
+  margin-top: 4.5rem;
+}
+
+/* horizontal line across top */
+.process-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #d1d5db;
+}
+
+/* 4 cards in a row */
+.process-timeline-inner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.5rem;
+}
+
+/* each step card */
+.process-step {
+  position: relative;
+  padding-top: 3.5rem; /* space from line to circle */
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* vertical line from horizontal line to circle */
+.step-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 2.7rem;
+  transform: translateX(-50%);
+  background-color: #d1d5db;
+}
+
+/* circular badge with step number */
+.step-circle {
+  position: relative;
+  margin: 0 auto 1.5rem;
+  width: 78px;
+  height: 78px;
+  border-radius: 999px;
+  border: 4px solid #f3f4f6;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.step-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.step-number {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+/* title & description */
+.step-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  color: #111827;
+}
+
+.step-text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #6b7280;
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- HORIZONTAL SLIDE-IN (STAGGERED) ---------- */
+/* applied via className="process-step step-horizontal-animated" */
+
+.step-horizontal-animated {
+  opacity: 0;
+  animation: slideHorizontalStep 0.45s ease-out forwards;
+}
+
+/* 4 cards: staggered delays so they appear one-by-one */
+.process-step:nth-child(1).step-horizontal-animated {
+  animation-delay: 0s;
+}
+
+.process-step:nth-child(2).step-horizontal-animated {
+  animation-delay: 0.12s;
+}
+
+.process-step:nth-child(3).step-horizontal-animated {
+  animation-delay: 0.24s;
+}
+
+.process-step:nth-child(4).step-horizontal-animated {
+  animation-delay: 0.36s;
+}
+
+@keyframes slideHorizontalStep {
+  from {
+    opacity: 0;
+    transform: translateX(30px); /* slide from right */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---------- CONTROLS (BOTTOM BAR) ---------- */
+
+.process-controls {
+  margin-top: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 999px;
+  padding: 0.9rem 1.8rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+  gap: 1.25rem;
+}
+
+.control-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* you *can* keep this hover – it’s on buttons, not cards.
+   Remove this block if you don’t even want hover on buttons. */
+.control-btn:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.control-center-text {
+  font-size: 0.95rem;
+  color: #111827;
+  white-space: nowrap;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1024px) {
+  .process-inner {
+    padding: 0 1.5rem;
+  }
+
+  .process-timeline-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 3rem;
+  }
+
+  .process-line,
+  .step-line {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .process-timeline-inner {
+    grid-template-columns: 1fr;
+  }
+}

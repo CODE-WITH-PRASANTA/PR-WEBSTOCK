@@ -55,12 +55,13 @@ const ContactUs = () => {
             </span>
 
             <h2 id="contact-heading" className="zen-title zen-slide-up" style={{ '--zen-delay': '0.2s' }}>
-              Connect with Zenfy
+              Connect with Us
             </h2>
 
             <p className="zen-desc zen-fade-in" style={{ '--zen-delay': '0.3s' }}>
-              Ready to take the first step towards unlocking opportunities, realizing goals, and embracing
-              innovation? We’re here and eager to connect.
+            Whether you need a stunning website, powerful CRM, mobile app, e-commerce solution,
+              or complete digital transformation — PR WEBSTOCK is here to elevate your brand with 
+              innovation, strategy, and meaningful digital experiences.
             </p>
 
             <div className="zen-contact-blocks">
@@ -72,7 +73,7 @@ const ContactUs = () => {
                 </div>
                 <div className="zen-contact-text">
                   <div className="zen-contact-label">General Inquiries</div>
-                  <div className="zen-contact-value">+990-737 621 432</div>
+                  <div className="zen-contact-value">+91 7789 801 327</div>
                 </div>
               </div>
 
@@ -85,14 +86,14 @@ const ContactUs = () => {
                 </div>
                 <div className="zen-contact-text">
                   <div className="zen-contact-label">Email Us</div>
-                  <div className="zen-contact-value">info@gmail.com</div>
+                  <div className="zen-contact-value">prwebstock.com@gmail.com</div>
                 </div>
               </div>
             </div>
 
             <div className="zen-social">
               <div className="zen-social-title zen-fade-in" style={{ '--zen-delay': '0.6s' }}>
-                Social — Just Connect With Us
+                Follow PR WEBSTOCK on Social Platforms
               </div>
 
               <div className="zen-social-icons">
