@@ -257,7 +257,7 @@ const Navbar = () => {
 
             <div className="contact-item contact-location" aria-label="Office location">
               <FaMapMarkerAlt className="contact-svg" aria-hidden="true" />
-              <address className="contact-text">#721 , Nexus Esplanade , Bhubaneswar</address>
+              <address className="contact-text">Unit 32 , Nexus Esplanade , Bhubaneswar</address>
             </div>
           </div>
 
