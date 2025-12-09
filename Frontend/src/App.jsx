@@ -49,13 +49,7 @@ function AppContent() {
         <Route path="/career" element={<Career />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/details" element={<BlogDetails />} />
-<<<<<<< HEAD
-        <Route path="/service" element={<Service />} />
-        <Route path="/services/app-development" element={<AppDevelopment />} />
-        <Route path="/get-quote" element={<GetFreeDemo />} />
-=======
         <Route path="/services/web-development" element={<Service />} />
->>>>>>> 2cfe8f3d6c8402ef1fb4a499d20c8d7ea6e25874
       </Routes>
       <ContactUs />
       <Footer />
