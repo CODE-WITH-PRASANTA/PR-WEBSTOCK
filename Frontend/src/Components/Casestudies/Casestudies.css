@@ -1,0 +1,204 @@
+/* Casestudies.css - LIGHTWEIGHT & PREMIUM */
+.case-studies {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  background: #ffffff;
+}
+
+/* Header */
+.case-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.case-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+  background: linear-gradient(135deg, #111 0%, #333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.case-subtitle {
+  color: #666;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Grid */
+.case-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Card */
+.case-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+  border-color: #e0e0e0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Image */
+.case-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.case-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.case-card:hover .case-image img {
+  transform: scale(1.05);
+}
+
+.case-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #111;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Content */
+.case-content {
+  padding: 1.75rem;
+}
+
+.case-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1.25rem;
+  color: #111;
+  line-height: 1.3;
+}
+
+/* Metrics */
+.case-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.metric-item {
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.metric-item:not(.result):after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #f0f0f0;
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.metric-item p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #444;
+  margin: 0;
+}
+
+/* Result */
+.metric-item.result {
+  background: linear-gradient(135deg, #f9f9f9 0%, #f5f5f5 100%);
+  padding: 1.25rem;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  border: 1px solid #f0f0f0;
+}
+
+.metric-item.result .metric-label {
+  color: #111;
+  font-weight: 700;
+}
+
+.metric-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .case-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .case-studies {
+    padding: 3rem 1rem;
+  }
+  
+  .case-title {
+    font-size: 2rem;
+  }
+  
+  .case-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .case-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .case-title {
+    font-size: 1.75rem;
+  }
+  
+  .case-subtitle {
+    font-size: 0.9rem;
+  }
+}
