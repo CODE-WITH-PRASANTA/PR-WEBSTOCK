@@ -12,12 +12,14 @@ const About = ({ onArrowClick }) => {
 
       <div className="about-hero-content">
         <div className="about-breadcrumb-pill">
-          <span className="crumb-active">HOME</span>
+          <span className="crumb-active">Home</span>
           <span className="crumb-separator">—</span>
-          <span className="crumb">ABOUT</span>
+          <span className="crumb">About Us</span>
         </div>
 
-        <h1 className="about-hero-title">We are a IT service Company working with talents on delivering unique ideas</h1>
+        <h1 className="about-hero-title">
+         Leading Software & Digital Solutions
+        </h1>
       </div>
 
       <button

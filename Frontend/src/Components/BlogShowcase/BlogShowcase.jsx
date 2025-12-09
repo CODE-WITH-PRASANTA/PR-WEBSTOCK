@@ -40,21 +40,20 @@ const BlogShowcase = () => {
           BLOG & ARTICLE
           <span className="star">★</span>
         </div>
+          <div className="hero-col hero-col-left">
+            <h1 className="hero-title">Latest Updates & Exclusive Offers</h1>
+            <h2 className="hero-sub">From PR WEBSTOCK — Stay Ahead with Tech Insights.</h2>
+          </div>
 
-        <div className="hero-col hero-col-left">
-          <h1 className="hero-title">Tech Tips and Trends</h1>
-          <h2 className="hero-sub">Article Unveiled.</h2>
-        </div>
+       <p className="hero-desc">
+          Explore the latest updates, offers, and valuable insights from PR WEBSTOCK — 
+          your trusted partner in modern software development, digital marketing, and 
+          business growth technology.
+        </p>
 
-        <div className="hero-col hero-col-center">
-          <p className="hero-desc">
-            Feel free to adapt this based on the specific managed services, 
-            features, and unique selling points your IT service company provides.
-          </p>
-        </div>
 
         <div className="hero-col hero-col-right">
-          <a className="hero-circle" href="#">
+          <a className="hero-circle" href="/blog">
             <div className="hero-circle-text">
               View All Blog ↗
               <span className="hero-circle-underline"></span>

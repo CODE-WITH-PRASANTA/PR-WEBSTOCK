@@ -3,7 +3,7 @@ import { FaStar, FaArrowRight } from 'react-icons/fa';
 import './TeamSection.css';
 
 const members = [
-  { name: 'Cassian Coleson', role: 'Founder at, Zenfy', color: '#2dbb68' },
+  { name: 'Cassian Coleson', role: 'Founder at, Pr WebStock', color: '#2dbb68' },
   { name: 'Jacob Logan', role: 'Web Designer', color: '#6ca0f6' },
   { name: 'Charlotte Amelia', role: 'Software Developer', color: '#9b7bf6' },
   { name: 'Sofia Scarlett', role: 'Product Designer', color: '#27a2c8' },
@@ -40,37 +40,69 @@ const TeamSection = () => {
   return (
     <section className="team-section">
       <div className="container">
-        <aside className="left-panel">
-          <div className="badge">
-            <FaStar /> OUR CREATIVE TEAM <FaStar className="right-star" />
-          </div>
+          <aside className="left-panel">
+            <div className="teamSec-badge">
+              <FaStar /> OUR EXPERT TEAM <FaStar className="right-star" />
+            </div>
 
-          <h1 className="headline">
-            Get to Know Creative <br />
-            <span className="subline">Minds At Zenfy.</span>
-          </h1>
+            <h1 className="teamSec-headline">
+              Meet the Creative Minds <br />
+              <span className="subline">Behind PR WEBSTOCK.</span>
+            </h1>
 
-          <p className="lead">
-            Feel free adapt this based on the specific managed services, features,
-            and unique selling points your IT service company provides.
+         <p className="lead">
+            At PR WEBSTOCK, our strength lies in our people. Our team of developers,
+            designers, strategists, and innovators work with complete dedication to
+            deliver meaningful digital experiences. We follow a collaborative, disciplined,
+            and detail-oriented working style — ensuring every project is researched, crafted,
+            and executed with precision.
+
+            <br /><br />
+
+            Our experts specialize in modern frontend development, backend engineering,
+            API architecture, database design, cloud integration, and full-scale application
+            development. Whether it’s building a high-performance website, a secure backend
+            system, or a scalable mobile application, our team combines innovation, technology,
+            and problem-solving to create solutions that move businesses forward.
           </p>
 
-          <div className="join-cta">
-            <div className="join-shape">
-              <a className="join-link" href="#">
-                Join Our Team <FaArrowRight className="cta-arrow" />
-              </a>
-            </div>
-          </div>
-        </aside>
 
-        <main className="right-panel">
-          <div className="cards-grid">
+            <div className="join-cta">
+              <div className="join-shape">
+                <a className="join-link" href="/career">
+                  Work With Us <FaArrowRight className="cta-arrow" />
+                </a>
+              </div>
+            </div>
+          </aside>
+
+
+       <main className="right-panel">
+        <div className="cards-grid desktop-grid">
+          {members.map((m, i) => (
+            <TeamCard key={i} member={m} index={i} />
+          ))}
+        </div>
+
+        {/* MOBILE SLIDER */}
+        <div className="mobile-slider">
+          <div className="slider-track">
             {members.map((m, i) => (
-              <TeamCard key={i} member={m} index={i} />
+              <div className="slider-item" key={i}>
+                <TeamCard member={m} index={i} />
+              </div>
             ))}
           </div>
-        </main>
+
+          {/* Pagination Dots */}
+          <div className="slider-dots">
+            {members.map((_, i) => (
+              <span key={i} className="dot" />
+            ))}
+          </div>
+        </div>
+      </main>
+
       </div>
     </section>
   );

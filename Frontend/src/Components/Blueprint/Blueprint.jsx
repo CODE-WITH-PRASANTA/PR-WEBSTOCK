@@ -5,77 +5,83 @@ const cardsData = [
   {
     title: "Understanding Your Vision",
     lead:
-      "PR WEBSTOCK begins every project by deeply understanding your business goals, brand identity, and expectations so we can deliver the perfect solution.",
+      "PR WEBSTOCK begins with a deep discovery process to understand your business objectives, audience behavior, and brand personality — ensuring the foundation of a high-performance digital product.",
     items: [
-      "Clear project requirement discussion",
-      "Understanding your brand identity",
-      "Setting goals & expectations"
+      "In-depth requirement analysis",
+      "Brand tone & audience research",
+      "Goal-oriented project strategy"
     ],
     icon: "vision"
   },
+
   {
     title: "Budget Finalization & Legal Agreement",
     lead:
-      "Our legal & management team prepares a transparent agreement and finalizes budget, timeline, and project scope with absolute clarity.",
+      "Before development starts, we ensure complete transparency by finalizing budget, project milestones, and deliverables under a legally compliant agreement for your confidence and security.",
     items: [
-      "Final budget approval",
-      "Legal documentation",
-      "Timeline & project scope confirmation"
+      "Transparent pricing structure",
+      "Legally compliant project documentation",
+      "Defined scope, timeline & responsibilities"
     ],
     icon: "contract"
   },
+
   {
     title: "Collaborative Planning",
     lead:
-      "Our team collaborates to create a smooth project roadmap, ensuring efficient workflow and perfect task distribution.",
+      "Our expert team crafts a strategic project roadmap that aligns design, development, and deployment workflows — enabling smooth execution and timely delivery.",
     items: [
-      "Strategic planning",
-      "Task & resource allocation",
-      "Full project roadmap creation"
+      "Strategic workflow planning",
+      "Task delegation & team coordination",
+      "Detailed end-to-end project roadmap"
     ],
     icon: "collab"
   },
+
   {
-    title: "Customized UI/UX & Brand-Oriented Design",
+    title: "Customized UI/UX & Brand-Focused Design",
     lead:
-      "We design a clean, modern, brand-oriented UI/UX tailored exactly for your business and customer experience.",
+      "We design visually appealing, user-centric, and conversion-driven UI/UX that enhances your brand identity and provides a premium digital experience across all devices.",
     items: [
-      "Custom UI/UX design",
-      "Brand theme & color integration",
-      "High-converting layout"
+      "Custom UI/UX wireframes & prototypes",
+      "Brand-aligned color scheme & typography",
+      "High-converting layout design"
     ],
     icon: "design"
   },
+
   {
     title: "Backend Development & API Integration",
     lead:
-      "We build a robust backend, connect databases, and integrate required APIs to bring the full functionality to life.",
+      "Our developers build a powerful, scalable, and secure backend architecture — integrating APIs and databases to ensure smooth functionality and exceptional product performance.",
     items: [
-      "Fast & secure backend",
-      "Database architecture",
-      "API development & integration"
+      "Scalable & secure backend architecture",
+      "Optimized database structure",
+      "Custom API creation & third-party integration"
     ],
     icon: "backend"
   },
+
   {
-    title: "Admin Panel & Project Control",
+    title: "Admin Panel & Centralized Project Control",
     lead:
-      "We build a powerful admin dashboard that gives you full control of users, content, data, bookings, and more.",
+      "We provide an advanced, user-friendly admin dashboard that allows complete control over content, users, analytics, and data with enterprise-grade security.",
     items: [
-      "Secure admin account",
-      "Project-wide control system",
-      "Real-time data management"
+      "Role-based admin access",
+      "Centralized content & data management",
+      "Real-time analytics & reporting"
     ],
     icon: "admin"
   },
+
   {
-    title: "Final Delivery, Hosting & Support",
+    title: "Final Delivery, Hosting & Priority Support",
     lead:
-      "Once testing is complete, we host your project and provide 24/7 support with 1-year free maintenance.",
+      "After quality testing and final approval, we deploy your project on secure hosting infrastructure and provide ongoing support with complimentary 1-year maintenance.",
     items: [
-      "Secure hosting & deployment",
-      "Final QC & approval",
-      "24/7 support + free 1-year maintenance"
+      "Optimized hosting & seamless deployment",
+      "Full project testing & quality validation",
+      "24/7 technical support + 1-year free maintenance"
     ],
     icon: "delivery"
   }
@@ -84,6 +90,8 @@ const cardsData = [
 
 export default function Blueprint() {
   const [index, setIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(33.33);
+
 
   const nextSlide = () => {
     setIndex((prev) =>
@@ -96,6 +104,24 @@ export default function Blueprint() {
       prev - 1 < 0 ? cardsData.length - 1 : prev - 1
     );
   };
+
+  React.useEffect(() => {
+  const updateWidth = () => {
+    if (window.innerWidth <= 576) {
+      setCardWidth(100);      // mobile : 1 card
+    } else if (window.innerWidth <= 1024) {
+      setCardWidth(50);       // tablet : 2 cards
+    } else {
+      setCardWidth(33.33);    // desktop : 3 cards
+    }
+  };
+
+  updateWidth();  
+
+  window.addEventListener("resize", updateWidth);
+  return () => window.removeEventListener("resize", updateWidth);
+}, []);
+
 
   return (
     <section className="bpx-wrap">
@@ -129,7 +155,7 @@ export default function Blueprint() {
         <div
           className="bpx-cards slider-track"
           style={{
-            transform: `translateX(-${index * 33.33}%)`
+            transform: `translateX(-${index * cardWidth}%)`
           }}
         >
           {cardsData.map((c, idx) => (
