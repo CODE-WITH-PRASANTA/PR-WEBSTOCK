@@ -12,6 +12,8 @@ import Webomindappsvsother from '../../Components/Webomindappsvsother/Webomindap
 import Casestudies from '../../Components/Casestudies/Casestudies'
 import OurClientsSay from '../../Components/Ourclientssay/Ourclientssay'
 import Frequentlyaskedquestion from '../../Components/Frequentlyaskedquestion/Frequentlyaskedquestion'
+import Bestwebsitedesign from '../../Components/Bestwebsitedesign/Bestwebsitedesign'
+import Industrieswedesign from '../../Components/Industrieswedesign/Industrieswedesign'
 const Service = () => {
   return (
     <>
@@ -22,6 +24,8 @@ const Service = () => {
         <Servicesweoffer/>
         <Separatesgreat/>
         <Websitedesigningprocess/>
+        <Industrieswedesign/>
+        <Bestwebsitedesign/>
         <Technologiesinwebsite/>
         <Webomindappsvsother/>
         <Casestudies/>
