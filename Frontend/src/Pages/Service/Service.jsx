@@ -5,8 +5,13 @@ import Websitedesignservices from '../../Components/Websitedesignservices/Websit
 import Servicesweoffer from '../../Components/Servicesweoffer/Servicesweoffer'
 import Creativewebdesign from '../../Components/Creativewebdesign/Creativewebdesign'
 
-
-
+import Separatesgreat from '../../Components/Separatesgreat/Separatesgreat'
+import Websitedesigningprocess from '../../Components/Websitedesigningprocess/Websitedesigningprocess'
+import Technologiesinwebsite from '../../Components/Technologiesinwebsite/Technologiesinwebsite'
+import Webomindappsvsother from '../../Components/Webomindappsvsother/Webomindappsvsother'
+import Casestudies from '../../Components/Casestudies/Casestudies'
+import OurClientsSay from '../../Components/Ourclientssay/Ourclientssay'
+import Frequentlyaskedquestion from '../../Components/Frequentlyaskedquestion/Frequentlyaskedquestion'
 const Service = () => {
   return (
     <>
@@ -15,6 +20,13 @@ const Service = () => {
         <Webdesignexcellence/>
         <Websitedesignservices/>
         <Servicesweoffer/>
+        <Separatesgreat/>
+        <Websitedesigningprocess/>
+        <Technologiesinwebsite/>
+        <Webomindappsvsother/>
+        <Casestudies/>
+        <OurClientsSay/>
+        <Frequentlyaskedquestion/>
     </>
   )
 }

@@ -1,0 +1,84 @@
+.contact-cards-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  font-family: "Inter", sans-serif;
+}
+
+/* CARD BASE */
+.contact-card {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.06);
+  transition: 0.35s ease;
+  cursor: pointer;
+}
+
+/* ICON WRAPPER */
+.contact-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 30px;
+}
+
+/* SVG ICON */
+.icon-svg {
+  width: 68px;
+  height: 68px;
+  stroke: #2563eb; /* <── blue outline color */
+  transition: transform 0.5s ease, stroke 0.3s ease;
+}
+
+/* Titles & Text */
+.contact-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.contact-text {
+  font-size: 16px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* --------------------- */
+/*        HOVER          */
+/* --------------------- */
+
+.contact-card:hover {
+  background: #facc15; /* full yellow */
+  transform: translateY(-6px);
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.15);
+}
+
+.contact-card:hover .icon-svg {
+  transform: rotate(360deg);
+  stroke: #1e3a8a; /* deeper blue on hover */
+}
+
+.contact-card:hover .contact-title,
+.contact-card:hover .contact-text {
+  color: #1e3a8a;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-cards-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-card {
+    width: 100%;
+    max-width: 380px;
+  }
+}

@@ -1,0 +1,135 @@
+.expect-section {
+  max-width: 1500px;
+  margin: 80px auto;
+  padding: 0 32px 80px;
+  font-family: "Poppins", system-ui, sans-serif;
+  color: #111827;
+}
+
+.expect-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* GRID */
+.expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+/* CARD */
+.expect-card {
+  --accent-color: var(--accent, #2563eb);
+
+  position: relative;
+  border-radius: 28px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  padding: 40px 36px;     /* larger padding */
+  min-height: 340px;      /* larger cards */
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+/* RIGHT-SIDE CENTERED STRIP (accent color) */
+/* SLIM + SHORT STRIP ON RIGHT SIDE */
+.expect-accent {
+  position: absolute;
+  inset: 0;
+  background: var(--accent-color);
+  border-radius: 28px;
+  z-index: 0;
+
+  /* SLIM + SHORT right-side strip */
+  clip-path: inset(35% 0 35% 92% round 999px);
+  transition: clip-path 0.35s ease;
+}
+
+
+/* INNER CONTENT */
+.expect-card-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* SVG ICON */
+.expect-icon-svg {
+  position: absolute;
+  right: 32px;
+  top: 2px;
+  width: 54px;      /* bigger icon */
+  height: 54px;
+  transition: filter 0.3s ease;
+}
+
+/* TITLE */
+.expect-card-title {
+  font-size: 24px;  /* larger title */
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* PARAGRAPH */
+.expect-card-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+/* HOVER EFFECTS */
+.expect-card:hover {
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.22);
+  transform: translateY(-5px);
+  border-color: transparent;
+}
+
+/* fill entire card with accent color */
+.expect-card:hover .expect-accent {
+  clip-path: inset(0 0 0 0 round 28px);
+}
+
+/* turn SVG pure white */
+.expect-card:hover .expect-icon-svg {
+  filter: brightness(0) invert(1);
+}
+
+/* text becomes white on hover */
+.expect-card:hover .expect-card-title,
+.expect-card:hover .expect-card-text {
+  color: #ffffff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .expect-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .expect-section {
+    padding: 0 20px 60px;
+  }
+
+  .expect-title {
+    font-size: 32px;
+  }
+
+  .expect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expect-card {
+    padding: 32px 26px;
+    min-height: 300px;
+  }
+
+  .expect-icon-svg {
+    right: 20px;
+    top: 18px;
+    width: 44px;
+    height: 44px;
+  }
+}

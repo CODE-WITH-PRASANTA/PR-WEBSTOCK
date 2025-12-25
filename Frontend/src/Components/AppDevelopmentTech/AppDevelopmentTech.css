@@ -1,0 +1,118 @@
+.ti-section {
+  max-width: 1500px;
+  margin: 80px auto;
+  padding: 0 40px 80px;
+  font-family: "Poppins", system-ui, sans-serif;
+  color: #111827;
+}
+
+.ti-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* GRID 2×2 */
+.ti-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* CELL STYLING */
+.ti-cell {
+  padding: 36px 42px;
+}
+
+/* Divider lines */
+.ti-cell-left {
+  border-right: 1px solid #2b2c2d;
+}
+
+.ti-cell-bottom {
+  border-top: 1px solid #2b2c2d;
+}
+
+/* HEADER (ICON + TITLE) */
+.ti-cell-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+/* Your imported SVG icons */
+.ti-icon-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: invert(32%) sepia(92%) saturate(2580%) hue-rotate(202deg)
+    brightness(93%) contrast(92%); /* Turns original pink → #2563eb */
+}
+
+.ti-heading {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* LIST */
+.ti-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ti-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+/* ARROW BULLET */
+.ti-arrow {
+  font-size: 18px;
+  color: #2563eb;
+  margin-top: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .ti-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ti-cell-left {
+    border-right: none;
+  }
+
+  .ti-cell-bottom {
+    border-top: 1px solid #e5e7eb;
+  }
+}
+
+@media (max-width: 640px) {
+  .ti-section {
+    padding: 0 20px 60px;
+  }
+
+  .ti-title {
+    font-size: 30px;
+  }
+
+  .ti-cell {
+    padding: 24px 20px 32px;
+  }
+
+  .ti-heading {
+    font-size: 22px;
+  }
+
+  .ti-icon-img {
+    width: 48px;
+    height: 48px;
+  }
+}
