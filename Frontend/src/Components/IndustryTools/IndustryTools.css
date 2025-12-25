@@ -2,6 +2,8 @@
   background-color: #ffffff;
   padding: 4.5rem 0;
   font-family: "Inter", sans-serif;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .tools-container {
@@ -86,17 +88,14 @@
   letter-spacing: 0.06em;
   color: #111827;
 }
+/* ================================
+   📱 RESPONSIVE MEDIA QUERIES
+================================ */
 
-/* ---------- RESPONSIVE ---------- */
-
-@media (max-width: 768px) {
-  .tools-container {
-    padding: 0 1.5rem;
-  }
-
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
   .tools-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row */
-    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
   }
 
   .tools-title {
@@ -104,8 +103,64 @@
   }
 }
 
+/* Mobile Large (max-width: 768px) */
+@media (max-width: 768px) {
+  .tools-container {
+    padding: 0 1.8rem;
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 1.2rem;
+  }
+
+  .tool-card {
+    padding: 1rem;
+  }
+
+  .tools-title {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile Small (max-width: 480px) */
 @media (max-width: 480px) {
   .tools-grid {
-    grid-template-columns: 1fr; /* stack items */
+    grid-template-columns: repeat(2, 1fr); /* still 2 but tighter */
+    gap: 1rem;
+  }
+
+  .tool-card {
+    gap: 0.5rem;
+    padding: 0.9rem;
+  }
+
+  .tool-logo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .tool-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .tools-title {
+    font-size: 1.7rem;
+  }
+}
+
+/* Very Small Devices (max-width: 360px) */
+@media (max-width: 360px) {
+  .tools-grid {
+    grid-template-columns: 1fr; /* single column for ultra-small screens */
+  }
+
+  .tools-title {
+    font-size: 1.5rem;
+  }
+
+  .tool-card {
+    padding: 0.85rem;
   }
 }

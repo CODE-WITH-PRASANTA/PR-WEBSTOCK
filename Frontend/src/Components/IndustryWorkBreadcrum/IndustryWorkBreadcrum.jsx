@@ -17,7 +17,10 @@ const product = ({ onArrowClick }) => {
           <span className="crumb">IndustryWork</span>
         </div>
 
-        <h1 className="product-hero-title">Challenge In Every Industry</h1>
+        <h1 className="product-hero-title">
+          Industry-Ready Web & App Solutions
+        </h1>
+
       </div>
 
       <button

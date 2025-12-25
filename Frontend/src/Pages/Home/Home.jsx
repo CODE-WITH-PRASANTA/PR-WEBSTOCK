@@ -128,7 +128,6 @@ const Home = () => {
       {/* <Successinthefield /> */}
       <Clientstories />
       <Innovationdiaries />
-
     </div>
   )
 }

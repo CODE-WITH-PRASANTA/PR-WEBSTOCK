@@ -96,25 +96,69 @@
   line-height: 1.6;
   color: #6b7280;
 }
+/* ==============================
+      RESPONSIVE MEDIA QUERIES
+   ============================== */
 
-/* Responsive */
+/* Tablets - 2 Columns */
 @media (max-width: 1024px) {
   .howwe-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .howwe-container {
+    padding: 0 2rem;
+  }
+
+  .howwe-title {
+    font-size: 2.4rem;
+  }
+
+  .howwe-subtitle {
+    font-size: 1.8rem;
   }
 }
 
-@media (max-width: 640px) {
+/* Mobile - 1 Column */
+@media (max-width: 768px) {
+  .howwe-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+
   .howwe-header {
     text-align: center;
   }
 
-  .howwe-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .howwe-container {
+    padding: 0 1.5rem;
+  }
+
+  .howwe-title {
+    font-size: 2.2rem;
+  }
+
+  .howwe-subtitle {
+    font-size: 1.6rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .howwe-container {
+    padding: 0 1rem;
+  }
+
+  .howwe-title {
+    font-size: 2rem;
+  }
+
+  .howwe-subtitle {
+    font-size: 1.4rem;
   }
 
   .howwe-card {
-    max-width: none;
+    max-width: 100%;
   }
 }

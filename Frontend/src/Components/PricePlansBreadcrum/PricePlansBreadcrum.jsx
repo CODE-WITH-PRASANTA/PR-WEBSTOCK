@@ -19,7 +19,7 @@ const PricingHero = ({ onArrowClick }) => {
           <span className="crumb">PRICING</span>
         </div>
 
-        <h1 className="pricing-hero-title">Our Flexible Pricing Plan.</h1>
+        <h1 className="pricing-hero-title">Our Smart Pricing, Better Value</h1>
       </div>
 
       <button

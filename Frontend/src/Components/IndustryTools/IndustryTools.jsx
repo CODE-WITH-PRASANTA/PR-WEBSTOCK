@@ -10,6 +10,10 @@ import phpLogo from "../../assets/php-icon.webp";
 import mysqlLogo from "../../assets/mysql-icon.webp";
 import gitlabLogo from "../../assets/gitlab-icon.webp";
 import awsLogo from "../../assets/aws-icon.webp";
+import mongodbLogo from "../../assets/mongodb.webp";
+import nodejsLogo from "../../assets/nodejs.webp";
+import reactNativeLogo from "../../assets/react native.webp";
+import angularLogo from "../../assets/angular.webp";
 
 const tools = [
   { name: "FIGMA", logo: figmaLogo },
@@ -20,6 +24,10 @@ const tools = [
   { name: "MYSQL", logo: mysqlLogo },
   { name: "GITLAB", logo: gitlabLogo },
   { name: "AWS", logo: awsLogo },
+  { name: "MONGODB", logo: mongodbLogo },
+  { name: "NODE JS", logo: nodejsLogo },
+  { name: "REACT NATIVE", logo: reactNativeLogo },
+  { name: "ANGULAR", logo: angularLogo },
 ];
 
 export default function ToolsStack() {
@@ -41,7 +49,7 @@ export default function ToolsStack() {
           </h2>
         </div>
 
-        {/* TOOL CARDS BELOW HEADING */}
+        {/* TOOL CARDS */}
         <div className="tools-grid">
           {tools.map((tool) => (
             <div className="tool-card" key={tool.name}>

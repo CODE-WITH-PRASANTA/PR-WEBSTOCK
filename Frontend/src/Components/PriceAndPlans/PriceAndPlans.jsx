@@ -5,129 +5,159 @@ const plans = [
   {
     id: "basic",
     name: "Basic Plan",
-    monthly: 80,
+    yearlyPrice: 19999,
     features: [
-      "Website Audit Identif opportunities optimization.",
-      "Social Media Management Establish a presence on key platforms.",
-      "Basic SEO Optimization Improve search engine visibility.",
-      "Monthly Analytics Report Track and measure your online performance.",
-      "Third-Party API Setup (All Google Map API).",
-      "Bi-Monthly Analytics Review Actionable insights.",
-    ],
-    included: [true, true, true, true, false, false],
+      "Custom static website with 5–10 pages tailored to your business.",
+      "Responsive design for mobile, tablet, and desktop devices.",
+      "Free VPS hosting and domain registration for 1 year.",
+      "Integration of all required business APIs (forms, maps, etc.).",
+      "Payment gateway setup via PhonePe Partner Program.",
+      "24/7 support for updates, minor changes and technical issues."
+    ]
   },
 
   {
     id: "standard",
     name: "Standard Plan",
-    monthly: 120,
-    badge: "30% OFF", // Ribbon shown on middle card
+    yearlyPrice: 34999,
+    badge: "30% OFF",
     features: [
-      "Website Audit Identif opportunities optimization.",
-      "Social Media Management Establish a presence on key platforms.",
-      "Basic SEO Optimization Improve search engine visibility.",
-      "Monthly Analytics Report Track and measure your online performance.",
-      "Third-Party API Setup (All Google Map API).",
-      "Bi-Monthly Analytics Review Actionable insights.",
-    ],
-    included: [true, true, true, true, true, false],
+      "Everything included in the Basic Plan (website + hosting + support).",
+      "Custom 5–10 page responsive website tailored to your brand.",
+      "Full API and PhonePe payment gateway integrations.",
+      "Social media account setup & branding (Facebook, Instagram).",
+      "Up to 6 months of social media posting & website content updates.",
+      "Monthly performance reports and strategy calls for improvements."
+    ]
   },
 
   {
     id: "premium",
     name: "Premium Plan",
-    monthly: 180,
+    yearlyPrice: 54999,
     features: [
-      "Website Audit Identif opportunities optimization.",
-      "Social Media Management Establish a presence on key platforms.",
-      "Basic SEO Optimization Improve search engine visibility.",
-      "Monthly Analytics Report Track and measure your online performance.",
-      "Third-Party API Setup (All Google Map API).",
-      "Bi-Monthly Analytics Review Actionable insights.",
-    ],
-    included: [true, true, true, true, true, true],
-  },
+      "Custom business website with advanced features and dynamic sections.",
+      "Android & iOS mobile app development for your business.",
+      "Secure API integrations and PhonePe payment gateway setup.",
+      "Advanced analytics, lead tracking and basic CRM integration.",
+      "6 months of social media management and digital marketing service.",
+      "Priority 24/7 support with a dedicated account manager."
+    ]
+  }
 ];
+
+const getMonthlyEMI = (y) => Math.round(y / 12);
+const getYearlyDiscountPrice = (y) => Math.round(y * 0.8);
+const getYearlyDiscountEMI = (y) => Math.round(getYearlyDiscountPrice(y) / 12);
+
+const getAdvanceMonthly = (y) => {
+  const upfront = Math.round(y * 0.3);
+  const remaining = y - upfront;
+  const emi = Math.round(remaining / 12);
+  return { upfront, emi };
+};
 
 const PriceAndPlans = () => {
   const [billing, setBilling] = useState("monthly");
 
-  // 20% OFF yearly
-  const getDisplayPrice = (monthly) =>
-    billing === "monthly" ? monthly : Math.round(monthly * 0.8);
-
   return (
     <section className="pp-section">
+
       {/* BILLING TOGGLE */}
       <div className="pp-toggle-wrapper">
         <div className="pp-toggle-pill">
 
-          {/* Monthly Button */}
           <button
-            className={`pp-toggle-btn ${
-              billing === "monthly" ? "pp-toggle-btn-active" : ""
-            }`}
+            className={`pp-toggle-btn ${billing === "monthly" ? "pp-toggle-btn-active" : ""}`}
             onClick={() => setBilling("monthly")}
           >
-            Billed Monthly
+            Monthly EMI
           </button>
 
-          {/* Yearly Button (With 20% OFF Ribbon) */}
           <button
-            className={`pp-toggle-btn ${
-              billing === "yearly" ? "pp-toggle-btn-active" : ""
-            } yearly-btn`}
+            className={`pp-toggle-btn ${billing === "yearly" ? "pp-toggle-btn-active" : ""}`}
             onClick={() => setBilling("yearly")}
           >
-            Billed Yearly
-            {billing === "yearly" && (
-              <span className="pp-yearly-discount">20% OFF</span>
-            )}
+            Yearly (20% OFF)
           </button>
+
+          <button
+            className={`pp-toggle-btn ${billing === "advance" ? "pp-toggle-btn-active" : ""}`}
+            onClick={() => setBilling("advance")}
+          >
+            Monthly (30% Advance)
+          </button>
+
         </div>
       </div>
 
-      {/*  PLAN CARDS  */}
+      {/* PLAN CARDS */}
       <div className="pp-grid">
         {plans.map((plan, index) => {
-          const price = getDisplayPrice(plan.monthly);
+          const monthly = getMonthlyEMI(plan.yearlyPrice);
+          const yearlyDiscount = getYearlyDiscountPrice(plan.yearlyPrice);
+          const yearlyEMI = getYearlyDiscountEMI(plan.yearlyPrice);
+          const advance = getAdvanceMonthly(plan.yearlyPrice);
 
           return (
             <article
               key={plan.id}
               className={`pp-card ${index === 1 ? "pp-featured-card" : ""}`}
             >
-              {/* 30% OFF badge only for Standard Plan */}
-              {index === 1 && (
+
+              {plan.badge && (
                 <div className="pp-ribbon">
-                  <span>30% OFF</span>
+                  <span>{plan.badge}</span>
                 </div>
               )}
 
               <div className="pp-card-header">
                 <h3>{plan.name}</h3>
 
-                <div className="pp-price-row">
-                  <span className="pp-price">${price}</span>
-                  <span className="pp-price-text">
-                    /Monthly Investment
-                    {billing === "yearly" && (
-                      <span className="pp-yearly-note"> (billed yearly)</span>
-                    )}
-                  </span>
-                </div>
+                {/* PRICE DISPLAY */}
+                {billing === "monthly" && (
+                  <>
+                    <span className="pp-price">
+                      ₹{monthly.toLocaleString("en-IN")}
+                    </span>
+                    <span className="pp-price-text">per month (12 EMI)</span>
+                    <p className="pp-yearly-label">
+                      Total Yearly: ₹{plan.yearlyPrice.toLocaleString("en-IN")}
+                    </p>
+                  </>
+                )}
+
+                {billing === "yearly" && (
+                  <>
+                    <span className="pp-price">
+                      ₹{yearlyEMI.toLocaleString("en-IN")}
+                    </span>
+                    <span className="pp-price-text">per month after discount</span>
+                    <p className="pp-yearly-label">
+                      Pay One-Time: <b>₹{yearlyDiscount.toLocaleString("en-IN")}</b> (20% OFF)
+                    </p>
+                  </>
+                )}
+
+                {billing === "advance" && (
+                  <>
+                    <span className="pp-price">
+                      ₹{advance.emi.toLocaleString("en-IN")}
+                    </span>
+                    <span className="pp-price-text">per month after 30% upfront</span>
+                    <p className="pp-yearly-label">
+                      Advance: <b>₹{advance.upfront.toLocaleString("en-IN")}</b> |
+                      EMI: ₹{advance.emi.toLocaleString("en-IN")} x 12
+                    </p>
+                  </>
+                )}
               </div>
 
+              {/* FEATURES LIST */}
               <ul className="pp-features">
                 {plan.features.map((text, i) => (
                   <li key={i} className="pp-feature-item">
-                    <span
-                      className={`pp-feature-icon ${
-                        plan.included[i] ? "yes" : "no"
-                      }`}
-                    >
-                      {plan.included[i] ? "✓" : "✕"}
-                    </span>
+                    <span className="pp-feature-icon yes">✓</span>
                     {text}
                   </li>
                 ))}
@@ -140,6 +170,7 @@ const PriceAndPlans = () => {
                   Pick This Package
                 </button>
               </div>
+
             </article>
           );
         })}

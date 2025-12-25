@@ -1,9 +1,11 @@
-/* ---------- WRAPPER ---------- */
 .software-wrapper {
   padding: 5rem 12rem;
   background: #ffffff;
   font-family: "Inter", sans-serif;
   color: #111827;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
 }
 
 /* ---------- PART 1 GRID ---------- */
@@ -122,12 +124,72 @@
   margin-top: 1rem;
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 1024px) {
+/* ============================================================
+      RESPONSIVE MEDIA QUERIES — NO DESIGN CHANGES
+   ============================================================ */
+
+/* ---------- Large Tablets (max-width: 1200px) ---------- */
+@media (max-width: 1200px) {
+  .software-wrapper {
+    padding: 5rem 6rem; /* same design feel, no small font */
+  }
+
+  .software-grid,
+  .faq-grid {
+    gap: 2.5rem;
+  }
+}
+
+/* ---------- Tablets (max-width: 992px) ---------- */
+@media (max-width: 992px) {
   .software-grid {
+    grid-template-columns: 1fr;  /* Stack left + right */
+  }
+
+  .faq-grid {
+    grid-template-columns: 1fr; /* Stack FAQ + image */
+  }
+
+  .software-right,
+  .faq-left {
+    order: -1; /* Show images first on mobile/tablet */
+  }
+}
+
+/* ---------- Mobile (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+  .software-wrapper {
+    padding: 3.5rem 2rem; /* still spacious, not small */
+  }
+
+  .sw-title {
+    font-size: 2.6rem;
+  }
+
+  .sw-list-grid {
     grid-template-columns: 1fr;
   }
-  .faq-grid {
-    grid-template-columns: 1fr;
+
+  .faq-question {
+    font-size: 1.1rem;
+  }
+
+  .faq-answer {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Small Mobile (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+  .sw-title {
+    font-size: 2.3rem;
+  }
+
+  .software-wrapper {
+    padding: 3rem 1.5rem;
+  }
+
+  .howwe-card {
+    max-width: 100%;
   }
 }

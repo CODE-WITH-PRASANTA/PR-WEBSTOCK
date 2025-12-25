@@ -216,26 +216,172 @@
   white-space: nowrap;
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* ==========================================================
+      PREMIUM PROFESSIONAL RESPONSIVE MEDIA QUERIES
+   ========================================================== */
 
-@media (max-width: 1024px) {
+/* ---------- Laptops (max-width: 1280px) ---------- */
+@media (max-width: 1280px) {
   .process-inner {
-    padding: 0 1.5rem;
+    padding: 0 2.5rem;
   }
 
-  .process-timeline-inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 3rem;
+  .process-title {
+    font-size: 2.7rem;
   }
 
-  .process-line,
-  .step-line {
-    display: none;
+  .process-subtitle {
+    font-size: 2.1rem;
   }
 }
 
-@media (max-width: 640px) {
+
+/* ---------- Tablets (max-width: 992px) ---------- */
+@media (max-width: 992px) {
+  .process-inner {
+    padding: 0 2rem;
+  }
+
+  /* Show 2 steps in mid-size screens */
   .process-timeline-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.2rem;
+  }
+
+  .process-title {
+    font-size: 2.8rem;
+  }
+
+  .process-subtitle {
+    font-size: 2.2rem;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+  }
+
+  .step-text {
+    font-size: 1.05rem;
+    max-width: 300px;
+  }
+
+  .control-center-text {
+    font-size: 1rem;
+  }
+}
+
+
+/* ---------- Mobile (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+  /* Show ONLY ONE step on mobile */
+  .process-timeline-inner {
+    grid-template-columns: 1fr !important;
+  }
+
+  .process-inner {
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  .process-title {
+    font-size: 2.6rem;
+    line-height: 1.25;
+  }
+
+  .process-subtitle {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-circle {
+    width: 85px;
+    height: 85px;
+  }
+
+  .step-title {
+    font-size: 1.3rem;
+  }
+
+  .step-text {
+    font-size: 1.1rem;
+    max-width: 340px;
+  }
+
+  .process-controls {
+    gap: 1rem;
+    padding: 1rem 1rem;
+  }
+
+  .control-btn {
+    font-size: 1.3rem;
+  }
+
+  .control-center-text {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* ---------- Small Mobile (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+  .process-inner {
+    padding: 0 1.2rem;
+  }
+
+  .process-title {
+    font-size: 2.4rem;
+  }
+
+  .process-subtitle {
+    font-size: 1.8rem;
+  }
+
+  .step-circle {
+    width: 95px;
+    height: 95px;
+  }
+
+  .step-number {
+    font-size: 1.3rem;
+  }
+
+  .step-title {
+    font-size: 1.35rem;
+  }
+
+  .step-text {
+    font-size: 1.15rem;
+  }
+
+  .control-center-text {
+    font-size: 1.15rem;
+  }
+}
+
+/* ==========================================================
+      FIX ANIMATION OVERFLOW ISSUE ON MOBILE
+   ========================================================== */
+
+/* Remove stagger delays when only 1 card is shown */
+@media (max-width: 768px) {
+  .process-step.step-horizontal-animated {
+    animation-delay: 0s !important;
+  }
+
+  /* Fix overflow from right side */
+  .process-timeline-inner {
+    overflow: hidden;
+  }
+
+  /* Fix animation direction */
+  @keyframes slideHorizontalStep {
+    from {
+      opacity: 0;
+      transform: translateY(20px); /* slide from bottom instead of right */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

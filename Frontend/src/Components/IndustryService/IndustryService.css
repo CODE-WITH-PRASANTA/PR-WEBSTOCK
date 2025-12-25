@@ -5,7 +5,7 @@
 }
 
 .sf-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 3rem;
   display: grid;
@@ -46,7 +46,7 @@
 }
 
 .sf-title {
-  font-size: 2.6rem;
+  font-size: 2rem;
   line-height: 1.15;
   margin: 0 0 1rem;
   color: #111827;
@@ -67,11 +67,34 @@
 }
 
 /* RIGHT SIDE LIST */
-
 .sf-right {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
+
+  /* NEW — set height & enable scrolling */
+  max-height: 420px; /* adjust height as you want */
+  overflow-y: auto;
+  padding-right: 8px; /* avoids content cut-off due to scrollbar */
+}
+
+/* OPTIONAL — beautiful custom scrollbar */
+.sf-right::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sf-right::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.sf-right::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 10px;
+}
+
+.sf-right::-webkit-scrollbar-thumb:hover {
+  background: #b5b5b5;
 }
 
 .sf-item {

@@ -75,7 +75,7 @@
 /* Main heading */
 .pricing-hero-title {
   margin-top: 26px;
-  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   line-height: 1.1;
   color: #ffffff;
