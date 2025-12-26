@@ -1,0 +1,359 @@
+/* Websitedesigningprocess.css */
+
+/* Container */
+.websitedesigningprocess {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 6rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.websitedesigningprocess::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+}
+
+.websitedesigningprocess__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Header */
+.websitedesigningprocess__header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.websitedesigningprocess__subtitle {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 2rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.websitedesigningprocess__title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.websitedesigningprocess__description {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Timeline */
+.websitedesigningprocess__timeline {
+  position: relative;
+}
+
+.websitedesigningprocess__row {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.websitedesigningprocess__row--single {
+  justify-content: center;
+}
+
+.websitedesigningprocess__row:last-child {
+  margin-bottom: 0;
+}
+
+/* Step */
+.websitedesigningprocess__step {
+  flex: 1;
+  max-width: 360px;
+  min-width: 300px;
+}
+
+.websitedesigningprocess__step-inner {
+  position: relative;
+  height: 100%;
+  padding: 2rem;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.websitedesigningprocess__step-inner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.websitedesigningprocess__step-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.websitedesigningprocess__step-inner:hover::before {
+  opacity: 1;
+}
+
+/* Circle & Connectors */
+.websitedesigningprocess__circle-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  height: 140px;
+}
+
+.websitedesigningprocess__circle-background {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.websitedesigningprocess__circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.websitedesigningprocess__step-inner:hover .websitedesigningprocess__circle {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+}
+
+.websitedesigningprocess__circle-icon {
+  font-size: 3rem;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.websitedesigningprocess__circle-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.5;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Connectors */
+.websitedesigningprocess__connector {
+  position: absolute;
+  background: linear-gradient(90deg, #cbd5e1, #94a3b8);
+  z-index: 1;
+}
+
+.websitedesigningprocess__connector--horizontal {
+  top: 50%;
+  right: -2.5rem;
+  width: 2.5rem;
+  height: 2px;
+  transform: translateY(-1px);
+}
+
+.websitedesigningprocess__connector--vertical {
+  bottom: -4rem;
+  left: 50%;
+  width: 2px;
+  height: 4rem;
+  transform: translateX(-1px);
+}
+
+.websitedesigningprocess__row:last-child .websitedesigningprocess__connector--vertical {
+  display: none;
+}
+
+/* Content */
+.websitedesigningprocess__content {
+  text-align: center;
+}
+
+.websitedesigningprocess__step-number {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.websitedesigningprocess__step-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.websitedesigningprocess__step-text {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Footer */
+.websitedesigningprocess__footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.websitedesigningprocess__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border-radius: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.websitedesigningprocess__badge-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.websitedesigningprocess__badge-text:nth-child(2) {
+  color: #cbd5e1;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .websitedesigningprocess__row {
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  
+  .websitedesigningprocess__step {
+    max-width: 320px;
+    min-width: 280px;
+  }
+  
+  .websitedesigningprocess__connector--horizontal {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .websitedesigningprocess {
+    padding: 4rem 1rem;
+  }
+  
+  .websitedesigningprocess__title {
+    font-size: 2.25rem;
+  }
+  
+  .websitedesigningprocess__description {
+    font-size: 1rem;
+  }
+  
+  .websitedesigningprocess__row {
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .websitedesigningprocess__step {
+    max-width: 100%;
+    min-width: 100%;
+  }
+  
+  .websitedesigningprocess__step-inner {
+    padding: 1.5rem;
+  }
+  
+  .websitedesigningprocess__connector--vertical {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .websitedesigningprocess__title {
+    font-size: 1.875rem;
+  }
+  
+  .websitedesigningprocess__circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .websitedesigningprocess__circle-icon {
+    font-size: 2.5rem;
+  }
+  
+  .websitedesigningprocess__step-title {
+    font-size: 1.25rem;
+  }
+}
