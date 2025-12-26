@@ -188,3 +188,112 @@
   border-color: #2563ff;
   color: #fff;
 }
+
+/* ============================= */
+/* RESPONSIVE DESIGN (DO NOT EDIT EXISTING CSS) */
+/* ============================= */
+
+/* Tablets – 900px and below */
+@media (max-width: 900px) {
+
+  .pp-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .pp-card {
+    border-radius: 16px;
+  }
+
+  .pp-price {
+    font-size: 34px;
+  }
+
+  .pp-card-header {
+    padding: 22px 26px;
+  }
+
+  .pp-features {
+    padding: 18px 26px;
+  }
+
+  .pp-cta-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile – 600px and below */
+@media (max-width: 600px) {
+
+  .pp-section {
+    padding: 50px 4vw;
+  }
+
+  .pp-toggle-pill {
+   
+    gap: 8px;
+  }
+
+  .pp-toggle-btn {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .pp-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .pp-card-header {
+    padding: 20px 22px;
+  }
+
+  .pp-price {
+    font-size: 32px;
+  }
+
+  .pp-price-text {
+    font-size: 14px;
+  }
+
+  .pp-yearly-label {
+    font-size: 14px;
+  }
+
+  .pp-feature-item {
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  .pp-card-footer {
+    padding: 20px;
+  }
+
+  .pp-cta-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+
+/* Very Small Phones – 380px and below */
+@media (max-width: 380px) {
+
+  .pp-price {
+    font-size: 28px;
+  }
+
+  .pp-feature-item {
+    font-size: 14px;
+  }
+
+  .pp-toggle-btn {
+    font-size: 14px;
+  }
+
+  .pp-card-header h3 {
+    font-size: 18px;
+  }
+}

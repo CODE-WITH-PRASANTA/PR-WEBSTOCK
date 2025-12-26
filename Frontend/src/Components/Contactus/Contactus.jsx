@@ -119,7 +119,7 @@ const ContactUs = () => {
 
         <aside className={`zen-right ${animated ? 'zen-animated' : ''}`} aria-labelledby="form-heading">
           <div className="zen-form-card zen-slide-up" style={{ '--zen-delay': '0.3s' }} role="form" aria-label="Contact form">
-            <h3 id="form-heading" className="zen-form-title">Your Success Starts Here!</h3>
+            <h3 id="form-heading" className="zen-form-title">Got Questions? I'm Here to Help!</h3>
             <hr className="zen-sep" />
 
             <form onSubmit={handleSubmit} className="zen-form">

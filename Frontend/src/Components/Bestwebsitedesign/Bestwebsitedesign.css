@@ -1,0 +1,211 @@
+/* Keep styles scoped */
+.bwd-section * {
+  box-sizing: border-box;
+}
+
+/* SECTION BACKGROUND */
+
+.bwd-section {
+  padding: 80px 0 0px;
+  background: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  color: #111827;
+}
+
+.bwd-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* TOP HEADING AREA */
+
+.bwd-top {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  margin-bottom: 70px;
+}
+
+.bwd-top-left {
+  flex: 0 0 45%;
+}
+
+.bwd-top-right {
+  flex: 1;
+  font-size: 0.98rem;
+  line-height: 1.9;
+  color: #4b5563;
+}
+
+.bwd-main-heading {
+  font-size: 2.7rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+.bwd-heading-line {
+  width: 100px;
+  height: 2px;
+  background: #111827;
+}
+
+/* MAIN LAYOUT (IMAGE + CONTENT) */
+
+.bwd-layout {
+  display: flex;
+  align-items: stretch;    /* stretch both columns to same height */
+  gap: 70px;
+}
+
+/* LEFT – STICKY IMAGE COLUMN */
+
+.bwd-left {
+  flex: 0 0 360px;
+  padding-top: 120px;
+  align-self: stretch;    /* ensure full column height for sticky bounds */
+}
+
+/* Sticky wrapper (this sticks while right content scrolls) */
+.bwd-left-inner {
+  position: sticky;
+  top: 250px;             /* distance from top while scrolling */
+}
+
+.bwd-image-tilt {
+  position: relative;
+  width: 100%;
+  transform: rotate(-65deg);
+  
+  
+}
+
+.bwd-image-tilt img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+}
+
+.bwd-accent-bar {
+  position: absolute;
+    bottom: 60px;
+    left: 27%;
+    width: 41%;
+    height: 67px;
+    transform: translateX(-100%) rotate(-142deg);
+    background: #ff1744;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(255, 23, 68, 0.55);
+}
+
+/* RIGHT – FEATURES */
+
+.bwd-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* GROUP WRAPPER */
+
+.bwd-feature-group {
+  border-top: 1px solid #e5e7eb;
+}
+
+.bwd-feature-group:first-of-type {
+  border-top: none;
+}
+
+.bwd-feature-row {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 50px;
+  padding: 30px 0;
+}
+
+.bwd-divider {
+  height: 1px;
+  background: #e5e7eb;
+}
+
+/* TITLES */
+
+.bwd-feature-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+
+
+/* POINTS */
+
+.bwd-feature-points {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bwd-point {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+  font-size: 0.96rem;
+  color: #374151;
+  line-height: 1.8;
+}
+
+.bwd-arrow {
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px) {
+  .bwd-top {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .bwd-main-heading {
+    font-size: 2.2rem;
+  }
+
+  .bwd-layout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bwd-left-inner {
+    position: static; /* turn off sticky on small screens */
+  }
+
+  .bwd-image-tilt {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .bwd-accent-bar {
+    bottom: -60px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bwd-section {
+    padding: 60px 0 80px;
+  }
+
+  .bwd-main-heading {
+    font-size: 2rem;
+  }
+
+  .bwd-feature-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

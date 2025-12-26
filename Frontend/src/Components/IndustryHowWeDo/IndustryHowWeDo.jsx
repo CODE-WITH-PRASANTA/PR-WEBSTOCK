@@ -9,23 +9,23 @@ import icon4 from "../../assets/about-feature-card-icon4.webp";
 const items = [
   {
     icon: icon1,
-    title: "Expertise and Innovation",
-    text: "We pride ourselves staying at the front of innovation, constantly pushing boundaries and redefining what's possible."
+    title: "Expertise & Innovation",
+    text: "PR Webstock stands apart by combining deep industry expertise with continuous innovation. While others deliver basic solutions, we engineer scalable, future-ready software that adapts to your business growth."
   },
   {
     icon: icon2,
-    title: "Transparent Process",
-    text: "Our transparent process is designed to demystify the journey from concept to delivery."
+    title: "Transparent & Reliable Process",
+    text: "Most agencies keep clients in the dark — but PR Webstock follows a clear, transparent workflow with real-time updates, structured communication, and milestone-based delivery you can trust."
   },
   {
     icon: icon3,
-    title: "Client-Centric Approach",
-    text: "Our dedicated team takes the time to listen and collaborate, making every interaction a step towards your success."
+    title: "Client-First Development Approach",
+    text: "Unlike companies that force pre-built templates, PR Webstock builds solutions tailored to your unique vision. We listen, understand, and collaborate to deliver software that elevates your brand and business goals."
   },
   {
     icon: icon4,
-    title: "Cost-Effective",
-    text: "Our commitment to providing cost-effective solutions is ingrained in our mission."
+    title: "Cost-Effective, High-Value Solutions",
+    text: "Others may offer low cost but compromise on quality. PR Webstock provides affordable development without sacrificing performance, security, or user experience — ensuring maximum value for every investment."
   }
 ];
 
@@ -41,8 +41,9 @@ export default function HowWeDo() {
             <span className="howwe-badge-dot" />
           </div>
 
-          <h2 className="howwe-title">How to Find an Industry Expertise</h2>
-          <p className="howwe-subtitle">for IT Professionals.</p>
+         <h2 className="howwe-title">How PR Webstock Delivers Better Results Than Others !</h2>
+        <p className="howwe-subtitle">A client-focused, transparent, and innovation-driven IT process.</p>
+
         </div>
 
         {/* Feature grid */}

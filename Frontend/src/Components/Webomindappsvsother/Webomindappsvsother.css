@@ -1,0 +1,201 @@
+.Webomindappsvsother-section {
+  padding: 80px 20px;
+  background: #f9fbff;
+}
+
+.Webomindappsvsother-container {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.Webomindappsvsother-title {
+  text-align: center;
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 800;
+  color: #0b5fa5;
+  margin-bottom: 36px;
+}
+
+/* Table wrapper */
+.Webomindappsvsother-table {
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(11, 95, 165, 0.25);
+}
+
+/* Rows */
+.Webomindappsvsother-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 1.4fr;
+  min-height: 72px;
+}
+
+/* Header row */
+.Webomindappsvsother-row--header .Webomindappsvsother-headerCell {
+  padding: 22px 28px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.Webomindappsvsother-headerCell--feature,
+.Webomindappsvsother-headerCell--other {
+  background: #0b5fa5;
+  color: #ffffff;
+}
+
+.Webomindappsvsother-headerCell--feature {
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.Webomindappsvsother-headerCell--web {
+  background: #0a4f8a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-inline: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.Webomindappsvsother-logoText {
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+}
+
+/* Round corners */
+.Webomindappsvsother-row--header
+  .Webomindappsvsother-headerCell--feature {
+  border-top-left-radius: 26px;
+}
+
+.Webomindappsvsother-row--header
+  .Webomindappsvsother-headerCell--other {
+  border-top-right-radius: 26px;
+}
+
+.Webomindappsvsother-row--last .Webomindappsvsother-featureCell {
+  border-bottom-left-radius: 26px;
+}
+
+.Webomindappsvsother-row--last
+  .Webomindappsvsother-cell--other {
+  border-bottom-right-radius: 26px;
+}
+
+/* Feature column */
+.Webomindappsvsother-featureCell {
+  background: linear-gradient(180deg, #0b5fa5, #0a4f8a);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 22px 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+}
+
+/* Webomindapps column */
+.Webomindappsvsother-cell--web {
+  background: #f1f7ff;
+}
+
+/* Other companies column */
+.Webomindappsvsother-cell--other {
+  background: #ffffff;
+}
+
+/* Shared cell styles */
+.Webomindappsvsother-cell {
+  padding: 22px 28px;
+  border-top: 1px solid #e3ebf7;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.Webomindappsvsother-cellText {
+  line-height: 1.6;
+}
+
+/* Icons */
+.Webomindappsvsother-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* BRAND CHECK */
+.Webomindappsvsother-icon--check {
+  background: #eaf2ff;
+  color: #0b5fa5;
+  border: 2px solid #0b5fa5;
+}
+
+/* ERROR */
+.Webomindappsvsother-icon--cross {
+  background: #ffe9eb;
+  color: #e02424;
+  border: 2px solid #e02424;
+}
+
+/* WARNING */
+.Webomindappsvsother-icon--warn {
+  background: #fff7e6;
+  color: #d97706;
+  border: 2px solid #d97706;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .Webomindappsvsother-title {
+    font-size: 26px;
+  }
+
+  .Webomindappsvsother-row {
+    grid-template-columns: 1.1fr 1.3fr 1.3fr;
+  }
+
+  .Webomindappsvsother-featureCell,
+  .Webomindappsvsother-cell {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Webomindappsvsother-table {
+    box-shadow: 0 8px 24px rgba(11, 95, 165, 0.25);
+  }
+
+  .Webomindappsvsother-row--header {
+    display: none;
+  }
+
+  .Webomindappsvsother-row {
+    grid-template-columns: 1fr;
+    border-radius: 18px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .Webomindappsvsother-featureCell {
+    border-radius: 0;
+  }
+
+  .Webomindappsvsother-cell--web,
+  .Webomindappsvsother-cell--other {
+    border-top: none;
+  }
+
+  .Webomindappsvsother-row--last .Webomindappsvsother-featureCell,
+  .Webomindappsvsother-row--last .Webomindappsvsother-cell--other {
+    border-radius: 0;
+  }
+}

@@ -11,54 +11,63 @@ import iconNetwork from "../../assets/Support.webp";
 const features = [
   {
     icon: iconTechnical,
-    title: "Technical Implementation",
-    text: "Seamless integration of cutting-edge solutions. Our technical implementation ensures robust systems, and optimal performance in every detail."
+    title: "Instagram Management",
+    text: 
+      "PR WEBSTOCK manages your Instagram professionally with content planning, reel creation, daily posting, hashtag strategy, and audience engagement to grow your brand organically."
   },
   {
     icon: iconHelpdesk,
-    title: "IT Helpdesk Support",
-    text: "Responsive IT helpdesk support ensuring seamless operations, resolving issues promptly, and maximizing user productivity with expertise."
+    title: "Facebook Page Management",
+    text:
+      "From creative posts to community management, PR WEBSTOCK handles your Facebook Page with result-driven strategies that boost reach, engagement, and brand visibility."
   },
   {
     icon: iconManaged,
-    title: "Managed IT Services",
-    text: "Efficient, proactive, and secure IT solutions tailored to optimize your business operations with our managed IT services."
+    title: "Website Blog Management",
+    text:
+      "We research, write, optimize, and publish SEO-friendly blogs that help increase website ranking, improve domain authority, and bring consistent organic traffic."
   },
   {
     icon: iconConsulting,
-    title: "IT Consulting",
-    text: "Strategic IT Consulting tailored solutions to optimize performance, enhance security, and drive innovation for business success."
+    title: "Social Media Strategy & Consulting",
+    text:
+      "PR WEBSTOCK crafts a complete social media strategy including competitor analysis, content pillars, branding guidelines, and monthly growth plans for measurable results."
   },
   {
     icon: iconNetwork,
-    title: "Network Support",
-    text: "Reliable network support ensuring seamless connectivity and optimizing performance for uninterrupted business operations."
+    title: "Advertising & Campaign Optimization",
+    text:
+      "We run and optimize Facebook & Instagram ads to maximize ROI. From audience targeting to creative testing — PR WEBSTOCK ensures every campaign performs at peak efficiency."
   }
 ];
+
 
 export default function ServiceFeatures() {
   return (
     <section className="sf-section">
       <div className="sf-container">
         {/* LEFT SIDE */}
-        <div className="sf-left">
-          <div className="sf-badge">
-            <span className="sf-badge-dot" />
-            <span className="sf-badge-text">Service Features</span>
-            <span className="sf-badge-dot" />
+       <div className="sf-left">
+            <div className="sf-badge">
+              <span className="sf-badge-dot" />
+              <span className="sf-badge-text">Social Media Management</span>
+              <span className="sf-badge-dot" />
+            </div>
+
+            <h2 className="sf-title">
+              Powerful SMM Services That
+              <br />
+              <span className="sf-title-light">Grow Your Online Presence.</span>
+            </h2>
+
+            <p className="sf-description">
+              PR WEBSTOCK provides complete Social Media Management (SMM) services to help 
+              businesses build a strong digital presence. We handle Instagram, Facebook,  
+              website blogs, ad campaigns, content strategy, and brand identity management 
+              with a professional and ROI-focused approach.
+            </p>
           </div>
 
-          <h2 className="sf-title">
-            Edge tools Drive That
-            <br />
-            <span className="sf-title-light">performance.</span>
-          </h2>
-
-          <p className="sf-description">
-            Feel free adapt this based on the specific managed services, features, and
-            unique selling points your IT service company provides.
-          </p>
-        </div>
 
         {/* RIGHT SIDE */}
         <div className="sf-right">
