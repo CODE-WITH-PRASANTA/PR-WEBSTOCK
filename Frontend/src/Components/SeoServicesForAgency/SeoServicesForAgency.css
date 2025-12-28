@@ -1,0 +1,134 @@
+/* ================================
+   SECTION
+================================ */
+.seo-services {
+  padding: 4rem 6rem;
+  background: #ffffff;
+}
+
+/* ================================
+   HEADING
+================================ */
+.seo-services-heading {
+  text-align: center;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #000;
+}
+
+/* ================================
+   GRID — DESKTOP
+================================ */
+.seo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #000; /* ✅ TOP UNDERLINE */
+}
+
+/* ================================
+   CARD — DESKTOP
+================================ */
+.seo-card {
+  position: relative;
+  padding: 3rem;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+/* Remove right border on last column */
+.seo-card:nth-child(3n) {
+  border-right: none;
+}
+
+/* Remove bottom border on last row */
+.seo-card:nth-last-child(-n + 3) {
+  border-bottom: none;
+}
+
+/* ================================
+   CARD CONTENT
+================================ */
+.seo-card img {
+  width: 48px;
+  margin-bottom: 1.5rem;
+}
+
+.seo-card h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+/* ================================
+   LIST
+================================ */
+.seo-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seo-card li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  color: #222;
+}
+
+.seo-card li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #000;
+}
+
+/* =====================================================
+   RESPONSIVE — ALL ITEMS BOTTOM UNDERLINE (SAFE WAY)
+===================================================== */
+@media (max-width: 1024px) {
+  .seo-services {
+    padding: 3rem 2rem;
+  }
+
+  .seo-grid {
+    grid-template-columns: 1fr;
+    border-top: none; /* ❌ remove desktop top line */
+  }
+
+  /* Remove all desktop borders */
+  .seo-card {
+    border: none;
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* Bottom underline using pseudo-element (bulletproof) */
+  .seo-card::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #000;
+    margin-top: 2rem;
+  }
+
+  /* Optional: remove underline from last item */
+  .seo-card:last-child::after {
+    display: none;
+  }
+}
+
+/* ================================
+   SMALL MOBILE
+================================ */
+@media (max-width: 600px) {
+  .seo-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .seo-card li {
+    font-size: 0.95rem;
+  }
+}

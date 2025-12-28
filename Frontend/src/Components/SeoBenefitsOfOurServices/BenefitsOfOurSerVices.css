@@ -1,0 +1,200 @@
+/* ================================
+   HEADING
+================================ */
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 20px;
+  text-align: center;
+}
+
+.heading h1 {
+  font-size: clamp(2.2rem, 3vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #000;
+  max-width: 1100px;
+}
+
+/* ================================
+   SCROLL SECTION
+================================ */
+.scroll-section {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+/* ================================
+   PANEL
+================================ */
+.panel {
+  flex: 0 0 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================================
+   CARD
+================================ */
+.card {
+  width: 90%;
+  max-width: 520px;
+  background: #f4cdd3;
+  border-radius: 28px;
+  padding: 2.5rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Hover (desktop only) */
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Active card (GSAP-driven) */
+.panel.active .card {
+  transform: scale(1.08);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.18);
+}
+
+/* Active + hover priority */
+.panel.active .card:hover {
+  transform: scale(1.1);
+}
+
+/* ================================
+   CARD HEADER
+================================ */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  transition: transform 0.3s ease;
+}
+
+.panel.active .icon {
+  transform: scale(1.1);
+}
+
+.step {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ff2d55;
+}
+
+/* ================================
+   CARD TEXT
+================================ */
+.card h3 {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+  color: #111;
+}
+
+.card p {
+  margin-top: 0.75rem;
+  line-height: 1.6;
+  color: #555;
+  font-size: 15px;
+}
+
+/* ================================
+   TABLET RESPONSIVE
+================================ */
+@media (max-width: 1024px) {
+  .panel {
+    flex: 0 0 70vw;
+  }
+
+  .card {
+    max-width: 460px;
+    padding: 2rem;
+  }
+
+  .step {
+    font-size: 2.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .heading {
+    padding-top: 40px;
+  }
+
+  .panel {
+    flex: 0 0 100vw;
+  }
+
+  .card {
+    max-width: 90%;
+    padding: 1.75rem;
+  }
+
+  .step {
+    font-size: 2.2rem;
+  }
+
+  .icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  /* Disable hover lift on mobile */
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ================================
+   EXTRA SMALL DEVICES
+================================ */
+@media (max-width: 480px) {
+  .card {
+    padding: 1.5rem;
+    border-radius: 22px;
+  }
+
+  .step {
+    font-size: 2rem;
+  }
+}
+
+/* ================================
+   TOUCH DEVICE SAFETY
+================================ */
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

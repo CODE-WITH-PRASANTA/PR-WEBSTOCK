@@ -14,13 +14,14 @@ import BlogDetails from "./Pages/BlogDetails/BlogDetails";
 import Service from "./Pages/Service/Service";
 import AppDevelopment from "./Pages/AppDevelopment/AppDevelopment";
 import GetFreeDemo from "./Pages/GetFreeDemo/GetFreeDemo";
-
+import Seo from "./Pages/Seo/Seo";
 
 
 import ScrollToTop from "./ScrollToTop";
 import PageLoader from "./Components/PageLoader/PageLoader"; 
 
 import { useState, useEffect } from "react";
+
 
 function AppContent() {
   const location = useLocation();
@@ -50,6 +51,9 @@ function AppContent() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/details" element={<BlogDetails />} />
         <Route path="/services/web-development" element={<Service />} />
+        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/services/seo" element={<Seo />} />
+        
       </Routes>
       <ContactUs />
       <Footer />
