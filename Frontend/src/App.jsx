@@ -50,6 +50,9 @@ function AppContent() {
         <Route path="/career" element={<Career />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/details" element={<BlogDetails />} />
+        <Route path="/service" element={<Service />} />
+        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/get-quote" element={<GetFreeDemo />} />
         <Route path="/services/web-development" element={<Service />} />
         <Route path="/services/app-development" element={<AppDevelopment />} />
         <Route path="/services/seo" element={<Seo />} />
