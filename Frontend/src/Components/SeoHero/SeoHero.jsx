@@ -3,9 +3,9 @@ import seohero from "../../assets/seo-hero.mp4"
 import './SeoHero.css';
 const SeoHero = () => {
   return (
-    <section className="video-container">
+    <section className="SeoHero-video-container">
       <video
-        className="video-element"
+        className="SeoHero-video-element"
         autoPlay
         muted
         loop
@@ -14,7 +14,7 @@ const SeoHero = () => {
         <source src={seohero} type="video/mp4" />
       </video>
 
-      <div className="video-content">
+      <div className="SeoHero-video-content">
         <h1>
           SEO Company in Bhubaneswar that Delivers best Results
         </h1>

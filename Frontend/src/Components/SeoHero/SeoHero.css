@@ -1,7 +1,7 @@
 /* ================================
    HERO CONTAINER
 ================================ */
-.video-container {
+.SeoHero-video-container {
   position: relative;
   width: calc(100% - 20px);
   height: 60vh;
@@ -16,7 +16,7 @@
 /* ================================
    VIDEO
 ================================ */
-.video-element {
+.SeoHero-video-element {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -28,7 +28,7 @@
 /* ================================
    DARK OVERLAY (READABILITY FIX)
 ================================ */
-.video-container::after {
+.SeoHero-video-container::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -44,7 +44,7 @@
 /* ================================
    CONTENT
 ================================ */
-.video-content {
+.SeoHero-video-content {
   position: relative;
   z-index: 1;
   max-width: 720px;
@@ -58,14 +58,14 @@
 /* ================================
    HEADINGS
 ================================ */
-.video-content h1 {
+.SeoHero-video-content h1 {
   font-size: clamp(1.8rem, 3vw, 3.2rem);
   line-height: 1.15;
   font-weight: 700;
   margin-bottom: 1.2rem;
 }
 
-.video-content h2 {
+.SeoHero-video-content h2 {
   font-size: clamp(0.9rem, 1vw, 1.2rem);
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -75,7 +75,7 @@
 /* ================================
    PARAGRAPH
 ================================ */
-.video-content p {
+.SeoHero-video-content p {
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 2rem;
@@ -117,16 +117,16 @@
    TABLET
 ================================ */
 @media (max-width: 992px) {
-  .video-container {
+  .SeoHero-video-container {
     height: 55vh;
   }
 
-  .video-content {
+  .SeoHero-video-content {
     padding-left: 3rem;
     padding-right: 2rem;
   }
 
-  .video-content p {
+  .SeoHero-video-content p {
     font-size: 0.95rem;
   }
 }
@@ -135,26 +135,26 @@
    MOBILE
 ================================ */
 @media (max-width: 768px) {
-  .video-container {
+  .SeoHero-video-container {
     height: 60vh;
     width: calc(100% - 16px);
     border-radius: 14px;
   }
 
-  .video-content {
+  .SeoHero-video-content {
     padding: 0 1.5rem;
     max-width: 100%;
   }
 
-  .video-content h1 {
+  .SeoHero-video-content h1 {
     font-size: 1.9rem;
   }
 
-  .video-content h2 {
+  .SeoHero-video-content h2 {
     font-size: 0.9rem;
   }
 
-  .video-content p {
+  .SeoHero-video-content p {
     font-size: 0.95rem;
   }
 }
@@ -163,11 +163,11 @@
    SMALL MOBILE
 ================================ */
 @media (max-width: 480px) {
-  .video-container {
+  .SeoHero-video-container {
     height: 65vh;
   }
 
-  .video-content h1 {
+  .SeoHero-video-content h1 {
     font-size: 1.7rem;
   }
 
