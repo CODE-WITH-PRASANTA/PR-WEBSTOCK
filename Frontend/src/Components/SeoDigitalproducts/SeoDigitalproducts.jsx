@@ -1,14 +1,14 @@
 import React from "react";
 import "./SeoDigitalproducts.css";
-import img1 from "../../assets/digitalProductImages/img1.svg"
-import img2 from "../../assets/digitalProductImages/img2.svg"
-import img3 from "../../assets/digitalProductImages/img3.svg"
-import img4 from "../../assets/digitalProductImages/img4.svg"
-import img5 from "../../assets/digitalProductImages/img5.svg"
-import img6 from "../../assets/digitalProductImages/img6.svg"
-import img7 from "../../assets/digitalProductImages/img7.svg"
-import img8 from "../../assets/digitalProductImages/img8.svg"
-import img9 from "../../assets/digitalProductImages/img9.svg"
+import img1 from "../../assets/img1.svg"
+import img2 from "../../assets/img2.svg"
+import img3 from "../../assets/img3.svg"
+import img4 from "../../assets/img4.svg"
+import img5 from "../../assets/img5.svg"
+import img6 from "../../assets/img6.svg"
+import img7 from "../../assets/img7.svg"
+import img8 from "../../assets/img8.svg"
+import img9 from "../../assets/img9.svg"
 
 const SeoDigitalproducts = () => {
   const cards = [
