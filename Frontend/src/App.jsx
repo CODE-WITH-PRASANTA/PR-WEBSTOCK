@@ -14,6 +14,8 @@ import BlogDetails from "./Pages/BlogDetails/BlogDetails";
 import Service from "./Pages/Service/Service";
 import AppDevelopment from "./Pages/AppDevelopment/AppDevelopment";
 import GetFreeDemo from "./Pages/GetFreeDemo/GetFreeDemo";
+import DigitalMarketing from "./Pages/Digitalmarketing/Digitalmarketing";
+
 
 
 
@@ -53,6 +55,7 @@ function AppContent() {
         <Route path="/services/app-development" element={<AppDevelopment />} />
         <Route path="/get-quote" element={<GetFreeDemo />} />
         <Route path="/services/web-development" element={<Service />} />
+        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
       </Routes>
       <ContactUs />
       <Footer />

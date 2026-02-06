@@ -1,0 +1,46 @@
+.rom-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 50px 0 ; /* ⬅ reduced top space */
+  font-family: "Segoe UI", sans-serif;
+}
+
+.rom-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: left;
+}
+
+/* Heading */
+.rom-container h1 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  max-width: 900px;   /* HEADING WIDTH */
+  margin-top: 0;
+  margin-left:0%;
+}
+
+/* Paragraphs */
+.rom-container p {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #0a0a0a;
+  margin-bottom: 26px;
+  max-width: 100%;   /* ✅ THIS IS THE MAIN FIX */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rom-container h1 {
+    font-size: 30px;
+    max-width: 100%;
+  }
+
+  .rom-container p {
+    font-size: 15px;
+    max-width: 100%;
+  }
+}
