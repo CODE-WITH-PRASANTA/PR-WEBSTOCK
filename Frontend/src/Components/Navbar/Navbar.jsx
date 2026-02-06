@@ -243,7 +243,7 @@ const Navbar = () => {
               aria-label="Call +91-7789-801-327"
             >
               <FaPhone className="contact-svg" aria-hidden="true" style={{ transform: "rotate(90deg)" }} />
-              <span className="contact-text">+91-7789 801 327</span>
+              <span className="navbar-contact-text">+91-7789 801 327</span>
             </a>
 
             <a
@@ -252,12 +252,12 @@ const Navbar = () => {
               aria-label="Email prwebstock.com at gmail"
             >
               <FaEnvelope className="contact-svg" aria-hidden="true" />
-              <span className="contact-text">prwebstock.com@gmail.com</span>
+              <span className="navbar-contact-text">prwebstock.com@gmail.com</span>
             </a>
 
             <div className="contact-item contact-location" aria-label="Office location">
               <FaMapMarkerAlt className="contact-svg" aria-hidden="true" />
-              <address className="contact-text">Unit 32 , Nexus Esplanade , Bhubaneswar</address>
+              <address className="navbar-contact-text">608A, Grand Bazar, Phulnakhara, Bhubaneswar – 754001</address>
             </div>
           </div>
 

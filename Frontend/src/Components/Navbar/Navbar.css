@@ -108,7 +108,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* text */
-.contact-text {
+.navbar-contact-text {
   font-weight: 600;
   color: #16325c;
 }
@@ -123,7 +123,7 @@ a { text-decoration: none; color: inherit; }
     padding: 8px 0;
   }
 
-  .contact-text {
+  .navbar-contact-text {
     font-size: 15px;
   }
 }
@@ -673,10 +673,10 @@ a { text-decoration: none; color: inherit; }
     min-width: 18px;
   }
 
-  .contact-text {
+  .navbar-contact-text {
     font-weight: 600;
     color: #16325c;
-    font-size: 13px;
+    font-size: 10px;
   }
 
   /* keep other mobile adjustments */
@@ -701,7 +701,7 @@ a { text-decoration: none; color: inherit; }
     flex-shrink: 0;
   }
 
-  .navbar-contact .contact-text { font-size: 13px; font-weight: 600; }
+  .navbar-contact .navbar-contact-text { font-size: 10px; font-weight: 600; }
 
   /* Prefer phone + email in the header on very small screens */
   .navbar-contact .contact-location { display: none; }

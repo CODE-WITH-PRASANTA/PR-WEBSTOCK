@@ -16,7 +16,6 @@ const Seo = () => {
 
   return (
     <div>
-      
       <SeoHero/>
       <FirstPageResults/>
       <SeoServicesForAgency/>
