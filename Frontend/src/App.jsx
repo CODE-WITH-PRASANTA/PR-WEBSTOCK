@@ -14,15 +14,15 @@ import BlogDetails from "./Pages/BlogDetails/BlogDetails";
 import Service from "./Pages/Service/Service";
 import AppDevelopment from "./Pages/AppDevelopment/AppDevelopment";
 import GetFreeDemo from "./Pages/GetFreeDemo/GetFreeDemo";
-import DigitalMarketing from "./Pages/Digitalmarketing/Digitalmarketing";
-
-
+import Seo from "./Pages/Seo/Seo";
 
 
 import ScrollToTop from "./ScrollToTop";
 import PageLoader from "./Components/PageLoader/PageLoader"; 
 
 import { useState, useEffect } from "react";
+import Digitalmarketing from "./Pages/Digitalmarketing/Digitalmarketing";
+
 
 function AppContent() {
   const location = useLocation();
@@ -55,7 +55,10 @@ function AppContent() {
         <Route path="/services/app-development" element={<AppDevelopment />} />
         <Route path="/get-quote" element={<GetFreeDemo />} />
         <Route path="/services/web-development" element={<Service />} />
-        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/services/app-development" element={<AppDevelopment />} />
+        <Route path="/services/seo" element={<Seo />} />
+        <Route path="/services/digital-marketing" element={<Digitalmarketing />} />
+        
       </Routes>
       <ContactUs />
       <Footer />

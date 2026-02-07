@@ -1,0 +1,161 @@
+/* ================================
+   SECTION
+================================ */
+.seo-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.seo-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* ================================
+   LEFT IMAGE
+================================ */
+.seo-image {
+  display: flex;
+  justify-content: center;
+}
+
+.seo-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ================================
+   RIGHT CONTENT
+================================ */
+.seo-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.seo-content h2 {
+  font-size: 40px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  color: #111;
+  font-weight: 600;
+}
+
+.seo-content p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 90%;
+  font-size: 16px;
+}
+
+/* ================================
+   LIST
+================================ */
+.seo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seo-list li {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+}
+
+.seo-list li:last-child {
+  border-bottom: 1px solid #ddd;
+}
+
+.seo-list span {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff2d55;
+  min-width: 40px;
+}
+
+.seo-list h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: #111;
+  font-weight: 500;
+}
+
+.seo-list p {
+  margin: 0;
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ================================
+   TABLET RESPONSIVE
+================================ */
+@media (max-width: 1024px) {
+  .seo-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .seo-content h2 {
+    font-size: 34px;
+  }
+
+  .seo-content p {
+    max-width: 100%;
+  }
+
+  .seo-image img {
+    max-width: 420px;
+  }
+}
+
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 600px) {
+  .seo-section {
+    padding: 60px 0;
+  }
+
+  .seo-content h2 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .seo-content p {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .seo-list li {
+    gap: 14px;
+    padding: 16px 0;
+  }
+
+  .seo-list span {
+    font-size: 22px;
+    min-width: 32px;
+  }
+
+  .seo-list h4 {
+    font-size: 16px;
+  }
+
+  .seo-list p {
+    font-size: 14px;
+  }
+
+  .seo-image img {
+    max-width: 100%;
+  }
+}

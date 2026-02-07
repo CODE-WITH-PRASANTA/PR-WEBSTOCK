@@ -4,65 +4,72 @@ import "./Webomindappsvsother.css";
 const rows = [
   {
     feature: "Custom Web Design",
-    webText: "Custom-crafted, brand-focused designs",
+    webText: "Brand-focused, fully custom web design built from scratch using clean code.",
     webIcon: "check",
-    otherText: "Often rely on pre-made templates",
+    otherText: "Often depend on ready-made templates with limited flexibility.",
     otherIcon: "cross",
   },
   {
     feature: "User Experience (UX) Optimization",
-    webText: "UI/UX strategy integrated",
+    webText: "UX strategy planned from day one to improve engagement and conversions.",
     webIcon: "check",
-    otherText: "Basic layout focus only",
+    otherText: "Basic layouts with minimal user experience consideration.",
     otherIcon: "cross",
   },
   {
     feature: "SEO-Friendly Design",
-    webText: "Built with SEO best practices",
+    webText: "Websites developed with on-page SEO best practices and clean structure.",
     webIcon: "check",
-    otherText: "Limited or no on-page SEO",
+    otherText: "Limited or no SEO-focused development.",
     otherIcon: "cross",
   },
   {
     feature: "Core Web Vitals Optimization",
-    webText: "Fast loading, meets Google standards",
+    webText: "Fast-loading websites optimized for Google Core Web Vitals.",
     webIcon: "check",
-    otherText: "Often overlooked",
+    otherText: "Performance optimization often ignored.",
     otherIcon: "cross",
   },
   {
     feature: "Technology Stack",
-    webText: "Uses latest frameworks (HTML5, CSS3, JS)",
+    webText: "Modern MERN Stack (full code-based), HTML5, CSS3, JavaScript.",
     webIcon: "check",
-    otherText: "Limited to outdated technologies",
+    otherText: "Outdated or restrictive technologies.",
     otherIcon: "cross",
   },
   {
     feature: "CMS Integration",
-    webText: "WordPress, Webflow, Custom CMS options",
+    webText: "Custom CMS, WordPress, or headless solutions as per business needs.",
     webIcon: "check",
-    otherText: "Restricted CMS offerings",
+    otherText: "Restricted CMS options with limited customization.",
     otherIcon: "warn",
   },
   {
-    feature: "Support & Maintenance",
-    webText: "Ongoing support post-launch",
+    feature: "Hosting & Infrastructure",
+    webText: "High-performance Cloud / VPS hosting with scalability and security.",
     webIcon: "check",
-    otherText: "Often lacks post-delivery support",
+    otherText: "Shared or low-performance hosting environments.",
     otherIcon: "cross",
   },
   {
-    feature: "Transparency & Timelines",
-    webText: "Fixed delivery milestones",
+    feature: "Media & Image Optimization",
+    webText: "Integrated Cloudinary for optimized image storage and faster loading.",
     webIcon: "check",
-    otherText: "Unclear timelines",
+    otherText: "Basic image handling without performance optimization.",
     otherIcon: "warn",
   },
   {
-    feature: "Pricing",
-    webText: "Competitive & value-driven",
+    feature: "Payment Gateway Integration",
+    webText: "Secure integration with PhonePe payment gateway (official partner).",
     webIcon: "check",
-    otherText: "May lack transparency in pricing",
+    otherText: "Limited or third-party payment options.",
+    otherIcon: "warn",
+  },
+  {
+    feature: "API Integrations",
+    webText: "Complete API solutions including WhatsApp, call, email, and third-party APIs.",
+    webIcon: "check",
+    otherText: "Minimal or no API customization.",
     otherIcon: "warn",
   },
 ];
@@ -72,7 +79,7 @@ const Webomindappsvsother = () => {
     <section className="Webomindappsvsother-section">
       <div className="Webomindappsvsother-container">
         <h2 className="Webomindappsvsother-title">
-          Webomindapps vs Other Web Design Companies in Bangalore
+         PR WEBSTOCK vs Other Web Design Companies in Bhubaneswar
         </h2>
 
         <div className="Webomindappsvsother-table">

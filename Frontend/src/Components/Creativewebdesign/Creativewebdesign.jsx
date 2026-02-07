@@ -93,8 +93,7 @@ const Creativewebdesign = () => {
         {/* Right Content Column */}
         <div className="CreativewebdesignNew-right">
           <h2 id="creative-heading" className="CreativewebdesignNew-title">
-            Your search for creative web design ends at Webomindapps, 
-            the best website designing company in Bangalore
+           Your Search for Creative Web Design Ends at PR WEBSTOCK — Best Web Design in Bhubaneswar
           </h2>
 
           <div className="CreativewebdesignNew-media">
@@ -113,15 +112,11 @@ const Creativewebdesign = () => {
               role="complementary"
             >
               <h3 id="card-heading" className="CreativewebdesignNew-card-title">
-                Webomindapps — Creative web design company in Bangalore
+               PR WEBSTOCK — Creative Web Design Company in Bhubaneswar
               </h3>
 
               <p className="CreativewebdesignNew-card-text">
-                Webomindapps is a top web design company in Bangalore, dedicated to providing a
-                wide range of professional web designing services. Our expertise lies in creating
-                websites that are optimized and run flawlessly across all devices and screen sizes.
-                We are a team of like-minded enthusiasts who strive to provide our clients with
-                secure and fast websites by combining dynamic looks with exceptional performance.
+               PR WEBSTOCK is a trusted web design company in Bhubaneswar, delivering custom website solutions tailored to real business needs. Our focus is on clean design, strong coding, and smooth performance across all devices. We believe every business deserves a website that reflects its brand. That’s why our team builds each project from scratch using coding-based development, ensuring better speed, security, and scalability.
               </p>
             </article>
           </div>

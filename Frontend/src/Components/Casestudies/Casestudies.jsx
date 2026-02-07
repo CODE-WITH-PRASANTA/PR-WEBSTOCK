@@ -8,11 +8,11 @@ const caseStudies = [
     title: "Industrial Tech Innovator",
     img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&blur=20",
     problem:
-      "Outdated website failed to showcase product value and lacked mobile optimization.",
+      "The client’s outdated website failed to clearly communicate product value and performed poorly on mobile devices, leading to low engagement and missed leads.",
     solution:
-      "Mobile-first B2B website with improved navigation and lead capture.",
+      "PR WEBSTOCK designed a mobile-first, coding-based B2B website using modern UI principles. We improved navigation, optimized content structure, and implemented fast loading with Cloud / VPS hosting.",
     result:
-      "2.5x qualified leads, 60% mobile engagement boost",
+      "2.5x qualified leads, 60% boost in mobile user engagement",
   },
   {
     id: 2,
@@ -20,11 +20,11 @@ const caseStudies = [
     title: "Health & Wellness Brand",
     img: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&blur=20",
     problem:
-      "Poor site performance limiting online conversions.",
+      "Slow website speed and poor user experience were limiting conversions and reducing user trust.",
     solution:
-      "Optimized UX, faster load times, integrated analytics.",
+      "We rebuilt the platform using MERN Stack (full code-based development), optimized performance with Cloudinary for image storage, and improved UX flow supported by analytics integration.",
     result:
-      "3x page views, 40% sales growth",
+      "3x page views,40% growth in online conversions",
   },
   {
     id: 3,
@@ -32,11 +32,11 @@ const caseStudies = [
     title: "AI-Driven SaaS Platform",
     img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&blur=20",
     problem:
-      "Complex service offering confusing users.",
+      "Complex service offerings were confusing users, resulting in high bounce rates and low demo requests.",
     solution:
-      "Clean, conversion-focused website with simplified messaging.",
+      "PR WEBSTOCK created a clean, conversion-focused website with simplified messaging, SEO-friendly structure, and fast performance. API integrations for email and WhatsApp communication improved lead follow-ups.",
     result:
-      "50% lower bounce rate, 2x demo requests",
+      "50% reduction in bounce rate, 2× increase in demo requests",
   },
 ];
 

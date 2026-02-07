@@ -6,37 +6,37 @@ const Websitedesigningprocess = () => {
     {
       title: 'Start-off',
       icon: '💬',
-      text: 'An in-depth session where we gather clients’ needs, expectations, and preferences to set the project foundation effectively.',
+      text: 'At PR WEBSTOCK, we begin every project with a detailed discussion to understand your business goals, target audience, and expectations. Based in Bhubaneswar and serving clients across India, this step helps us plan a clear direction for effective web design.',
     },
     {
       title: 'Crafting vision',
       icon: '👁️',
-      text: 'We engage in research-driven discussions with our team to craft a minimalistic design that aligns with the client’s vision.',
+      text: 'In this stage, our team transforms ideas into a clear design vision. We analyze requirements, research industry trends, and define the visual direction to ensure the website reflects your brand identity and supports the best web design practices.',
     },
     {
       title: 'Wireframe',
       icon: '📐',
-      text: 'This stage involves creating a structured layout by carefully designing the images and text layout to ensure precision.',
+      text: 'We create a structured wireframe to plan the website layout and content flow. This step focuses on usability, clarity, and user experience, helping us build a strong foundation for a coding-based website solution that performs well across devices.',
     },
     {
       title: 'UI/UX Design',
       icon: '📱',
-      text: 'The wireframe is transformed into a visually captivating design with meticulous placement of all elements.',
+      text: 'At PR WEBSTOCK, we transform approved wireframes into visually appealing and user-friendly designs. Our focus is on layout, usability, and interaction, ensuring the website offers a smooth experience and follows the best web design practices.',
     },
     {
       title: 'Design Review',
       icon: '📝',
-      text: 'Before proceeding further, the design is presented to the client for approval and fine-tuning.',
+      text: 'Before moving forward, we share the design with you for feedback and approval. This step allows fine-tuning of visuals, structure, and user flow so the final website meets your expectations and business goals.',
     },
     {
       title: 'Web Designing',
       icon: '💻',
-      text: 'The design evolves into a functional website as our developers translate UI/UX elements into code.',
+      text: 'Once the design is approved, our developers convert the UI/UX into a fully functional, coding-based website. From Bhubaneswar to clients all over India, PR WEBSTOCK delivers fast, secure, and scalable top website solutions built for performance.',
     },
     {
       title: 'Website Testing',
       icon: '🧪',
-      text: 'Testing ensures every element, such as buttons and links, works perfectly and the site meets quality standards.',
+      text: 'At PR WEBSTOCK, we thoroughly test every website to ensure smooth performance, strong security, and a flawless user experience. From functionality and responsiveness to speed and browser compatibility, our testing process ensures your site meets high-quality standards before launch.',
     },
   ];
 
@@ -50,10 +50,10 @@ const Websitedesigningprocess = () => {
     <section className="websitedesigningprocess">
       <div className="websitedesigningprocess__container">
         <div className="websitedesigningprocess__header">
-          <span className="websitedesigningprocess__subtitle">Our Methodology</span>
-          <h2 className="websitedesigningprocess__title">Website Designing Process</h2>
+          <span className="websitedesigningprocess__subtitle">Website Designing </span>
+          <h2 className="websitedesigningprocess__title">Website Designing Process at PR WEBSTOCK</h2>
           <p className="websitedesigningprocess__description">
-            A seamless journey from concept to launch, ensuring every detail aligns with your vision
+            PR WEBSTOCK follows a structured website designing process to deliver coding-based, high-performance web design solutions from Bhubaneswar to clients across India.
           </p>
         </div>
 
@@ -101,9 +101,9 @@ const Websitedesigningprocess = () => {
 
         <div className="websitedesigningprocess__footer">
           <div className="websitedesigningprocess__badge">
-            <span className="websitedesigningprocess__badge-text">7 Steps</span>
+            <span className="websitedesigningprocess__badge-text">7 Structured Steps</span>
             <span className="websitedesigningprocess__badge-text">•</span>
-            <span className="websitedesigningprocess__badge-text">Guaranteed Quality</span>
+            <span className="websitedesigningprocess__badge-text">High-Quality Delivery</span>
           </div>
         </div>
       </div>

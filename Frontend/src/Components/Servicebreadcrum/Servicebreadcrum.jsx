@@ -20,13 +20,10 @@ const Servicebreadcrum = () => {
       <div className="Service-breadcrum__overlay" />
 
       <div className="Service-breadcrum__content">
-        <h1 className="Service-breadcrum__title">Web Design Company in Bangalore</h1>
+        <h1 className="Service-breadcrum__title">PR WEBSTOCK – Best Web Design Company in Bhubaneswar</h1>
 
         <p className="Service-breadcrum__subtitle">
-          Your website is your brand’s first impression. As the best web design company in
-          Bangalore, with over 12+ years of experience, Webomindapps has delivered 2000+ projects
-          and served clients in 25+ countries. We combine speed, security, and design to create an
-          online space that truly stands out.
+          At PR WEBSTOCK, we help businesses in All Over India grow with modern, fast, and result-driven web design solutions. We specialize in coding-based websites that are clean, responsive, and built for performance. Whether you’re a startup, local business, or growing company, we create websites that look professional and convert visitors into customers.
         </p>
 
         <a className="Service-breadcrum__cta" href="/contact" aria-label="Talk to our expert">
