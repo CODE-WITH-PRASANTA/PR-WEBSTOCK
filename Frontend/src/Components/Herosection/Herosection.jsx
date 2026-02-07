@@ -41,7 +41,7 @@ const HeroSection = () => {
           High-Performance Websites, Apps & Digital Growth Solutions
         </h1>
 
-        <p className="hero-desc">
+        <p className="HeroSec-desc">
           At PR WEBSTOCK, we help startups and growing businesses build a powerful 
           digital presence with world-class Website Development, Mobile Applications, 
           CRM Solutions, SEO, Digital Marketing, and Social Media Management.  

@@ -1,0 +1,154 @@
+/* MAIN WRAPPER */
+.sm-wrapper {
+  width: 100%;
+  padding: 100px 70px 0 70px;
+  position: relative;
+  background: #fafafa;
+}
+
+/* ===============================
+   LEFT SIDE GRAPHIC (REFERENCE PERFECT)
+================================== */
+
+.left-graphic {
+  position: absolute;
+  top: 140px;
+  left: 0px;
+}
+
+.circle {
+  width: 260px;
+  height: 260px;
+  border: 3px solid #000;
+  border-radius: 50%;
+  position: relative;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: #ff003c;
+  border-radius: 50%;
+  position: absolute;
+  top: 128px;
+  left: 230px;
+  z-index: 3;
+}
+
+.line {
+  width: 420px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff003c, #ff6a7c);
+  position: absolute;
+  top: 133px;
+  left: 230px;
+  z-index: 2;
+}
+
+/* ===============================
+   HEADING FIX (MATCHED POSITION)
+================================== */
+
+.sm-heading {
+  font-size: 58px;
+  font-weight: 800;
+  width: 100%;
+  max-width: 720px;
+  margin-left: 380px;      /* IMPORTANT: perfect alignment */
+  margin-top: -10px;
+  line-height: 1.2;
+  color: #111;
+}
+
+/* ===============================
+   HERO IMAGE FIXED
+================================== */
+
+.hero-section {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-section img {
+  width: 62%;                         /* EXACT reference width */
+  border-radius: 0 0 140px 140px;      /* perfect curve reference */
+  object-fit: cover;
+}
+
+/* ===============================
+   DESCRIPTION CARD
+================================== */
+
+.desc-card {
+  width: 80%;
+  margin: -60px auto 0 auto;
+  background: #fff;
+  padding: 45px 55px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+.desc-card p {
+  font-size: 22px;
+  line-height: 1.9;
+  margin-bottom: 22px;
+}
+
+.highlight {
+  color: #ff004c;
+  font-weight: 700;
+}
+
+/* ===============================
+   RESPONSIVE ADJUSTMENT
+================================== */
+
+@media (max-width: 1024px) {
+  .sm-heading {
+    margin-left: 0;
+    text-align: center;
+    font-size: 42px;
+  }
+
+  .hero-section img {
+    width: 90%;
+    border-radius: 30px;
+  }
+
+  .left-graphic {
+    left: -40px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .left-graphic {
+    display: none;
+  }
+
+  .sm-wrapper {
+    padding: 60px 25px 0 25px;
+  }
+
+  .sm-heading {
+    font-size: 32px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .desc-card {
+    width: 95%;
+    margin-top: -20px;
+    padding: 25px;
+  }
+
+  .desc-card p {
+    font-size: 18px;
+  }
+}
+
+
+
+

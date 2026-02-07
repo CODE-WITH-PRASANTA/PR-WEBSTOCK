@@ -15,14 +15,11 @@ import Service from "./Pages/Service/Service";
 import AppDevelopment from "./Pages/AppDevelopment/AppDevelopment";
 import GetFreeDemo from "./Pages/GetFreeDemo/GetFreeDemo";
 import Seo from "./Pages/Seo/Seo";
-
-
 import ScrollToTop from "./ScrollToTop";
 import PageLoader from "./Components/PageLoader/PageLoader"; 
-
 import { useState, useEffect } from "react";
-import Digitalmarketing from "./Pages/Digitalmarketing/Digitalmarketing";
-
+import SocialMediaManagement from "./Pages/SocialMediaManagement/SocialMediaManagement";
+import DigitalMarketingPage from "./Pages/DigitalMarketingPage/DigitalMarketingPage";
 
 function AppContent() {
   const location = useLocation();
@@ -33,7 +30,7 @@ function AppContent() {
 
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 1500); // smooth professional delay
+    }, 1500);
 
     return () => clearTimeout(timeout);
   }, [location.pathname]);
@@ -52,13 +49,12 @@ function AppContent() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/details" element={<BlogDetails />} />
         <Route path="/service" element={<Service />} />
-        <Route path="/services/app-development" element={<AppDevelopment />} />
-        <Route path="/get-quote" element={<GetFreeDemo />} />
         <Route path="/services/web-development" element={<Service />} />
         <Route path="/services/app-development" element={<AppDevelopment />} />
         <Route path="/services/seo" element={<Seo />} />
-        <Route path="/services/digital-marketing" element={<Digitalmarketing />} />
-        
+        <Route path="/services/digital-marketing" element={<DigitalMarketingPage/>} />
+        <Route path="/services/socialmedia-management" element={<SocialMediaManagement />} />
+        <Route path="/get-quote" element={<GetFreeDemo />} />
       </Routes>
       <ContactUs />
       <Footer />
@@ -76,4 +72,3 @@ function App() {
 }
 
 export default App;
- 

@@ -1,0 +1,114 @@
+/* ------------------------------
+   SECTION WRAPPER
+------------------------------ */
+.ss-wrapper {
+  width: 100%;
+  padding: 80px 80px;
+  background: #ffffff;
+}
+
+.ss-heading {
+  text-align: center;
+  font-size: 52px;
+  font-weight: 800;
+  margin-bottom: 70px;
+}
+
+/* ------------------------------
+   GRID (3 × 3)
+------------------------------ */
+.ss-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1.5px solid #dcdcdc;
+  border-left: 1.5px solid #dcdcdc;
+}
+
+/* ------------------------------
+   EACH CARD
+------------------------------ */
+.ss-card {
+  padding: 60px 40px;
+  border-right: 1.5px solid #dcdcdc;
+  border-bottom: 1.5px solid #dcdcdc;
+}
+
+.ss-icon {
+  width: 95px;
+  margin-bottom: 30px;
+}
+
+.ss-card h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.ss-card p {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #333;
+  max-width: 90%;
+}
+
+/* ------------------------------
+   RESPONSIVE DESIGN
+------------------------------ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .ss-wrapper {
+    padding: 60px 40px;
+  }
+
+  .ss-heading {
+    font-size: 40px;
+  }
+
+  .ss-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ss-card h3 {
+    font-size: 24px;
+  }
+
+  .ss-card p {
+    font-size: 18px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .ss-wrapper {
+    padding: 40px 20px;
+  }
+
+  .ss-heading {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .ss-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ss-card {
+    padding: 40px 20px;
+  }
+
+  .ss-icon {
+    width: 75px;
+  }
+
+  .ss-card h3 {
+    font-size: 22px;
+  }
+
+  .ss-card p {
+    font-size: 17px;
+  }
+}
+
+

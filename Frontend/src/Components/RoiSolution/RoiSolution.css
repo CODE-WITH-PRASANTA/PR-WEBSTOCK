@@ -1,0 +1,133 @@
+.industry-wrapper {
+  width: 100%;
+  padding: 80px 5%;
+  position: relative;
+}
+
+.industry-heading {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+.industry-container {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+/* Left image slider */
+.industry-image-wrapper {
+  position: relative;
+  width: 40%;
+}
+
+.industry-image {
+  width: 100%;
+  border-radius: 8px;
+  position: relative;
+  z-index: 2;
+  transform: rotate(-4deg);
+  transition: opacity 0.7s ease-in-out;
+}
+
+.fade {
+  opacity: 1;
+}
+
+.pink-block {
+  position: absolute;
+  width: 80%;
+  height: 250px;
+  background: #ff0055;
+  top: 40%;
+  left: 10%;
+  transform: rotate(5deg);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+/* Right side industries */
+.industry-right {
+  width: 55%;
+}
+
+.industry-row {
+  padding: 25px 0;
+  cursor: pointer;
+}
+
+.industry-row.active .industry-title {
+  color: #ff0055;
+}
+
+.industry-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.industry-desc {
+  color: #555;
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+  margin-top: 25px;
+}
+
+/* Floating Buttons */
+.callback-btn {
+  position: fixed;
+  right: 0;
+  top: 40%;
+  background: #ff0055;
+  padding: 15px 25px;
+  color: #fff;
+  font-weight: 600;
+  writing-mode: vertical-rl;
+  border-radius: 8px 0 0 8px;
+}
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .industry-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .industry-image-wrapper,
+  .industry-right {
+    width: 100%;
+  }
+
+  .pink-block {
+    top: 55%;
+  }
+}
+
+
+
+
+
+
+
