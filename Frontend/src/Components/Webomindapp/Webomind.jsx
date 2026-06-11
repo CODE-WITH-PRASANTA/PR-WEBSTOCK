@@ -52,7 +52,7 @@ const Webomind = () => {
   return (
     <div className="wm-section">
       <h1 className="wm-title">
-        Why choose webomindapps for social media marketing in bangalore?
+        Why choose PR WEBSTOCK for social media marketing in bangalore?
       </h1>
 
       <div className="wm-grid">
