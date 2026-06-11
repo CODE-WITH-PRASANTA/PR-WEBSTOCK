@@ -1,0 +1,106 @@
+/* Section Wrapper */
+.why-section {
+  padding: 80px 0;
+  width: 100%;
+  background: #ffffff;
+}
+
+/* Title */
+.why-title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 80px;
+  color: #000;
+}
+
+/* Grid Layout */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 80%;
+  margin: auto;
+  gap: 80px 60px;
+  position: relative;
+}
+
+/* Vertical Divider Lines */
+.why-grid::before,
+.why-grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #dcdcdc;
+}
+
+.why-grid::before {
+  left: 33.33%;
+}
+
+.why-grid::after {
+  left: 66.66%;
+}
+
+/* Card */
+.why-card {
+  padding: 20px;
+}
+
+/* Icon */
+.why-icon {
+  width: 70px;
+  height: auto;
+  margin-bottom: 25px;
+}
+
+/* Titles */
+.why-card-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+/* Paragraph text */
+.why-desc {
+  width: 90%;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Second Row Divider */
+.why-grid::after-row {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #dcdcdc;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .why-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .why-grid::before,
+  .why-grid::after {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-title {
+    font-size: 36px;
+  }
+  .why-card-title {
+    font-size: 24px;
+  }
+}
+
+

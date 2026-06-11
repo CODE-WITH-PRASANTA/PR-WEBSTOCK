@@ -1,0 +1,126 @@
+.smm-hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+/* Background video */
+.smm-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark Gradient Overlay */
+.smm-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.35), transparent);
+  z-index: 1;
+}
+
+/* Content Container */
+.smm-content-wrapper {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 50px;
+}
+
+/* LEFT TEXT AREA */
+.smm-left {
+  width: 55%;
+  color: white;
+}
+
+.smm-left h1 {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.smm-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 30px;
+  color: #eaeaea;
+}
+
+/* CTA Button */
+.smm-expert-btn {
+  font-size: 18px;
+  color: white;
+  border-bottom: 1px solid white;
+  text-decoration: none;
+  padding-bottom: 5px;
+}
+
+.smm-expert-btn span {
+  margin-left: 8px;
+}
+
+/* RIGHT IMAGE */
+.smm-right img {
+  width: 380px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+  .smm-content-wrapper {
+    padding: 30px;
+  }
+  .smm-left h1 {
+    font-size: 34px;
+  }
+  .smm-right img {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .smm-hero {
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+  .smm-content-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .smm-left {
+    width: 100%;
+  }
+
+  .smm-left h1 {
+    font-size: 30px;
+  }
+
+  .smm-right {
+    margin-top: 25px;
+  }
+
+  .smm-right img {
+    width: 230px;
+  }
+}
+
+@media (max-width: 480px) {
+  .smm-left h1 {
+    font-size: 26px;
+  }
+  .smm-desc {
+    font-size: 16px;
+  }
+}

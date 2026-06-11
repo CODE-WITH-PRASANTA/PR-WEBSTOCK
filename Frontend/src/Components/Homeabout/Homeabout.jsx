@@ -93,29 +93,30 @@ export default function Homeabout() {
 const expertisePoints = [
   {
     icon: <IconInnovation />,
-    title: "Expertise & Innovation",
+    title: "Strategic Expertise & Innovation",
     description:
-      "We deliver modern, high-performance websites and applications powered by the latest technologies, creative thinking, and future-ready strategies.",
+      "We combine deep technical expertise with smart digital strategies to build fast, secure, and scalable websites and applications that drive real business growth.",
   },
   {
     icon: <IconTransparency />,
-    title: "Transparent Development",
+    title: "Clear & Transparent Process",
     description:
-      "From planning to delivery, every step is fully transparent — ensuring clarity, honesty, and complete peace of mind throughout your project.",
+      "Our development process is fully transparent — from planning and timelines to progress updates — so you always stay informed, confident, and in control.",
   },
   {
     icon: <IconClient />,
-    title: "Client-First Approach",
+    title: "Business-Focused Client Approach",
     description:
-      "We work closely with every client, understanding their goals and creating custom solutions that genuinely support business growth and success.",
+      "We don’t just build websites — we understand your business goals, audience, and market to deliver tailored digital solutions that generate results.",
   },
   {
     icon: <IconCost />,
-    title: "Cost-Effective Solutions",
+    title: "Smart & Cost-Effective Solutions",
     description:
-      "Premium quality doesn’t have to be expensive. We provide budget-friendly, scalable, and value-driven digital solutions for all businesses.",
+      "We offer flexible, affordable, and future-ready solutions without compromising on quality, performance, or security — perfect for startups to enterprises.",
   },
 ];
+
 
 
   return (
@@ -149,13 +150,24 @@ const expertisePoints = [
                 and fast response times for your business needs.
               </p>
 
+              <a href="/about" className="ha-cta" aria-label="Discover Our Journey">
+                <span>Discover Our Journey</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    d="M5 12h14M12 5l7 7-7 7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
 
-            <button className="ha-cta">
-              <span>Discover Our Journey</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
           </div>
 
           <aside className="ha-right">

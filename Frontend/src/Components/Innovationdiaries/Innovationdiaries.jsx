@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './InnovationDiaries.css';
+import './Innovationdiaries.css';
 
 const posts = [
   {
@@ -69,13 +69,15 @@ export default function InnovationDiaries() {
   return (
     <section className="innovation-diaries-wrap">
       <div className="innovation-container">
-        <h2 className="innovation-section-title">
-          <span>The Innovation Diaries</span>
+      <h2 className="innovation-section-title">
+          <span>Latest Updates & Blogs</span>
         </h2>
+
         <p className="innovation-subtitle">
-          Expert insights, strategies, and stories from the forefront of technology 
-          and business innovation. Stay ahead with cutting-edge content powered by data-driven analysis.
+          Stay updated with our latest insights, industry trends, expert opinions, and 
+          practical guides covering technology, digital innovation, and business growth.
         </p>
+
         
         <div className="innovation-posts-grid">
           {posts.map((post) => (

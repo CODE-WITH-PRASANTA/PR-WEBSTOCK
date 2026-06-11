@@ -140,6 +140,7 @@
 }
 
 .hero-sec-title {
+  font-size: 25px;
   font-weight: 800;
   line-height: 1.;
   margin: 6px 0 0;
@@ -148,9 +149,9 @@
   -webkit-text-fill-color: transparent;
 }
 
-.hero-desc {
+.HeroSec-desc {
   font-size: 16px;
-  color: var(--muted);
+  color: var(--text);
   line-height: 1.7;
   font-weight: 500;
   opacity: 0.98;
@@ -167,7 +168,7 @@
 }
 
 /* CTA */
-.btn-primary {
+.herosec-btn-primary {
   background: linear-gradient(90deg, var(--accent), #1d4ed8);
   color: #fff;
   padding: 14px 28px;
@@ -179,26 +180,39 @@
   box-shadow: 0 12px 34px rgba(37,99,235,0.14);
   transition: transform .25s ease, box-shadow .25s ease;
 }
-.btn-primary:hover {
+.herosec-btn-primary:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 60px rgba(37,99,235,0.16);
 }
-/* ================================
-   GOOGLE REVIEW – PROFESSIONAL DESIGN
-   ================================ */
+/* =====================================
+   GOOGLE REVIEW – COMPACT PREMIUM CARD
+   ===================================== */
+
 .google-review-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(245, 247, 250, 0.9)
+  );
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  max-width: 260px;
+  max-width: 220px;
   width: 100%;
+  transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.google-review-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.18);
+  border-color: rgba(37, 99, 235, 0.25);
 }
 
 /* HEADER */
@@ -209,15 +223,15 @@
 }
 
 .gr-title {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #475569;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
 }
 
 .gr-stars {
-  color: #f59e0b;
-  font-size: 14px;
+  color: #fbbf24;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
 }
@@ -226,36 +240,45 @@
 .gr-body {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
+/* GOOGLE LOGO */
 .gr-logo {
-  width: 72px;
+  width: 60px;
   height: auto;
   object-fit: contain;
   border-radius: 6px;
+  background: #fff;
+  padding: 4px;
 }
 
-/* INFO TEXT */
+/* INFO */
 .gr-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .gr-count {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  color: #334155;
+  color: #1e293b;
 }
 
 .gr-link {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   color: #2563eb;
   text-decoration: none;
-  opacity: 0.9;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
 }
+
+.google-review-card:hover .gr-link {
+  opacity: 1;
+}
+
 
 /* ------------------ RIGHT IMAGE ------------------ */
 .hero-right {
@@ -310,7 +333,7 @@
   .hero-right { display: none; }
   .video-area { display: none; }
   .hero-left { align-items: left; }
-  .btn-primary { width: 100%; max-width: 360px; }
+  .herosec-btn-primary { width: 100%; max-width: 360px; }
   .google-review {
     align-items: center;
     text-align: center;

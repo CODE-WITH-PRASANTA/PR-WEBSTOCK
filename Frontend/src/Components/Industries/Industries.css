@@ -1,0 +1,122 @@
+/* MAIN WRAPPER */
+.industry-wrapper {
+  width: 100%;
+  max-width: 1600px;
+  margin: 100px auto;
+  padding: 0 30px;
+}
+
+/* MAIN HEADING */
+.industry-main-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+  text-align: left;
+  margin-bottom: 80px;
+  line-height: 1.2;
+}
+
+/* GRID */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #ddd;
+}
+
+/* EACH BOX */
+.industry-box {
+  padding: 40px 40px 50px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.industry-box:nth-child(3),
+.industry-box:nth-child(6) {
+  border-right: none; /* Remove border on last column */
+}
+
+/* TITLES */
+.industry-title {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.industry-title span {
+  color: #000;
+}
+
+/* Underline (Left Red Line) */
+.industry-title::after {
+  content: "";
+  width: 70px;
+  height: 4px;
+  background: #ff003c;
+  display: block;
+  margin-top: 12px;
+  border-radius: 2px;
+}
+
+/* DESCRIPTION */
+.industry-desc {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #222;
+  margin-top: 20px;
+  max-width: 90%;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1200px) {
+  .industry-title {
+    font-size: 30px;
+  }
+  .industry-desc {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 992px) {
+  .industry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .industry-box:nth-child(3),
+  .industry-box:nth-child(6) {
+    border-right: 1px solid #ddd;
+  }
+  .industry-box:nth-child(2),
+  .industry-box:nth-child(4) {
+    border-right: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .industry-main-title {
+    font-size: 34px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .industry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .industry-box {
+    border-right: none !important;
+  }
+
+  .industry-title {
+    font-size: 26px;
+  }
+
+  .industry-desc {
+    font-size: 16px;
+    max-width: 100%;
+  }
+}

@@ -20,7 +20,7 @@ import {
 import { MdCategory, MdLocalOffer } from "react-icons/md";
 import { FaHome, FaBlog, FaFire } from "react-icons/fa";
 
-import logo from "../../assets/Black-Logo.png";
+import logo from "../../assets/PR-WEB-LOGO.png";
 // use the uploaded file path provided in conversation
 const uploadedImagePath = "/mnt/data/457bd679-da27-477c-9f1d-af23a1543f78.png";
 
@@ -182,7 +182,7 @@ const Navbar = () => {
 
               {/* mobile social icons (visible on small screens) */}
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/share/1Bm8zM2E5g/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -192,7 +192,7 @@ const Navbar = () => {
               </a>
 
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/prwebstock?igsh=MWs3em54aDl6NHNzcA=="
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -200,7 +200,6 @@ const Navbar = () => {
               >
                 <FaInstagram />
               </a>
-
               <a
                 href="https://wa.me/917789801327"
                 target="_blank"
@@ -210,9 +209,8 @@ const Navbar = () => {
               >
                 <FaWhatsapp />
               </a>
-
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/company/pr-webstock/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"

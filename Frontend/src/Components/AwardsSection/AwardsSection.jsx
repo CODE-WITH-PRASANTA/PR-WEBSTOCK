@@ -1,6 +1,5 @@
 import React from "react";
-import { FiArrowRight } from "react-icons/fi";
-import "./AwardsSection.css"; // same CSS file — you can rename later
+import "./AwardsSection.css"; 
 
 const industries = [
   { name: "Healthcare & Hospitals", desc: "Custom software, booking systems, and patient management.", icon: "🏥" },
@@ -13,12 +12,12 @@ const industries = [
   { name: "Custom Software & CRM", desc: "Tailored business solutions built for automation and scale.", icon: "⚙️" }
 ];
 
-const IndustriesSection = () => {
+const AwardsSection = () => {
   return (
     <section className="awards-wrap">
       <div className="awards-inner">
 
-        {/* LEFT SIDE – Intro */}
+        {/* LEFT SIDE CONTENT */}
         <aside className="awards-left">
           <div className="badge">
             <span className="badge-dot" />
@@ -41,8 +40,8 @@ const IndustriesSection = () => {
           </a>
         </aside>
 
-        {/* RIGHT SIDE – Industries Grid */}
-        <main className="industries-grid" aria-label="Industries list">
+        {/* RIGHT SIDE GRID */}
+        <main className="industries-grid" aria-label="Industries List">
           {industries.map((item, idx) => (
             <div key={idx} className="industry-card">
               <div className="industry-icon">{item.icon}</div>
@@ -57,4 +56,4 @@ const IndustriesSection = () => {
   );
 };
 
-export default IndustriesSection;
+export default AwardsSection;

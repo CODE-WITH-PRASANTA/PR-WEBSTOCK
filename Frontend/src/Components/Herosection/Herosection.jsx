@@ -24,11 +24,18 @@ const HeroSection = () => {
         </div>
 
         <div className="play-wrap">
-          <button className="play-btn" aria-label="Play intro video">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <path d="M8 5v14l11-7L8 5z" fill="#444" />
-            </svg>
-          </button>
+         <a
+              href="https://www.instagram.com/reel/DQftaDeErDv/?igsh=bmF6Njg2ZDBpdHI2"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Watch Instagram Reel"
+            >
+              <button className="play-btn" type="button">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5v14l11-7L8 5z" fill="#444" />
+                </svg>
+              </button>
+            </a>
         </div>
       </div>
 
@@ -41,7 +48,7 @@ const HeroSection = () => {
           High-Performance Websites, Apps & Digital Growth Solutions
         </h1>
 
-        <p className="hero-desc">
+        <p className="HeroSec-desc">
           At PR WEBSTOCK, we help startups and growing businesses build a powerful 
           digital presence with world-class Website Development, Mobile Applications, 
           CRM Solutions, SEO, Digital Marketing, and Social Media Management.  
@@ -50,15 +57,20 @@ const HeroSection = () => {
         </p>
 
         <div className="hero-actions">
-          <button className="btn-primary" aria-label="Free Consultation">
-            Free Consultation
-          </button>
+          <a href="tel:7789801327" aria-label="Call Now 7789801327">
+            <button className="herosec-btn-primary">
+              📞 Call Now
+            </button>
+          </a>
 
-          {/* Updated Google Review Card */}
-         <div 
+
+         <div
             className="google-review-card"
             aria-label="Google customer reviews"
-            onClick={() => window.open("https://share.google/g1EaGINZXjs9j8qaO", "_blank")}
+            role="button"
+            onClick={() =>
+              window.open("https://share.google/g1EaGINZXjs9j8qaO", "_blank")
+            }
           >
             <div className="gr-header">
               <span className="gr-title">Trusted by Businesses</span>
@@ -73,11 +85,12 @@ const HeroSection = () => {
                 loading="lazy"
               />
               <div className="gr-info">
-                <span className="gr-count">50+ Verified Google Reviews</span>
+                <span className="gr-count">50+ Google Reviews</span>
                 <span className="gr-link">View on Google →</span>
               </div>
             </div>
           </div>
+
 
         </div>
       </div>

@@ -128,7 +128,7 @@ export default function Blueprint() {
       {/* meta */}
       <div className="bpx-meta">
         <span className="bpx-star">✶</span>
-        <a className="bpx-meta-link" href="#how">HOW WE DO</a>
+        <a className="bpx-meta-link">HOW WE DO</a>
         <span className="bpx-star">✶</span>
       </div>
 

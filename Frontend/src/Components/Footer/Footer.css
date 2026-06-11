@@ -337,7 +337,7 @@
 }
 
 .zenfy-about-desc {
-  color: var(--muted);
+  color: var(--dark);
   line-height: 1.7;
   margin-bottom: 30px;
   font-size: 15px;
@@ -412,7 +412,7 @@
 
 .zenfy-review-count {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--dark);
   font-weight: 500;
 }
 

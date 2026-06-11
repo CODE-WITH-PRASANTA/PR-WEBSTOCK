@@ -1,0 +1,85 @@
+/* Google Partner Page Styles */
+
+.gp-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  gap: 40px;
+}
+
+.gp-text-section {
+  flex: 1;
+  max-width: 600px;
+}
+
+.gp-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.gp-description {
+  font-size: 20px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.gp-image-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.gp-img {
+  width: 220px;
+  height: auto;
+}
+
+.gp-arrow {
+  font-size: 60px;
+  font-weight: bold;
+  color: #1a73e8;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 1024px) {
+  .gp-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .gp-image-section {
+    flex-direction: row;
+  }
+
+  .gp-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .gp-container {
+    padding: 20px;
+  }
+
+  .gp-img {
+    width: 150px;
+  }
+
+  .gp-arrow {
+    font-size: 40px;
+  }
+
+  .gp-title {
+    font-size: 28px;
+  }
+
+  .gp-description {
+    font-size: 16px;
+  }
+}

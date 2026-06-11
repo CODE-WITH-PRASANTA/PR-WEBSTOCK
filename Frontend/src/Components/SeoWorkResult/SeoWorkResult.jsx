@@ -1,12 +1,12 @@
 import React from "react";
 import "./SeoWorkResult.css";
 
-import image1 from "../../assets/workResultImage/rec1.webp";
-import image2 from "../../assets/workResultImage/rec2.webp";
-import image3 from "../../assets/workResultImage/rec3.webp";
-import image4 from "../../assets/workResultImage/rec4.webp";
-import image5 from "../../assets/workResultImage/rec5.webp";
-import image6 from "../../assets/workResultImage/rec6.webp";
+import image1 from "../../assets/rec1.webp";
+import image2 from "../../assets/rec2.webp";
+import image3 from "../../assets/rec3.webp";
+import image4 from "../../assets/rec4.webp";
+import image5 from "../../assets/rec5.webp";
+import image6 from "../../assets/rec6.webp";
 
 const images = [
   { img: image1 },
