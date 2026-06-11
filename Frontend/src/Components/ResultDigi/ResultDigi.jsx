@@ -1,7 +1,7 @@
 import React from "react";
 import "./ResultDigi.css";
 
-const IntroSection = () => {
+const ResultDigi = () => {
   return (
     <div className="intro-container">
       <div className="brand-name">Webomindapps</div>
@@ -36,5 +36,5 @@ const IntroSection = () => {
   );
 };
 
-export default IntroSection;
+export default ResultDigi;
 

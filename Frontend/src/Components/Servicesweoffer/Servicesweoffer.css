@@ -47,14 +47,14 @@
   margin-bottom: 16px;
   background: linear-gradient(135deg, #0F172A 0%, #334155 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: white;
   background-clip: text;
 }
 
 .servicesweoffer-title-accent {
   background: linear-gradient(135deg, var(--sw-primary) 0%, #8B5CF6 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: white;
   background-clip: text;
 }
 

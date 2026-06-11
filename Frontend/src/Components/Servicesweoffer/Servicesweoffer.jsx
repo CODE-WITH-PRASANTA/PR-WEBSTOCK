@@ -15,38 +15,38 @@ import './Servicesweoffer.css';
 const designTypes = [
   {
     id: 1,
-    title: 'Static Design',
-    description: 'Fixed layouts with predetermined content. Elements remain static regardless of screen size.',
+    title: 'Static Web Design',
+    description: 'At PR WEBSTOCK , we create fast and reliable static websites using clean, coding-based development. Based in Bhubaneswar and serving all over India, our static web design solutions are ideal for businesses that need simple, secure, and high-performance websites.',
     icon: FiFileText,
     color: '#4F46E5',
     gradient: 'linear-gradient(135deg, #4F46E5 0%, #7E22CE 100%)',
     features: [
-      'Fixed layout structure',
-      'Simple development',
-      'Fast loading times',
+      'Clean and fixed layout structure',
+      'Fast loading speed',
+      'SEO-friendly coding',
       'Easy maintenance',
-      'Consistent appearance'
+      'Consistent design across devices'
     ]
   },
   {
     id: 2,
-    title: 'Responsive Design',
-    description: 'Adapts layout across all devices for optimal user experience.',
+    title: 'Responsive Web Design',
+    description: 'At PR WEBSTOCK , we build responsive websites that adapt smoothly across mobiles, tablets, and desktops. Based in Bhubaneswar and serving clients all over India, we use clean, coding-based development to deliver fast, flexible, and user-friendly web design solutions.',
     icon: FiSmartphone,
     color: '#10B981',
     gradient: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
     features: [
-      'Fluid grid layouts',
-      'Flexible media',
-      'CSS media queries',
-      'Cross-device compatibility',
-      'Mobile-first approach'
+      'Mobile-first layouts',
+      'Flexible grids and media',
+      'SEO-friendly coding structure',
+      'Smooth performance on all devices',
+      'Consistent user experience'
     ]
   },
   {
     id: 3,
-    title: 'Dynamic Design',
-    description: 'Content updates from both front and back end with personalized experiences.',
+    title: 'Dynamic Web Design',
+    description: 'At PR WEBSTOCK , we build dynamic websites that update content in real time and deliver personalized user experiences. Based in Bhubaneswar and serving businesses all over India, our coding-based web design solutions help brands stay interactive, scalable, and future-ready.',
     icon: FiZap,
     color: '#F59E0B',
     gradient: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
@@ -60,28 +60,28 @@ const designTypes = [
   },
   {
     id: 4,
-    title: 'Adaptive Design',
-    description: 'Multiple fixed layouts served based on device detection.',
+    title: 'Adaptive Web Design',
+    description: 'At PR WEBSTOCK , we create adaptive websites that deliver optimized layouts based on each device. Based in Bhubaneswar and serving clients all over India, our coding-based web design approach ensures faster performance and targeted user experiences.',
     icon: FiRefreshCw,
     color: '#EC4899',
     gradient: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)',
     features: [
       'Multiple layout versions',
       'Device-specific optimization',
-      'Faster performance',
-      'Targeted experiences',
-      'Design control'
+      'Faster performance Speed',
+      'Targeted User experiences',
+      'Full design control'
     ]
   },
   {
     id: 5,
-    title: 'Liquid Design',
-    description: 'Elements scale proportionally based on screen size.',
+    title: 'Liquid Web Design',
+    description: 'At PR WEBSTOCK , we create liquid web designs that scale smoothly across different screen sizes. Based in Bhubaneswar and serving clients all over India, our coding-based web design approach ensures flexible layouts, smooth transitions, and consistent user experience.',
     icon: FiDroplet,
     color: '#06B6D4',
     gradient: 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)',
     features: [
-      'Percentage-based widths',
+      'Percentage-based layouts',
       'Scalable typography',
       'Relative sizing',
       'Smooth transitions',
@@ -91,7 +91,7 @@ const designTypes = [
   {
     id: 6,
     title: 'Single Page Design',
-    description: 'Seamless experience within one page without reloads.',
+    description: 'At PR WEBSTOCK , we build single-page websites that deliver smooth, app-like experiences without page reloads. Based in Bhubaneswar and serving businesses all over India, our coding-based web design solutions focus on speed, simplicity, and user engagement.',
     icon: FiMapPin,
     color: '#8B5CF6',
     gradient: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
@@ -106,7 +106,7 @@ const designTypes = [
   {
     id: 7,
     title: 'Fixed Design',
-    description: 'Pixel-perfect positioning across all devices.',
+    description: 'At PR WEBSTOCK , we create fixed-layout websites with precise design control and consistent structure. Based in Bhubaneswar and serving clients all over India, our coding-based web design approach ensures pixel-perfect layouts for businesses that prefer traditional website styling.',
     icon: FiSquare,
     color: '#3B82F6',
     gradient: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)',
@@ -157,12 +157,11 @@ const Servicesweoffer = () => {
           
           
           <h1 className="servicesweoffer-title">
-            Different Types of <span className="servicesweoffer-title-accent">Web Design</span>
+            Different Types of <span className="servicesweoffer-title-accent">Web Design by PR WEBSTOCK</span>
           </h1>
           
           <p className="servicesweoffer-subtitle">
-            Explore various web design approaches to find the perfect solution 
-            that matches your business needs and target audience requirements.
+           PR WEBSTOCK delivers coding-based web design solutions from Bhubaneswar to all over India, building fast, secure, and SEO-ready websites for growing businesses.
           </p>
           
           <div className="servicesweoffer-header-decoration">

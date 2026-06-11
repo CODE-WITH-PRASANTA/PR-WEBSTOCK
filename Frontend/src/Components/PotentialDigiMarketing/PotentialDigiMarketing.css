@@ -1,0 +1,132 @@
+.consult-wrapper {
+  padding: 80px 40px;
+  background: #ffffff;
+}
+
+.consult-container {
+  max-width: 1500px;
+  margin: auto;
+  background: #fdeeee;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  padding: 60px;
+  gap: 60px;
+}
+
+/* IMAGE */
+.consult-image img {
+  width: 100%;
+  max-width: 780px;
+  display: block;
+  margin-top: 170px;
+}
+
+/* CONTENT */
+.consult-content h2 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.consult-content h2 span {
+  font-weight: 800;
+}
+
+.subtitle {
+  margin: 16px 0 40px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* FORM */
+.consult-form {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* FLOATING INPUT */
+.form-group {
+  position: relative;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 18px 14px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  background: #fdeeee;
+  padding: 0 6px;
+  font-size: 14px;
+  color: #555;
+  transition: 0.3s ease;
+  pointer-events: none;
+}
+
+/* FLOAT EFFECT */
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:valid + label,
+.form-group textarea:valid + label {
+  top: -8px;
+  font-size: 12px;
+  color: #000;
+}
+
+/* TEXTAREA */
+.form-group.textarea textarea {
+  resize: none;
+}
+
+/* BUTTON */
+.consult-btn {
+  width: fit-content;
+  padding: 14px 28px;
+  background: #f5f5f5;
+  border: 1px solid #000;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.consult-btn span {
+  font-size: 18px;
+}
+
+.consult-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .consult-container {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .consult-content h2 {
+    font-size: 34px;
+  }
+
+  .consult-image {
+    text-align: center;
+  }
+}

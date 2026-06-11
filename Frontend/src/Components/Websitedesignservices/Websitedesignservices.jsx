@@ -5,12 +5,12 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/palette.svg',
     title: 'Custom Web Design',
-    description: 'Unique digital experiences tailored to your brand identity',
+    description: 'Build a strong online presence with PR WEBSTOCK, your trusted partner for web design in Bhubaneswar. We create custom, coding-based websites that reflect your brand and support real business growth.',
     bullets: [
-      'Custom web design services that create a unique online presence',
-      'Tailored to your business needs with optimization for UX',
-      'Business-specific content strategy and implementation',
-      'Scalable solutions that grow with your business',
+      'Custom web design tailored to your business goals',
+      'Clean coding for faster performance and better security',
+      'SEO-ready structure for improved visibility',
+      'Scalable website solutions that grow with your business',
     ],
     color: '#4F46E5',
     gradient: 'linear-gradient(135deg, #4F46E5 0%, #7E22CE 100%)',
@@ -19,12 +19,12 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/brand-wordpress.svg',
     title: 'WordPress Design',
-    description: 'Powerful CMS solutions with complete customization',
+    description: 'At PR WEBSTOCK, we deliver powerful WordPress websites with full customization and performance-focused development. From simple business sites to advanced platforms, we provide reliable solutions built for results.',
     bullets: [
-      'Custom WordPress themes and plugins development',
-      'Responsive and visually stunning websites',
-      'SEO-friendly architecture and fast loading',
-      'Expert team dedicated to elevating your brand',
+      'Custom WordPress themes and functionality',
+      'Mobile-responsive and modern layouts',
+      'SEO-friendly architecture with fast loading',
+      'Expert development team in Bhubaneswar',
     ],
     color: '#21759B',
     gradient: 'linear-gradient(135deg, #21759B 0%, #1A5F7A 100%)',
@@ -32,13 +32,13 @@ const services = [
   },
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/layout.svg',
-    title: 'Web UI/UX',
-    description: 'Intuitive interfaces that drive engagement',
+    title: 'Web UI / UX Design',
+    description: 'PR WEBSTOCK designs clean, user-friendly interfaces that guide visitors toward action. Our UI/UX services in Bhubaneswar focus on smooth navigation, engaging visuals, and conversion-driven experiences.',
     bullets: [
-      'User-centered design approach',
-      'Beautiful and functional interface design',
-      'Intuitive navigation and engaging visuals',
-      'Conversion-focused user experience',
+      'User-focused design approach',
+      'Clean and professional interfaces',
+      'Easy navigation and engaging visuals',
+      'Conversion-driven layouts',
     ],
     color: '#10B981',
     gradient: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
@@ -47,11 +47,11 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/device-desktop.svg',
     title: 'CMS Web Design',
-    description: 'Easy-to-manage content management systems',
+    description: 'Manage your website with ease using PR WEBSTOCK’s CMS web design services in Bhubaneswar. We build coding-based content management systems that make updates simple while keeping performance, security, and SEO at the core.',
     bullets: [
-      'User-friendly admin interfaces',
-      'SEO-optimized content architecture',
-      'Easy website management system',
+      'Easy-to-use admin dashboards',
+      'SEO-ready content structure',
+      'Simple website management',
       'Scalable and maintainable solutions',
     ],
     color: '#F59E0B',
@@ -61,12 +61,12 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/target.svg',
     title: 'Landing Page Design',
-    description: 'High-converting pages for marketing campaigns',
+    description: 'Boost your marketing results with high-converting landing pages by PrWEBSTOCK. We design fast, responsive pages that capture attention and turn visitors into leads.',
     bullets: [
       'Conversion-focused landing pages',
-      'Responsive and mobile-optimized',
-      'A/B testing and optimization',
-      'Integration with marketing tools',
+      'Mobile-responsive layouts',
+      'Performance optimization for faster loading',
+      'Marketing tool integration',
     ],
     color: '#EC4899',
     gradient: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)',
@@ -75,11 +75,11 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/refresh.svg',
     title: 'Redesign Website',
-    description: 'Modern transformations for outdated websites',
+    description: 'Give your outdated website a fresh, modern look with PR WEBSTOCK’s website redesign services in Bhubaneswar. We upgrade design, performance, and usability using clean coding and modern standards.',
     bullets: [
       'Complete website modernization',
       'Improved user experience',
-      'Enhanced performance and speed',
+      'Faster loading speed',
       'Brand refresh and alignment',
     ],
     color: '#8B5CF6',
@@ -89,10 +89,10 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/apps.svg',
     title: 'Web App Design',
-    description: 'Scalable applications with modern architecture',
+    description: 'Build powerful web applications with PR WEBSTOCK, your trusted web design company in Bhubaneswar. We create coding-based web apps that improve user experience, streamline operations, and support business growth.',
     bullets: [
-      'Complex application interfaces',
-      'Mobile-first responsive design',
+      'Complete web app modernization',
+      'Improved user experience',
       'API integration and dashboards',
       'Focus on performance and accessibility',
     ],
@@ -103,12 +103,12 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/bolt.svg',
     title: 'AMP Web Design',
-    description: 'Lightning-fast mobile experiences',
+    description: 'Deliver lightning-fast mobile experiences with PrWEBSTOCK’s AMP web design services in Bhubaneswar. We build Accelerated Mobile Pages that load instantly and help improve mobile SEO and conversions.',
     bullets: [
-      'Accelerated Mobile Pages (AMP)',
-      'Lightweight templates with branding',
-      'SEO-optimized for mobile',
-      'Improved mobile conversion rates',
+      'Accelerated Mobile Pages (AMP) setup',
+      'Lightweight branded layouts',
+      'SEO-optimized for mobile performance',
+      'Higher mobile engagement and conversions',
     ],
     color: '#F97316',
     gradient: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)',
@@ -117,7 +117,7 @@ const services = [
   {
     icon: 'https://cdn.jsdelivr.net/npm/@tabler/icons@2.46.0/icons/shopping-cart.svg',
     title: 'E-commerce Website Design',
-    description: 'Revenue-driven online stores',
+    description: 'Grow your online store with PR WEBSTOCK’s e-commerce website design in Bhubaneswar. We develop secure, coding-based online shops that make selling simple and customer journeys smooth.',
     bullets: [
       'Conversion-optimized product pages',
       'Secure checkout experiences',
@@ -170,12 +170,12 @@ export default function Websitedesignservices() {
 
           <h2 className="wds__heading">
             <span className="wds__heading-line">Website Design Services</span>
-            <span className="wds__heading-line wds__heading-accent">We Deliver Excellence</span>
+            <span className="wds__heading-line wds__heading-accent">by PR WEBSTOCK in Bhubaneswar</span>
           </h2>
 
           <p className="wds__subtitle">
-            Transform your digital presence with our comprehensive suite of professional web design services.
-            Each solution is crafted to elevate your brand and drive measurable results.
+            Transform your digital presence with our comprehensive suite of professional web design services.Upgrade your online presence with PR WEBSTOCK — your trusted partner for professional web design in Bhubaneswar. We offer complete, coding-based website solutions designed to help businesses grow, connect with customers, and build credibility online.
+           
           </p>
 
           <div className="wds__header-decoration">

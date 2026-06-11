@@ -4,112 +4,105 @@ import './Frequentlyaskedquestion.css';
 const FAQ_ITEMS = [
   {
     q: 'How long does it take for a mock design & project completion?',
-    a: `Project completion depends on its magnitude and complexity. The time needed to finish a mock design and project depends on variables like project scope, designing work, resources, and feedback. Simple projects may take 2 to 4 days for designing and 10 to 15 days for completion, while larger ones may take weeks or even months.`,
+    a: 'At PR WEBSTOCK, the mock design usually takes 5–7 working days, depending on project complexity and requirements. Complete website development timelines typically range from 2 to 6 weeks. Since we focus on fully code-based web design, we prioritize quality, performance, and scalability over rushed delivery.',
   },
   {
     q: 'Do you provide free maintenance for websites?',
-    a: `We offer maintenance packages and limited complimentary support depending on the agreement. For long-term support and regular updates we recommend one of our maintenance plans — get in touch and we'll provide options tailored to your needs.`,
+    a: 'Yes. As part of our service, PR WEBSTOCK offers limited free maintenance after launch, which includes minor fixes and support. For long-term needs, we also provide affordable maintenance plans covering updates, security checks, and performance monitoring on Cloud / VPS hosting.',
   },
   {
-    q: 'Does your website design responsive to various devices (desktop/mobile/tablet)?',
-    a: `Yes — every design we deliver is responsive and tested across common screen sizes and browsers so your site looks great on desktop, tablet and mobile.`,
+    q: 'Does your website design respond to desktop, mobile, and tablet?',
+    a: 'Absolutely. Every website we build is fully responsive and optimized for desktop, mobile, and tablet devices. Our mobile-first, MERN Stack development approach ensures smooth performance and a consistent user experience across all screen sizes.',
   },
   {
     q: 'How much does it cost to design a website?',
-    a: `Cost depends on features, number of pages, integrations and complexity. We provide quotes after understanding requirements; contact us for a free estimate.`,
+    a: 'Website design costs vary based on your business needs, design complexity, number of pages, and required features. At PR WEBSTOCK, we offer customized pricing after understanding your goals, ensuring you pay only for what your website actually needs.',
   },
   {
     q: 'When can I expect delivery of the complete design work?',
-    a: `Delivery timeline is agreed during project scoping and depends on approvals and revision cycles. Typical delivery windows are shared in the proposal.`,
+    a: 'Project delivery timelines are clearly defined before development begins. Most projects are delivered within the agreed milestones, ensuring transparency and on-time completion. Whether it’s a business website or a custom platform, PR WEBSTOCK ensures quality delivery without unnecessary delays.',
   },
 ];
 
-export default function Frequentlyaskedquestion() {
+const Frequentlyaskedquestion = () => {
   const [openIndex, setOpenIndex] = useState(-1);
+  const [heights, setHeights] = useState([]);
   const contentRefs = useRef([]);
 
+  // Measure heights AFTER render
   useEffect(() => {
-    contentRefs.current = contentRefs.current.slice(0, FAQ_ITEMS.length);
+    const newHeights = contentRefs.current.map(
+      (el) => (el ? el.scrollHeight : 0)
+    );
+    setHeights(newHeights);
   }, []);
 
-  const toggle = (idx) => {
-    setOpenIndex(prev => (prev === idx ? -1 : idx));
+  const toggle = (index) => {
+    setOpenIndex((prev) => (prev === index ? -1 : index));
   };
 
-  const onKey = (e, idx) => {
+  const handleKeyDown = (e, index) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      toggle(idx);
+      toggle(index);
     }
+
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      const next = (idx + 1) % FAQ_ITEMS.length;
-      const btn = document.querySelectorAll('.faq-item-button')[next];
-      btn?.focus();
+      const next = (index + 1) % FAQ_ITEMS.length;
+      document.querySelectorAll('.faq-item-button')[next]?.focus();
     }
+
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      const prev = (idx - 1 + FAQ_ITEMS.length) % FAQ_ITEMS.length;
-      const btn = document.querySelectorAll('.faq-item-button')[prev];
-      btn?.focus();
+      const prev = (index - 1 + FAQ_ITEMS.length) % FAQ_ITEMS.length;
+      document.querySelectorAll('.faq-item-button')[prev]?.focus();
     }
   };
 
   return (
     <section className="faq-wrap" aria-label="Frequently asked questions">
-      <h2 className="faq-title">Frequently asked question (FAQ)</h2>
+      <h2 className="faq-title">Frequently Asked Questions (FAQ)</h2>
 
       <div className="faq-list" role="list">
-        {FAQ_ITEMS.map((it, idx) => {
-          const isOpen = idx === openIndex;
+        {FAQ_ITEMS.map((item, index) => {
+          const isOpen = index === openIndex;
+
           return (
             <div
+              key={index}
               className={`faq-item ${isOpen ? 'is-open' : ''}`}
-              key={idx}
               role="listitem"
             >
-              <div className="faq-item-head" onClick={() => toggle(idx)}>
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  aria-controls={`faq-panel-${idx}`}
-                  id={`faq-button-${idx}`}
-                  className="faq-item-button"
-                  onKeyDown={(e) => onKey(e, idx)}
-                >
-                  <span className="faq-question">{it.q}</span>
-
-                  <span className="faq-icon" aria-hidden>
-                    {isOpen ? (
-                      // minus icon
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                      </svg>
-                    ) : (
-                      // plus icon
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                      </svg>
-                    )}
-                  </span>
-                </button>
-              </div>
+              <button
+                type="button"
+                className="faq-item-button"
+                aria-expanded={isOpen}
+                aria-controls={`faq-panel-${index}`}
+                id={`faq-button-${index}`}
+                onClick={() => toggle(index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+              >
+                <span className="faq-question">{item.q}</span>
+                <span className="faq-icon" aria-hidden="true">
+                  {isOpen ? '−' : '+'}
+                </span>
+              </button>
 
               <div
-                id={`faq-panel-${idx}`}
+                id={`faq-panel-${index}`}
                 role="region"
-                aria-labelledby={`faq-button-${idx}`}
+                aria-labelledby={`faq-button-${index}`}
                 className="faq-panel"
-                ref={(el) => (contentRefs.current[idx] = el)}
-                style={
-                  isOpen
-                    ? { maxHeight: contentRefs.current[idx]?.scrollHeight ?? 300 }
-                    : { maxHeight: 0 }
-                }
+                style={{
+                  maxHeight: isOpen ? `${heights[index]}px` : '0px',
+                }}
               >
-                <div className="faq-panel-inner">
-                  <p>{it.a}</p>
+                <div
+                  className="faq-panel-inner"
+                  ref={(el) => (contentRefs.current[index] = el)}
+                >
+                  <p>{item.a}</p>
                 </div>
               </div>
             </div>
@@ -118,4 +111,6 @@ export default function Frequentlyaskedquestion() {
       </div>
     </section>
   );
-}
+};
+
+export default Frequentlyaskedquestion;

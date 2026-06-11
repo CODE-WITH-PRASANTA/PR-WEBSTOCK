@@ -1,0 +1,85 @@
+.dmm-services {
+  padding: 70px 6%;
+  background: #fff;
+}
+
+.dmm-title {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+/* GRID */
+.dmm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 35px;
+}
+
+/* CARD */
+.dmm-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #000;
+  border-radius: 24px;
+  padding: 35px 30px 45px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* SIDE STRIP*/ 
+.dmm-bar {
+  position: absolute;
+  right: 0;
+  top: 35%;
+  width: 12px;
+  height: 30%;
+  background: var(--accent);
+  border-radius: 10px 0 0 10px;
+}
+
+/* ICON */
+.dmm-icon {
+  font-size: 42px;
+  color: var(--accent);
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+/* TEXT */
+.dmm-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.dmm-card p {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+/* 🔥 HOVER EFFECT */
+.dmm-card:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+}
+
+.dmm-card:hover h3,
+.dmm-card:hover p,
+.dmm-card:hover .dmm-icon {
+  color: #ffffff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .dmm-title {
+    font-size: 30px;
+  }
+}

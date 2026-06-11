@@ -2,7 +2,7 @@ import React from "react";
 import "./Model.css";
 import { FaMoneyBillWave, FaBullhorn, FaChartLine } from "react-icons/fa";
 
-export default function ServiceModels() {
+export default function Models() {
   return (
     <div className="service-wrapper">
       <h1 className="main-title">Service Models You Can Choose From</h1>

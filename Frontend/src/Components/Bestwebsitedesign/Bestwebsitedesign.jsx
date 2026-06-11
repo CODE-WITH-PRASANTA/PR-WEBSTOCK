@@ -9,20 +9,16 @@ const Bestwebsitedesign = () => {
         <div className="bwd-top">
           <div className="bwd-top-left">
             <h2 className="bwd-main-heading">
-              What makes us the best website design company in Bangalore?
+             What Makes PR WEBSTOCK the Best Web Design Company in Bhubaneswar?
             </h2>
            
           </div>
           <div className="bwd-top-right">
             <p>
-              We bring a fresh perspective to web design. Our talented team
-              creates custom–tailored websites with stunning looks, outstanding
-              functionality, and engaging user experiences.
+              At PR WEBSTOCK, we don’t just design websites — we build digital experiences that help businesses grow. Based in Bhubaneswar and serving clients all over India, we are known for delivering clean, fast, and fully coding-based web design solutions tailored to real business needs.
             </p>
             <p>
-              By combining strategy, design, and technology, we help you build a
-              digital presence that represents your business and supports a
-              long-term growth trajectory.
+              What makes us stand out as the best web design company in Bhubaneswar is our focus on strategy, performance, and usability. Every website we create is designed to load faster, work smoothly across devices, and support long-term scalability.
             </p>
           </div>
         </div>
@@ -53,19 +49,19 @@ const Bestwebsitedesign = () => {
                 <div className="bwd-feature-points">
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Dedication to client satisfaction and meeting needs.</p>
+                    <p>At PRWEBSTOCK, client satisfaction is at the core of everything we do. As a trusted web design company in Bhubaneswar, we focus on long-term partnerships, not just project delivery.</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Exceed expectations by going above and beyond.</p>
+                    <p>Dedicated focus on understanding client goals and business needs</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Ongoing support, guidance, and clear communication.</p>
+                    <p>Continuous support, guidance, and transparent communication</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Making client success our top priority.</p>
+                    <p>Making your business success our top priority</p>
                   </div>
                 </div>
               </div>
@@ -77,17 +73,17 @@ const Bestwebsitedesign = () => {
                 <div className="bwd-feature-points">
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Encouragement for open, honest communication.</p>
+                    <p>A successful website starts with clear understanding. At PR WEBSTOCK, we take time to fully understand your business before writing a single line of code.</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Valuing client input in crafting the perfect website.</p>
+                    <p>Open and honest communication from day one</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Full understanding of unique requirements before design
-                      begins.
+                      Respecting and incorporating client ideas and feedback
+
                     </p>
                   </div>
                 </div>
@@ -102,28 +98,26 @@ const Bestwebsitedesign = () => {
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Thorough gathering of essential information about your
-                      business.
+                      At PRWEBSTOCK, we focus on building websites that are simple to use, fast to load, and strong at the code level. Our design and development process ensures performance, security, and long-term scalability.
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Crafting a visual content framework that tells your story.
+                     Intuitive user experience with smooth and reliable functionality
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Wireframes that bring your vision to life before
-                      development.
+                      Multiple testing stages to deliver error-free web solutions
+
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Emphasis on a smooth, hassle-free process from start to
-                      launch.
+                      Website goes live only after meeting industry quality standards
                     </p>
                   </div>
                 </div>
@@ -132,26 +126,24 @@ const Bestwebsitedesign = () => {
               <div className="bwd-divider" />
 
               <div className="bwd-feature-row">
-                <div className="bwd-feature-title">Design and Development</div>
+                <div className="bwd-feature-title">Web Design & Development</div>
                 <div className="bwd-feature-points">
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Focus on intuitive user experience with seamless
-                      functionality.
+                      At PrWEBSTOCK, we focus on building websites that are simple to use, fast to load, and strong at the code level. Our design and development process ensures performance, security, and long-term scalability.
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Multiple testing rounds to ensure error-free web
-                      solutions.
+                     We build modern, responsive websites using MERN Stack (MongoDB, Express, React, Node.js).
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      We go live only when the website meets industry standards.
+                      Fully code-based web design for better performance and SEO
                     </p>
                   </div>
                 </div>
@@ -168,26 +160,23 @@ const Bestwebsitedesign = () => {
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      A team of industry experts in every aspect of design and
-                      development.
+                     A team of experts specializing in web design, development, hosting, and integrations
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Full-service expertise from concept and strategy to
-                      deployment.
+                      End-to-end service from idea, planning, and UI design to deployment
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Innovative solutions to overcome complex challenges.</p>
+                    <p>Strong problem-solving mindset to handle complex and custom requirements</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      High-quality output aligned with your long-term business
-                      goals.
+                      Quality-driven development aligned with your long-term business growth
                     </p>
                   </div>
                 </div>
@@ -196,26 +185,24 @@ const Bestwebsitedesign = () => {
               <div className="bwd-divider" />
 
               <div className="bwd-feature-row">
-                <div className="bwd-feature-title">Precision led Interface</div>
+                <div className="bwd-feature-title">Precision-Led Interface</div>
                 <div className="bwd-feature-points">
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Great attention to crafting intuitive user interfaces.
+                      At PR WEBSTOCK, design is not just about visuals—it’s about usability and clarity. Our web design services in Bhubaneswar focus on creating interfaces that are clean, intuitive, and easy to navigate.
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Every element is aligned with your brand and project
-                      goals.
+                     Carefully crafted UI for smooth and engaging user experience
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Seamless user journeys supported by top-notch design
-                      services.
+                      Design aligned with your brand identity and business goals
                     </p>
                   </div>
                 </div>
@@ -230,21 +217,21 @@ const Bestwebsitedesign = () => {
                 <div className="bwd-feature-points">
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Advanced optimization techniques built into the stack.</p>
+                    <p>Speed plays a major role in user experience and SEO. At PrWEBSTOCK, we build performance into every layer of the website.</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Quick and efficient loading for every key page.</p>
+                    <p>Advanced speed optimization built into our coding-based stack</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Prioritizing website speed to enhance user experience.
+                      Fast loading pages using MERN Stack (full code-based development)
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Technically strong foundation to improve SEO rankings.</p>
+                    <p>Optimized images with Cloudinary cloud photo storage</p>
                   </div>
                 </div>
               </div>
@@ -257,19 +244,17 @@ const Bestwebsitedesign = () => {
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Close collaboration with your business objectives and
-                      audience.
+                      At PrWEBSTOCK, we believe every business is unique. That’s why we provide a fully customized web design experience in Bhubaneswar, built around your business goals, audience, and long-term vision.
                     </p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
-                    <p>Tailored recommendations and dynamic content.</p>
+                    <p>Close collaboration to understand your brand, objectives, and target users.</p>
                   </div>
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      Personalized web design built for exceptional user
-                      experience.
+                      Tailored website features developed with full code-based MERN Stack technology.
                     </p>
                   </div>
                 </div>

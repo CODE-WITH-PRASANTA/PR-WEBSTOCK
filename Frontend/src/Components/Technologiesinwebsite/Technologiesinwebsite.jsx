@@ -216,32 +216,6 @@ const TechnologiesModern = () => {
     }
   }, [isAutoRotating, isAnimating]);
 
-  // Manual rotation for BOTH rows
-  const handleManualRotate = () => {
-    if (!isAnimating) {
-      rotateBothRows();
-    }
-  };
-
-  // Toggle auto-rotation
-  const toggleAutoRotation = () => {
-    setIsAutoRotating(!isAutoRotating);
-    setProgress(0);
-    
-    if (!isAutoRotating) {
-      // Restart rotation
-      rotateBothRows();
-    } else {
-      // Stop rotation
-      if (animationInterval.current) {
-        clearInterval(animationInterval.current);
-      }
-      if (progressInterval.current) {
-        clearInterval(progressInterval.current);
-      }
-    }
-  };
-
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -265,10 +239,7 @@ const TechnologiesModern = () => {
             Technologies in website design
           </h1>
           <p className="Technologies-subtitle-modern">
-            Our skillful web designers possess proficiency in leveraging cutting-edge 
-            technologies to deliver world-class solutions to clients. As a trusted web 
-            design company in Bangalore, we are committed to using latest technologies 
-            that help your website to gain a competitive advantage.
+            Our development process combines MERN Stack technology, optimized Cloud / VPS hosting, and smart integrations like Cloudinary for media storage and PhonePe payment gateway (official partner). From custom APIs for WhatsApp, calls, and email to SEO-friendly architecture, every element is engineered to support real business growth.
           </p>
         </div>
 
@@ -289,13 +260,11 @@ const TechnologiesModern = () => {
                 )}
               </div>
               <p className="Technologies-left-caption">
-                30+ battle-tested technologies to design, build, scale and optimize 
-                high-performing websites. We continuously update our tech stack 
-                to stay ahead of industry trends.
+                With expertise across 30+ modern web technologies, PRWEBSTOCK builds websites that are reliable, fast, and ready to scale. As a coding-based web design company in Bhubaneswar, we carefully select tools that improve performance, security, and user experience—without unnecessary complexity.
               </p>
               <div className="Technologies-trusted-badge">
                 <FaMapPin className="Technologies-trusted-icon" />
-                <span>Trusted Web Design Company in Bangalore</span>
+                <span>Trusted Web Design Company in Bhubaneswar</span>
               </div>
             </div>
           </div>

@@ -20,42 +20,42 @@ import {
 const cardData = [
   {
     title: 'Mobile-Friendly\nDesign',
-    desc: 'Optimize the website for mobile devices. Failure to do so can result in a poor user experience, content overlapping, and dropdown issues. Mobile devices are the most commonly used for browsing the web, so ensuring you have a mobile-first website is essential.',
+    desc: 'At PR WEBSTOCK , we build mobile-first websites that perform smoothly across all devices. Based in Bhubaneswar and serving businesses all over India, our coding-based web design ensures fast loading, clean layouts, and a seamless browsing experience.',
     tab: 'teal',
     icon: <MdPhoneIphone />,
     iconType: 'md'
   },
   {
     title: 'Elegant\nDesign Solutions',
-    desc: 'Attract a wider audience with our custom, aesthetically elegant website design solutions tailored to your unique business needs.',
+    desc: 'Stand out online with elegant web design solutions from PR WEBSTOCK. We create visually refined, professional websites tailored to your business goals, helping brands connect with a wider audience through the best web design in Bhubaneswar and beyond.',
     tab: 'blue',
     icon: <FiStar />,
     iconType: 'fi'
   },
   {
     title: 'Graphic\nDesign Solutions',
-    desc: "Our company's graphic designs are what set us apart from competitors. Our infographics deliver information effectively by adding liveliness to the content and enhancing the user experience with visually appealing graphic designs.",
+    desc: 'Enhance your website’s impact with creative graphic design by PR WEBSTOCK. From custom visuals to engaging infographics, we design graphics that improve user experience and support top website solutions built on clean coding.',
     tab: 'red',
     icon: <MdPalette />,
     iconType: 'md'
   },
   {
     title: 'UI/UX\nDesign',
-    desc: 'Transform first impressions into lasting ones with exceptional UX design that engages and retains your users.',
+    desc: 'Create strong first impressions with user-focused UI/UX design by PR WEBSTOCK. Based in Bhubaneswar and serving clients across India, we design intuitive interfaces that improve usability, engagement, and overall website performance through clean, coding-based web design.',
     tab: 'pink',
     icon: <MdTouchApp />,
     iconType: 'md'
   },
   {
     title: 'Attractive\nBlog Design',
-    desc: 'By selecting our services, you can enhance your blog design, engage your audience, and promote longer reading sessions.',
+    desc: 'Enhance your content experience with attractive blog design from PR WEBSTOCK. We create clean, readable, and engaging blog layouts that encourage longer reading time and support SEO-friendly web design for businesses across India.',
     tab: 'green',
     icon: <MdArticle />,
     iconType: 'md'
   },
   {
     title: 'Typography &\nReadability',
-    desc: 'Choosing the right fonts and ensuring optimal readability is paramount. Our selection of typography ensures a pleasant reading experience.',
+    desc: 'Good typography improves user experience and clarity. PR WEBSTOCK carefully selects fonts and layouts to ensure easy readability, visual balance, and a smooth reading experience, delivering top website solutions built with precision and clean coding.',
     tab: 'purple',
     icon: <MdTextFields />,
     iconType: 'md'
@@ -69,7 +69,7 @@ const Separatesgreat = () => {
         <div className="Separatesgreat-header">
           <h2 className="Separatesgreat-title">
             <span className="Separatesgreat-title-main">What separates a great</span>
-            <span className="Separatesgreat-title-accent">web design from a mediocre one?</span>
+            <span className="Separatesgreat-title-accent">Great Web Design from an Average One?</span>
           </h2>
           <p className="Separatesgreat-subtitle">
             Discover the key elements that elevate user experience and drive engagement

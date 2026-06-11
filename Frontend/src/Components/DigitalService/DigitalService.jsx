@@ -1,7 +1,7 @@
 import React from "react";
 import "./DigitalService.css";
 
-export default function ServicesPage() {
+export default function DigitalService() {
   return (
     <div className="uix-page-container">
 

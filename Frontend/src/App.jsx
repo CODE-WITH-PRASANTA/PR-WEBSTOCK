@@ -18,8 +18,8 @@ import Seo from "./Pages/Seo/Seo";
 import ScrollToTop from "./ScrollToTop";
 import PageLoader from "./Components/PageLoader/PageLoader"; 
 import { useState, useEffect } from "react";
-import DigitalMarketing from "./Pages/DigitalMarketing/DigitalMarketing";
 import SocialMediaManagement from "./Pages/SocialMediaManagement/SocialMediaManagement";
+import DigitalMarketingPage from "./Pages/DigitalMarketingPage/DigitalMarketingPage";
 
 function AppContent() {
   const location = useLocation();
@@ -52,7 +52,7 @@ function AppContent() {
         <Route path="/services/web-development" element={<Service />} />
         <Route path="/services/app-development" element={<AppDevelopment />} />
         <Route path="/services/seo" element={<Seo />} />
-        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/services/digital-marketing" element={<DigitalMarketingPage/>} />
         <Route path="/services/socialmedia-management" element={<SocialMediaManagement />} />
         <Route path="/get-quote" element={<GetFreeDemo />} />
       </Routes>
