@@ -1,154 +1,209 @@
-/* MAIN WRAPPER */
+/* =========================
+   SECTION
+========================= */
+
 .sm-wrapper {
   width: 100%;
-  padding: 100px 70px 0 70px;
-  position: relative;
   background: #fafafa;
-}
-
-/* ===============================
-   LEFT SIDE GRAPHIC (REFERENCE PERFECT)
-================================== */
-
-.left-graphic {
-  position: absolute;
-  top: 140px;
-  left: 0px;
-}
-
-.circle {
-  width: 260px;
-  height: 260px;
-  border: 3px solid #000;
-  border-radius: 50%;
+  padding: 80px 70px;
   position: relative;
 }
 
-.dot {
-  width: 14px;
-  height: 14px;
-  background: #ff003c;
-  border-radius: 50%;
-  position: absolute;
-  top: 128px;
-  left: 230px;
-  z-index: 3;
+.sm-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.line {
-  width: 420px;
-  height: 3px;
-  background: linear-gradient(90deg, #ff003c, #ff6a7c);
-  position: absolute;
-  top: 133px;
-  left: 230px;
-  z-index: 2;
-}
-
-/* ===============================
-   HEADING FIX (MATCHED POSITION)
-================================== */
+/* =========================
+   HEADING
+========================= */
 
 .sm-heading {
-  font-size: 58px;
-  font-weight: 800;
-  width: 100%;
-  max-width: 720px;
-  margin-left: 380px;      /* IMPORTANT: perfect alignment */
-  margin-top: -10px;
-  line-height: 1.2;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.15;
   color: #111;
+  max-width: 800px;
+  margin-bottom: 35px;
+  letter-spacing: -1px;
 }
 
-/* ===============================
-   HERO IMAGE FIXED
-================================== */
+/* =========================
+   HERO IMAGE
+========================= */
 
 .hero-section {
   width: 100%;
-  margin-top: 30px;
   display: flex;
   justify-content: flex-end;
 }
 
 .hero-section img {
-  width: 62%;                         /* EXACT reference width */
-  border-radius: 0 0 140px 140px;      /* perfect curve reference */
+  width: 65%;
+  height: 400px;
   object-fit: cover;
+  border-radius: 30px 30px 120px 120px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  display: block;
 }
 
-/* ===============================
+/* =========================
    DESCRIPTION CARD
-================================== */
+========================= */
 
 .desc-card {
-  width: 80%;
-  margin: -60px auto 0 auto;
-  background: #fff;
-  padding: 45px 55px;
-  border-radius: 30px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  width: 82%;
+  margin: -60px auto 0;
+  background: #ffffff;
+  padding: 40px 45px;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 2;
 }
 
 .desc-card p {
-  font-size: 22px;
+  font-size: 17px;
   line-height: 1.9;
-  margin-bottom: 22px;
+  color: #555;
+  margin-bottom: 20px;
+  font-weight: 400;
 }
 
-.highlight {
-  color: #ff004c;
+.desc-card p:last-child {
+  margin-bottom: 0;
+}
+
+.desc-card strong {
+  color: #111;
   font-weight: 700;
 }
 
-/* ===============================
-   RESPONSIVE ADJUSTMENT
-================================== */
+/* =========================
+   LARGE DESKTOP
+========================= */
 
-@media (max-width: 1024px) {
-  .sm-heading {
-    margin-left: 0;
-    text-align: center;
-    font-size: 42px;
+@media (min-width: 1600px) {
+  .sm-content {
+    max-width: 1550px;
   }
 
   .hero-section img {
-    width: 90%;
-    border-radius: 30px;
-  }
-
-  .left-graphic {
-    left: -40px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .left-graphic {
-    display: none;
-  }
-
-  .sm-wrapper {
-    padding: 60px 25px 0 25px;
-  }
-
-  .sm-heading {
-    font-size: 32px;
-    margin: 0 auto;
-    text-align: center;
+    height: 480px;
   }
 
   .desc-card {
-    width: 95%;
-    margin-top: -20px;
-    padding: 25px;
-  }
-
-  .desc-card p {
-    font-size: 18px;
+    width: 78%;
   }
 }
 
+/* =========================
+   LAPTOP
+========================= */
 
+@media (max-width: 1200px) {
+  .sm-wrapper {
+    padding: 70px 50px;
+  }
 
+  .hero-section img {
+    width: 75%;
+    height: 350px;
+  }
 
+  .desc-card {
+    width: 90%;
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1024px) {
+  .sm-wrapper {
+    padding: 60px 40px;
+  }
+
+  .sm-heading {
+    font-size: 2.7rem;
+    max-width: 100%;
+  }
+
+  .hero-section img {
+    width: 100%;
+    height: 320px;
+    border-radius: 24px;
+  }
+
+  .desc-card {
+    width: 100%;
+    margin-top: 25px;
+    padding: 30px;
+  }
+
+  .desc-card p {
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .sm-wrapper {
+    padding: 50px 20px;
+  }
+
+  .sm-heading {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .hero-section {
+    justify-content: center;
+  }
+
+  .hero-section img {
+    width: 100%;
+    height: 230px;
+    border-radius: 20px;
+  }
+
+  .desc-card {
+    width: 100%;
+    margin-top: 20px;
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .desc-card p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .sm-heading {
+    font-size: 1.7rem;
+  }
+
+  .hero-section img {
+    height: 200px;
+  }
+
+  .desc-card {
+    padding: 20px 18px;
+  }
+
+  .desc-card p {
+    font-size: 14px;
+  }
+}

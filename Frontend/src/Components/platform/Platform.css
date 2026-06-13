@@ -1,76 +1,136 @@
+/* ==========================
+   MAIN SECTION
+========================== */
+
 .platform-wrapper {
   width: 100%;
+  min-height: 90vh;
   display: flex;
   justify-content: space-between;
-  gap: 50px;
-  padding: 60px 40px;
-  align-items: flex-start;
+  align-items: center;
+  gap: 60px;
+  padding: 80px 6%;
+  background: #ffffff;
 }
 
+/* ==========================
+   LEFT CONTENT
+========================== */
+
 .platform-left {
-  width: 55%;
+  width: 58%;
 }
 
 .platform-title {
-  font-size: 46px;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 800;
-  margin-bottom: 40px;
+  color: #111;
+  line-height: 1.15;
+  margin-bottom: 45px;
 }
 
 .platform-list {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 22px;
 }
 
 .platform-item {
   display: flex;
-  gap: 25px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #ddd;
+  gap: 20px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e8e8e8;
+  transition: 0.3s ease;
+}
+
+.platform-item:hover {
+  padding-left: 8px;
 }
 
 .platform-number {
-  font-size: 26px;
+  min-width: 55px;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #ff2b4a; /* Pink highlight like reference */
+  color: #111;
 }
 
 .platform-text h3 {
-  font-size: 22px;
+  font-size: 1.25rem;
   font-weight: 700;
+  color: #111;
   margin-bottom: 8px;
 }
 
 .platform-text p {
-  font-size: 17px;
-  color: #444;
-  line-height: 1.6;
-  max-width: 600px;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #666;
+  max-width: 650px;
 }
 
+/* ==========================
+   RIGHT IMAGE
+========================== */
+
 .platform-right {
-  width: 45%;
+  width: 42%;
   display: flex;
-  padding-top: 300px;
- 
-  
   justify-content: center;
+  align-items: center;
 }
 
 .platform-right img {
   width: 100%;
-  height: auto;
-  border-radius: 12px;
+  max-width: 520px;
+  height: 650px;
   object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  transition: 0.4s ease;
 }
 
-/* ========== Responsive ========== */
+.platform-right img:hover {
+  transform: translateY(-8px);
+}
+
+/* ==========================
+   LARGE DESKTOP
+========================== */
+
+@media (min-width: 1600px) {
+  .platform-right img {
+    height: 720px;
+    max-width: 580px;
+  }
+}
+
+/* ==========================
+   LAPTOP
+========================== */
+
+@media (max-width: 1200px) {
+  .platform-wrapper {
+    gap: 40px;
+  }
+
+  .platform-title {
+    font-size: 2.7rem;
+  }
+
+  .platform-right img {
+    height: 560px;
+  }
+}
+
+/* ==========================
+   TABLET
+========================== */
 
 @media (max-width: 1024px) {
   .platform-wrapper {
+    min-height: auto;
     flex-direction: column;
-    padding: 40px 20px;
+    padding: 70px 40px;
   }
 
   .platform-left,
@@ -79,25 +139,79 @@
   }
 
   .platform-right {
-    margin-top: 40px;
+    order: -1;
+  }
+
+  .platform-right img {
+    max-width: 100%;
+    height: 420px;
   }
 
   .platform-title {
-    font-size: 38px;
+    text-align: center;
+    margin-bottom: 35px;
   }
 }
 
-@media (max-width: 600px) {
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px) {
+  .platform-wrapper {
+    padding: 60px 20px;
+    gap: 35px;
+  }
+
   .platform-title {
-    font-size: 30px;
+    font-size: 2rem;
+    text-align: center;
   }
 
   .platform-item {
-    flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    padding-bottom: 18px;
   }
 
   .platform-number {
-    font-size: 22px;
+    font-size: 1.1rem;
+    min-width: 40px;
+  }
+
+  .platform-text h3 {
+    font-size: 1rem;
+  }
+
+  .platform-text p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .platform-right img {
+    height: 280px;
+    border-radius: 18px;
+  }
+}
+
+/* ==========================
+   SMALL MOBILE
+========================== */
+
+@media (max-width: 480px) {
+  .platform-title {
+    font-size: 1.7rem;
+  }
+
+  .platform-item {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .platform-text h3 {
+    font-size: 0.95rem;
+  }
+
+  .platform-text p {
+    font-size: 0.85rem;
   }
 }

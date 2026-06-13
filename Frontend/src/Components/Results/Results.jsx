@@ -8,37 +8,36 @@ import icon4 from "../../assets/19.webp";
 import icon5 from "../../assets/20.webp";
 
 const Result = () => {
-  const results = [
-    {
-      icon: icon1,
-      title: "Stronger customer loyalty",
-      desc: "Our content writers create meaningful content, helping your brand connect deeply and build loyal customer relationships over time."
-    },
-    {
-      icon: icon2,
-      title: "High engagement rates",
-      desc: "We drive high engagement through likes, shares, comments, and direct interactions that keep your audience connected to your brand."
-    },
-    {
-      icon: icon3,
-      title: "More leads & conversions",
-      desc: "With strategic content and smart ad placements, we help turn followers into leads and leads into paying customers."
-    },
-    {
-      icon: icon4,
-      title: "Increased brand visibility & followers",
-      desc: "Your brand gets noticed by the right audience through consistent, engaging content and targeted strategies — leading to steady follower growth."
-    },
-    {
-      icon: icon5,
-      title: "Measurable ROI and transparent reporting",
-      desc: "With full tracking and reporting, you get clear insights into campaign performance with complete transparency."
-    }
-  ];
-
+ const results = [
+  {
+    icon: icon1,
+    title: "Stronger Customer Relationships",
+    desc: "PR WEBSTOCK helps businesses in Bhubaneswar build trust and long-term customer relationships through engaging social media content and consistent brand communication."
+  },
+  {
+    icon: icon2,
+    title: "Higher Audience Engagement",
+    desc: "Our social media marketing strategies increase likes, shares, comments, and interactions, helping your business connect with the right audience."
+  },
+  {
+    icon: icon3,
+    title: "More Leads & Business Growth",
+    desc: "Through targeted campaigns and strategic content, we help generate quality leads, increase inquiries, and improve conversion opportunities."
+  },
+  {
+    icon: icon4,
+    title: "Improved Brand Visibility",
+    desc: "We help businesses strengthen their online presence, reach more potential customers, and grow their brand across major social media platforms."
+  },
+  {
+    icon: icon5,
+    title: "Transparent Reporting & ROI",
+    desc: "Track campaign performance with detailed reporting, actionable insights, and measurable results that support your business objectives."
+  }
+];
   return (
     <section className="results-wrapper">
-      <h2 className="results-title">Results you can expect</h2>
+      <h2 className="results-title"> Social Media Marketing Results For Businesses In Bhubaneswar</h2>
 
       <div className="results-grid">
         {results.map((item, index) => (

@@ -4,37 +4,34 @@ import "./ResultDigi.css";
 const ResultDigi = () => {
   return (
     <div className="intro-container">
-      <div className="brand-name">Webomindapps</div>
+      <div className="brand-name">PR WEBSTOCK</div>
 
       <h1 className="page-title">
-        Result-oriented digital <br />
-        marketing <br />
-        company in Bangalore
+        Result-Driven Digital <br />
+        Marketing Agency <br />
+        In Bhubaneswar
       </h1>
 
       <p className="page-text">
-        Marketing is one of the most crucial aspects of any business. It plays a
-        vital role in distinguishing a company and driving sales in a
-        competitive landscape. Marketing is no longer just an added benefit that
-        helps organizations generate some extra leads; it is essential for
-        targeting new customers and achieving sales.
+        In today's competitive digital landscape, businesses need more than
+        just an online presence to succeed. A well-planned digital marketing
+        strategy helps attract the right audience, build brand awareness, and
+        generate quality leads. From search engines and social media to paid
+        advertising and content marketing, digital channels play a vital role
+        in business growth.
       </p>
 
       <p className="page-text">
-        Best ROI-Driven Digital Marketing Services Bangalore can help your
-        organization achieve desirable results and ensure that your brand is
-        strongly established. Digital marketing has been allowing brands to
-        target a huge digital audience based on preferences, previous
-        experience, etc. This streamlined approach can significantly improve
-        lead generation, conversions, and also brand awareness. If you are
-        looking to take your brand to new heights in this cosmopolitan city,
-        Webomindapps is your ideal partner. We offer a comprehensive suite of
-        tailor-made website development and digital marketing Bangalore to help
-        brands reach the right audience at the right time.
+        PR WEBSTOCK is a trusted digital marketing agency in Bhubaneswar,
+        Odisha, helping businesses improve their online visibility and achieve
+        measurable results. Our team delivers customized digital marketing
+        solutions including SEO, social media marketing, Google Ads, content
+        marketing, website development, and performance-driven campaigns. We
+        focus on increasing traffic, generating leads, and creating long-term
+        growth opportunities for businesses across various industries.
       </p>
     </div>
   );
 };
 
 export default ResultDigi;
-

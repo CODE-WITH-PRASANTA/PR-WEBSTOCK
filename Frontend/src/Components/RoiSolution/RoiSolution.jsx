@@ -11,37 +11,36 @@ import travelImg from "../../assets/Travel-and-hospitality-industry.webp";
 
 const data = [
   {
-    title: "Healthcare industry",
-    desc: "We help hospitals, clinics, and healthcare brands attract more patients with SEO, paid ads, and reputation management while ensuring compliance with industry regulations.",
+    title: "Healthcare Industry",
+    desc: "PR WEBSTOCK helps hospitals, clinics, and healthcare providers in Bhubaneswar improve online visibility, attract more patients, and build trust through SEO, content marketing, and digital advertising.",
     img: healthcareImg,
   },
   {
-    title: "E-commerce industry",
-    desc: "From product ads to high-converting landing pages, we optimize your store for more traffic, better sales, and repeat customers through data-driven marketing strategies.",
+    title: "E-Commerce Industry",
+    desc: "We help e-commerce businesses increase traffic, improve conversions, and grow online sales through SEO, Google Ads, social media marketing, and performance-driven campaigns.",
     img: ecommerceImg,
   },
   {
-    title: "Technology industry",
-    desc: "We position tech brands as industry leaders with thought-leadership content, SEO, PPC, and LinkedIn marketing to generate high-quality B2B leads.",
+    title: "Technology Industry",
+    desc: "Our digital marketing strategies help technology companies generate qualified leads, improve brand authority, and connect with decision-makers through targeted campaigns.",
     img: technologyImg,
   },
   {
-    title: "Financial services industry",
-    desc: "We build trust and authority for banks, fintech, and financial advisors with content marketing, lead-generation ads, and compliance-friendly digital strategies.",
+    title: "Financial Services Industry",
+    desc: "We support financial institutions, consultants, and fintech businesses with trusted digital marketing solutions focused on lead generation, brand awareness, and customer engagement.",
     img: financialImg,
   },
   {
-    title: "Manufacturing industry",
-    desc: "We help B2B manufacturers reach decision-makers through LinkedIn marketing, SEO-driven content, and lead nurturing strategies that drive real business growth.",
+    title: "Manufacturing Industry",
+    desc: "PR WEBSTOCK helps manufacturers reach business buyers through SEO, LinkedIn marketing, content marketing, and lead generation strategies that drive measurable growth.",
     img: manufacturingImg,
   },
   {
-    title: "Travel & Hospitality industry",
-    desc: "We boost bookings for hotels, travel agencies, and tourism brands through targeted ads, SEO, and social campaigns that attract global travelers.",
+    title: "Travel & Hospitality Industry",
+    desc: "We help hotels, travel agencies, and tourism businesses attract more customers through social media marketing, search engine optimization, and targeted advertising campaigns.",
     img: travelImg,
   },
 ];
-
 export default function RoiSolution() {
   const [active, setActive] = useState(0);
 
@@ -56,9 +55,9 @@ export default function RoiSolution() {
   return (
     <section className="industry-wrapper">
 
-      <h1 className="industry-heading">
-        Our industry specific ROI based digital marketing solution
-      </h1>
+      <h2 className="industry-heading">
+         Industry-Specific Digital Marketing Solutions For Business Growth
+      </h2>
 
       <div className="industry-container">
 

@@ -321,7 +321,7 @@ const Navbar = () => {
             <Link to="/"> Home</Link>
             <Link to="/about"> About</Link>
             <Link to="/industry-work"> Industry Work</Link>
-            <Link to="/pricing"> Pricing</Link>
+            <Link to="/project"> Project</Link>
             <Link to="/career">Career</Link>
             <Link to="/blog">Blog</Link>
             <Link to="/contact">Contact</Link>
@@ -353,7 +353,7 @@ const Navbar = () => {
           <ul>
             <li><a href="/services/web-development">Web Development</a></li>
             <li><a href="/services/app-development">App Development</a></li>
-            <li><a href="/services/payment-gateway">Payment Gateway</a></li>
+           
             <li><a href="/services/socialmedia-management">Social media management</a></li>
             <li><a href="/services/seo">Seo</a></li>
             <li><a href="/services/digital-marketing">Digital Marketing</a></li>
