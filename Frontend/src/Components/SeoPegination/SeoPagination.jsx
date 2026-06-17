@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
 import "./SeoPagination.css";
 import {
   FaCogs,
@@ -13,109 +14,125 @@ import {
 } from "react-icons/fa";
 
 const steps = [
-  { icon: <FaCogs />, title: "Schema Optimization", desc: "Finalize website optimization with schema markup." },
-  { icon: <FaMobileAlt />, title: "Mobile Optimization", desc: "Optimize loading speed on mobile devices." },
-  { icon: <FaRocket />, title: "Page Speed", desc: "Improve page load speed." },
-  { icon: <FaSearch />, title: "SEO Audit", desc: "Identify SEO issues." },
-  { icon: <FaPenFancy />, title: "Content Strategy", desc: "Plan SEO content." },
-  { icon: <FaKey />, title: "Keyword Research", desc: "Find best keywords." },
-  { icon: <FaLink />, title: "Link Building", desc: "Build authority links." },
-  { icon: <FaChartLine />, title: "Analytics Setup", desc: "Track performance." },
-  { icon: <FaCheckCircle />, title: "Performance Review", desc: "Optimize results." },
+  {
+    icon: <FaSearch />,
+    title: "SEO Audit",
+    desc: "Identify growth opportunities.",
+  },
+  {
+    icon: <FaKey />,
+    title: "Keyword Research",
+    desc: "Target valuable keywords.",
+  },
+  {
+    icon: <FaPenFancy />,
+    title: "Content Optimization",
+    desc: "Improve content visibility.",
+  },
+  {
+    icon: <FaLink />,
+    title: "Link Building",
+    desc: "Build website authority.",
+  },
+  {
+    icon: <FaMobileAlt />,
+    title: "Mobile SEO",
+    desc: "Optimize mobile experience.",
+  },
+  {
+    icon: <FaRocket />,
+    title: "Page Speed",
+    desc: "Improve website performance.",
+  },
+  {
+    icon: <FaCogs />,
+    title: "Technical SEO",
+    desc: "Enhance indexing and crawling.",
+  },
+  {
+    icon: <FaChartLine />,
+    title: "Analytics",
+    desc: "Track traffic growth.",
+  },
+  {
+    icon: <FaCheckCircle />,
+    title: "Performance Review",
+    desc: "Measure SEO success.",
+  },
 ];
 
 const SeoPagination = () => {
   const [active, setActive] = useState(0);
-  const rowRef = useRef(null);
-  const itemRefs = useRef([]);
-  const isProgrammaticScroll = useRef(false);
 
-  /* Scroll to active item on dot click */
+  /* Auto Play Every 2 Seconds */
   useEffect(() => {
-    const el = itemRefs.current[active];
-    if (!el) return;
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % steps.length);
+    }, 2000);
 
-    isProgrammaticScroll.current = true;
-
-    el.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
-
-    setTimeout(() => {
-      isProgrammaticScroll.current = false;
-    }, 500);
-  }, [active]);
-
-  /* Detect active item while user scrolls */
-  const handleScroll = () => {
-    if (isProgrammaticScroll.current || !rowRef.current) return;
-
-    const rowRect = rowRef.current.getBoundingClientRect();
-    const centerX = rowRect.left + rowRect.width / 2;
-
-    let closestIndex = active;
-    let minDistance = Infinity;
-
-    itemRefs.current.forEach((item, index) => {
-      if (!item) return;
-      const rect = item.getBoundingClientRect();
-      const itemCenter = rect.left + rect.width / 2;
-      const distance = Math.abs(centerX - itemCenter);
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    if (closestIndex !== active) {
-      setActive(closestIndex);
-    }
-  };
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="seo-pagination">
-
-      {/* HEADING */}
+    <section className="seo-pagination">
+      {/* Heading */}
       <div className="process-heading">
-        <h2>Our Process</h2>
+        <h2>
+          PR WEBSTOCK SEO Process in Bhubaneswar, Odisha
+        </h2>
+
+        <p className="process-description">
+          PR WEBSTOCK helps businesses in Bhubaneswar, Odisha improve search
+          rankings, increase organic traffic, and generate quality leads
+          through proven SEO strategies tailored for long-term growth.
+        </p>
+
         <span className="heading-line"></span>
       </div>
 
-      {/* SCROLLABLE ROW */}
-      <div
-        className="process-row"
-        ref={rowRef}
-        onScroll={handleScroll}
-      >
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            ref={(el) => (itemRefs.current[index] = el)}
-            className={`process-step ${active === index ? "active" : ""}`}
-          >
-            <div className="process-circle">{step.icon}</div>
-            <h4>{step.title}</h4>
-            <p>{step.desc}</p>
-          </div>
-        ))}
+      {/* Slider */}
+      <div className="slider-container">
+        <div
+          className="slider-track"
+          style={{
+            transform: `translateX(-${active * 320}px)`,
+            transition: "transform 0.8s ease",
+          }}
+        >
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className={`process-step ${
+                active === index ? "active" : ""
+              }`}
+            >
+              <div className="process-circle">
+                {step.icon}
+              </div>
+
+              <h4>{step.title}</h4>
+
+              <p>{step.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* DOT PAGINATION */}
+      {/* Dots */}
       <div className="dot-pagination">
         {steps.map((_, index) => (
           <span
             key={index}
-            className={`dot ${active === index ? "active" : ""}`}
+            className={`dot ${
+              active === index ? "active" : ""
+            }`}
             onClick={() => setActive(index)}
           />
         ))}
       </div>
-
-    </div>
+    </section>
   );
 };
 
 export default SeoPagination;
+

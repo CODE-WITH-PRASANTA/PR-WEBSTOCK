@@ -1,6 +1,7 @@
-import React from 'react'
-import seohero from "../../assets/seo-hero.mp4"
-import './SeoHero.css';
+import React from 'react';
+import seohero from "../../assets/seo-hero.mp4";
+import "./SeoHero.css";
+
 const SeoHero = () => {
   return (
     <section className="SeoHero-video-container">
@@ -16,21 +17,27 @@ const SeoHero = () => {
 
       <div className="SeoHero-video-content">
         <h1>
-          SEO Company in Bhubaneswar that Delivers best Results
+          SEO Company in Bhubaneswar That Delivers Real Results
         </h1>
 
         <p>
-          SEO is crucial in driving your website to a wider and organic audience. Webomindapps, as your trusted partner for all website needs, can make your website rank better through keyword research, on-page optimization, backlink building, and technical solutions.
+          PR WEBSTOCK is a trusted SEO company in Bhubaneswar, Odisha,
+          helping businesses improve Google rankings, increase organic traffic,
+          and generate quality leads. Our SEO experts create customized
+          strategies that help your website grow and attract more customers.
         </p>
 
-        <h2>12+ Years of experience | 100+projects completed | Trusted by clients | 4.8 google review</h2>
+        <h2>
+          12+ Years Experience | 100+ Projects Delivered | Trusted Across
+          Bhubaneswar, Odisha
+        </h2>
 
         <button className="cta-btn">
-          Talk to our expert <span>↗</span>
+          Talk to Our Experts <span>↗</span>
         </button>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default SeoHero
+export default SeoHero;

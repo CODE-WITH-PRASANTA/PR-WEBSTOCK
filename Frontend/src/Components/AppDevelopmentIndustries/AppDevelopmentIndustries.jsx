@@ -9,15 +9,21 @@ const IndustriesSection = () => {
     <section className="industries-section">
       {/* LEFT: text + lists */}
       <div className="industries-left">
-        <h2 className="industries-title">Industries we serve</h2>
+    
+    <h2 className="industries-title">
+        Industries We Serve
+     </h2>
 
-        <p className="industries-intro">
-          As a leading mobile app development company in Bangalore, we are proud
-          of our extensive client base, built on years of trust and delivering
-          top-notch solutions to a global user community. Our services have
-          catered to diverse industries, solidifying our reputation as a
-          reliable provider in the ever-evolving technology landscape.
-        </p>
+     <p className="industries-intro">
+         PR WEBSTOCK is a trusted mobile app development company in Bhubaneswar,
+         Odisha, delivering innovative digital solutions for businesses across
+         multiple industries. Our experienced team develops custom Android, iOS,
+         and cross-platform mobile applications tailored to specific business
+        requirements. From startups to established enterprises, PR WEBSTOCK helps
+        organizations in Bhubaneswar, Odisha and beyond improve customer engagement,
+       streamline operations, and accelerate digital growth through reliable and
+       scalable mobile app development services.
+</p>
 
         <div className="industries-lists">
           <ul className="industries-list">
@@ -25,7 +31,7 @@ const IndustriesSection = () => {
               <span className="industries-arrow">→</span> Health &amp; Fitness
             </li>
             <li>
-              <span className="industries-arrow">→</span> Retail &amp; Fashion
+              <span className="industries-arrow">→</span> Retail &amp; E-commerce
             </li>
             <li>
               <span className="industries-arrow">→</span> Tourism &amp;
@@ -38,13 +44,13 @@ const IndustriesSection = () => {
 
           <ul className="industries-list">
             <li>
-              <span className="industries-arrow">→</span> Rentals &amp; Booking
+              <span className="industries-arrow">→</span> Real Estate &amp; Rentals
             </li>
             <li>
-              <span className="industries-arrow">→</span> Education &amp; IT
+              <span className="industries-arrow">→</span> Education &amp; E-Learning
             </li>
             <li>
-              <span className="industries-arrow">→</span> Interiors &amp;
+              <span className="industries-arrow">→</span> Interior Design &amp;
               Architecture
             </li>
             <li>
