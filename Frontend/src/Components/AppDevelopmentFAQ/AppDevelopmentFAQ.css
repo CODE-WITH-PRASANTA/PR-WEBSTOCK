@@ -99,3 +99,33 @@
     padding: 14px 18px 18px;
   }
 }
+
+.faq-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.faq-page-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #111827;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.faq-page-btn:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.faq-page-btn.active {
+  background: #2563eb;
+  color: #fff;
+}

@@ -10,50 +10,52 @@ import imgReview from "../../assets/App-img-3.webp";
 import imgDeployment from "../../assets/App-img-2.webp";
 import imgMonitoring from "../../assets/App-img-1.webp";
 
+
 const steps = [
   {
     title: "Planning",
     description:
-      "Define project scope, goals & requirements, and break tasks into user stories. Prioritize and estimate efforts to create a clear project plan.",
+      "PR WEBSTOCK begins every project with detailed planning, requirement analysis, and goal setting to ensure successful mobile app development for businesses in Bhubaneswar, Odisha and beyond.",
     image: imgPlanning,
   },
   {
     title: "Design",
     description:
-      "Create wireframes and UI/UX designs to visualize app structure and user interactions.",
+      "Our UI/UX designers create intuitive wireframes and engaging interfaces that enhance user experience and align with your business objectives.",
     image: imgDesign,
   },
   {
     title: "Development",
     description:
-      "Iteratively build and code the app, releasing new features and functionalities in regular increments.",
+      "Using modern technologies and agile practices, PR WEBSTOCK develops secure, scalable, and feature-rich Android, iOS, and cross-platform mobile applications.",
     image: imgDevelopment,
   },
   {
     title: "Testing",
     description:
-      "Conduct comprehensive testing, including unit, integration, and user acceptance testing, to ensure quality and functionality.",
+      "Comprehensive testing ensures your application performs smoothly, remains secure, and delivers a seamless experience across all supported devices.",
     image: imgTesting,
   },
   {
-    title: "Review and feedback",
+    title: "Review and Feedback",
     description:
-      "Regularly review progress, gather stakeholder feedback, and incorporate it into subsequent iterations for continuous improvement.",
+      "Regular project reviews and client feedback sessions help our Bhubaneswar, Odisha team continuously improve the product throughout development.",
     image: imgReview,
   },
   {
     title: "Deployment",
     description:
-      "Prepare the app for release, including final testing, bug fixing, and submission to app stores for distribution.",
+      "PR WEBSTOCK manages app deployment, final optimization, and app store submission to ensure a successful launch for your mobile application.",
     image: imgDeployment,
   },
   {
-    title: "Monitoring and maintenance",
+    title: "Monitoring and Maintenance",
     description:
-      "Monitor app performance, address user feedback, and continuously enhance the app through updates and maintenance activities.",
+      "After launch, we provide ongoing monitoring, maintenance, updates, and technical support to keep your application secure, optimized, and ready for future growth.",
     image: imgMonitoring,
   },
 ];
+
 
 const AgileMethodology = () => {
   const [activeIndex, setActiveIndex] = useState(2); // default "Development" like screenshot
@@ -63,16 +65,22 @@ const AgileMethodology = () => {
   return (
     <section className="agile-section">
       {/* Heading */}
-      <h2 className="agile-title">Agile methodology for app development</h2>
+      <h2 className="agile-title">Agile Mobile App Development Process at PR WEBSTOCK </h2>
 
       {/* intro line + text */}
       <div className="agile-intro-row">
         <div className="agile-intro-line" />
-        <p className="agile-intro-text">
-          Webomindapps has adopted agile methodology in the app development process.
-          It offers numerous benefits such as fostering collaboration, flexibility, and
-          efficient project management. The stages in agile development typically include:
-        </p>
+    
+          <p className="agile-intro-text">
+              PR WEBSTOCK follows an agile mobile app development methodology to deliver
+              innovative, scalable, and high-performance applications. Based in
+              Bhubaneswar, Odisha, our team uses a collaborative approach that improves
+              flexibility, transparency, and faster project delivery. As a trusted mobile
+              app development company in Bhubaneswar, Odisha, PR WEBSTOCK ensures every
+               stage of development is optimized to create reliable Android, iOS, and
+                cross-platform applications.
+           </p>
+
       </div>
 
       {/* main layout */}

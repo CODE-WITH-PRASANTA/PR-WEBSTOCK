@@ -10,7 +10,9 @@ const ConsultSection = () => {
     >
       <div className="consult-container">
         <div className="consult-card">
-          <h2 className="consult-title">Consult with our professionals</h2>
+      <h2 className="consult-title">
+         Consult Mobile App Experts at PR WEBSTOCK
+      </h2>
 
           {/* Row 1 */}
           <div className="consult-row">
