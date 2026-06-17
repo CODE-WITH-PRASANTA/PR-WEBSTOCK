@@ -7,7 +7,7 @@ import Creativewebdesign from '../../Components/Creativewebdesign/Creativewebdes
 
 import Separatesgreat from '../../Components/Separatesgreat/Separatesgreat'
 import Websitedesigningprocess from '../../Components/Websitedesigningprocess/Websitedesigningprocess'
-import Technologiesinwebsite from '../../Components/Technologiesinwebsite/Technologiesinwebsite'
+
 import Webomindappsvsother from '../../Components/Webomindappsvsother/Webomindappsvsother'
 import Casestudies from '../../Components/Casestudies/Casestudies'
 import OurClientsSay from '../../Components/Ourclientssay/Ourclientssay'
@@ -26,7 +26,7 @@ const Service = () => {
         <Websitedesigningprocess/>
         <Industrieswedesign/>
         <Bestwebsitedesign/>
-        <Technologiesinwebsite/>
+        
         <Webomindappsvsother/>
         <Casestudies/>
         <OurClientsSay/>

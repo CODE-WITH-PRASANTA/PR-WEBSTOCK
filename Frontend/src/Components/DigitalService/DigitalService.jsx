@@ -4,11 +4,11 @@ import "./DigitalService.css";
 export default function DigitalService() {
   return (
     <div className="uix-page-container">
-
       {/* HERO TITLE */}
       <section className="uix-services-wrapper">
         <h1 className="uix-page-title">
-          <span className="uix-highlight">Digital</span> marketing services we offer
+          <span className="uix-highlight">Digital</span> Marketing Services In
+          Bhubaneswar
         </h1>
 
         {/* SERVICES GRID */}
@@ -16,23 +16,31 @@ export default function DigitalService() {
           {/* CARD 1 */}
           <div className="uix-service-card">
             <div className="uix-service-icon">📈</div>
-            <h3 className="uix-service-title">Search Engine Optimization (SEO)</h3>
+            <h3 className="uix-service-title">SEO Services</h3>
             <p className="uix-service-desc">
-              Improve your website visibility with powerful SEO strategies designed
-              to increase traffic and online reputation.
+              Improve your search engine rankings and attract more organic
+              traffic with result-driven SEO services from PR WEBSTOCK in
+              Bhubaneswar.
             </p>
-            <div className="uix-color-bar" style={{ background: "#004d61" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#004d61" }}
+            ></div>
           </div>
 
           {/* CARD 2 */}
           <div className="uix-service-card">
             <div className="uix-service-icon">💰</div>
-            <h3 className="uix-service-title">Pay Per Click (PPC)</h3>
+            <h3 className="uix-service-title">Google Ads & PPC</h3>
             <p className="uix-service-desc">
-              Target your ideal customers instantly with optimized ad campaigns
-              that deliver measurable ROI.
+              Reach potential customers instantly through targeted Google Ads
+              and PPC campaigns designed to maximize leads and return on
+              investment.
             </p>
-            <div className="uix-color-bar" style={{ background: "#ff4d4d" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#ff4d4d" }}
+            ></div>
           </div>
 
           {/* CARD 3 */}
@@ -40,20 +48,28 @@ export default function DigitalService() {
             <div className="uix-service-icon">📱</div>
             <h3 className="uix-service-title">Social Media Marketing</h3>
             <p className="uix-service-desc">
-              Engage users through compelling content and effective multi-platform
-              marketing strategies.
+              Grow your online presence and connect with your audience through
+              strategic social media marketing across leading platforms.
             </p>
-            <div className="uix-color-bar" style={{ background: "#ff6f91" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#ff6f91" }}
+            ></div>
           </div>
 
           {/* CARD 4 */}
           <div className="uix-service-card">
             <div className="uix-service-icon">🎨</div>
-            <h3 className="uix-service-title">Graphic Designing</h3>
+            <h3 className="uix-service-title">Graphic Design Services</h3>
             <p className="uix-service-desc">
-              Professional visuals and creative designs that strengthen your brand identity.
+              Strengthen your brand identity with creative graphic design
+              solutions for digital marketing, branding, and promotional
+              campaigns.
             </p>
-            <div className="uix-color-bar" style={{ background: "#6a5acd" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#6a5acd" }}
+            ></div>
           </div>
 
           {/* CARD 5 */}
@@ -61,9 +77,13 @@ export default function DigitalService() {
             <div className="uix-service-icon">✍️</div>
             <h3 className="uix-service-title">Content Marketing</h3>
             <p className="uix-service-desc">
-              Build trust and influence with well-researched, engaging, and SEO-friendly content.
+              Build trust and improve visibility with SEO-friendly content that
+              engages audiences and supports long-term business growth.
             </p>
-            <div className="uix-color-bar" style={{ background: "#008080" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#008080" }}
+            ></div>
           </div>
 
           {/* CARD 6 */}
@@ -71,19 +91,27 @@ export default function DigitalService() {
             <div className="uix-service-icon">📤</div>
             <h3 className="uix-service-title">Email Marketing</h3>
             <p className="uix-service-desc">
-              Reach your users directly with personalized, automated email campaigns that convert.
+              Increase customer engagement and conversions through personalized
+              email campaigns, newsletters, and marketing automation.
             </p>
-            <div className="uix-color-bar" style={{ background: "#ffbf00" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#ffbf00" }}
+            ></div>
           </div>
 
           {/* CARD 7 */}
           <div className="uix-service-card">
             <div className="uix-service-icon">🛒</div>
-            <h3 className="uix-service-title">E-commerce Marketing</h3>
+            <h3 className="uix-service-title">E-Commerce Marketing</h3>
             <p className="uix-service-desc">
-              Boost online sales through optimized store funnels and advanced customer-targeting strategies.
+              Drive more sales with targeted e-commerce marketing strategies,
+              conversion optimization, and customer acquisition campaigns.
             </p>
-            <div className="uix-color-bar" style={{ background: "#0099cc" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#0099cc" }}
+            ></div>
           </div>
 
           {/* CARD 8 */}
@@ -91,9 +119,13 @@ export default function DigitalService() {
             <div className="uix-service-icon">🌐</div>
             <h3 className="uix-service-title">Website Development</h3>
             <p className="uix-service-desc">
-              Get high-performance websites tailored for branding, marketing, and conversions.
+              Build responsive, fast, and SEO-friendly websites designed to
+              improve user experience and generate business growth.
             </p>
-            <div className="uix-color-bar" style={{ background: "#32cd32" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#32cd32" }}
+            ></div>
           </div>
 
           {/* CARD 9 */}
@@ -101,14 +133,17 @@ export default function DigitalService() {
             <div className="uix-service-icon">🎬</div>
             <h3 className="uix-service-title">Video Marketing</h3>
             <p className="uix-service-desc">
-              Engage your audience with professional promotional videos, ads, and animations.
+              Capture attention and increase engagement through professional
+              video marketing solutions tailored for digital platforms and
+              social media channels.
             </p>
-            <div className="uix-color-bar" style={{ background: "#ff4500" }}></div>
+            <div
+              className="uix-color-bar"
+              style={{ background: "#ff4500" }}
+            ></div>
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 }

@@ -6,12 +6,19 @@ export default function GooglePartner() {
   return (
     <div className="gp-container">
       <div className="gp-text-section">
-        <h1 className="gp-title">Official Google partner agency</h1>
-        <p className="gp-description">
-          Google trusts us, and so can you! As an official Google Partner, we bring top-tier expertise, smarter ads, and
-          better ROI for your business. Get smarter, data-driven marketing with a team recognized by Google itself!
-        </p>
-      </div>
+  <h1 className="gp-title">
+    Google Partner Digital Marketing Agency In Bhubaneswar
+  </h1>
+
+  <p className="gp-description">
+    PR WEBSTOCK helps businesses grow through strategic digital marketing,
+    Google Ads management, and performance-driven advertising campaigns. As a
+    trusted Google Partner agency, we provide expert solutions designed to
+    increase brand visibility, drive targeted traffic, generate qualified
+    leads, and support long-term business growth in Bhubaneswar, Odisha, and
+    beyond.
+  </p>
+</div>
 
       <div className="gp-image-section">
         <img src={partnerOld} alt="Old Google Partner Logo" className="gp-img old" />

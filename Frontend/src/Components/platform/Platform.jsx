@@ -5,38 +5,38 @@ import "./Platform.css";
 import sideImage from "../../assets/ai-agent-industry.webp";
 
 export default function Platform() {
-  const items = [
-    {
-      no: "01",
-      title: "Facebook ads & page management",
-      desc: "As a certified Facebook ad expert, we create and manage targeted ad campaigns, increase post visibility, and enhance your business page for consistent performance and audience interaction."
-    },
-    {
-      no: "02",
-      title: "Instagram reels, stories, and shopping",
-      desc: "We help you grow your brand using high-performing Reels, Stories, and product tagging features—combining creativity with analytics to increase reach and boost sales."
-    },
-    {
-      no: "03",
-      title: "LinkedIn B2B campaigns",
-      desc: "We craft powerful LinkedIn content focused on leadership, lead generation, and professional engagement for B2B brands aiming to connect with decision-makers."
-    },
-    {
-      no: "04",
-      title: "Twitter (X) trends & engagement",
-      desc: "We help you stay active and relevant by tapping into real-time trends, conversations, and hashtags—boosting visibility on X."
-    },
-    {
-      no: "05",
-      title: "YouTube shorts strategy",
-      desc: "We help create sharp, engaging short-form content aligned with your brand's voice and goals to grow your video presence."
-    },
-    {
-      no: "06",
-      title: "WhatsApp business broadcast campaigns",
-      desc: "We create customized message campaigns for WhatsApp Business—helping you communicate fast and personally with your audience."
-    }
-  ];
+ const items = [
+  {
+    no: "01",
+    title: "Facebook Marketing & Advertising",
+    desc: "PR WEBSTOCK helps businesses in Bhubaneswar reach targeted customers through strategic Facebook marketing, audience engagement, and high-performing ad campaigns."
+  },
+  {
+    no: "02",
+    title: "Instagram Growth & Brand Building",
+    desc: "We create engaging Instagram content, Reels, Stories, and promotional campaigns that increase visibility, engagement, and brand awareness."
+  },
+  {
+    no: "03",
+    title: "LinkedIn Marketing Solutions",
+    desc: "Strengthen your professional presence and generate quality business leads through customized LinkedIn marketing strategies."
+  },
+  {
+    no: "04",
+    title: "X (Twitter) Engagement Strategy",
+    desc: "Stay connected with your audience through trend-focused content, conversations, and real-time engagement on X."
+  },
+  {
+    no: "05",
+    title: "YouTube Shorts Marketing",
+    desc: "Increase reach and audience engagement with creative YouTube Shorts designed to showcase your products and services effectively."
+  },
+  {
+    no: "06",
+    title: "WhatsApp Business Marketing",
+    desc: "Build direct customer relationships through personalized WhatsApp campaigns, updates, promotions, and customer support."
+  }
+];
 
   return (
     <section className="platform-wrapper">
