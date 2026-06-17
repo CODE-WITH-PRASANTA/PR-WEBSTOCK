@@ -1,160 +1,146 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ===== HERO WRAPPER ===== */
 
-.features-banner {
+.blog-hero {
   position: relative;
   width: 100%;
-  height: 460px;
+  min-height: 380px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(circle at top left, #12356b 0, #02040a 40%),
+    radial-gradient(circle at top right, #0d1b33 0, #02040a 55%),
+    #02040a;
+  background-size: cover;
+  background-position: center;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 60px 6vw;
 
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #7b18ff 0%,
-      #5a0fd4 25%,
-      #32006f 60%,
-      #1a014c 100%
-    );
 }
 
-/* Dot Pattern */
-
-.features-banner::before {
-  content: "";
+/* Dark overlay */
+.blog-hero-overlay {
   position: absolute;
   inset: 0;
-
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.15) 1px,
-    transparent 1px
-  );
-
-  background-size: 28px 28px;
-  opacity: 0.7;
+  background: radial-gradient(circle at top left, rgba(18, 53, 107, 0.6), transparent 45%),
+              radial-gradient(circle at top right, rgba(5, 10, 30, 0.7), transparent 50%),
+              rgba(0, 0, 0, 0.45);
+  pointer-events: none;
 }
 
-/* Center Glow */
+/* ===== CONTENT (TEXT) ===== */
 
-.features-glow {
-  position: absolute;
-  width: 900px;
-  height: 900px;
-
-  background: radial-gradient(
-    circle,
-    rgba(170, 70, 255, 0.9) 0%,
-    rgba(170, 70, 255, 0.3) 45%,
-    transparent 75%
-  );
-
-  filter: blur(80px);
-}
-
-.features-content {
+.blog-hero-content {
   position: relative;
   z-index: 2;
-  text-align: center;
-  width: 100%;
-  padding: 0 20px;
+  transform: translateY(-20px);
 }
 
-.features-content h1 {
-  color: #ffffff;
-
-  font-family: "Times New Roman", serif;
-  font-size: 88px;
-  font-weight: 700;
+/* Breadcrumb pill */
+.blog-breadcrumb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(10, 20, 40, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
 
+.crumb-active {
+  color: #5f8cff;
+  font-weight: 600;
+}
+
+.crumb-separator {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.crumb {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Main heading */
+.blog-hero-title {
+  margin-top: 26px;
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: 1px;
-
-  margin-bottom: 25px;
-}
-
-.features-breadcrumb {
-  display: flex;
-  justify-content: center;
-}
-
-.features-breadcrumb a {
   color: #ffffff;
-  text-decoration: none;
+}
+
+/* ===== FLOATING ARROW BUTTON ===== */
+
+.blog-scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 78px;
+  border-radius: 999px;
+  border: 1.4px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  z-index: 3;
+
+  animation: heroFloat 2.2s ease-in-out infinite;
+}
+
+/* Up–down floating animation */
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+
+.blog-scroll-arrow {
   font-size: 20px;
-  font-family: "Times New Roman", serif;
-  transition: 0.3s;
+  color: #ffffff;
+  transform: translateY(-4px);
 }
 
-.features-breadcrumb a:hover {
-  color: #d7b9ff;
+.blog-scroll-indicator:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* =====================
-   LARGE SCREEN
-===================== */
-
-@media (max-width: 1400px) {
-  .features-content h1 {
-    font-size: 72px;
-  }
-}
-
-/* =====================
-   LAPTOP
-===================== */
-
-@media (max-width: 1200px) {
-  .features-banner {
-    height: 420px;
-  }
-
-  .features-content h1 {
-    font-size: 60px;
-  }
-}
-
-/* =====================
-   TABLET
-===================== */
+/* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
-  .features-banner {
-    height: 350px;
+  .blog-hero {
+    padding: 50px 5vw;
+    min-height: unset;
   }
 
-  .features-content h1 {
-    font-size: 42px;
+  .blog-hero-content {
+    transform: translateY(-10px);
   }
 
-  .features-breadcrumb a {
-    font-size: 18px;
-  }
-}
-
-/* =====================
-   MOBILE
-===================== */
-
-@media (max-width: 480px) {
-  .features-banner {
-    height: 280px;
-    padding: 20px;
+  .blog-hero-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
   }
 
-  .features-content h1 {
-    font-size: 28px;
-    line-height: 1.3;
-  }
-
-  .features-breadcrumb a {
-    font-size: 16px;
+  .blog-scroll-indicator {
+    height: 50px;
+    bottom: 30px;
   }
 }

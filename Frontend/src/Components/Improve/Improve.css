@@ -36,12 +36,6 @@
   flex-wrap: wrap;
 }
 
-.admin-image {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-}
 
 .meta-item {
   display: flex;
@@ -121,7 +115,7 @@
   .meta-dot {
     display: none;
   }
-
+ 
   .admin-image {
     width: 50px;
     height: 50px;
