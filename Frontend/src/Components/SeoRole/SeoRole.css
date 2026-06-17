@@ -2,7 +2,7 @@
    SECTION
 ================================ */
 .lead-section {
-  padding: 100px 0;
+  padding: 40px 0;
   background: #ffffff;
 }
 
@@ -51,6 +51,8 @@
 .lead-image {
   display: flex;
   justify-content: center;
+  position: sticky;
+  top: 120px;
 }
 
 .lead-image img {
@@ -59,15 +61,26 @@
   border-radius: 6px;
   transform: rotate(-10deg);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s ease;
 }
 
 /* ================================
-   CONTENT
+   SCROLLABLE CONTENT
 ================================ */
 .lead-content {
-  display: flex;
-  flex-direction: column;
+  height: 650px;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari */
+.lead-content::-webkit-scrollbar {
+  display: none;
 }
 
 /* ================================
@@ -87,13 +100,10 @@
 
 .lead-row h3 {
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   color: #000;
 }
 
-/* ================================
-   LIST
-================================ */
 .lead-row ul {
   list-style: none;
   padding: 0;
@@ -117,7 +127,7 @@
 }
 
 /* ================================
-   TABLET RESPONSIVE
+   TABLET
 ================================ */
 @media (max-width: 1024px) {
   .lead-top {
@@ -132,12 +142,21 @@
 
   .lead-bottom {
     grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 40px;
+  }
+
+  .lead-image {
+    position: static;
   }
 
   .lead-image img {
     width: 50%;
     transform: rotate(-6deg);
+  }
+
+  .lead-content {
+    height: auto;
+    overflow: visible;
   }
 
   .lead-row {
@@ -147,11 +166,11 @@
 }
 
 /* ================================
-   MOBILE RESPONSIVE
+   MOBILE
 ================================ */
 @media (max-width: 600px) {
   .lead-section {
-    padding: 70px 0;
+    padding: 60px 0;
   }
 
   .lead-top h2 {
@@ -162,17 +181,30 @@
     font-size: 14px;
   }
 
-  .lead-bottom {
-    gap: 40px;
-  }
-
   .lead-image img {
     width: 70%;
     transform: rotate(0);
   }
 
+  .lead-content {
+  max-height: 650px; /* fixed height */
+  overflow-y: auto;
+  padding-right: 10px;
+
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* IE & Edge */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari */
+.lead-content::-webkit-scrollbar {
+  display: none;
+}
+
   .lead-row {
-    padding: 28px 0;
+    padding: 24px 0;
   }
 
   .lead-row h3 {
@@ -181,6 +213,5 @@
 
   .lead-row li {
     font-size: 14px;
-    padding-left: 20px;
   }
 }

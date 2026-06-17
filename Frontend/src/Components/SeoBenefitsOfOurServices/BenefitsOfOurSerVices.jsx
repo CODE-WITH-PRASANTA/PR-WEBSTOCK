@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,61 +26,61 @@ export default function BenefitsOfOurSerVices() {
       step: "01",
       icon: seoplaning,
       title: "SEO Planning",
-      desc: "A strategic SEO strategy for your business helps us improve rankings.",
+      desc: "Custom SEO strategies for sustainable business growth.",
     },
     {
       step: "02",
       icon: seoanalysis,
       title: "Content Gap Analysis",
-      desc: "Identifying content gaps to create relevant and useful content.",
+      desc: "Identify opportunities to improve content performance.",
     },
     {
       step: "03",
       icon: seonavigation,
-      title: "Optimize Website Navigation",
-      desc: "Optimizing navigation helps crawlers and users move through pages.",
+      title: "Website Navigation",
+      desc: "Improve user experience and search visibility.",
     },
     {
       step: "04",
       icon: seospeed,
-      title: "Improve Site Speed",
-      desc: "Optimizing website elements to improve speed and SEO.",
+      title: "Site Speed Optimization",
+      desc: "Faster websites that rank and convert better.",
     },
     {
       step: "05",
       icon: seoux,
-      title: "Enhance User Experience",
-      desc: "Better UX strategies to improve rankings.",
+      title: "User Experience",
+      desc: "Better engagement through optimized website journeys.",
     },
     {
       step: "06",
       icon: seomarketanalysis,
       title: "Market Analysis",
-      desc: "Identify audience, competitors, and opportunities.",
+      desc: "Understand competitors and target audiences.",
     },
     {
       step: "07",
       icon: seoroi,
-      title: "Increased ROI",
-      desc: "Optimized SEO increases visitors and ROI.",
+      title: "Higher ROI",
+      desc: "Generate more leads from organic search traffic.",
     },
     {
       step: "08",
       icon: seobrandpromotion,
-      title: "Organic Brand Promotion",
-      desc: "Improve visibility with SEO strategies.",
+      title: "Brand Visibility",
+      desc: "Increase online reach and brand awareness.",
     },
     {
       step: "09",
       icon: seoraking,
-      title: "Improved Website Ranking",
-      desc: "Detailed audits help rank higher.",
+      title: "Better Rankings",
+      desc: "Improve keyword rankings on search engines.",
     },
     {
       step: "10",
       icon: seoreasrch,
       title: "Keyword Research",
-      desc: "Finding high-value keywords for better reach.",
+      desc: "Target valuable keywords that drive traffic.",
     },
   ];
 
@@ -96,7 +97,7 @@ export default function BenefitsOfOurSerVices() {
           pin: true,
           scrub: 1,
           snap: {
-            snapTo: gsap.utils.snap(2 / (total - 1)), // 🔥 snap every 2 cards
+            snapTo: gsap.utils.snap(2 / (total - 1)),
             duration: 0.3,
             ease: "power1.inOut",
           },
@@ -104,7 +105,12 @@ export default function BenefitsOfOurSerVices() {
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const index = Math.round(self.progress * (total - 1));
-            panels.forEach((p, i) => p.classList.toggle("active", i === index));
+
+            panels.forEach((panel, i) => {
+              if (panel) {
+                panel.classList.toggle("active", i === index);
+              }
+            });
           },
         },
       });
@@ -116,8 +122,17 @@ export default function BenefitsOfOurSerVices() {
   return (
     <>
       <div className="heading">
-        <h1>Benefits of Hiring Our SEO Services Company in Bangalore India</h1>
+        <h1>
+          Benefits of Choosing PR WEBSTOCK SEO Services in Bhubaneswar, Odisha
+        </h1>
+
+        <p className="heading-description">
+          PR WEBSTOCK helps businesses in Bhubaneswar, Odisha improve Google
+          rankings, increase organic traffic, and generate quality leads
+          through proven SEO strategies tailored for long-term growth.
+        </p>
       </div>
+
       <section className="scroll-section" ref={containerRef}>
         <div className="scroll-wrapper">
           {cards.map((card, i) => (
@@ -128,9 +143,14 @@ export default function BenefitsOfOurSerVices() {
             >
               <div className="card">
                 <div className="card-header">
-                  <img className="icon" src={card.icon} alt={card.title} />
+                  <img
+                    className="icon"
+                    src={card.icon}
+                    alt={card.title}
+                  />
                   <span className="step">{card.step}</span>
                 </div>
+
                 <h3>{card.title}</h3>
                 <p>{card.desc}</p>
               </div>
@@ -141,3 +161,4 @@ export default function BenefitsOfOurSerVices() {
     </>
   );
 }
+
