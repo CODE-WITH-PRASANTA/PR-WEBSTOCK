@@ -5,83 +5,84 @@ import seoImage from "../../assets/Targeted-Keywords.webp";
 const SeoRole = () => {
   const seoLeadData = [
     {
-      title: "Targeted keywords",
+      title: "Targeted Keywords",
       points: [
-        "Strategic optimization with relevant keywords.",
-        "Aligning content with user search queries.",
-        "Driving organic traffic.",
-        "Attracting qualified leads."
+        "Research keywords with strong search intent.",
+        "Improve search visibility.",
+        "Drive qualified organic traffic.",
+        "Generate valuable leads."
       ]
     },
     {
-      title: "Superior user experience",
+      title: "Better User Experience",
       points: [
-        "SEO enhancements refine website design, structure, and navigation.",
-        "Deliver a great user experience.",
-        "Keep the visitors interested.",
-        "Encourage exploration and drive lead generation."
+        "Improve website structure and navigation.",
+        "Increase user engagement.",
+        "Reduce bounce rates.",
+        "Support higher conversions."
       ]
     },
     {
-      title: "High-quality content",
+      title: "Quality Content",
       points: [
-        "Content created precisely to meet audience needs.",
-        "High-quality content establishes authority and builds trust.",
-        "Engaging users with persuasive language, visuals, data, and CTAs.",
-        "Highly encourage visitors to convert into leads."
+        "Create content users want to read.",
+        "Build trust and authority.",
+        "Answer customer queries.",
+        "Encourage lead generation."
       ]
     },
     {
-      title: "Improved visibility",
+      title: "Improved Visibility",
       points: [
-        "Effective proven techniques enhance website visibility.",
-        "Capture the attention of potential leads.",
-        "Improve search result rankings.",
-        "Attract actively searching audiences interested in similar products or services."
+        "Increase online presence.",
+        "Rank for relevant searches.",
+        "Reach potential customers.",
+        "Boost website traffic."
       ]
     },
     {
-      title: "Analytics and tracking",
+      title: "Analytics & Tracking",
       points: [
-        "Analytics tools like Google Analytics offer data and insights.",
-        "Data-driven decisions help in generating more leads.",
-        "Optimizing strategies thereby continually improving lead-generation efforts."
+        "Measure SEO performance.",
+        "Track visitor behavior.",
+        "Improve marketing decisions.",
+        "Optimize lead generation."
       ]
     },
     {
       title: "Local SEO",
       points: [
-        "Optimize for local searches.",
-        "Penetrate and enhance presence in specific areas.",
-        "Attract local customers seeking local solutions.",
-        "Increase lead generation from the local audience."
+        "Improve local search rankings.",
+        "Target nearby customers.",
+        "Strengthen local visibility.",
+        "Generate local leads."
       ]
     },
     {
-      title: "Mobile optimization",
+      title: "Mobile Optimization",
       points: [
-        "Making the website mobile-friendly.",
-        "Improving user experience on mobile devices.",
-        "Capturing leads from the increasing number of mobile users.",
-        "Adapting to the rise in mobile device usage."
+        "Enhance mobile experience.",
+        "Improve page performance.",
+        "Reach mobile users.",
+        "Increase engagement."
       ]
     },
     {
-      title: "Social media integration",
+      title: "Social Media Integration",
       points: [
-        "Connecting SEO with social media.",
-        "Reaching more people and engaging your audience.",
-        "Facilitating content sharing.",
-        "Generating more leads and growing your customer base."
+        "Increase brand awareness.",
+        "Support content promotion.",
+        "Expand audience reach.",
+        "Drive website visits."
       ]
     },
     {
-      title: "Call-to-action (CTA) optimization",
+      title: "CTA Optimization",
       points: [
-        "Place persuasive CTAs strategically on your website.",
-        "Encourage visitors to take action.",
-        "Boost lead generation.",
-        "Prompt actions like contacting you, subscribing, or requesting a consultation."
+        "Encourage user actions.",
+        "Improve conversions.",
+        "Increase enquiries.",
+        "Generate more leads."
       ]
     }
   ];
@@ -90,33 +91,32 @@ const SeoRole = () => {
     <section className="lead-section">
       <div className="lead-container">
 
-        {/* TOP */}
         <div className="lead-top">
           <h2>
-            Role of SEO in qualified lead <br />
-            generation
+            How PR WEBSTOCK SEO Services Drive Quality Leads in Bhubaneswar, Odisha
           </h2>
+
           <p>
-            In the digital world, an attractive website alone is not enough.
-            With methodical and carefully planned SEO strategies, businesses
-            can achieve higher rankings, better visibility, and increased
-            conversions.
+            PR WEBSTOCK helps businesses in Bhubaneswar, Odisha improve
+            search rankings, increase organic traffic, and generate quality
+            leads through effective SEO strategies designed for long-term growth.
           </p>
         </div>
 
-        {/* BOTTOM */}
         <div className="lead-bottom">
 
-          {/* IMAGE */}
           <div className="lead-image">
-            <img src={seoImage} alt="SEO lead generation" />
+            <img
+              src={seoImage}
+              alt="PR WEBSTOCK SEO Services in Bhubaneswar Odisha"
+            />
           </div>
 
-          {/* CONTENT */}
-          <div className="lead-content">
+          <div className="lead-content custom-scrollbar">
             {seoLeadData.map((section, index) => (
               <div className="lead-row" key={index}>
                 <h3>{section.title}</h3>
+
                 <ul>
                   {section.points.map((point, i) => (
                     <li key={i}>{point}</li>
