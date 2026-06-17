@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.culture-section {
+  width: 100%;
+  padding: 40px 20px;
+  background: #f5f5f7;
+}
+
+.culture-container {
+  max-width: 1600px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+}
+
+.culture-card {
+  background: #2b2b40;
+  border-radius: 20px;
+  padding: 38px;
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.culture-card:hover {
+  transform: translateY(-6px);
+}
+
+.culture-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.culture-author-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.culture-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+  flex-wrap: wrap;
+}
+
+.author-name {
+  color: #5d3bff;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.dot {
+  color: #8d90a8;
+  font-size: 20px;
+}
+
+.blog-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #7f859f;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.culture-title {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+.title-line {
+  width: 50px;
+  height: 3px;
+  background: #5d3bff;
+  margin-bottom: 28px;
+}
+
+.culture-description {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 35px;
+}
+
+.read-btn {
+  width: fit-content;
+  margin-top: auto;
+  padding: 14px 28px;
+  border: 1px solid #5d3bff;
+  background: transparent;
+  color: #5d3bff;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.read-btn:hover {
+  background: #5d3bff;
+  color: #fff;
+}
+
+/* =========================
+   Large Screen
+========================= */
+
+@media (max-width: 1200px) {
+  .culture-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 768px) {
+  .culture-container {
+    grid-template-columns: 1fr;
+  }
+
+  .culture-card {
+    padding: 30px;
+    min-height: auto;
+  }
+
+  .culture-title {
+    font-size: 20px;
+  }
+
+  .culture-description {
+    font-size: 16px;
+  }
+
+  .author-name {
+    font-size: 18px;
+  }
+
+  .blog-date {
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 480px) {
+  .culture-section {
+    padding: 20px 15px;
+  }
+
+  .culture-card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .culture-title {
+    font-size: 18px;
+  }
+
+  .culture-description {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .read-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .culture-info {
+    gap: 6px;
+  }
+}

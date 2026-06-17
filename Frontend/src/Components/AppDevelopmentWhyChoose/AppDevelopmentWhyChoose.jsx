@@ -13,36 +13,37 @@ const CARDS_PER_PAGE = 3;
 
 const cards = [
   {
-    title: "Constant support",
-    text: `Our dedicated team provides ongoing application maintenance and performance enhancements to ensure your mobile app remains up-to-date and optimized. We offer responsive improvements and feature additions for a dynamic and engaging user experience.`,
+    title: "Dedicated Support",
+    text: "PR WEBSTOCK provides continuous support and maintenance services to ensure your mobile application remains secure, updated, and optimized for long-term success.",
     icon: iconSupport,
   },
   {
-    title: "App protection measures",
-    text: `We maintain a high standard of security by implementing additional layers of protection to safeguard against hacking, malware attacks, phishing attempts, and data breaches, keeping your mobile applications safe.`,
+    title: "Advanced Security",
+    text: "Our Bhubaneswar, Odisha development team follows industry-standard security practices to protect applications from cyber threats, unauthorized access, and data breaches.",
     icon: iconProtection,
   },
   {
-    title: "Performance ready approach",
-    text: `Our strategic implementation analytics tools allow us to assess user interaction and make necessary improvements. We focus on optimal app loading speed and overall performance for a seamless user journey.`,
+    title: "High Performance Apps",
+    text: "PR WEBSTOCK develops fast, responsive, and scalable mobile applications designed to deliver outstanding user experiences across Android and iOS platforms.",
     icon: iconPerformance,
   },
   {
-    title: "Highly experienced resources",
-    text: `Webomindapps boasts a highly skilled engineering team that stays abreast of the latest technological advancements. Our creative developers excel in Android and iOS mobile app development, consistently delivering exceptional results.`,
+    title: "Experienced Development Team",
+    text: "Our skilled developers specialize in Android app development, iOS app development, and cross-platform solutions, delivering reliable results for businesses of all sizes.",
     icon: iconResources,
   },
   {
-    title: "Service quality & user-centricity",
-    text: `We are committed to quality services, meeting client requirements through top-notch UI/UX, robust security, and precise functionality delivered within deadlines, empowering you with reliable and user-friendly mobile solutions.`,
+    title: "Quality & User Experience",
+    text: "At PR WEBSTOCK, we focus on intuitive UI/UX design, robust functionality, and seamless user experiences that help businesses improve customer engagement and retention.",
     icon: iconService,
   },
   {
-    title: "Comprehensive solutions",
-    text: `Our mobile app development services cater to unique client requirements, from customized designs to advanced software development. We provide complete support, maintenance, and unmatched scalability for your business.`,
+    title: "Complete Mobile App Solutions",
+    text: "Based in Bhubaneswar, Odisha, PR WEBSTOCK offers end-to-end mobile app development services, including strategy, design, development, testing, deployment, and ongoing support.",
     icon: iconSolutions,
   },
 ];
+
 
 const WhyChooseSection = () => {
   const [page, setPage] = useState(0);
@@ -68,20 +69,25 @@ const WhyChooseSection = () => {
 
   return (
     <section className="why-section">
-      <h2 className="why-title">
-        Why choose Webomindapps as a mobile app development company in Bangalore?
-      </h2>
+
+    <h2 className="why-title">
+      Why Choose PR WEBSTOCK for Mobile App Development?
+    </h2>
 
       <div className="why-intro-row">
         <div className="why-intro-line" />
-        <p className="why-intro-text">
-          Our extensive expertise, unwavering dedication, and proven track record
-          set us apart in mobile application development. With a highly skilled
-          team, we deliver cutting-edge solutions tailored to your unique needs.
-          Our client-centric approach ensures clear communication, timely
-          delivery, and utmost customer satisfaction. Trust us to bring your
-          mobile app vision to life.
-        </p>
+      
+      <p className="why-intro-text">
+         PR WEBSTOCK is a trusted mobile app development company in Bhubaneswar,
+         Odisha, delivering innovative Android, iOS, and cross-platform applications
+         for startups, businesses, and enterprises. Our experienced team combines
+         modern technologies, creative design, and proven development practices to
+         build scalable, secure, and high-performing mobile applications. From
+         consultation and development to deployment and ongoing support, PR WEBSTOCK
+          is committed to delivering reliable digital solutions that help businesses
+         grow in today's competitive market.
+      </p>
+
       </div>
 
       {/* Cards slider */}

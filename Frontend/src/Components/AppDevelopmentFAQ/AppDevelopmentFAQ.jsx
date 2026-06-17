@@ -1,69 +1,78 @@
 import React, { useState } from "react";
 import "./AppDevelopmentFAQ.css";
 
+
 const faqs = [
   {
-    question: "What is the process of creating an app?",
+    question: "What mobile app development services does PR WEBSTOCK provide?",
     answer:
-      "We follow a streamlined and efficient process to deliver exceptional mobile apps within your budget and on time. Our skilled team is tailored to meet your specific expectations and adheres to the agile methodology. This approach helps in eliminating waste and minimizing costs and risks, ensuring a smooth project journey."
+      "PR WEBSTOCK offers Android app development, iOS app development, hybrid app development, and cross-platform mobile app development services for startups, businesses, and enterprises in Bhubaneswar, Odisha."
   },
   {
-    question: "How much time will it take to build and launch the app?",
+    question: "What is the mobile app development process at PR WEBSTOCK?",
     answer:
-      "The timeline depends on the complexity of the app, required features, and design. Typically, a standard mobile app can take anywhere from a few weeks to several months, including development, testing, and deployment."
+      "Our process includes project consultation, requirement analysis, UI/UX design, development, testing, deployment, and post-launch support. Our Bhubaneswar, Odisha team follows a structured approach to ensure successful project delivery."
   },
   {
-    question: "Do you give a price estimate?",
+    question: "How long does it take to develop a mobile application?",
     answer:
-      "Yes, after understanding your requirements, we provide a detailed project proposal with a transparent cost estimate and timeline."
+      "The development timeline depends on the complexity, features, and platform requirements. PR WEBSTOCK provides a detailed project timeline after understanding your business objectives."
   },
   {
-    question: "What kind of support will be provided through the development process?",
+    question: "Do you provide a project cost estimate before development?",
     answer:
-      "We provide continuous communication, regular progress updates, testing feedback loops, and dedicated support throughout the development lifecycle."
+      "Yes. PR WEBSTOCK provides transparent project estimates based on your requirements, features, design expectations, and development scope."
   },
   {
-    question: "Do you offer maintenance services?",
+    question: "Do you offer Android and iOS app development services?",
     answer:
-      "Yes, we offer ongoing maintenance and post-launch support to ensure your app remains secure, updated, and fully optimized."
+      "Yes. Our experienced developers create custom Android and iOS applications that deliver excellent performance, security, and user experience."
   },
   {
-    question: "Can you build apps for both iOS and Android?",
+    question: "Can PR WEBSTOCK develop cross-platform mobile applications?",
     answer:
-      "Absolutely. We build native as well as cross-platform apps that work seamlessly on both iOS and Android devices."
+      "Absolutely. We use modern frameworks such as React Native and Flutter to build high-quality cross-platform applications that work seamlessly on Android and iOS devices."
   },
   {
-    question: "Should I develop in Android or iOS?",
+    question: "Do you provide UI/UX design services?",
     answer:
-      "It depends on your target audience, budget, and business goals. We help you decide the best platform or recommend building for both."
+      "Yes. Our UI/UX designers create intuitive, visually appealing, and user-friendly designs that enhance customer engagement and improve user satisfaction."
   },
   {
-    question:
-      "Is there a difference between native and cross-platform app development?",
+    question: "Do you offer mobile app maintenance and support?",
     answer:
-      "Yes. Native apps are built specifically for one platform and offer high performance, while cross-platform apps share code across platforms and are more cost-effective. We help you choose the right approach."
+      "Yes. PR WEBSTOCK provides ongoing maintenance, performance optimization, security updates, bug fixes, and technical support after application launch."
   },
   {
-    question: "Do you have UI/UX design services?",
+    question: "Who owns the source code and intellectual property rights?",
     answer:
-      "Yes, our dedicated UI/UX team designs intuitive and visually engaging interfaces tailored to your brand and user needs."
+      "Clients retain complete ownership of their application, source code, and intellectual property rights as defined in the project agreement."
   },
   {
-    question: "Who will own the IP rights to my application?",
+    question: "Can PR WEBSTOCK sign a Non-Disclosure Agreement (NDA)?",
     answer:
-      "You retain full ownership and IP rights to your application and its source code as outlined in the agreement."
+      "Yes. We are happy to sign an NDA to ensure complete confidentiality and protection of your business ideas and project information."
   },
   {
-    question: "Can you sign an NDA for the app you're developing?",
+    question: "Why choose PR WEBSTOCK for mobile app development in Bhubaneswar, Odisha?",
     answer:
-      "Yes, we are happy to sign a Non-Disclosure Agreement to ensure your idea and business information remain confidential."
+      "PR WEBSTOCK combines technical expertise, innovative design, transparent communication, and reliable support to deliver scalable mobile applications that help businesses achieve their digital goals."
   }
 ];
 
 const FaqSection = () => {
-  // First question open by default (like screenshot)
-  const [activeIndex, setActiveIndex] = useState(0);
+ const FAQS_PER_PAGE = 5;
 
+const [currentPage, setCurrentPage] = useState(1);
+const [activeIndex, setActiveIndex] = useState(null);
+
+const totalPages = Math.ceil(faqs.length / FAQS_PER_PAGE);
+
+const startIndex = (currentPage - 1) * FAQS_PER_PAGE;
+const currentFaqs = faqs.slice(
+  startIndex,
+  startIndex + FAQS_PER_PAGE
+);
   const handleToggle = (index) => {
     setActiveIndex((prev) => (prev === index ? null : index));
   };
@@ -73,13 +82,14 @@ const FaqSection = () => {
       <h2 className="faq-title">Frequently asked question (FAQ)</h2>
 
       <div className="faq-list">
-        {faqs.map((item, index) => {
-          const isActive = index === activeIndex;
+        {currentFaqs.map((item, index) => {
+  const actualIndex = startIndex + index;
+          const isActive = actualIndex === activeIndex;
           return (
             <div key={item.question} className="faq-item">
               <button
                 className={`faq-question-row ${isActive ? "active" : ""}`}
-                onClick={() => handleToggle(index)}
+                onClick={() => handleToggle(actualIndex)}
               >
                 <span className="faq-question-text">{item.question}</span>
                 <span className="faq-toggle-icon">
@@ -99,6 +109,22 @@ const FaqSection = () => {
           );
         })}
       </div>
+      <div className="faq-pagination">
+  {Array.from({ length: totalPages }).map((_, index) => (
+    <button
+      key={index}
+      className={`faq-page-btn ${
+        currentPage === index + 1 ? "active" : ""
+      }`}
+      onClick={() => {
+        setCurrentPage(index + 1);
+        setActiveIndex(null);
+      }}
+    >
+      {index + 1}
+    </button>
+  ))}
+</div>
     </section>
   );
 };
