@@ -8,34 +8,35 @@ const steps = [
   {
     id: 1,
     title: "Project Discussion",
-    text: "After signing up, we will connect with you to finalize your thoughts before diving into the first phase of development.",
+    text: "At PR WEBSTOCK, Bhubaneswar, Odisha, we start every mobile app project with a detailed consultation to understand your business goals, target audience, and project requirements.",
     icon: "discussion",
   },
   {
     id: 2,
     title: "Wireframing & Designing",
-    text: "We'll give you screen designs of your app, helping you visualize and understand it better.",
+    text: "Our design team creates intuitive wireframes and engaging UI/UX designs that help clients visualize their applications before development begins.",
     icon: "wireframe",
   },
   {
     id: 3,
     title: "Development Stage",
-    text: "During the development stage, our skilled developers bring your idea to life, turning it into a tangible reality.",
+    text: "PR WEBSTOCK develops secure, scalable, and high-performance Android, iOS, and cross-platform mobile applications using modern technologies and industry best practices.",
     icon: "dev",
   },
   {
     id: 4,
     title: "Testing & Quality Assurance",
-    text: "Our advanced testing technology ensures thorough quality checks, eliminating errors before launch.",
+    text: "Our quality assurance specialists conduct comprehensive testing to ensure every mobile application delivers excellent performance, security, and reliability.",
     icon: "qa",
   },
   {
     id: 5,
     title: "Service and Support",
-    text: "We work closely with our clients to offer support and maintenance services for their apps even after launch.",
+    text: "Based in Bhubaneswar, Odisha, PR WEBSTOCK provides ongoing maintenance, updates, and technical support to keep your mobile application running smoothly after launch.",
     icon: "support",
   },
 ];
+
 
 const ProcessTimelinePaginated = () => {
   const [page, setPage] = useState(1);
@@ -51,15 +52,16 @@ const ProcessTimelinePaginated = () => {
 
   return (
     <section className="ptp-section">
-      <h2 className="ptp-title">
-        Mobile app development process: A clear path to success
+
+       <h2 className="ptp-title">
+           Mobile App Development Process at PR WEBSTOCK, Bhubaneswar, Odisha
       </h2>
 
+
       <p className="ptp-subtitle">
-        At Webomindapps, we follow a well-defined and structured approach to mobile app
-        development. Our streamlined process ensures transparency, efficiency, and superior
-        outcomes for our clients. From ideation to deployment, we guide you through every step,
-        delivering exceptional mobile app solutions that meet your business objectives.
+        PR WEBSTOCK follows a streamlined mobile app development process to deliver 
+        high-quality Android, iOS, and cross-platform applications. Based in Bhubaneswar, Odisha, our team focuses on innovation, transparency, and performance,
+         helping businesses transform ideas into successful mobile solutions with reliable development and ongoing support.
       </p>
 
       {/* TIMELINE ROW (CURRENT PAGE) */}

@@ -131,7 +131,7 @@ const Bestwebsitedesign = () => {
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      At PrWEBSTOCK, we focus on building websites that are simple to use, fast to load, and strong at the code level. Our design and development process ensures performance, security, and long-term scalability.
+                      At PRWEBSTOCK, we focus on building websites that are simple to use, fast to load, and strong at the code level. Our design and development process ensures performance, security, and long-term scalability.
                     </p>
                   </div>
                   <div className="bwd-point">
@@ -244,7 +244,7 @@ const Bestwebsitedesign = () => {
                   <div className="bwd-point">
                     <span className="bwd-arrow">→</span>
                     <p>
-                      At PrWEBSTOCK, we believe every business is unique. That’s why we provide a fully customized web design experience in Bhubaneswar, built around your business goals, audience, and long-term vision.
+                      At PRWEBSTOCK, we believe every business is unique. That’s why we provide a fully customized web design experience in Bhubaneswar, built around your business goals, audience, and long-term vision.
                     </p>
                   </div>
                   <div className="bwd-point">
