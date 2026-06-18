@@ -162,3 +162,45 @@
   }
 }
 }
+
+/* ================================
+   DESCRIPTION
+================================ */
+
+.seo-services-description {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  padding: 0 20px;
+
+  text-align: center;
+
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555;
+
+  font-weight: 400;
+}
+
+/* Highlighted Text */
+.seo-services-description span {
+  color: #ff2b55;
+  font-weight: 600;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .seo-services-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .seo-services-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 0 10px;
+  }
+}
