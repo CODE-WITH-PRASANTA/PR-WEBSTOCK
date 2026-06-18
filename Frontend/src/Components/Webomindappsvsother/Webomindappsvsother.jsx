@@ -90,7 +90,7 @@ const Webomindappsvsother = () => {
             </div>
             <div className="Webomindappsvsother-headerCell Webomindappsvsother-headerCell--web">
               {/* replace with actual logo image if you want */}
-              <span className="Webomindappsvsother-logoText">WEBOMINDAPPS</span>
+              <span className="Webomindappsvsother-logoText">PR WEBSTOCK</span>
             </div>
             <div className="Webomindappsvsother-headerCell Webomindappsvsother-headerCell--other">
               Other Web Design Companies

@@ -17,8 +17,7 @@ const ContactCards = () => {
 
         <h3 className="contact-title">Address Line</h3>
         <p className="contact-text">
-          Bowery St, New York, 37 USA <br />
-          NY 10013, USA
+         608A Grand bazar,Phulnakhara,Bhubaneswar 754001
         </p>
       </div>
 
@@ -35,8 +34,8 @@ const ContactCards = () => {
 
         <h3 className="contact-title">Phone Number</h3>
         <p className="contact-text">
-          +1255 - 568 - 6523 4374-221 <br />
-          +1255 - 568 - 6523
+          +91 7789801327,+91 6372545244
+
         </p>
       </div>
 
@@ -51,8 +50,7 @@ const ContactCards = () => {
 
         <h3 className="contact-title">Mail Address</h3>
         <p className="contact-text">
-          email@example.com <br />
-          info@yourdomain.com
+          prwebstock.com@gmail.com
         </p>
       </div>
 

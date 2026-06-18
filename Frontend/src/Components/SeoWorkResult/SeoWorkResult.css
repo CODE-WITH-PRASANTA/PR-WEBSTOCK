@@ -1,6 +1,9 @@
 .seo-work-section {
   padding: 20px 20px;
   background-color: #ffffff;
+
+  /* Top Border Only */
+  border-top: 1px solid #ddd;
 }
 
 /* Header */
