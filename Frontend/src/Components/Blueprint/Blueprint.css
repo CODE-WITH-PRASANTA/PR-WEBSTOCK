@@ -3,7 +3,9 @@
 ------------------------------------ */
 .bpx-wrap {
   width: 100%;
-  padding: 30px 6vw;
+  max-width: 1400px;
+  margin: 0% auto;      
+  padding: 30px 40px;
   background: linear-gradient(180deg, #f7faff, #eef3ff);
   position: relative;
   overflow: hidden;
