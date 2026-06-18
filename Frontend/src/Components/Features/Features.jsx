@@ -1,20 +1,32 @@
 import React from "react";
 import "./Features.css";
-import { Link } from "react-router-dom";
+import PricingBanner from "../../assets/Breadcrum.webp";
 
-const Features = () => {
+const Features = ({ onArrowClick }) => {
   return (
-    <section className="features-banner">
-      <div className="features-glow"></div>
-
-      <div className="features-content">
-        <h1>GET MANY MORE FEATURES</h1>
-
-        <div className="features-breadcrumb">
-          <Link to="/">Home</Link>
-        </div>
-      </div>
-    </section>
+    <section
+         className="blog-hero"
+         style={{ backgroundImage: `url(${PricingBanner})` }}
+       >
+         <div className="blog-hero-overlay" />
+   
+         <div className="blog-hero-content">
+           <div className="blog-breadcrumb-pill">
+             
+           </div>
+   
+           <h6 className="blog-hero-title">GET MANY MORE FEATURES </h6>
+         </div>
+   
+         <button
+           className="blog-scroll-indicator"
+           type="button"
+           onClick={onArrowClick}
+         >
+           <span className="blog-scroll-arrow">↓</span>
+         </button>
+       </section>
+       
   );
 };
 

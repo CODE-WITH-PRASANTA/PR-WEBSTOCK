@@ -53,8 +53,13 @@ const Webomind = () => {
   return (
     <div className="wm-section">
       <h1 className="wm-title">
+<<<<<<< HEAD
+        Why choose PR WEBSTOCK for social media marketing in bangalore?
+      </h1>
+=======
   Why Choose PR WEBSTOCK For Social Media Marketing In Bhubaneswar?
 </h1>
+>>>>>>> 55648e56f094c8e33d47f8993db89a104b9992e9
 
       <div className="wm-grid">
         {items.map((box, index) => (
