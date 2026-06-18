@@ -17,7 +17,7 @@
   padding: 60px 40px;
   text-align: center;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.06);
-  transition: 0.35s ease;
+  transition: all 0.35s ease;
   cursor: pointer;
 }
 
@@ -26,14 +26,17 @@
   width: 80px;
   height: 80px;
   margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* SVG ICON */
 .icon-svg {
   width: 68px;
   height: 68px;
-  stroke: #2563eb; /* <── blue outline color */
-  transition: transform 0.5s ease, stroke 0.3s ease;
+  stroke: #2563eb;
+  transition: stroke 0.3s ease;
 }
 
 /* Titles & Text */
@@ -42,12 +45,14 @@
   font-weight: 600;
   color: #111827;
   margin-bottom: 12px;
+  transition: color 0.3s ease;
 }
 
 .contact-text {
   font-size: 16px;
   color: #6b7280;
   line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
 /* --------------------- */
@@ -55,19 +60,27 @@
 /* --------------------- */
 
 .contact-card:hover {
-  background: #facc15; /* full yellow */
+  background: #facc15;
   transform: translateY(-6px);
   box-shadow: 0 24px 45px rgba(0, 0, 0, 0.15);
 }
 
 .contact-card:hover .icon-svg {
-  transform: rotate(360deg);
-  stroke: #1e3a8a; /* deeper blue on hover */
+  stroke: #1e3a8a;
 }
 
 .contact-card:hover .contact-title,
 .contact-card:hover .contact-text {
   color: #1e3a8a;
+}
+
+/* Prevent icon movement on click */
+.contact-icon,
+.icon-svg,
+.contact-icon:active,
+.icon-svg:active {
+  transform: none !important;
+  animation: none !important;
 }
 
 /* Responsive */
