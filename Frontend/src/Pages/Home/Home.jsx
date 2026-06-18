@@ -1,17 +1,19 @@
-import React from 'react'
+import React from 'react';
 import { Helmet } from "react-helmet";
 
-import Herosection from '../../Components/Herosection/Herosection'
-import News from '../../Components/News/News'
-import Homeabout from '../../Components/Homeabout/Homeabout'
-import Oursolutions from '../../Components/Oursolutions/Oursolutions'
-import Creativeshowcase from '../../Components/Creativeshowcase/Creativeshowcase'
-import Contactus from '../../Components/Contactus/Contactus'
-import Blueprint from '../../Components/Blueprint/Blueprint'
-import Successinthefield from '../../Components/Successinthefield/Successinthefield'
-import Innovationdiaries from '../../Components/Innovationdiaries/Innovationdiaries'
-import Clientstories from '../../Components/Clientstories/Clientstories'
-import Workflowinsights from '../../Components/Workflowinsights/Workflowinsights'
+
+import Herosection from '../../Components/Herosection/Herosection';
+import News from '../../Components/News/News';
+import Homeabout from '../../Components/Homeabout/Homeabout';
+import Oursolutions from '../../Components/Oursolutions/Oursolutions';
+import Creativeshowcase from '../../Components/Creativeshowcase/Creativeshowcase';
+import Contactus from '../../Components/Contactus/Contactus';
+import Blueprint from '../../Components/Blueprint/Blueprint';
+import Successinthefield from '../../Components/Successinthefield/Successinthefield';
+import Innovationdiaries from '../../Components/Innovationdiaries/Innovationdiaries';
+import Clientstories from '../../Components/Clientstories/Clientstories';
+import Workflowinsights from '../../Components/Workflowinsights/Workflowinsights';
+
 
 const Home = () => {
   return (
@@ -131,3 +133,6 @@ const Home = () => {
 }
 
 export default Home
+
+
+

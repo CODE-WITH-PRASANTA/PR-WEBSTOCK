@@ -49,12 +49,12 @@ const contactInfo = [
   {
     icon: <FaPhoneAlt />,
     label: 'Call Anytime',
-    value: '+91 7789 801 327'
+    value: '+91 6372545244'
   },
   {
     icon: <FaMapMarkerAlt />,
     label: 'Office Location',
-    value: 'Unit 32, Nexus Esplanade, Bhubaneswar'
+    value: '608A Grand bazar,Phulnakhara,Bhubaneswar 754001'
   },
   {
     icon: <FaEnvelope />,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SeoDigitalproducts.css";
 
 import img1 from "../../assets/img1.svg";
@@ -93,24 +93,105 @@ const SeoDigitalproducts = () => {
         "Gain customer trust.",
       ],
     },
+
+    // Duplicate for pagination demo
+    {
+      title: "SEO Audits",
+      icon: img9,
+      hoverColor: "#2893bd",
+      points: [
+        "Identify SEO issues.",
+        "Improve website health.",
+        "Increase performance.",
+      ],
+    },
+    {
+      title: "Local SEO",
+      icon: img1,
+      hoverColor: "#ef2f2f",
+      points: [
+        "Optimize Google listings.",
+        "Increase local visibility.",
+        "Drive nearby customers.",
+      ],
+    },
+    {
+      title: "Link Building",
+      icon: img2,
+      hoverColor: "#003d4f",
+      points: [
+        "Earn quality backlinks.",
+        "Improve domain authority.",
+        "Boost rankings.",
+      ],
+    },
+    {
+      title: "Content Strategy",
+      icon: img3,
+      hoverColor: "#f64a68",
+      points: [
+        "Create SEO content.",
+        "Target customer intent.",
+        "Increase engagement.",
+      ],
+    },
+    {
+      title: "Competitor Analysis",
+      icon: img4,
+      hoverColor: "#1f3e7b",
+      points: [
+        "Track competitors.",
+        "Find opportunities.",
+        "Improve market reach.",
+      ],
+    },
+    {
+      title: "Mobile SEO",
+      icon: img5,
+      hoverColor: "#1a7d55",
+      points: [
+        "Improve mobile speed.",
+        "Enhance UX.",
+        "Boost rankings.",
+      ],
+    },
+    {
+      title: "E-commerce SEO",
+      icon: img6,
+      hoverColor: "#6836b3",
+      points: [
+        "Optimize product pages.",
+        "Increase sales.",
+        "Improve visibility.",
+      ],
+    },
     {
       title: "Competitive Advantage",
       icon: img9,
       hoverColor: "#2893bd",
       points: [
         "Outperform competitors.",
-        "Capture more opportunities.",
-        "Grow your online presence.",
+        "Capture opportunities.",
+        "Grow online presence.",
       ],
     },
   ];
 
+  const cardsPerPage = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const currentCards = cards.slice(
+    startIndex,
+    startIndex + cardsPerPage
+  );
+
   return (
     <section className="feature-cards-section">
       <div className="heading">
-        <h1>
-          SEO Strategies for Digital Product Growth by PR WEBSTOCK
-        </h1>
+        <h1>SEO Strategies for Digital Product Growth by PR WEBSTOCK</h1>
 
         <p>
           PR WEBSTOCK helps businesses in Bhubaneswar, Odisha improve search
@@ -121,7 +202,7 @@ const SeoDigitalproducts = () => {
       </div>
 
       <div className="feature-cards-grid">
-        {cards.map((card, i) => (
+        {currentCards.map((card, i) => (
           <div
             className="feature-card"
             key={i}
@@ -130,10 +211,7 @@ const SeoDigitalproducts = () => {
             <div className="feature-card-header">
               <h3>{card.title}</h3>
 
-              <img
-                src={card.icon}
-                alt={`${card.title} - PR WEBSTOCK SEO Services`}
-              />
+              <img src={card.icon} alt={card.title} />
             </div>
 
             <ul>
@@ -145,6 +223,34 @@ const SeoDigitalproducts = () => {
             <div className="color-box"></div>
           </div>
         ))}
+      </div>
+
+      <div className="pagination">
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            className={
+              currentPage === index + 1 ? "active-page" : ""
+            }
+            onClick={() => setCurrentPage(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
       </div>
     </section>
   );

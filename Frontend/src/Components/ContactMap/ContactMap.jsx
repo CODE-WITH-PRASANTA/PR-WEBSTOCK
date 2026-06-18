@@ -31,8 +31,7 @@ const OfficeLocations = () => {
             <p className="office-city">Bhubaneswar</p>
 
             <p className="office-address">
-              Unit No. 32, 721, Cuttack - Puri Rd, Rasulgarh Industrial Estate,
-              Industrial Area Estate, Rasulgarh, Bhubaneswar, Odisha 751010
+             608A Grand bazar,Phulnakhara,Bhubaneswar 754001
             </p>
 
             <div className="office-hours">

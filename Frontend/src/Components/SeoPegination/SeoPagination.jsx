@@ -1,6 +1,6 @@
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./SeoPagination.css";
+
 import {
   FaCogs,
   FaMobileAlt,
@@ -39,43 +39,11 @@ const steps = [
     title: "Mobile SEO",
     desc: "Optimize mobile experience.",
   },
-  {
-    icon: <FaRocket />,
-    title: "Page Speed",
-    desc: "Improve website performance.",
-  },
-  {
-    icon: <FaCogs />,
-    title: "Technical SEO",
-    desc: "Enhance indexing and crawling.",
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Analytics",
-    desc: "Track traffic growth.",
-  },
-  {
-    icon: <FaCheckCircle />,
-    title: "Performance Review",
-    desc: "Measure SEO success.",
-  },
 ];
 
 const SeoPagination = () => {
-  const [active, setActive] = useState(0);
-
-  /* Auto Play Every 2 Seconds */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % steps.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="seo-pagination">
-      {/* Heading */}
       <div className="process-heading">
         <h2>
           PR WEBSTOCK SEO Process in Bhubaneswar, Odisha
@@ -90,44 +58,17 @@ const SeoPagination = () => {
         <span className="heading-line"></span>
       </div>
 
-      {/* Slider */}
-      <div className="slider-container">
-        <div
-          className="slider-track"
-          style={{
-            transform: `translateX(-${active * 320}px)`,
-            transition: "transform 0.8s ease",
-          }}
-        >
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className={`process-step ${
-                active === index ? "active" : ""
-              }`}
-            >
-              <div className="process-circle">
-                {step.icon}
-              </div>
-
-              <h4>{step.title}</h4>
-
-              <p>{step.desc}</p>
+      <div className="process-grid">
+        {steps.map((step, index) => (
+          <div className="seo-pagination" key={index}>
+            <div className="process-circle">
+              {step.icon}
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Dots */}
-      <div className="dot-pagination">
-        {steps.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${
-              active === index ? "active" : ""
-            }`}
-            onClick={() => setActive(index)}
-          />
+            <h4>{step.title}</h4>
+
+            <p>{step.desc}</p>
+          </div>
         ))}
       </div>
     </section>
@@ -135,4 +76,3 @@ const SeoPagination = () => {
 };
 
 export default SeoPagination;
-
