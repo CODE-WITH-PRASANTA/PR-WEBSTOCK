@@ -44,11 +44,6 @@
 /* ===========================
    MAIN TWO-COLUMN LAYOUT
 =========================== */
-.agile-main {
-  display: grid;
-  grid-template-columns: 38% 62%;
-  column-gap: 40px;
-}
 
 /* ===========================
    LEFT IMAGE AREA
@@ -62,12 +57,10 @@
 /* IMAGE + RECTANGLE CONTAINER */
 .agile-image-inner {
   position: relative;
-  width: 240px;       /* reduced image size */
+  width: 240px;
   height: 320px;
-  margin-left: -100px;  /* move entire block to the left */
-  margin-top: 40px; 
+  margin: 40px auto 0;
 }
-
 /* BLUE RECTANGLE UNDER IMAGE */
 .agile-rect {
   position: absolute;
@@ -84,6 +77,8 @@
 .agile-image {
   position: absolute;
   inset: 0;
+  top: 40px;
+  right: 40px;
   object-fit: cover;
   border-radius: 2px;
   transform: rotate(-12deg);
@@ -132,45 +127,115 @@
 /* ===========================
    RESPONSIVE
 =========================== */
-@media (max-width: 992px) {
+
+.agile-main {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.agile-image-wrapper {
+  flex: 0 0 35%;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
+.agile-steps {
+  flex: 1;
+}
+
+.agile-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+@media (max-width: 1024px) {
+
   .agile-main {
-    grid-template-columns: 1fr;
-    row-gap: 40px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .agile-image-wrapper {
-    justify-content: flex-start;
+    position: relative;
+    top: auto;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 40px;
   }
 
   .agile-image-inner {
-    margin-left: 0;   /* reset on tablet */
+    margin: 0 auto;
+  }
+
+  .agile-steps {
+    width: 100%;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+
   .agile-section {
     padding: 0 20px 60px;
   }
 
   .agile-title {
     font-size: 30px;
+    text-align: center;
   }
+
+  .agile-intro-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* .agile-intro-line {
+    width: 120px;
+  } */
 
   .agile-step-row {
     grid-template-columns: 1fr;
     row-gap: 10px;
   }
 
+  .agile-step-title {
+    font-size: 18px;
+  }
+
+  .agile-step-description {
+    font-size: 14px;
+  }
+
   .agile-image-inner {
     width: 200px;
     height: 280px;
-    margin-left: -20px;
+    margin: 0 auto;
   }
 
   .agile-rect {
     width: 120px;
     height: 80px;
-    bottom: 16px;
-    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .agile-title {
+    font-size: 24px;
+  }
+
+  .agile-image-inner {
+    width: 170px;
+    height: 240px;
+  }
+
+  .agile-intro-text,
+  .agile-step-description {
+    font-size: 13px;
   }
 }

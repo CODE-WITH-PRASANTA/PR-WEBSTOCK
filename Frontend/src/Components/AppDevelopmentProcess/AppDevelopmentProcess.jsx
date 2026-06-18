@@ -65,18 +65,33 @@ const ProcessTimelinePaginated = () => {
       </p>
 
       {/* TIMELINE ROW (CURRENT PAGE) */}
-      <div className="ptp-row">
-        {visibleSteps.map((step) => (
-          <div className="ptp-item" key={step.id}>
-            <div className="ptp-node">
-              <div className="ptp-circle">{renderIcon(step.icon)}</div>
-            </div>
-            <h3 className="ptp-item-title">{step.title}</h3>
-            <p className="ptp-item-text">{step.text}</p>
-          </div>
-        ))}
+     <div className="ptp-card-grid">
+  {visibleSteps.map((step) => (
+    <div className="ptp-card" key={step.id}>
+      
+      <div className="ptp-card-header">
+        <h3 className="ptp-card-title">{step.title}</h3>
+
+        <div className="ptp-card-icon">
+          {renderIcon(step.icon)}
+        </div>
       </div>
 
+      <p className="ptp-card-text">
+        {step.text}
+      </p>
+
+      <div className="ptp-card-footer">
+        <button className="ptp-btn">
+          Explore Feature
+          <span>›</span>
+        </button>
+      </div>
+
+      <div className="ptp-accent"></div>
+    </div>
+  ))}
+</div>
       {/* DOT PAGINATION */}
       <div className="ptp-dots">
         {Array.from({ length: totalPages }).map((_, idx) => {
