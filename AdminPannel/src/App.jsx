@@ -6,16 +6,16 @@ import {
 
 import MainLayout from "./Layout/MainLayout/MainLayout";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-
-import NewUser from "./Pages/NewUser/NewUser";
-import NewsProfile from "./Pages/NewsProfile/NewsProfile";
-import ManageEditior from "./Pages/ManageEditior/ManageEditior";
-import LeadManagementHub from "./Pages/LeadManagementHub/LeadManagementHub";
-import ContactManagement from "./Pages/ContactManagement/ContactManagement";
-import IndexAbstracte from "./Pages/IndexAbstracte/IndexAbstracte";
-import PublicationManagement from "./Pages/PublicationManagement/PublicationManagement";
 import Table from "./Component/Table/Table";
 import Testimonial from "./Component/Testimonial/Testimonial";
+import BlogPost from "./Pages/BlogPost/BlogPost";
+import BlogManagement from "./Pages/BlogManagement/BlogManagement";
+import Gallary from "./Pages/Gallary/Gallary";
+import Calender from "./Pages/Calender/Calender";
+
+
+import ProjectUser from "./Pages/ProjectUser/ProjectUser";
+import Careerobject from "./Pages/Careerobject/Careerobject";
 
 function App() {
   return (
@@ -24,17 +24,19 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
         
-          <Route path="/new-editor" element={<NewUser/>}/>
-          <Route path="/newsprofile"element={<NewsProfile/>}/>
-          <Route path="/manage-editor" element={<ManageEditior/>}/>
-          <Route path="/cold-lead-management" element={<LeadManagementHub/>}/>
-          <Route path="/contact-management" element={<ContactManagement/>}/>
-          <Route path="/index-abstracting-management" element={<IndexAbstracte/>}/>
-          <Route path="/publication-management" element={<PublicationManagement/>}/>
+         
           <Route path="/lead-management" element={<Table />}/>
           <Route path="/testimonial-management" element={<Testimonial />} />
           
           
+          <Route path="/blog-post" element={<BlogPost />} />
+          <Route path="/blog-management" element={<BlogManagement />} />
+          <Route path="/gallery-management" element={<Gallary />} />
+          <Route path="/calendar-management" element={<Calender />} />
+          
+          
+          <Route path="/project-management" element={<ProjectUser/>}/>
+          <Route path="/career-management" element={<Careerobject/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
