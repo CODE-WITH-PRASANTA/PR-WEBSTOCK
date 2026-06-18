@@ -1,198 +1,203 @@
-/* =========================
-   WRAPPER
-========================= */
+/* ===================================
+   SECTION
+=================================== */
+
 .seo-pagination {
-  max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #fff;
+  width: 100%;
+  min-height: 85vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 40px 20px;
+  background: #ffffff;
+
+  /* Top & Bottom Border */
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
-/* =========================
+/* ===================================
    HEADING
-========================= */
+=================================== */
+
 .process-heading {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .process-heading h2 {
-  font-size: 34px;
+  font-size: 42px;
   font-weight: 700;
   color: #000;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .process-description {
-  max-width: 750px;
-  margin: 0 auto 15px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #555;
+  max-width: 850px;
+  margin: 0 auto 20px;
+
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
 }
 
 .heading-line {
-  display: block;
-  width: 70px;
-  height: 3px;
+  width: 80px;
+  height: 4px;
   background: #ff1744;
-  margin: 0 auto;
-  border-radius: 20px;
+
+  display: block;
+  margin: auto;
+  border-radius: 50px;
 }
 
-/* =========================
-   SLIDER
-========================= */
-.slider-container {
-  overflow: hidden;
-  width: 100%;
-  padding: 15px 0;
+/* ===================================
+   5 CARD GRID
+=================================== */
+
+.process-grid {
+  max-width: 1500px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
 }
 
-.slider-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-}
+/* ===================================
+   CARD
+=================================== */
 
-/* =========================
-   STEP CARD
-========================= */
-.process-step {
-  width: 280px;
-  min-height: 220px;
-
-  flex-shrink: 0;
-  text-align: center;
-
-  padding: 20px;
-  border-radius: 20px;
+.process-card {
   background: #fff;
 
-  opacity: 0.4;
-  transform: scale(0.92);
+  border-radius: 24px;
 
-  transition: all 0.5s ease;
+  padding: 35px 20px;
+
+  text-align: center;
+
+  transition: all 0.35s ease;
 }
 
-.process-step.active {
-  opacity: 1;
-  transform: scale(1);
+.process-card:hover {
+  transform: translateY(-8px);
 }
 
-/* =========================
-   ICON CIRCLE
-========================= */
+/* ===================================
+   ICON
+=================================== */
+
 .process-circle {
-  width: 80px;
-  height: 80px;
+  width: 85px;
+  height: 85px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
 
   background: #000;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   color: #ff1744;
-  font-size: 28px;
 
-  margin: 0 auto 15px;
-
-  transition: all 0.4s ease;
-}
-
-.process-step.active .process-circle {
-  transform: scale(1.1);
-}
-
-/* =========================
-   TEXT
-========================= */
-.process-step h4 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: #111;
-}
-
-.process-step p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #555;
-}
-
-/* =========================
-   DOTS
-========================= */
-.dot-pagination {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
+  align-items: center;
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #d1d5db;
-  border-radius: 50%;
-  cursor: pointer;
+  font-size: 30px;
+
   transition: all 0.3s ease;
 }
 
-.dot.active {
-  background: #ff1744;
-  transform: scale(1.4);
+.process-card:hover .process-circle {
+  transform: scale(1.1);
 }
 
-/* =========================
+/* ===================================
+   TEXT
+=================================== */
+
+.process-card h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+
+  margin-bottom: 12px;
+}
+
+.process-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+}
+
+/* ===================================
+   LARGE TABLET
+=================================== */
+
+@media (max-width: 1200px) {
+  .process-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .process-heading h2 {
+    font-size: 34px;
+  }
+}
+
+/* ===================================
    TABLET
-========================= */
-@media (max-width: 1024px) {
-  .process-heading h2 {
-    font-size: 30px;
+=================================== */
+
+@media (max-width: 992px) {
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .process-step {
-    width: 240px;
-    min-height: 200px;
+  .seo-pagination {
+    min-height: auto;
+    padding: 60px 20px;
   }
 }
 
-/* =========================
+/* ===================================
    MOBILE
-========================= */
+=================================== */
+
 @media (max-width: 768px) {
-  .seo-pagination {
-    margin: 30px auto;
-    padding: 0 15px;
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-heading {
+    margin-bottom: 40px;
   }
 
   .process-heading h2 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .process-description {
     font-size: 14px;
   }
 
-  .process-step {
-    width: 220px;
-    min-height: 180px;
-    padding: 16px;
+  .process-card {
+    padding: 25px 18px;
   }
 
   .process-circle {
-    width: 65px;
-    height: 65px;
-    font-size: 22px;
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
   }
 
-  .process-step h4 {
-    font-size: 16px;
+  .process-card h4 {
+    font-size: 18px;
   }
 
-  .process-step p {
-    font-size: 13px;
+  .process-card p {
+    font-size: 14px;
   }
 }

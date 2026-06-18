@@ -113,10 +113,21 @@
 }
 
 .about-scroll-arrow {
-  font-size: 20px;
-  color: #ffffff;
-  transform: translateY(-4px);
+  font-size: 22px;
+  color: #fff;
+  animation: arrowMove 1.5s infinite;
 }
+
+@keyframes arrowMove {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
 
 .about-scroll-indicator:hover {
   border-color: #ffffff;
@@ -143,4 +154,7 @@
     height: 50px;
     bottom: 30px;
   }
+}
+html {
+  scroll-behavior: smooth;
 }

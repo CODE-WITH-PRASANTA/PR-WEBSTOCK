@@ -330,7 +330,7 @@
     gap: 26px;
     min-height: auto;
   }
-  .hero-right { display: none; }
+  .hero-right { display: flex; }
   .video-area { display: none; }
   .hero-left { align-items: left; }
   .herosec-btn-primary { width: 100%; max-width: 360px; }
