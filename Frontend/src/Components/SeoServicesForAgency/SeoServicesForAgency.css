@@ -131,4 +131,34 @@
   .seo-card li {
     font-size: 0.95rem;
   }
+  /* ================================
+   DESCRIPTION
+================================ */
+
+.seo-services-description {
+  max-width: 900px;
+  margin: 0 auto 4rem;
+
+  text-align: center;
+
+  font-size: 1.05rem;
+  line-height: 1.9;
+
+  color: #555;
+
+  padding: 0 20px;
+}
+
+.seo-services-description span {
+  color: #ff2b55;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .seo-services-description {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+}
 }
