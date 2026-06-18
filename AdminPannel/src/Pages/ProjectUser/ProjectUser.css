@@ -1,0 +1,181 @@
+/* ==========================
+   PROJECT USER
+========================== */
+
+.project-user {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.project-user-container {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+/* ==========================
+   COMMON CARD
+========================== */
+
+.project-user-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.project-user-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #111827;
+}
+
+/* ==========================
+   FORM SECTION
+========================== */
+
+.project-user-form-section {
+  flex: 1;
+}
+
+.project-user-field {
+  margin-bottom: 18px;
+}
+
+.project-user-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.project-user-field input,
+.project-user-field textarea {
+  width: 100%;
+  border: 1px solid #dcdfe4;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s ease;
+  box-sizing: border-box;
+}
+
+.project-user-field input:focus,
+.project-user-field textarea:focus {
+  border-color: #2563eb;
+}
+
+.project-user-field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.project-user-submit-btn {
+  width: 100%;
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.project-user-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================
+   TABLE SECTION
+========================== */
+
+.project-user-table-section {
+  flex: 1;
+}
+
+.project-user-table-wrapper {
+  overflow-x: auto;
+}
+
+.project-user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.project-user-table thead {
+  background: #2563eb;
+}
+
+.project-user-table th {
+  color: white;
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.project-user-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.project-user-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.project-user-preview-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.project-user-empty {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 991px) {
+  .project-user-container {
+    flex-direction: column;
+  }
+
+  .project-user-form-section,
+  .project-user-table-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-user {
+    padding: 15px;
+  }
+
+  .project-user-card {
+    padding: 18px;
+  }
+
+  .project-user-title {
+    font-size: 20px;
+  }
+
+  .project-user-table th,
+  .project-user-table td {
+    min-width: 140px;
+  }
+}
