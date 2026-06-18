@@ -1,3 +1,4 @@
+
 import React from "react";
 import "./SeoWorkResult.css";
 
@@ -21,18 +22,25 @@ const SeoWorkResult = () => {
   return (
     <section className="seo-work-section">
       <div className="seo-work-header">
-        <h1>Our SEO Work Results</h1>
+        <h1>
+          SEO Results Delivered by PR WEBSTOCK in Bhubaneswar, Odisha
+        </h1>
+
         <p>
-          We believe in delivering top-notch SEO services and demonstrate our
-          success through real results. Here are a few glimpses of the outcomes
-          we’ve achieved for our clients.
+          PR WEBSTOCK helps businesses in Bhubaneswar, Odisha improve Google
+          rankings, increase organic traffic, and generate quality leads.
+          These results showcase the impact of our SEO strategies and our
+          commitment to delivering measurable business growth.
         </p>
       </div>
 
       <div className="seo-work-grid">
         {images.map((item, index) => (
           <div className="img-container" key={index}>
-            <img src={item.img} alt={`SEO work result ${index + 1}`} />
+            <img
+              src={item.img}
+              alt={`PR WEBSTOCK SEO Result ${index + 1} - Bhubaneswar Odisha`}
+            />
           </div>
         ))}
       </div>
@@ -41,3 +49,4 @@ const SeoWorkResult = () => {
 };
 
 export default SeoWorkResult;
+

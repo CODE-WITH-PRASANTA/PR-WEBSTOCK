@@ -9,31 +9,31 @@ import "./SeoServicesForAgency.css";
 
 const services = [
   {
-    title: "On-page SEO",
+    title: "On-Page SEO",
     icon: onPageIcon,
     points: [
-      "Detailed keyword research and strategic placement",
-      "Optimized title tags and meta descriptions",
-      "High-quality, useful content creation",
-      "SEO-friendly URLs for better indexing",
+      "Keyword optimization",
+      "Meta tags & content SEO",
+      "SEO-friendly website structure",
+      "Improved page relevance",
     ],
   },
   {
-    title: "Off-page SEO",
+    title: "Off-Page SEO",
     icon: offPageIcon,
     points: [
-      "High-authority backlink acquisition",
-      "Social media content promotion",
-      "Guest posting on trusted websites",
+      "Quality backlink building",
+      "Brand promotion",
+      "Authority growth",
     ],
   },
   {
     title: "Technical SEO",
     icon: technicalseo,
     points: [
-      "Website crawlability improvements",
-      "Page speed optimization",
-      "Fixing crawl errors & broken links",
+      "Faster website speed",
+      "Crawlability improvements",
+      "Fix SEO technical issues",
     ],
   },
   {
@@ -41,26 +41,26 @@ const services = [
     icon: localseo,
     points: [
       "Google Business Profile optimization",
-      "Local citations & keyword targeting",
-      "Improved local search visibility",
+      "Local keyword targeting",
+      "Better local visibility",
     ],
   },
   {
     title: "International SEO",
     icon: internationalseo,
     points: [
-      "Target global audiences beyond India",
-      "Multi-language & region-based SEO",
-      "International SERP optimization",
+      "Global audience targeting",
+      "Multi-region SEO",
+      "International search visibility",
     ],
   },
   {
     title: "E-commerce SEO",
     icon: ecommerceseo,
     points: [
-      "SEO for Magento, WooCommerce, Shopify",
-      "Optimized product & category pages",
-      "Conversion-focused SEO strategies",
+      "Product page optimization",
+      "Category page SEO",
+      "Higher online sales",
     ],
   },
 ];
@@ -68,17 +68,24 @@ const services = [
 const SeoServicesForAgency = () => {
   return (
     <section className="seo-services">
-
-      {/* Heading */}
       <h2 className="seo-services-heading">
-        Result-driven SEO services offered by SEO agency in Bhubaneswar
+        SEO Services by PR WEBSTOCK in Bhubaneswar, Odisha
       </h2>
+
+      <p className="seo-services-description">
+        <span>PR WEBSTOCK</span> provides professional SEO services in{" "}
+        <span>Bhubaneswar, Odisha</span>, helping businesses improve Google
+        rankings, increase organic traffic, and generate quality leads. Our SEO
+        experts deliver customized strategies designed for long-term online
+        growth.
+      </p>
 
       <div className="seo-grid">
         {services.map((service, index) => (
           <div className="seo-card" key={index}>
             <img src={service.icon} alt={service.title} />
             <h3>{service.title}</h3>
+
             <ul>
               {service.points.map((point, i) => (
                 <li key={i}>{point}</li>
@@ -87,7 +94,6 @@ const SeoServicesForAgency = () => {
           </div>
         ))}
       </div>
-
     </section>
   );
 };

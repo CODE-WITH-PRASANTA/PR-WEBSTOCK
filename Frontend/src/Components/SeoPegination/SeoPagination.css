@@ -1,200 +1,275 @@
-/* =========================
-   WRAPPER
-========================= */
+/* ===================================
+   SECTION
+=================================== */
+
 .seo-pagination {
-  max-width: 1600px;
-  margin: 80px auto;
-  padding: 0 20px;
+  width: 100%;
+  min-height: 47vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 40px 20px;
   background: #ffffff;
+
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
-/* =========================
+/* ===================================
    HEADING
-========================= */
+=================================== */
+
 .process-heading {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 .process-heading h2 {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 700;
   color: #000;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.process-description {
+  max-width: 850px;
+  margin: 0 auto 20px;
+
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
 }
 
 .heading-line {
-  display: block;
   width: 80px;
   height: 4px;
   background: #ff1744;
-  margin: 0 auto;
-  border-radius: 2px;
+
+  display: block;
+  margin: auto;
+  border-radius: 50px;
 }
 
-/* =========================
-   SCROLLABLE ROW
-========================= */
-.process-row {
-  display: flex;
-  gap: 40px;
-  overflow-x: auto;
+/* ===================================
+   5 CARD GRID
+=================================== */
 
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+.process-grid {
+  max-width: 1500px;
+  margin: auto;
 
-  padding-left: 50%;
-  padding-right: 50%;
-  padding-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
 }
 
-/* Hide scrollbar */
-.process-row::-webkit-scrollbar {
-  display: none;
-}
-.process-row {
-  scrollbar-width: none;
-}
+/* ===================================
+   CARD
+=================================== */
 
-/* =========================
-   STEP
-========================= */
-.process-step {
-  min-width: 260px;
-  flex-shrink: 0;
+.process-card {
+  position: relative;
+
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 24px;
+
+  padding: 35px 20px;
   text-align: center;
-  scroll-snap-align: center;
 
-  opacity: 0.1;
-  transform: scale(0.9);
+  overflow: hidden;
 
-  transition:
-    opacity 0.5s ease,
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  transition: all 0.4s ease;
 }
 
-.process-step.active {
+/* Hover Background */
+.process-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    135deg,
+    #ff1744,
+    #ff4f73
+  );
+
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  z-index: 0;
+}
+
+.process-card:hover::before {
   opacity: 1;
-  transform: scale(1);
 }
 
-/* =========================
-   CIRCLE
-========================= */
+.process-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.process-card:hover {
+  transform: translateY(-10px);
+
+  border-color: #ff1744;
+
+  box-shadow:
+    0 15px 40px rgba(255, 23, 68, 0.25),
+    0 0 0 1px rgba(255, 23, 68, 0.15);
+}
+
+/* ===================================
+   ICON
+=================================== */
+
 .process-circle {
-  width: 120px;
-  height: 120px;
-  background: #000;
-  border-radius: 50%;
+  width: 85px;
+  height: 85px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #ff1744;
-  font-size: 40px;
   margin: 0 auto 20px;
 
-  transform: scale(0.85);
-  transition:
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.6s ease;
-}
+  border-radius: 50%;
 
-.process-step.active .process-circle {
-  transform: scale(1.25);
-  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
-}
+  background: #000;
+  color: #ff1744;
 
-/* =========================
-   TEXT
-========================= */
-.process-step h4,
-.process-step p {
-  opacity: 0;
-  transform: translateY(10px);
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
-}
-
-.process-step.active h4,
-.process-step.active p {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.process-step h4 {
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-
-.process-step p {
-  font-size: 14px;
-  color: #444;
-  max-width: 240px;
-  margin: 0 auto;
-}
-
-/* =========================
-   DOT PAGINATION
-========================= */
-.dot-pagination {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 30px;
+  align-items: center;
+
+  font-size: 30px;
+
+  transition: all 0.4s ease;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #cbd5e1;
-  border-radius: 50%;
-  cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease;
+.process-card:hover .process-circle {
+  background: #ffffff;
+  color: #ff1744;
+
+  transform: scale(1.12) rotate(8deg);
 }
 
-.dot.active {
-  background: #ff1744;
-  transform: scale(1.5);
+/* ===================================
+   TEXT
+=================================== */
+
+.process-card h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+
+  margin-bottom: 12px;
+
+  transition: color 0.35s ease;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 1024px) {
-  .process-step {
-    min-width: 220px;
+.process-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+
+  transition: color 0.35s ease;
+}
+
+.process-card:hover h4,
+.process-card:hover p {
+  color: #ffffff;
+}
+
+/* ===================================
+   LARGE TABLET
+=================================== */
+
+@media (max-width: 1200px) {
+  .process-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .process-heading h2 {
+    font-size: 34px;
   }
 }
+
+/* ===================================
+   TABLET
+=================================== */
+
+@media (max-width: 992px) {
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .seo-pagination {
+    min-height: auto;
+    padding: 60px 20px;
+  }
+}
+
+/* ===================================
+   MOBILE
+=================================== */
 
 @media (max-width: 768px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-heading {
+    margin-bottom: 40px;
+  }
+
   .process-heading h2 {
-    font-size: 30px;
-  }
-
-  .heading-line {
-    width: 60px;
-  }
-
-  .process-circle {
-    width: 90px;
-    height: 90px;
     font-size: 28px;
   }
 
-  .process-step h4 {
+  .process-description {
+    font-size: 14px;
+  }
+
+  .process-card {
+    padding: 25px 18px;
+  }
+
+  .process-circle {
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
+  }
+
+  .process-card h4 {
     font-size: 18px;
   }
 
-  .process-step p {
+  .process-card p {
+    font-size: 14px;
+  }
+}
+
+/* ===================================
+   SMALL MOBILE
+=================================== */
+
+@media (max-width: 480px) {
+  .process-heading h2 {
+    font-size: 24px;
+  }
+
+  .process-description {
     font-size: 13px;
   }
 
-  .dot-pagination {
-    margin-top: 20px;
+  .process-card {
+    border-radius: 18px;
+  }
+
+  .process-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
   }
 }

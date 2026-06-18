@@ -1,78 +1,175 @@
-.seo-features {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #ffffff;
+/* ==========================
+   SEO FEATURES SECTION
+========================== */
+
+.seo-features-section {
+  background: #f5f5f5;
+  padding: 80px 0;
 }
 
-.seo-features__heading {
-  font-size: 36px;
-  font-weight: 700;
-  color: #111111;
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.seo-features__heading span {
-  color: #ff0033;
-}
-
-
-.seo-features__container {
-  max-width: 1200px;
+.seo-features-container {
+  width: 100%;
+  max-width: 1350px;
   margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.seo-features-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.seo-features-header h2 {
+  font-size: 54px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.seo-features-header h2 span {
+  color: #ff0000;
+}
+
+/* ==========================
+   GRID
+========================== */
+
+.seo-features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 1px solid #e5e5e5;
+  border: 1px solid #d9d9d9;
+  background: #fff;
 }
 
-.seo-features__card {
-  padding: 40px;
-  border-right: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
-  background-color: #ffffff;
-  transition: background-color 0.25s ease;
+/* ==========================
+   CARD
+========================== */
+
+.seo-features-card {
+  padding: 42px 44px;
+  border-right: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  min-height: 255px;
+  transition: all 0.3s ease;
 }
 
-.seo-features__card:hover {
-  background-color: #fafafa;
+.seo-features-card:nth-child(3n) {
+  border-right: none;
 }
 
-.seo-features__accent {
-  width: 24px;
-  height: 3px;
-  background-color: #ff0033;
-  margin-bottom: 16px;
-  display: block;
+.seo-features-card:nth-last-child(-n + 3) {
+  border-bottom: none;
 }
 
-.seo-features__title {
-  font-size: 24px;
+.seo-features-card:hover {
+  background: #fafafa;
+}
+
+.seo-features-line {
+  width: 28px;
+  height: 4px;
+  background: #ff0000;
+  margin-bottom: 28px;
+}
+
+.seo-features-card h3 {
+  font-size: 22px;
   font-weight: 600;
-  color: #111111;
-  margin-bottom: 16px;
+  color: #111;
+  margin-bottom: 22px;
+  line-height: 1.3;
 }
 
-.seo-features__description {
-  font-size: 15px;
-  color: #555555;
-  line-height: 1.6;
+.seo-features-card p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #555;
+  margin: 0;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .seo-features__container {
-    grid-template-columns: repeat(2, 1fr);
+/* ==========================
+   LARGE TABLET
+========================== */
+
+@media (max-width: 1200px) {
+  .seo-features-header h2 {
+    font-size: 42px;
+  }
+
+  .seo-features-card {
+    padding: 35px;
   }
 }
 
-@media (max-width: 600px) {
-  .seo-features__container {
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width: 991px) {
+  .seo-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .seo-features-card:nth-child(3n) {
+    border-right: 1px solid #d9d9d9;
+  }
+
+  .seo-features-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .seo-features-card:nth-last-child(-n + 3) {
+    border-bottom: 1px solid #d9d9d9;
+  }
+
+  .seo-features-card:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .seo-features-header h2 {
+    font-size: 36px;
+  }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 767px) {
+  .seo-features-section {
+    padding: 60px 0;
+  }
+
+  .seo-features-grid {
     grid-template-columns: 1fr;
   }
 
-  .seo-features__card {
-    padding: 28px;
+  .seo-features-card {
+    border-right: none !important;
+    border-bottom: 1px solid #d9d9d9 !important;
+    min-height: auto;
+    padding: 30px 25px;
+  }
+
+  .seo-features-card:last-child {
+    border-bottom: none !important;
+  }
+
+  .seo-features-header h2 {
+    font-size: 28px;
+  }
+
+  .seo-features-card h3 {
+    font-size: 22px;
+  }
+
+  .seo-features-card p {
+    font-size: 15px;
+    line-height: 1.8;
   }
 }

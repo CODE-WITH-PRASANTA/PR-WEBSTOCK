@@ -19,6 +19,13 @@ import PageLoader from "./Components/PageLoader/PageLoader";
 import { useState, useEffect } from "react";
 import SocialMediaManagement from "./Pages/SocialMediaManagement/SocialMediaManagement";
 import DigitalMarketingPage from "./Pages/DigitalMarketingPage/DigitalMarketingPage";
+import Working from "./Pages/Working/Working";
+import Bench from "./Components/Bench/Bench";
+import Projects from "./Pages/Projects/Projects";
+import Floating from "./Components/Floating/Floating";
+import Form from "./Components/From/From";
+
+
 
 function AppContent() {
   const location = useLocation();
@@ -53,8 +60,16 @@ function AppContent() {
         <Route path="/services/digital-marketing" element={<DigitalMarketingPage/>} />
         <Route path="/services/socialmedia-management" element={<SocialMediaManagement />} />
         <Route path="/get-quote" element={<GetFreeDemo />} />
-      </Routes>
+        <Route path="/Working" element={<Working />} /> 
+        <Route path="/project" element={<Projects />} />
+        
+        </Routes>
       <ContactUs />
+      <Floating />
+
+      {/* Floating Enquiry Form */}
+      <Form />
+
       <Footer />
     </>
   );
