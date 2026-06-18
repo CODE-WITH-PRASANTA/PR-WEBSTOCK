@@ -12,6 +12,9 @@ import Gallary from "./Pages/Gallary/Gallary";
 import Calender from "./Pages/Calender/Calender";
 
 
+import ProjectUser from "./Pages/ProjectUser/ProjectUser";
+import Careerobject from "./Pages/Careerobject/Careerobject";
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +26,9 @@ function App() {
           <Route path="/gallery-management" element={<Gallary />} />
           <Route path="/calendar-management" element={<Calender />} />
           
+          
+          <Route path="/project-management" element={<ProjectUser/>}/>
+          <Route path="/career-management" element={<Careerobject/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
