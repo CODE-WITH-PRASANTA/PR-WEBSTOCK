@@ -1,198 +1,275 @@
-/* =========================
-   WRAPPER
-========================= */
+/* ===================================
+   SECTION
+=================================== */
+
 .seo-pagination {
-  max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #fff;
+  width: 100%;
+  min-height: 47vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 40px 20px;
+  background: #ffffff;
+
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
-/* =========================
+/* ===================================
    HEADING
-========================= */
+=================================== */
+
 .process-heading {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .process-heading h2 {
-  font-size: 34px;
+  font-size: 42px;
   font-weight: 700;
   color: #000;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .process-description {
-  max-width: 750px;
-  margin: 0 auto 15px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #555;
+  max-width: 850px;
+  margin: 0 auto 20px;
+
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
 }
 
 .heading-line {
-  display: block;
-  width: 70px;
-  height: 3px;
+  width: 80px;
+  height: 4px;
   background: #ff1744;
-  margin: 0 auto;
-  border-radius: 20px;
+
+  display: block;
+  margin: auto;
+  border-radius: 50px;
 }
 
-/* =========================
-   SLIDER
-========================= */
-.slider-container {
-  overflow: hidden;
-  width: 100%;
-  padding: 15px 0;
+/* ===================================
+   5 CARD GRID
+=================================== */
+
+.process-grid {
+  max-width: 1500px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
 }
 
-.slider-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-}
+/* ===================================
+   CARD
+=================================== */
 
-/* =========================
-   STEP CARD
-========================= */
-.process-step {
-  width: 280px;
-  min-height: 220px;
+.process-card {
+  position: relative;
 
-  flex-shrink: 0;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 24px;
+
+  padding: 35px 20px;
   text-align: center;
 
-  padding: 20px;
-  border-radius: 20px;
-  background: #fff;
+  overflow: hidden;
 
-  opacity: 0.4;
-  transform: scale(0.92);
-
-  transition: all 0.5s ease;
-}
-
-.process-step.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* =========================
-   ICON CIRCLE
-========================= */
-.process-circle {
-  width: 80px;
-  height: 80px;
-
-  background: #000;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #ff1744;
-  font-size: 28px;
-
-  margin: 0 auto 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 
   transition: all 0.4s ease;
 }
 
-.process-step.active .process-circle {
-  transform: scale(1.1);
+/* Hover Background */
+.process-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    135deg,
+    #ff1744,
+    #ff4f73
+  );
+
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  z-index: 0;
 }
 
-/* =========================
-   TEXT
-========================= */
-.process-step h4 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: #111;
+.process-card:hover::before {
+  opacity: 1;
 }
 
-.process-step p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #555;
+.process-card > * {
+  position: relative;
+  z-index: 2;
 }
 
-/* =========================
-   DOTS
-========================= */
-.dot-pagination {
+.process-card:hover {
+  transform: translateY(-10px);
+
+  border-color: #ff1744;
+
+  box-shadow:
+    0 15px 40px rgba(255, 23, 68, 0.25),
+    0 0 0 1px rgba(255, 23, 68, 0.15);
+}
+
+/* ===================================
+   ICON
+=================================== */
+
+.process-circle {
+  width: 85px;
+  height: 85px;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: #000;
+  color: #ff1744;
+
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+  align-items: center;
+
+  font-size: 30px;
+
+  transition: all 0.4s ease;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #d1d5db;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.process-card:hover .process-circle {
+  background: #ffffff;
+  color: #ff1744;
+
+  transform: scale(1.12) rotate(8deg);
 }
 
-.dot.active {
-  background: #ff1744;
-  transform: scale(1.4);
+/* ===================================
+   TEXT
+=================================== */
+
+.process-card h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+
+  margin-bottom: 12px;
+
+  transition: color 0.35s ease;
 }
 
-/* =========================
+.process-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #666;
+
+  transition: color 0.35s ease;
+}
+
+.process-card:hover h4,
+.process-card:hover p {
+  color: #ffffff;
+}
+
+/* ===================================
+   LARGE TABLET
+=================================== */
+
+@media (max-width: 1200px) {
+  .process-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .process-heading h2 {
+    font-size: 34px;
+  }
+}
+
+/* ===================================
    TABLET
-========================= */
-@media (max-width: 1024px) {
-  .process-heading h2 {
-    font-size: 30px;
+=================================== */
+
+@media (max-width: 992px) {
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .process-step {
-    width: 240px;
-    min-height: 200px;
+  .seo-pagination {
+    min-height: auto;
+    padding: 60px 20px;
   }
 }
 
-/* =========================
+/* ===================================
    MOBILE
-========================= */
+=================================== */
+
 @media (max-width: 768px) {
-  .seo-pagination {
-    margin: 30px auto;
-    padding: 0 15px;
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-heading {
+    margin-bottom: 40px;
   }
 
   .process-heading h2 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .process-description {
     font-size: 14px;
   }
 
-  .process-step {
-    width: 220px;
-    min-height: 180px;
-    padding: 16px;
+  .process-card {
+    padding: 25px 18px;
   }
 
   .process-circle {
-    width: 65px;
-    height: 65px;
-    font-size: 22px;
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
   }
 
-  .process-step h4 {
-    font-size: 16px;
+  .process-card h4 {
+    font-size: 18px;
   }
 
-  .process-step p {
+  .process-card p {
+    font-size: 14px;
+  }
+}
+
+/* ===================================
+   SMALL MOBILE
+=================================== */
+
+@media (max-width: 480px) {
+  .process-heading h2 {
+    font-size: 24px;
+  }
+
+  .process-description {
     font-size: 13px;
+  }
+
+  .process-card {
+    border-radius: 18px;
+  }
+
+  .process-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
   }
 }
