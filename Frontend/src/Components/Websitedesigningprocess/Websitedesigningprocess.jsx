@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Websitedesigningprocess.css';
 
 const Websitedesigningprocess = () => {
@@ -38,74 +38,121 @@ const Websitedesigningprocess = () => {
       icon: '🧪',
       text: 'At PR WEBSTOCK, we thoroughly test every website to ensure smooth performance, strong security, and a flawless user experience. From functionality and responsiveness to speed and browser compatibility, our testing process ensures your site meets high-quality standards before launch.',
     },
+    {
+      title: 'Website Launch',
+      icon: '🚀',
+      text: 'After final approval, we deploy your website on a secure server and ensure a smooth launch with performance monitoring and ongoing support.',
+    },
   ];
 
-  const rows = [
-    [steps[0], steps[1], steps[2]],
-    [steps[3], steps[4], steps[5]],
-    [steps[6]]
-  ];
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const cardsPerPage = 4;
+  const totalPages = Math.ceil(steps.length / cardsPerPage);
+
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const currentSteps = steps.slice(
+    startIndex,
+    startIndex + cardsPerPage
+  );
 
   return (
     <section className="websitedesigningprocess">
       <div className="websitedesigningprocess__container">
+
+        {/* Header */}
         <div className="websitedesigningprocess__header">
-          <span className="websitedesigningprocess__subtitle">Website Designing </span>
-          <h2 className="websitedesigningprocess__title">Website Designing Process at PR WEBSTOCK</h2>
+          <span className="websitedesigningprocess__subtitle">
+            Website Designing
+          </span>
+
+          <h2 className="websitedesigningprocess__title">
+            Website Designing Process at PR WEBSTOCK
+          </h2>
+
           <p className="websitedesigningprocess__description">
-            PR WEBSTOCK follows a structured website designing process to deliver coding-based, high-performance web design solutions from Bhubaneswar to clients across India.
+            PR WEBSTOCK follows a structured website designing process to deliver
+            coding-based, high-performance web design solutions from Bhubaneswar
+            to clients across India.
           </p>
         </div>
 
-        <div className="websitedesigningprocess__timeline">
-          {rows.map((row, rowIndex) => (
-            <div 
-              className={`websitedesigningprocess__row ${row.length === 1 ? 'websitedesigningprocess__row--single' : ''}`} 
-              key={rowIndex}
+        {/* 4 Cards In One Row */}
+        <div className="websitedesigningprocess__row-cards">
+          {currentSteps.map((step, index) => (
+            <div
+              className="websitedesigningprocess__step small-card"
+              key={step.title}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
             >
-              {row.map((step, stepIndex) => (
-                <div 
-                  className="websitedesigningprocess__step" 
-                  key={step.title}
-                  data-aos="fade-up"
-                  data-aos-delay={(rowIndex * 100) + (stepIndex * 100)}
-                >
-                  <div className="websitedesigningprocess__step-inner">
-                    <div className="websitedesigningprocess__circle-container">
-                      <div className="websitedesigningprocess__circle-background"></div>
-                      <div className="websitedesigningprocess__circle">
-                        <span className="websitedesigningprocess__circle-icon">{step.icon}</span>
-                        <div className="websitedesigningprocess__circle-pulse"></div>
-                      </div>
-                      {rowIndex < rows.length - 1 && stepIndex === row.length - 1 && (
-                        <div className="websitedesigningprocess__connector websitedesigningprocess__connector--vertical"></div>
-                      )}
-                      {stepIndex < row.length - 1 && (
-                        <div className="websitedesigningprocess__connector websitedesigningprocess__connector--horizontal"></div>
-                      )}
-                    </div>
-                    
-                    <div className="websitedesigningprocess__content">
-                      <div className="websitedesigningprocess__step-number">
-                        0{rowIndex * 3 + stepIndex + 1}
-                      </div>
-                      <h3 className="websitedesigningprocess__step-title">{step.title}</h3>
-                      <p className="websitedesigningprocess__step-text">{step.text}</p>
-                    </div>
+              <div className="websitedesigningprocess__step-inner">
+
+                <div className="websitedesigningprocess__circle-container">
+                  <div className="websitedesigningprocess__circle-background"></div>
+
+                  <div className="websitedesigningprocess__circle">
+                    <span className="websitedesigningprocess__circle-icon">
+                      {step.icon}
+                    </span>
+
+                    <div className="websitedesigningprocess__circle-pulse"></div>
                   </div>
                 </div>
-              ))}
+
+                <div className="websitedesigningprocess__content">
+
+                  <div className="websitedesigningprocess__step-number">
+                    {String(startIndex + index + 1).padStart(2, '0')}
+                  </div>
+
+                  <h3 className="websitedesigningprocess__step-title">
+                    {step.title}
+                  </h3>
+
+                  <p className="websitedesigningprocess__step-text">
+                    {step.text}
+                  </p>
+
+                </div>
+
+              </div>
             </div>
           ))}
         </div>
 
+        {/* Pagination */}
+        <div className="websitedesigningprocess__pagination">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              className={`page-btn ${
+                currentPage === index + 1 ? 'active' : ''
+              }`}
+              onClick={() => setCurrentPage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+
+        {/* Footer */}
         <div className="websitedesigningprocess__footer">
           <div className="websitedesigningprocess__badge">
-            <span className="websitedesigningprocess__badge-text">7 Structured Steps</span>
-            <span className="websitedesigningprocess__badge-text">•</span>
-            <span className="websitedesigningprocess__badge-text">High-Quality Delivery</span>
+            <span className="websitedesigningprocess__badge-text">
+              8 Structured Steps
+            </span>
+
+            <span className="websitedesigningprocess__badge-text">
+              •
+            </span>
+
+            <span className="websitedesigningprocess__badge-text">
+              High-Quality Delivery
+            </span>
           </div>
         </div>
+
       </div>
     </section>
   );
