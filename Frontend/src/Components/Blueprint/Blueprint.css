@@ -136,6 +136,7 @@
 .bpx-card {
   width: 33.33%;
   min-width: 33.33%;
+  max-width: 190px;
   padding: 42px 34px;
   border-radius: 28px;
   background: rgba(255,255,255,0.75);
