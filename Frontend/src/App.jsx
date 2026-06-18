@@ -22,6 +22,9 @@ import DigitalMarketingPage from "./Pages/DigitalMarketingPage/DigitalMarketingP
 import Working from "./Pages/Working/Working";
 import Bench from "./Components/Bench/Bench";
 import Projects from "./Pages/Projects/Projects";
+import Floating from "./Components/Floating/Floating";
+import Form from "./Components/From/From";
+
 
 
 function AppContent() {
@@ -59,8 +62,14 @@ function AppContent() {
         <Route path="/get-quote" element={<GetFreeDemo />} />
         <Route path="/Working" element={<Working />} /> 
         <Route path="/project" element={<Projects />} />
+        
         </Routes>
       <ContactUs />
+      <Floating />
+
+      {/* Floating Enquiry Form */}
+      <Form />
+
       <Footer />
     </>
   );

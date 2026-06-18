@@ -1,12 +1,12 @@
-/* ==========================
-   PROJECT USER
-========================== */
+/* ====================================
+   PROJECT USER BLACK THEME
+==================================== */
 
 .project-user {
   width: 100%;
   min-height: 100vh;
-  background: #f5f7fb;
   padding: 30px;
+  background: #0f1117;
   box-sizing: border-box;
 }
 
@@ -16,27 +16,47 @@
   align-items: flex-start;
 }
 
-/* ==========================
-   COMMON CARD
-========================== */
+/* ====================================
+   CARD
+==================================== */
 
 .project-user-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: #181c25;
+  border: 1px solid #2b313d;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ====================================
+   HEADER
+==================================== */
+
+.project-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .project-user-title {
+  color: #ffffff;
   font-size: 24px;
   font-weight: 700;
-  margin-bottom: 25px;
-  color: #111827;
 }
 
-/* ==========================
-   FORM SECTION
-========================== */
+.project-user-badge {
+  padding: 8px 14px;
+  border-radius: 30px;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ====================================
+   FORM
+==================================== */
 
 .project-user-form-section {
   flex: 1;
@@ -49,53 +69,83 @@
 .project-user-field label {
   display: block;
   margin-bottom: 8px;
+  color: #d1d5db;
   font-size: 14px;
   font-weight: 600;
-  color: #374151;
 }
 
 .project-user-field input,
 .project-user-field textarea {
   width: 100%;
-  border: 1px solid #dcdfe4;
+  background: #0f1117;
+  border: 1px solid #2d3748;
   border-radius: 10px;
-  padding: 12px 15px;
-  font-size: 15px;
-  outline: none;
-  transition: 0.3s ease;
+  padding: 13px 15px;
+  color: #ffffff;
+  font-size: 14px;
+  transition: 0.3s;
   box-sizing: border-box;
+}
+
+.project-user-field input::placeholder,
+.project-user-field textarea::placeholder {
+  color: #6b7280;
 }
 
 .project-user-field input:focus,
 .project-user-field textarea:focus {
-  border-color: #2563eb;
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .project-user-field textarea {
-  min-height: 130px;
-  resize: vertical;
+  min-height: 140px;
+  resize: none;
 }
+
+/* File Input */
+
+.project-user-field input[type="file"] {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.project-user-field input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  background: #3b82f6;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* ====================================
+   BUTTON
+==================================== */
 
 .project-user-submit-btn {
   width: 100%;
-  border: none;
-  background: #2563eb;
-  color: white;
   padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
   font-size: 15px;
   font-weight: 600;
-  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
 .project-user-submit-btn:hover {
-  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
 }
 
-/* ==========================
-   TABLE SECTION
-========================== */
+/* ====================================
+   TABLE
+==================================== */
 
 .project-user-table-section {
   flex: 1;
@@ -105,31 +155,46 @@
   overflow-x: auto;
 }
 
+.project-user-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.project-user-table-wrapper::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 10px;
+}
+
 .project-user-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 .project-user-table thead {
-  background: #2563eb;
+  background: #111827;
 }
 
 .project-user-table th {
-  color: white;
-  padding: 14px;
+  color: #ffffff;
+  padding: 16px;
   text-align: left;
   font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #2d3748;
 }
 
 .project-user-table td {
-  padding: 14px;
-  border-bottom: 1px solid #e5e7eb;
+  color: #d1d5db;
+  padding: 16px;
+  border-bottom: 1px solid #2d3748;
   font-size: 14px;
-  vertical-align: top;
+}
+
+.project-user-table tbody tr {
+  transition: 0.3s;
 }
 
 .project-user-table tbody tr:hover {
-  background: #f9fafb;
+  background: #222833;
 }
 
 .project-user-preview-image {
@@ -137,20 +202,21 @@
   height: 70px;
   object-fit: cover;
   border-radius: 10px;
+  border: 2px solid #2d3748;
 }
 
 .project-user-empty {
   text-align: center;
-  padding: 40px;
-  color: #6b7280;
+  padding: 50px;
+  color: #9ca3af;
   font-weight: 500;
 }
 
-/* ==========================
+/* ====================================
    RESPONSIVE
-========================== */
+==================================== */
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
   .project-user-container {
     flex-direction: column;
   }
@@ -161,21 +227,27 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .project-user {
     padding: 15px;
   }
 
   .project-user-card {
-    padding: 18px;
+    padding: 20px;
   }
 
   .project-user-title {
     font-size: 20px;
   }
 
+  .project-user-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
   .project-user-table th,
   .project-user-table td {
-    min-width: 140px;
+    min-width: 150px;
   }
 }

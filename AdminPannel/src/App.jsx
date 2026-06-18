@@ -15,6 +15,7 @@ import ContactManagement from "./Pages/ContactManagement/ContactManagement";
 import IndexAbstracte from "./Pages/IndexAbstracte/IndexAbstracte";
 import PublicationManagement from "./Pages/PublicationManagement/PublicationManagement";
 import ProjectUser from "./Pages/ProjectUser/ProjectUser";
+import Careerobject from "./Pages/Careerobject/Careerobject";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
           <Route path="/contact-management" element={<ContactManagement/>}/>
           <Route path="/index-abstracting-management" element={<IndexAbstracte/>}/>
           <Route path="/publication-management" element={<PublicationManagement/>}/>
-          <Route path="/project-user" element={<ProjectUser/>}/>
+          <Route path="/project-management" element={<ProjectUser/>}/>
+          <Route path="/career-management" element={<Careerobject/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

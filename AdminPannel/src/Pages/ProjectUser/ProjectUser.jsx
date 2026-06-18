@@ -44,11 +44,11 @@ const ProjectUser = () => {
     }
 
     setProjects((prev) => [
-      ...prev,
       {
         id: Date.now(),
         ...formData,
       },
+      ...prev,
     ]);
 
     setFormData({
@@ -64,12 +64,16 @@ const ProjectUser = () => {
   return (
     <div className="project-user">
       <div className="project-user-container">
-        {/* FORM SECTION */}
+        {/* ================= FORM SECTION ================= */}
         <div className="project-user-form-section">
           <div className="project-user-card">
-            <h2 className="project-user-title">Add Project</h2>
+            <div className="project-user-header">
+              <h2 className="project-user-title">Add Project</h2>
+              <span className="project-user-badge">Dashboard</span>
+            </div>
 
             <form onSubmit={handleSubmit}>
+              {/* Upload Image */}
               <div className="project-user-field">
                 <label>Upload Project Image</label>
                 <input
@@ -80,6 +84,18 @@ const ProjectUser = () => {
                 />
               </div>
 
+              {/* Preview Image */}
+              {formData.image && (
+                <div className="project-user-image-preview">
+                  <img
+                    src={formData.image}
+                    alt="Preview"
+                    className="project-user-preview-image-large"
+                  />
+                </div>
+              )}
+
+              {/* Project Name */}
               <div className="project-user-field">
                 <label>Project Name</label>
                 <input
@@ -91,6 +107,7 @@ const ProjectUser = () => {
                 />
               </div>
 
+              {/* Description */}
               <div className="project-user-field">
                 <label>Project Description</label>
                 <textarea
@@ -101,6 +118,7 @@ const ProjectUser = () => {
                 />
               </div>
 
+              {/* Owner Name */}
               <div className="project-user-field">
                 <label>Owner Name</label>
                 <input
@@ -119,10 +137,16 @@ const ProjectUser = () => {
           </div>
         </div>
 
-        {/* TABLE SECTION */}
+        {/* ================= TABLE SECTION ================= */}
         <div className="project-user-table-section">
           <div className="project-user-card">
-            <h2 className="project-user-title">Live Preview Table</h2>
+            <div className="project-user-header">
+              <h2 className="project-user-title">Project List</h2>
+
+              <span className="project-user-badge">
+                {projects.length} Projects
+              </span>
+            </div>
 
             <div className="project-user-table-wrapper">
               <table className="project-user-table">
@@ -137,13 +161,13 @@ const ProjectUser = () => {
 
                 <tbody>
                   {projects.length > 0 ? (
-                    projects.map((item) => (
-                      <tr key={item.id}>
+                    projects.map((project) => (
+                      <tr key={project.id}>
                         <td>
-                          {item.image ? (
+                          {project.image ? (
                             <img
-                              src={item.image}
-                              alt="project"
+                              src={project.image}
+                              alt={project.projectName}
                               className="project-user-preview-image"
                             />
                           ) : (
@@ -151,14 +175,19 @@ const ProjectUser = () => {
                           )}
                         </td>
 
-                        <td>{item.projectName}</td>
-                        <td>{item.projectDescription}</td>
-                        <td>{item.ownerName}</td>
+                        <td>{project.projectName}</td>
+
+                        <td>{project.projectDescription}</td>
+
+                        <td>{project.ownerName}</td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="4" className="project-user-empty">
+                      <td
+                        colSpan="4"
+                        className="project-user-empty"
+                      >
                         No Projects Added Yet
                       </td>
                     </tr>
