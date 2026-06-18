@@ -1,50 +1,68 @@
 import React from "react";
 import "./BusinessesChoose.css";
 
+import {
+  FaChartLine,
+  FaTrophy,
+  FaGlobeAsia,
+  FaShoppingCart,
+  FaUsers,
+} from "react-icons/fa";
+
 const BusinessesChoose = () => {
   const items = [
     {
-      icon: "/assets/icons/roi.svg",
-      title: "3X ROI in 90 Days (avg.)",
+      icon: <FaChartLine />,
+      title: "Performance-Driven Marketing Strategies",
       desc:
-        "We focus on strategies that deliver quick, measurable results. Our performance marketing approach has helped businesses consistently achieve up to 3X ROI within just 90 days, making sure your investment turns into growth fast.",
+        "PR WEBSTOCK focuses on data-driven digital marketing strategies that help businesses in Bhubaneswar improve online visibility, generate qualified leads, and achieve sustainable business growth.",
     },
     {
-      icon: "/assets/icons/industry.svg",
-      title: "Compete with Industry Leaders",
+      icon: <FaTrophy />,
+      title: "Compete With Industry Leaders",
       desc:
-        "With smart planning and the right tools, we help your business grow and compete with the leading brands in your industry whether you're just starting out or scaling up. Our proven strategies make sure you stand out in competitive markets.",
+        "Our SEO, Google Ads, social media marketing, and content strategies help businesses strengthen their digital presence and compete effectively within their industry.",
     },
     {
-      icon: "/assets/icons/visibility.svg",
-      title: "Scale Brand Visibility Locally and Globally",
+      icon: <FaGlobeAsia />,
+      title: "Grow Your Brand Presence",
       desc:
-        "From hyper-local SEO to international campaigns, we expand your reach where it matters. We design strategies that strengthen your presence in Bangalore while opening up new markets beyond your current boundaries.",
+        "We help businesses expand their reach through local SEO, digital advertising, and online marketing campaigns designed to attract customers from both local and wider markets.",
     },
     {
-      icon: "/assets/icons/conversion.svg",
-      title: "Convert More Visitors into Buyers",
+      icon: <FaShoppingCart />,
+      title: "Increase Leads & Conversions",
       desc:
-        "We help your business grow by converting online visitors into paying customers. Through CRO, targeted content, and UX enhancements, we reduce drop-offs and guide more users toward taking action whether that means purchases, signups, or lead generation.",
+        "From website optimization to targeted marketing campaigns, we focus on improving user engagement and converting visitors into valuable customers.",
     },
     {
-      icon: "/assets/icons/team.svg",
-      title: "Dedicated Strategy and Execution Team",
+      icon: <FaUsers />,
+      title: "Dedicated Digital Marketing Team",
       desc:
-        "As a trusted digital marketing company in Bangalore, we offer you a full-service team dedicated to your growth—from concept development and planning to smooth execution and ongoing performance optimization.",
+        "Our experienced team provides end-to-end digital marketing support, including SEO, PPC, social media marketing, content creation, and performance analysis.",
     },
   ];
 
   return (
     <section className="why-section">
-      <h2 className="why-title">Why Bangalore Businesses Choose Webomindapps</h2>
+      <h2 className="why-title">
+        Why Businesses Choose PR WEBSTOCK In Bhubaneswar
+      </h2>
 
       <div className="why-grid">
         {items.map((item, index) => (
           <div className="why-card" key={index}>
-            <img src={item.icon} alt="icon" className="why-icon" />
-            <h3 className="why-card-title">{item.title}</h3>
-            <p className="why-desc">{item.desc}</p>
+            <div className="why-icon">
+              {item.icon}
+            </div>
+
+            <h3 className="why-card-title">
+              {item.title}
+            </h3>
+
+            <p className="why-desc">
+              {item.desc}
+            </p>
           </div>
         ))}
       </div>
@@ -53,7 +71,3 @@ const BusinessesChoose = () => {
 };
 
 export default BusinessesChoose;
-
-
-
-

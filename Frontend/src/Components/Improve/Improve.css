@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.improve-section {
+  width: 100%;
+  min-height: 380px;
+  background: #f3f3fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.improve-container {
+  max-width: 1100px;
+  width: 100%;
+  text-align: center;
+}
+
+.improve-title {
+  font-size: 62px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #232846;
+  margin-bottom: 40px;
+}
+
+.improve-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #65769b;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.meta-item svg {
+  font-size: 20px;
+}
+
+.meta-dot {
+  color: #c3cad8;
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* =========================
+   Laptop
+========================= */
+
+@media (max-width: 1200px) {
+  .improve-title {
+    font-size: 54px;
+  }
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 992px) {
+  .improve-title {
+    font-size: 46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .improve-section {
+    min-height: auto;
+    padding: 70px 20px;
+  }
+
+  .improve-title {
+    font-size: 38px;
+    margin-bottom: 30px;
+  }
+
+  .improve-meta {
+    gap: 16px;
+  }
+
+  .meta-item {
+    font-size: 14px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 576px) {
+  .improve-title {
+    font-size: 30px;
+    line-height: 1.3;
+  }
+
+  .improve-meta {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .meta-dot {
+    display: none;
+  }
+ 
+  .admin-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .meta-item {
+    justify-content: center;
+  }
+}

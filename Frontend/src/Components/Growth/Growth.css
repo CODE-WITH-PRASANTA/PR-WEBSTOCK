@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.growth-section {
+  width: 100%;
+  padding: 30px 20px;
+  background: #ffffff;
+}
+
+.growth-container {
+  max-width: 1600px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+}
+
+.growth-card {
+  border-radius: 22px;
+  overflow: hidden;
+  background: #120026;
+  transition: all 0.3s ease;
+}
+
+.growth-card:hover {
+  transform: translateY(-8px);
+}
+
+.growth-image {
+  width: 100%;
+  height: 285px;
+}
+
+.growth-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.growth-content {
+  background: #120026;
+  padding: 28px;
+}
+
+.growth-content h3 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 18px;
+}
+
+.growth-content p {
+  color: #f3f3f8;
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+.growth-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+
+  padding: 14px 32px;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #5a35ff,
+    #7a55ff
+  );
+
+  transition: all 0.3s ease;
+}
+
+.growth-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ==========================
+   Large Tablet
+========================== */
+
+@media (max-width: 1200px) {
+  .growth-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================
+   Tablet
+========================== */
+
+@media (max-width: 768px) {
+  .growth-container {
+    grid-template-columns: 1fr;
+  }
+
+  .growth-image {
+    height: 260px;
+  }
+
+  .growth-content {
+    padding: 24px;
+  }
+
+  .growth-content h3 {
+    font-size: 20px;
+  }
+
+  .growth-content p {
+    font-size: 16px;
+  }
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 480px) {
+  .growth-section {
+    padding: 20px 15px;
+  }
+
+  .growth-image {
+    height: 220px;
+  }
+
+  .growth-content {
+    padding: 20px;
+  }
+
+  .growth-content h3 {
+    font-size: 18px;
+  }
+
+  .growth-content p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .growth-btn {
+    width: 100%;
+    font-size: 16px;
+  }
+}

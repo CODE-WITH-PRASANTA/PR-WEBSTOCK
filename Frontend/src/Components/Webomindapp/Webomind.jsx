@@ -10,50 +10,56 @@ import GlobeIcon from "../../assets/Serving-countries.webp";
 import StrategyIcon from "../../assets/Strategic-creative.webp";
 
 const Webomind = () => {
-  const items = [
-    {
-      title: "12+ years of experience in digital marketing",
-      desc: "Over the past 12+ years, our team of digital marketing experts has been supporting brands in building a strong digital presence. We understand what works and how to stay ahead in a constantly changing digital space.",
-      icon: ExpIcon,
-      color: "#003F55",
-    },
-    {
-      title: "2000+ successful campaigns",
-      desc: "With more than 2000+ campaigns delivered successfully across different platforms and industries, we help you increase engagement, boost visibility, and deliver real, impactful results.",
-      icon: CampaignIcon,
-      color: "#FD4237",
-    },
-    {
-      title: "Google rating 4.9, on clutch & goodfirms 5/5",
-      desc: "Our high performing websites and reliable support post-development have earned us 4.8★ Google rating and 5★ Reviews on Clutch and GoodFirms.",
-      icon: RatingIcon,
-      color: "#FF7176",
-    },
-    {
-      title: "100% satisfaction guarantee",
-      desc: "We’re committed to your success. Our 100% satisfaction guarantee assures you get the value and performance you expect every single time.",
-      icon: GuaranteeIcon,
-      color: "#0B2E68",
-    },
-    {
-      title: "Serving 25+ countries",
-      desc: "From local startups to global brands, we’ve delivered results to clients across 25+ countries, making us a trusted social media marketing agency in Bangalore with global reach.",
-      icon: GlobeIcon,
-      color: "#1FA36A",
-    },
-    {
-      title: "Strategic, creative, and performance-focused approach",
-      desc: "Our social media marketing services are built to meet the requirements of your brand, using the right combination of strategy, content, and data insights.",
-      icon: StrategyIcon,
-      color: "#7227D5",
-    },
-  ];
+ const items = [
+  {
+    title: "Experienced Digital Marketing Team",
+    desc: "PR WEBSTOCK brings years of expertise in digital marketing, helping businesses in Bhubaneswar and across Odisha build a strong online presence through effective social media strategies and audience-focused campaigns.",
+    icon: ExpIcon,
+    color: "#003F55",
+  },
+  {
+    title: "Proven Campaign Success",
+    desc: "We create and manage high-performing social media campaigns that improve brand visibility, increase engagement, and generate quality leads for businesses across multiple industries.",
+    icon: CampaignIcon,
+    color: "#FD4237",
+  },
+  {
+    title: "Trusted by Growing Businesses",
+    desc: "Our commitment to quality service, transparent communication, and measurable results has made PR WEBSTOCK a trusted digital marketing partner for businesses looking to grow online.",
+    icon: RatingIcon,
+    color: "#FF7176",
+  },
+  {
+    title: "Results-Driven Marketing Solutions",
+    desc: "Every campaign is designed with clear business goals in mind. We focus on increasing reach, improving customer engagement, and delivering real growth through strategic social media marketing.",
+    icon: GuaranteeIcon,
+    color: "#0B2E68",
+  },
+  {
+    title: "Helping Businesses Grow Online",
+    desc: "From local startups to established companies, we help businesses strengthen their digital presence, connect with the right audience, and build long-term brand value.",
+    icon: GlobeIcon,
+    color: "#1FA36A",
+  },
+  {
+    title: "Creative & Strategic Approach",
+    desc: "Our team combines creative content, audience insights, and data-driven strategies to deliver social media marketing solutions that support sustainable business growth.",
+    icon: StrategyIcon,
+    color: "#7227D5",
+  },
+];
+  
 
   return (
     <div className="wm-section">
       <h1 className="wm-title">
+<<<<<<< HEAD
         Why choose PR WEBSTOCK for social media marketing in bangalore?
       </h1>
+=======
+  Why Choose PR WEBSTOCK For Social Media Marketing In Bhubaneswar?
+</h1>
+>>>>>>> 55648e56f094c8e33d47f8993db89a104b9992e9
 
       <div className="wm-grid">
         {items.map((box, index) => (

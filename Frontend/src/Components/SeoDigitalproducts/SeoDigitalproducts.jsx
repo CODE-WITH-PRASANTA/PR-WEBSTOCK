@@ -1,128 +1,139 @@
 import React from "react";
 import "./SeoDigitalproducts.css";
-import img1 from "../../assets/img1.svg"
-import img2 from "../../assets/img2.svg"
-import img3 from "../../assets/img3.svg"
-import img4 from "../../assets/img4.svg"
-import img5 from "../../assets/img5.svg"
-import img6 from "../../assets/img6.svg"
-import img7 from "../../assets/img7.svg"
-import img8 from "../../assets/img8.svg"
-import img9 from "../../assets/img9.svg"
+
+import img1 from "../../assets/img1.svg";
+import img2 from "../../assets/img2.svg";
+import img3 from "../../assets/img3.svg";
+import img4 from "../../assets/img4.svg";
+import img5 from "../../assets/img5.svg";
+import img6 from "../../assets/img6.svg";
+import img7 from "../../assets/img7.svg";
+import img8 from "../../assets/img8.svg";
+import img9 from "../../assets/img9.svg";
 
 const SeoDigitalproducts = () => {
   const cards = [
     {
       title: "Keyword Optimization",
-        icon: img1,
-       hoverColor: "#ef2f2f",
+      icon: img1,
+      hoverColor: "#ef2f2f",
       points: [
-        "Thoroughly research keywords that your target audience uses.",
-        "Optimize your website and product descriptions with those keywords.",
-        "Get prominent positions in search results and bring more organic traffic.",
+        "Research high-intent keywords.",
+        "Optimize pages and content.",
+        "Increase organic traffic.",
       ],
     },
     {
       title: "Product Descriptions",
-        icon: img2,
-      hoverColor:"#003d4f",
+      icon: img2,
+      hoverColor: "#003d4f",
       points: [
-        "Create engaging and informative product descriptions.",
-        "Highlight the unique features and benefits of your digital products.",
-        "Make customers interested in exploring further and making a purchase.",
+        "Create engaging product content.",
+        "Highlight key benefits.",
+        "Improve conversions.",
       ],
     },
     {
-      title: "Technical Perfection",
-      icon: img3, 
-    hoverColor:"#f64a68",
+      title: "Technical SEO",
+      icon: img3,
+      hoverColor: "#f64a68",
       points: [
-        "Improve your website's technical aspects such as speed, security.",
-        "Ensure seamless performance across devices and browsers.",
-        "Enhance overall user experience with clean architecture and optimized loading.",
-        "Boost search engine rankings while gaining customer trust and engagement.",
+        "Improve website speed.",
+        "Enhance security and performance.",
+        "Boost user experience.",
       ],
     },
     {
-      title: "Social Validation & Testimonials",
+      title: "Social Proof",
       icon: img4,
-    hoverColor:"#1f3e7b",
+      hoverColor: "#1f3e7b",
       points: [
-        "Include authentic customer reviews and testimonials in product presentations.",
-        "Showcase real-world satisfaction to influence buying decisions.",
-        "Build trust and confidence through social proof.",
-        "Increase conversions by reassuring potential customers.",
+        "Show customer reviews.",
+        "Build trust and credibility.",
+        "Increase purchase confidence.",
       ],
     },
     {
-      title: "Inspiring Video Experiences",
+      title: "Video Marketing",
       icon: img5,
-    hoverColor:"#1a7d55",
+      hoverColor: "#1a7d55",
       points: [
-        "Produce appealing videos showcasing product features and use cases.",
-        "Demonstrate real-world applications of your digital products.",
-        "Help customers visualize value and functionality.",
-        "Drive sales through immersive and engaging video experiences.",
+        "Showcase product features.",
+        "Increase user engagement.",
+        "Support sales growth.",
       ],
     },
     {
       title: "Enhanced Visibility",
       icon: img6,
-    hoverColor:"#6836b3",
+      hoverColor: "#6836b3",
       points: [
-        "Improve product visibility through higher search rankings.",
-        "Increase exposure across relevant digital channels.",
-        "Make your brand more recognizable and discoverable.",
-        "Reach potential buyers actively searching for similar solutions.",
+        "Improve search rankings.",
+        "Increase online exposure.",
+        "Reach potential customers.",
       ],
     },
     {
-      title: "Targeted Conversion Funnel",
+      title: "Conversion Funnel",
       icon: img7,
-    hoverColor:"#f47d35",
+      hoverColor: "#f47d35",
       points: [
-        "Align SEO strategy with customer intent and behavior.",
-        "Attract highly relevant organic traffic to product pages.",
-        "Guide visitors smoothly through the conversion journey.",
-        "Increase the likelihood of turning visitors into paying customers.",
+        "Attract targeted visitors.",
+        "Improve user journeys.",
+        "Increase conversions.",
       ],
     },
     {
-      title: "Trust and Authority",
+      title: "Trust & Authority",
       icon: img8,
-    hoverColor:"#a030b5",
+      hoverColor: "#a030b5",
       points: [
-        "Achieve top rankings to establish brand credibility.",
-        "Position your business as an industry authority.",
-        "Build long-term trust with potential buyers.",
-        "Encourage confident purchasing decisions.",
+        "Build brand credibility.",
+        "Strengthen online authority.",
+        "Gain customer trust.",
       ],
     },
     {
-      title: "Competitive Edge",
+      title: "Competitive Advantage",
       icon: img9,
-    hoverColor:"#2893bd",
+      hoverColor: "#2893bd",
       points: [
-        "Use strategic SEO tactics to outperform competitors.",
-        "Identify gaps and opportunities in the market.",
-        "Stand out in crowded online marketplaces.",
-        "Gain a dominant and sustainable competitive position.",
+        "Outperform competitors.",
+        "Capture more opportunities.",
+        "Grow your online presence.",
       ],
     },
   ];
 
   return (
     <section className="feature-cards-section">
-    <div className="heading">
-      <h1>The potential of SEO in digital products sale</h1>
-      <p>SEO for digital product online sales involves optimizing your website and content for higher rankings in search engine results. Being one of the leading SEO agencies in Bangalore, Webomindapps aids clients by using keywords in titles, meta descriptions, and content, and building quality backlinks to improve SEO. We help digital product sellers succeed with smart strategies.</p>
-    </div>
+      <div className="heading">
+        <h1>
+          SEO Strategies for Digital Product Growth by PR WEBSTOCK
+        </h1>
+
+        <p>
+          PR WEBSTOCK helps businesses in Bhubaneswar, Odisha improve search
+          rankings, increase organic traffic, and grow digital product sales.
+          Our SEO experts in Bhubaneswar create strategies that improve
+          visibility, attract customers, and support long-term business growth.
+        </p>
+      </div>
+
       <div className="feature-cards-grid">
         {cards.map((card, i) => (
-          <div className="feature-card" key={i} style={{ "--hover-color": card.hoverColor }}>
+          <div
+            className="feature-card"
+            key={i}
+            style={{ "--hover-color": card.hoverColor }}
+          >
             <div className="feature-card-header">
               <h3>{card.title}</h3>
-              <img src={card.icon} alt={card.title} />
+
+              <img
+                src={card.icon}
+                alt={`${card.title} - PR WEBSTOCK SEO Services`}
+              />
             </div>
 
             <ul>

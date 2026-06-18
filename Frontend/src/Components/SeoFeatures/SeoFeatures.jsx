@@ -1,57 +1,64 @@
 import React from "react";
 import "./SeoFeatures.css";
 
-function SeoFeatures() {
+const SeoFeatures = () => {
   const features = [
     {
-      title: "Improved rankings",
+      title: "SEO-Friendly Content Strategy",
       description:
-        "We offer search engine optimization services that can help you rank higher in search results regardless of your niche.",
+        "PR WEBSTOCK creates high-quality SEO-friendly content that helps businesses in Bhubaneswar, Odisha improve search visibility, attract relevant audiences, and build long-term online authority."
     },
     {
-      title: "Increased sales",
+      title: "Higher Search Rankings",
       description:
-        "Expand your customer reach and increase sales with innovative marketing strategies.",
+        "Our SEO experts at PR WEBSTOCK implement proven optimization strategies to help websites achieve higher rankings on Google and other search engines across competitive industries in Bhubaneswar."
     },
     {
-      title: "Multiply your leads",
+      title: "More Qualified Leads",
       description:
-        "Gain exposure to potential customers actively seeking your products or services.",
+        "By targeting the right keywords and user intent, PR WEBSTOCK helps businesses in Bhubaneswar, Odisha generate more qualified leads and increase customer inquiries consistently."
     },
     {
-      title: "Access to top SEO tools",
+      title: "Advanced SEO Tools & Analytics",
       description:
-        "Accelerated results, streamlined decision-making, and optimized tactics using advanced SEO tools.",
+        "PR WEBSTOCK utilizes industry-leading SEO tools for keyword research, competitor analysis, technical audits, and performance tracking to deliver measurable growth."
     },
     {
-      title: "Global presence",
+      title: "Stronger Online Presence",
       description:
-        "Reach new customers around the world with tailored marketing campaigns.",
+        "Expand your brand visibility with customized SEO campaigns designed by PR WEBSTOCK to help businesses across Bhubaneswar, Odisha reach local and national audiences."
     },
     {
-      title: "Deep expertise",
+      title: "Experienced SEO Professionals",
       description:
-        "With a decade of experience, we help clients achieve consistent SEO success.",
-    },
+        "With years of digital marketing expertise, PR WEBSTOCK provides reliable SEO services in Bhubaneswar that focus on sustainable growth, increased traffic, and higher conversions."
+    }
   ];
 
   return (
-    <section className="seo-features">
-      <h2 className="seo-features__heading">
-        What Makes <span>Webomindapps</span> the Best SEO Company in Bhubaneswar?
-      </h2>
+    <section className="seo-features-section">
+      <div className="seo-features-container">
+        <div className="seo-features-header">
+          <h2>
+            What Makes <span>PR WEBSTOCK</span> the Best SEO Company in
+            Bhubaneswar?
+          </h2>
+        </div>
 
-      <div className="seo-features__container">
-        {features.map((item, index) => (
-          <div className="seo-features__card" key={index}>
-            <span className="seo-features__accent"></span>
-            <h3 className="seo-features__title">{item.title}</h3>
-            <p className="seo-features__description">{item.description}</p>
-          </div>
-        ))}
+        <div className="seo-features-grid">
+          {features.map((item, index) => (
+            <div className="seo-features-card" key={index}>
+              <div className="seo-features-line"></div>
+
+              <h3>{item.title}</h3>
+
+              <p>{item.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
-}
+};
 
 export default SeoFeatures;

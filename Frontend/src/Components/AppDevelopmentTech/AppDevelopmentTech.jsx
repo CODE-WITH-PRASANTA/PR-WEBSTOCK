@@ -12,52 +12,56 @@ const techBlocks = [
     title: "IoT Solutions Integration",
     icon: iconIoT,
     points: [
-      "Our team of proficient engineers stays abreast of the latest technology.",
-      "We have expertise in Android and iOS development.",
-      "Our qualified and creative developers deliver exceptional results.",
-      "We consistently align our work with project requirements.",
-      "Trust us to bring your app vision to life with brilliance and precision.",
+      "PR WEBSTOCK develops IoT-enabled mobile applications for smart and connected business solutions.",
+      "Our Bhubaneswar, Odisha development team integrates modern IoT technologies for real-time data monitoring.",
+      "We build scalable Android and iOS applications with advanced IoT capabilities.",
+      "Our solutions improve automation, operational efficiency, and user experience.",
+      "Businesses trust PR WEBSTOCK for reliable IoT application development services.",
     ],
   },
   {
     title: "Alexa Integration",
     icon: iconAlexa,
     points: [
-      "Webomindapps specializes in developing Alexa integrated apps.",
-      "Our skilled developers help enhance device productivity and functionality.",
-      "We offer guidance through the Alexa compliance and certification process.",
-      "Our team and network of partners have the expertise to help you succeed.",
-      "Confide in us for intelligent Alexa integration.",
+      "PR WEBSTOCK offers seamless Alexa integration for mobile and smart device applications.",
+      "Our developers create voice-enabled solutions that improve accessibility and user engagement.",
+      "We help businesses implement intelligent voice assistant functionality.",
+      "Our Bhubaneswar, Odisha team follows industry best practices for Alexa development.",
+      "Deliver smarter customer experiences through advanced voice technology integration.",
     ],
   },
   {
     title: "Chatbot Integration",
     icon: iconChatbot,
     points: [
-      "Our chatbots leverage AI, ML, and NLP technologies to analyze and understand human speech.",
-      "They generate appropriate responses and facilitate seamless communication between humans and computers.",
-      "Automating customer interactions enhances customer engagement.",
-      "Our mobile application developers specialize in developing smart chatbots.",
-      "Our chatbots help businesses win customer confidence.",
+      "PR WEBSTOCK develops AI-powered chatbots for websites and mobile applications.",
+      "Our chatbot solutions use Artificial Intelligence and Natural Language Processing technologies.",
+      "Automate customer support and improve user engagement with intelligent conversations.",
+      "We create custom chatbot solutions tailored to business requirements.",
+      "Our Bhubaneswar, Odisha team helps businesses provide faster and smarter customer support.",
     ],
   },
   {
     title: "GPS Integration",
     icon: iconGPS,
     points: [
-      "Vehicle tracking solutions offer numerous advantages including enhanced productivity and better driver behavior.",
-      "Customized real-time vehicle tracking solutions.",
-      "Cost-effective offerings to diverse customer requirements.",
-      "We build a simplified compliance management system.",
-      "We develop integrated systems for your fleet management.",
+      "PR WEBSTOCK provides GPS-enabled mobile application development for location-based services.",
+      "Real-time tracking solutions help businesses improve operational efficiency and customer satisfaction.",
+      "Our custom GPS integrations support logistics, transportation, and fleet management systems.",
+      "We develop secure and scalable location tracking solutions for Android and iOS applications.",
+      "Based in Bhubaneswar, Odisha, we deliver reliable GPS-powered mobile app solutions.",
     ],
   },
 ];
 
+
 const TechnologyIntegration = () => {
   return (
     <section className="ti-section">
-      <h2 className="ti-title">Technology integration in mobile application</h2>
+
+    <h2 className="ti-title">
+      Advanced Technology Integration in Mobile Applications
+    </h2>
 
       <div className="ti-grid">
         {techBlocks.map((block, index) => (
