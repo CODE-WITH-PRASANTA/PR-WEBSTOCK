@@ -4,7 +4,8 @@ import "./AppDevelopmentServices.css";
 const MobileAppServices = () => {
   return (
     <section className="mas-section">
-      <h2 className="mas-title">Mobile application development services we offer</h2>
+      <h2 className="mas-title">  Mobile App Development Services in Bhubaneswar, Odisha
+</h2>
 
       <div className="mas-divider mas-divider-top" />
 
@@ -23,12 +24,13 @@ const MobileAppServices = () => {
             </svg>
           </div>
           <h3 className="mas-card-title">Hybrid app development</h3>
-          <ul className="mas-list">
-            <li>Hybrid apps provide a cost-effective solution with faster development cycles.</li>
-            <li>Offer broad platform compatibility, reaching a wider audience.</li>
-            <li>Reduced maintenance costs contribute to long-term affordability.</li>
-            <li>Embrace the power of hybrid apps for a seamless and engaging user experience.</li>
-          </ul>
+      <ul className="mas-list">
+          <li>PR WEBSTOCK develops hybrid mobile apps that work seamlessly across Android and iOS platforms.</li>
+           <li>Our Bhubaneswar, Odisha team creates cost-effective solutions using modern technologies.</li>
+           <li>Hybrid applications reduce development time while maintaining excellent performance.</li>
+           <li>Businesses benefit from wider audience reach and simplified maintenance.</li>
+      </ul>
+
         </div>
 
         <div className="mas-card">
@@ -41,14 +43,13 @@ const MobileAppServices = () => {
             </svg>
           </div>
           <h3 className="mas-card-title">Native app development</h3>
-          <ul className="mas-list">
-            <li>Create high-performance native apps for a competitive edge.</li>
-            <li>Native app development delivers a polished and intuitive user experience.</li>
-            <li>Native applications align with platform design guidelines and offer superior performance.</li>
-            <li>
-              Access to the latest OS updates and features allows for innovation and staying ahead in the market.
-            </li>
-          </ul>
+    <ul className="mas-list">
+        <li>PR WEBSTOCK builds high-performance native applications for exceptional user experiences.</li>
+        <li>Native apps offer better speed, security, and platform-specific functionality.</li>
+        <li>Our developers in Bhubaneswar, Odisha follow the latest industry standards.</li>
+        <li>We create scalable mobile solutions designed for long-term business growth.</li>
+    </ul>
+
         </div>
 
         <div className="mas-card mas-card-last-col">
@@ -61,18 +62,16 @@ const MobileAppServices = () => {
             </svg>
           </div>
           <h3 className="mas-card-title">Cross platform app development</h3>
-          <ul className="mas-list">
-            <li>
-              We leverage frameworks like React Native and{" "}
-              <span className="mas-accent">Flutter</span> to create dynamic apps.
-            </li>
-            <li>Our cross-platform apps seamlessly perform on both Android and iOS devices.</li>
-            <li>
-              Cost-effectiveness and faster development cycles are key advantages of cross-platform app
-              development.
-            </li>
-            <li>Wider audience reach is achieved by targeting multiple platforms.</li>
-          </ul>
+
+      <ul className="mas-list">
+       <li>
+           We use React Native and <span className="mas-accent">Flutter</span> to build powerful cross-platform applications.
+       </li>
+       <li>PR WEBSTOCK delivers consistent performance across Android and iOS devices.</li>
+       <li>Cross-platform development reduces costs while accelerating project delivery.</li>
+        <li>Our Bhubaneswar, Odisha team helps businesses reach a larger audience efficiently.</li>
+      </ul>
+
         </div>
 
         {/* middle horizontal divider */}
@@ -88,19 +87,14 @@ const MobileAppServices = () => {
             </svg>
           </div>
           <h3 className="mas-card-title">Android app development</h3>
-          <ul className="mas-list">
-            <li>
-              Unparalleled expertise in selecting the perfect technologies and tools for the Android platform.
-            </li>
-            <li>Optimal mobile app solutions for your business success.</li>
-            <li>
-              Understanding the significance of making the right technological choices for your Android mobile app.
-            </li>
-            <li>
-              Prominent Android app development company in Bangalore with years of experience in crafting Android
-              apps.
-            </li>
-          </ul>
+        
+      <ul className="mas-list">
+        <li>PR WEBSTOCK provides custom Android app development services for startups and enterprises.</li>
+         <li>We create secure, scalable, and user-friendly Android applications.</li>
+         <li>Our Bhubaneswar, Odisha developers select the right technology stack for every project.</li>
+          <li>We help businesses grow with innovative Android mobile solutions.</li>
+      </ul>
+
         </div>
 
         <div className="mas-card mas-card-bottom">
@@ -112,14 +106,14 @@ const MobileAppServices = () => {
             </svg>
           </div>
           <h3 className="mas-card-title">iOS app development</h3>
-          <ul className="mas-list">
-            <li>Expertise in selecting precise technologies and tools tailored to the iOS platform.</li>
-            <li>Development of iOS apps for Apple devices, including iPhones, iPads, and more.</li>
-            <li>Understanding the importance of informed technological decisions for your app.</li>
-            <li>
-              Deliver ideal solutions for iOS app development, ensuring a remarkable outcome.
-            </li>
-          </ul>
+
+       <ul className="mas-list">
+          <li>PR WEBSTOCK develops premium iOS applications for iPhone and iPad users.</li>
+            <li>We focus on performance, security, and intuitive user experiences.</li>
+              <li>Our team follows Apple's latest development guidelines and best practices.</li>
+               <li>Businesses across Bhubaneswar and Odisha trust us for reliable iOS app development.</li>
+        </ul>
+
         </div>
 
         <div className="mas-card mas-card-last-col mas-card-bottom">
@@ -130,14 +124,14 @@ const MobileAppServices = () => {
             </svg>
           </div>
           <h3 className="mas-card-title">Windows app development</h3>
-          <ul className="mas-list">
-            <li>Extensive experience in mastering the intricacies of the Windows platform.</li>
-            <li>Precision in choosing the right technologies and tools for Windows app development.</li>
-            <li>
-              Understanding the significance of selecting the optimal technology stack for your Windows app.
-            </li>
-            <li>Develop exceptional Windows app solutions tailored to your business needs.</li>
-          </ul>
+
+       <ul className="mas-list">
+           <li>PR WEBSTOCK creates custom Windows applications tailored to business requirements.</li>
+            <li>Our solutions focus on reliability, performance, and long-term scalability.</li>
+             <li>We use proven technologies to build secure and efficient Windows applications.</li>
+               <li>Based in Bhubaneswar, Odisha, we deliver business-focused software solutions.</li>
+         </ul>
+
         </div>
       </div>
 

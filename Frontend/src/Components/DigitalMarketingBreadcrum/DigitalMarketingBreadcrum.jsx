@@ -20,7 +20,7 @@ const DigitalMarketingBreadcrum = () => {
       <div className="DigitalMarketing-breadcrum__overlay" />
 
       <div className="DigitalMarketing-breadcrum__content">
-        <h1 className="DigitalMarketing-breadcrum__title">Digital Marketing Company in Bangalore</h1>
+        <h1 className="DigitalMarketing-breadcrum__title">Digital Marketing Company in Bhubaneswar</h1>
 
         <p className="DigitalMarketing-breadcrum__subtitle">
 Increase traffic, leads, and sales with a certified, performance-first digital marketing partner.        </p>

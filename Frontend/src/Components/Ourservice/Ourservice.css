@@ -1,93 +1,172 @@
-/* ------------------------------
-   SECTION WRAPPER
------------------------------- */
+/* ===========================
+   SECTION
+=========================== */
+
 .ss-wrapper {
   width: 100%;
-  padding: 80px 80px;
+  padding: 80px 70px;
   background: #ffffff;
 }
 
-.ss-heading {
+.ss-header {
   text-align: center;
-  font-size: 52px;
+  max-width: 900px;
+  margin: 0 auto 50px;
+}
+
+.ss-heading {
+  font-size: 3rem;
   font-weight: 800;
-  margin-bottom: 70px;
-}
-
-/* ------------------------------
-   GRID (3 × 3)
------------------------------- */
-.ss-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1.5px solid #dcdcdc;
-  border-left: 1.5px solid #dcdcdc;
-}
-
-/* ------------------------------
-   EACH CARD
------------------------------- */
-.ss-card {
-  padding: 60px 40px;
-  border-right: 1.5px solid #dcdcdc;
-  border-bottom: 1.5px solid #dcdcdc;
-}
-
-.ss-icon {
-  width: 95px;
-  margin-bottom: 30px;
-}
-
-.ss-card h3 {
-  font-size: 28px;
-  font-weight: 700;
+  color: #111;
   margin-bottom: 15px;
 }
 
-.ss-card p {
-  font-size: 20px;
-  line-height: 1.7;
-  color: #333;
-  max-width: 90%;
+.ss-subheading {
+  font-size: 1.05rem;
+  color: #666;
+  line-height: 1.8;
 }
 
-/* ------------------------------
-   RESPONSIVE DESIGN
------------------------------- */
+/* ===========================
+   GRID
+=========================== */
 
-/* Tablet */
+.ss-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.ss-card {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 18px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  min-height: 260px;
+}
+
+.ss-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.ss-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
+.ss-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.ss-card p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* ===========================
+   PAGINATION
+=========================== */
+
+.ss-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 45px;
+}
+
+.ss-pagination button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: #f3f3f3;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.ss-pagination button:hover:not(:disabled) {
+  background: #111;
+  color: #fff;
+}
+
+.ss-pagination button.active {
+  background: #111;
+  color: #fff;
+}
+
+.ss-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
 @media (max-width: 1024px) {
   .ss-wrapper {
-    padding: 60px 40px;
+    padding: 70px 35px;
   }
 
   .ss-heading {
-    font-size: 40px;
+    font-size: 2.4rem;
   }
 
   .ss-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  .ss-card {
+    padding: 18px;
+    min-height: 240px;
   }
 
   .ss-card h3 {
-    font-size: 24px;
+    font-size: 1rem;
   }
 
   .ss-card p {
-    font-size: 18px;
+    font-size: 0.85rem;
+  }
+
+  .ss-icon {
+    width: 50px;
+    height: 50px;
   }
 }
 
-/* Mobile */
+/* ===========================
+   MOBILE
+=========================== */
+
 @media (max-width: 768px) {
   .ss-wrapper {
-    padding: 40px 20px;
+    padding: 60px 20px;
   }
 
   .ss-heading {
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 2rem;
+  }
+
+  .ss-subheading {
+    font-size: 0.95rem;
   }
 
   .ss-grid {
@@ -95,20 +174,43 @@
   }
 
   .ss-card {
-    padding: 40px 20px;
-  }
-
-  .ss-icon {
-    width: 75px;
+    min-height: auto;
+    padding: 22px;
   }
 
   .ss-card h3 {
-    font-size: 22px;
+    font-size: 1.1rem;
   }
 
   .ss-card p {
-    font-size: 17px;
+    font-size: 0.95rem;
+  }
+
+  .ss-pagination {
+    gap: 8px;
+  }
+
+  .ss-pagination button {
+    width: 38px;
+    height: 38px;
   }
 }
 
+/* ===========================
+   SMALL MOBILE
+=========================== */
 
+@media (max-width: 480px) {
+  .ss-heading {
+    font-size: 1.7rem;
+  }
+
+  .ss-card {
+    padding: 18px;
+  }
+
+  .ss-icon {
+    width: 45px;
+    height: 45px;
+  }
+}
