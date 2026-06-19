@@ -1,6 +1,6 @@
 .FrontendDev {
   width: 100%;
-  padding: 60px 20px;
+  padding: 25px 15px;
   background: #f5f7fb;
   display: flex;
   justify-content: center;
@@ -8,47 +8,45 @@
 
 .FrontendDev-card {
   width: 100%;
-  max-width: 1450px;
+  max-width: 1400px;
+  min-height: 60vh;
   background: #ffffff;
-  border-radius: 28px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
-  transition: 0.4s ease;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease;
 }
 
 .FrontendDev-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
 }
 
-/* Header */
+/* ================= HEADER ================= */
 
 .FrontendDev-header {
-  background: linear-gradient(
-    135deg,
-    #dfe9ff,
-    #eef4ff
-  );
-  padding: 40px;
+  background: linear-gradient(135deg, #dfe9ff, #eef4ff);
+  padding: 24px 32px;
 }
 
 .FrontendDev-title {
-  font-size: 42px;
+  font-size: 24px;
   font-weight: 700;
   color: #1e40af;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 .FrontendDev-subtitle {
-  font-size: 20px;
+  font-size: 14px;
   color: #4b5563;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-/* Table */
+/* ================= TABLE ================= */
 
 .FrontendDev-tableWrapper {
-  padding: 40px;
+  padding: 24px 32px;
   overflow-x: auto;
 }
 
@@ -60,144 +58,149 @@
 .FrontendDev-table th,
 .FrontendDev-table td {
   border: 1px solid #dbe2ea;
-  padding: 22px;
+  padding: 14px 18px;
 }
 
 .FrontendDev-table th {
   background: #f1f5f9;
   color: #1e3a8a;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 700;
-  width: 17%;
   text-align: center;
+  width: 17%;
 }
 
 .FrontendDev-table td {
   background: #ffffff;
   color: #4b5563;
-  font-size: 19px;
+  font-size: 14px;
 }
 
 .FrontendDev-table th svg {
-  margin-right: 8px;
+  margin-right: 6px;
   vertical-align: middle;
 }
 
-/* Highlights */
+/* ================= HIGHLIGHTS ================= */
 
 .FrontendDev-highlights {
-  padding: 0 40px 20px;
+  padding: 0 32px 10px;
 }
 
 .FrontendDev-highlights h3 {
   color: #1e40af;
-  font-size: 34px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 
 .FrontendDev-highlights p {
   color: #4b5563;
-  font-size: 22px;
-  line-height: 1.8;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-/* Buttons */
+/* ================= BUTTONS ================= */
 
 .FrontendDev-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
-  padding: 20px 40px 40px;
+  gap: 14px;
+  padding: 10px 32px 25px;
   flex-wrap: wrap;
 }
 
 .FrontendDev-whatsappBtn,
 .FrontendDev-applyBtn {
-  border: none;
-  text-decoration: none;
-  padding: 18px 35px;
-  border-radius: 50px;
-  font-size: 20px;
-  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.35s ease;
+  transition: all 0.3s ease;
 }
 
 .FrontendDev-whatsappBtn {
   background: #22c55e;
-  color: #fff;
+  color: #ffffff;
+  border: none;
 }
 
 .FrontendDev-whatsappBtn:hover {
   background: #16a34a;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .FrontendDev-applyBtn {
+  border: none;
   background: #ef4444;
-  color: #fff;
-  box-shadow: 0 0 0 3px #1f2937 inset;
+  color: #ffffff;
+  box-shadow: 0 0 0 2px #1f2937 inset;
 }
 
 .FrontendDev-applyBtn:hover {
   background: #dc2626;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-/* Tablet */
+/* ================= LAPTOP ================= */
+
+@media (max-width: 1200px) {
+  .FrontendDev-title {
+    font-size: 22px;
+  }
+}
+
+/* ================= TABLET ================= */
 
 @media (max-width: 992px) {
+  .FrontendDev-card {
+    min-height: auto;
+  }
+
   .FrontendDev-title {
-    font-size: 34px;
+    font-size: 20px;
   }
 
   .FrontendDev-subtitle {
-    font-size: 18px;
+    font-size: 13px;
   }
 
   .FrontendDev-table th,
   .FrontendDev-table td {
-    padding: 18px;
-    font-size: 16px;
+    font-size: 13px;
+    padding: 12px;
   }
 
   .FrontendDev-highlights h3 {
-    font-size: 28px;
+    font-size: 16px;
   }
 
   .FrontendDev-highlights p {
-    font-size: 18px;
+    font-size: 13px;
   }
 }
 
-/* Mobile */
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
   .FrontendDev-header,
   .FrontendDev-tableWrapper,
   .FrontendDev-highlights,
   .FrontendDev-actions {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .FrontendDev-title {
-    font-size: 28px;
+    font-size: 18px;
   }
 
   .FrontendDev-subtitle {
-    font-size: 16px;
-  }
-
-  .FrontendDev-highlights h3 {
-    font-size: 24px;
-  }
-
-  .FrontendDev-highlights p {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .FrontendDev-actions {
@@ -208,25 +211,42 @@
   .FrontendDev-applyBtn {
     width: 100%;
     justify-content: center;
+    font-size: 14px;
   }
 }
 
-/* Small Mobile */
+/* ================= SMALL MOBILE ================= */
 
 @media (max-width: 480px) {
+  .FrontendDev {
+    padding: 15px 10px;
+  }
+
   .FrontendDev-title {
-    font-size: 24px;
+    font-size: 16px;
+  }
+
+  .FrontendDev-subtitle {
+    font-size: 11px;
   }
 
   .FrontendDev-table th,
   .FrontendDev-table td {
-    font-size: 14px;
-    padding: 14px;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .FrontendDev-highlights h3 {
+    font-size: 15px;
+  }
+
+  .FrontendDev-highlights p {
+    font-size: 12px;
   }
 
   .FrontendDev-whatsappBtn,
   .FrontendDev-applyBtn {
-    font-size: 16px;
-    padding: 14px 24px;
+    font-size: 13px;
+    padding: 12px 18px;
   }
 }
