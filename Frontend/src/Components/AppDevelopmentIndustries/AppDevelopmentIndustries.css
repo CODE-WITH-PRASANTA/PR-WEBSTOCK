@@ -80,39 +80,121 @@
   display: block;
 }
 
-/* -------------- Responsive -------------- */
-
-@media (max-width: 1024px) {
+/* ===========================
+   LARGE LAPTOP
+=========================== */
+@media (max-width: 1200px) {
   .industries-section {
-    grid-template-columns: 1fr;
-    row-gap: 40px;
+    padding: 0 30px 70px;
+    column-gap: 30px;
   }
 
-  .industries-right {
-    order: -1; /* image on top for tablets if you prefer, remove if not */
+  .industries-title {
+    font-size: 36px;
   }
 
   .industries-bg-shape {
-    right: 50%;
-    transform: translateX(50%);
+    width: 240px;
+    height: 320px;
   }
 }
 
-@media (max-width: 640px) {
+/* ===========================
+   TABLET
+=========================== */
+@media (max-width: 992px) {
+  .industries-section {
+    grid-template-columns: 1fr;
+    row-gap: 50px;
+    text-align: center;
+  }
+
+  .industries-right {
+    order: -1;
+  }
+
+  .industries-lists {
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .industries-list li {
+    justify-content: center;
+  }
+
+  .industries-bg-shape {
+    width: 220px;
+    height: 300px;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .industries-image {
+    max-width: 450px;
+  }
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+@media (max-width: 768px) {
   .industries-section {
     padding: 0 20px 60px;
   }
 
   .industries-title {
-    font-size: 32px;
+    font-size: 30px;
+  }
+
+  .industries-intro {
+    font-size: 15px;
+    line-height: 1.8;
   }
 
   .industries-lists {
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
+    align-items: center;
   }
 
   .industries-image {
-    max-width: 280px;
+    max-width: 320px;
+  }
+
+  .industries-bg-shape {
+    width: 180px;
+    height: 240px;
+  }
+}
+
+/* ===========================
+   SMALL MOBILE
+=========================== */
+@media (max-width: 480px) {
+  .industries-section {
+    padding: 0 15px 50px;
+  }
+
+  .industries-title {
+    font-size: 24px;
+  }
+
+  .industries-intro {
+    font-size: 14px;
+  }
+
+  .industries-list li {
+    font-size: 14px;
+  }
+
+  .industries-image {
+    max-width: 260px;
+  }
+
+  .industries-bg-shape {
+    width: 140px;
+    height: 190px;
+    border-radius: 20px;
   }
 }

@@ -30,74 +30,104 @@
 }
 
 /* timeline row (for current page) */
-.ptp-row {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 32px;
-  padding: 0 20px;
+.ptp-card-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+  margin-bottom:40px;
 }
 
-/* horizontal line behind circles */
-.ptp-row::before {
-  content: "";
-  position: absolute;
-  left: 40px;
-  right: 40px;
-  top: 84px;
-  height: 1px;
-  background-color: #111827;
-  z-index: 0;
+.ptp-card{
+  position:relative;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:30px;
+  padding:32px;
+  overflow:hidden;
+  transition:.3s ease;
 }
 
-.ptp-item {
-  flex: 1;
-  text-align: center;
-  max-width: 360px;
+.ptp-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
 }
 
-/* circle wrapper */
-.ptp-node {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 26px;
+.ptp-card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:25px;
 }
 
-/* big black circle */
-.ptp-circle {
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  background: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.ptp-card-title{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.3;
+  max-width:220px;
 }
 
-/* icon inside circle */
-.ptp-circle svg {
-  width: 80px;
-  height: 80px;
-  stroke: var(--ptp-accent);
-  fill: none;
+.ptp-card-icon{
+  width:65px;
+  height:65px;
+  background:#f5f5f5;
+  border-radius:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* text */
-.ptp-item-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 12px;
+.ptp-card-icon svg{
+  width:34px;
+  height:34px;
+  stroke:#2563eb;
 }
 
-.ptp-item-text {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #4b5563;
+.ptp-card-text{
+  font-size:15px;
+  line-height:1.9;
+  color:#4b5563;
+  margin-bottom:30px;
 }
 
+.ptp-card-footer{
+  border-top:1px solid #ececec;
+  padding-top:20px;
+}
+
+.ptp-btn{
+  background:#f7f7f7;
+  border:none;
+  padding:12px 20px;
+  border-radius:12px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.ptp-btn span{
+  margin-left:8px;
+}
+
+.ptp-accent{
+  position:absolute;
+  right:0;
+  top:120px;
+  width:25px;
+  height:130px;
+  border-radius:20px 0 0 20px;
+}
+
+.ptp-card:nth-child(1) .ptp-accent{
+  background:#14b8a6;
+}
+
+.ptp-card:nth-child(2) .ptp-accent{
+  background:#2563eb;
+}
+
+.ptp-card:nth-child(3) .ptp-accent{
+  background:#ef4444;
+}
 /* DOT PAGINATION */
 .ptp-dots {
   display: flex;
@@ -127,33 +157,36 @@
 }
 
 /* responsive */
-@media (max-width: 992px) {
-  .ptp-row {
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-  }
-
-  .ptp-row::before {
-    display: none; /* hide line on small screens */
-  }
-
-  .ptp-item {
-    max-width: 100%;
-  }
-
-  .ptp-circle {
-    width: 170px;
-    height: 170px;
+@media (max-width: 1024px){
+  .ptp-card-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
-@media (max-width: 640px) {
-  .ptp-section {
-    padding: 0 20px 60px;
+@media (max-width: 768px){
+
+  .ptp-section{
+    padding:0 20px 60px;
   }
 
-  .ptp-title {
-    font-size: 30px;
+  .ptp-title{
+    font-size:32px;
+  }
+
+  .ptp-card-grid{
+    grid-template-columns:1fr;
+  }
+
+  .ptp-card{
+    padding:24px;
+  }
+
+  .ptp-card-title{
+    font-size:18px;
+  }
+
+  .ptp-card-icon{
+    width:55px;
+    height:55px;
   }
 }
