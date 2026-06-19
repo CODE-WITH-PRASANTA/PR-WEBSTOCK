@@ -1,0 +1,370 @@
+/* ===================================
+   CAREER OBJECT
+=================================== */
+
+.career-object {
+  width: 100%;
+  min-height: 100vh;
+  background: #0f1117;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ===================================
+   50% FORM + 50% TABLE
+=================================== */
+
+.career-object-container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.career-object-form-section {
+  width: 50%;
+  flex: 0 0 50%;
+}
+
+.career-object-table-section {
+  width: 50%;
+  flex: 0 0 50%;
+}
+
+/* ===================================
+   CARD
+=================================== */
+
+.career-object-card {
+  height: 90vh;
+  overflow-y: auto;
+  background: #181c25;
+  border: 1px solid #2c3444;
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Scrollbar */
+
+.career-object-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.career-object-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.career-object-card::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 20px;
+}
+
+/* ===================================
+   TITLE
+=================================== */
+
+.career-object-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #2d3748;
+}
+
+/* ===================================
+   FORM
+=================================== */
+
+.career-object-field {
+  margin-bottom: 18px;
+}
+
+.career-object-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #d1d5db;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Name + Designation Row */
+
+.career-object-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.career-object-field input,
+.career-object-field textarea,
+.career-object-field select {
+  width: 100%;
+  padding: 13px 15px;
+  background: #111827;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.career-object-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.career-object-field input::placeholder,
+.career-object-field textarea::placeholder {
+  color: #6b7280;
+}
+
+.career-object-field input:focus,
+.career-object-field textarea:focus,
+.career-object-field select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* ===================================
+   TINYMCE
+=================================== */
+
+.tox-tinymce {
+  border-radius: 10px !important;
+  border: 1px solid #2d3748 !important;
+  overflow: hidden;
+}
+
+/* ===================================
+   BUTTON
+=================================== */
+
+.career-object-submit-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+  );
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.career-object-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* ===================================
+   TABLE
+=================================== */
+
+.career-object-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+.career-object-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.career-object-table thead {
+  background: #111827;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.career-object-table th {
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid #2d3748;
+}
+
+.career-object-table td {
+  padding: 15px;
+  color: #d1d5db;
+  font-size: 14px;
+  border-bottom: 1px solid #2d3748;
+  vertical-align: top;
+}
+
+.career-object-table tbody tr {
+  transition: 0.3s ease;
+}
+
+.career-object-table tbody tr:hover {
+  background: #202733;
+}
+
+.career-object-empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 50px;
+  font-weight: 500;
+}
+
+/* ===================================
+   PREVIEW CARDS
+=================================== */
+
+.career-object-preview-list {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.career-object-preview-card {
+  background: #111827;
+  border: 1px solid #2d3748;
+  border-radius: 12px;
+  padding: 18px;
+  transition: all 0.3s ease;
+}
+
+.career-object-preview-card:hover {
+  border-color: #3b82f6;
+}
+
+.career-object-preview-card h3 {
+  color: #3b82f6;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.career-object-preview-card p {
+  color: #d1d5db;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.career-object-preview-card strong {
+  color: #ffffff;
+}
+
+/* Rich Text Output */
+
+.career-object-preview-card ul,
+.career-object-preview-card ol {
+  padding-left: 20px;
+  color: #d1d5db;
+}
+
+.career-object-preview-card a {
+  color: #60a5fa;
+}
+
+.career-object-preview-card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* ===================================
+   TABLE SCROLLBAR
+=================================== */
+
+.career-object-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.career-object-table-wrapper::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 10px;
+}
+
+.career-object-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width: 1200px) {
+  .career-object-card {
+    height: auto;
+    min-height: 700px;
+  }
+}
+
+@media (max-width: 992px) {
+  .career-object-container {
+    flex-direction: column;
+  }
+
+  .career-object-form-section,
+  .career-object-table-section {
+    width: 100%;
+    flex: 1;
+  }
+
+  .career-object-card {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .career-object {
+    padding: 15px;
+  }
+
+  .career-object-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .career-object-card {
+    padding: 18px;
+  }
+
+  .career-object-title {
+    font-size: 20px;
+  }
+
+  .career-object-table th,
+  .career-object-table td {
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 576px) {
+  .career-object {
+    padding: 10px;
+  }
+
+  .career-object-card {
+    padding: 15px;
+  }
+
+  .career-object-title {
+    font-size: 18px;
+  }
+
+  .career-object-field input,
+  .career-object-field textarea,
+  .career-object-field select {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .career-object-submit-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}

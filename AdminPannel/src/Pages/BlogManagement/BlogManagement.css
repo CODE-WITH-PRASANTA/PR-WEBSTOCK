@@ -1,0 +1,217 @@
+.BlogManagement {
+  padding: 20px;
+  min-height: 100vh;
+  background: #0f1117;
+}
+
+/* HEADER */
+
+.BlogManagement_Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.BlogManagement_Header h2 {
+  color: white;
+  margin: 0;
+}
+
+.BlogManagement_ViewSwitch {
+  display: flex;
+  gap: 10px;
+}
+
+.BlogManagement_ViewSwitch button {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  background: #1c2230;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  transition: .3s;
+}
+
+.BlogManagement_ViewSwitch button.active {
+  background: #2563eb;
+}
+
+/* GRID */
+
+.BlogManagement_Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+  gap: 20px;
+}
+
+.BlogManagement_Card {
+  background: #181c24;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #2b3140;
+}
+
+.BlogManagement_Card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.BlogManagement_CardContent {
+  padding: 18px;
+}
+
+.BlogManagement_CardContent span {
+  color: #3b82f6;
+  font-size: 13px;
+}
+
+.BlogManagement_CardContent h3 {
+  color: white;
+  margin: 10px 0;
+}
+
+.BlogManagement_CardContent p {
+  color: #a5adbc;
+  font-size: 14px;
+}
+
+.BlogManagement_Footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+}
+
+/* LIST */
+
+.BlogManagement_List {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.BlogManagement_ListItem {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: #181c24;
+  border: 1px solid #2b3140;
+  border-radius: 16px;
+  padding: 15px;
+  position: relative;
+}
+
+.BlogManagement_ListItem img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.BlogManagement_ListContent {
+  flex: 1;
+}
+
+.BlogManagement_ListContent h3 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.BlogManagement_ListContent p {
+  color: #a5adbc;
+}
+
+.BlogManagement_ListMeta {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.BlogManagement_ListMeta span {
+  background: #222837;
+  color: #3b82f6;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 13px;
+}
+
+/* MENU */
+
+.BlogManagement_MenuWrap {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.BlogManagement_MenuBtn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  background: #242936;
+  color: white;
+  cursor: pointer;
+}
+
+.BlogManagement_Menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 140px;
+  background: #222837;
+  border: 1px solid #333c4f;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.BlogManagement_Menu button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  color: white;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.BlogManagement_Menu button:hover {
+  background: #2b3345;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .BlogManagement_ListItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .BlogManagement_ListItem img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .BlogManagement_Header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .BlogManagement {
+    padding: 15px;
+  }
+
+  .BlogManagement_Grid {
+    grid-template-columns: 1fr;
+  }
+}
