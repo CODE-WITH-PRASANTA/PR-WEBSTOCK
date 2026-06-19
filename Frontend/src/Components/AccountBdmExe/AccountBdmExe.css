@@ -1,6 +1,6 @@
 .AccountBdmExe {
   width: 100%;
-  padding: 60px 20px;
+  padding: 30px 15px;
   background: #f5f7fb;
   display: flex;
   justify-content: center;
@@ -8,17 +8,18 @@
 
 .AccountBdmExe-card {
   width: 100%;
-  max-width: 1450px;
+  max-width: 1400px;
+  min-height: 60vh;
   background: #ffffff;
-  border-radius: 28px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
   transition: all 0.35s ease;
 }
 
 .AccountBdmExe-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
 }
 
 /* Header */
@@ -29,26 +30,27 @@
     #dfe9ff,
     #eef4ff
   );
-  padding: 40px;
+  padding: 24px 32px;
 }
 
 .AccountBdmExe-title {
-  font-size: 42px;
+  font-size: 22px;
   font-weight: 700;
   color: #1e40af;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 .AccountBdmExe-subtitle {
-  font-size: 20px;
+  font-size: 14px;
   color: #4b5563;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 /* Table */
 
 .AccountBdmExe-tableWrapper {
-  padding: 40px;
+  padding: 24px 32px;
   overflow-x: auto;
 }
 
@@ -60,13 +62,13 @@
 .AccountBdmExe-table th,
 .AccountBdmExe-table td {
   border: 1px solid #dbe2ea;
-  padding: 22px;
+  padding: 14px 18px;
 }
 
 .AccountBdmExe-table th {
   background: #f1f5f9;
   color: #1e3a8a;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 700;
   text-align: center;
   width: 17%;
@@ -74,31 +76,31 @@
 
 .AccountBdmExe-table td {
   color: #4b5563;
-  font-size: 19px;
+  font-size: 14px;
   background: #ffffff;
 }
 
 .AccountBdmExe-table th svg {
-  margin-right: 8px;
+  margin-right: 6px;
   vertical-align: middle;
 }
 
 /* Highlights */
 
 .AccountBdmExe-highlights {
-  padding: 0 40px 25px;
+  padding: 0 32px 10px;
 }
 
 .AccountBdmExe-highlights h3 {
   color: #1e40af;
-  font-size: 34px;
-  margin-bottom: 12px;
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 
 .AccountBdmExe-highlights p {
   color: #4b5563;
-  font-size: 22px;
-  line-height: 1.8;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 /* Buttons */
@@ -106,8 +108,8 @@
 .AccountBdmExe-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
-  padding: 20px 40px 40px;
+  gap: 14px;
+  padding: 10px 32px 25px;
   flex-wrap: wrap;
 }
 
@@ -115,10 +117,10 @@
 .AccountBdmExe-applyBtn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 18px 35px;
+  gap: 8px;
+  padding: 12px 26px;
   border-radius: 50px;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
@@ -132,44 +134,60 @@
 
 .AccountBdmExe-whatsappBtn:hover {
   background: #16a34a;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .AccountBdmExe-applyBtn {
   border: none;
   background: #ef4444;
   color: #ffffff;
-  box-shadow: 0 0 0 3px #1f2937 inset;
+  box-shadow: 0 0 0 2px #1f2937 inset;
 }
 
 .AccountBdmExe-applyBtn:hover {
   background: #dc2626;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+}
+
+/* Laptop */
+
+@media (max-width: 1200px) {
+  .AccountBdmExe-title {
+    font-size: 20px;
+  }
+
+  .AccountBdmExe-subtitle {
+    font-size: 13px;
+  }
 }
 
 /* Tablet */
 
 @media (max-width: 992px) {
+  .AccountBdmExe-card {
+    min-height: auto;
+  }
+
   .AccountBdmExe-title {
-    font-size: 34px;
+    font-size: 18px;
   }
 
   .AccountBdmExe-subtitle {
-    font-size: 18px;
+    font-size: 13px;
   }
 
   .AccountBdmExe-table th,
   .AccountBdmExe-table td {
-    font-size: 16px;
-    padding: 18px;
+    font-size: 13px;
+    padding: 12px;
   }
 
   .AccountBdmExe-highlights h3 {
-    font-size: 28px;
+    font-size: 16px;
   }
 
   .AccountBdmExe-highlights p {
-    font-size: 18px;
+    font-size: 13px;
   }
 }
 
@@ -180,24 +198,16 @@
   .AccountBdmExe-tableWrapper,
   .AccountBdmExe-highlights,
   .AccountBdmExe-actions {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .AccountBdmExe-title {
-    font-size: 28px;
+    font-size: 17px;
   }
 
   .AccountBdmExe-subtitle {
-    font-size: 16px;
-  }
-
-  .AccountBdmExe-highlights h3 {
-    font-size: 24px;
-  }
-
-  .AccountBdmExe-highlights p {
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .AccountBdmExe-actions {
@@ -208,25 +218,42 @@
   .AccountBdmExe-applyBtn {
     width: 100%;
     justify-content: center;
+    font-size: 14px;
   }
 }
 
 /* Small Mobile */
 
 @media (max-width: 480px) {
+  .AccountBdmExe {
+    padding: 15px 10px;
+  }
+
   .AccountBdmExe-title {
-    font-size: 24px;
+    font-size: 15px;
+  }
+
+  .AccountBdmExe-subtitle {
+    font-size: 11px;
   }
 
   .AccountBdmExe-table th,
   .AccountBdmExe-table td {
-    padding: 14px;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .AccountBdmExe-highlights h3 {
+    font-size: 15px;
+  }
+
+  .AccountBdmExe-highlights p {
+    font-size: 12px;
   }
 
   .AccountBdmExe-whatsappBtn,
   .AccountBdmExe-applyBtn {
-    font-size: 16px;
-    padding: 14px 24px;
+    padding: 12px 18px;
+    font-size: 13px;
   }
 }
