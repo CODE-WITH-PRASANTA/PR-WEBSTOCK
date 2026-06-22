@@ -7,11 +7,7 @@ const Floating = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 300) {
-        setShowTop(true);
-      } else {
-        setShowTop(false);
-      }
+      setShowTop(window.pageYOffset > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -29,27 +25,33 @@ const Floating = () => {
   return (
     <div className="floating-container">
       {/* Phone */}
-      <a href="tel:+919999999999" className="floating-btn phone">
+      <a
+        href="tel:+917789801327"
+        className="floating-btn phone"
+        aria-label="Call"
+      >
         <span className="tooltip">Call Now</span>
         <FaPhoneAlt />
       </a>
 
       {/* WhatsApp */}
       <a
-        href="https://wa.me/919999999999"
+        href="https://wa.me/917789801327"
         target="_blank"
         rel="noopener noreferrer"
         className="floating-btn whatsapp"
+        aria-label="WhatsApp"
       >
         <span className="tooltip">WhatsApp</span>
         <FaWhatsapp />
       </a>
 
-      {/* Scroll Top */}
+      {/* Scroll to Top */}
       {showTop && (
         <button
           className="floating-btn top"
           onClick={scrollToTop}
+          aria-label="Back to Top"
         >
           <span className="tooltip">Back to Top</span>
           <FaArrowUp />

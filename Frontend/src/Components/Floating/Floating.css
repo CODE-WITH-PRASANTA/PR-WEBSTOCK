@@ -15,21 +15,15 @@
   border: none;
   outline: none;
   cursor: pointer;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   text-decoration: none;
-
   color: #fff;
   font-size: 24px;
-
   position: relative;
-
-  transition: .3s;
-
-  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .floating-btn:hover {
@@ -58,7 +52,7 @@
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: .3s;
+  transition: 0.3s ease;
   font-size: 14px;
 }
 
@@ -78,7 +72,7 @@
   visibility: visible;
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .floating-container {
     right: 15px;
     bottom: 15px;
@@ -96,7 +90,7 @@
   }
 }
 
-@media (max-width:480px) {
+@media (max-width: 480px) {
   .floating-btn {
     width: 48px;
     height: 48px;

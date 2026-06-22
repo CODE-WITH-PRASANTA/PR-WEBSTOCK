@@ -8,7 +8,7 @@
     #eef6ff
   );
 }
-
+ 
 .Servicesweoffer-container {
   max-width: 1500px;
   margin: auto;
@@ -34,7 +34,6 @@
 .Servicesweoffer-card::before {
   content: "";
   position: absolute;
-  inset: 0;
   background: linear-gradient(
     135deg,
     var(--serviceColor),
