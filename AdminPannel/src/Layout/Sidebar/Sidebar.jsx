@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import logo from "../../assets/PR WEBS6TOCK WHITE PNG.png";
 
@@ -21,37 +21,51 @@ import {
   FaClipboardList,
   FaBookOpen,
   FaStar,
+  FaUserShield,
 } from "react-icons/fa";
 
 import { FaCalendarAlt } from "react-icons/fa";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   const [showProfile, setShowProfile] = useState(false);
   const [showLogoMenu, setShowLogoMenu] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Logout Function
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    sessionStorage.clear();
+
+    alert("Logout Successfully!");
+
+    navigate("/");
+  };
 
   return (
     <>
-    <button
-  className="mobileMenuBtn"
-  onClick={() => setMobileOpen(!mobileOpen)}
->
-  ☰
-</button>
-     <aside
-  className={`sidebar ${
-    mobileOpen ? "mobileOpen" : ""
-  }`}
->
+      <button
+        className="mobileMenuBtn"
+        onClick={() => setMobileOpen(!mobileOpen)}
+      >
+        ☰
+      </button>
+
+      <aside
+        className={`sidebar ${
+          mobileOpen ? "mobileOpen" : ""
+        }`}
+      >
         {/* LOGO SECTION */}
 
         <div className="sidebarLogoSection">
-
           <div
             className="sidebarLogoWrapper"
-            onClick={() => setShowLogoMenu(!showLogoMenu)}
+            onClick={() =>
+              setShowLogoMenu(!showLogoMenu)
+            }
           >
             <div className="sidebarLogoLeft">
               <img
@@ -67,8 +81,7 @@ const Sidebar = () => {
           </div>
 
           {showLogoMenu && (
-           <div className="logoPopupCard">
-
+            <div className="logoPopupCard">
               <NavLink to="/profile">
                 <FaUser />
                 Profile Center
@@ -85,20 +98,21 @@ const Sidebar = () => {
               </NavLink>
 
               <NavLink to="/user-management">
-                 <FaUserShield />
-                     User Management
+                <FaUserShield />
+                User Management
               </NavLink>
 
-              <NavLink to="/logout">
+              <button
+                className="popupLogoutBtn"
+                onClick={handleLogout}
+              >
                 <FaSignOutAlt />
                 Sign Out
-              </NavLink>
-
+              </button>
             </div>
           )}
 
           <div className="sidebarActions">
-
             <button className="addNewBtn">
               <FaPlus />
               Add New
@@ -107,130 +121,136 @@ const Sidebar = () => {
             <button className="searchBtn">
               <FaSearch />
             </button>
-
           </div>
-
         </div>
 
         {/* MENU */}
-<div className="sidebarMenu">
 
-  {/* Dashboard */}
-  <NavLink
-    to="/dashboard"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaTachometerAlt />
-    <span>Dashboard</span>
-  </NavLink>
+        <div className="sidebarMenu">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaTachometerAlt />
+            <span>Dashboard</span>
+          </NavLink>
 
-  {/* Blog Post */}
-  <NavLink
-    to="/blog-post"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaPlus />
-    <span>Blog Post</span>
-  </NavLink>
+          <NavLink
+            to="/blog-post"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaPlus />
+            <span>Blog Post</span>
+          </NavLink>
 
-  {/* Blog Management */}
-  <NavLink
-    to="/blog-management"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaBookOpen />
-    <span>Blog Management</span>
-  </NavLink>
+          <NavLink
+            to="/blog-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaBookOpen />
+            <span>Blog Management</span>
+          </NavLink>
 
-  {/* Lead Management */}
-  <NavLink
-    to="/lead-management"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaClipboardList />
-    <span>Lead Management</span>
-  </NavLink>
+          <NavLink
+            to="/lead-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaClipboardList />
+            <span>Lead Management</span>
+          </NavLink>
 
-  {/* Career Management */}
-  <NavLink
-    to="/career-management"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaUserTie />
-    <span>Career Management</span>
-  </NavLink>
+          <NavLink
+            to="/career-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaUserTie />
+            <span>Career Management</span>
+          </NavLink>
 
-  {/* Project Management */}
-  <NavLink
-    to="/project-management"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaNetworkWired />
-    <span>Project Management</span>
-  </NavLink>
+          <NavLink
+            to="/project-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaNetworkWired />
+            <span>Project Management</span>
+          </NavLink>
 
-  {/* Testimonial Management */}
-  <NavLink
-    to="/testimonial-management"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaStar />
-    <span>Testimonial Management</span>
-  </NavLink>
+          <NavLink
+            to="/testimonial-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaStar />
+            <span>Testimonial Management</span>
+          </NavLink>
 
-  {/* Gallery Management */}
-  <NavLink
-    to="/gallery-management"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaUsers />
-    <span>Gallery Management</span>
-  </NavLink>
+          <NavLink
+            to="/gallery-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaUsers />
+            <span>Gallery Management</span>
+          </NavLink>
 
-  {/* Team Member */}
-  <NavLink
-    to="/team-member"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaUser />
-    <span>Team Member</span>
-  </NavLink>
+          <NavLink
+            to="/team-member"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaUser />
+            <span>Team Member</span>
+          </NavLink>
 
-  {/* Calendar Management */}
-  <NavLink
-    to="/calendar-management"
-    className={({ isActive }) =>
-      isActive ? "sidebarLink active" : "sidebarLink"
-    }
-  >
-    <FaCalendarAlt />
-    <span>Calendar Management</span>
-  </NavLink>
-
-</div>
+          <NavLink
+            to="/calendar-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaCalendarAlt />
+            <span>Calendar Management</span>
+          </NavLink>
+        </div>
 
         {/* FOOTER */}
 
         <div className="sidebarBottom">
-
           <div
             className="profileCard"
             onClick={() =>
@@ -244,12 +264,9 @@ const Sidebar = () => {
           </div>
 
           <div className="bottomActions">
-
             <button
               className="bottomIcon"
-              onClick={() =>
-                setShowChat(true)
-              }
+              onClick={() => setShowChat(true)}
             >
               <FaCommentDots />
             </button>
@@ -257,14 +274,11 @@ const Sidebar = () => {
             <button className="bottomIcon">
               <FaBell />
             </button>
-
           </div>
 
           {showProfile && (
             <div className="profilePopupCard">
-
               <div className="profileHeader">
-
                 <img
                   src="https://i.pravatar.cc/150"
                   alt=""
@@ -274,7 +288,6 @@ const Sidebar = () => {
                   <h4>Demo User</h4>
                   <p>demo@email.com</p>
                 </div>
-
               </div>
 
               <NavLink to="/profile">
@@ -289,44 +302,36 @@ const Sidebar = () => {
                 My Account
               </NavLink>
 
-              <button className="logoutBtn">
+              <button
+                className="logoutBtn"
+                onClick={handleLogout}
+              >
                 <FaSignOutAlt />
                 Logout
               </button>
-
             </div>
           )}
-
         </div>
-
       </aside>
 
       {/* CHAT DRAWER */}
 
       <div
         className={`chatDrawer ${
-          showChat
-            ? "chatDrawerOpen"
-            : ""
+          showChat ? "chatDrawerOpen" : ""
         }`}
       >
-
         <div className="chatDrawerHeader">
-
           <h3>Messages</h3>
 
           <button
-            onClick={() =>
-              setShowChat(false)
-            }
+            onClick={() => setShowChat(false)}
           >
             <FaTimes />
           </button>
-
         </div>
 
         <div className="chatDrawerBody">
-
           <div className="messageLeft">
             Hello 👋
           </div>
@@ -342,9 +347,7 @@ const Sidebar = () => {
           <div className="messageRight">
             Everything is working perfectly.
           </div>
-
         </div>
-
       </div>
     </>
   );
