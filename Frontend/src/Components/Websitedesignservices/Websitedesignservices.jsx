@@ -250,18 +250,6 @@ export default function Websitedesignservices() {
                     </li>
                   ))}
                 </ul>
-
-                <div className="wds__card-footer">
-                  <button className="wds__card-button" aria-label={`Learn more about ${service.title}`}>
-                    <span className="wds__button-text">Explore Service</span>
-                    <div className="wds__button-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M5 12H19M19 12L13 6M19 12L13 18"
-                          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  </button>
-                </div>
               </div>
 
               <div className="wds__card-glow" style={{ background: service.gradient }}></div>

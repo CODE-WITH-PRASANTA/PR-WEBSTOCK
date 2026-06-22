@@ -10,6 +10,7 @@ const ProjectUser = () => {
   });
 
   const [projects, setProjects] = useState([]);
+  const [editId, setEditId] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,13 +44,23 @@ const ProjectUser = () => {
       return;
     }
 
-    setProjects((prev) => [
-      {
-        id: Date.now(),
-        ...formData,
-      },
-      ...prev,
-    ]);
+    if (editId) {
+      setProjects((prev) =>
+        prev.map((item) =>
+          item.id === editId ? { ...formData, id: editId } : item
+        )
+      );
+
+      setEditId(null);
+    } else {
+      setProjects((prev) => [
+        {
+          id: Date.now(),
+          ...formData,
+        },
+        ...prev,
+      ]);
+    }
 
     setFormData({
       projectName: "",
@@ -61,21 +72,35 @@ const ProjectUser = () => {
     document.getElementById("projectImage").value = "";
   };
 
+  const handleDelete = (id) => {
+    setProjects(projects.filter((item) => item.id !== id));
+  };
+
+  const handleEdit = (project) => {
+    setFormData(project);
+    setEditId(project.id);
+  };
+
   return (
     <div className="project-user">
       <div className="project-user-container">
-        {/* ================= FORM SECTION ================= */}
+
+        {/* FORM */}
+
         <div className="project-user-form-section">
           <div className="project-user-card">
+
             <div className="project-user-header">
-              <h2 className="project-user-title">Add Project</h2>
+              <h2 className="project-user-title">
+                {editId ? "Edit Project" : "Add Project"}
+              </h2>
               <span className="project-user-badge">Dashboard</span>
             </div>
 
             <form onSubmit={handleSubmit}>
-              {/* Upload Image */}
               <div className="project-user-field">
                 <label>Upload Project Image</label>
+
                 <input
                   type="file"
                   id="projectImage"
@@ -84,64 +109,61 @@ const ProjectUser = () => {
                 />
               </div>
 
-              {/* Preview Image */}
-              {formData.image && (
-                <div className="project-user-image-preview">
-                  <img
-                    src={formData.image}
-                    alt="Preview"
-                    className="project-user-preview-image-large"
-                  />
-                </div>
-              )}
-
-              {/* Project Name */}
               <div className="project-user-field">
                 <label>Project Name</label>
+
                 <input
                   type="text"
                   name="projectName"
-                  placeholder="Enter project name"
                   value={formData.projectName}
+                  placeholder="Enter project name"
                   onChange={handleChange}
                 />
               </div>
 
-              {/* Description */}
               <div className="project-user-field">
                 <label>Project Description</label>
+
                 <textarea
                   name="projectDescription"
-                  placeholder="Enter project description"
                   value={formData.projectDescription}
+                  placeholder="Enter project description"
                   onChange={handleChange}
                 />
               </div>
 
-              {/* Owner Name */}
               <div className="project-user-field">
                 <label>Owner Name</label>
+
                 <input
                   type="text"
                   name="ownerName"
-                  placeholder="Enter owner name"
                   value={formData.ownerName}
+                  placeholder="Enter owner name"
                   onChange={handleChange}
                 />
               </div>
 
-              <button type="submit" className="project-user-submit-btn">
-                Submit Project
+              <button
+                type="submit"
+                className="project-user-submit-btn"
+              >
+                {editId ? "Update Project" : "Submit Project"}
               </button>
             </form>
+
           </div>
         </div>
 
-        {/* ================= TABLE SECTION ================= */}
+        {/* TABLE */}
+
         <div className="project-user-table-section">
           <div className="project-user-card">
+
             <div className="project-user-header">
-              <h2 className="project-user-title">Project List</h2>
+              <h2 className="project-user-title">
+                Project List
+              </h2>
 
               <span className="project-user-badge">
                 {projects.length} Projects
@@ -156,6 +178,7 @@ const ProjectUser = () => {
                     <th>Project Name</th>
                     <th>Description</th>
                     <th>Owner</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
 
@@ -167,7 +190,7 @@ const ProjectUser = () => {
                           {project.image ? (
                             <img
                               src={project.image}
-                              alt={project.projectName}
+                              alt=""
                               className="project-user-preview-image"
                             />
                           ) : (
@@ -180,12 +203,34 @@ const ProjectUser = () => {
                         <td>{project.projectDescription}</td>
 
                         <td>{project.ownerName}</td>
+
+                        <td>
+                          <div className="project-user-actions">
+                            <button
+                              className="edit-btn"
+                              onClick={() =>
+                                handleEdit(project)
+                              }
+                            >
+                              Edit
+                            </button>
+
+                            <button
+                              className="delete-btn"
+                              onClick={() =>
+                                handleDelete(project.id)
+                              }
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
                       <td
-                        colSpan="4"
+                        colSpan="5"
                         className="project-user-empty"
                       >
                         No Projects Added Yet
@@ -195,8 +240,10 @@ const ProjectUser = () => {
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
+
       </div>
     </div>
   );

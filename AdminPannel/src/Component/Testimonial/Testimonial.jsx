@@ -14,19 +14,32 @@ const Testimonial = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleImage = (e) => {
-    setFormData({
-      ...formData,
-      photo: URL.createObjectURL(e.target.files[0]),
-    });
+    if (e.target.files[0]) {
+      setFormData((prev) => ({
+        ...prev,
+        photo: URL.createObjectURL(e.target.files[0]),
+      }));
+    }
+  };
+
+  const handleStarClick = (ratingValue) => {
+    setFormData((prev) => ({
+      ...prev,
+      rating: ratingValue,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setDataList([...dataList, formData]);
+
+    setDataList((prev) => [...prev, formData]);
 
     setFormData({
       photo: null,
@@ -38,12 +51,7 @@ const Testimonial = () => {
   };
 
   const handleDelete = (index) => {
-    const updated = dataList.filter((_, i) => i !== index);
-    setDataList(updated);
-  };
-
-  const handleStarClick = (ratingValue) => {
-    setFormData({ ...formData, rating: ratingValue });
+    setDataList(dataList.filter((_, i) => i !== index));
   };
 
   return (
@@ -51,57 +59,88 @@ const Testimonial = () => {
       <h2 className="title">⭐ Testimonial Dashboard</h2>
 
       <div className="layout">
-        {/* LEFT FORM */}
+        {/* FORM SECTION */}
         <div className="left-panel">
           <form className="testimonial-form" onSubmit={handleSubmit}>
-            <h3>Add Testimonial</h3>
+            <h3>Add New Testimonial</h3>
 
-            <input type="file" accept="image/*" onChange={handleImage} />
-
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              type="text"
-              name="designation"
-              placeholder="Designation"
-              value={formData.designation}
-              onChange={handleChange}
-              required
-            />
-
-            {/* ⭐ STAR RATING */}
-            <div className="stars">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span
-                  key={star}
-                  className={star <= formData.rating ? "star active" : "star"}
-                  onClick={() => handleStarClick(star)}
-                >
-                  ★
-                </span>
-              ))}
+            <div className="form-group">
+              <label>Profile Photo</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImage}
+              />
             </div>
 
-            <textarea
-              name="feedback"
-              placeholder="Feedback"
-              value={formData.feedback}
-              onChange={handleChange}
-              required
-            />
+            {formData.photo && (
+              <div className="preview-box">
+                <img src={formData.photo} alt="Preview" />
+              </div>
+            )}
 
-            <button type="submit">Add Testimonial</button>
+            <div className="form-group">
+              <label>Full Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter full name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Designation</label>
+              <input
+                type="text"
+                name="designation"
+                placeholder="Enter designation"
+                value={formData.designation}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Rating</label>
+
+              <div className="stars">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={
+                      star <= formData.rating
+                        ? "star active"
+                        : "star"
+                    }
+                    onClick={() => handleStarClick(star)}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Feedback</label>
+              <textarea
+                name="feedback"
+                placeholder="Write customer feedback..."
+                value={formData.feedback}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <button type="submit" className="submit-btn">
+              Add Testimonial
+            </button>
           </form>
         </div>
 
-        {/* RIGHT TABLE */}
+        {/* TABLE SECTION */}
         <div className="right-panel">
           <div className="table-wrapper">
             <h3>All Testimonials</h3>
@@ -122,7 +161,7 @@ const Testimonial = () => {
                 {dataList.length === 0 ? (
                   <tr>
                     <td colSpan="6" className="empty">
-                      No testimonials added
+                      No testimonials available
                     </td>
                   </tr>
                 ) : (
@@ -132,18 +171,25 @@ const Testimonial = () => {
                         {item.photo && (
                           <img
                             src={item.photo}
-                            alt="user"
+                            alt="User"
                             className="avatar"
                           />
                         )}
                       </td>
+
                       <td>{item.name}</td>
+
                       <td>{item.designation}</td>
-                      <td className="feedback">{item.feedback}</td>
-                      <td>
+
+                      <td className="feedback-cell">
+                        {item.feedback}
+                      </td>
+
+                      <td className="rating-cell">
                         {"★".repeat(item.rating)}
                         {"☆".repeat(5 - item.rating)}
                       </td>
+
                       <td>
                         <button
                           className="delete-btn"
