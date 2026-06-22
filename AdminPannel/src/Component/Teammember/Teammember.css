@@ -1,0 +1,347 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tm-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.tm-card {
+  width: 100%;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.tm-title {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   FORM SECTION
+========================= */
+
+.tm-form-section {
+  width: 50%;
+}
+
+.tm-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tm-form-group {
+  margin-bottom: 20px;
+}
+
+.tm-form-group label {
+  display: block;
+  color: #fff;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tm-form-group input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.tm-form-group input[type="text"]::placeholder {
+  color: #888;
+}
+
+.tm-form-group input[type="text"]:focus {
+  border-color: #00bfff;
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
+}
+
+/* =========================
+   FILE UPLOAD
+========================= */
+
+.tm-hidden-file {
+  display: none;
+}
+
+.tm-file-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tm-file-button {
+  padding: 12px 20px;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.tm-file-button:hover {
+  border-color: #00bfff;
+  color: #00bfff;
+  background: #202020;
+}
+
+.tm-file-name {
+  color: #aaa;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+
+.tm-submit-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  background: #00bfff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tm-submit-btn:hover {
+  background: #0099cc;
+  transform: translateY(-1px);
+}
+
+.tm-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   TABLE SECTION
+========================= */
+
+.tm-table-section {
+  width: 50%;
+}
+
+.tm-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tm-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tm-table thead {
+  background: #1a1a1a;
+}
+
+.tm-table th {
+  padding: 15px;
+  color: white;
+  border: 1px solid #333;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tm-table td {
+  padding: 15px;
+  color: white;
+  border: 1px solid #333;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tm-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.tm-table tbody tr:hover {
+  background: #1c1c1c;
+}
+
+/* =========================
+   TABLE IMAGE
+========================= */
+
+.tm-table-image {
+  width: 65px;
+  height: 65px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #333;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.tm-action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tm-edit-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.tm-edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.tm-delete-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.tm-delete-btn:hover {
+  background: #b91c1c;
+}
+
+.tm-no-data {
+  color: #888;
+  padding: 30px;
+  text-align: center;
+  font-size: 15px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.tm-table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tm-table-wrapper::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.tm-table-wrapper::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+.tm-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+  .tm-wrapper {
+    flex-direction: column;
+  }
+
+  .tm-form-section,
+  .tm-table-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .tm-card {
+    padding: 20px;
+  }
+
+  .tm-title {
+    font-size: 24px;
+  }
+
+  .tm-action-buttons {
+    flex-direction: column;
+  }
+
+  .tm-edit-btn,
+  .tm-delete-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .tm-wrapper {
+    padding: 10px;
+  }
+
+  .tm-card {
+    padding: 15px;
+  }
+
+  .tm-title {
+    font-size: 20px;
+  }
+
+  .tm-file-upload-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tm-file-button {
+    width: 100%;
+  }
+
+  .tm-file-name {
+    width: 100%;
+  }
+
+  .tm-table th,
+  .tm-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .tm-table-image {
+    width: 50px;
+    height: 50px;
+  }
+}

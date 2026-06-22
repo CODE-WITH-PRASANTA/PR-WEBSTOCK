@@ -1,5 +1,5 @@
-import React from "react";
-import "./AwardsSection.css"; 
+import React, { useState } from "react";
+import "./AwardsSection.css";
 
 const industries = [
   { name: "Healthcare & Hospitals", desc: "Custom software, booking systems, and patient management.", icon: "🏥" },
@@ -12,7 +12,19 @@ const industries = [
   { name: "Custom Software & CRM", desc: "Tailored business solutions built for automation and scale.", icon: "⚙️" }
 ];
 
+const ITEMS_PER_PAGE = 6;
+
 const AwardsSection = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(industries.length / ITEMS_PER_PAGE);
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentIndustries = industries.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
+
   return (
     <section className="awards-wrap">
       <div className="awards-inner">
@@ -25,13 +37,14 @@ const AwardsSection = () => {
           </div>
 
           <h1 className="awardsec-headline">
-            Powering Digital Growth Across<br />
+            Powering Digital Growth Across
+            <br />
             <span className="muted">Multiple Industries</span>
           </h1>
 
           <p className="industry-info">
-            PR WEBSTOCK delivers scalable digital solutions for businesses across 
-            healthcare, education, travel, real estate, online commerce, NGOs, 
+            PR WEBSTOCK delivers scalable digital solutions for businesses across
+            healthcare, education, travel, real estate, online commerce, NGOs,
             corporate brands, and custom enterprise automation.
           </p>
 
@@ -41,15 +54,32 @@ const AwardsSection = () => {
         </aside>
 
         {/* RIGHT SIDE GRID */}
-        <main className="industries-grid" aria-label="Industries List">
-          {industries.map((item, idx) => (
-            <div key={idx} className="industry-card">
-              <div className="industry-icon">{item.icon}</div>
-              <h3 className="industry-title">{item.name}</h3>
-              <p className="industry-desc">{item.desc}</p>
-            </div>
-          ))}
-        </main>
+        <div>
+          <main className="industries-grid" aria-label="Industries List">
+            {currentIndustries.map((item, idx) => (
+              <div key={idx} className="industry-card">
+                <div className="industry-icon">{item.icon}</div>
+                <h3 className="industry-title">{item.name}</h3>
+                <p className="industry-desc">{item.desc}</p>
+              </div>
+            ))}
+          </main>
+
+          {/* Pagination */}
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                className={`page-btn ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                onClick={() => setCurrentPage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+        </div>
 
       </div>
     </section>

@@ -1,0 +1,252 @@
+.FrontendDev {
+  width: 100%;
+  padding: 25px 15px;
+  background: #f5f7fb;
+  display: flex;
+  justify-content: center;
+}
+
+.FrontendDev-card {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 60vh;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease;
+}
+
+.FrontendDev-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ================= HEADER ================= */
+
+.FrontendDev-header {
+  background: linear-gradient(135deg, #dfe9ff, #eef4ff);
+  padding: 24px 32px;
+}
+
+.FrontendDev-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.FrontendDev-subtitle {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* ================= TABLE ================= */
+
+.FrontendDev-tableWrapper {
+  padding: 24px 32px;
+  overflow-x: auto;
+}
+
+.FrontendDev-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.FrontendDev-table th,
+.FrontendDev-table td {
+  border: 1px solid #dbe2ea;
+  padding: 14px 18px;
+}
+
+.FrontendDev-table th {
+  background: #f1f5f9;
+  color: #1e3a8a;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  width: 17%;
+}
+
+.FrontendDev-table td {
+  background: #ffffff;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.FrontendDev-table th svg {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ================= HIGHLIGHTS ================= */
+
+.FrontendDev-highlights {
+  padding: 0 32px 10px;
+}
+
+.FrontendDev-highlights h3 {
+  color: #1e40af;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.FrontendDev-highlights p {
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ================= BUTTONS ================= */
+
+.FrontendDev-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 10px 32px 25px;
+  flex-wrap: wrap;
+}
+
+.FrontendDev-whatsappBtn,
+.FrontendDev-applyBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.FrontendDev-whatsappBtn {
+  background: #22c55e;
+  color: #ffffff;
+  border: none;
+}
+
+.FrontendDev-whatsappBtn:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+.FrontendDev-applyBtn {
+  border: none;
+  background: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 0 0 2px #1f2937 inset;
+}
+
+.FrontendDev-applyBtn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* ================= LAPTOP ================= */
+
+@media (max-width: 1200px) {
+  .FrontendDev-title {
+    font-size: 22px;
+  }
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 992px) {
+  .FrontendDev-card {
+    min-height: auto;
+  }
+
+  .FrontendDev-title {
+    font-size: 20px;
+  }
+
+  .FrontendDev-subtitle {
+    font-size: 13px;
+  }
+
+  .FrontendDev-table th,
+  .FrontendDev-table td {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .FrontendDev-highlights h3 {
+    font-size: 16px;
+  }
+
+  .FrontendDev-highlights p {
+    font-size: 13px;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .FrontendDev-header,
+  .FrontendDev-tableWrapper,
+  .FrontendDev-highlights,
+  .FrontendDev-actions {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .FrontendDev-title {
+    font-size: 18px;
+  }
+
+  .FrontendDev-subtitle {
+    font-size: 12px;
+  }
+
+  .FrontendDev-actions {
+    justify-content: center;
+  }
+
+  .FrontendDev-whatsappBtn,
+  .FrontendDev-applyBtn {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 480px) {
+  .FrontendDev {
+    padding: 15px 10px;
+  }
+
+  .FrontendDev-title {
+    font-size: 16px;
+  }
+
+  .FrontendDev-subtitle {
+    font-size: 11px;
+  }
+
+  .FrontendDev-table th,
+  .FrontendDev-table td {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .FrontendDev-highlights h3 {
+    font-size: 15px;
+  }
+
+  .FrontendDev-highlights p {
+    font-size: 12px;
+  }
+
+  .FrontendDev-whatsappBtn,
+  .FrontendDev-applyBtn {
+    font-size: 13px;
+    padding: 12px 18px;
+  }
+}

@@ -31,18 +31,6 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
 }
 
-.Servicesweoffer-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    var(--serviceColor),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: 0.4s;
-}
 
 .Servicesweoffer-card:hover::before {
   opacity: 0.08;
