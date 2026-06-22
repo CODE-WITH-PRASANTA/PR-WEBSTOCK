@@ -18,6 +18,7 @@ const Careerobject = () => {
   });
 
   const [jobs, setJobs] = useState([]);
+  const [editId, setEditId] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -29,13 +30,28 @@ const Careerobject = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setJobs([
-      {
-        id: Date.now(),
-        ...formData,
-      },
-      ...jobs,
-    ]);
+    if (editId) {
+      setJobs(
+        jobs.map((job) =>
+          job.id === editId
+            ? {
+                ...formData,
+                id: editId,
+              }
+            : job
+        )
+      );
+
+      setEditId(null);
+    } else {
+      setJobs([
+        {
+          id: Date.now(),
+          ...formData,
+        },
+        ...jobs,
+      ]);
+    }
 
     setFormData({
       name: "",
@@ -52,23 +68,51 @@ const Careerobject = () => {
     });
   };
 
+  const handleDelete = (id) => {
+    setJobs(jobs.filter((job) => job.id !== id));
+  };
+
+  const handleEdit = (job) => {
+    setFormData({
+      name: job.name,
+      designation: job.designation,
+      description: job.description,
+      keyHighlight: job.keyHighlight,
+      salary: job.salary,
+      experience: job.experience,
+      location: job.location,
+      vacancy: job.vacancy,
+      jobType: job.jobType,
+      skills: job.skills,
+      whatsapp: job.whatsapp,
+    });
+
+    setEditId(job.id);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="career-object">
       <div className="career-object-container">
+
         {/* FORM SIDE */}
 
         <div className="career-object-form-section">
           <div className="career-object-card">
             <h2 className="career-object-title">
-              Create Job Opportunity
+              {editId ? "Edit Job Opportunity" : "Create Job Opportunity"}
             </h2>
 
             <form onSubmit={handleSubmit}>
-              {/* Name + Designation */}
 
               <div className="career-object-grid">
                 <div className="career-object-field">
                   <label>Name</label>
+
                   <input
                     type="text"
                     name="name"
@@ -80,6 +124,7 @@ const Careerobject = () => {
 
                 <div className="career-object-field">
                   <label>Designation</label>
+
                   <input
                     type="text"
                     name="designation"
@@ -90,7 +135,7 @@ const Careerobject = () => {
                 </div>
               </div>
 
-              {/* TinyMCE */}
+              {/* Description */}
 
               <div className="career-object-field">
                 <label>Description</label>
@@ -118,31 +163,37 @@ const Careerobject = () => {
 
               <div className="career-object-field">
                 <label>Key Highlights</label>
+
                 <textarea
                   name="keyHighlight"
                   value={formData.keyHighlight}
                   onChange={handleChange}
+                  placeholder="Enter key highlights"
                 />
               </div>
 
               <div className="career-object-grid">
                 <div className="career-object-field">
                   <label>Salary</label>
+
                   <input
                     type="text"
                     name="salary"
                     value={formData.salary}
                     onChange={handleChange}
+                    placeholder="₹25,000"
                   />
                 </div>
 
                 <div className="career-object-field">
                   <label>Experience</label>
+
                   <input
                     type="text"
                     name="experience"
                     value={formData.experience}
                     onChange={handleChange}
+                    placeholder="2 Years"
                   />
                 </div>
               </div>
@@ -150,21 +201,25 @@ const Careerobject = () => {
               <div className="career-object-grid">
                 <div className="career-object-field">
                   <label>Location</label>
+
                   <input
                     type="text"
                     name="location"
                     value={formData.location}
                     onChange={handleChange}
+                    placeholder="Bhubaneswar"
                   />
                 </div>
 
                 <div className="career-object-field">
                   <label>Vacancy</label>
+
                   <input
                     type="number"
                     name="vacancy"
                     value={formData.vacancy}
                     onChange={handleChange}
+                    placeholder="5"
                   />
                 </div>
               </div>
@@ -191,6 +246,7 @@ const Careerobject = () => {
                   name="skills"
                   value={formData.skills}
                   onChange={handleChange}
+                  placeholder="React, JavaScript, CSS..."
                 />
               </div>
 
@@ -202,6 +258,7 @@ const Careerobject = () => {
                   name="whatsapp"
                   value={formData.whatsapp}
                   onChange={handleChange}
+                  placeholder="+91 XXXXX XXXXX"
                 />
               </div>
 
@@ -209,7 +266,7 @@ const Careerobject = () => {
                 className="career-object-submit-btn"
                 type="submit"
               >
-                Submit Job
+                {editId ? "Update Job" : "Submit Job"}
               </button>
             </form>
           </div>
@@ -219,6 +276,7 @@ const Careerobject = () => {
 
         <div className="career-object-table-section">
           <div className="career-object-card">
+
             <h2 className="career-object-title">
               Live Job Preview
             </h2>
@@ -232,39 +290,109 @@ const Careerobject = () => {
                     <th>Salary</th>
                     <th>Location</th>
                     <th>Job Type</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {jobs.map((job) => (
-                    <tr key={job.id}>
-                      <td>{job.name}</td>
-                      <td>{job.designation}</td>
-                      <td>{job.salary}</td>
-                      <td>{job.location}</td>
-                      <td>{job.jobType}</td>
+                  {jobs.length > 0 ? (
+                    jobs.map((job) => (
+                      <tr key={job.id}>
+                        <td>{job.name}</td>
+                        <td>{job.designation}</td>
+                        <td>{job.salary}</td>
+                        <td>{job.location}</td>
+                        <td>{job.jobType}</td>
+
+                        <td>
+                          <div className="career-object-actions">
+                            <button
+                              type="button"
+                              className="career-edit-btn"
+                              onClick={() => handleEdit(job)}
+                            >
+                              Edit
+                            </button>
+
+                            <button
+                              type="button"
+                              className="career-delete-btn"
+                              onClick={() =>
+                                handleDelete(job.id)
+                              }
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan="6"
+                        className="career-object-empty"
+                      >
+                        No Jobs Added Yet
+                      </td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>
 
-            {jobs.map((job) => (
-              <div
-                className="career-object-preview-card"
-                key={job.id}
-              >
-                <h3>{job.designation}</h3>
-
+            <div className="career-object-preview-list">
+              {jobs.map((job) => (
                 <div
-                  dangerouslySetInnerHTML={{
-                    __html: job.description,
-                  }}
-                />
-              </div>
-            ))}
+                  className="career-object-preview-card"
+                  key={job.id}
+                >
+                  <h3>{job.designation}</h3>
+
+                  <p>
+                    <strong>Company:</strong> {job.name}
+                  </p>
+
+                  <p>
+                    <strong>Salary:</strong> {job.salary}
+                  </p>
+
+                  <p>
+                    <strong>Experience:</strong> {job.experience}
+                  </p>
+
+                  <p>
+                    <strong>Location:</strong> {job.location}
+                  </p>
+
+                  <p>
+                    <strong>Vacancy:</strong> {job.vacancy}
+                  </p>
+
+                  <p>
+                    <strong>Job Type:</strong> {job.jobType}
+                  </p>
+
+                  <p>
+                    <strong>Skills:</strong> {job.skills}
+                  </p>
+
+                  <p>
+                    <strong>WhatsApp:</strong> {job.whatsapp}
+                  </p>
+
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: job.description,
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
+
       </div>
     </div>
   );

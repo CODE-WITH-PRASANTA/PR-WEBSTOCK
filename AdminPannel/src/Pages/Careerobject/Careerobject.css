@@ -367,4 +367,55 @@
     padding: 12px;
     font-size: 14px;
   }
+  /* ==========================
+   ACTION BUTTONS
+========================== */
+
+.career-object-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.career-edit-btn,
+.career-delete-btn {
+  border: none;
+  outline: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.career-edit-btn {
+  background: #2563eb;
+  color: #fff;
+}
+
+.career-edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.career-delete-btn {
+  background: #dc2626;
+  color: #fff;
+}
+
+.career-delete-btn:hover {
+  background: #b91c1c;
+}
+
+@media (max-width: 768px) {
+  .career-object-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .career-edit-btn,
+  .career-delete-btn {
+    width: 100%;
+  }
+}
 }

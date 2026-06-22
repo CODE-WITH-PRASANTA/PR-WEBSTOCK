@@ -1,12 +1,8 @@
-.Webomindappsvsother-section {
-  padding: 80px 20px;
+.Webomindappsvsother-container {
+  padding: 100px 20px;
   background: #f9fbff;
 }
 
-.Webomindappsvsother-container {
-  max-width: 1250px;
-  margin: 0 auto;
-}
 
 .Webomindappsvsother-title {
   text-align: center;

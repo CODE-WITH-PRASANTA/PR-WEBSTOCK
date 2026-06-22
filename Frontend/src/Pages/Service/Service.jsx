@@ -26,9 +26,7 @@ const Service = () => {
         <Websitedesigningprocess/>
         <Industrieswedesign/>
         <Bestwebsitedesign/>
-        
         <Webomindappsvsother/>
-        <Casestudies/>
         <OurClientsSay/>
         <Frequentlyaskedquestion/>
     </>
