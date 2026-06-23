@@ -1,49 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Admin.css";
+import API from "../../api/axios";
 import { FiCalendar, FiArrowUpRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Admin = () => {
-  const blogs = [
-    {
-      id: 1,
-      image:
-        "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "The 5 Ways To Improve Your Credibility Working From Home",
-      description:
-        "As a small-business owner, it's important to find high-quality information and educational resources you can trust to...",
-      path: "/working",
-    },
-    {
-      id: 2,
-      image:
-        "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Fintech Startup Will Finance The Women-Owned Businesses",
-      description:
-        "As a small-business owner, it's important to find high-quality information and educational resources you can trust to...",
-      path: "/working",
-    },
-    {
-      id: 3,
-      image:
-        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "4 Ways Businesses Can Conduct Productive Time Management",
-      description:
-        "As a small-business owner, it's important to find high-quality information and educational resources you can trust to...",
-      path: "/timemanagement",
-    },
-  ];
+  const [blogs, setBlogs] = useState([]);
+
+  const fetchBlogs = async () => {
+    try {
+      const res = await API.get("/blogs");
+
+      const blogData = Array.isArray(res.data)
+        ? res.data
+        : res.data.data || [];
+
+      setBlogs(blogData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
 
   return (
     <section className="admin-section">
       <div className="admin-container">
+
         {blogs.map((blog) => (
-          <article className="admin-card" key={blog.id}>
+          <article
+            className="admin-card"
+            key={blog._id}
+          >
             <div className="admin-image">
-              <img src={blog.image} alt={blog.title} />
+              <img
+                src={
+                  blog.image
+                    ? `http://localhost:5000${blog.image}`
+                    : "https://via.placeholder.com/600x400"
+                }
+                alt={blog.title}
+              />
             </div>
 
             <div className="admin-content">
+
               <div className="admin-meta">
                 <img
                   src="https://i.pravatar.cc/100?img=12"
@@ -51,13 +54,19 @@ const Admin = () => {
                   className="admin-avatar"
                 />
 
-                <span className="admin-name">ADMIN</span>
+                <span className="admin-name">
+                  {blog.adminName}
+                </span>
 
-                <span className="admin-dot">•</span>
+                <span className="admin-dot">
+                  •
+                </span>
 
                 <span className="admin-date">
                   <FiCalendar />
-                  MARCH 1, 2023
+                  {new Date(
+                    blog.publishDate
+                  ).toLocaleDateString()}
                 </span>
               </div>
 
@@ -65,15 +74,28 @@ const Admin = () => {
 
               <div className="admin-line"></div>
 
-              <p>{blog.description}</p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    blog.description?.slice(
+                      0,
+                      150
+                    ) + "...",
+                }}
+              />
 
-              <Link to={blog.path} className="admin-btn">
+              <Link
+                to={`/blog/${blog._id}`}
+                className="admin-btn"
+              >
                 Read More
                 <FiArrowUpRight />
               </Link>
+
             </div>
           </article>
         ))}
+
       </div>
     </section>
   );

@@ -11,11 +11,8 @@ const Career = () => {
   return (
     <div>
       <CareerBreadcrum />
-      <CareerLatestJob/>
-      <CareerMoreOpportunities/>
-      {/* <CareerBrowseJob/> */}
-      <FrontendDev/>
       <AccountBdmExe/>
+      <CareerMoreOpportunities/>
       <CareerBlogAndArticle/>
     </div>
   )

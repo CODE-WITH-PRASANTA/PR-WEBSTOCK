@@ -1,40 +1,103 @@
-import React from "react";
+import React, {
+  useEffect,
+  useState,
+} from "react";
 import "./Improve.css";
-import { FiUser, FiCalendar } from "react-icons/fi";
+import {
+  FiUser,
+  FiCalendar,
+} from "react-icons/fi";
+import { useParams } from "react-router-dom";
+import api from "../../api/axios";
 
 const Improve = () => {
+  const { id } = useParams();
+
+  const [blog, setBlog] =
+    useState(null);
+
+  useEffect(() => {
+    fetchBlog();
+  }, [id]);
+
+  const fetchBlog = async () => {
+    try {
+      const res = await api.get(
+        `/blogs/${id}`
+      );
+
+      setBlog(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (!blog) {
+    return (
+      <div className="improve-loading">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <section className="improve-section">
       <div className="improve-container">
-        <h1 className="improve-title">
-          The 5 Ways To Improve Your Credibility
-          <br />
-          Working From Home
-        </h1>
- 
-        <div className="improve-meta">
+        {/* Featured Image */}
+
+        <div className="improve-banner">
           <img
-            src="https://i.pravatar.cc/100?img=12"
-            alt="Admin"
-            className="admin-image"
+            src={`http://localhost:5000${blog.image}`}
+            alt={blog.title}
           />
+        </div>
+
+        {/* Title */}
+
+        <h1 className="improve-title">
+          {blog.title}
+        </h1>
+
+        {/* Meta */}
+
+        <div className="improve-meta">
 
           <div className="meta-item">
             <FiUser />
-            <span>ADMIN</span>
+            <span>
+              {blog.adminName}
+            </span>
           </div>
 
-          <span className="meta-dot">•</span>
+          <span className="meta-dot">
+            •
+          </span>
 
           <div className="meta-item">
             <FiCalendar />
-            <span>MARCH 1, 2023</span>
+
+            <span>
+              {new Date(
+                blog.publishDate
+              ).toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }
+              )}
+            </span>
           </div>
 
-          <span className="meta-dot">•</span>
+          <span className="meta-dot">
+            •
+          </span>
 
           <div className="meta-item">
-            <span>BUSINESS</span>
+            <span>
+              {blog.category}
+            </span>
           </div>
         </div>
       </div>
