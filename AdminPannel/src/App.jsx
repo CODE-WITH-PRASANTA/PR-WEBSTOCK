@@ -75,10 +75,6 @@ function App() {
             path="career-management"
             element={<Careerobject />}
           />
-          <Route
-          path="login"
-          element={<Login/>}
-          />
 
           <Route path="/team-member" element={< Teammember />} />
 
