@@ -18,6 +18,7 @@ import Calender from "./Pages/Calender/Calender";
 import ProjectUser from "./Pages/ProjectUser/ProjectUser";
 import Careerobject from "./Pages/Careerobject/Careerobject";
 import Login from "./Component/Login/Login";
+import Teammember from "./Component/Teammember/Teammember";
 
 function App() {
   return (
@@ -74,6 +75,8 @@ function App() {
             path="career-management"
             element={<Careerobject />}
           />
+
+          <Route path="/team-member" element={< Teammember />} />
 
         </Route>
 

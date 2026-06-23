@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import API from "../../api/axios";
 import "./BlogPost.css";
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -27,6 +28,49 @@ const BlogPost = () => {
   });
 
   const [blogs, setBlogs] = useState([]);
+const [editId, setEditId] = useState(null);
+
+const fetchBlogs = async () => {
+  try {
+    const res = await API.get("/blogs");
+
+    const blogData = Array.isArray(res.data)
+      ? res.data
+      : res.data.data || [];
+
+    setBlogs(blogData);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+useEffect(() => {
+  fetchBlogs();
+}, []);
+
+const uploadImage = async (file) => {
+  try {
+    const data = new FormData();
+
+    data.append("image", file);
+
+    const res = await API.post(
+      "/blogs/upload-image",
+      data,
+      {
+        headers: {
+          "Content-Type":
+            "multipart/form-data",
+        },
+      }
+    );
+
+    return res.data.image;
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
+};
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -64,34 +108,99 @@ const BlogPost = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    setBlogs([
-      ...blogs,
-      {
-        id: Date.now(),
-        ...formData,
-      },
-    ]);
+  try {
+    let imagePath = "";
+    let mediaPath = "";
+
+    if (formData.image) {
+      imagePath = await uploadImage(
+        formData.image
+      );
+    }
+
+    const payload = {
+      adminName: formData.adminName,
+      designation: formData.designation,
+      title: formData.title,
+      category: formData.category,
+      quote: formData.quote,
+      publishDate: formData.publishDate,
+      description: formData.description,
+      image: imagePath,
+      media: mediaPath,
+      tags: JSON.stringify(formData.tags),
+    };
+
+    if (editId) {
+      await API.put(
+        `/blogs/${editId}`,
+        payload
+      );
+    } else {
+      await API.post(
+        "/blogs",
+        payload
+      );
+    }
+
+    fetchBlogs();
 
     setFormData({
-  adminName: "",
-  designation: "",
-  title: "",
-  category: "",
-  quote: "",
-  publishDate: "",
-  description: "",
-  image: null,
-  media: null,
-  tags: [],
-});
-  };
+      adminName: "",
+      designation: "",
+      title: "",
+      category: "",
+      quote: "",
+      publishDate: "",
+      description: "",
+      image: null,
+      media: null,
+      tags: [],
+    });
 
-  const deleteBlog = (id) => {
-    setBlogs(blogs.filter((blog) => blog.id !== id));
-  };
+    setEditId(null);
+  } catch (error) {
+    console.log(error);
+  }
+};
+  const deleteBlog = async (id) => {
+  try {
+    await API.delete(
+      `/blogs/${id}`
+    );
+
+    fetchBlogs();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const editBlog = (blog) => {
+  setFormData({
+    adminName: blog.adminName,
+    designation: blog.designation,
+    title: blog.title,
+    category: blog.category,
+    quote: blog.quote,
+    publishDate:
+      blog.publishDate?.split("T")[0] || "",
+    description:
+      blog.description,
+    image: null,
+    media: null,
+    tags: blog.tags || [],
+  });
+
+  setEditId(blog._id);
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 
   return (
     <div className="BlogPost">
@@ -186,7 +295,7 @@ const BlogPost = () => {
   <label>Description</label>
 
   <Editor
-    apiKey="no-api-key"
+   apiKey="8hswbe7bfeeneui9eb9gjgsym8ku30nx5gwre9808ajdzniu"
     value={formData.description}
     onEditorChange={(content) =>
       setFormData({
@@ -321,10 +430,23 @@ const BlogPost = () => {
 
             <tbody>
               {blogs.map((blog) => (
-                <tr key={blog.id}>
+               <tr key={blog._id}>
                   <td>
-                    <FaImage />
-                  </td>
+  {blog.image ? (
+    <img
+      src={`http://localhost:5000${blog.image}`}
+      alt={blog.title}
+      width="60"
+      height="40"
+      style={{
+        objectFit: "cover",
+        borderRadius: "6px",
+      }}
+    />
+  ) : (
+    <FaImage />
+  )}
+</td>
                   <td>{blog.title}</td>
                   <td>{blog.category}</td>
                   <td>{blog.adminName}</td>
@@ -335,13 +457,17 @@ const BlogPost = () => {
 
                   <td>
                     <div className="BlogPost_ActionBtns">
-                      <button>
-                        <FaEdit />
-                      </button>
+                     <button
+  onClick={() =>
+    editBlog(blog)
+  }
+>
+  <FaEdit />
+</button>
 
                       <button
                         onClick={() =>
-                          deleteBlog(blog.id)
+                        deleteBlog(blog._id)
                         }
                       >
                         <FaTrash />
