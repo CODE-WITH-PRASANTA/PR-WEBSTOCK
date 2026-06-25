@@ -246,7 +246,21 @@ const Sidebar = () => {
             <FaCalendarAlt />
             <span>Calendar Management</span>
           </NavLink>
+
+            <NavLink
+            to="/industry-management"
+            className={({ isActive }) =>
+              isActive
+                ? "sidebarLink active"
+                : "sidebarLink"
+            }
+          >
+            <FaClipboardList />
+            <span>industry work management</span>
+          </NavLink>
+
         </div>
+      
 
         {/* FOOTER */}
 

@@ -18,6 +18,7 @@ import Calender from "./Pages/Calender/Calender";
 import ProjectUser from "./Pages/ProjectUser/ProjectUser";
 import Careerobject from "./Pages/Careerobject/Careerobject";
 import Login from "./Component/Login/Login";
+import IndustryManagement from "./Pages/IndustryManagement/IndustryManagement";
 
 function App() {
   return (
@@ -74,8 +75,13 @@ function App() {
             path="career-management"
             element={<Careerobject />}
           />
+          <Route
+            path="industry-management"
+            element={<IndustryManagement />}
+          />
 
         </Route>
+          
 
         {/* Any Wrong URL Redirect To Login */}
         <Route
