@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaMoneyBillWave,
   FaMapMarkerAlt,
@@ -9,104 +9,121 @@ import {
   FaWhatsapp,
 } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
+import API from "../../api/axios";
 import "./AccountBdmExe.css";
 
 const AccountBdmExe = () => {
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const fetchJobs = async () => {
+    try {
+      const res = await API.get("/careers");
+
+      const jobsData =
+        Array.isArray(res.data)
+          ? res.data
+          : Array.isArray(res.data.data)
+          ? res.data.data
+          : [];
+
+      setJobs(jobsData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="AccountBdmExe">
-      <div className="AccountBdmExe-card">
+      {jobs.map((job) => (
+        <div className="AccountBdmExe-card" key={job._id}>
+          <div className="AccountBdmExe-header">
+            <h2 className="AccountBdmExe-title">
+              {job.designation}
+            </h2>
 
-        {/* Header */}
-        <div className="AccountBdmExe-header">
-          <h2 className="AccountBdmExe-title">
-            Accounts & BDM Executive (Intern)
-          </h2>
+            <p
+              className="AccountBdmExe-subtitle"
+              dangerouslySetInnerHTML={{
+                __html: job.description,
+              }}
+            />
+          </div>
 
-          <p className="AccountBdmExe-subtitle">
-            We are hiring a dedicated candidate for accounts handling and
-            business development activities.
-          </p>
+          <div className="AccountBdmExe-tableWrapper">
+            <table className="AccountBdmExe-table">
+              <tbody>
+                <tr>
+                  <th>
+                    <FaMoneyBillWave />
+                    Salary
+                  </th>
+                  <td>{job.salary}</td>
+
+                  <th>
+                    <FaMapMarkerAlt />
+                    Location
+                  </th>
+                  <td>{job.location}</td>
+                </tr>
+
+                <tr>
+                  <th>
+                    <FaBriefcase />
+                    Experience
+                  </th>
+                  <td>{job.experience}</td>
+
+                  <th>
+                    <FaUserTie />
+                    Job Type
+                  </th>
+                  <td>{job.jobType}</td>
+                </tr>
+
+                <tr>
+                  <th>
+                    <FaUsers />
+                    Vacancy
+                  </th>
+                  <td>{job.vacancy}</td>
+
+                  <th>
+                    <FaChartLine />
+                    Skills
+                  </th>
+                  <td>{job.skills}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="AccountBdmExe-highlights">
+            <h3>Key Highlights</h3>
+            <p>{job.keyHighlight}</p>
+          </div>
+
+          <div className="AccountBdmExe-actions">
+            <a
+              href={`https://wa.me/${job.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="AccountBdmExe-whatsappBtn"
+            >
+              <FaWhatsapp />
+              WhatsApp
+            </a>
+
+            <button className="AccountBdmExe-applyBtn">
+              <FiSend />
+              Apply Now
+            </button>
+          </div>
         </div>
-
-        {/* Job Details */}
-        <div className="AccountBdmExe-tableWrapper">
-          <table className="AccountBdmExe-table">
-            <tbody>
-              <tr>
-                <th>
-                  <FaMoneyBillWave />
-                  Salary
-                </th>
-                <td>₹10000 – ₹12000</td>
-
-                <th>
-                  <FaMapMarkerAlt />
-                  Location
-                </th>
-                <td>Bhubaneswar (On-site)</td>
-              </tr>
-
-              <tr>
-                <th>
-                  <FaBriefcase />
-                  Experience
-                </th>
-                <td>0 – 1 Years</td>
-
-                <th>
-                  <FaUserTie />
-                  Job Type
-                </th>
-                <td>Internship → Full-Time</td>
-              </tr>
-
-              <tr>
-                <th>
-                  <FaUsers />
-                  Vacancy
-                </th>
-                <td>5</td>
-
-                <th>
-                  <FaChartLine />
-                  Skills
-                </th>
-                <td>
-                  Basic Accounting, Excel, Billing, Canva
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        {/* Highlights */}
-        <div className="AccountBdmExe-highlights">
-          <h3>Key Highlights:</h3>
-
-          <p>
-            Stipend + TA/DA, Career growth, Learning opportunity
-          </p>
-        </div>
-
-        {/* Buttons */}
-        <div className="AccountBdmExe-actions">
-          <a
-            href="https://wa.me/917789801327"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="AccountBdmExe-whatsappBtn"
-          >
-            <FaWhatsapp />
-            WhatsApp
-          </a>
-
-          <button className="AccountBdmExe-applyBtn">
-            <FiSend />
-            Apply Now
-          </button>
-        </div>
-
-      </div>
+      ))}
     </section>
   );
 };

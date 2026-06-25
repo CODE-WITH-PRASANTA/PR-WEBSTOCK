@@ -18,7 +18,11 @@ import Calender from "./Pages/Calender/Calender";
 import ProjectUser from "./Pages/ProjectUser/ProjectUser";
 import Careerobject from "./Pages/Careerobject/Careerobject";
 import Login from "./Component/Login/Login";
+<<<<<<< HEAD
 import IndustryManagement from "./Pages/IndustryManagement/IndustryManagement";
+=======
+import Teammember from "./Component/Teammember/Teammember";
+>>>>>>> cf721e2ba8a9ba23398b7a151bf1755dcc090224
 
 function App() {
   return (
@@ -79,6 +83,8 @@ function App() {
             path="industry-management"
             element={<IndustryManagement />}
           />
+
+          <Route path="/team-member" element={< Teammember />} />
 
         </Route>
           

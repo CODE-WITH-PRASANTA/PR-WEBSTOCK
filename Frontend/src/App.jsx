@@ -76,7 +76,7 @@ function AppContent() {
           element={<SocialMediaManagement />}
         />
         <Route path="/get-quote" element={<GetFreeDemo />} />
-        <Route path="/Working" element={<Working />} />
+        <Route path="/blog/:id" element={<Working />} />
         <Route path="/project" element={<Projects />} />
       </Routes>
 
