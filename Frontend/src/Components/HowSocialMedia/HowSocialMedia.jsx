@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./HowSocialMedia.css";
 
-import img1 from "../../assets/10.webp";
-import img2 from "../../assets/11.webp";
-import img3 from "../../assets/12n.webp";
-import img4 from "../../assets/13.webp";
-import img5 from "../../assets/14.webp";
-import img6 from "../../assets/15.webp";
+import img1 from "../../assets/sm1.jpeg";
+import img2 from "../../assets/sm2.jpeg";
+import img3 from "../../assets/sm1.jpeg";
+import img4 from "../../assets/sm2.jpeg"
+import img5 from "../../assets/sm1.jpeg";
+import img6 from "../../assets/sm2.jpeg";
 
 export default function HowSocialMedia() {
   const sections = [

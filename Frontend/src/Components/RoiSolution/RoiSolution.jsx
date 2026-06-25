@@ -4,10 +4,10 @@ import "./RoiSolution.css";
 // Importing images
 import healthcareImg from "../../assets/dg1.jpeg";
 import ecommerceImg from "../../assets/dg2.jpeg";
-import technologyImg from "../../assets/Technology-industry.webp";
-import financialImg from "../../assets/Financial-services-industry.webp";
-import manufacturingImg from "../../assets/Manufacturing-industry.webp";
-import travelImg from "../../assets/Travel-and-hospitality-industry.webp";
+import technologyImg from "../../assets/dg1.jpeg";
+import financialImg from "../../assets/dg2.jpeg";
+import manufacturingImg from "../../assets/dg1.jpeg";
+import travelImg from "../../assets/dg2.jpeg";
 
 const data = [
   {
