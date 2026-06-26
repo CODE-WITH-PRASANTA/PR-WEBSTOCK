@@ -39,9 +39,24 @@ const faqData = [
   }
 
 ];
-
 export default function SoftwareSection() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Pagination
+  const faqPerPage = 3;
+  const totalPages = Math.ceil(faqData.length / faqPerPage);
+
+  const startIndex = (currentPage - 1) * faqPerPage;
+  const currentFaqs = faqData.slice(
+    startIndex,
+    startIndex + faqPerPage
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    setOpenIndex(null); // close opened FAQ when page changes
+  };
 
   return (
     <div className="software-wrapper">
@@ -50,23 +65,21 @@ export default function SoftwareSection() {
       <div className="software-grid">
         <div className="software-left">
           <h1 className="sw-title">
-           Our Software <br />
+            Our Software <br />
             <span className="sw-highlight">Development Work</span>
-
           </h1>
 
-         <p className="sw-text">
-            At PR Webstock, we build high-performance software solutions designed to help 
-            businesses scale faster and work smarter. Our development process focuses on 
-            custom design, clean architecture, and seamless user experience—ensuring every 
-            project meets industry standards and delivers measurable results. Whether you 
-            need a custom software application, mobile app, enterprise-level system, or 
-            API-based automation, we deliver solutions that are secure, scalable, and 
+          <p className="sw-text">
+            At PR Webstock, we build high-performance software solutions designed to help
+            businesses scale faster and work smarter. Our development process focuses on
+            custom design, clean architecture, and seamless user experience—ensuring every
+            project meets industry standards and delivers measurable results. Whether you
+            need a custom software application, mobile app, enterprise-level system, or
+            API-based automation, we deliver solutions that are secure, scalable, and
             fully optimized for your business needs.
           </p>
 
-
-         <div className="sw-list-grid">
+          <div className="sw-list-grid">
             <ul>
               <li>Custom Software Development</li>
               <li>Mobile App Development (Android & iOS)</li>
@@ -81,11 +94,14 @@ export default function SoftwareSection() {
               <li>Maintenance & Long-Term Support</li>
             </ul>
           </div>
-
         </div>
 
         <div className="software-right">
-          <img src={devImg} alt="Software Development" className="sw-img" />
+          <img
+            src={devImg}
+            alt="Software Development"
+            className="sw-img"
+          />
         </div>
       </div>
 
@@ -96,28 +112,65 @@ export default function SoftwareSection() {
         </div>
 
         <div className="faq-right">
-          {faqData.map((item, index) => (
-            <div key={index} className="faq-item">
-
+          {currentFaqs.map((item, index) => (
+            <div key={startIndex + index} className="faq-item">
               <div
                 className="faq-question"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                onClick={() =>
+                  setOpenIndex(
+                    openIndex === startIndex + index
+                      ? null
+                      : startIndex + index
+                  )
+                }
               >
                 <span>{item.q}</span>
-                <span className="faq-plus">{openIndex === index ? "−" : "+"}</span>
+
+                <span className="faq-plus">
+                  {openIndex === startIndex + index ? "−" : "+"}
+                </span>
               </div>
 
               <div
-                className={`faq-answer ${openIndex === index ? "open" : ""}`}
+                className={`faq-answer ${
+                  openIndex === startIndex + index ? "open" : ""
+                }`}
               >
                 {item.a}
               </div>
-
             </div>
           ))}
+
+          {/* Pagination */}
+          <div className="faq-pagination">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                className={
+                  currentPage === index + 1 ? "active" : ""
+                }
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
-
     </div>
   );
 }
