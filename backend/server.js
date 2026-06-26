@@ -9,6 +9,11 @@ const connectDB = require("./src/config/db");
 // Routes
 const teamRoutes = require("./src/routes/teamRoutes");
 
+const projectRoutes = require(
+  "./src/routes/projectRoutes"
+);
+
+
 const careerRoutes =
   require("./src/routes/careerRoutes");
 
@@ -40,6 +45,8 @@ app.use(
 );
 
 app.use("/api/blogs", blogRoutes);
+
+app.use( "/api/projects", projectRoutes );
 
 app.get("/", (req, res) => {
   res.send("API Running...");
