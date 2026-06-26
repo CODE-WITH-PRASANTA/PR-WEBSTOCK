@@ -42,7 +42,7 @@ function AppContent() {
 
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [location.pathname]);
@@ -54,7 +54,6 @@ function AppContent() {
   return (
     <>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -79,7 +78,6 @@ function AppContent() {
         <Route path="/blog/:id" element={<Working />} />
         <Route path="/project" element={<Projects />} />
       </Routes>
-
       <Form />
       <ContactUs />
       <Floating />

@@ -117,10 +117,13 @@ const AccountBdmExe = () => {
               WhatsApp
             </a>
 
-            <button className="AccountBdmExe-applyBtn">
-              <FiSend />
-              Apply Now
-            </button>
+        <a
+            href={`mailto:prwebstock.com@gmail.com?subject=Application for ${job.designation}&body=Hello Team,%0D%0A%0D%0AI would like to apply for the position of ${job.designation}.%0D%0A%0D%0AName:%0D%0APhone:%0D%0AEmail:%0D%0A%0D%0AThank You.`}
+            className="AccountBdmExe-applyBtn"
+          >
+            <FiSend />
+            Apply Now
+          </a>
           </div>
         </div>
       ))}
