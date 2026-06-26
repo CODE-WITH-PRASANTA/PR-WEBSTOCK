@@ -1,0 +1,442 @@
+/* ======================================
+   GALLERY SECTION
+====================================== */
+
+.cb-gallery-section {
+  width: 100%;
+  padding: 90px 0;
+  background: linear-gradient(135deg, #f3f4f9, #e8ebf6);
+  overflow: hidden;
+}
+
+/* ======================================
+   HEADER
+====================================== */
+
+.cb-gallery-header {
+  text-align: center;
+  margin-bottom: 70px;
+  padding: 0 20px;
+}
+
+.cb-gallery-tag {
+  display: inline-block;
+  padding: 12px 35px;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #d88b00;
+  letter-spacing: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.cb-gallery-title {
+  margin-top: 30px;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #10162f;
+  line-height: 1.2;
+}
+
+.cb-gallery-title span {
+  background: linear-gradient(
+    90deg,
+    #2643ff,
+    #7b42f6,
+    #f59e0b
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cb-gallery-header p {
+  max-width: 700px;
+  margin: 20px auto 0;
+  color: #5c6b85;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+/* ======================================
+   GALLERY SCROLL WRAPPER
+====================================== */
+
+.cb-gallery-scroll-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 10px 0 25px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af #e5e7eb;
+}
+
+.cb-gallery-scroll-wrapper::-webkit-scrollbar {
+  height: 10px;
+}
+
+.cb-gallery-scroll-wrapper::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 50px;
+}
+
+.cb-gallery-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 50px;
+}
+
+.cb-gallery-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+.cb-gallery-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  padding: 0 40px;
+}
+
+/* ======================================
+   GALLERY CARD
+====================================== */
+
+.cb-gallery-card {
+  min-width: 420px;
+  height: 290px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 30px;
+  flex-shrink: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.cb-gallery-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.12);
+}
+
+.cb-gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+  transition: transform 0.5s ease;
+}
+
+.cb-gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ======================================
+   PAGINATION
+====================================== */
+
+.cb-gallery-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+}
+
+.cb-page-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #10162f;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cb-page-btn:hover {
+  transform: translateY(-4px);
+}
+
+.cb-page-btn.active {
+  background: linear-gradient(
+    90deg,
+    #2643ff,
+    #7b42f6
+  );
+  color: #ffffff;
+}
+
+/* ======================================
+   SEO CONTENT
+====================================== */
+
+.cb-gallery-seo {
+  max-width: 1150px;
+  margin: 90px auto 0;
+  padding: 0 20px;
+}
+
+.cb-gallery-seo h2 {
+  text-align: center;
+  font-size: 2.3rem;
+  color: #10162f;
+  margin-bottom: 35px;
+}
+
+.cb-gallery-seo p {
+  font-size: 1.05rem;
+  color: #4b5563;
+  line-height: 2;
+  margin-bottom: 22px;
+  text-align: justify;
+}
+
+.cb-gallery-seo strong {
+  color: #10162f;
+  font-weight: 700;
+}
+
+/* ======================================
+   MODAL
+====================================== */
+
+.cb-gallery-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 16, 32, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.cb-gallery-modal-content {
+  width: 75%;
+  max-width: 1000px;
+}
+
+.cb-gallery-main-image {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+/* ======================================
+   THUMBNAILS
+====================================== */
+
+.cb-gallery-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 25px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.cb-gallery-thumbnails::-webkit-scrollbar {
+  height: 8px;
+}
+
+.cb-gallery-thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+}
+
+.cb-gallery-thumb {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  opacity: 0.7;
+  transition: 0.3s ease;
+  flex-shrink: 0;
+}
+
+.cb-gallery-thumb:hover {
+  opacity: 1;
+}
+
+.cb-gallery-thumb.active {
+  border-color: #fbbf24;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* ======================================
+   ARROWS
+====================================== */
+
+.cb-gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 65px;
+  height: 65px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.3s ease;
+}
+
+.cb-gallery-arrow:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.cb-gallery-arrow.left {
+  left: 30px;
+}
+
+.cb-gallery-arrow.right {
+  right: 30px;
+}
+
+/* ======================================
+   CLOSE BUTTON
+====================================== */
+
+.cb-gallery-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.3s ease;
+}
+
+.cb-gallery-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ======================================
+   TABLET RESPONSIVE
+====================================== */
+
+@media (max-width: 992px) {
+  .cb-gallery-title {
+    font-size: 2.8rem;
+  }
+
+  .cb-gallery-card {
+    min-width: 320px;
+    height: 240px;
+  }
+
+  .cb-gallery-modal-content {
+    width: 90%;
+  }
+
+  .cb-gallery-seo h2 {
+    font-size: 2rem;
+  }
+}
+
+/* ======================================
+   MOBILE RESPONSIVE
+====================================== */
+
+@media (max-width: 768px) {
+  .cb-gallery-section {
+    padding: 70px 0;
+  }
+
+  .cb-gallery-title {
+    font-size: 2.2rem;
+  }
+
+  .cb-gallery-header p {
+    font-size: 1rem;
+  }
+
+  .cb-gallery-card {
+    min-width: 280px;
+    height: 210px;
+  }
+
+  .cb-gallery-arrow {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .cb-gallery-arrow.left {
+    left: 10px;
+  }
+
+  .cb-gallery-arrow.right {
+    right: 10px;
+  }
+
+  .cb-gallery-thumb {
+    width: 80px;
+    height: 55px;
+  }
+
+  .cb-gallery-main-image {
+    padding: 12px;
+  }
+
+  .cb-gallery-seo h2 {
+    font-size: 1.7rem;
+  }
+
+  .cb-gallery-seo p {
+    text-align: left;
+  }
+}
+
+/* ======================================
+   SMALL MOBILE
+====================================== */
+
+@media (max-width: 480px) {
+  .cb-gallery-title {
+    font-size: 1.8rem;
+  }
+
+  .cb-gallery-tag {
+    padding: 10px 24px;
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .cb-gallery-card {
+    min-width: 240px;
+    height: 180px;
+  }
+
+  .cb-page-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cb-gallery-close {
+    width: 45px;
+    height: 45px;
+  }
+
+  .cb-gallery-seo h2 {
+    font-size: 1.5rem;
+  }
+}
