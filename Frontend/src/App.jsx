@@ -1,4 +1,11 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+
 import "./App.css";
 import Home from "./Pages/Home/Home";
 import Navbar from "./Components/Navbar/Navbar";
@@ -26,8 +33,6 @@ import Floating from "./Components/Floating/Floating";
 import Form from "./Components/From/From";
 
 
-
-
 function AppContent() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -37,14 +42,17 @@ function AppContent() {
 
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
+  if (loading) {
+    return <PageLoader />;
+  }
+
   return (
     <>
-      {loading && <PageLoader />}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -58,20 +66,21 @@ function AppContent() {
         <Route path="/services/web-development" element={<Service />} />
         <Route path="/services/app-development" element={<AppDevelopment />} />
         <Route path="/services/seo" element={<Seo />} />
-        <Route path="/services/digital-marketing" element={<DigitalMarketingPage/>} />
-        <Route path="/services/socialmedia-management" element={<SocialMediaManagement />} />
+        <Route
+          path="/services/digital-marketing"
+          element={<DigitalMarketingPage />}
+        />
+        <Route
+          path="/services/socialmedia-management"
+          element={<SocialMediaManagement />}
+        />
         <Route path="/get-quote" element={<GetFreeDemo />} />
-        <Route path="/Working" element={<Working />} /> 
+        <Route path="/blog/:id" element={<Working />} />
         <Route path="/project" element={<Projects />} />
-       
-        
-        </Routes>
+      </Routes>
+      <Form />
       <ContactUs />
       <Floating />
-
-      {/* Floating Enquiry Form */}
-      <Form />
-
       <Footer />
     </>
   );

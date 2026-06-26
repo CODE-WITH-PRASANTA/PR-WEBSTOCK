@@ -7,11 +7,7 @@ const Floating = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 300) {
-        setShowTop(true);
-      } else {
-        setShowTop(false);
-      }
+      setShowTop(window.pageYOffset > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -28,29 +24,26 @@ const Floating = () => {
 
   return (
     <div className="floating-container">
-      {/* Phone */}
-      <a href="tel:+919999999999" className="floating-btn phone">
+      {/* Call Button */}
+      <a href="tel:+917789801327" className="floating-btn phone">
         <span className="tooltip">Call Now</span>
         <FaPhoneAlt />
       </a>
 
-      {/* WhatsApp */}
-      <a
-        href="https://wa.me/919999999999"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="floating-btn whatsapp"
-      >
-        <span className="tooltip">WhatsApp</span>
-        <FaWhatsapp />
-      </a>
-
-      {/* Scroll Top */}
-      {showTop && (
-        <button
-          className="floating-btn top"
-          onClick={scrollToTop}
+      {/* WhatsApp Button */}
+          <a
+          href="https://wa.me/917789801327?text=Hello%20PR-WEBSTOCK!%20I%20want%20a%20professional%20website%20for%20my%20business."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="floating-btn whatsapp"
         >
+          <span className="tooltip">WhatsApp</span>
+          <FaWhatsapp />
+        </a>
+
+      {/* Back To Top */}
+      {showTop && (
+        <button className="floating-btn top" onClick={scrollToTop}>
           <span className="tooltip">Back to Top</span>
           <FaArrowUp />
         </button>

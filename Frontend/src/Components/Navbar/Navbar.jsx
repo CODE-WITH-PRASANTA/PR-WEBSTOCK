@@ -255,7 +255,7 @@ const Navbar = () => {
 
             <div className="contact-item contact-location" aria-label="Office location">
               <FaMapMarkerAlt className="contact-svg" aria-hidden="true" />
-              <address className="navbar-contact-text">608A, Grand Bazar, Phulnakhara, Bhubaneswar – 754001</address>
+              <address className="navbar-contact-text">608A, Grand Bazar, Phulnakhara – 754001</address>
             </div>
           </div>
 

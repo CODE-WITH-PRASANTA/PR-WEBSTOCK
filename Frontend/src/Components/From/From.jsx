@@ -34,15 +34,20 @@ const Form = () => {
     });
   };
 
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   if (!isOpen) return null;
 
   return (
     <div className="form-overlay">
       <div className="floating-form">
-
+        {/* Close Button */}
         <button
           className="close-btn"
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
+          aria-label="Close"
         >
           <FaTimes />
         </button>
@@ -50,10 +55,8 @@ const Form = () => {
         <h2>PR WEBSTOCK</h2>
 
         <h4>Website Development & Digital Marketing Company</h4>
-   
-       
-        <form onSubmit={handleSubmit}>
 
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"
@@ -89,13 +92,9 @@ const Form = () => {
             onChange={handleChange}
           />
 
-          <button
-            type="submit"
-            className="submit-btn"
-          >
+          <button type="submit" className="submit-btn">
             Submit Enquiry
           </button>
-
         </form>
 
         <div className="divider">
@@ -103,14 +102,13 @@ const Form = () => {
         </div>
 
         <div className="contact-buttons">
-
-          <a href="tel:+919999999999" className="call-btn">
+          <a href="tel:+917789801327" className="call-btn">
             <FaPhoneAlt />
             Call Us
           </a>
 
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/917789801327"
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-btn"
@@ -118,9 +116,7 @@ const Form = () => {
             <FaWhatsapp />
             WhatsApp
           </a>
-
         </div>
-
       </div>
     </div>
   );

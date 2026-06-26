@@ -27,10 +27,6 @@ import pp3 from '../../assets/pp3.webp';
 
 
 
-
-
-
-
 const popular = [
   { id: 'p1', thumb: pp1, date: '20 January, 2024', title: 'Looking Inspiration Traveling The World.' },
   { id: 'p2', thumb: pp2, date: '12 January, 2024', title: 'Challenges creating a multi-brand system.' },

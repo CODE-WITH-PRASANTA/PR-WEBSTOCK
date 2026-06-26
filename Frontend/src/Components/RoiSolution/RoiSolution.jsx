@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./RoiSolution.css";
 
 // Importing images
-import healthcareImg from "../../assets/Healthcare-industry.webp";
-import ecommerceImg from "../../assets/E-commerce-industry.webp";
-import technologyImg from "../../assets/Technology-industry.webp";
-import financialImg from "../../assets/Financial-services-industry.webp";
-import manufacturingImg from "../../assets/Manufacturing-industry.webp";
-import travelImg from "../../assets/Travel-and-hospitality-industry.webp";
+import healthcareImg from "../../assets/dg1.jpeg";
+import ecommerceImg from "../../assets/dg2.jpeg";
+import technologyImg from "../../assets/dg1.jpeg";
+import financialImg from "../../assets/dg2.jpeg";
+import manufacturingImg from "../../assets/dg1.jpeg";
+import travelImg from "../../assets/dg2.jpeg";
 
 const data = [
   {
@@ -41,14 +41,26 @@ const data = [
     img: travelImg,
   },
 ];
+
 export default function RoiSolution() {
   const [active, setActive] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Auto slide every 4 seconds
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = data.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  // Auto slide
   useEffect(() => {
     const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % data.length);
     }, 4000);
+
     return () => clearInterval(timer);
   }, []);
 
@@ -56,14 +68,13 @@ export default function RoiSolution() {
     <section className="industry-wrapper">
 
       <h2 className="industry-heading">
-         Industry-Specific Digital Marketing Solutions For Business Growth
+        Industry-Specific Digital Marketing Solutions For Business Growth
       </h2>
 
       <div className="industry-container">
 
-        {/* LEFT IMAGE SECTION */}
+        {/* LEFT IMAGE */}
         <div className="industry-image-wrapper">
-          <div className="pink-block"></div>
           <img
             key={active}
             src={data[active].img}
@@ -72,25 +83,48 @@ export default function RoiSolution() {
           />
         </div>
 
-        {/* RIGHT SIDE CONTENT */}
+        {/* RIGHT CONTENT */}
         <div className="industry-right">
-          {data.map((item, i) => (
-            <div
-              key={i}
-              className={`industry-row ${i === active ? "active" : ""}`}
-              onClick={() => setActive(i)}
-            >
-              <h2 className="industry-title">{item.title}</h2>
-              <p className="industry-desc">{item.desc}</p>
-              {i !== data.length - 1 && <div className="separator"></div>}
-            </div>
-          ))}
+          {currentItems.map((item, i) => {
+            const realIndex = startIndex + i;
+
+            return (
+              <div
+                key={realIndex}
+                className={`industry-row ${
+                  realIndex === active ? "active" : ""
+                }`}
+                onMouseEnter={() => setActive(realIndex)}
+              >
+                <h2 className="industry-title">{item.title}</h2>
+
+                {realIndex === active && (
+                  <p className="industry-desc">{item.desc}</p>
+                )}
+
+                {i !== currentItems.length - 1 && (
+                  <div className="separator"></div>
+                )}
+              </div>
+            );
+          })}
+
+          {/* Pagination */}
+          <div className="industry-pagination">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                className={`pagination-btn ${
+                  currentPage === index + 1 ? "active-page" : ""
+                }`}
+                onClick={() => setCurrentPage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* FLOATING BUTTONS */}
-      <div className="callback-btn">Request a Callback</div>
-      <div className="whatsapp-btn">💬</div>
 
     </section>
   );

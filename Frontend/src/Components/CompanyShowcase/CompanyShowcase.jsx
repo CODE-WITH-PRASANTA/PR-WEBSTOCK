@@ -2,7 +2,7 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import "./CompanyShowcase.css";
 
-import teamImg from "../../assets/why-choose.webp";
+import teamImg from "../../assets/img 2.png";
 
 const CompanyShowcase = () => {
   return (
