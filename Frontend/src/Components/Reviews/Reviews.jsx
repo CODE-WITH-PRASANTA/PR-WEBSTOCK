@@ -1,34 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import API from "../../api/axios"; // Uses pre-configured Axios instance pointing to your backend
 import "./Reviews.css";
 
 import { FaQuoteLeft } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Reviews = () => {
-  const reviews = [
-    {
-      text: "Webomindapps is serving our company 'Homecare Solutions' for the last 2 years. I am so happy with the excellent social media marketing service they provide including day-to-day posting on Facebook, Twitter, LinkedIn, Instagram & many other social media pages of our company. Hats off to you guys for your dedication to promoting us online.",
-      author: "Hoor Unnisa"
-    },
-    {
-      text: "Webomindapps helped our business to grow tremendously through consistent content and marketing strategies. Highly recommend their professional team!",
-      author: "Rohit Kumar"
-    },
-    {
-      text: "Amazing service with fast delivery and creative ideas. Perfect for brands who want to scale their online presence!",
-      author: "Sana Patel"
-    }
-  ];
-
+  const [reviews, setReviews] = useState([]);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // FETCH: Sync component with real-time backend database entries
+  const fetchReviews = async () => {
+    try {
+      setLoading(true);
+      const response = await API.get("/testimonial/all");
+      
+      console.log("REVIEWS GET RESPONSE", response.data);
+
+      if (response.data && response.data.success) {
+        setReviews(response.data.data || []);
+      } else {
+        setReviews([]);
+      }
+    } catch (err) {
+      console.error("Reviews Fetch Error:", err);
+      setError("Failed to fetch client reviews.");
+      setReviews([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
   const nextSlide = () => {
+    if (reviews.length === 0) return;
     setIndex((index + 1) % reviews.length);
   };
 
   const prevSlide = () => {
+    if (reviews.length === 0) return;
     setIndex((index - 1 + reviews.length) % reviews.length);
   };
+
+  // Safe fallback states to maintain visual cleanliness while API processes
+  if (loading) {
+    return (
+      <section className="testimonials-wrapper" style={{ minHeight: "250px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <p style={{ opacity: 0.7 }}>Loading client reviews...</p>
+      </section>
+    );
+  }
+
+  if (reviews.length === 0) {
+    return (
+      <section className="testimonials-wrapper" style={{ minHeight: "250px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <p style={{ opacity: 0.7 }}>No customer reviews are available right now.</p>
+      </section>
+    );
+  }
+
+  // Fallback mappings to match controller data safely
+  const currentReview = reviews[index];
+  const resolvedText = currentReview.feedback || currentReview.text || "";
+  const resolvedAuthor = currentReview.name || "Anonymous";
 
   return (
     <section className="testimonials-wrapper">
@@ -41,9 +80,9 @@ const Reviews = () => {
           <FaQuoteLeft />
         </div>
 
-        <p className="review-text">{reviews[index].text}</p>
+        <p className="review-text">{resolvedText}</p>
 
-        <p className="review-author">- {reviews[index].author}</p>
+        <p className="review-author">- {resolvedAuthor}</p>
       </div>
 
       <div className="testimonial-nav">
