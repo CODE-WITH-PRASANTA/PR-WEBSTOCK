@@ -19,6 +19,8 @@ const careerRoutes =
 
   const blogRoutes = require("./src/routes/blogRoutes");
 
+  const industryRoutes = require("./src/routes/industryRoutes");
+
 
 const app = express();
 
@@ -47,6 +49,8 @@ app.use(
 app.use("/api/blogs", blogRoutes);
 
 app.use( "/api/projects", projectRoutes );
+
+app.use("/api/industries", industryRoutes);
 
 app.get("/", (req, res) => {
   res.send("API Running...");

@@ -1,39 +1,66 @@
-/* Wrapper */
-.industry-grid-wrapper {
-  padding: 7rem 12rem;
-  background-color: #f9fafb;
+/* =====================================================
+   INDUSTRY CARD - MODERN RESPONSIVE CSS
+   ===================================================== */
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* 4-column grid */
+/* =====================================================
+   WRAPPER
+   ===================================================== */
+
+.industry-grid-wrapper {
+  width: 100%;
+  background: #f8fafc;
+  padding: 6rem 8%;
+}
+
+/* =====================================================
+   GRID
+   ===================================================== */
+
 .industry-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
 }
 
-/* Card */
+/* =====================================================
+   CARD
+   ===================================================== */
+
 .industry-card {
   display: flex;
   flex-direction: column;
-  border-radius: 0.75rem;
-  background-color: #fff;
-  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
-  transition: 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef2f7;
+  min-height: 510px;
+  text-align: left;
+  position: relative;
 }
 
 .industry-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.18);
   border-color: #2563eb;
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
-  transform: translateY(-3px);
 }
 
-/* Image wrapper */
+/* =====================================================
+   IMAGE
+   ===================================================== */
+
 .industry-card-image-wrapper {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 240px;
   overflow: hidden;
 }
 
@@ -41,123 +68,364 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 0.25s ease;
+  transition: transform .5s ease;
 }
 
-.industry-card-image-wrapper:hover .industry-card-image {
-  transform: scale(1.05);
+.industry-card:hover .industry-card-image {
+  transform: scale(1.08);
 }
 
-/* Content */
+/* =====================================================
+   CONTENT
+   ===================================================== */
+
 .industry-card-content {
-  padding: 1.25rem 1rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.5rem;
 }
 
 .industry-card-title {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 700;
   color: #111827;
-  transition: color 0.2s ease;
+  margin: 0 0 1rem;
+  line-height: 1.4;
+  transition: .3s;
 }
 
 .industry-card:hover .industry-card-title {
   color: #2563eb;
 }
 
-/* ------------------------------
+/* =====================================================
+   CATEGORY + LOCATION
+   ===================================================== */
+
+.industry-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.industry-category {
+  background: #2563eb;
+  color: white;
+  padding: 7px 15px;
+  border-radius: 40px;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.industry-location {
+  color: #6b7280;
+  font-size: .92rem;
+  font-weight: 500;
+}
+
+/* =====================================================
+   DESCRIPTION
+   ===================================================== */
+
+.industry-description {
+  color: #4b5563;
+  font-size: .96rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+/* =====================================================
+   BUTTON
+   ===================================================== */
+
+.industry-readmore {
+  margin-top: auto;
+  width: fit-content;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .95rem;
+  transition: .3s;
+}
+
+.industry-readmore:hover {
+  background: #1d4ed8;
+  transform: translateX(4px);
+}
+
+/* =====================================================
    PAGINATION
------------------------------- */
+   ===================================================== */
 
 .pagination-wrapper {
-  margin-top: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.6rem;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 4rem;
 }
 
 .pagination-number,
 .pagination-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   border: 1px solid #d1d5db;
-  background: #ffffff;
-  font-size: 1rem;
+  background: white;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: .3s;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .pagination-number:hover,
 .pagination-btn:hover {
-  background-color: #2563eb;
-  color: #fff;
+  background: #2563eb;
+  color: white;
   border-color: #2563eb;
 }
 
 .pagination-number.active {
-  background-color: #2563eb;
-  color: #fff;
+  background: #2563eb;
+  color: white;
   border-color: #2563eb;
 }
 
-/* Disabled arrows */
 .pagination-btn.disabled {
-  opacity: 0.4;
+  opacity: .4;
   cursor: not-allowed;
 }
-/* ===============================
-      RESPONSIVE MEDIA QUERIES
-   =============================== */
 
-/* Large Tablets – 3 Columns */
-@media (max-width: 1200px) {
+/* =====================================================
+   LARGE DESKTOP
+   ===================================================== */
+
+@media (max-width: 1600px) {
+
   .industry-grid-wrapper {
-    padding: 5rem 4rem;
+    padding: 5rem 6%;
+  }
+
+}
+
+/* =====================================================
+   DESKTOP
+   ===================================================== */
+
+@media (max-width: 1400px) {
+
+  .industry-grid {
+    gap: 1.75rem;
+  }
+
+  .industry-card {
+    min-height: 500px;
+  }
+
+}
+
+/* =====================================================
+   LAPTOP
+   ===================================================== */
+
+@media (max-width: 1200px) {
+
+  .industry-grid-wrapper {
+    padding: 4rem 4%;
   }
 
   .industry-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .industry-card {
+    min-height: 490px;
+  }
+
 }
 
-/* Tablets – 2 Columns */
-@media (max-width: 900px) {
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 992px) {
+
+  .industry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .industry-card {
+    min-height: 480px;
+  }
+
+  .industry-card-image-wrapper {
+    height: 220px;
+  }
+
+}
+
+/* =====================================================
+   MOBILE LANDSCAPE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
   .industry-grid-wrapper {
-    padding: 4rem 2rem;
+    padding: 3rem 1.5rem;
   }
 
   .industry-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
   }
+
+  .industry-card {
+    min-height: 450px;
+  }
+
+  .industry-card-content {
+    padding: 1.2rem;
+  }
+
+  .industry-card-title {
+    font-size: 1.1rem;
+  }
+
+  .industry-description {
+    font-size: .9rem;
+  }
+
 }
 
-/* Mobile – 1 Column */
-@media (max-width: 600px) {
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 576px) {
+
   .industry-grid-wrapper {
-    padding: 1rem 0rem;
+    padding: 2rem 1rem;
   }
 
   .industry-grid {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .industry-card {
+    min-height: auto;
+  }
+
+  .industry-card-image-wrapper {
+    height: 220px;
+  }
+
+  .industry-card-title {
+    font-size: 1.2rem;
+  }
+
+  .industry-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .industry-description {
+    font-size: .92rem;
+    line-height: 1.7;
+  }
+
+  .industry-readmore {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pagination-wrapper {
+    gap: .45rem;
+    margin-top: 2.5rem;
   }
 
   .pagination-number,
   .pagination-btn {
-    width: 34px;
-    height: 34px;
-    font-size: 0.9rem;
+    width: 38px;
+    height: 38px;
+    font-size: .9rem;
   }
+
 }
 
-/* Very Small Screens */
-@media (max-width: 400px) {
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 420px) {
+
   .industry-grid-wrapper {
-    padding: 2.5rem 0.8rem;
+    padding: 1.5rem .8rem;
+  }
+
+  .industry-card-image-wrapper {
+    height: 200px;
+  }
+
+  .industry-card-content {
+    padding: 1rem;
   }
 
   .industry-card-title {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
+
+  .industry-category {
+    font-size: .75rem;
+    padding: 6px 12px;
+  }
+
+  .industry-location {
+    font-size: .82rem;
+  }
+
+  .industry-description {
+    font-size: .88rem;
+  }
+
+  .industry-readmore {
+    padding: 11px 18px;
+    font-size: .88rem;
+  }
+
+}
+
+/* =====================================================
+   EXTRA SMALL DEVICES
+   ===================================================== */
+
+@media (max-width: 320px) {
+
+  .industry-grid-wrapper {
+    padding: 1rem .6rem;
+  }
+
+  .industry-card-image-wrapper {
+    height: 180px;
+  }
+
+  .industry-card-title {
+    font-size: 1rem;
+  }
+
+  .industry-description {
+    font-size: .84rem;
+  }
+
 }
