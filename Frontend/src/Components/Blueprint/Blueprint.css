@@ -1,364 +1,187 @@
-/* ------------------------------------
-   WRAPPER (Luxury Section)
------------------------------------- */
+/* Container Base Layout with Light Blue Gradient Background Accent */
 .bpx-wrap {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0% auto;      
-  padding: 30px 40px;
-  background: linear-gradient(180deg, #f7faff, #eef3ff);
-  position: relative;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  /* background: linear-gradient(140deg, #F3F6FD 0%, #FFFFFF 50%, #F5F8FF 100%); */
+  color: #1E293B;
   overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* Decorative blurred blobs */
-.bpx-wrap::before,
-.bpx-wrap::after {
-  content: "";
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  filter: blur(120px);
-  opacity: 0.45;
-  z-index: 0;
-}
-
-.bpx-wrap::before {
-  background: #a8c0ff;
-  top: -40px;
-  left: -40px;
-}
-
-.bpx-wrap::after {
-  background: #d4e1ff;
-  bottom: -40px;
-  right: -40px;
-}
-
-/* ------------------------------------
-   META
------------------------------------- */
+/* Reference Meta Label Token Badge */
 .bpx-meta {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 25px;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.bpx-star {
+  color: #3B82F6;
+  font-size: 11px;
 }
 
 .bpx-meta-link {
-  padding: 10px 32px;
-  border-radius: 50px;
-  background: rgba(255,255,255,0.6);
-  color: #1a2a45;
+  font-size: 11px;
   font-weight: 700;
-  backdrop-filter: blur(10px);
-  font-size: 14px;
-  border: 1.5px solid rgba(255,255,255,0.8);
-  letter-spacing: 0.7px;
-  transition: 0.3s ease;
+  letter-spacing: 1.5px;
+  color: #475569;
+  background: #FFFFFF;
+  padding: 6px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
-.bpx-meta-link:hover {
-  background: #4d7cff;
-  color: #fff;
-  transform: translateY(-2px);
-}
-
-/* ------------------------------------
-   TITLE & CONTROLS
------------------------------------- */
+/* Header Text Title Row Layout */
 .bpx-title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 35px;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 40px;
 }
 
 .bpx-title {
-  font-size: 48px;
-  font-weight: 900;
-  color: #1b2648;
-  background: linear-gradient(90deg, #1b2648, #4d7cff);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-/* Buttons */
-.bpx-controls {
-  display: flex;
-  gap: 14px;
-}
-
-.bpx-circle {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  box-shadow:
-    0 6px 14px rgba(140,160,200,0.25),
-    inset 3px 3px 8px rgba(210,220,240,0.8),
-    inset -3px -3px 8px rgba(255,255,255,1);
-
-  transition: 0.3s ease;
-}
-
-.bpx-circle:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 10px 22px rgba(110,140,200,0.35),
-    inset 2px 2px 6px rgba(210,225,255,0.9);
-}
-
-/* ------------------------------------
-   SLIDER
------------------------------------- */
-.bpx-grid {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.slider-track {
-  display: flex;
-  gap: 32px;
-  transition: transform 0.6s cubic-bezier(.25,.8,.25,1);
-}
-
-/* ------------------------------------
-   PREMIUM CARD
------------------------------------- */
-.bpx-card {
-  width: 33.33%;
-  min-width: 33.33%;
-  max-width: 190px;
-  padding: 42px 34px;
-  border-radius: 28px;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(230,240,255,0.7);
-
-  box-shadow:
-    0 10px 28px rgba(90,110,145,0.12),
-    inset 4px 4px 12px rgba(255,255,255,0.5);
-
-  transition: 0.35s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Glow hover */
-.bpx-card:hover {
-  transform: translateY(-10px);
-  box-shadow:
-    0 18px 40px rgba(120,145,200,0.25),
-    inset 4px 4px 10px rgba(255,255,255,0.7);
-}
-
-.bpx-card::after {
-  content: "";
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  background: rgba(100,140,255,0.18);
-  border-radius: 50%;
-  top: -60px;
-  right: -60px;
-  filter: blur(90px);
-  transition: 0.4s ease;
-}
-
-.bpx-card:hover::after {
-  transform: scale(1.2);
-}
-
-/* ------------------------------------
-   ICON (3D, Gradient)
------------------------------------- */
-.bpx-icon {
-  width: 76px;
-  height: 76px;
-  border-radius: 22px;
-
-  background: linear-gradient(135deg, #eaf0ff, #d7e1ff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  box-shadow:
-    inset 5px 5px 12px rgba(180,200,240,0.6),
-    inset -5px -5px 12px rgba(255,255,255,0.8),
-    6px 6px 18px rgba(150,170,200,0.25);
-}
-
-.bpx-icon svg {
-  stroke: url(#gradStroke) #4f6dff;
-  width: 38px;
-  height: 38px;
-}
-
-/* ------------------------------------
-   TEXT
------------------------------------- */
-.bpx-card-title {
-  margin-top: 20px;
-  font-size: 23px;
+  font-size: clamp(28px, 4vw, 46px);
   font-weight: 800;
-  color: #1b2a4f;
+  color: #1E3A8A; /* Clean Deep Corporate Blue */
+  letter-spacing: -0.5px;
+}
+
+/* Slider Track Architecture Layout viewport */
+.bpx-grid {
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.bpx-cards.slider-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.bpx-card-slide-wrapper {
+  padding: 12px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* Clean Neumorphic White Card Style Modification */
+.bpx-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(234, 240, 246, 0.9);
+  border-radius: 24px;
+  padding: 40px 36px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.04), 0 4px 12px rgba(0, 0, 0, 0.01);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bpx-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.08);
+}
+
+/* Soft Rounded Neumorphic Icon Container Box */
+.bpx-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #EFF6FF; /* Reference blue base tint tint */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  box-shadow: inset 0 2px 4px rgba(59, 130, 246, 0.06);
+}
+
+.bpx-card-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: #1E293B;
+  line-height: 1.35;
+  margin-bottom: 16px;
 }
 
 .bpx-lead {
-  margin-top: 6px;
-  font-size: 15px;
-  color: #5c6b8e;
-  line-height: 1.65;
-  margin-bottom: 22px;
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  flex-grow: 1;
 }
 
-/* Checklist */
+/* Checklist Bullet Lists Container Layout */
+.bpx-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .bpx-checklist li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  margin: 10px 0;
-  font-size: 15px;
-  color: #2e3d59;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.4;
 }
 
 .bpx-checkmark {
-  color: #416bff;
+  color: #3B82F6; /* Bright Blue Check Indicator from Ref */
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* Square-Numeric Pagination Buttons Area under Cards */
+.bpx-pagination-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.num-page-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 12px; /* Smooth rounded square corner edge */
   font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #F1F5F9; /* Muted soft grey inactive styling */
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
 }
 
-/* ------------------------------------
-   RESPONSIVE — TABLETS (1024px)
------------------------------------- */
-@media (max-width: 1024px) {
-  .bpx-title {
-    font-size: 38px;
-  }
-
-  .bpx-card {
-    width: 50%;
-    min-width: 50%;
-    padding: 34px 26px;
-  }
-
-  .bpx-icon {
-    width: 70px;
-    height: 70px;
-  }
+/* Active Highlight Styling Blue Combination State from Ref */
+.num-page-btn.active {
+  background-color: #2563EB; /* Vivid Blue active background link color */
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
 }
 
-/* ------------------------------------
-   RESPONSIVE — SMALL TABLETS / LARGE MOBILE (768px)
------------------------------------- */
-@media (max-width: 768px) {
-  .bpx-title-row {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-
-  .bpx-controls {
-    justify-content: center;
-  }
-
-  .bpx-title {
-    font-size: 30px;
-  }
-
-  .slider-track {
-    gap: 20px;
-  }
-
-  .bpx-card {
-    width: 100%;
-    min-width: 100%;
-    padding: 30px 24px;
-  }
-
-  .bpx-icon {
-    width: 64px;
-    height: 64px;
-  }
+.num-page-btn:hover:not(.active) {
+  background-color: #E2E8F0;
+  color: #1E293B;
 }
 
-/* ------------------------------------
-   RESPONSIVE — MOBILE PHONES (576px)
------------------------------------- */
-@media (max-width: 576px) {
+/* Device Adaptive Adjustments responsive breakpoint rules */
+@media (max-width: 640px) {
   .bpx-wrap {
-    padding: 40px 4vw;
+    padding: 40px 16px;
   }
-
-  .bpx-title {
-    font-size: 26px;
-  }
-
-  .bpx-meta-link {
-    padding: 8px 24px;
-    font-size: 12px;
-  }
-
   .bpx-card {
-    padding: 26px 20px;
+    padding: 32px 24px;
   }
-
-  .bpx-card-title {
-    font-size: 20px;
-  }
-
-  .bpx-lead,
-  .bpx-checklist li {
-    font-size: 14px;
-  }
-
-  .bpx-icon {
-    width: 56px;
-    height: 56px;
-  }
-
-  .bpx-circle {
-    width: 44px;
-    height: 44px;
-  }
-  .bpx-meta{
-    justify-content: center;
-  }
-}
-
-/* ------------------------------------
-   RESPONSIVE — VERY SMALL SCREENS (420px)
------------------------------------- */
-@media (max-width: 420px) {
-  .bpx-title {
-    font-size: 22px;
-  }
-
-  .bpx-card {
-    padding: 22px 16px;
-  }
-
-  .bpx-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .bpx-card-title {
-    font-size: 18px;
-  }
-
-  .bpx-checkmark {
-    font-size: 14px;
-  }
-  
 }
