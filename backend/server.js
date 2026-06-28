@@ -27,10 +27,60 @@ const app = express();
 connectDB();
 
 // ==============================
-// Middlewares
+// CORS Configuration
 // ==============================
 
-app.use(cors());
+const allowedOrigins = [
+  "https://admin.prwebstock.com",
+  "https://prwebstock.com",
+  "https://www.prwebstock.com",
+  "https://api.prwebstock.com",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000",
+];
+
+const corsOptions = {
+  origin(origin, callback) {
+    // Allow Postman, curl, server-to-server requests
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.log("Blocked Origin:", origin);
+    return callback(new Error("Not allowed by CORS"));
+  },
+
+  credentials: true,
+
+  methods: [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+  ],
+
+  allowedHeaders: [
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "Authorization",
+  ],
+};
+
+app.use(cors(corsOptions));
+
+// ==============================
+// Body Parser
+// ==============================
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
