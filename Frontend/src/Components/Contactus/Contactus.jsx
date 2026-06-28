@@ -1,17 +1,61 @@
-//// ContactUs.jsx (updated class names to match the CSS prefixes)
-import React, { useState, useEffect } from 'react';
-import './ContactUs.css';
+import React, { useState, useEffect } from "react";
+import "./Contactus.css";
 
-// react-icons (ensure package is installed)
-import { FaLinkedin, FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaGithub } from 'react-icons/fa';
-
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaWhatsapp,
+} from "react-icons/fa";
 const SOCIALS = [
-  { name: 'LinkedIn', href: '#', icon: <FaLinkedin size={20} /> },
-  { name: 'Facebook', href: '#', icon: <FaFacebook size={20} /> },
-  { name: 'Twitter', href: '#', icon: <FaTwitter size={20} /> },
-  { name: 'Instagram', href: '#', icon: <FaInstagram size={20} /> },
-  { name: 'YouTube', href: '#', icon: <FaYoutube size={20} /> },
-  { name: 'GitHub', href: '#', icon: <FaGithub size={20} /> },
+  {
+    name: "WhatsApp",
+    href: "https://wa.me/917789801327",
+    icon: <FaWhatsapp size={20} />,
+  },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/share/r/19FmoTVEgT/",
+    icon: <FaFacebookF size={20} />,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/prwebstock?igsh=dDhmMHdtczd2ZGxx",
+    icon: <FaInstagram size={20} />,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/pr-webstock/",
+    icon: <FaLinkedinIn size={20} />,
+  },
+];
+
+
+const fields = [
+  {
+    label: "Full Name",
+    name: "fullName",
+    type: "text",
+    placeholder: "Enter your full name",
+  },
+  {
+    label: "Email Address",
+    name: "email",
+    type: "email",
+    placeholder: "Enter your email",
+  },
+  {
+    label: "Phone Number",
+    name: "phone",
+    type: "tel",
+    placeholder: "Enter your phone number",
+  },
+  {
+    label: "Subject",
+    name: "subject",
+    type: "text",
+    placeholder: "Project or inquiry",
+  },
 ];
 
 const ContactUs = () => {
@@ -35,13 +79,39 @@ const ContactUs = () => {
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Demo submit — replace with actual submit logic
-    console.log('Form submitted', form);
-    alert('Thanks — form submitted (demo).');
-    setForm({ fullName: '', company: '', phone: '', email: '', subject: '', message: '' });
-  };
+      const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+
+      formData.append("access_key", "7ea3f90e-a50c-40f3-9078-ba132a07a037");
+      formData.append("name", form.fullName);
+      formData.append("email", form.email);
+      formData.append("phone", form.phone);
+      formData.append("subject", form.subject);
+      formData.append("message", form.message);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("🎉 Thank you! Your message has been sent successfully.");
+
+        setForm({
+          fullName: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        alert("❌ Something went wrong. Please try again.");
+      }
+    };
 
   return (
     <section className="zen-section" aria-labelledby="contact-heading">
@@ -73,7 +143,16 @@ const ContactUs = () => {
                 </div>
                 <div className="zen-contact-text">
                   <div className="zen-contact-label">General Inquiries</div>
-                  <div className="zen-contact-value">+91 7789 801 327</div>
+                 <div className="zen-contact-value">
+                    <a
+                        href="https://wa.me/917789801327"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="zen-contact-link"
+                      >
+                      +91 7789 801 327
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -84,10 +163,18 @@ const ContactUs = () => {
                     <path d="M21 8l-9 6-9-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <div className="zen-contact-text">
-                  <div className="zen-contact-label">Email Us</div>
-                  <div className="zen-contact-value">prwebstock.com@gmail.com</div>
+              <div className="zen-contact-text">
+                <div className="zen-contact-label">Email Us</div>
+
+                <div className="zen-contact-value">
+                  <a
+                    href="mailto:prwebstock.com@gmail.com"
+                    className="zen-contact-link"
+                  >
+                    prwebstock.com@gmail.com
+                  </a>
                 </div>
+              </div>
               </div>
             </div>
 
@@ -96,23 +183,22 @@ const ContactUs = () => {
                 Follow PR WEBSTOCK on Social Platforms
               </div>
 
-              <div className="zen-social-icons">
-                {SOCIALS.map((s, i) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    className="zen-social-btn zen-fade-in-scale"
-                    aria-label={s.name}
-                    title={s.name}
-                    style={{ '--zen-delay': `${0.7 + i * 0.05}s` }}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {/* Render react-icon component directly */}
-                    {s.icon}
-                  </a>
-                ))}
-              </div>
+          <div className="zen-social-icons">
+              {SOCIALS.map((s, i) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  className="zen-social-btn zen-fade-in-scale"
+                  aria-label={s.name}
+                  title={s.name}
+                  style={{ "--zen-delay": `${0.7 + i * 0.05}s` }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>  
             </div>
           </div>
         </div>
@@ -158,14 +244,10 @@ const ContactUs = () => {
               </div>
 
               <div className="zen-form-actions zen-fade-in" style={{ '--zen-delay': '0.4s' }}>
-                <button type="submit" className="zen-submit">
-                  Submit Now
-                  <span className="zen-submit-arrow" aria-hidden>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                </button>
+               <button type="submit" className="zen-submit">
+                    Send Message
+                    <span className="zen-submit-arrow">→</span>
+                  </button>
               </div>
             </form>
           </div>
