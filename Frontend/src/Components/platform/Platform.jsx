@@ -2,7 +2,7 @@ import React from "react";
 import "./Platform.css";
 
 // Import Image
-import sideImage from "../../assets/ai-agent-industry.webp";
+import sideImage from "../../assets/webd4.jpg";
 
 export default function Platform() {
  const items = [

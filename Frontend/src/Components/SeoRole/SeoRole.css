@@ -56,10 +56,10 @@
 }
 
 .lead-image img {
-  width: 60%;
-  max-width: 320px;
+  width: 530px;
+  height: 530px;
+ 
   border-radius: 6px;
-  transform: rotate(-10deg);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
 }
 
