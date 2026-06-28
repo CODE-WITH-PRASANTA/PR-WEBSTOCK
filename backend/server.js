@@ -6,28 +6,17 @@ const path = require("path");
 
 const connectDB = require("./src/config/db");
 
+// ==============================
+// Route Imports
+// ==============================
+
 const teamRoutes = require("./src/routes/teamRoutes");
-<<<<<<< HEAD
-
-const projectRoutes = require(
-  "./src/routes/projectRoutes"
-);
-
-
-const careerRoutes =
-  require("./src/routes/careerRoutes");
-
-  const blogRoutes = require("./src/routes/blogRoutes");
-
-  const industryRoutes = require("./src/routes/industryRoutes");
-
-=======
 const projectRoutes = require("./src/routes/projectRoutes");
 const testimonialRoutes = require("./src/routes/testimonialRoutes");
 const careerRoutes = require("./src/routes/careerRoutes");
 const blogRoutes = require("./src/routes/blogRoutes");
+const industryRoutes = require("./src/routes/industryRoutes");
 const galleryRoutes = require("./src/routes/galleryRoutes");
->>>>>>> 8d71b5ebaf125ee8f3d7a53f17b02cf8e9dfae12
 
 const app = express();
 
@@ -42,9 +31,7 @@ connectDB();
 // ==============================
 
 app.use(cors());
-
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
 // ==============================
@@ -61,31 +48,26 @@ app.use(
 // ==============================
 
 app.use("/api/team-members", teamRoutes);
-
 app.use("/api/projects", projectRoutes);
-
 app.use("/api/testimonial", testimonialRoutes);
-
 app.use("/api/careers", careerRoutes);
-
 app.use("/api/blogs", blogRoutes);
+app.use("/api/industries", industryRoutes);
 app.use("/api/gallery", galleryRoutes);
 
 // ==============================
 // Home Route
 // ==============================
 
-app.use("/api/industries", industryRoutes);
-
 app.get("/", (req, res) => {
-  res.json({
+  res.status(200).json({
     success: true,
-    message: "PR-WEBSTOCK Backend Running Successfully 🚀",
+    message: "🚀 PR-WEBSTOCK Backend Running Successfully",
   });
 });
 
 // ==============================
-// 404 Route
+// 404 Handler
 // ==============================
 
 app.use((req, res) => {
@@ -109,11 +91,11 @@ app.use((err, req, res, next) => {
 });
 
 // ==============================
-// Server
+// Start Server
 // ==============================
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server Running on Port ${PORT}`);
+  console.log(`🚀 Server Running on http://localhost:${PORT}`);
 });

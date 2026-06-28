@@ -1,187 +1,205 @@
-/* ===========================
-   MAIN SECTION
-=========================== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .agile-section {
-  max-width: 1200px;
-  margin: 80px auto;
-  padding: 0 40px 80px;
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #111827;
+  max-width: 1320px;
+  margin: auto;
+  padding: 80px 40px;
+  font-family: "Poppins", sans-serif;
+  background: #fff;
 }
 
 /* ===========================
-   HEADING
+   Heading
 =========================== */
+
 .agile-title {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 700;
-  margin-bottom: 26px;
-  text-align: left;
+  color: #111827;
+  margin-bottom: 30px;
+  line-height: 1.3;
 }
 
 /* ===========================
-   INTRO PARAGRAPH ROW
+   Intro
 =========================== */
+
 .agile-intro-row {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 150px 1fr;
   align-items: center;
-  column-gap: 26px;
-  margin-bottom: 48px;
+  gap: 30px;
+  margin-bottom: 60px;
 }
 
 .agile-intro-line {
-  height: 1px;
-  background-color: #111827;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
 }
 
 .agile-intro-text {
   font-size: 16px;
-  line-height: 1.8;
-  color: #4b5563;
+  line-height: 1.9;
+  color: #6b7280;
 }
 
 /* ===========================
-   MAIN TWO-COLUMN LAYOUT
+   Main Layout
 =========================== */
 
-/* ===========================
-   LEFT IMAGE AREA
-=========================== */
-.agile-image-wrapper {
+.agile-main {
   display: flex;
-  justify-content: flex-start !important;
+  gap: 70px;
   align-items: flex-start;
 }
 
-/* IMAGE + RECTANGLE CONTAINER */
-.agile-image-inner {
-  position: relative;
-  width: 240px;
-  height: 320px;
-  margin: 40px auto 0;
-}
-/* BLUE RECTANGLE UNDER IMAGE */
-.agile-rect {
-  position: absolute;
-  bottom: 22px;
-  left: 18px;         /* aligned with new left-shifted image */
-  width: 140px;       /* reduced size proportional */
-  height: 88px;
-  background-color: #2563eb;
-  transform: rotate(-12deg);
-  z-index: 1;
+/* ===========================
+   Left Image
+=========================== */
+
+.agile-image-wrapper {
+  width: 42%;
+  position: sticky;
+  top: 100px;
 }
 
-/* TILTED IMAGE */
+.agile-image-card {
+  width: 100%;
+  height: 550px;
+  width: 550px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.12),
+    0 10px 25px rgba(37, 99, 235, 0.12);
+  transition: all 0.35s ease;
+}
+
+.agile-image-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.18),
+    0 15px 35px rgba(37, 99, 235, 0.18);
+}
+
 .agile-image {
-  position: absolute;
-  inset: 0;
-  top: 40px;
-  right: 40px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 2px;
-  transform: rotate(-12deg);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.22);
-  z-index: 2;
+  display: block;
 }
 
 /* ===========================
-   RIGHT LIST OF STEPS
+   Right Side
 =========================== */
+
 .agile-steps {
-  border-top: 1px solid #e5e7eb;
+  flex: 1;
+  border-top: 1px solid #ececec;
 }
 
-/* each row */
 .agile-step-row {
   display: grid;
-  grid-template-columns: 180px 1fr;
-  column-gap: 40px;
-  padding: 22px 0;
-  border-bottom: 1px solid #e5e7eb;
+  grid-template-columns: 220px 1fr;
+  column-gap: 35px;
+  padding: 28px 0;
+  border-bottom: 1px solid #ececec;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* titles */
+.agile-step-row:hover {
+  padding-left: 15px;
+}
+
 .agile-step-title {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 600;
   color: #111827;
-  transition: color 0.2s ease;
+  transition: 0.3s;
 }
 
-/* active + hover color */
 .agile-step-title.active,
 .agile-step-row:hover .agile-step-title {
   color: #2563eb;
 }
 
-/* description text */
 .agile-step-description {
-  font-size: 15px;
+  font-size: 16px;
+  color: #6b7280;
   line-height: 1.8;
-  color: #4b5563;
 }
 
 /* ===========================
-   RESPONSIVE
+   Large Desktop
 =========================== */
 
-.agile-main {
-  display: flex;
-  gap: 60px;
-  align-items: flex-start;
+@media (max-width: 1200px) {
+  .agile-main {
+    gap: 50px;
+  }
+
+  .agile-image-card {
+    height: 620px;
+  }
+
+  .agile-step-row {
+    grid-template-columns: 180px 1fr;
+  }
+
+  .agile-step-title {
+    font-size: 20px;
+  }
 }
 
-.agile-image-wrapper {
-  flex: 0 0 35%;
-  position: sticky;
-  top: 100px;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
-}
+/* ===========================
+   Tablet
+=========================== */
 
-.agile-steps {
-  flex: 1;
-}
-
-.agile-image {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
 
   .agile-main {
     flex-direction: column;
-    align-items: center;
   }
 
   .agile-image-wrapper {
+    width: 100%;
     position: relative;
     top: auto;
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 40px;
   }
 
-  .agile-image-inner {
-    margin: 0 auto;
+  .agile-image-card {
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+    margin: auto;
   }
 
   .agile-steps {
     width: 100%;
   }
+
+  .agile-step-row {
+    grid-template-columns: 180px 1fr;
+  }
 }
+
+/* ===========================
+   Mobile
+=========================== */
 
 @media (max-width: 768px) {
 
   .agile-section {
-    padding: 0 20px 60px;
+    padding: 60px 20px;
   }
 
   .agile-title {
@@ -191,16 +209,61 @@
 
   .agile-intro-row {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 20px;
   }
 
-  /* .agile-intro-line {
+  .agile-intro-line {
     width: 120px;
-  } */
+  }
+
+  .agile-intro-text {
+    font-size: 15px;
+    text-align: justify;
+  }
+
+  .agile-image-card {
+    height: 420px;
+    border-radius: 20px;
+  }
 
   .agile-step-row {
     grid-template-columns: 1fr;
     row-gap: 10px;
+    padding: 22px 0;
+  }
+
+  .agile-step-title {
+    font-size: 20px;
+  }
+
+  .agile-step-description {
+    font-size: 15px;
+  }
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media (max-width: 480px) {
+
+  .agile-section {
+    padding: 40px 16px;
+  }
+
+  .agile-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .agile-intro-text {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .agile-image-card {
+    height: 300px;
+    border-radius: 16px;
   }
 
   .agile-step-title {
@@ -209,33 +272,6 @@
 
   .agile-step-description {
     font-size: 14px;
-  }
-
-  .agile-image-inner {
-    width: 200px;
-    height: 280px;
-    margin: 0 auto;
-  }
-
-  .agile-rect {
-    width: 120px;
-    height: 80px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .agile-title {
-    font-size: 24px;
-  }
-
-  .agile-image-inner {
-    width: 170px;
-    height: 240px;
-  }
-
-  .agile-intro-text,
-  .agile-step-description {
-    font-size: 13px;
+    line-height: 1.7;
   }
 }
