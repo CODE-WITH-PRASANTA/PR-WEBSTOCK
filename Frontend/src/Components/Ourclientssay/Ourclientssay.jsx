@@ -1,45 +1,78 @@
 import React, { useState, useEffect } from 'react';
+import API, { IMG_URL } from "../../api/axios"; // Uses pre-configured Axios instance and base assets directory
 import "./Ourclientssay.css";
 
-const testimonials = [
-  {
-    name: "Ram Prakash",
-    company: "Mirabelle",
-    stars: 5,
-    text: `I had a great experience working with the webomindapps. They completed our website with utmost patience and professionalism. Throughout the process, they were extremely helpful — not just in development, but also supported in SEO and advertising. Highly recommend.`,
-  },
-  {
-    name: "Saravanan",
-    company: "5 Star Advertising",
-    stars: 5,
-    text: `I am truly inspired by this team with the quality service they provide. They coordinate at their best to satisfy clients. More than 5 years of experience with Webomindapps in development, branding, SEO, and marketing.`,
-  },
-  {
-    name: "Kiran Patil",
-    company: "Airowire",
-    stars: 5,
-    text: `We are truly delighted with the experience of working with Webomindapps on Airowire's website. Perfect blend of creativity, professionalism, and genuine commitment. Highly recommended.`,
-  },
-];
-
 export default function OurClientsSay() {
+  const [testimonials, setTestimonials] = useState([]);
   const [start, setStart] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
+  // FETCH: Dynamic backend client data ingestion pipeline
+  const fetchTestimonials = async () => {
+    try {
+      setLoading(true);
+      const response = await API.get("/testimonial/all");
+      
+      console.log("CLIENT TESTIMONIALS GET RESPONSE", response.data);
+
+      if (response.data && response.data.success) {
+        setTestimonials(response.data.data || []);
+      } else {
+        setTestimonials([]);
+      }
+    } catch (err) {
+      console.error("Testimonial Fetch Error:", err);
+      setError("Failed to fetch client testimonials.");
+      setTestimonials([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  // Gracefully handle data-loading and empty database query edge cases
+  if (loading) {
+    return (
+      <section className="ocs-section">
+        <div className="ocs-container" style={{ textAlign: "center", padding: "40px 0" }}>
+          <p style={{ opacity: 0.7 }}>Loading wonderful client words...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return (
+      <section className="ocs-section">
+        <div className="ocs-container" style={{ textAlign: "center", padding: "40px 0" }}>
+          <p style={{ opacity: 0.7 }}>No testimonials available at this moment.</p>
+        </div>
+      </section>
+    );
+  }
+
+  // DYNAMIC CALCULATED SLIDE ROW MATRIX
+  // Ensures safety even if total dataset contains less items than the layout design window length (3)
   const visible = [];
-  for (let i = 0; i < 3; i++) {
+  const itemsToRender = Math.min(3, testimonials.length);
+  for (let i = 0; i < itemsToRender; i++) {
     visible.push(testimonials[(start + i) % testimonials.length]);
   }
 
   const prev = () => {
-    if (isAnimating) return;
+    if (isAnimating || testimonials.length <= 1) return;
     setIsAnimating(true);
     setStart((s) => (s - 1 + testimonials.length) % testimonials.length);
     setTimeout(() => setIsAnimating(false), 300);
   };
 
   const next = () => {
-    if (isAnimating) return;
+    if (isAnimating || testimonials.length <= 1) return;
     setIsAnimating(true);
     setStart((s) => (s + 1) % testimonials.length);
     setTimeout(() => setIsAnimating(false), 300);
@@ -54,41 +87,64 @@ export default function OurClientsSay() {
         <p className="ocs-subtitle">Trusted by businesses worldwide</p>
 
         <div className="ocs-cards-wrapper">
-          {visible.map((t, idx) => (
-            <div 
-              className={`ocs-card ${isAnimating ? 'ocs-card-transition' : ''}`} 
-              key={idx}
-              style={{ animationDelay: `${idx * 100}ms` }}
-            >
-              <div className="ocs-card-header">
-                <div>
-                  <div className="ocs-avatar-placeholder">
-                    {t.name.charAt(0)}
-                  </div>
+          {visible.map((t, idx) => {
+            // Mapping schema attributes accurately to match controller responses safely
+            const resolvedName = t.name || "Anonymous";
+            const resolvedCompany = t.company || t.designation || "Partner";
+            const resolvedText = t.feedback || t.text || "";
+            const resolvedStars = Number(t.rating || t.stars || 5);
+            const resolvedImage = t.profileImage || t.photo;
+
+            return (
+              <div 
+                className={`ocs-card ${isAnimating ? 'ocs-card-transition' : ''}`} 
+                key={idx}
+                style={{ animationDelay: `${idx * 100}ms` }}
+              >
+                <div className="ocs-card-header">
                   <div>
-                    <h3 className="ocs-name">{t.name}</h3>
-                    <p className="ocs-company">{t.company}</p>
+                    <div className="ocs-avatar-placeholder" style={{ overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {resolvedImage ? (
+                        <img 
+                          src={`${IMG_URL}${resolvedImage}`} 
+                          alt={`${resolvedName} avatar`}
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.style.display = "none";
+                            // Text fallback if network fetch breaks
+                            e.target.parentNode.innerText = resolvedName.charAt(0);
+                          }}
+                        />
+                      ) : (
+                        resolvedName.charAt(0)
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="ocs-name">{resolvedName}</h3>
+                      <p className="ocs-company">{resolvedCompany}</p>
+                    </div>
+                  </div>
+
+                  <div className="ocs-rating-container">
+                    <div className="ocs-stars">
+                      {Array.from({ length: resolvedStars }).map((_, i) => (
+                        <span key={i} className="ocs-star">★</span>
+                      ))}
+                    </div>
+                    <img
+                      src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png"
+                      alt="Google"
+                      className="ocs-logo"
+                    />
                   </div>
                 </div>
 
-                <div className="ocs-rating-container">
-                  <div className="ocs-stars">
-                    {Array.from({ length: t.stars }).map((_, i) => (
-                      <span key={i} className="ocs-star">★</span>
-                    ))}
-                  </div>
-                  <img
-                    src="https://www.gstatic.com/images/branding/product/1x/gsa_64dp.png"
-                    alt="Google"
-                    className="ocs-logo"
-                  />
-                </div>
+                <p className="ocs-text">{resolvedText}</p>
+                <div className="ocs-quote-mark">"</div>
               </div>
-
-              <p className="ocs-text">{t.text}</p>
-              <div className="ocs-quote-mark">"</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="ocs-nav">
