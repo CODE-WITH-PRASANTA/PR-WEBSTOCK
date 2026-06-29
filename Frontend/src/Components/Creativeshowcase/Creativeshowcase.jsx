@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './CreativeShowcase.css';
+import './Creativeshowcase.css';
 
 const portfolioItems = [
   {

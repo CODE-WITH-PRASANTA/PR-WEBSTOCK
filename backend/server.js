@@ -6,13 +6,15 @@ const path = require("path");
 
 const connectDB = require("./src/config/db");
 
-// Routes
+// ==============================
+// Route Imports
+// ==============================
+
 const teamRoutes = require("./src/routes/teamRoutes");
 const projectRoutes = require("./src/routes/projectRoutes");
 const careerRoutes = require("./src/routes/careerRoutes");
 const blogRoutes = require("./src/routes/blogRoutes");
 const industryRoutes = require("./src/routes/industryRoutes");
-const testimonialRoutes = require("./src/routes/testimonialRoutes");
 const galleryRoutes = require("./src/routes/galleryRoutes");
 
 const app = express();
@@ -25,13 +27,61 @@ const app = express();
 connectDB();
 
 // ==============================
-// Middlewares
+// CORS Configuration
 // ==============================
 
-app.use(cors());
+const allowedOrigins = [
+  "https://admin.prwebstock.com",
+  "https://prwebstock.com",
+  "https://www.prwebstock.com",
+  "https://api.prwebstock.com",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000",
+];
+
+const corsOptions = {
+  origin(origin, callback) {
+    // Allow Postman, curl, server-to-server requests
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.log("Blocked Origin:", origin);
+    return callback(new Error("Not allowed by CORS"));
+  },
+
+  credentials: true,
+
+  methods: [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
+  ],
+
+  allowedHeaders: [
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "Authorization",
+  ],
+};
+
+app.use(cors(corsOptions));
+
+// ==============================
+// Body Parser
+// ==============================
 
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
 // ==============================
@@ -48,31 +98,26 @@ app.use(
 // ==============================
 
 app.use("/api/team-members", teamRoutes);
-
 app.use("/api/projects", projectRoutes);
-
 app.use("/api/testimonial", testimonialRoutes);
-
 app.use("/api/careers", careerRoutes);
-
 app.use("/api/blogs", blogRoutes);
+app.use("/api/industries", industryRoutes);
 app.use("/api/gallery", galleryRoutes);
 
 // ==============================
 // Home Route
 // ==============================
 
-app.use("/api/industries", industryRoutes);
-
 app.get("/", (req, res) => {
-  res.json({
+  res.status(200).json({
     success: true,
-    message: "PR-WEBSTOCK Backend Running Successfully 🚀",
+    message: "🚀 PR-WEBSTOCK Backend Running Successfully",
   });
 });
 
 // ==============================
-// 404 Route
+// 404 Handler
 // ==============================
 
 app.use((req, res) => {
@@ -96,11 +141,11 @@ app.use((err, req, res, next) => {
 });
 
 // ==============================
-// Server
+// Start Server
 // ==============================
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server Running on Port ${PORT}`);
+  console.log(`🚀 Server Running on http://localhost:${PORT}`);
 });

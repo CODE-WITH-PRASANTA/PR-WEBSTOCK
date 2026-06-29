@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
+const Protected = ({ children }) => {
   console.log(
     "Protected:",
     localStorage.getItem("adminAuth")
@@ -12,4 +12,4 @@ const ProtectedRoute = ({ children }) => {
   return isAuth ? children : <Navigate to="/" replace />;
 };
 
-export default ProtectedRoute;
+export default Protected;

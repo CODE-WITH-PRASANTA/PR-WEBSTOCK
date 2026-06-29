@@ -22,8 +22,8 @@ import ProtectedRoute from "./Component/Protected/Protected";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+  <BrowserRouter>
+  <Routes>
 
         {/* Login */}
         <Route path="/" element={<Login />} />
@@ -82,6 +82,7 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
+ 
   );
 }
 
