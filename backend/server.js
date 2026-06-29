@@ -6,30 +6,17 @@ const path = require("path");
 
 const connectDB = require("./src/config/db");
 
+// Routes
 const teamRoutes = require("./src/routes/teamRoutes");
-<<<<<<< HEAD
-
-const projectRoutes = require(
-  "./src/routes/projectRoutes"
-);
-
-
-const careerRoutes =
-  require("./src/routes/careerRoutes");
-
-  const blogRoutes = require("./src/routes/blogRoutes");
-
-  const industryRoutes = require("./src/routes/industryRoutes");
-
-=======
 const projectRoutes = require("./src/routes/projectRoutes");
-const testimonialRoutes = require("./src/routes/testimonialRoutes");
 const careerRoutes = require("./src/routes/careerRoutes");
 const blogRoutes = require("./src/routes/blogRoutes");
+const industryRoutes = require("./src/routes/industryRoutes");
+const testimonialRoutes = require("./src/routes/testimonialRoutes");
 const galleryRoutes = require("./src/routes/galleryRoutes");
->>>>>>> 8d71b5ebaf125ee8f3d7a53f17b02cf8e9dfae12
 
 const app = express();
+
 
 // ==============================
 // Connect MongoDB
