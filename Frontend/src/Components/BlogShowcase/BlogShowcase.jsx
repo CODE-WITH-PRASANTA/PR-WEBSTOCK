@@ -1,57 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./BlogShowcase.css";
+import API from "../../api/axios"; // adjust path
 
 const BlogShowcase = () => {
-  const entries = [
-    {
-      id: 1,
-      date: { day: 15, month: "January" },
-      category: "Development",
-      comments: 20,
-      title: "Decoding the Cloud — A Deep Dive into SaaS Trends.",
-      img: "https://picsum.photos/seed/deskA/900/600"
-    },
-    {
-      id: 2,
-      date: { day: 20, month: "April" },
-      category: "Cyber Security",
-      comments: 22,
-      title: "Mastering Efficacy Tips and Tricks with our Zenfy.",
-      img: "https://picsum.photos/seed/deskB/900/600"
-    },
-    {
-      id: 3,
-      date: { day: 25, month: "April" },
-      category: "Consulting",
-      comments: 30,
-      title: "From Ideas — How Xtore Transforms Workflows.",
-      img: "https://picsum.photos/seed/deskC/900/600"
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchBlogs = async () => {
+    try {
+      const res = await API.get("/blogs");
+
+      if (res.data.success) {
+        setBlogs(res.data.data.slice(0, 3)); // latest 3 blogs
+      }
+    } catch (error) {
+      console.error("Blog Fetch Error:", error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    return {
+      day: date.getDate(),
+      month: date.toLocaleString("default", {
+        month: "long",
+      }),
+    };
+  };
 
   return (
     <div className="bgx-container">
-      {/* ---------------- HEADER ---------------- */}
-      <header className="bgx-hero hero-fixed">
-
-        {/* ⭐ UPDATED BADGE ⭐ */}
+      {/* HEADER */}
+     <header className="bgx-hero hero-fixed">
         <div className="bgx-badge">
           <span className="star">★</span>
           BLOG & ARTICLE
           <span className="star">★</span>
         </div>
-          <div className="hero-col hero-col-left">
-            <h1 className="hero-title">Latest Updates & Exclusive Offers</h1>
-            <h2 className="hero-sub">From PR WEBSTOCK — Stay Ahead with Tech Insights.</h2>
-          </div>
 
-       <p className="hero-desc">
-          Explore the latest updates, offers, and valuable insights from PR WEBSTOCK — 
-          your trusted partner in modern software development, digital marketing, and 
-          business growth technology.
-        </p>
+        {/* LEFT COLUMN */}
+        <div className="hero-col hero-col-left">
+          <h1 className="hero-title">
+            Latest Updates & Exclusive Offers
+          </h1>
 
+          <h2 className="hero-sub">
+            From PR WEBSTOCK — Stay Ahead with Tech Insights.
+          </h2>
+        </div>
 
+        {/* CENTER COLUMN */}
+        <div className="hero-col hero-col-center">
+          <p className="hero-desc">
+            Explore the latest updates, offers, and valuable insights from
+            PR WEBSTOCK — your trusted partner in modern software
+            development, digital marketing, and business growth technology.
+          </p>
+        </div>
+
+        {/* RIGHT COLUMN */}
         <div className="hero-col hero-col-right">
           <a className="hero-circle" href="/blog">
             <div className="hero-circle-text">
@@ -64,26 +78,56 @@ const BlogShowcase = () => {
 
       {/* BLOG LIST */}
       <section className="bgx-grid">
-        {entries.map((e) => (
-          <article className="bgx-card" key={e.id}>
-            <div className="bgx-image-wrap">
-              <img className="bgx-image" src={e.img} alt={e.title} />
-              <time className="bgx-date-bubble">
-                <span className="bgx-day">{e.date.day}</span>
-                <span className="bgx-month">{e.date.month}</span>
-              </time>
-            </div>
+        {loading ? (
+          <h3>Loading Blogs...</h3>
+        ) : (
+          blogs.map((blog) => {
+            const date = formatDate(blog.publishDate);
 
-            <div className="bgx-meta">
-              <a className="bgx-category" href="#">{e.category}</a>
-              <span className="bgx-divider">|</span>
-              <span className="bgx-comments">Comment ({e.comments})</span>
-            </div>
+            return (
+              <article className="bgx-card" key={blog._id}>
+             <div className="bgx-image-wrap">
+                  <img
+                    className="bgx-image"
+                    src={
+                      blog.image
+                        ? `${API.defaults.baseURL.replace("/api", "")}${blog.image}`
+                        : "/placeholder-blog.jpg"
+                    }
+                    alt={blog.title}
+                    loading="lazy"
+                  />
 
-            <h3 className="bgx-title">{e.title}</h3>
-            <a className="bgx-read" href="#">Read More ↗</a>
-          </article>
-        ))}
+                  <time className="bgx-date-bubble">
+                    <span className="bgx-day">{date.day}</span>
+                    <span className="bgx-month">{date.month}</span>
+                  </time>
+                </div>
+
+                <div className="bgx-meta">
+                  <span className="bgx-category">
+                    {blog.category}
+                  </span>
+
+                  <span className="bgx-divider">|</span>
+
+                  <span className="bgx-comments">
+                    By {blog.adminName}
+                  </span>
+                </div>
+
+                <h3 className="bgx-title">{blog.title}</h3>
+
+                <a
+                  className="bgx-read"
+                  href={`/blog/${blog._id}`}
+                >
+                  Read More ↗
+                </a>
+              </article>
+            );
+          })
+        )}
       </section>
     </div>
   );

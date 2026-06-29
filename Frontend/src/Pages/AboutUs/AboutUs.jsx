@@ -20,9 +20,6 @@ const AboutUs = () => {
     <AwardsSection/>
     <TeamSection/>
     <BlogShowcase/>
-    
-    
-    
     </>
   )
 }

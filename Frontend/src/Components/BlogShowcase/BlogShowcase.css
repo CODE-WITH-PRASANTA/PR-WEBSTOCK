@@ -1,10 +1,4 @@
-:root {
-  --max-width: 1400px;
-  --text: #0f0f0f;
-  --muted: #6b6b6b;
-  --accent: #b23;
-  --card-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
-}
+
 
 /* =========================================
    CONTAINER
@@ -92,7 +86,7 @@
   max-width: 520px;
   font-size: 16px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--text);
 }
 
 /* right column */

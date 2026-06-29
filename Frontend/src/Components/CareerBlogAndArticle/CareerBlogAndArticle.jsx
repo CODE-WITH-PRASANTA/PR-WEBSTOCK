@@ -1,67 +1,122 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import API, { IMG_URL } from "../../api/axios";
 import "./CareerBlogAndArticle.css";
 
-import BlogArticle1 from "../../assets/Blog&Article1.webp";
-import BlogArticle2 from "../../assets/Blog&Article2.webp";
-import BlogArticle3 from "../../assets/Blog&Article3.webp";
-
 const CareerBlogAndArticle = () => {
-  const items = [
-    {
-      img: BlogArticle1,
-      title: "Unemployment has no room",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-    {
-      img: BlogArticle2,
-      title: "The potential in you",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-    {
-      img: BlogArticle3,
-      title: "A successful career",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    },
-  ];
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const fetchBlogs = async () => {
+    try {
+      const res = await API.get("/blogs");
+
+      const blogsData = res?.data?.data || [];
+
+      setBlogs(blogsData.slice(0, 3));
+    } catch (error) {
+      console.error("Blog Fetch Error:", error);
+      setBlogs([]);
+    }
+  };
+
+  const formatDate = (date) => {
+    if (!date) {
+      return {
+        day: "--",
+        month: "---",
+      };
+    }
+
+    const d = new Date(date);
+
+    return {
+      day: d.getDate(),
+      month: d.toLocaleString("default", {
+        month: "short",
+      }),
+    };
+  };
 
   return (
     <section className="careerblog">
       <div className="careerblog-header">
-        <h2>Blog & Article</h2>
+        <h2>Latest Blogs & Articles</h2>
+
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-          ullamcorper mattis, pulvinar dapibus leo.
+          Explore career tips, technology insights, web development,
+          app development, digital marketing trends, and professional
+          growth articles from PR WEBSTOCK.
         </p>
       </div>
 
       <div className="careerblog-grid">
-        {items.map((item, i) => (
-          <div className="careerblog-card" key={i}>
-            <div className="careerblog-imgwrap">
-              <img src={item.img} alt={item.title} />
+        {blogs.length > 0 ? (
+          blogs.map((blog) => {
+            const { day, month } = formatDate(
+              blog.publishDate || blog.createdAt
+            );
 
-              {/* EXACT DATE BADGE */}
-              <div className="careerblog-date">
-                <span className="day">30</span>
-                <span className="month">Mar</span>
+            return (
+              <div
+                className="careerblog-card"
+                key={blog._id}
+              >
+                <div className="careerblog-imgwrap">
+                  <img
+                    src={
+                      blog.image
+                        ? blog.image.startsWith("http")
+                          ? blog.image
+                          : `${IMG_URL}${blog.image}`
+                        : "https://via.placeholder.com/600x400"
+                    }
+                    alt={blog.title}
+                  />
+
+                  <div className="careerblog-date">
+                    <span className="day">{day}</span>
+                    <span className="month">{month}</span>
+                  </div>
+
+                  <div className="careerblog-date-corner"></div>
+                </div>
+
+                <div className="careerblog-body">
+                  <h3>
+                    {blog.title?.length > 45
+                      ? `${blog.title.substring(0, 45)}...`
+                      : blog.title}
+                  </h3>
+
+                  <p>
+                    {blog.description
+                      ?.replace(/<[^>]*>/g, "")
+                      ?.substring(0, 130)}
+                    ...
+                  </p>
+
+                  <Link
+                    to={`/blog/${blog._id}`}
+                    className="careerblog-btn"
+                  >
+                    <FiArrowRight />
+                    <span>Read More</span>
+                  </Link>
+                </div>
               </div>
-
-              {/* BACK RED SLANTED CORNER */}
-              <div className="careerblog-date-corner"></div>
-            </div>
-
-            <div className="careerblog-body">
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-
-              <button className="careerblog-btn">
-                <FiArrowRight />
-                <span>Learn more</span>
-              </button>
-            </div>
+            );
+          })
+        ) : (
+          <div className="careerblog-empty">
+            <h3>No Blogs Available</h3>
+            <p>New articles will appear here soon.</p>
           </div>
-        ))}
+        )}
       </div>
     </section>
   );

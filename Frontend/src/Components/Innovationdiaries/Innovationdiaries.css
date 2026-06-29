@@ -1,103 +1,168 @@
-/* ================= ROOT WRAPPER ================= */
+/* =====================================
+   GOOGLE FONT
+===================================== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/* =====================================
+   SECTION
+===================================== */
+
 .innovation-diaries-wrap {
-  background: linear-gradient(180deg, #f9fbff, #ffffff);
-  padding: 10px 20px;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont;
+  width: 100%;
+  padding: 90px 20px;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+  font-family: "Inter", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.innovation-diaries-wrap::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.08);
+  top: -180px;
+  left: -120px;
+}
+
+.innovation-diaries-wrap::after {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.08);
+  bottom: -150px;
+  right: -120px;
 }
 
 .innovation-container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: auto;
+  position: relative;
+  z-index: 2;
 }
 
-/* ================= SECTION TITLE ================= */
+/* =====================================
+   HEADING
+===================================== */
+
 .innovation-section-title {
-  text-align: center;
-  font-size: 42px;
+  font-size: 48px;
   font-weight: 800;
+  text-align: center;
+  margin-bottom: 20px;
   color: #0f172a;
-  margin-bottom: 16px;
 }
 
 .innovation-section-title span {
-  background: linear-gradient(90deg, #6366f1, #06b6d4);
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .innovation-subtitle {
-  max-width: 720px;
-  margin: 0 auto 60px;
+  max-width: 760px;
+  margin: auto;
   text-align: center;
   font-size: 17px;
-  line-height: 1.7;
-  color: #475569;
+  line-height: 30px;
+  color: #64748b;
+  margin-bottom: 65px;
 }
 
-/* ================= GRID ================= */
+/* =====================================
+   GRID
+===================================== */
+
 .innovation-posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 35px;
 }
 
-/* ================= CARD ================= */
+/* =====================================
+   CARD
+===================================== */
+
 .innovation-post-card {
-  background: #ffffff;
-  border-radius: 18px;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  position: relative;
+  transition: .45s;
+  box-shadow: 0 12px 40px rgba(15,23,42,.08);
+  display: flex;
+  flex-direction: column;
 }
 
 .innovation-post-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 70px rgba(15, 23, 42, 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 35px 70px rgba(37,99,235,.18);
 }
 
-/* ================= IMAGE ================= */
+/* =====================================
+   IMAGE
+===================================== */
+
 .innovation-post-image {
   position: relative;
+  height: 260px;
   overflow: hidden;
-  height: 240px;
 }
 
 .innovation-post-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: .7s;
 }
 
-/* ================= IMAGE OVERLAY ================= */
+.innovation-post-card:hover img {
+  transform: scale(1.12);
+}
+
+/* =====================================
+   IMAGE OVERLAY
+===================================== */
+
 .innovation-post-image-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.85),
-    rgba(15, 23, 42, 0.95)
+      to top,
+      rgba(15,23,42,.95),
+      rgba(15,23,42,.55)
   );
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
-  text-align: center;
-  transition: all 0.35s ease;
+  opacity: 0;
+  transition: .4s;
+  color: white;
+}
+
+.innovation-post-card:hover .innovation-post-image-overlay {
+  opacity: 1;
 }
 
 .innovation-post-image-overlay h4 {
-  font-size: 18px;
+  margin-bottom: 22px;
+  font-size: 22px;
   font-weight: 700;
-  margin-bottom: 16px;
 }
 
-/* ================= OVERLAY STATS ================= */
 .innovation-overlay-stats {
   display: flex;
-  gap: 24px;
+  gap: 28px;
+}
+
+.innovation-overlay-stat {
+  text-align: center;
 }
 
 .innovation-overlay-stat-value {
@@ -106,101 +171,302 @@
 }
 
 .innovation-overlay-stat-label {
+  margin-top: 6px;
   font-size: 13px;
-  opacity: 0.8;
+  opacity: .85;
 }
 
-/* ================= DATE BADGE ================= */
+/* =====================================
+   DATE
+===================================== */
+
 .innovation-date-badge {
   position: absolute;
-  bottom: 14px;
-  left: 14px;
-  background: #ffffff;
-  color: #0f172a;
-  padding: 6px 14px;
+  left: 18px;
+  bottom: 18px;
+
+  background: rgba(255,255,255,.95);
+
+  padding: 8px 18px;
+
+  border-radius: 40px;
+
   font-size: 13px;
-  font-weight: 600;
-  border-radius: 999px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  font-weight: 700;
+
+  color: #2563eb;
+
+  box-shadow: 0 10px 20px rgba(0,0,0,.15);
 }
 
-/* ================= CARD CONTENT ================= */
+/* =====================================
+   META
+===================================== */
+
 .innovation-post-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 22px 0;
-  font-size: 13px;
+
+  padding: 22px 25px 0;
 }
 
 .innovation-post-category {
-  background: #eef2ff;
-  color: #4f46e5;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-weight: 600;
+  background: linear-gradient(135deg,#2563eb,#0ea5e9);
+
+  color: white;
+
   text-decoration: none;
+
+  padding: 8px 18px;
+
+  border-radius: 30px;
+
+  font-size: 13px;
+
+  font-weight: 700;
 }
 
 .innovation-post-comments {
   color: #64748b;
+  font-size: 14px;
 }
 
-/* ================= TITLE ================= */
+/* =====================================
+   TITLE
+===================================== */
+
 .innovation-post-title {
-  padding: 14px 22px 0;
-  font-size: 20px;
+  padding: 18px 25px 12px;
+
+  font-size: 25px;
+
+  line-height: 1.45;
+
   font-weight: 700;
+
   color: #0f172a;
-  line-height: 1.4;
-  transition: color 0.3s ease;
+
+  transition: .3s;
 }
 
 .innovation-post-card:hover .innovation-post-title {
-  color: #4f46e5;
+  color: #2563eb;
 }
 
-/* ================= EXCERPT ================= */
+/* =====================================
+   DESCRIPTION
+===================================== */
+
 .innovation-post-excerpt {
-  padding: 10px 22px 22px;
+  padding: 0 25px;
+
+  color: #64748b;
+
   font-size: 15px;
-  line-height: 1.7;
-  color: #475569;
+
+  line-height: 28px;
+
+  min-height: 95px;
 }
 
-/* ================= READ MORE ================= */
+.innovation-post-excerpt p{
+  margin:0;
+}
+
+.innovation-post-excerpt strong{
+  color:#111827;
+}
+
+.innovation-post-excerpt ul{
+  padding-left:20px;
+}
+
+/* =====================================
+   BUTTON
+===================================== */
+
 .innovation-read-more {
-  margin: 0 22px 26px;
+
+  margin: auto 25px 28px;
+
   display: inline-flex;
+
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #4f46e5;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  width: fit-content;
+
+  padding: 13px 24px;
+
+  border-radius: 40px;
+
+  background: linear-gradient(135deg,#2563eb,#0ea5e9);
+
+  color: white;
+
   text-decoration: none;
-  position: relative;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  transition: .35s;
 }
 
-.innovation-read-more::after {
-  content: "→";
-  transition: transform 0.3s ease;
+.innovation-read-more::after{
+
+  content:"→";
+
+  transition:.35s;
 }
 
-.innovation-read-more:hover::after {
-  transform: translateX(6px);
+.innovation-read-more:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:0 18px 35px rgba(37,99,235,.35);
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .innovation-section-title {
-    font-size: 34px;
-  }
+.innovation-read-more:hover::after{
 
-  .innovation-subtitle {
-    font-size: 16px;
-  }
+  transform:translateX(8px);
+}
 
-  .innovation-post-image {
-    height: 210px;
-  }
+/* =====================================
+   LOADING
+===================================== */
+
+.innovation-loading{
+
+  text-align:center;
+
+  font-size:24px;
+
+  font-weight:700;
+
+  padding:120px 0;
+
+  color:#2563eb;
+}
+
+/* =====================================
+   EMPTY
+===================================== */
+
+.innovation-no-posts{
+
+  grid-column:1/-1;
+
+  text-align:center;
+
+  padding:100px;
+
+  font-size:24px;
+
+  color:#64748b;
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+.innovation-section-title{
+
+font-size:40px;
+
+}
+
+.innovation-posts-grid{
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+}
+
+}
+
+@media(max-width:768px){
+
+.innovation-diaries-wrap{
+
+padding:70px 15px;
+
+}
+
+.innovation-section-title{
+
+font-size:34px;
+
+}
+
+.innovation-subtitle{
+
+font-size:15px;
+
+line-height:28px;
+
+}
+
+.innovation-post-image{
+
+height:220px;
+
+}
+
+.innovation-post-title{
+
+font-size:21px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.innovation-posts-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.innovation-post-card{
+
+border-radius:18px;
+
+}
+
+.innovation-overlay-stats{
+
+gap:18px;
+
+}
+
+.innovation-post-meta{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:12px;
+
+}
+
+.innovation-post-title{
+
+font-size:20px;
+
+}
+
+.innovation-read-more{
+
+width:calc(100% - 50px);
+
+}
+
 }

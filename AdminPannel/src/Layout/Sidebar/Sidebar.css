@@ -467,6 +467,22 @@
   color: white;
   margin-left: auto;
 }
+.popupLogoutBtn {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.popupLogoutBtn:hover {
+  background: #171d29;
+}
 
 /* ===========================
    ANIMATIONS

@@ -1,6 +1,6 @@
 import React from "react";
 import "./SeoRole.css";
-import seoImage from "../../assets/Targeted-Keywords.webp";
+import seoImage from "../../assets/webd3.jpg";
 
 const SeoRole = () => {
   const seoLeadData = [

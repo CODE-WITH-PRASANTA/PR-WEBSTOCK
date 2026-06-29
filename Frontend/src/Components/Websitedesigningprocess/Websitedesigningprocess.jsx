@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Websitedesigningprocess.css';
-
+ 
 const Websitedesigningprocess = () => {
   const steps = [
     {

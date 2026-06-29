@@ -5,8 +5,6 @@ import {
   Navigate,
 } from "react-router-dom";
 
-
-
 import MainLayout from "./Layout/MainLayout/MainLayout";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Table from "./Component/Table/Table";
@@ -18,79 +16,79 @@ import Calender from "./Pages/Calender/Calender";
 import ProjectUser from "./Pages/ProjectUser/ProjectUser";
 import Careerobject from "./Pages/Careerobject/Careerobject";
 import Login from "./Component/Login/Login";
+import IndustryManagement from "./Pages/IndustryManagement/IndustryManagement";
+import Teammember from "./Component/Teammember/Teammember";
+import ProtectedRoute from "./Component/Protected/Protected";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+  <BrowserRouter>
+  <Routes>
 
-        {/* Login Page First */}
+        {/* Login */}
         <Route path="/" element={<Login />} />
 
-        {/* Admin Panel Routes */}
-        <Route path="/" element={<MainLayout />}>
+        {/* Protected Layout */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <MainLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Navigate to="dashboard" replace />} />
 
-          <Route
-            path="dashboard"
-            element={<Dashboard />}
-          />
-
-          <Route
-            path="lead-management"
-            element={<Table />}
-          />
-
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="lead-management" element={<Table />} />
           <Route
             path="testimonial-management"
             element={<Testimonial />}
           />
-
-          <Route
-            path="blog-post"
-            element={<BlogPost />}
-          />
-
+          <Route path="blog-post" element={<BlogPost />} />
           <Route
             path="blog-management"
             element={<BlogManagement />}
           />
-
           <Route
             path="gallery-management"
             element={<Gallary />}
           />
-
           <Route
             path="calendar-management"
             element={<Calender />}
           />
-
           <Route
             path="project-management"
             element={<ProjectUser />}
           />
-
           <Route
             path="career-management"
             element={<Careerobject />}
           />
           <Route
-          path="login"
-          element={<Login/>}
+            path="industry-management"
+            element={<IndustryManagement />}
           />
-
+          <Route
+            path="team-member"
+            element={<Teammember />}
+          />
         </Route>
 
-        {/* Any Wrong URL Redirect To Login */}
         <Route
           path="*"
-          element={<Navigate to="/" />}
+          element={<Navigate to="/" replace />}
         />
+<<<<<<< HEAD
         
           
 
+=======
+>>>>>>> 80b0b530ed0d37344c57635ca0ec9327ce60fedb
       </Routes>
     </BrowserRouter>
+ 
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 
 import Herosection from '../../Components/Herosection/Herosection';
@@ -13,6 +13,7 @@ import Successinthefield from '../../Components/Successinthefield/Successinthefi
 import Innovationdiaries from '../../Components/Innovationdiaries/Innovationdiaries';
 import Clientstories from '../../Components/Clientstories/Clientstories';
 import Workflowinsights from '../../Components/Workflowinsights/Workflowinsights';
+import Image from '../../Components/Image/Image';
 
 
 const Home = () => {
@@ -127,6 +128,7 @@ const Home = () => {
       <Blueprint />
       {/* <Successinthefield /> */}
       <Clientstories />
+      <Image />
       <Innovationdiaries />
     </div>
   )

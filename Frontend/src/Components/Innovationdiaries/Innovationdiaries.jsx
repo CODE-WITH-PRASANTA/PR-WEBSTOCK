@@ -1,51 +1,48 @@
-import React, { useState } from 'react';
-import './Innovationdiaries.css';
-
-const posts = [
-  {
-    id: 1,
-    category: 'Development',
-    comments: 20,
-    likes: 142,
-    date: '03 January, 2024',
-    title: 'Building Scalable Startups: From Zero to Market Leader',
-    excerpt: 'Discover the framework that helped 50+ startups scale from initial concept to market dominance using lean methodologies.',
-    image: 'https://img.freepik.com/free-photo/hand-touching-digital-screen-with-data-visualization_23-2151964669.jpg?t=st=1764935226~exp=1764938826~hmac=0806ee4ce75bddc7a333abc1522592e213c103050975520cc431ce8b23b80778&w=1060',
-    author: 'Alex Morgan',
-    readTime: '5 min read',
-    isPremium: true
-  },
-  {
-    id: 2,
-    category: 'Cyber Security',
-    comments: 12,
-    likes: 89,
-    date: '05 January, 2024',
-    title: 'Advanced Security Protocols for Modern Startups',
-    excerpt: 'Implement enterprise-grade security on a startup budget with our comprehensive guide to threat prevention.',
-    image: 'https://img.freepik.com/free-photo/ai-nuclear-energy-background-future-innovation-disruptive-technology_53876-129783.jpg?t=st=1764935265~exp=1764938865~hmac=f3e5ef8a05c003bc6a90e6e68ceb04ec0385f10261734fadf077e631b65367f4&w=1060',
-    author: 'Sam Rivera',
-    readTime: '7 min read',
-    isPremium: false
-  },
-  {
-    id: 3,
-    category: 'Consulting',
-    comments: 18,
-    likes: 156,
-    date: '12 January, 2024',
-    title: 'Innovation Strategy: Disrupting Established Markets',
-    excerpt: 'Learn how to identify market gaps and execute disruptive innovation strategies that challenge industry leaders.',
-    image: 'https://img.freepik.com/free-photo/man-using-digital-tablet-psd-mockup-smart-technology_53876-110815.jpg?t=st=1764935193~exp=1764938793~hmac=c46bc000883b0e8b08e9762000efa8b964f981e5cbc335c32941e80f05109109&w=1060',
-    author: 'Jordan Lee',
-    readTime: '6 min read',
-    isPremium: true
-  },
-  
-];
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./Innovationdiaries.css";
+import API, { IMG_URL } from "../../api/axios";
 
 export default function InnovationDiaries() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hoveredCard, setHoveredCard] = useState(null);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const stripHtml = (html) => {
+  if (!html) return "";
+
+  const doc = new DOMParser().parseFromString(html, "text/html");
+
+  return doc.body.textContent || "";
+};
+
+const getShortDescription = (html) => {
+  const text = stripHtml(html);
+
+  return text.length > 130 ? text.substring(0, 130) + "..." : text;
+};
+
+const getAuthorInitial = (name) => {
+  return name ? name.charAt(0).toUpperCase() : "A";
+};
+
+  const fetchBlogs = async () => {
+    try {
+      const { data } = await API.get("/blogs");
+
+      if (data.success) {
+        setPosts(data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleMouseEnter = (id) => {
     setHoveredCard(id);
@@ -55,95 +52,157 @@ export default function InnovationDiaries() {
     setHoveredCard(null);
   };
 
-  const getAuthorInitials = (name) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
   };
 
-  const formatNumber = (num) => {
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + 'k';
-    }
-    return num.toString();
+  const truncateText = (text, maxLength = 120) => {
+    if (!text) return "";
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
   };
+
+  if (loading) {
+    return (
+      <section className="innovation-diaries-wrap">
+        <div
+          style={{
+            padding: "100px 0",
+            textAlign: "center",
+            fontSize: "22px",
+            fontWeight: "600",
+          }}
+        >
+          Loading Latest Blogs...
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="innovation-diaries-wrap">
       <div className="innovation-container">
-      <h2 className="innovation-section-title">
+        <h2 className="innovation-section-title">
           <span>Latest Updates & Blogs</span>
         </h2>
 
         <p className="innovation-subtitle">
-          Stay updated with our latest insights, industry trends, expert opinions, and 
-          practical guides covering technology, digital innovation, and business growth.
+          Stay updated with our latest insights, industry trends, expert
+          opinions, and practical guides covering technology, digital
+          innovation, and business growth.
         </p>
 
-        
         <div className="innovation-posts-grid">
-          {posts.map((post) => (
-            <article 
-              className="innovation-post-card" 
-              key={post.id}
-              onMouseEnter={() => handleMouseEnter(post.id)}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="innovation-post-image">
-                <img 
-                  src={post.image} 
-                  alt={`${post.title} thumbnail`} 
-                  style={{
-                    transform: hoveredCard === post.id ? 'scale(1.1)' : 'scale(1)'
-                  }}
-                />
-                
-                {/* Image Overlay on Hover */}
-                <div 
-                  className="innovation-post-image-overlay"
-                  style={{
-                    opacity: hoveredCard === post.id ? 1 : 0,
-                    transform: hoveredCard === post.id ? 'translateY(0)' : 'translateY(10px)'
-                  }}
-                >
-                  <h4>Article Stats</h4>
-                  <div className="innovation-overlay-stats">
-                    <div className="innovation-overlay-stat">
-                      <div className="innovation-overlay-stat-value">{formatNumber(post.likes)}</div>
-                      <div className="innovation-overlay-stat-label">Likes</div>
-                    </div>
-                    <div className="innovation-overlay-stat">
-                      <div className="innovation-overlay-stat-value">{post.comments}</div>
-                      <div className="innovation-overlay-stat-label">Comments</div>
-                    </div>
-                    <div className="innovation-overlay-stat">
-                      <div className="innovation-overlay-stat-value">{post.readTime.split(' ')[0]}</div>
-                      <div className="innovation-overlay-stat-label">Read Time</div>
-                    </div>
-                  </div>
-                </div>
-                
-                <span className="innovation-date-badge">{post.date}</span>
-                
-              </div>
+          {posts.length > 0 ? (
+         posts.map((post) => (
+  <article
+    key={post._id}
+    className="innovation-post-card"
+    onMouseEnter={() => handleMouseEnter(post._id)}
+    onMouseLeave={handleMouseLeave}
+  >
+    {/* IMAGE */}
+    <div className="innovation-post-image">
+      <img
+        src={
+          post.image
+            ? post.image.startsWith("http")
+              ? post.image
+              : `${IMG_URL}${post.image}`
+            : "https://placehold.co/700x450?text=No+Image"
+        }
+        alt={post.title}
+      />
 
-              <div className="innovation-post-meta">
-                <a href="#" className="innovation-post-category">{post.category}</a>
-                <span className="innovation-post-comments">{post.comments} comments</span>
-              </div>
+      {/* Overlay */}
+      <div className="innovation-post-image-overlay">
+        <h4>Article Overview</h4>
 
-              <h3 className="innovation-post-title">{post.title}</h3>
-              
-              <p className="innovation-post-excerpt">{post.excerpt}</p>
-              
-              
+        <div className="innovation-overlay-stats">
+          <div className="innovation-overlay-stat">
+            <div className="innovation-overlay-stat-value">
+              {post.tags?.length || 0}
+            </div>
+            <div className="innovation-overlay-stat-label">
+              Tags
+            </div>
+          </div>
 
-              <a className="innovation-read-more" href="#">
-                Read Full Article
-              </a>
-            </article>
-          ))}
+          <div className="innovation-overlay-stat">
+            <div className="innovation-overlay-stat-value">
+              {post.adminName}
+            </div>
+
+            <div className="innovation-overlay-stat-label">
+              Author
+            </div>
+          </div>
+
+          <div className="innovation-overlay-stat">
+            <div className="innovation-overlay-stat-value">
+              {formatDate(post.publishDate)}
+            </div>
+
+            <div className="innovation-overlay-stat-label">
+              Published
+            </div>
+          </div>
         </div>
-        
-        
+      </div>
+
+      <span className="innovation-date-badge">
+        {formatDate(post.publishDate)}
+      </span>
+    </div>
+
+    {/* META */}
+    <div className="innovation-post-meta">
+      <span className="innovation-post-category">
+        {post.category}
+      </span>
+
+      <span className="innovation-post-comments">
+        {post.tags?.join(", ") || "General"}
+      </span>
+    </div>
+
+            {/* TITLE */}
+            <h3 className="innovation-post-title">
+              {post.title}
+            </h3>
+
+            {/* DESCRIPTION */}
+            <p className="innovation-post-excerpt">
+              {getShortDescription(post.description)}
+            </p>
+
+            {/* BUTTON */}
+            <Link
+              className="innovation-read-more"
+              to={`/blog/${post._id}`}
+            >
+              Read Full Article
+            </Link>
+          </article>
+        ))
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                textAlign: "center",
+                padding: "80px",
+                fontSize: "20px",
+              }}
+            >
+              No Blogs Found.
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

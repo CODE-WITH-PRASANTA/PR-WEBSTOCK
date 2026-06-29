@@ -1,241 +1,178 @@
-import React from "react";
+import React, {
+  useEffect,
+  useState,
+} from "react";
 import "./Bench.css";
-import { FiSearch, FiCornerUpLeft } from "react-icons/fi";
+import {
+  FiSearch,
+  FiCornerUpLeft,
+} from "react-icons/fi";
+import { useParams } from "react-router-dom";
+import api from "../../api/axios";
 
 const Bench = () => {
-  const popularPosts = [
-    {
-      id: 1,
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200",
-      title: "The 5 Ways To Improve Your Credibility Working From Home",
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1518186233392-c232efbf2373?w=200",
-      title: "The 20 Smart Finance-Focused Resources For Small Businesses",
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200",
-      title: "4 Ways Businesses Can Conduct Productive Time Management",
-    },
-  ];
+  const { id } = useParams();
+
+  const [blog, setBlog] =
+    useState(null);
+
+  useEffect(() => {
+    fetchBlog();
+  }, [id]);
+
+  const fetchBlog = async () => {
+    try {
+      const res = await api.get(
+        `/blogs/${id}`
+      );
+
+      setBlog(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (!blog) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <section className="bench-page">
       <div className="bench-container">
+
         {/* LEFT CONTENT */}
+
         <div className="bench-content">
-          <p>
-            As a small-business owner, it’s important to find high-quality
-            information and educational resources you can trust to help you
-            overcome common obstacles and achieve success.
-          </p>
 
-          <p>
-            With the large number of online resources out there, it’s hard to
-            know where to begin searching for the best ones for your needs.
-          </p>
+          {/* DESCRIPTION */}
 
-          <h2>Bench Blog</h2>
+          <div
+            dangerouslySetInnerHTML={{
+              __html:
+                blog.description,
+            }}
+          />
 
-          <p>
-            One of the most helpful blogs I have seen is Bench Blog, posted by
-            Bench, a bookkeeping service for small businesses.
-          </p>
+          {/* MEDIA IMAGE */}
 
-          <h2>CFO.University</h2>
+          {blog.media && (
+            <div className="featured-image">
+              <img
+                src={`http://localhost:5000${blog.media}`}
+                alt={blog.title}
+              />
+            </div>
+          )}
 
-          <p>
-            One of my favorite sources of corporate-finance-specific content is
-            CFO.University.
-          </p>
+          {/* QUOTE */}
 
-          <div className="featured-image">
-            <img
-              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200"
-              alt=""
-            />
-          </div>
+          {blog.quote && (
+            <div className="quote-box">
+              <span className="quote-mark">
+                ❝
+              </span>
 
-          <p className="image-caption">
-            The company provides lending services to the UK consumer market.
-          </p>
-
-          <p>
-            Harvard Business Review is full of ideas and strategies.
-          </p>
-
-          <div className="quote-box">
-            <span className="quote-mark">❝</span>
-
-            <p>
-              Small-business owners should digest the content from the website
-              of the National Federation of Independent Business Owners.
-            </p>
-          </div>
-
-          <h2>Online Communities</h2>
-
-          <p>
-            I have found subscribing to several sources, skimming the
-            headlines, and looking for information on the specific challenges
-            I’m facing to be an effective strategy.
-          </p>
+              <p>{blog.quote}</p>
+            </div>
+          )}
 
           <hr />
 
-          {/* COMMENTS */}
+          {/* COMMENTS SECTION */}
+
           <div className="comments-section">
-            <h3>3 Comments</h3>
-
-            <div className="comment">
-              <img
-                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200"
-                alt=""
-              />
-
-              <div className="comment-body">
-                <div className="comment-top">
-                  <h4>admin</h4>
-
-                  <div className="reply-info">
-                    <span>02/03/2023</span>
-                    <span>
-                      <FiCornerUpLeft /> Reply
-                    </span>
-                  </div>
-                </div>
-
-                <p>
-                  Good marketing practices have a direct financial impact on a
-                  business.
-                </p>
-              </div>
-            </div>
-
-            <div className="comment">
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200"
-                alt=""
-              />
-
-              <div className="comment-body">
-                <div className="comment-top">
-                  <h4>admin</h4>
-
-                  <div className="reply-info">
-                    <span>02/03/2023</span>
-                    <span>
-                      <FiCornerUpLeft /> Reply
-                    </span>
-                  </div>
-                </div>
-
-                <p>
-                  It has great, timely content to help small-business owners
-                  navigate change.
-                </p>
-
-                <div className="nested-comment">
-                  <img
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200"
-                    alt=""
-                  />
-
-                  <div>
-                    <div className="comment-top">
-                      <h4>admin</h4>
-
-                      <div className="reply-info">
-                        <span>02/03/2023</span>
-                        <span>
-                          <FiCornerUpLeft /> Reply
-                        </span>
-                      </div>
-                    </div>
-
-                    <p>
-                      Small-business owners should digest the content from NFIB.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h3>Comments</h3>
           </div>
 
-          {/* FORM */}
+          {/* COMMENT FORM */}
 
           <div className="reply-form">
             <h3>Leave a Reply</h3>
 
             <p>
-              Your email address will not be published. Required fields are
-              marked *
+              Your email address
+              will not be
+              published.
             </p>
 
             <div className="input-row">
-              <input type="text" placeholder="Jane Doe" />
-              <input type="email" placeholder="name@email.com" />
+              <input
+                type="text"
+                placeholder="Name"
+              />
+
+              <input
+                type="email"
+                placeholder="Email"
+              />
             </div>
 
             <textarea
               rows="8"
-              placeholder="Enter comment here..."
-            ></textarea>
+              placeholder="Comment..."
+            />
 
-            <button>Post Comment</button>
+            <button>
+              Post Comment
+            </button>
           </div>
+
         </div>
 
         {/* SIDEBAR */}
 
         <aside className="sidebar">
+
           <div className="sidebar-card search-box">
             <FiSearch />
-            <input type="text" placeholder="Search" />
+
+            <input
+              type="text"
+              placeholder="Search"
+            />
           </div>
 
+          {/* CATEGORY */}
+
           <div className="sidebar-card">
-            <h3>Categories</h3>
+            <h3>Category</h3>
 
             <ul>
-              <li>BUSINESS</li>
-              <li>DEVELOPMENT</li>
-              <li>SOFTWARE</li>
+              <li>
+                {blog.category}
+              </li>
             </ul>
           </div>
 
-          <div className="sidebar-card">
-            <h3>Popular Posts</h3>
-
-            {popularPosts.map((post) => (
-              <div className="popular-post" key={post.id}>
-                <img src={post.image} alt="" />
-                <p>{post.title}</p>
-              </div>
-            ))}
-          </div>
+          {/* TAGS */}
 
           <div className="sidebar-card">
             <h3>Tags</h3>
 
             <div className="tags">
-              <span>ACCESSORIES</span>
-              <span>CLOTHING</span>
-              <span>DECOR</span>
-              <span>HOODIES</span>
-              <span>MUSIC</span>
-              <span>TSHIRTS</span>
+              {blog.tags?.map(
+                (tag, index) => (
+                  <span
+                    key={index}
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
             </div>
           </div>
 
+          {/* FEATURED IMAGE */}
+
           <div className="sidebar-card ad-banner">
             <img
-              src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=800"
-              alt=""
+              src={`http://localhost:5000${blog.image}`}
+              alt={
+                blog.title
+              }
             />
           </div>
+
         </aside>
       </div>
     </section>
