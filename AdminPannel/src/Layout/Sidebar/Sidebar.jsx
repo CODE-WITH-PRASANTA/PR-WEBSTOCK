@@ -164,7 +164,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/lead-management"
+            to="/admin/lead-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"

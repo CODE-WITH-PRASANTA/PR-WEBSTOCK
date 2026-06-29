@@ -32,7 +32,7 @@ function App() {
     {/* Admin */}
     <Route element={<MainLayout />}>
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/lead-management" element={<Table />} />
+      <Route path="/admin/lead-management" element={<Table />} />
       <Route path="/testimonial-management" element={<Testimonial />} />
 
       <Route path="/blog-post" element={<BlogPost />} />
