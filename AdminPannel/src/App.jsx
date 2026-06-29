@@ -86,6 +86,8 @@ function App() {
           path="*"
           element={<Navigate to="/" />}
         />
+        
+          
 
       </Routes>
     </BrowserRouter>
