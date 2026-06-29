@@ -23,77 +23,40 @@ import Teammember from "./Component/Teammember/Teammember";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+  <BrowserRouter>
+  <Routes>
 
-        {/* Login Page First */}
-        <Route path="/" element={<Login />} />
+    {/* Login */}
+    <Route path="/" element={<Login />} />
 
-        {/* Admin Panel Routes */}
-        <Route path="/" element={<MainLayout />}>
+    {/* Admin */}
+    <Route element={<MainLayout />}>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/lead-management" element={<Table />} />
+      <Route path="/testimonial-management" element={<Testimonial />} />
 
-          <Route
-            path="dashboard"
-            element={<Dashboard />}
-          />
+      <Route path="/blog-post" element={<BlogPost />} />
+      <Route path="/blog-post/:id" element={<BlogPost />} />
 
-          <Route
-            path="lead-management"
-            element={<Table />}
-          />
+      <Route path="/blog-management" element={<BlogManagement />} />
 
-          <Route
-            path="testimonial-management"
-            element={<Testimonial />}
-          />
+      <Route path="/gallery-management" element={<Gallary />} />
 
-          <Route
-            path="blog-post"
-            element={<BlogPost />}
-          />
+      <Route path="/calendar-management" element={<Calender />} />
 
-          <Route
-            path="blog-management"
-            element={<BlogManagement />}
-          />
+      <Route path="/project-management" element={<ProjectUser />} />
 
-          <Route
-            path="gallery-management"
-            element={<Gallary />}
-          />
+      <Route path="/career-management" element={<Careerobject />} />
 
-          <Route
-            path="calendar-management"
-            element={<Calender />}
-          />
+      <Route path="/industry-management" element={<IndustryManagement />} />
 
-          <Route
-            path="project-management"
-            element={<ProjectUser />}
-          />
+      <Route path="/team-member" element={<Teammember />} />
+    </Route>
 
-          <Route
-            path="career-management"
-            element={<Careerobject />}
-          />
-          <Route
-            path="industry-management"
-            element={<IndustryManagement />}
-          />
+    <Route path="*" element={<Navigate to="/" replace />} />
 
-          <Route path="/team-member" element={< Teammember />} />
-
-        </Route>
-          
-
-        {/* Any Wrong URL Redirect To Login */}
-        <Route
-          path="*"
-          element={<Navigate to="/" />}
-        />
-
-      </Routes>
-    </BrowserRouter>
+  </Routes>
+</BrowserRouter>
   );
 }
 
