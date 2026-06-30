@@ -82,7 +82,6 @@ function App() {
           />
 
           <Route path="/team-member" element={< Teammember />} />
-
         </Route>
           
 

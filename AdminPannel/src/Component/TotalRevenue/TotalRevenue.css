@@ -1,114 +1,475 @@
+/* =====================================================
+   TotalRevenue
+===================================================== */
+
 .TotalRevenue {
   width: 100%;
-  height: 65vh;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-/* CARDS */
-
-.TotalRevenue_RevenueCard,
-.TotalRevenue_ActivityCard {
-  background: #181c24;
-  border: 1px solid #2b3140;
-  border-radius: 16px;
   padding: 24px;
-  overflow: hidden;
+  background: hsl(220, 86%, 3%);
+  
 }
 
-.TotalRevenue_RevenueCard h2,
-.TotalRevenue_ActivityCard h2 {
+.TotalRevenue-wrapper {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* =====================================================
+   LEFT CARD
+===================================================== */
+
+.TotalRevenue-left {
+    border: 2px white solid;
+    background: transparent;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+ 
+
+.TotalRevenue-header {
+  padding: 22px 28px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.TotalRevenue-header h2 {
   margin: 0;
-  color: #ffffff;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
+  color: hsl(217, 24%, 93%);
 }
 
-/* LEFT */
+/* =====================================================
+   SUMMARY
+===================================================== */
 
-.TotalRevenue_LineChart {
-  width: 100%;
-  height: calc(100% - 60px);
-  margin-top: 15px;
+.TotalRevenue-summary {
+  padding: 28px;
+
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 22px;
 }
 
-/* RIGHT */
+/* =====================================================
+   OVERALL CARD
+===================================================== */
 
-.TotalRevenue_DonutWrapper {
-  width: 100%;
-  height: calc(100% - 60px);
-  position: relative;
-}
+.TotalRevenue-overall {
+  background: #fff;
 
-.TotalRevenue_CenterText {
-  position: absolute;
-  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  text-align: center;
 }
 
-.TotalRevenue_CenterText h3 {
+.TotalRevenue-mainIcon {
+  font-size: 38px;
+  color: #ff5d61;
+  margin-bottom: 10px;
+}
+
+.TotalRevenue-overall h1 {
   margin: 0;
-  font-size: 54px;
-  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff4d57;
+}
+
+.TotalRevenue-overall p {
+  margin-top: 10px;
+  font-size: 10px;
+  color: #64748b;
+}
+
+/* =====================================================
+   INFO CARD
+===================================================== */
+
+.TotalRevenue-infoCard {
+  background: #f7f8fb;
+  border-radius: 16px;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transition: .3s;
+}
+
+.TotalRevenue-infoCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,.08);
+}
+
+.TotalRevenue-infoIcon {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+  background: rgba(59,130,246,.12);
+
+  color: #2563eb;
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 16px;
+}
+
+.TotalRevenue-infoCard h3 {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: #475569;
   font-weight: 700;
 }
 
-.TotalRevenue_CenterText span {
-  margin-top: 10px;
-  font-size: 48px;
-  color: #9ca3af;
+.TotalRevenue-infoValue {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #22c55e;
 }
 
-/* TABLET */
+.TotalRevenue-infoValue span {
+  font-size: 18px;
+  font-weight: 100;
+}
+
+.TotalRevenue-infoValue svg {
+  font-size: 20px;
+}
+
+.TotalRevenue-infoValue small {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   CHART
+===================================================== */
+
+.TotalRevenue-chart {
+  padding: 20px 30px 35px;
+  position: relative;
+}
+
+.TotalRevenue-grid {
+  position: absolute;
+  inset: 20px 30px 60px 70px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.TotalRevenue-gridLine {
+  position: relative;
+  border-top: 1px solid #e5e7eb;
+}
+
+.TotalRevenue-gridLine span {
+  position: absolute;
+  left: -42px;
+  top: -12px;
+
+  font-size: 14px;
+  color: hsl(210, 8%, 95%);
+}
+
+.TotalRevenue-bars {
+  height: 420px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+
+  position: relative;
+  z-index: 2;
+}
+
+.TotalRevenue-barItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TotalRevenue-barValue {
+  margin-bottom: 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: hsl(220, 18%, 93%);
+}
+
+.TotalRevenue-bar {
+  width: 20px;
+  background: #ff6469;
+  border-radius: 10px 10px 0 0;
+
+  transition: .35s;
+}
+
+.TotalRevenue-bar:hover {
+  background: #ff4b55;
+  transform: scaleY(1.05);
+}
+
+.TotalRevenue-barItem p {
+  margin-top: 16px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  color: hsl(240, 33%, 99%);
+  text-align: center;
+}
+/* =====================================================
+   RIGHT PANEL
+===================================================== */
+
+.TotalRevenue-right {
+   border: 2px white solid;
+  background: transparent;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+  color: #e2e8f0;
+  
+}
+
+    
+.TotalRevenue-projectHeader {
+  padding: 22px 24px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.TotalRevenue-projectHeader h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: hsl(218, 67%, 98%);
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.TotalRevenue-table {
+  width: 100%;
+}
+
+.TotalRevenue-tableHead,
+.TotalRevenue-tableRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.TotalRevenue-tableHead {
+  padding: 20px 24px;
+  border-bottom: 1px solid #edf0f5;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.TotalRevenue-tableRow {
+  padding: 20px 24px;
+  border-bottom: 1px solid #edf0f5;
+  transition: 0.3s ease;
+}
+
+.TotalRevenue-tableRow:last-child {
+  border-bottom: none;
+}
+
+.TotalRevenue-tableRow:hover {
+  background: #f8fafc;
+}
+
+.TotalRevenue-tableRow span {
+  font-size: 16px;
+  color: hsl(225, 14%, 95%);
+}
+
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+.TotalRevenue-progressArea {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.TotalRevenue-progressArea strong {
+  font-size: 15px;
+  color: hsl(240, 11%, 98%);
+}
+
+.TotalRevenue-progress {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.TotalRevenue-progressFill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 30px;
+  transition: width 0.5s ease;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media (max-width: 1200px) {
-  .TotalRevenue {
+  .TotalRevenue-wrapper {
     grid-template-columns: 1fr;
-    height: auto;
   }
 
-  .TotalRevenue_RevenueCard {
-    height: 500px;
+  .TotalRevenue-summary {
+    grid-template-columns: 1fr;
   }
 
-  .TotalRevenue_ActivityCard {
-    height: 500px;
+  .TotalRevenue-overall {
+    margin-bottom: 10px;
   }
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 768px) {
-  .TotalRevenue_RevenueCard,
-  .TotalRevenue_ActivityCard {
+  .TotalRevenue {
     padding: 16px;
   }
 
-  .TotalRevenue_RevenueCard h2,
-  .TotalRevenue_ActivityCard h2 {
+  .TotalRevenue-header,
+  .TotalRevenue-projectHeader {
+    padding: 18px;
+  }
+
+  .TotalRevenue-header h2,
+  .TotalRevenue-projectHeader h2 {
     font-size: 22px;
   }
 
-  .TotalRevenue_CenterText h3 {
-    font-size: 34px;
+  .TotalRevenue-summary {
+    padding: 18px;
+    gap: 18px;
   }
 
-  .TotalRevenue_CenterText span {
-    font-size: 28px;
+  .TotalRevenue-overall h1 {
+    font-size: 42px;
+  }
+
+  .TotalRevenue-overall p {
+    font-size: 16px;
+  }
+
+  .TotalRevenue-infoCard {
+    padding: 18px;
+  }
+
+  .TotalRevenue-infoValue span {
+    font-size: 22px;
+  }
+
+  .TotalRevenue-chart {
+    padding: 15px;
+    overflow-x: auto;
+  }
+
+  .TotalRevenue-bars {
+    min-width: 620px;
+    height: 340px;
+  }
+
+  .TotalRevenue-bar {
+    width: 48px;
+  }
+
+  .TotalRevenue-barValue {
+    font-size: 16px;
+  }
+
+  .TotalRevenue-barItem p {
+    font-size: 14px;
+  }
+
+  .TotalRevenue-grid {
+    min-width: 620px;
+    left: 55px;
+    right: 15px;
+  }
+
+  .TotalRevenue-table {
+    overflow-x: auto;
+  }
+
+  .TotalRevenue-tableHead,
+  .TotalRevenue-tableRow {
+    min-width: 600px;
+    padding: 18px;
   }
 }
 
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
 @media (max-width: 480px) {
-  .TotalRevenue_RevenueCard {
-    height: 400px;
+  .TotalRevenue {
+    padding: 12px;
   }
 
-  .TotalRevenue_ActivityCard {
-    height: 380px;
+  .TotalRevenue-header h2,
+  .TotalRevenue-projectHeader h2 {
+    font-size: 20px;
+  }
+
+  .TotalRevenue-overall h1 {
+    font-size: 36px;
+  }
+
+  .TotalRevenue-mainIcon {
+    font-size: 30px;
+  }
+
+  .TotalRevenue-infoCard h3 {
+    font-size: 16px;
+  }
+
+  .TotalRevenue-infoValue span {
+    font-size: 20px;
+  }
+
+  .TotalRevenue-tableHead {
+    font-size: 15px;
+  }
+
+  .TotalRevenue-tableRow span {
+    font-size: 14px;
+  }
+
+  .TotalRevenue-progressArea strong {
+    font-size: 14px;
   }
 }
