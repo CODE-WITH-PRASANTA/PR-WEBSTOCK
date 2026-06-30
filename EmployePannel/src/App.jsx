@@ -15,13 +15,10 @@ import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
 import AttendanceAtten from "./Pages/AttendanceAtten/AttendanceAtten";
 import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
-<<<<<<< HEAD
 import MyDocuments from "./Components/MyDocuments/MyDocuments";
-=======
 import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
 import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
->>>>>>> 28725278f3eb60a62ab8aadcc0298f439599facb
 
 const App = () => (
   <BrowserRouter>
@@ -37,17 +34,14 @@ const App = () => (
         <Route path="my-tasks" element={<TaskList />} />
         <Route path="reimbursements" element={<SalaryDetails />} />
         <Route path="company-policies" element={<CompanyPolicies />} />
-<<<<<<< HEAD
         <Route path="team-attendance" element={<AttendanceAtten />} />
         <Route path="team-leaves" element={<TeamLeaves />} />
         <Route path="my-documents" element={<MyDocuments />} />
-=======
         <Route path="team-attendance" element={<CompanyPolicies />} />
         <Route path="team-leaves" element={<TeamLeaves />} />
         <Route path="profile-settings" element={<ProfileSettings />} />
         <Route path="password-security" element={<PasswordSecurity />} />
         <Route path="Team-Performance" element={<TeamPerformance />} />
->>>>>>> 28725278f3eb60a62ab8aadcc0298f439599facb
       </Route>
 
       {/* 404 */}

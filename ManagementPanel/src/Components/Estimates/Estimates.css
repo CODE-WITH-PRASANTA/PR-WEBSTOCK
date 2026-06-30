@@ -1,0 +1,571 @@
+/* ==========================================================================
+   1. Base Setup Layout Elements 
+   ========================================================================== */
+.est-dashboard-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  padding: 16px;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .est-dashboard-container { padding: 24px; }
+}
+
+.est-top-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 576px) {
+  .est-top-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.est-header-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.est-header-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.est-breadcrumb-home {
+  width: 15px;
+  height: 15px;
+  color: #4b5563;
+}
+
+.est-breadcrumb-divider { font-weight: 500; }
+
+.est-main-card {
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  overflow: visible;
+}
+
+/* ==========================================================================
+   2. Action Layout Control Structure Bars
+   ========================================================================== */
+.est-toolbar-action-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 14px 18px;
+  background-color: #fcfdfe;
+  border-bottom: 1px solid #edf2f7;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .est-toolbar-action-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.est-toolbar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.est-toolbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .est-toolbar-controls {
+    width: auto;
+    justify-content: flex-end;
+  }
+}
+
+.est-search-box-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+}
+
+.est-search-box-input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  color: #1f2937;
+  box-sizing: border-box;
+}
+
+.est-search-box-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+}
+
+.est-action-icon-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 4px;
+  height: 36px;
+  width: 36px;
+  box-sizing: border-box;
+  color: #5c6a85;
+  transition: all 0.15s ease;
+}
+
+.est-action-icon-btn:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.est-btn-add-trigger {
+  background-color: #5c68ff;
+  border-color: #5c68ff;
+  color: #ffffff;
+}
+
+.est-btn-add-trigger:hover {
+  background-color: #4a55ea;
+  border-color: #4a55ea;
+}
+
+/* ==========================================================================
+   3. Custom Column Dropdown Element Panel
+   ========================================================================== */
+.est-popover-container {
+  position: relative;
+  display: inline-block;
+}
+
+.est-column-picker-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: #f8fafc;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  z-index: 150;
+  width: 220px;
+  padding: 12px 0 6px 0;
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
+}
+
+.est-picker-header {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  padding: 0 16px 10px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.est-picker-scroll-view {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-top: 4px;
+}
+
+.est-picker-scroll-view::-webkit-scrollbar { width: 6px; }
+.est-picker-scroll-view::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+
+.est-picker-row-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.est-picker-row-item:hover { background-color: #f1f5f9; }
+
+.est-picker-checkbox-node {
+  width: 16px;
+  height: 16px;
+  accent-color: #4f46e5;
+  cursor: pointer;
+  margin: 0;
+}
+
+.est-picker-label-text {
+  font-size: 13.5px;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   4. Table View Components Settings
+   ========================================================================== */
+.est-grid-scroll-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.est-ui-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.est-ui-data-table th {
+  background-color: #f8fafc;
+  color: #334155;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.est-ui-data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.est-row-selected-highlight { background-color: #f8fafc; }
+
+.est-cell-bold-text {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.est-icon-cell-align {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.est-cell-media-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.est-phone-color { color: #16a34a; }
+.est-mail-color { color: #ea580c; }
+.est-calendar-color { color: #64748b; }
+
+.est-truncate-text-node {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Status Pill System Designs */
+.est-status-tag {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.est-status-tag-accepted { background-color: #e6f4ea; color: #137333; }
+.est-status-tag-declined { background-color: #fce8e6; color: #c5221f; }
+.est-status-tag-sent { background-color: #f3e8ff; color: #6b21a8; }
+.est-status-tag-expired { background-color: #fef3c7; color: #d97706; }
+
+/* Actions Column Row Setup Elements */
+.est-actions-btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.est-action-row-trigger-edit, 
+.est-action-row-trigger-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.est-action-row-trigger-edit { color: #4f46e5; }
+.est-action-row-trigger-delete { color: #ef4444; }
+
+.est-action-row-trigger-edit:hover, 
+.est-action-row-trigger-delete:hover {
+  transform: scale(1.15);
+}
+
+.est-table-fallback-empty {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 0 !important;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   5. Footer Control Elements & Pagination Settings
+   ========================================================================== */
+.est-footer-paginator-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .est-footer-paginator-wrapper {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 32px;
+  }
+}
+
+.est-paginator-items-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.est-paginator-dropdown-label { font-size: 13px; color: #64748b; }
+
+.est-paginator-dropdown-select {
+  padding: 4px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  outline: none;
+  font-size: 13px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.est-paginator-control-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.est-paginator-counter-text { font-size: 13px; color: #475569; }
+
+.est-paginator-arrow-buttons { display: flex; gap: 8px; }
+
+.est-paginator-arrow-node {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  padding: 6px 10px;
+  color: #475569;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.est-paginator-arrow-node:hover:not(:disabled) { background-color: #f8fafc; }
+.est-paginator-arrow-node:disabled { color: #cbd5e1; cursor: not-allowed; }
+
+/* ==========================================================================
+   6. Popup Form Modal Component Styles
+   ========================================================================== */
+.est-modal-backdrop-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.est-modal-viewport-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: estSlideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+@keyframes estSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.est-modal-top-header {
+  background-color: #5c68ff;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.est-modal-top-title { margin: 0; font-size: 16px; font-weight: 600; }
+
+.est-modal-top-close-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 0.85;
+}
+.est-modal-top-close-btn:hover { opacity: 1; }
+
+.est-modal-form-body {
+  padding: 24px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.est-modal-grid-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px 24px;
+}
+
+@media (min-width: 640px) {
+  .est-modal-grid-fields { grid-template-columns: 1fr 1fr; }
+}
+
+/* Floating Label Field Wrapper Design */
+.est-form-field-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.est-form-field-input, 
+.est-form-field-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  color: #1e293b;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease;
+}
+
+.est-form-field-input:focus, 
+.est-form-field-textarea:focus {
+  border-color: #5c68ff;
+}
+
+/* Floating label functionality */
+.est-form-field-label {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  padding: 0 4px;
+  background-color: #ffffff;
+  color: #64748b;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.est-form-field-input:focus ~ .est-form-field-label,
+.est-form-field-input:not(:placeholder-shown) ~ .est-form-field-label,
+.est-form-field-textarea:focus ~ .est-form-field-label,
+.est-form-field-textarea:not(:placeholder-shown) ~ .est-form-field-label,
+.est-date-input-fix ~ .est-form-field-label,
+.est-select-input-fix ~ .est-form-field-label {
+  top: -8px;
+  left: 8px;
+  font-size: 12px;
+  color: #5c68ff;
+  font-weight: 500;
+}
+
+.est-form-field-inner-icon {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.est-field-full-width { grid-column: 1 / -1; margin-top: 4px; }
+
+/* Footer Modal Action Row Buttons */
+.est-modal-bottom-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.est-modal-btn-cancel {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.est-modal-btn-cancel:hover { background-color: #e2e8f0; }
+
+.est-modal-btn-save {
+  background-color: #5c68ff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.est-modal-btn-save:hover { background-color: #4a55ea; }
