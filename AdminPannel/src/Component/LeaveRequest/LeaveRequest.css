@@ -1,0 +1,410 @@
+/*==================================================
+                LEAVE REQUEST
+==================================================*/
+
+.LeaveRequest {
+  width: 100%;
+}
+
+.LeaveRequest__card {
+  background:transparent;
+  border: 1px solid #ececec;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+  transition: 0.3s;
+}
+
+
+
+/*==================================================
+                    HEADER
+==================================================*/
+
+.LeaveRequest__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 24px;
+  border-bottom: 1px solid #ececec;
+}
+
+.LeaveRequest__header h2 {
+  margin: 0;
+  font-size: 31px;
+  font-weight: 700;
+  color: hsl(224, 48%, 95%);
+}
+
+.LeaveRequest__viewBtn {
+  border: none;
+  background: transparent;
+  color: #1f5ec9;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.LeaveRequest__viewBtn:hover {
+  color: #0b49c8;
+}
+
+/*==================================================
+                TABLE WRAPPER
+==================================================*/
+
+.LeaveRequest__tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.LeaveRequest__tableWrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.LeaveRequest__tableWrapper::-webkit-scrollbar-thumb {
+  background: #d8d8d8;
+  border-radius: 20px;
+}
+
+/*==================================================
+                    TABLE
+==================================================*/
+
+.LeaveRequest__table {
+  width: 100%;
+  min-width: 1200px;
+  border-collapse: collapse;
+}
+
+.LeaveRequest__table thead tr {
+  background: #fff;
+}
+
+.LeaveRequest__table th {
+  padding: 22px 18px;
+  text-align: left;
+  
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid #ececec;
+  white-space: nowrap;
+}
+
+.LeaveRequest__table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #ececec;
+  font-size: 17px;
+  color: #f1f4f8;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.LeaveRequest__table tbody tr {
+  transition: .25s;
+}
+
+
+
+/*==================================================
+                EMPLOYEE COLUMN
+==================================================*/
+
+.LeaveRequest__employee {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.LeaveRequest__employee img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #edf2ff;
+}
+
+.LeaveRequest__employee span {
+  font-size: 17px;
+  color: hsl(222, 38%, 95%);
+  font-weight: 500;
+}
+
+/*==================================================
+                DATE COLUMN
+==================================================*/
+
+.LeaveRequest__date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: hsl(216, 42%, 95%);
+  font-size: 17px;
+}
+
+.LeaveRequest__date svg {
+  color: #8b5e3c;
+  font-size: 21px;
+  flex-shrink: 0;
+}
+
+/*==================================================
+              DETAILS BUTTON
+==================================================*/
+
+.LeaveRequest__detailsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #1f5ec9;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.LeaveRequest__detailsBtn svg {
+  font-size: 18px;
+}
+
+.LeaveRequest__detailsBtn:hover {
+  color: #0b49c8;
+}
+
+/*==================================================
+            MOBILE CONTAINER
+==================================================*/
+
+.LeaveRequest__mobile {
+  display: none;
+}
+/*==================================================
+                STATUS BADGES
+==================================================*/
+
+.LeaveRequest__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 86px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.LeaveRequest__status--approve {
+  background: #dff1e7;
+  color: #118a55;
+}
+
+.LeaveRequest__status--reject {
+  background: #ffe8d8;
+  color: #ff6b00;
+}
+
+.LeaveRequest__status--pending {
+  background: #dfeaff;
+  color: #1d63ed;
+}
+
+/*==================================================
+                MOBILE CARD
+==================================================*/
+
+.LeaveRequest__mobileCard {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 18px;
+  margin: 18px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+  transition: 0.3s;
+}
+
+.LeaveRequest__mobileCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.LeaveRequest__mobileTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.LeaveRequest__mobileTop img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #edf2ff;
+}
+
+.LeaveRequest__mobileTop h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.LeaveRequest__mobileTop span {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.LeaveRequest__mobileTop .LeaveRequest__status {
+  margin-left: auto;
+}
+
+.LeaveRequest__mobileBody {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.LeaveRequest__mobileBody div {
+  display: flex;
+  flex-direction: column;
+}
+
+.LeaveRequest__mobileBody strong {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.LeaveRequest__mobileBody span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.LeaveRequest__mobileBody svg {
+  color: #8b5e3c;
+  font-size: 18px;
+}
+
+.LeaveRequest__mobileBtn {
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f5f8ff;
+  border: 1px solid #dbe7ff;
+}
+
+.LeaveRequest__mobileBtn:hover {
+  background: #edf3ff;
+}
+
+/*==================================================
+                TABLET
+==================================================*/
+
+@media (max-width: 1024px) {
+
+  .LeaveRequest__header {
+    padding: 18px 20px;
+  }
+
+  .LeaveRequest__header h2 {
+    font-size: 24px;
+  }
+
+  .LeaveRequest__table th,
+  .LeaveRequest__table td {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+}
+
+/*==================================================
+                MOBILE
+==================================================*/
+
+@media (max-width: 768px) {
+
+  .LeaveRequest__tableWrapper {
+    display: none;
+  }
+
+  .LeaveRequest__mobile {
+    display: block;
+  }
+
+  .LeaveRequest__header {
+    padding: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .LeaveRequest__header h2 {
+    font-size: 22px;
+  }
+
+  .LeaveRequest__viewBtn {
+    font-size: 16px;
+  }
+}
+
+/*==================================================
+              SMALL MOBILE
+==================================================*/
+
+@media (max-width: 480px) {
+
+  .LeaveRequest__mobileCard {
+    margin: 14px;
+    padding: 16px;
+  }
+
+  .LeaveRequest__mobileTop {
+    flex-wrap: wrap;
+  }
+
+  .LeaveRequest__mobileTop .LeaveRequest__status {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .LeaveRequest__mobileBody {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .LeaveRequest__mobileTop img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .LeaveRequest__mobileTop h3 {
+    font-size: 17px;
+  }
+
+  .LeaveRequest__mobileBody strong {
+    font-size: 13px;
+  }
+
+  .LeaveRequest__mobileBody span {
+    font-size: 14px;
+  }
+
+  .LeaveRequest__mobileBtn {
+    font-size: 15px;
+    padding: 11px;
+  }
+}

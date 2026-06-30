@@ -1,57 +1,43 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import MainLayout from "./Layout/MainLayout/MainLayout";
 
 // Pages
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import TeamMembers from "../TeamMembers/TeamMembers";
+
+// Components
+import TaskHeader from "./Components/TaskHeader/TaskHeader";
+import TaskList from "./Components/TaskList/TaskList";
+import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
+import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
+import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
+import TeamMembers from "./Components/TeamMembers/TeamMembers";
+import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
 import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      {/* Redirect */}
+      <Route path="/" element={<Navigate to="/employee/dashboard" replace />} />
 
-        {/* Redirect */}
-        <Route
-          path="/"
-          element={<Navigate to="/employee/dashboard" replace />}
-        />
+      {/* Employee */}
+      <Route path="/employee" element={<MainLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="team-members" element={<TeamMembers />} />
+        <Route path="my-tasks" element={<TaskList />} />
+        <Route path="reimbursements" element={<SalaryDetails />} />
+        <Route path="company-policies" element={<CompanyPolicies />} />
+        <Route path="team-leaves" element={<TeamLeaves />} />
+        <Route path="Team-Performance" element={<TeamPerformance />} />
+      </Route>
 
-        {/* Employee Layout */}
-        <Route path="/employee" element={<MainLayout />}>
-
-          <Route
-            path="dashboard"
-            element={<Dashboard />}
-          />
-
-          {/* Add more routes here */}
-          {/* <Route path="calendar" element={<Calendar />} /> */}
-          {/* <Route path="today-attendance" element={<TodayAttendance />} /> */}
-
-        </Route>
-
-        <Route
-          path="*"
-          element={<h1>404 Page Not Found</h1>}
-        />
-       <Route
-          path="/employe/Team-member"
-          element={<TeamMembers />} />
-
-        <Route path="/employee/Team-Performance"
-            element={<TeamPerformance/>} /> 
-      </Routes>
-      
-    </BrowserRouter>
-  );
-};
+      {/* 404 */}
+      <Route path="*" element={<h1>404 Page Not Found</h1>} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;

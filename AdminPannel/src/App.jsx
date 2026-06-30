@@ -80,12 +80,6 @@ function App() {
           path="*"
           element={<Navigate to="/" replace />}
         />
-<<<<<<< HEAD
-        
-          
-
-=======
->>>>>>> 80b0b530ed0d37344c57635ca0ec9327ce60fedb
       </Routes>
     </BrowserRouter>
  
