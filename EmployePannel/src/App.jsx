@@ -14,6 +14,7 @@ import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
 import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
+import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
 
 const App = () => (
   <BrowserRouter>
@@ -31,6 +32,7 @@ const App = () => (
         <Route path="company-policies" element={<CompanyPolicies />} />
         <Route path="team-attendance" element={<CompanyPolicies />} />
         <Route path="team-leaves" element={<TeamLeaves />} />
+        <Route path="Team-Performance" element={<TeamPerformance />} />
       </Route>
 
       {/* 404 */}
