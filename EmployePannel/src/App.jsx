@@ -11,10 +11,9 @@ import MainLayout from "./Layout/MainLayout/MainLayout";
 // Pages
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
-import TaskHeader from "./Components/TaskHeader/TaskHeader";
+// Components
 import TaskList from "./Components/TaskList/TaskList";
 import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
-import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
 
@@ -22,8 +21,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-
-        {/* Redirect */}
+        {/* Redirect to Dashboard */}
         <Route
           path="/"
           element={<Navigate to="/employee/dashboard" replace />}
@@ -31,32 +29,55 @@ const App = () => {
 
         {/* Employee Layout */}
         <Route path="/employee" element={<MainLayout />}>
-
+          {/* Dashboard */}
           <Route
             path="dashboard"
             element={<Dashboard />}
           />
 
+          {/* Task List */}
+          <Route
+            path="tasklist"
+            element={<TaskList />}
+          />
 
+          {/* Salary */}
+          <Route
+            path="salary"
+            element={<SalaryDetails />}
+          />
+
+          {/* Company Policies */}
+          <Route
+            path="policies"
+            element={<CompanyPolicies />}
+          />
+
+          {/* Team Members */}
+          <Route
+            path="team-member"
+            element={<TeamMembers />}
+          />
         </Route>
 
+        {/* 404 Page */}
         <Route
           path="*"
-          element={<h1>404 Page Not Found</h1>}
+          element={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+                fontSize: "32px",
+                fontWeight: "bold",
+              }}
+            >
+              404 - Page Not Found
+            </div>
+          }
         />
-          <Route
-          path="/employe/Team-member"
-          element={<TeamMembers />} />
-        
-        <Route
-        path="/employe/tasklist"
-        element={<TaskList/>}/>
-        <Route
-        path="employe/salary"
-        element={<SalaryDetails/>}/>
-        <Route
-        path="/employe/policies"
-        element={<CompanyPolicies/>}/>
       </Routes>
     </BrowserRouter>
   );
