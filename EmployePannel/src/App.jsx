@@ -11,6 +11,10 @@ import MainLayout from "./Layout/MainLayout/MainLayout";
 // Pages
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import TeamMembers from "../TeamMembers/TeamMembers";
+import AttendanceAtten from "./Pages/AttendanceAtten/AttendanceAtten";
+
+
+
 
 const App = () => {
   return (
@@ -30,6 +34,7 @@ const App = () => {
             path="dashboard"
             element={<Dashboard />}
           />
+          
 
           {/* Add more routes here */}
           {/* <Route path="calendar" element={<Calendar />} /> */}
@@ -44,9 +49,17 @@ const App = () => {
 <Route
           path="/employe/Team-member"
           element={<TeamMembers />} />
+<Route
+          path="/employe/Team-Attendance"
+          element={<AttendanceAtten />} />
+          
+
+       
         
 
       </Routes>
+      
+          
     </BrowserRouter>
   );
 };
