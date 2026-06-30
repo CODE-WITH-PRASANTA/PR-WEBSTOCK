@@ -188,7 +188,7 @@
 }
 
 .menuLeft svg {
-    font-size: 23px; /* Scaled up from 20px */
+    font-size: 19px; /* Scaled up from 20px */
     color: #64748b;
     transition: var(--transition-speed);
 }
@@ -197,7 +197,7 @@
     color: var(--brand-color);
 }
 .menuLeft span {
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 400;
     font-family: "Poppins", "Montserrat", sans-serif;
     color: #1e293b;

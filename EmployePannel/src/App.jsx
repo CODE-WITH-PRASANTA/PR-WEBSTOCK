@@ -16,6 +16,7 @@ import TeamMembers from "./Components/TeamMembers/TeamMembers";
 import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
 import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
+import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
 
 const App = () => (
   <BrowserRouter>
@@ -31,9 +32,11 @@ const App = () => (
         <Route path="my-tasks" element={<TaskList />} />
         <Route path="reimbursements" element={<SalaryDetails />} />
         <Route path="company-policies" element={<CompanyPolicies />} />
+        <Route path="team-attendance" element={<CompanyPolicies />} />
         <Route path="team-leaves" element={<TeamLeaves />} />
         <Route path="profile-settings" element={<ProfileSettings />} />
         <Route path="password-security" element={<PasswordSecurity />} />
+        <Route path="Team-Performance" element={<TeamPerformance />} />
       </Route>
 
       {/* 404 */}
