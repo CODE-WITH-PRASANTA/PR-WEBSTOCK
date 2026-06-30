@@ -35,15 +35,19 @@ const Sidebar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Logout Function
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    sessionStorage.clear();
+ const handleLogout = () => {
+  // Remove authentication
+  localStorage.removeItem("adminAuth");
 
-    alert("Logout Successfully!");
+  // Clear any other storage
+  sessionStorage.clear();
 
-    navigate("/");
-  };
+  // Go to login page
+  navigate("/", { replace: true });
 
+  // Force React to reload and re-check ProtectedRoute
+  window.location.reload();
+};
   return (
     <>
       <button
@@ -82,22 +86,22 @@ const Sidebar = () => {
 
           {showLogoMenu && (
             <div className="logoPopupCard">
-              <NavLink to="/profile">
+              <NavLink to="/admin/profile">
                 <FaUser />
                 Profile Center
               </NavLink>
 
-              <NavLink to="/authentication">
+              <NavLink to="/admin/authentication">
                 <FaShieldAlt />
                 Authentication & Security
               </NavLink>
 
-              <NavLink to="/network">
+              <NavLink to="/admin/network">
                 <FaNetworkWired />
                 Editorial Network
               </NavLink>
 
-              <NavLink to="/user-management">
+              <NavLink to="/admin/user-management">
                 <FaUserShield />
                 User Management
               </NavLink>
@@ -128,7 +132,7 @@ const Sidebar = () => {
 
         <div className="sidebarMenu">
           <NavLink
-            to="/dashboard"
+            to="/admin/dashboard"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -140,7 +144,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/blog-post"
+            to="/admin/blog-post"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -152,7 +156,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/blog-management"
+            to="/admin/blog-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -164,7 +168,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/lead-management"
+            to="/admin/lead-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -176,7 +180,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/career-management"
+            to="/admin/career-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -188,7 +192,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/project-management"
+            to="/admin/project-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -200,7 +204,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/testimonial-management"
+            to="/admin/testimonial-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -212,7 +216,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/gallery-management"
+            to="/admin/gallery-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -224,7 +228,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/team-member"
+            to="/admin/team-member"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -236,7 +240,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/calendar-management"
+            to="/admin/calendar-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -248,7 +252,7 @@ const Sidebar = () => {
           </NavLink>
 
             <NavLink
-            to="/industry-management"
+            to="/admin/industry-management"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaUser,
   FaLock,
@@ -15,36 +15,49 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] =
-    useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const [isLoggedIn, setIsLoggedIn] =
-    useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
-  const [messageType, setMessageType] =
-    useState("");
+  const [messageType, setMessageType] = useState("");
+
+  // If already logged in, redirect to dashboard
+  useEffect(() => {
+  if (localStorage.getItem("adminAuth") === "true") {
+    navigate("/admin/dashboard", {
+      replace: true,
+    });
+  }
+}, []);
 
   const handleLogin = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (
-      username === "prwebstock" &&
-      password === "12345"
-    ) {
-      setMessage("");
-      setMessageType("success");
-      setIsLoggedIn(true);
+  setMessage("");
 
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
-    } else {
-      setMessage(
-        "❌ Invalid Username or Password"
-      );
-      setMessageType("error");
-    }
-  };
+  localStorage.removeItem("adminAuth");
+
+  if (
+    username.trim() === "prwebstock" &&
+    password === "12345"
+  ) {
+    localStorage.setItem("adminAuth", "true");
+
+    setIsLoggedIn(true);
+
+    setMessage("Login Successful");
+    setMessageType("success");
+
+    setTimeout(() => {
+      navigate("/admin/dashboard", {
+        replace: true,
+      });
+    }, 700);
+  } else {
+    setMessage("❌ Invalid Username or Password");
+    setMessageType("error");
+  }
+};
 
   return (
     <div className="login-page">
@@ -60,9 +73,7 @@ const Login = () => {
 
             <div className="company-info">
               <h3>PR WEBSTOCK</h3>
-              <span>
-                BEST SOFTWARE SOLUTION
-              </span>
+              <span>BEST SOFTWARE SOLUTION</span>
             </div>
           </div>
 
@@ -78,11 +89,9 @@ const Login = () => {
             <div className="line"></div>
 
             <p>
-              Welcome to the PR WEBSTOCK
-              Admin Dashboard. Manage
-              projects, clients, content
-              and business operations
-              securely.
+              Welcome to the PR WEBSTOCK Admin Dashboard.
+              Manage projects, clients, content and business
+              operations securely.
             </p>
 
             <div className="secure-card">
@@ -90,10 +99,7 @@ const Login = () => {
 
               <div>
                 <h4>Secure Login</h4>
-                <span>
-                  Your security is our
-                  priority.
-                </span>
+                <span>Your security is our priority.</span>
               </div>
             </div>
           </div>
@@ -109,23 +115,15 @@ const Login = () => {
         <div className="login-right">
           {isLoggedIn ? (
             <div className="login-success-screen">
-              <div className="success-icon">
-                ✓
-              </div>
+              <div className="success-icon">✓</div>
 
-              <h2>
-                Login Successfully
-              </h2>
+              <h2>Login Successfully</h2>
 
               <p>
-                Welcome to PR WEBSTOCK
-                Admin Dashboard
+                Welcome to PR WEBSTOCK Admin Dashboard
               </p>
 
-              <span>
-                Redirecting to
-                Dashboard...
-              </span>
+              <span>Redirecting to Dashboard...</span>
             </div>
           ) : (
             <>
@@ -136,8 +134,7 @@ const Login = () => {
               <h2>Welcome Back</h2>
 
               <p className="subtitle">
-                Sign in to continue to
-                your dashboard
+                Sign in to continue to your dashboard
               </p>
 
               {message && (
@@ -161,10 +158,9 @@ const Login = () => {
                     placeholder="Enter Username"
                     value={username}
                     onChange={(e) =>
-                      setUsername(
-                        e.target.value
-                      )
+                      setUsername(e.target.value)
                     }
+                    required
                   />
                 </div>
 
@@ -174,25 +170,20 @@ const Login = () => {
 
                   <input
                     type={
-                      showPassword
-                        ? "text"
-                        : "password"
+                      showPassword ? "text" : "password"
                     }
                     placeholder="Enter Password"
                     value={password}
                     onChange={(e) =>
-                      setPassword(
-                        e.target.value
-                      )
+                      setPassword(e.target.value)
                     }
+                    required
                   />
 
                   <span
                     className="eye"
                     onClick={() =>
-                      setShowPassword(
-                        !showPassword
-                      )
+                      setShowPassword(!showPassword)
                     }
                   >
                     {showPassword ? (
@@ -206,15 +197,11 @@ const Login = () => {
                 {/* Options */}
                 <div className="options-row">
                   <label>
-                    <input
-                      type="checkbox"
-                    />
+                    <input type="checkbox" />
                     Remember me
                   </label>
 
-                  <a href="/">
-                    Forgot Password?
-                  </a>
+                  <a href="/">Forgot Password?</a>
                 </div>
 
                 {/* Button */}
@@ -231,8 +218,8 @@ const Login = () => {
               </div>
 
               <p className="copyright">
-                © 2024 PR WEBSTOCK.
-                All rights reserved.
+                © 2024 PR WEBSTOCK. All rights
+                reserved.
               </p>
             </>
           )}

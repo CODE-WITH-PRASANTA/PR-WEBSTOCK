@@ -1,0 +1,623 @@
+/* ==========================================================
+   TOPBAR
+========================================================== */
+
+.Topbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:280px;
+
+    width:calc(100% - 280px);
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:#fff;
+
+    z-index:999;
+
+    transition:.3s;
+}
+
+/* ==========================================================
+   LEFT
+========================================================== */
+
+.Topbar-left{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+/* ==========================================================
+   RIGHT
+========================================================== */
+
+.Topbar-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+/* ==========================================================
+   ICON BUTTON
+========================================================== */
+
+.Topbar-iconButton,
+.Topbar-toggle{
+  width:42px;
+  height:42px;
+  border:none;
+  outline:none;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  border-radius:10px;
+  transition:.25s;
+  position:relative;
+}
+
+.Topbar-toggle svg,
+.Topbar-iconButton svg{
+  font-size:24px;
+  color:#444;
+}
+
+.Topbar-toggle:hover,
+.Topbar-iconButton:hover{
+  background:#f3f5f8;
+}
+
+/* ==========================================================
+   FLAG
+========================================================== */
+
+.Topbar-flag{
+  width:30px;
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* ==========================================================
+   BADGE
+========================================================== */
+
+.Topbar-badge{
+  position:absolute;
+  top:-4px;
+  right:-2px;
+  width:22px;
+  height:22px;
+  background:#ff5630;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:700;
+  border:2px solid #fff;
+}
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.Topbar-profileWrapper{
+  position:relative;
+}
+
+.Topbar-profileButton{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  padding:4px;
+}
+
+.Topbar-userName{
+  font-size:16px;
+  font-weight:600;
+  color:#222;
+  white-space:nowrap;
+}
+
+.Topbar-profileButton img{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #fff;
+  box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+
+/* ==========================================================
+   NOTIFICATION WRAPPER
+========================================================== */
+
+.Topbar-notificationWrapper{
+  position:relative;
+}
+
+/* ==========================================================
+   PROFILE DROPDOWN
+========================================================== */
+
+.Topbar-profileDropdown{
+  position:absolute;
+  top:60px;
+  right:0;
+  width:250px;
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  border:1px solid #ececec;
+  animation:TopbarPopup .25s ease;
+  z-index:999;
+}
+
+.Topbar-profileDropdown a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:18px 20px;
+  text-decoration:none;
+  color:#333;
+  font-size:17px;
+  transition:.25s;
+}
+
+.Topbar-profileDropdown a svg{
+  font-size:22px;
+}
+
+.Topbar-profileDropdown a:hover{
+  background:#f6f8fb;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+.Topbar{
+padding:0 18px;
+}
+
+.Topbar-right{
+gap:12px;
+}
+
+.Topbar-userName{
+display:none;
+}
+
+}
+
+@media(max-width:768px){
+
+.Topbar{
+height:70px;
+padding:0 14px;
+}
+
+.Topbar-iconButton,
+.Topbar-toggle{
+width:40px;
+height:40px;
+}
+
+.Topbar-profileButton img{
+width:38px;
+height:38px;
+}
+
+.Topbar-flag{
+font-size:22px;
+}
+
+}
+
+@media(max-width:480px){
+
+.Topbar{
+padding:0 10px;
+}
+
+.Topbar-right{
+gap:8px;
+}
+
+.Topbar-profileDropdown{
+width:220px;
+right:-10px;
+}
+
+}
+
+/* ==========================================================
+   POPUP ANIMATION
+========================================================== */
+
+@keyframes TopbarPopup{
+
+0%{
+opacity:0;
+transform:translateY(15px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+/* ==========================================================
+   NOTIFICATION DROPDOWN
+========================================================== */
+
+.Topbar-notificationDropdown{
+
+    position:absolute;
+
+    top:56px;
+
+    right:0;
+
+    width:260px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    border:1px solid #e8edf3;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+    animation:TopbarPopup .25s ease;
+
+    z-index:999;
+}
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.Topbar-notificationHeader{
+
+    padding:14px 16px;
+
+    background:#4f46e5;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+.mark-button{
+    background-color: blue;
+    color: #f3f3f3;
+    font-weight: 400;
+}
+
+.Topbar-notificationHeader h3{
+
+    font-size:17px;
+
+    font-weight:600;
+}
+
+.Topbar-notificationHeader button{
+
+    font-size:11px;
+
+    font-weight:500;
+}
+/* ==========================================================
+   BODY
+========================================================== */
+
+.Topbar-notificationBody{
+
+    max-height:300px;
+
+    overflow-y:auto;
+}
+.Topbar-notificationItem{
+
+    display:flex;
+
+    gap:10px;
+
+    padding:12px 14px;
+
+    transition:.25s;
+}
+
+.Topbar-notificationItem:hover{
+
+    background:#f8f9fc;
+}
+.Topbar-notificationBody::-webkit-scrollbar {
+  width: 6px;
+}
+
+.Topbar-notificationBody::-webkit-scrollbar-thumb {
+  background: #7c7ff5;
+  border-radius: 20px;
+}
+
+.Topbar-notificationBody::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+/* ==========================================================
+   ITEM
+========================================================== */
+
+.Topbar-notificationItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px 22px;
+  border-bottom: 1px solid #ececec;
+  transition: .25s;
+}
+
+.Topbar-notificationItem:hover {
+  background: #f7f9fc;
+}
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.Topbar-notificationIcon{
+
+    width:40px;
+    min-width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:#f5f7fb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.Topbar-notificationIcon img{
+
+    width:40px;
+    height:40px;
+}
+
+.Topbar-notificationIcon svg{
+
+    font-size:20px;
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.Topbar-notificationContent {
+  flex: 1;
+}
+
+.Topbar-notificationContent h4{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    line-height:1.4;
+}
+/* ==========================================================
+   TIME
+========================================================== */
+
+.Topbar-notificationTime{
+
+    margin-top:4px;
+
+    gap:5px;
+
+    font-size:11px;
+}
+
+.Topbar-notificationTime svg{
+
+    font-size:11px;
+}
+
+/* ==========================================================
+   ACTION BUTTON
+========================================================== */
+
+.Topbar-notificationContent button{
+
+    margin-top:8px;
+
+    padding:5px 12px;
+
+    font-size:11px;
+
+    border-radius:20px;
+}
+
+.Topbar-notificationContent button:hover {
+  background: #2b6ed2;
+  color: #fff;
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.Topbar-notificationFooter{
+
+    padding:12px;
+}
+
+.Topbar-notificationFooter a{
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+
+.Topbar-notificationFooter a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+/* ==============================
+   TABLET
+============================== */
+
+@media (max-width: 992px) {
+
+  .Topbar{
+    height:70px;
+    padding:0 16px;
+  }
+
+  .Topbar-left{
+    flex:1;
+  }
+
+  .Topbar-right{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:14px;
+  }
+
+  .Topbar-userName{
+    display:none;
+  }
+
+  .Topbar-profileButton{
+    padding:0;
+  }
+
+}
+
+@media(max-width:992px){
+
+.Topbar{
+
+left:0 !important;
+
+width:100% !important;
+
+}
+
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width:768px){
+
+.Topbar{
+
+    height:64px;
+
+    padding:0 12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.Topbar-left{
+    flex:1;
+}
+
+.Topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:10px;
+}
+
+.Topbar-toggle,
+.Topbar-iconButton{
+
+    width:38px;
+    height:38px;
+}
+
+.Topbar-toggle svg,
+.Topbar-iconButton svg{
+    font-size:20px;
+}
+
+.Topbar-profileButton{
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0;
+}
+
+.Topbar-profileButton img{
+
+    width:36px;
+    height:36px;
+}
+
+.Topbar-userName{
+    display:none;
+}
+
+.Topbar-flag{
+    font-size:18px;
+}
+
+.Topbar-badge{
+
+    width:18px;
+    height:18px;
+
+    font-size:10px;
+
+    top:-3px;
+    right:-2px;
+}
+
+}

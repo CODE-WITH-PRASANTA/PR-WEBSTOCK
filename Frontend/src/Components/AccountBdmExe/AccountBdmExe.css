@@ -1,130 +1,191 @@
+/* Container setup to force components stacked 1 under another */
 .AccountBdmExe {
   width: 100%;
-  padding: 30px 15px;
+  padding: 40px 20px;
   background: #f5f7fb;
   display: flex;
   justify-content: center;
 }
 
+.AccountBdmExe-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between each stacked job card */
+}
+
+/* Individual Card Styling */
 .AccountBdmExe-card {
   width: 100%;
-  max-width: 1400px;
-  min-height: 60vh;
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-  transition: all 0.35s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .AccountBdmExe-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
 }
 
 /* Header */
-
 .AccountBdmExe-header {
-  background: linear-gradient(
-    135deg,
-    #dfe9ff,
-    #eef4ff
-  );
+  background: linear-gradient(135deg, #dfe9ff, #eef4ff);
   padding: 24px 32px;
 }
 
 .AccountBdmExe-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: #1e40af;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.AccountBdmExe-expandableWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+.AccountBdmExe-skillsWrapper {
+  padding: 14px 18px;
+}
+
+.AccountBdmExe-skillsWrapper .AccountBdmExe-value {
+  padding: 0;
 }
 
 .AccountBdmExe-subtitle {
   font-size: 14px;
   color: #4b5563;
   line-height: 1.6;
+  word-break: break-word;
 }
 
-/* Table */
+.AccountBdmExe-readMoreBtn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 4px;
+  text-decoration: underline;
+}
 
-.AccountBdmExe-tableWrapper {
+.AccountBdmExe-readMoreBtn:hover {
+  color: #1d4ed8;
+}
+
+.AccountBdmExe-readMoreBtn.skills-btn {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+/* Flexible Info Grid */
+.AccountBdmExe-infoGrid {
   padding: 24px 32px;
-  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background-color: #dbe2ea; 
 }
 
-.AccountBdmExe-table {
-  width: 100%;
-  border-collapse: collapse;
+.AccountBdmExe-infoRow {
+  display: flex;
+  background-color: #ffffff;
+  gap: 1px;
 }
 
-.AccountBdmExe-table th,
-.AccountBdmExe-table td {
-  border: 1px solid #dbe2ea;
-  padding: 14px 18px;
+.AccountBdmExe-infoItem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  min-width: 0; 
 }
 
-.AccountBdmExe-table th {
+.AccountBdmExe-label {
   background: #f1f5f9;
   color: #1e3a8a;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  text-align: center;
-  width: 17%;
+  padding: 14px 18px;
+  width: 140px;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-right: 1px solid #dbe2ea;
+  align-self: stroke;
+  height: 100%;
 }
 
-.AccountBdmExe-table td {
+.AccountBdmExe-label svg {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.AccountBdmExe-value {
   color: #4b5563;
   font-size: 14px;
-  background: #ffffff;
+  padding: 14px 18px;
+  white-space: normal;
 }
 
-.AccountBdmExe-table th svg {
-  margin-right: 6px;
-  vertical-align: middle;
+/* Fallback handling for continuous long strings */
+.break-word {
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 /* Highlights */
-
 .AccountBdmExe-highlights {
-  padding: 0 32px 10px;
+  padding: 10px 32px;
 }
 
 .AccountBdmExe-highlights h3 {
   color: #1e40af;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 700;
   margin-bottom: 6px;
 }
 
 .AccountBdmExe-highlights p {
   color: #4b5563;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-/* Buttons */
-
+/* Actions Section */
 .AccountBdmExe-actions {
   display: flex;
   justify-content: flex-end;
   gap: 14px;
-  padding: 10px 32px 25px;
-  flex-wrap: wrap;
+  padding: 20px 32px 24px;
 }
 
 .AccountBdmExe-whatsappBtn,
 .AccountBdmExe-applyBtn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 50px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .AccountBdmExe-whatsappBtn {
@@ -134,126 +195,127 @@
 
 .AccountBdmExe-whatsappBtn:hover {
   background: #16a34a;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .AccountBdmExe-applyBtn {
-  border: none;
   background: #ef4444;
   color: #ffffff;
-  box-shadow: 0 0 0 2px #1f2937 inset;
 }
 
 .AccountBdmExe-applyBtn:hover {
   background: #dc2626;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
-/* Laptop */
+/* --- Responsive Adaptations --- */
 
-@media (max-width: 1200px) {
-  .AccountBdmExe-title {
-    font-size: 20px;
-  }
-
-  .AccountBdmExe-subtitle {
-    font-size: 13px;
-  }
-}
-
-/* Tablet */
-
+/* Tablet viewports */
 @media (max-width: 992px) {
-  .AccountBdmExe-card {
-    min-height: auto;
+  .AccountBdmExe-infoRow {
+    flex-direction: column;
+    background-color: transparent;
+  }
+  
+  .AccountBdmExe-infoGrid {
+    background-color: transparent;
+    gap: 12px;
+    padding: 20px 24px;
+  }
+
+  .AccountBdmExe-infoItem {
+    border: 1px solid #dbe2ea;
+    border-radius: 8px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .AccountBdmExe-label {
+    width: 120px;
+    min-width: 120px;
+    height: auto;
+  }
+  
+  .AccountBdmExe-skillsWrapper {
+    padding: 0;
+  }
+
+  .AccountBdmExe-skillsWrapper .AccountBdmExe-value {
+    padding: 14px 18px;
+  }
+
+  .AccountBdmExe-skillsWrapper .AccountBdmExe-readMoreBtn {
+    margin-left: 18px;
+    margin-bottom: 12px;
+  }
+
+  .AccountBdmExe-header,
+  .AccountBdmExe-highlights,
+  .AccountBdmExe-actions {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .AccountBdmExe {
+    padding: 20px 12px;
+  }
+
+  .AccountBdmExe-header {
+    padding: 20px 16px;
   }
 
   .AccountBdmExe-title {
     font-size: 18px;
   }
 
-  .AccountBdmExe-subtitle {
-    font-size: 13px;
+  .AccountBdmExe-infoGrid {
+    padding: 12px 16px;
+    gap: 8px;
   }
 
-  .AccountBdmExe-table th,
-  .AccountBdmExe-table td {
-    font-size: 13px;
-    padding: 12px;
+  .AccountBdmExe-infoItem {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .AccountBdmExe-highlights h3 {
-    font-size: 16px;
+  .AccountBdmExe-label {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #dbe2ea;
+    padding: 10px 12px;
   }
 
-  .AccountBdmExe-highlights p {
-    font-size: 13px;
+  .AccountBdmExe-value {
+    padding: 10px 12px;
+    width: 100%;
   }
-}
 
-/* Mobile */
+  .AccountBdmExe-skillsWrapper .AccountBdmExe-value {
+    padding: 10px 12px;
+  }
 
-@media (max-width: 768px) {
-  .AccountBdmExe-header,
-  .AccountBdmExe-tableWrapper,
+  .AccountBdmExe-skillsWrapper .AccountBdmExe-readMoreBtn {
+    margin-left: 12px;
+    margin-bottom: 10px;
+  }
+
   .AccountBdmExe-highlights,
   .AccountBdmExe-actions {
     padding-left: 16px;
     padding-right: 16px;
   }
 
-  .AccountBdmExe-title {
-    font-size: 17px;
-  }
-
-  .AccountBdmExe-subtitle {
-    font-size: 12px;
-  }
-
   .AccountBdmExe-actions {
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .AccountBdmExe-whatsappBtn,
   .AccountBdmExe-applyBtn {
     width: 100%;
-    justify-content: center;
-    font-size: 14px;
-  }
-}
-
-/* Small Mobile */
-
-@media (max-width: 480px) {
-  .AccountBdmExe {
-    padding: 15px 10px;
-  }
-
-  .AccountBdmExe-title {
-    font-size: 15px;
-  }
-
-  .AccountBdmExe-subtitle {
-    font-size: 11px;
-  }
-
-  .AccountBdmExe-table th,
-  .AccountBdmExe-table td {
-    padding: 10px;
-    font-size: 12px;
-  }
-
-  .AccountBdmExe-highlights h3 {
-    font-size: 15px;
-  }
-
-  .AccountBdmExe-highlights p {
-    font-size: 12px;
-  }
-
-  .AccountBdmExe-whatsappBtn,
-  .AccountBdmExe-applyBtn {
-    padding: 12px 18px;
-    font-size: 13px;
+    padding: 14px;
   }
 }

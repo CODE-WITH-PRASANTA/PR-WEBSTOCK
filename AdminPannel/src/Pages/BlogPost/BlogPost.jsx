@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../api/axios";
 import "./BlogPost.css";
 import { Editor } from "@tinymce/tinymce-react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import {
   FaTrash,
@@ -12,7 +13,11 @@ import {
 } from "react-icons/fa";
 
 const BlogPost = () => {
-  const [tagInput, setTagInput] = useState("");
+ const { id } = useParams();
+const navigate = useNavigate();
+const [blogs, setBlogs] = useState([]);
+const [tagInput, setTagInput] = useState("");
+
 
   const [formData, setFormData] = useState({
     adminName: "",
@@ -27,12 +32,11 @@ const BlogPost = () => {
     tags: [],
   });
 
-  const [blogs, setBlogs] = useState([]);
-const [editId, setEditId] = useState(null);
+
 
 const fetchBlogs = async () => {
   try {
-    const res = await API.get("/blogs");
+ const res = await API.get("/blogs");
 
     const blogData = Array.isArray(res.data)
       ? res.data
@@ -43,10 +47,41 @@ const fetchBlogs = async () => {
     console.log(error);
   }
 };
+const fetchSingleBlog = async () => {
+  try {
+    const res = await API.get(`/blogs/${id}`);
+
+    const blog = res.data.data;
+
+    setFormData({
+      adminName: blog.adminName || "",
+      designation: blog.designation || "",
+      title: blog.title || "",
+      category: blog.category || "",
+      quote: blog.quote || "",
+      publishDate: blog.publishDate
+        ? blog.publishDate.split("T")[0]
+        : "",
+      description: blog.description || "",
+      image: null,
+      media: null,
+      tags: Array.isArray(blog.tags)
+  ? blog.tags
+  : JSON.parse(blog.tags || "[]"),
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 useEffect(() => {
   fetchBlogs();
-}, []);
+
+  if (id) {
+    fetchSingleBlog();
+  }
+}, [id]);
 
 const uploadImage = async (file) => {
   try {
@@ -134,17 +169,16 @@ const uploadImage = async (file) => {
       tags: JSON.stringify(formData.tags),
     };
 
-    if (editId) {
-      await API.put(
-        `/blogs/${editId}`,
-        payload
-      );
-    } else {
-      await API.post(
-        "/blogs",
-        payload
-      );
-    }
+  if (id) {
+await API.put(`/blogs/${id}`, payload);
+
+   navigate("/blog-management");
+
+} else {
+
+   await API.post("/blogs", payload);
+
+}
 
     fetchBlogs();
 
@@ -160,17 +194,14 @@ const uploadImage = async (file) => {
       media: null,
       tags: [],
     });
-
-    setEditId(null);
   } catch (error) {
     console.log(error);
   }
 };
   const deleteBlog = async (id) => {
   try {
-    await API.delete(
-      `/blogs/${id}`
-    );
+   await API.delete(`/blogs/${id}`);
+   
 
     fetchBlogs();
   } catch (error) {
@@ -178,36 +209,16 @@ const uploadImage = async (file) => {
   }
 };
 
-const editBlog = (blog) => {
-  setFormData({
-    adminName: blog.adminName,
-    designation: blog.designation,
-    title: blog.title,
-    category: blog.category,
-    quote: blog.quote,
-    publishDate:
-      blog.publishDate?.split("T")[0] || "",
-    description:
-      blog.description,
-    image: null,
-    media: null,
-    tags: blog.tags || [],
-  });
 
-  setEditId(blog._id);
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
 
   return (
     <div className="BlogPost">
       {/* FORM */}
       <div className="BlogPost_FormSection">
         <div className="BlogPost_FormHeader">
-          <h2>Create Blog Post</h2>
+         <h2>
+{id ? "Update Blog" : "Create Blog Post"}
+</h2>
         </div>
 
         <form
@@ -399,12 +410,12 @@ const editBlog = (blog) => {
             </div>
           </div>
 
-          <button
-            className="BlogPost_SubmitBtn"
-            type="submit"
-          >
-            Publish Blog
-          </button>
+        <button
+className="BlogPost_SubmitBtn"
+type="submit"
+>
+{id ? "Update Blog" : "Publish Blog"}
+</button>
         </form>
       </div>
 
@@ -452,18 +463,20 @@ const editBlog = (blog) => {
                   <td>{blog.adminName}</td>
                   <td>{blog.publishDate}</td>
                   <td>
-                    {blog.tags.join(", ")}
+                    {Array.isArray(blog.tags)
+  ? blog.tags.join(", ")
+  : JSON.parse(blog.tags || "[]").join(", ")}
                   </td>
 
                   <td>
                     <div className="BlogPost_ActionBtns">
-                     <button
-  onClick={() =>
-    editBlog(blog)
-  }
->
-  <FaEdit />
-</button>
+                <button
+                      onClick={() =>
+                      navigate(`/blog-post/${blog._id}`)
+                      }
+                      >
+                      <FaEdit />
+                      </button>
 
                       <button
                         onClick={() =>
