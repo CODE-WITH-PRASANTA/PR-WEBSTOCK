@@ -13,6 +13,7 @@ import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
 import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
+import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
 
 const App = () => (
   <BrowserRouter>
@@ -29,6 +30,7 @@ const App = () => (
         <Route path="reimbursements" element={<SalaryDetails />} />
         <Route path="company-policies" element={<CompanyPolicies />} />
         <Route path="team-attendance" element={<CompanyPolicies />} />
+        <Route path="team-leaves" element={<TeamLeaves />} />
       </Route>
 
       {/* 404 */}
