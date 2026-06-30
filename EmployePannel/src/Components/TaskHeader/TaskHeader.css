@@ -1,0 +1,211 @@
+/*=====================================
+        TASK HEADER
+======================================*/
+
+.TaskHeader {
+  width: 100%;
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 22px 28px;
+
+  background: #eef4fb;
+
+  border-radius: 16px;
+
+  border: 1px solid #e6edf7;
+
+  margin-bottom: 24px;
+
+  box-sizing: border-box;
+}
+
+/*=====================================
+            LEFT
+======================================*/
+
+.TaskHeader__left{
+  display:flex;
+  align-items:center;
+}
+
+.TaskHeader__title{
+  margin:0;
+
+  font-size:30px;
+
+  font-weight:600;
+
+  color:#1f2d3d;
+}
+
+/*=====================================
+            RIGHT
+======================================*/
+
+.TaskHeader__right{
+  display:flex;
+  align-items:center;
+}
+
+.TaskHeader__breadcrumb{
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  font-size:20px;
+
+  color:#374151;
+
+}
+
+.TaskHeader__icon{
+
+  font-size:24px;
+
+  color:#374151;
+}
+
+.TaskHeader__arrow{
+
+  font-size:18px;
+
+  color:#6b7280;
+}
+
+.TaskHeader__link{
+
+  color:#374151;
+
+  font-weight:500;
+}
+
+.TaskHeader__active{
+
+  color:#1f2d3d;
+
+  font-weight:600;
+}
+
+/*=====================================
+            HOVER
+======================================*/
+
+.TaskHeader__link:hover{
+
+  color:#2563eb;
+
+  cursor:pointer;
+
+}
+
+/*=====================================
+            TABLET
+======================================*/
+
+@media (max-width:992px){
+
+.TaskHeader{
+
+padding:18px 22px;
+
+}
+
+.TaskHeader__title{
+
+font-size:34px;
+
+}
+
+.TaskHeader__breadcrumb{
+
+font-size:17px;
+
+}
+
+.TaskHeader__icon{
+
+font-size:20px;
+
+}
+
+}
+
+/*=====================================
+            MOBILE
+======================================*/
+
+@media (max-width:768px){
+
+.TaskHeader{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:14px;
+
+padding:18px;
+
+}
+
+.TaskHeader__title{
+
+font-size:30px;
+
+}
+
+.TaskHeader__breadcrumb{
+
+font-size:15px;
+
+gap:8px;
+
+flex-wrap:wrap;
+
+}
+
+.TaskHeader__icon{
+
+font-size:18px;
+
+}
+
+.TaskHeader__arrow{
+
+font-size:15px;
+
+}
+
+}
+
+/*=====================================
+          SMALL MOBILE
+======================================*/
+
+@media (max-width:480px){
+
+.TaskHeader{
+
+padding:16px;
+
+}
+
+.TaskHeader__title{
+
+font-size:26px;
+
+}
+
+.TaskHeader__breadcrumb{
+
+font-size:14px;
+
+}
+
+}
