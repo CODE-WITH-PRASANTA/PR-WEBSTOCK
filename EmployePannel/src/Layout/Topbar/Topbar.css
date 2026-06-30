@@ -1,623 +1,490 @@
 /* ==========================================================
-   TOPBAR
+   GLOBAL CORE VARIABLES & RESET LINKS
 ========================================================== */
-
-.Topbar{
-
-    position:fixed;
-
-    top:0;
-
-    left:280px;
-
-    width:calc(100% - 280px);
-
-    height:70px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    background:#fff;
-
-    z-index:999;
-
-    transition:.3s;
+:root {
+  --topbar-bg: rgba(255, 255, 255, 0.85);
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --brand-primary: #4f46e5;
+  --brand-secondary: #eef2ff;
+  --border-light: #e9edf5;
+  --shadow-premium: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --shadow-dropdown: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================================================
-   LEFT
+   MAIN TOPBAR BASE
 ========================================================== */
+.Topbar {
+  position: fixed;
+  top: 0;
+  left: 290px; /* Aligned smoothly with standard layout expanded sidebar */
+  width: calc(100% - 290px);
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 999;
+  transition: all 0.3s var(--transition-smooth);
+}
 
-.Topbar-left{
-  display:flex;
-  align-items:center;
-  gap:20px;
+/* Structural adjustment hook state when sidebar component is collapsed */
+.Topbar.sidebar-collapsed {
+  left: 80px;
+  width: calc(100% - 80px);
 }
 
 /* ==========================================================
-   RIGHT
+   LEFT & RIGHT STRUCTURAL CONTAINERS
 ========================================================== */
+.Topbar-left {
+  display: flex;
+  align-items: center;
+}
 
-.Topbar-right{
-  display:flex;
-  align-items:center;
-  gap:18px;
+.Topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 /* ==========================================================
-   ICON BUTTON
+   PREMIUM CONTROL BUTTONS
 ========================================================== */
-
 .Topbar-iconButton,
-.Topbar-toggle{
-  width:42px;
-  height:42px;
-  border:none;
-  outline:none;
-  background:transparent;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  border-radius:10px;
-  transition:.25s;
-  position:relative;
+.Topbar-toggle {
+  width: 44px;
+  height: 44px;
+  border: 1px solid transparent;
+  outline: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s var(--transition-smooth);
+  position: relative;
 }
 
 .Topbar-toggle svg,
-.Topbar-iconButton svg{
-  font-size:24px;
-  color:#444;
+.Topbar-iconButton svg {
+  font-size: 26px;
+  color: #4b5563;
+  transition: color 0.2s;
 }
 
 .Topbar-toggle:hover,
-.Topbar-iconButton:hover{
-  background:#f3f5f8;
+.Topbar-iconButton:hover,
+.Topbar-iconButton.active-btn {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.Topbar-toggle:hover svg,
+.Topbar-iconButton:hover svg,
+.Topbar-iconButton.active-btn svg {
+  color: var(--brand-primary);
 }
 
 /* ==========================================================
-   FLAG
+   BADGE INDICATOR
 ========================================================== */
-
-.Topbar-flag{
-  width:30px;
-  height:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  cursor:pointer;
+.Topbar-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
 }
 
 /* ==========================================================
-   BADGE
+   USER PROFILE ELEMENT
 ========================================================== */
+.Topbar-profileWrapper {
+  position: relative;
+}
 
-.Topbar-badge{
-  position:absolute;
-  top:-4px;
-  right:-2px;
-  width:22px;
-  height:22px;
-  background:#ff5630;
-  color:#fff;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:700;
-  border:2px solid #fff;
+.Topbar-profileButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 14px;
+  transition: all 0.2s var(--transition-smooth);
+}
+
+.Topbar-profileButton:hover,
+.Topbar-profileButton.active-profile {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.Topbar-profileButton img {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: var(--shadow-premium);
+}
+
+.Topbar-userMeta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.Topbar-userName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.Topbar-userRole {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.Topbar-chevron {
+  font-size: 16px;
+  color: #94a3b8;
+  transition: transform 0.2s ease;
+}
+
+.Topbar-profileButton:hover .Topbar-chevron,
+.Topbar-profileButton.active-profile .Topbar-chevron {
+  color: var(--brand-primary);
 }
 
 /* ==========================================================
-   PROFILE
+   PREMIUM DROPDOWNS (COMMON POPUP STYLING)
 ========================================================== */
-
-.Topbar-profileWrapper{
-  position:relative;
+.Topbar-profileDropdown,
+.Topbar-notificationDropdown {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-dropdown);
+  animation: TopbarPopup 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
 }
 
-.Topbar-profileButton{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  border:none;
-  background:transparent;
-  cursor:pointer;
-  padding:4px;
+/* PROFILE DROPDOWN SPECIFIC */
+.Topbar-profileDropdown {
+  width: 260px;
+  padding: 8px;
 }
 
-.Topbar-userName{
-  font-size:16px;
-  font-weight:600;
-  color:#222;
-  white-space:nowrap;
+.Dropdown-userHeader {
+  padding: 12px 14px 8px 14px;
 }
 
-.Topbar-profileButton img{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid #fff;
-  box-shadow:0 3px 8px rgba(0,0,0,.15);
+.Dropdown-userHeader h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.Dropdown-userHeader p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.Dropdown-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 6px 0;
+}
+
+.Topbar-profileDropdown a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14.5px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.Topbar-profileDropdown a svg {
+  font-size: 18px;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.Topbar-profileDropdown a:hover {
+  background: var(--brand-secondary);
+  color: var(--brand-primary);
+}
+
+.Topbar-profileDropdown a:hover svg {
+  color: var(--brand-primary);
+}
+
+.Topbar-profileDropdown a.logout-link:hover {
+  background: #fef2f2;
+  color: #ef4444;
+}
+.Topbar-profileDropdown a.logout-link:hover svg {
+  color: #ef4444;
 }
 
 /* ==========================================================
-   NOTIFICATION WRAPPER
-========================================================== */
-
-.Topbar-notificationWrapper{
-  position:relative;
+   NOTIFICATION DROPDOWN SPECIFIC
+========================================================= */
+.Topbar-notificationDropdown {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-/* ==========================================================
-   PROFILE DROPDOWN
-========================================================== */
-
-.Topbar-profileDropdown{
-  position:absolute;
-  top:60px;
-  right:0;
-  width:250px;
-  background:#fff;
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,.15);
-  border:1px solid #ececec;
-  animation:TopbarPopup .25s ease;
-  z-index:999;
+.Topbar-notificationHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.Topbar-profileDropdown a{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:18px 20px;
-  text-decoration:none;
-  color:#333;
-  font-size:17px;
-  transition:.25s;
+.Topbar-notificationHeader h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
 }
 
-.Topbar-profileDropdown a svg{
-  font-size:22px;
+.mark-button {
+  background: none;
+  border: none;
+  color: var(--brand-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
-.Topbar-profileDropdown a:hover{
-  background:#f6f8fb;
+.mark-button:hover {
+  background: var(--brand-secondary);
 }
 
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
-
-@media(max-width:992px){
-
-.Topbar{
-padding:0 18px;
+/* DROPDOWN SCROLLBODY */
+.Topbar-notificationBody {
+  max-height: 360px;
+  overflow-y: auto;
 }
 
-.Topbar-right{
-gap:12px;
-}
-
-.Topbar-userName{
-display:none;
-}
-
-}
-
-@media(max-width:768px){
-
-.Topbar{
-height:70px;
-padding:0 14px;
-}
-
-.Topbar-iconButton,
-.Topbar-toggle{
-width:40px;
-height:40px;
-}
-
-.Topbar-profileButton img{
-width:38px;
-height:38px;
-}
-
-.Topbar-flag{
-font-size:22px;
-}
-
-}
-
-@media(max-width:480px){
-
-.Topbar{
-padding:0 10px;
-}
-
-.Topbar-right{
-gap:8px;
-}
-
-.Topbar-profileDropdown{
-width:220px;
-right:-10px;
-}
-
-}
-
-/* ==========================================================
-   POPUP ANIMATION
-========================================================== */
-
-@keyframes TopbarPopup{
-
-0%{
-opacity:0;
-transform:translateY(15px);
-}
-
-100%{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-/* ==========================================================
-   NOTIFICATION DROPDOWN
-========================================================== */
-
-.Topbar-notificationDropdown{
-
-    position:absolute;
-
-    top:56px;
-
-    right:0;
-
-    width:260px;
-
-    background:#fff;
-
-    border-radius:12px;
-
-    overflow:hidden;
-
-    border:1px solid #e8edf3;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.12);
-
-    animation:TopbarPopup .25s ease;
-
-    z-index:999;
-}
-/* ==========================================================
-   HEADER
-========================================================== */
-
-.Topbar-notificationHeader{
-
-    padding:14px 16px;
-
-    background:#4f46e5;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-}
-.mark-button{
-    background-color: blue;
-    color: #f3f3f3;
-    font-weight: 400;
-}
-
-.Topbar-notificationHeader h3{
-
-    font-size:17px;
-
-    font-weight:600;
-}
-
-.Topbar-notificationHeader button{
-
-    font-size:11px;
-
-    font-weight:500;
-}
-/* ==========================================================
-   BODY
-========================================================== */
-
-.Topbar-notificationBody{
-
-    max-height:300px;
-
-    overflow-y:auto;
-}
-.Topbar-notificationItem{
-
-    display:flex;
-
-    gap:10px;
-
-    padding:12px 14px;
-
-    transition:.25s;
-}
-
-.Topbar-notificationItem:hover{
-
-    background:#f8f9fc;
-}
 .Topbar-notificationBody::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
-
 .Topbar-notificationBody::-webkit-scrollbar-thumb {
-  background: #7c7ff5;
-  border-radius: 20px;
+  background: #cbd5e1;
+  border-radius: 10px;
 }
-
-.Topbar-notificationBody::-webkit-scrollbar-track {
-  background: #f3f3f3;
-}
-
-/* ==========================================================
-   ITEM
-========================================================== */
 
 .Topbar-notificationItem {
   display: flex;
   align-items: flex-start;
-  gap: 18px;
-  padding: 18px 22px;
-  border-bottom: 1px solid #ececec;
-  transition: .25s;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s ease;
 }
 
 .Topbar-notificationItem:hover {
-  background: #f7f9fc;
+  background: #f8fafc;
 }
 
-/* ==========================================================
-   ICON
-========================================================== */
-
-.Topbar-notificationIcon{
-
-    width:40px;
-    min-width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    background:#f5f7fb;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+.Topbar-notificationIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.Topbar-notificationIcon img{
-
-    width:40px;
-    height:40px;
+.Topbar-notificationIcon img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.Topbar-notificationIcon svg{
-
-    font-size:20px;
+.svg-icon-container {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-/* ==========================================================
-   CONTENT
-========================================================== */
 
 .Topbar-notificationContent {
   flex: 1;
 }
 
-.Topbar-notificationContent h4{
-
-    font-size:13px;
-
-    font-weight:600;
-
-    line-height:1.4;
-}
-/* ==========================================================
-   TIME
-========================================================== */
-
-.Topbar-notificationTime{
-
-    margin-top:4px;
-
-    gap:5px;
-
-    font-size:11px;
+.Topbar-notificationContent h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+  line-height: 1.4;
 }
 
-.Topbar-notificationTime svg{
-
-    font-size:11px;
+.Topbar-notificationTime {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
-/* ==========================================================
-   ACTION BUTTON
-========================================================== */
-
-.Topbar-notificationContent button{
-
-    margin-top:8px;
-
-    padding:5px 12px;
-
-    font-size:11px;
-
-    border-radius:20px;
+.Topbar-notificationTime svg {
+  font-size: 12px;
 }
 
-.Topbar-notificationContent button:hover {
-  background: #2b6ed2;
+/* ACTIONS */
+.Topbar-actionBtn {
+  margin-top: 8px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.Topbar-actionBtn:hover {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
   color: #fff;
 }
 
-/* ==========================================================
-   FOOTER
-========================================================== */
-
-.Topbar-notificationFooter{
-
-    padding:12px;
+/* FOOTER SETUP */
+.Topbar-notificationFooter {
+  padding: 14px;
+  background: #f8fafc;
+  text-align: center;
+  border-top: 1px solid var(--border-light);
 }
 
-.Topbar-notificationFooter a{
-
-    font-size:13px;
-
-    font-weight:600;
+.Topbar-notificationFooter a {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brand-primary);
+  text-decoration: none;
 }
-
 
 .Topbar-notificationFooter a:hover {
   text-decoration: underline;
 }
 
 /* ==========================================================
-   TABLET
+   BREAKPOINTS RE-ENGINEERING (RESPONSIVE MASTER)
 ========================================================== */
-/* ==============================
-   TABLET
-============================== */
-
 @media (max-width: 992px) {
-
-  .Topbar{
-    height:70px;
-    padding:0 16px;
+  .Topbar {
+    left: 0 !important;
+    width: 100% !important;
+    padding: 0 24px;
+  }
+  
+  .Topbar-userMeta,
+  .Topbar-chevron {
+    display: none;
   }
 
-  .Topbar-left{
-    flex:1;
+  .Topbar-profileButton {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .Topbar {
+    height: 70px;
+    padding: 0 16px;
   }
 
-  .Topbar-right{
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    gap:14px;
+  .Topbar-right {
+    gap: 12px;
   }
 
-  .Topbar-userName{
-    display:none;
+  .Topbar-iconButton,
+  .Topbar-toggle {
+    width: 40px;
+    height: 40px;
   }
 
-  .Topbar-profileButton{
-    padding:0;
+  .Topbar-profileButton img {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
   }
-
+  
+  .Topbar-notificationDropdown {
+    width: 300px;
+    right: -50px;
+  }
 }
 
-@media(max-width:992px){
-
-.Topbar{
-
-left:0 !important;
-
-width:100% !important;
-
+@media (max-width: 480px) {
+  .Topbar-notificationDropdown {
+    width: 280px;
+    right: -80px;
+  }
+  
+  .Topbar-profileDropdown {
+    width: 235px;
+  }
 }
 
-}
-
-/* ==============================
-   MOBILE
-============================== */
-
-@media (max-width:768px){
-
-.Topbar{
-
-    height:64px;
-
-    padding:0 12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.Topbar-left{
-    flex:1;
-}
-
-.Topbar-right{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-end;
-
-    gap:10px;
-}
-
-.Topbar-toggle,
-.Topbar-iconButton{
-
-    width:38px;
-    height:38px;
-}
-
-.Topbar-toggle svg,
-.Topbar-iconButton svg{
-    font-size:20px;
-}
-
-.Topbar-profileButton{
-
-    display:flex;
-
-    align-items:center;
-
-    padding:0;
-}
-
-.Topbar-profileButton img{
-
-    width:36px;
-    height:36px;
-}
-
-.Topbar-userName{
-    display:none;
-}
-
-.Topbar-flag{
-    font-size:18px;
-}
-
-.Topbar-badge{
-
-    width:18px;
-    height:18px;
-
-    font-size:10px;
-
-    top:-3px;
-    right:-2px;
-}
-
+/* ==========================================================
+   KEYFRAME ENTRANCE ACCELERATION
+========================================================== */
+@keyframes TopbarPopup {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
