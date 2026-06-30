@@ -29,25 +29,50 @@ const App = () => {
         />
 
         {/* Employee Layout */}
-        <Route path="/employee" element={<MainLayout />}>
+      
 
-          <Route
-            path="dashboard"
-            element={<Dashboard />}
-          />
+         
 
+          <Route path="/employee" element={<MainLayout />}>
 
-        </Route>
+    <Route index element={<Dashboard />} />
+
+    <Route
+        path="dashboard"
+        element={<Dashboard />}
+    />
+
+    <Route
+        path="team-members"
+        element={<TeamMembers />}
+    />
+
+    <Route
+        path="tasklist"
+        element={<TaskList />}
+    />
+
+    <Route
+        path="salary"
+        element={<SalaryDetails />}
+    />
+
+    <Route
+        path="policies"
+        element={<CompanyPolicies />}
+    />
+
+</Route>
+
+        
 
         <Route
           path="*"
           element={<h1>404 Page Not Found</h1>}
         />
-          <Route
-          path="/employe/Team-member"
-          element={<TeamMembers />} />
+         
         
-        <Route
+        {/* <Route
         path="/employe/tasklist"
         element={<TaskList/>}/>
         <Route
@@ -55,7 +80,7 @@ const App = () => {
         element={<SalaryDetails/>}/>
         <Route
         path="/employe/policies"
-        element={<CompanyPolicies/>}/>
+        element={<CompanyPolicies/>}/> */}
       </Routes>
     </BrowserRouter>
   );
