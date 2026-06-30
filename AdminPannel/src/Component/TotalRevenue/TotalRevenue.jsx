@@ -2,165 +2,241 @@ import React from "react";
 import "./TotalRevenue.css";
 
 import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts";
+  FiTrendingDown,
+  FiArrowDown,
+  FiBarChart2,
+  FiClipboard,
+} from "react-icons/fi";
 
-const revenueData = [
-  { year: "2006", purple: 100, red: 80, gray: 45 },
-  { year: "2007", purple: 130, red: 110, gray: 52 },
-  { year: "2008", purple: 110, red: 90, gray: 68 },
-  { year: "2009", purple: 140, red: 120, gray: 58 },
-  { year: "2010", purple: 125, red: 109, gray: 32 },
-  { year: "2011", purple: 190, red: 170, gray: 45 },
-  { year: "2012", purple: 140, red: 120, gray: 58 },
-  { year: "2013", purple: 100, red: 80, gray: 68 },
-  { year: "2014", purple: 130, red: 110, gray: 77 },
-  { year: "2015", purple: 110, red: 90, gray: 62 },
-  { year: "2016", purple: 140, red: 120, gray: 55 },
-  { year: "2017", purple: 125, red: 109, gray: 45 },
-  { year: "2018", purple: 190, red: 170, gray: 32 },
-  { year: "2019", purple: 140, red: 120, gray: 45 },
-  { year: "2020", purple: 140, red: 120, gray: 58 },
+const attritionData = [
+  {
+    department: "Engineering",
+    value: 8.2,
+  },
+  {
+    department: "Sales",
+    value: 12.5,
+  },
+  {
+    department: "Marketing",
+    value: 7.8,
+  },
+  {
+    department: "HR",
+    value: 5.3,
+  },
+  {
+    department: "Finance",
+    value: 6.7,
+  },
+  {
+    department: "Operations",
+    value: 9.4,
+  },
 ];
 
-const teamData = [
-  { name: "A", value: 18 },
-  { name: "B", value: 14 },
-  { name: "C", value: 28 },
-  { name: "D", value: 12 },
-  { name: "E", value: 20 },
-];
-
-const COLORS = [
-  "#6D5EF5",
-  "#5747DA",
-  "#B2ADE3",
-  "#938CD4",
-  "#7C72DA",
+const projectData = [
+  {
+    project: "Project A",
+    progress: 30,
+    duration: "2 Months",
+  },
+  {
+    project: "Project B",
+    progress: 55,
+    duration: "3 Months",
+  },
+  {
+    project: "Project C",
+    progress: 67,
+    duration: "1 Month",
+  },
+  {
+    project: "Project D",
+    progress: 70,
+    duration: "2 Months",
+  },
+  {
+    project: "Project E",
+    progress: 24,
+    duration: "3 Months",
+  },
+  {
+    project: "Project F",
+    progress: 77,
+    duration: "4 Months",
+  },
 ];
 
 const TotalRevenue = () => {
   return (
-    <div className="TotalRevenue">
-      {/* LEFT */}
+    <section className="TotalRevenue">
+      <div className="TotalRevenue-wrapper">
+        {/* ================= LEFT CARD ================= */}
 
-      <div className="TotalRevenue_RevenueCard">
-        <h2>Total Revenue</h2>
+        <div className="TotalRevenue-left">
 
-        <div className="TotalRevenue_LineChart">
-          <ResponsiveContainer
-            width="100%"
-            height="100%"
-          >
-            <LineChart data={revenueData}>
-              <XAxis
-                dataKey="year"
-                tick={{
-                  fill: "#8f98aa",
-                  fontSize: 12,
-                }}
-                axisLine={false}
-                tickLine={false}
-              />
-
-              <YAxis
-                tick={{
-                  fill: "#8f98aa",
-                  fontSize: 12,
-                }}
-                axisLine={false}
-                tickLine={false}
-              />
-
-              <Tooltip />
-
-              <Line
-                type="monotone"
-                dataKey="purple"
-                stroke="#6D5EF5"
-                strokeWidth={4}
-                dot={{
-                  fill: "#6D5EF5",
-                  strokeWidth: 2,
-                  r: 5,
-                }}
-              />
-
-              <Line
-                type="monotone"
-                dataKey="red"
-                stroke="#EF4E4E"
-                strokeWidth={4}
-                dot={{
-                  fill: "#EF4E4E",
-                  strokeWidth: 2,
-                  r: 5,
-                }}
-              />
-
-              <Line
-                type="monotone"
-                dataKey="gray"
-                stroke="#D1D5DB"
-                strokeWidth={4}
-                dot={{
-                  fill: "#D1D5DB",
-                  strokeWidth: 2,
-                  r: 5,
-                }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      {/* RIGHT */}
-
-      <div className="TotalRevenue_ActivityCard">
-        <h2>Activity By Teams</h2>
-
-        <div className="TotalRevenue_DonutWrapper">
-          <ResponsiveContainer
-            width="100%"
-            height="100%"
-          >
-            <PieChart>
-              <Pie
-                data={teamData}
-                dataKey="value"
-                innerRadius={110}
-                outerRadius={160}
-                paddingAngle={0}
-              >
-                {teamData.map((entry, index) => (
-                  <Cell
-                    key={index}
-                    fill={
-                      COLORS[
-                        index % COLORS.length
-                      ]
-                    }
-                  />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-
-          <div className="TotalRevenue_CenterText">
-            <h3>Team E</h3>
-            <span>28</span>
+          <div className="TotalRevenue-header">
+            <h2>Employee Attrition Rate</h2>
           </div>
+
+          {/* Top Cards */}
+
+          <div className="TotalRevenue-summary">
+
+            <div className="TotalRevenue-overall">
+
+              <FiTrendingDown className="TotalRevenue-mainIcon" />
+
+              <h1>8.5%</h1>
+
+              <p>Overall Attrition Rate</p>
+
+            </div>
+
+            <div className="TotalRevenue-infoCard">
+
+              <div className="TotalRevenue-infoIcon">
+                <FiBarChart2 />
+              </div>
+
+              <h3>Industry Average:</h3>
+
+              <div className="TotalRevenue-infoValue">
+                <span>10.2%</span>
+
+                <FiArrowDown />
+
+                <small>1.7%</small>
+              </div>
+
+            </div>
+
+            <div className="TotalRevenue-infoCard">
+
+              <div className="TotalRevenue-infoIcon">
+                <FiClipboard />
+              </div>
+
+              <h3>Previous Year:</h3>
+
+              <div className="TotalRevenue-infoValue">
+                <span>9.7%</span>
+
+                <FiArrowDown />
+
+                <small>1.2%</small>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Graph */}
+
+          <div className="TotalRevenue-chart">
+
+            <div className="TotalRevenue-grid">
+
+              {[15, 10, 5, 0].map((line) => (
+                <div
+                  key={line}
+                  className="TotalRevenue-gridLine"
+                >
+                  <span>{line}%</span>
+                </div>
+              ))}
+
+            </div>
+
+            <div className="TotalRevenue-bars">
+
+              {attritionData.map((item, index) => (
+
+                <div
+                  className="TotalRevenue-barItem"
+                  key={index}
+                >
+                  <span className="TotalRevenue-barValue">
+                    {item.value}%
+                  </span>
+
+                  <div
+                    className="TotalRevenue-bar"
+                    style={{
+                      height: `${item.value * 26}px`,
+                    }}
+                  ></div>
+
+                  <p>{item.department}</p>
+
+                </div>
+
+              ))}
+
+            </div>
+
+          </div>
+
         </div>
+
+        {/* ================= RIGHT CARD ================= */}
+
+        <div className="TotalRevenue-right">
+
+          <div className="TotalRevenue-projectHeader">
+            <h2>Project Status</h2>
+          </div>
+
+          <div className="TotalRevenue-table">
+
+            <div className="TotalRevenue-tableHead">
+
+              <span>Projects</span>
+
+              <span>Progress</span>
+
+              <span>Duration</span>
+
+            </div>
+
+            {projectData.map((item, index) => (
+
+              <div
+                className="TotalRevenue-tableRow"
+                key={index}
+              >
+                <span>{item.project}</span>
+
+                <div className="TotalRevenue-progressArea">
+
+                  <strong>{item.progress}%</strong>
+
+                  <div className="TotalRevenue-progress">
+
+                    <div
+                      className="TotalRevenue-progressFill"
+                      style={{
+                        width: `${item.progress}%`,
+                      }}
+                    ></div>
+
+                  </div>
+
+                </div>
+
+                <span>{item.duration}</span>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -16,6 +16,7 @@ const careerRoutes = require("./src/routes/careerRoutes");
 const blogRoutes = require("./src/routes/blogRoutes");
 const industryRoutes = require("./src/routes/industryRoutes");
 const galleryRoutes = require("./src/routes/galleryRoutes");
+const testimonialRoutes = require("./src/routes/testimonialRoutes");
 
 const app = express();
 
