@@ -10,12 +10,13 @@ import MainLayout from "./Layout/MainLayout/MainLayout";
 
 // Pages
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import TeamMembers from "./Pages/TeamMembers/TeamMembers";
+
 import TaskHeader from "./Components/TaskHeader/TaskHeader";
 import TaskList from "./Components/TaskList/TaskList";
 import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
 import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
+import TeamMembers from "./Components/TeamMembers/TeamMembers";
 
 const App = () => {
   return (
@@ -72,15 +73,7 @@ const App = () => {
         />
          
         
-        {/* <Route
-        path="/employe/tasklist"
-        element={<TaskList/>}/>
-        <Route
-        path="employe/salary"
-        element={<SalaryDetails/>}/>
-        <Route
-        path="/employe/policies"
-        element={<CompanyPolicies/>}/> */}
+        
       </Routes>
     </BrowserRouter>
   );

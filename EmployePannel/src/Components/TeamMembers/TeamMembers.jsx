@@ -11,7 +11,6 @@ import {
   FaRegStar,
   FaChevronLeft
 } from 'react-icons/fa';
-import { IoSettingsOutline } from 'react-icons/io5';
 
 const teamData = [
   {
@@ -98,7 +97,7 @@ const TeamMembers = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 3;
 
-  // Calculate index ranges for pagination
+  // Calculate slice indices for pagination
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = teamData.slice(indexOfFirstCard, indexOfLastCard);
@@ -118,17 +117,11 @@ const TeamMembers = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    // Optional smooth scroll to top of list on page change
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div className="my-team-container">
-      {/* Floating Gear Settings Icon */}
-      <div className="floating-settings">
-        <IoSettingsOutline />
-      </div>
-
       {/* Header section with Breadcrumbs */}
       <header className="team-header">
         <h1 className="header-title">My Team</h1>
@@ -147,14 +140,14 @@ const TeamMembers = () => {
           {currentCards.map((member) => (
             <div key={member.id} className="member-card">
               
-              {/* Left Column: Image wrapper */}
+              {/* Left Column: Image Container */}
               <div className="member-image-column">
                 <div className="image-container">
                   <img src={member.image} alt={member.name} className="member-photo" />
                 </div>
               </div>
 
-              {/* Middle Column: Bio Text Data */}
+              {/* Middle Column: Personal details & Text Bio */}
               <div className="member-bio-column">
                 <h2 className="member-name">{member.name}</h2>
                 <p className="member-degree">{member.degree}</p>
@@ -170,7 +163,7 @@ const TeamMembers = () => {
                 </p>
               </div>
 
-              {/* Right Column: Contact Details */}
+              {/* Right Column: Contact Details Lists */}
               <div className="member-contact-column">
                 <ul className="contact-list">
                   <li>
@@ -196,7 +189,7 @@ const TeamMembers = () => {
           ))}
         </div>
 
-        {/* Pagination Section */}
+        {/* Pagination Controls */}
         {totalPages > 1 && (
           <div className="pagination-container">
             <button 
