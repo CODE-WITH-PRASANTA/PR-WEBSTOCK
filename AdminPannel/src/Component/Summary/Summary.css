@@ -1,0 +1,755 @@
+/* ===========================================================
+   GLOBAL
+=========================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Summary {
+  width: 100%;
+  padding: 24px;
+  background: hsl(219, 94%, 6%);
+  overflow-x: hidden;
+}
+
+.Summary-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ===========================================================
+   LEFT
+=========================================================== */
+
+.Summary-left {
+  width: 100%;
+  min-width: 0;
+}
+
+.Summary-card {
+  width: 100%;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.15);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ===========================================================
+   HEADER
+=========================================================== */
+
+.Summary-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.Summary-header h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* ===========================================================
+   SUMMARY STATS
+=========================================================== */
+
+.Summary-stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 18px;
+  padding: 24px;
+}
+
+.Summary-statCard {
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+  transition: .35s;
+}
+
+.Summary-statCard:hover {
+  transform: translateY(-5px);
+}
+
+.Summary-statCard h3 {
+  font-size: 34px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.Summary-statCard p {
+  color: #64748b;
+  font-size: 15px;
+}
+
+.Summary-total {
+  background: #f5f5f5;
+}
+
+.Summary-total h3 {
+  color: #3454d1;
+}
+
+.Summary-pending {
+  background: #fff6db;
+}
+
+.Summary-pending h3 {
+  color: #ff9800;
+}
+
+.Summary-approved {
+  background: #ebf9ee;
+}
+
+.Summary-approved h3 {
+  color: #2e7d32;
+}
+
+.Summary-rejected {
+  background: #fdecec;
+}
+
+.Summary-rejected h3 {
+  color: #e53935;
+}
+
+/* ===========================================================
+   SEARCH
+=========================================================== */
+
+.Summary-search {
+  margin: 0 24px 24px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.Summary-search svg {
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+.Summary-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+}
+
+.Summary-search input::placeholder {
+  color: #94a3b8;
+}
+
+/* ===========================================================
+   TABLE
+=========================================================== */
+
+.Summary-tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.Summary-tableWrapper::-webkit-scrollbar {
+  height: 7px;
+}
+
+.Summary-tableWrapper::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 20px;
+}
+
+.Summary-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  color: white;
+}
+
+.Summary-table th {
+  text-align: left;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.Summary-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  font-size: 14px;
+}
+
+.Summary-table tbody tr {
+  transition: .3s;
+}
+
+.Summary-table tbody tr:hover {
+  background: rgba(255,255,255,.05);
+}
+/* ===========================================================
+   EMPLOYEE
+=========================================================== */
+
+.Summary-employee {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 220px;
+}
+
+.Summary-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.Summary-employee h4 {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.Summary-employee span {
+  display: block;
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+/* ===========================================================
+   DURATION
+=========================================================== */
+
+.Summary-duration {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Summary-duration strong {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.Summary-duration span {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* ===========================================================
+   STATUS
+=========================================================== */
+
+.Summary-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 95px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.Summary-status.approved {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.Summary-status.pending {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.Summary-status.rejected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+/* ===========================================================
+   ACTIONS
+=========================================================== */
+
+.Summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Summary-actions svg {
+  width: 34px;
+  height: 34px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.Summary-actions svg:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+.Summary-delete:hover {
+  background: #ef4444 !important;
+}
+
+/* ===========================================================
+   PAGINATION
+=========================================================== */
+
+.Summary-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.Summary-pageSize {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Summary-pageSize span {
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+.Summary-pageSize button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.Summary-pageSize button:hover {
+  background: rgba(255,255,255,.08);
+}
+
+.Summary-pageInfo {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.Summary-pageButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Summary-pageButtons button {
+  width: 38px;
+  height: 38px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,.08);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.Summary-pageButtons button:hover {
+  background: #2563eb;
+}
+
+/* ===========================================================
+   TABLE SCROLL (MOBILE)
+=========================================================== */
+
+.Summary-tableWrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Summary-tableWrapper::-webkit-scrollbar {
+  height: 7px;
+}
+
+.Summary-tableWrapper::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 20px;
+}
+/* ===========================================================
+   RIGHT SIDE
+=========================================================== */
+
+.Summary-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.Summary-countryCard,
+.Summary-earningCard {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.Summary-countryCard h2,
+.Summary-earningCard h2 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+/* ===========================================================
+   DONUT CHART
+=========================================================== */
+
+.Summary-donutWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.Summary-donut {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: relative;
+  background: conic-gradient(
+      #18b9d9 0deg 90deg,
+      #2F80ED 90deg 180deg,
+      #FF9800 180deg 240deg,
+      #4CAF50 240deg 320deg,
+      #6C63FF 320deg 360deg
+  );
+}
+
+.Summary-donut::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  background: hsl(219,94%,6%);
+  border-radius: 50%;
+}
+
+/* ===========================================================
+   COUNTRY LIST
+=========================================================== */
+
+.Summary-countryList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Summary-countryItem {
+  display: grid;
+  grid-template-columns: 1.5fr .5fr .5fr;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.Summary-countryItem:last-child {
+  border-bottom: none;
+}
+
+.Summary-countryName {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 15px;
+}
+
+.Summary-countryItem span {
+  color: white;
+}
+
+.Summary-countryItem small {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.Summary-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* ===========================================================
+   EARNING SOURCE
+=========================================================== */
+
+.Summary-earningCard h1 {
+  color: #ff9800;
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 30px;
+}
+
+.Summary-earningItem {
+  margin-bottom: 22px;
+}
+
+.Summary-earningTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Summary-earningTop span:first-child {
+  color: white;
+  font-size: 15px;
+}
+
+.Summary-percent {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.Summary-progress {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,.15);
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.Summary-progressFill {
+  height: 100%;
+  border-radius: 30px;
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+/* Laptop */
+
+@media (max-width:1200px){
+
+.Summary-wrapper{
+    grid-template-columns:1fr;
+}
+
+.Summary-right{
+    width:100%;
+}
+
+}
+
+/* Tablet */
+
+@media (max-width:992px){
+
+.Summary{
+    padding:20px;
+}
+
+.Summary-stats{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.Summary-header{
+    padding:20px;
+}
+
+.Summary-header h2{
+    font-size:22px;
+}
+
+.Summary-countryCard,
+.Summary-earningCard{
+    padding:20px;
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.Summary{
+    padding:15px;
+}
+
+.Summary-wrapper{
+    gap:20px;
+}
+
+.Summary-stats{
+    grid-template-columns:1fr 1fr;
+    padding:16px;
+    gap:14px;
+}
+
+.Summary-statCard{
+    padding:18px;
+}
+
+.Summary-statCard h3{
+    font-size:28px;
+}
+
+.Summary-search{
+    margin:0 16px 16px;
+}
+
+.Summary-search input{
+    font-size:14px;
+}
+
+.Summary-table{
+    min-width:700px;
+}
+
+.Summary-table th,
+.Summary-table td{
+    padding:12px 10px;
+    font-size:13px;
+}
+
+.Summary-pagination{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.Summary-pageButtons{
+    width:100%;
+    justify-content:center;
+}
+
+.Summary-countryItem{
+    grid-template-columns:1fr;
+    gap:6px;
+}
+
+.Summary-donut{
+    width:130px;
+    height:130px;
+}
+
+.Summary-donut::after{
+    inset:20px;
+}
+
+.Summary-earningCard h1{
+    font-size:34px;
+}
+
+}
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+.Summary{
+    padding:12px;
+}
+
+.Summary-header{
+    padding:16px;
+}
+
+.Summary-header h2{
+    font-size:18px;
+}
+
+.Summary-stats{
+    grid-template-columns:1fr;
+}
+
+.Summary-statCard{
+    padding:16px;
+}
+
+.Summary-statCard h3{
+    font-size:26px;
+}
+
+.Summary-search{
+    margin:0 12px 12px;
+    height:44px;
+}
+
+.Summary-table{
+    min-width:650px;
+}
+
+.Summary-avatar{
+    width:40px;
+    height:40px;
+}
+
+.Summary-employee h4{
+    font-size:14px;
+}
+
+.Summary-employee span{
+    font-size:12px;
+}
+
+.Summary-countryCard,
+.Summary-earningCard{
+    padding:18px;
+}
+
+.Summary-countryCard h2,
+.Summary-earningCard h2{
+    font-size:18px;
+}
+
+.Summary-donut{
+    width:110px;
+    height:110px;
+}
+
+.Summary-donut::after{
+    inset:18px;
+}
+
+.Summary-earningCard h1{
+    font-size:30px;
+}
+
+.Summary-pageButtons{
+    width:100%;
+}
+
+.Summary-pageButtons button{
+    flex:1;
+}
+
+}

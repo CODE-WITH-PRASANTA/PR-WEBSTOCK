@@ -2,117 +2,95 @@ import React from "react";
 import "./CostPerUnit.css";
 
 import {
-  FiShoppingBag,
+  FiBriefcase,
+  FiUsers,
+  FiGlobe,
   FiDollarSign,
-  FiEye,
+  FiTrendingUp,
 } from "react-icons/fi";
 
-import { PiBankLight } from "react-icons/pi";
+const cardData = [
+  {
+    title: "New Projects",
+    value: "102",
+    growth: "10% Since last month",
+    icon: <FiBriefcase />,
+    cardClass: "green",
+    progress: "40%",
+    progressClass: "yellowProgress",
+  },
+  {
+    title: "New Customers",
+    value: "154",
+    growth: "4% Since last month",
+    icon: <FiUsers />,
+    cardClass: "blue",
+    progress: "42%",
+    progressClass: "blueProgress",
+  },
+  {
+    title: "Inquiry",
+    value: "524",
+    growth: "23% Since last month",
+    icon: <FiGlobe />,
+    cardClass: "purple",
+    progress: "35%",
+    progressClass: "greenProgress",
+  },
+  {
+    title: "Earning",
+    value: "$2,453",
+    growth: "-6% Since last month",
+    icon: <FiDollarSign />,
+    cardClass: "orange",
+    progress: "42%",
+    progressClass: "blueProgress",
+  },
+];
 
 const CostPerUnit = () => {
-  const cards = [
-    {
-      title: "COST PER UNIT",
-      value: "$85.50",
-      icon: <FiShoppingBag />,
-      cardClass: "purple",
-    },
-    {
-      title: "MARKET REVENUE",
-      value: "$12,548.25",
-      icon: <FiDollarSign />,
-      cardClass: "blue",
-    },
-    {
-      title: "EXPENSES",
-      value: "$8,451.28",
-      icon: <FiEye />,
-      cardClass: "yellow",
-    },
-    {
-      title: "DAILY VISIT",
-      value: "1,12,584",
-      icon: <PiBankLight />,
-      cardClass: "red",
-    },
-  ];
-
   return (
-    <div className="CostPerUnit">
-      {cards.map((card, index) => (
-        <div
-          key={index}
-          className={`CostPerUnit_Card ${card.cardClass}`}
-        >
-          <div className="CostPerUnit_Top">
-            <div>
-              <h4>{card.title}</h4>
-              <h2>{card.value}</h2>
+    <section className="CostPerUnit">
+      <div className="CostPerUnit-container">
+        {cardData.map((item, index) => (
+          <div
+            key={index}
+            className={`CostPerUnit-card ${item.cardClass}`}
+          >
+            {/* Background Icon */}
+            <div className="CostPerUnit-bgIcon">
+              {item.icon}
             </div>
 
-            <div className="CostPerUnit_Icon">
-              {card.icon}
+            {/* Content */}
+            <div className="CostPerUnit-content">
+              <h4 className="CostPerUnit-title">
+                {item.title}
+              </h4>
+
+              <h2 className="CostPerUnit-value">
+                {item.value}
+              </h2>
+
+              {/* Progress Bar */}
+              <div className="CostPerUnit-progress">
+                <div
+                  className={`CostPerUnit-progressFill ${item.progressClass}`}
+                  style={{ width: item.progress }}
+                ></div>
+              </div>
+
+              {/* Footer */}
+              <div className="CostPerUnit-bottom">
+                <FiTrendingUp className="CostPerUnit-trendIcon" />
+
+                <span>{item.growth}</span>
+              </div>
             </div>
           </div>
-
-          <div className="CostPerUnit_Graph">
-            <svg
-              viewBox="0 0 350 90"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <linearGradient
-                  id={`gradient-${index}`}
-                  x1="0"
-                  x2="0"
-                  y1="0"
-                  y2="1"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="currentColor"
-                    stopOpacity="0.30"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="currentColor"
-                    stopOpacity="0"
-                  />
-                </linearGradient>
-              </defs>
-
-              <path
-                d="M0,78
-                   C25,78 35,68 50,66
-                   C70,62 78,42 95,40
-                   C115,38 125,58 145,62
-                   C165,66 180,38 200,40
-                   C220,42 235,52 255,50
-                   C275,48 290,10 310,12
-                   C325,14 340,42 350,45"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-              />
-
-              <path
-                d="M0,78
-                   C25,78 35,68 50,66
-                   C70,62 78,42 95,40
-                   C115,38 125,58 145,62
-                   C165,66 180,38 200,40
-                   C220,42 235,52 255,50
-                   C275,48 290,10 310,12
-                   C325,14 340,42 350,45
-                   L350,90
-                   L0,90 Z"
-                fill={`url(#gradient-${index})`}
-              />
-            </svg>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

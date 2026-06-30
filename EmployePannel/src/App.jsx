@@ -16,6 +16,13 @@ import AttendanceAtten from "./Pages/AttendanceAtten/AttendanceAtten";
 
 
 
+import TaskHeader from "./Components/TaskHeader/TaskHeader";
+import TaskList from "./Components/TaskList/TaskList";
+import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
+import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
+import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
+import TeamMembers from "./Components/TeamMembers/TeamMembers";
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -28,19 +35,47 @@ const App = () => {
         />
 
         {/* Employee Layout */}
-        <Route path="/employee" element={<MainLayout />}>
+      
 
           <Route
             path="dashboard"
             element={<Dashboard />}
           />
           
+         
 
-          {/* Add more routes here */}
-          {/* <Route path="calendar" element={<Calendar />} /> */}
-          {/* <Route path="today-attendance" element={<TodayAttendance />} /> */}
+          <Route path="/employee" element={<MainLayout />}>
 
-        </Route>
+    <Route index element={<Dashboard />} />
+
+    <Route
+        path="dashboard"
+        element={<Dashboard />}
+    />
+
+    <Route
+        path="team-members"
+        element={<TeamMembers />}
+    />
+
+    <Route
+        path="tasklist"
+        element={<TaskList />}
+    />
+
+    <Route
+        path="salary"
+        element={<SalaryDetails />}
+    />
+
+    <Route
+        path="policies"
+        element={<CompanyPolicies />}
+    />
+
+</Route>
+
+        
 
         <Route
           path="*"
@@ -55,8 +90,9 @@ const App = () => {
           
 
        
+         
         
-
+        
       </Routes>
       
           

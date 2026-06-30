@@ -1,0 +1,1174 @@
+/* =========================================================
+   ALL PROJECTS CSS
+   PART 1
+   Root + Dashboard + Header + Board + Columns
+========================================================= */
+
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --primary-light:#eff6ff;
+
+    --success:#10b981;
+    --danger:#ef4444;
+    --warning:#f59e0b;
+    --purple:#8b5cf6;
+
+    --text:#1f2937;
+    --text-light:#6b7280;
+
+    --border:#e5e7eb;
+
+    --card:#ffffff;
+    --background:#f3f6fb;
+
+    --shadow-sm:0 2px 10px rgba(0,0,0,.05);
+    --shadow-md:0 8px 25px rgba(0,0,0,.08);
+    --shadow-lg:0 15px 35px rgba(0,0,0,.12);
+
+    --radius:14px;
+    --transition:.30s ease;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--background);
+    color:var(--text);
+    font-family:
+    Inter,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.ap-dashboard-container{
+    min-height:100vh;
+    background:var(--background);
+    padding:30px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.ap-header-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+}
+
+.ap-main-title{
+    font-size:30px;
+    font-weight:700;
+    color:#1f2937;
+}
+
+.ap-breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    font-size:14px;
+    color:#6b7280;
+}
+
+.ap-bc-home{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:white;
+    box-shadow:var(--shadow-sm);
+}
+
+.ap-bc-arrow{
+    color:#b5b5c3;
+}
+
+.ap-bc-active{
+    color:var(--primary);
+    font-weight:600;
+}
+
+/* =========================================================
+   BOARD
+========================================================= */
+
+.ap-board-wrapper{
+    background:#fff;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:var(--shadow-md);
+}
+
+/* =========================================================
+   KANBAN BOARD
+========================================================= */
+
+.ap-board-columns{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(320px,1fr));
+    gap:22px;
+    overflow-x:auto;
+    align-items:start;
+    padding-bottom:8px;
+}
+
+.ap-board-columns::-webkit-scrollbar{
+    height:8px;
+}
+
+.ap-board-columns::-webkit-scrollbar-thumb{
+    background:#c9ced8;
+    border-radius:30px;
+}
+
+.ap-board-columns::-webkit-scrollbar-track{
+    background:#edf2f7;
+}
+
+/* =========================================================
+   COLUMN
+   Flex column so the Add button can sit in normal document
+   flow directly under the cards, instead of floating/
+   overlapping with position:absolute.
+========================================================= */
+
+.ap-column{
+    display:flex;
+    flex-direction:column;
+    background:#f8fafc;
+    border-radius:16px;
+    padding:18px;
+    position:relative;
+    min-height:auto;
+    border:1px solid #edf2f7;
+}
+
+.ap-column-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.ap-column-title{
+    font-size:18px;
+    font-weight:700;
+    color:#1f2937;
+}
+
+.ap-column-badge{
+    background:var(--primary);
+    color:#fff;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+/* =========================================================
+   CARD CONTAINER
+========================================================= */
+
+.ap-column-cards-container{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    overflow-y:auto;
+    max-height:65vh;
+    padding-right:6px;
+    padding-bottom:4px;
+}
+
+.ap-column-cards-container::-webkit-scrollbar{
+    width:7px;
+}
+
+.ap-column-cards-container::-webkit-scrollbar-thumb{
+    background:#c8d0dc;
+    border-radius:30px;
+}
+
+.ap-column-cards-container::-webkit-scrollbar-track{
+    background:#eef2f7;
+}
+
+/* =========================================================
+   COLUMN COLORS
+========================================================= */
+
+.ap-column:nth-child(1){
+    border-top:5px solid #3b82f6;
+}
+
+.ap-column:nth-child(2){
+    border-top:5px solid #10b981;
+}
+
+.ap-column:nth-child(3){
+    border-top:5px solid #f59e0b;
+}
+
+.ap-column:nth-child(4){
+    border-top:5px solid #8b5cf6;
+}
+/* ==========================================================
+   PART 2
+   PROJECT CARDS
+========================================================== */
+
+.ap-project-card{
+    width:100%;
+    background:#ffffff;
+    border:1px solid #e8edf4;
+    border-radius:16px;
+    padding:18px;
+    transition:all .3s ease;
+    position:relative;
+    overflow:visible;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.ap-project-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 30px rgba(0,0,0,.10);
+    border-color:#2563eb;
+}
+
+.ap-card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.ap-card-title-area{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    flex:1;
+}
+
+.ap-checkmark-icon{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:2px solid #d7dce6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:13px;
+    color:#64748b;
+    flex-shrink:0;
+}
+
+.ap-card-title{
+    font-size:17px;
+    font-weight:700;
+    color:#1f2937;
+    line-height:1.4;
+    word-break:break-word;
+}
+
+/* ==========================================================
+   MENU
+========================================================== */
+
+.ap-action-menu-wrapper{
+    position:relative;
+}
+
+.ap-three-dots{
+    width:34px;
+    height:34px;
+    border:none;
+    background:#f5f7fb;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    color:#64748b;
+    transition:.25s;
+}
+
+.ap-three-dots:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+.ap-dropdown-menu{
+    position:absolute;
+    top:42px;
+    right:0;
+    width:130px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    overflow:hidden;
+    z-index:100;
+    animation:fadeDropdown .2s ease;
+}
+
+@keyframes fadeDropdown{
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.ap-dropdown-menu button{
+    width:100%;
+    border:none;
+    background:none;
+    padding:12px 16px;
+    text-align:left;
+    cursor:pointer;
+    font-size:14px;
+    color:#374151;
+    transition:.2s;
+}
+
+.ap-dropdown-menu button:hover{
+    background:#eff6ff;
+}
+
+.ap-delete-btn{
+    color:#ef4444 !important;
+}
+
+/* ==========================================================
+   META ROW
+========================================================== */
+
+.ap-card-meta-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:18px 0;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.ap-open-tasks{
+    color:#6b7280;
+    font-size:13px;
+    font-weight:500;
+}
+
+/* ==========================================================
+   TAGS
+========================================================== */
+
+.ap-tag{
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.ap-tag-testing{
+    background:#f3effe;
+    color:#7c3aed;
+}
+
+.ap-tag-android{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.ap-tag-iphone{
+    background:#fff4e5;
+    color:#ea580c;
+}
+
+.ap-tag-website{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
+
+.ap-card-description{
+    font-size:14px;
+    line-height:1.7;
+    color:#64748b;
+    margin-bottom:18px;
+    word-break:break-word;
+}
+
+/* ==========================================================
+   DETAILS GRID
+========================================================== */
+
+.ap-details-grid{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.ap-detail-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    border-bottom:1px dashed #edf2f7;
+    padding-bottom:8px;
+}
+
+.ap-detail-label{
+    color:#6b7280;
+    font-weight:500;
+}
+
+.ap-detail-value,
+.ap-detail-value-text,
+.ap-detail-value-num{
+    color:#111827;
+    font-weight:600;
+    text-align:right;
+}
+
+/* ==========================================================
+   PRIORITY
+========================================================== */
+
+.priority-low{
+    color:#10b981;
+    font-weight:700;
+}
+
+.priority-medium{
+    color:#f59e0b;
+    font-weight:700;
+}
+
+.priority-high{
+    color:#ef4444;
+    font-weight:700;
+}
+
+/* ==========================================================
+   TEAM
+========================================================== */
+
+.ap-team-row{
+    align-items:center;
+}
+
+.ap-team-avatars{
+    display:flex;
+    align-items:center;
+}
+
+.ap-avatar,
+.ap-avatar-plus{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-left:-10px;
+    border:2px solid #fff;
+    background:#e2e8f0;
+    font-size:14px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.ap-avatar:first-child{
+    margin-left:0;
+}
+
+.ap-avatar:hover{
+    transform:translateY(-3px);
+}
+
+.ap-avatar-plus{
+    background:#2563eb;
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* ==========================================================
+   PROGRESS
+========================================================== */
+
+.ap-progress-section{
+    margin-top:20px;
+    border-top:1px solid #eef2f7;
+    padding-top:18px;
+}
+
+.ap-progress-text{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-size:13px;
+    font-weight:700;
+    color:#10b981;
+}
+
+.ap-progress-bar-container{
+    width:100%;
+    height:8px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.ap-progress-bar-filled{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#10b981,#34d399);
+}
+
+/* ==========================================================
+   ADD PROJECT BUTTON
+   Now a normal flow element placed right after the cards
+   container in every column (no more absolute overlap).
+   It renders directly beneath the last card in the column.
+========================================================== */
+
+.ap-add-project-floating-btn{
+    position:static;
+    width:100%;
+    height:48px;
+    margin-top:16px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+    flex-shrink:0;
+}
+
+.ap-add-project-floating-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 30px rgba(37,99,235,.35);
+}
+
+.ap-plus-sign{
+    font-size:20px;
+    font-weight:700;
+}
+/* ==========================================================
+   PART 3
+   CREATE / EDIT PROJECT MODAL
+========================================================== */
+
+.ap-modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.55);
+    backdrop-filter:blur(5px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+    z-index:9999;
+    animation:apFade .25s ease;
+}
+
+@keyframes apFade{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+.ap-modal-box{
+    width:820px;
+    max-width:100%;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.18);
+    animation:apPopup .3s ease;
+    max-height:92vh;
+    overflow-y:auto;
+}
+
+@keyframes apPopup{
+    from{
+        opacity:0;
+        transform:translateY(-25px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.ap-modal-box::-webkit-scrollbar{
+    width:8px;
+}
+
+.ap-modal-box::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:20px;
+}
+
+.ap-modal-box::-webkit-scrollbar-track{
+    background:#f8fafc;
+}
+
+.ap-modal-header{
+    height:68px;
+    padding:0 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:5;
+}
+
+.create-header{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+}
+
+.edit-header{
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+}
+
+.ap-modal-header h2{
+    font-size:20px;
+    font-weight:700;
+}
+
+.ap-modal-close{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    color:#fff;
+    cursor:pointer;
+    font-size:22px;
+    line-height:1;
+    transition:.3s;
+}
+
+.ap-modal-close:hover{
+    transform:rotate(90deg);
+    background:rgba(255,255,255,.30);
+}
+
+.ap-modal-form{
+    padding:28px;
+}
+
+.ap-form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.ap-input-wrapper{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+}
+
+.ap-input-wrapper label,
+.ap-textarea-wrapper label{
+    position:absolute;
+    top:-9px;
+    left:14px;
+    background:#fff;
+    padding:0 8px;
+    font-size:12px;
+    font-weight:600;
+    color:#64748b;
+    z-index:5;
+}
+
+.ap-input-wrapper input,
+.ap-input-wrapper select,
+.ap-textarea-wrapper textarea{
+    width:100%;
+    border:1px solid #dbe2ea;
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:14px;
+    color:#1f2937;
+    background:#fff;
+    outline:none;
+    transition:.3s;
+}
+
+.ap-textarea-wrapper{
+    position:relative;
+    margin-top:25px;
+}
+
+.ap-textarea-wrapper textarea{
+    resize:vertical;
+    min-height:120px;
+    line-height:1.7;
+}
+
+.ap-input-wrapper input:focus,
+.ap-input-wrapper select:focus,
+.ap-textarea-wrapper textarea:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+.ap-input-wrapper input::placeholder,
+.ap-textarea-wrapper textarea::placeholder{
+    color:#9ca3af;
+}
+
+.ap-field-icon{
+    position:absolute;
+    right:16px;
+    top:44px;
+    color:#9ca3af;
+    pointer-events:none;
+    font-size:15px;
+}
+
+/* ==========================
+   SELECT DROPDOWNS
+   Custom chevron so the native arrow doesn't get clipped
+   by appearance:none, plus right padding so text never
+   collides with the icon.
+========================== */
+
+.ap-select-wrapper select{
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    cursor:pointer;
+    padding-right:42px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+}
+
+.ap-select-wrapper select:focus{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.ap-select-wrapper select option{
+    color:#1f2937;
+    background:#fff;
+}
+
+.ap-form-actions{
+    margin-top:30px;
+    display:flex;
+    justify-content:flex-end;
+    gap:14px;
+}
+
+.ap-btn-save{
+    min-width:140px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.ap-btn-save:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(37,99,235,.25);
+}
+
+.ap-btn-save:disabled{
+    background:#d1d5db;
+    cursor:not-allowed;
+    box-shadow:none;
+    transform:none;
+}
+
+.ap-btn-cancel{
+    min-width:140px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:#ef4444;
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.ap-btn-cancel:hover{
+    background:#dc2626;
+    transform:translateY(-2px);
+}
+
+.ap-input-wrapper input:hover,
+.ap-input-wrapper select:hover,
+.ap-textarea-wrapper textarea:hover{
+    border-color:#94a3b8;
+}
+
+.ap-input-wrapper label span{
+    color:#ef4444;
+}
+/* ==========================================================
+   PART 4
+   RESPONSIVE DESIGN
+========================================================== */
+
+@media (min-width:1600px){
+.ap-dashboard-container{
+    padding:35px;
+}
+.ap-board-columns{
+    grid-template-columns:repeat(4,minmax(360px,1fr));
+}
+.ap-main-title{
+    font-size:34px;
+}
+}
+
+@media (max-width:1400px){
+.ap-board-columns{
+    grid-template-columns:repeat(2,minmax(330px,1fr));
+}
+}
+
+@media (max-width:1200px){
+.ap-dashboard-container{
+    padding:20px;
+}
+.ap-board-wrapper{
+    padding:18px;
+}
+.ap-main-title{
+    font-size:28px;
+}
+.ap-column{
+    padding:16px;
+}
+.ap-column-cards-container{
+    max-height:none;
+}
+}
+
+@media (max-width:992px){
+.ap-header-row{
+    flex-direction:column;
+    align-items:flex-start;
+}
+.ap-breadcrumb{
+    margin-top:5px;
+}
+.ap-board-columns{
+    grid-template-columns:1fr;
+}
+.ap-column-header{
+    margin-bottom:18px;
+}
+.ap-project-card{
+    padding:18px;
+}
+.ap-detail-item{
+    flex-wrap:wrap;
+}
+.ap-modal-box{
+    width:95%;
+}
+}
+
+@media (max-width:768px){
+.ap-dashboard-container{
+    padding:15px;
+}
+.ap-main-title{
+    font-size:24px;
+}
+.ap-board-wrapper{
+    padding:15px;
+    border-radius:14px;
+}
+.ap-board-columns{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    overflow:visible;
+}
+.ap-column{
+    width:100%;
+    padding:15px;
+}
+.ap-column-title{
+    font-size:18px;
+}
+.ap-column-badge{
+    font-size:11px;
+}
+.ap-column-cards-container{
+    overflow:visible;
+    max-height:none;
+}
+.ap-project-card{
+    padding:16px;
+}
+.ap-card-top{
+    gap:12px;
+}
+.ap-card-title{
+    font-size:16px;
+}
+.ap-card-description{
+    font-size:14px;
+}
+.ap-card-meta-row{
+    flex-wrap:wrap;
+    gap:10px;
+}
+.ap-detail-item{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:5px;
+}
+.ap-detail-label{
+    min-width:auto;
+}
+.ap-detail-value,
+.ap-detail-value-text,
+.ap-detail-value-num{
+    text-align:left;
+}
+.ap-team-row{
+    align-items:flex-start;
+}
+.ap-team-avatars{
+    margin-top:5px;
+}
+.ap-avatar,
+.ap-avatar-plus{
+    width:30px;
+    height:30px;
+    font-size:12px;
+}
+.ap-progress-section{
+    margin-top:18px;
+}
+.ap-add-project-floating-btn{
+    margin-top:18px;
+}
+.ap-modal-box{
+    width:100%;
+    max-width:100%;
+    max-height:95vh;
+    border-radius:14px;
+}
+.ap-modal-form{
+    padding:20px;
+}
+.ap-form-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+}
+.ap-form-actions{
+    flex-direction:column;
+}
+.ap-btn-save,
+.ap-btn-cancel{
+    width:100%;
+}
+}
+
+@media (max-width:576px){
+.ap-dashboard-container{
+    padding:12px;
+}
+.ap-header-row{
+    gap:12px;
+}
+.ap-main-title{
+    font-size:22px;
+}
+.ap-breadcrumb{
+    font-size:12px;
+}
+.ap-board-wrapper{
+    padding:12px;
+}
+.ap-column{
+    padding:12px;
+}
+.ap-column-title{
+    font-size:17px;
+}
+.ap-project-card{
+    border-radius:14px;
+    padding:14px;
+}
+.ap-card-title{
+    font-size:15px;
+}
+.ap-card-description{
+    font-size:13px;
+}
+.ap-open-tasks{
+    font-size:12px;
+}
+.ap-tag{
+    font-size:11px;
+    padding:5px 10px;
+}
+.ap-detail-item{
+    font-size:13px;
+}
+.ap-progress-text{
+    font-size:12px;
+}
+.ap-modal-header{
+    height:60px;
+    padding:0 18px;
+}
+.ap-modal-header h2{
+    font-size:17px;
+}
+.ap-modal-form{
+    padding:16px;
+}
+.ap-input-wrapper input,
+.ap-input-wrapper select,
+.ap-textarea-wrapper textarea{
+    font-size:14px;
+    padding:13px;
+}
+.ap-btn-save,
+.ap-btn-cancel{
+    height:46px;
+    font-size:14px;
+}
+}
+
+@media (max-width:420px){
+.ap-dashboard-container{
+    padding:10px;
+}
+.ap-main-title{
+    font-size:20px;
+}
+.ap-breadcrumb{
+    gap:4px;
+}
+.ap-project-card{
+    padding:12px;
+}
+.ap-card-top{
+    flex-direction:column;
+}
+.ap-action-menu-wrapper{
+    align-self:flex-end;
+}
+.ap-card-title{
+    font-size:14px;
+}
+.ap-card-meta-row{
+    flex-direction:column;
+    align-items:flex-start;
+}
+.ap-tag{
+    margin-top:4px;
+}
+.ap-avatar,
+.ap-avatar-plus{
+    width:28px;
+    height:28px;
+    font-size:11px;
+}
+.ap-add-project-floating-btn{
+    height:44px;
+    font-size:14px;
+}
+.ap-modal-overlay{
+    padding:10px;
+}
+.ap-modal-box{
+    border-radius:12px;
+}
+.ap-modal-form{
+    padding:14px;
+}
+.ap-form-grid{
+    gap:15px;
+}
+.ap-input-wrapper label,
+.ap-textarea-wrapper label{
+    font-size:11px;
+}
+.ap-input-wrapper input,
+.ap-input-wrapper select,
+.ap-textarea-wrapper textarea{
+    font-size:13px;
+}
+}
+
+@media (hover:none){
+.ap-project-card:hover,
+.ap-btn-save:hover,
+.ap-btn-cancel:hover,
+.ap-add-project-floating-btn:hover,
+.ap-three-dots:hover,
+.ap-avatar:hover{
+    transform:none;
+}
+}
+
+@media (max-height:600px){
+.ap-modal-box{
+    max-height:98vh;
+}
+.ap-column-cards-container{
+    max-height:none;
+}
+}
