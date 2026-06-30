@@ -1,0 +1,279 @@
+.EmpPerfomance {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.EmpPerfomance__attendance,
+.EmpPerfomance__notes {
+  background:transparent;
+  border-radius: 18px;
+  border: 1px solid #ececec;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+.EmpPerfomance__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 22px;
+  border-bottom: 1px solid #ececec;
+}
+
+.EmpPerfomance__header h2 {
+  margin: 0;
+  font-size: 31px;
+  font-weight: 700;
+  color: hsl(220, 25%, 95%);
+}
+
+.EmpPerfomance__date {
+  text-align: right;
+}
+
+.EmpPerfomance__date h4 {
+  margin: 0;
+  font-size: 20px;
+  color: hsl(220, 60%, 97%);
+  font-weight: 500;
+}
+
+.EmpPerfomance__date span {
+  display: block;
+  margin-top: 10px;
+  color: hsl(220, 23%, 95%);
+  font-size: 18px;
+}
+
+.EmpPerfomance__body {
+  padding: 24px;
+}
+
+.EmpPerfomance__body h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: hsl(220, 100%, 98%);
+}
+
+.EmpPerfomance__percentage {
+  font-size: 46px;
+  color: #39a845;
+  margin: 18px 0;
+  font-weight: 500;
+}
+
+.EmpPerfomance__progress {
+  width: 100%;
+  height: 4px;
+  background: #dde3ef;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.EmpPerfomance__progressFill {
+  width: 95%;
+  height: 100%;
+  background: #1f5ec9;
+}
+
+.EmpPerfomance__weeklyTitle {
+  margin-top: 34px !important;
+}
+
+.EmpPerfomance__chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-top: 24px;
+}
+
+.EmpPerfomance__chartItem {
+  text-align: center;
+}
+
+.EmpPerfomance__bar {
+  width: 34px;
+  background: #4857b7;
+  border-radius: 6px;
+  margin: auto;
+}
+
+.EmpPerfomance__chartItem span {
+  display: block;
+  margin-top: 14px;
+  color: hsl(220, 33%, 96%);
+  font-size: 16px;
+}
+
+.EmpPerfomance__chartItem strong {
+  display: block;
+  margin-top: 8px;
+  color: hsl(225, 29%, 95%);
+  font-size: 20px;
+}
+
+.EmpPerfomance__addBtn {
+  border: none;
+  background: transparent;
+  color: #246bff;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.EmpPerfomance__notesList {
+  background: transparent;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.EmpPerfomance__noteCard {
+  background: #fafafa;
+  border: 1px solid #efefef;
+  border-radius: 16px;
+  padding: 18px;
+  transition: .3s;
+}
+
+.EmpPerfomance__noteCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.EmpPerfomance__noteTop {
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.EmpPerfomance__noteLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.EmpPerfomance__icon {
+  color: #6c8ba9;
+  font-size: 24px;
+}
+
+.EmpPerfomance__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #d8e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3453c8;
+}
+
+.EmpPerfomance__noteLeft h4 {
+  margin: 0;
+  font-size: 17px;
+  color: #2c3138;
+}
+
+.EmpPerfomance__noteTop span {
+  color: #737373;
+  font-size: 15px;
+}
+
+.EmpPerfomance__noteCard p {
+  margin: 18px 0;
+  color: #434a56;
+  line-height: 1.7;
+  font-size: 17px;
+}
+
+.EmpPerfomance__badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.EmpPerfomance__badge--urgent {
+  background: #ffd9df;
+  color: #df3154;
+}
+
+.EmpPerfomance__badge--important {
+  background: #dbe8ff;
+  color: #246bff;
+}
+
+.EmpPerfomance__badge--routine {
+  background: #e7f7ea;
+  color: #25a244;
+}
+
+@media (max-width:1100px) {
+  .EmpPerfomance {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width:768px) {
+
+  .EmpPerfomance__header {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .EmpPerfomance__date {
+    text-align: left;
+  }
+
+  .EmpPerfomance__chart {
+    gap: 20px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+  }
+
+  .EmpPerfomance__chartItem {
+    min-width: 70px;
+  }
+
+  .EmpPerfomance__header h2 {
+    font-size: 24px;
+  }
+
+  .EmpPerfomance__percentage {
+    font-size: 38px;
+  }
+
+  .EmpPerfomance__noteTop {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width:480px){
+
+  .EmpPerfomance__body,
+  .EmpPerfomance__header,
+  .EmpPerfomance__notesList{
+    padding:16px;
+  }
+
+  .EmpPerfomance__header h2{
+    font-size:20px;
+  }
+
+  .EmpPerfomance__noteLeft{
+    align-items:flex-start;
+  }
+
+  .EmpPerfomance__noteCard p{
+    font-size:15px;
+  }
+}

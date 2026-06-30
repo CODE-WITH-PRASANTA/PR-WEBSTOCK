@@ -11,7 +11,7 @@ const Blog = () => {
     <>
     <BlogBreadcrum />
     <Admin />
-    <Culture  />  
+    {/* <Culture  />   */}
     
 
     </>

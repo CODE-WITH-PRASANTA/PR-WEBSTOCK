@@ -1,6 +1,6 @@
 //// ContactUs.jsx (updated class names to match the CSS prefixes)
 import React, { useState, useEffect } from 'react';
-import './ContactUs.css';
+import './Contactus.css';
 
 // react-icons (ensure package is installed)
 import { FaLinkedin, FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaGithub } from 'react-icons/fa';

@@ -1,6 +1,6 @@
 // WorkflowInsights.jsx - Complete Premium Version (primary color #2d6df6, unique class names)
 import React from 'react';
-import './WorkflowInsights.css';
+import './Workflowinsights.css';
 
 const WorkflowInsights = () => {
   // Online images from Unsplash - business/tech themed

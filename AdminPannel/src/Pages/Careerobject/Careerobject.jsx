@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import API from "../../api/axios";
 import "./Careerobject.css";
 
 const Careerobject = () => {
@@ -17,6 +18,32 @@ const Careerobject = () => {
     whatsapp: "",
   });
 
+ const fetchJobs = async () => {
+  try {
+    const res = await API.get("/careers");
+
+    console.log("Career API Response:", res.data);
+
+    const jobsData =
+      Array.isArray(res.data)
+        ? res.data
+        : Array.isArray(res.data.data)
+        ? res.data.data
+        : Array.isArray(res.data.careers)
+        ? res.data.careers
+        : [];
+
+    setJobs(jobsData);
+  } catch (error) {
+    console.log(error);
+    setJobs([]);
+  }
+};
+
+useEffect(() => {
+  fetchJobs();
+}, []);
+
   const [jobs, setJobs] = useState([]);
   const [editId, setEditId] = useState(null);
 
@@ -27,31 +54,17 @@ const Careerobject = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  try {
     if (editId) {
-      setJobs(
-        jobs.map((job) =>
-          job.id === editId
-            ? {
-                ...formData,
-                id: editId,
-              }
-            : job
-        )
-      );
-
-      setEditId(null);
+      await API.put(`/careers/${editId}`, formData);
     } else {
-      setJobs([
-        {
-          id: Date.now(),
-          ...formData,
-        },
-        ...jobs,
-      ]);
+      await API.post("/careers", formData);
     }
+
+    fetchJobs();
 
     setFormData({
       name: "",
@@ -66,34 +79,43 @@ const Careerobject = () => {
       skills: "",
       whatsapp: "",
     });
-  };
 
-  const handleDelete = (id) => {
-    setJobs(jobs.filter((job) => job.id !== id));
-  };
+    setEditId(null);
+  } catch (error) {
+    console.log(error);
+  }
+};
+const handleDelete = async (id) => {
+  try {
+    await API.delete(`/careers/${id}`);
+    fetchJobs();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const handleEdit = (job) => {
-    setFormData({
-      name: job.name,
-      designation: job.designation,
-      description: job.description,
-      keyHighlight: job.keyHighlight,
-      salary: job.salary,
-      experience: job.experience,
-      location: job.location,
-      vacancy: job.vacancy,
-      jobType: job.jobType,
-      skills: job.skills,
-      whatsapp: job.whatsapp,
-    });
+  setFormData({
+    name: job.name,
+    designation: job.designation,
+    description: job.description,
+    keyHighlight: job.keyHighlight,
+    salary: job.salary,
+    experience: job.experience,
+    location: job.location,
+    vacancy: job.vacancy,
+    jobType: job.jobType,
+    skills: job.skills,
+    whatsapp: job.whatsapp,
+  });
 
-    setEditId(job.id);
+  setEditId(job._id);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 
   return (
     <div className="career-object">
@@ -136,30 +158,30 @@ const Careerobject = () => {
               </div>
 
               {/* Description */}
+<div className="career-object-field">
+  <label>Description</label>
 
-              <div className="career-object-field">
-                <label>Description</label>
-
-                <Editor
-                  value={formData.description}
-                  onEditorChange={(content) =>
-                    setFormData({
-                      ...formData,
-                      description: content,
-                    })
-                  }
-                  init={{
-                    height: 250,
-                    menubar: false,
-                    plugins:
-                      "lists link image table code wordcount",
-                    toolbar:
-                      "undo redo | bold italic underline | bullist numlist | alignleft aligncenter alignright | code",
-                    skin: "oxide-dark",
-                    content_css: "dark",
-                  }}
-                />
-              </div>
+  <Editor
+    apiKey="8hswbe7bfeeneui9eb9gjgsym8ku30nx5gwre9808ajdzniu"
+    value={formData.description}
+    onEditorChange={(content) =>
+      setFormData({
+        ...formData,
+        description: content,
+      })
+    }
+    init={{
+      height: 250,
+      menubar: false,
+      plugins:
+        "lists link image table code wordcount",
+      toolbar:
+        "undo redo | bold italic underline | bullist numlist | alignleft aligncenter alignright | code",
+      skin: "oxide-dark",
+      content_css: "dark",
+    }}
+  />
+</div>
 
               <div className="career-object-field">
                 <label>Key Highlights</label>
@@ -295,9 +317,9 @@ const Careerobject = () => {
                 </thead>
 
                 <tbody>
-                  {jobs.length > 0 ? (
+                 {Array.isArray(jobs) && jobs.length > 0 ? (
                     jobs.map((job) => (
-                      <tr key={job.id}>
+                     <tr key={job._id}>
                         <td>{job.name}</td>
                         <td>{job.designation}</td>
                         <td>{job.salary}</td>
@@ -317,9 +339,7 @@ const Careerobject = () => {
                             <button
                               type="button"
                               className="career-delete-btn"
-                              onClick={() =>
-                                handleDelete(job.id)
-                              }
+                              onClick={() => handleDelete(job._id)}
                             >
                               Delete
                             </button>
@@ -341,11 +361,12 @@ const Careerobject = () => {
               </table>
             </div>
 
-            <div className="career-object-preview-list">
-              {jobs.map((job) => (
+            {/* <div className="career-object-preview-list">
+            {Array.isArray(jobs) &&
+  jobs.map((job) => (
                 <div
                   className="career-object-preview-card"
-                  key={job.id}
+                 key={job._id}
                 >
                   <h3>{job.designation}</h3>
 
@@ -388,7 +409,7 @@ const Careerobject = () => {
                   />
                 </div>
               ))}
-            </div>
+            </div> */}
 
           </div>
         </div>

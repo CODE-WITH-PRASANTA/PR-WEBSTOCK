@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./From.css";
 import { FaTimes, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Form = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -19,20 +20,61 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log(formData);
-
-    alert("Thank you! Our team will contact you shortly.");
-
-    setFormData({
-      name: "",
-      address: "",
-      phone: "",
-      message: "",
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: "7ea3f90e-a50c-40f3-9078-ba132a07a037",
+        name: formData.name,
+        address: formData.address,
+        phone: formData.phone,
+        message: formData.message,
+        subject: "New Enquiry from PR WEBSTOCK Website",
+        from_name: "PR WEBSTOCK Website",
+      }),
     });
-  };
+
+    const result = await response.json();
+
+    if (result.success) {
+  // Reset form
+  setFormData({
+    name: "",
+    address: "",
+    phone: "",
+    message: "",
+  });
+
+  // Close popup form
+  setIsOpen(false);
+
+  // Small delay so React updates the UI first
+  setTimeout(() => {
+    Swal.fire({
+      title: "Enquiry Submitted!",
+      text: "Thank you for contacting PR WEBSTOCK. We'll get back to you soon.",
+      icon: "success",
+      confirmButtonText: "OK",
+      confirmButtonColor: "#2563eb",
+      draggable: true,
+    });
+  }, 100);
+}else {
+      alert("❌ Submission failed. Please try again.");
+      console.log(result);
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  }
+};
 
   const handleClose = () => {
     setIsOpen(false);
@@ -118,6 +160,8 @@ const Form = () => {
           </a>
         </div>
       </div>
+
+      
     </div>
   );
 };

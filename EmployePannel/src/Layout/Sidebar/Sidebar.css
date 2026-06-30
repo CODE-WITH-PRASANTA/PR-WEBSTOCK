@@ -1,0 +1,466 @@
+/* ======================================================
+    CSS RESET & CORE VARIABLES
+====================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-hover: #f4f7ff;
+    --bg-active: #eef2ff;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --text-submenu: #4b5563;
+    --brand-color: #4f46e5;
+    --border-color: #e9edf5;
+    --transition-speed: 0.3s;
+}
+
+/* ======================================================
+    SIDEBAR SYSTEM STRUCTURE
+====================================================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 290px; /* Marginally widened to perfectly fit larger typography */
+    height: 100vh;
+    background: var(--bg-primary);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+/* ==========================================
+   HEADER BRANDING AREA
+========================================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* Center Logo */
+    position: relative;
+    padding: 15px 20px;
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+    flex-shrink: 0;
+}
+
+.logoBrand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logoBrand img {
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    transition: all 0.35s ease;
+    filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.18));
+}
+
+.logoBrand img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 15px 30px rgba(15, 23, 42, 0.25));
+}
+
+/* Mobile Close Button */
+.sidebarClose {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #0f172a;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease;
+}
+
+.sidebarClose:hover {
+    background: #0f766e;
+    color: #fff;
+    transform: rotate(90deg);
+}
+/* ======================================================
+    USER PROFILE DETAILS
+====================================================== */
+.profile {
+    text-align: center;
+    padding: 24px 20px 16px 20px;
+    border-bottom: 1px solid #f8fafc;
+    flex-shrink: 0;
+}
+
+.profile img {
+    width: 84px;
+    height: 84px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.08);
+    border: 3px solid #fff;
+}
+
+.profile h3 {
+    margin-top: 12px;
+    font-size: 19px; /* Increased from 18px */
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.profile p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 14px; /* Increased from 13px */
+    font-weight: 500;
+}
+
+/* ======================================================
+    MENU LAYOUT & SECTIONS
+====================================================== */
+.menu {
+    padding: 16px 12px;
+    flex-grow: 1;
+}
+
+.menuSectionHeader {
+    font-size: 13px; /* Increased from 11px */
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 1.2px;
+    padding: 26px 16px 12px 16px;
+    text-transform: uppercase;
+}
+
+/* ======================================================
+    PREMIUM MENU ITEMS (PRIMARY NAVIGATION)
+====================================================== */
+.menuItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px; /* Enhanced internal padding for larger text click targets */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition-speed);
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: var(--text-muted);
+}
+
+.menuItem:hover {
+    background: var(--bg-hover);
+    color: var(--brand-color);
+}
+
+.menuLeft {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Widened slightly to balance bigger icons */
+}
+
+.menuLeft svg {
+    font-size: 23px; /* Scaled up from 20px */
+    color: #64748b;
+    transition: var(--transition-speed);
+}
+
+.menuItem:hover .menuLeft svg {
+    color: var(--brand-color);
+}
+.menuLeft span {
+    font-size: 19px;
+    font-weight: 400;
+    font-family: "Poppins", "Montserrat", sans-serif;
+    color: #1e293b;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.menuLeft span:hover {
+    color: #0f766e;
+    transform: translateY(-2px);
+    text-shadow: 0 4px 10px rgba(15, 118, 110, 0.2);
+}
+
+.menuLeft span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0f766e, #14b8a6);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.menuLeft span:hover::after {
+    width: 100%;
+}
+.menuItem:hover .menuLeft span {
+    color: var(--brand-color);
+}
+
+/* Dropdown/Chevron Indicators */
+.menuItem > svg {
+    font-size: 18px; /* Scaled up from 16px */
+    color: #94a3b8;
+}
+
+.menuItem.dropdownOpen {
+    background: #f8fafc;
+}
+
+/* ======================================================
+    ACTIVE & INTERACTIVE STATES
+====================================================== */
+.menuItem.active {
+    background: var(--bg-active);
+    color: var(--brand-color);
+}
+
+.menuItem.active .menuLeft svg,
+.menuItem.active .menuLeft span {
+    color: var(--brand-color);
+    font-weight: 600;
+}
+
+.badgeNew {
+    background: #0084ff;
+    color: #fff;
+    font-size: 12px; /* Scaled up from 11px */
+    font-weight: 600;
+    padding: 3px 11px;
+    border-radius: 20px;
+}
+
+/* ======================================================
+    EXPANDABLE SUBMENUS
+====================================================== */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+    padding-left: 56px; /* Shifted over slightly to perfectly align under bigger icons */
+    display: flex;
+    flex-direction: column;
+}
+
+.submenu.show {
+    max-height: 600px;
+}
+.submenuItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 18px;
+    font-size: 15px;
+    font-family: "Poppins", "Montserrat", sans-serif;
+
+    color: #334155;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    letter-spacing: 0.3px;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Left Accent Line */
+.submenuItem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 0%;
+    background: linear-gradient(180deg, #0f766e, #14b8a6);
+    border-radius: 20px;
+    transition: height 0.35s ease;
+}
+
+/* Hover Effect */
+.submenuItem:hover {
+    color: #0f766e;
+    background: rgba(20, 184, 166, 0.08);
+    padding-left: 28px;
+    transform: translateX(4px);
+    box-shadow: 0 8px 18px rgba(15, 118, 110, 0.12);
+}
+
+/* Show Left Line */
+.submenuItem:hover::before {
+    height: 70%;
+}
+
+/* Active Item */
+.submenuItem.active {
+    background: linear-gradient(90deg, rgba(20,184,166,.12), rgba(15,118,110,.05));
+    color: #0f766e;
+    font-weight: 700;
+}
+.activeSubmenu {
+    color: var(--brand-color) !important;
+    font-weight: 600;
+    padding-left: 4px;
+}
+
+/* ======================================================
+    PREMIUM BOTTOM PINNED FOOTER
+====================================================== */
+.sidebarFooter {
+    padding: 16px 12px;
+    border-top: 1px solid #f1f5f9;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.logoutButton {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #ef4444;
+    transition: var(--transition-speed);
+}
+
+.logoutButton:hover {
+    background: #fef2f2;
+}
+
+.logoutButton svg {
+    font-size: 23px; /* Matched to main nav item size */
+}
+
+.logoutButton span {
+    font-size: 17px; /* Matched to main nav item size */
+    font-weight: 500;
+}
+
+/* ======================================================
+    COLLAPSED VIEW CONFIGURATION
+====================================================== */
+.sidebar.collapsed .logo {
+    justify-content: center;
+    padding: 0;
+}
+
+.sidebar.collapsed .menuItem {
+    justify-content: center;
+    padding: 14px 0;
+}
+
+.sidebar.collapsed .menuLeft {
+    justify-content: center;
+    width: 100%;
+}
+
+.sidebar.collapsed .menuItem > svg,
+.sidebar.collapsed .submenu,
+.sidebar.collapsed .menuSectionHeader,
+.sidebar.collapsed .badgeNew {
+    display: none;
+}
+
+.sidebar.collapsed .logoutButton {
+    justify-content: center;
+    padding: 14px 0;
+}
+
+/* ======================================================
+    RESPONSIVE DESIGN (BREAKPOINTS)
+====================================================== */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 290px;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar.collapsed {
+        width: 290px;
+        transform: translateX(-100%);
+    }
+
+    .sidebarOverlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.3);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+    }
+
+    /* Fixed Cross Button Alignment */
+    .sidebarClose {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: #f1f5f9;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+    
+    .sidebarClose:hover {
+        background: #e2e8f0;
+    }
+    
+    .sidebarClose svg {
+        font-size: 20px;
+        color: #475569;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 270px;
+    }
+    .submenuItem{
+        font-size: 14px;
+    }
+}

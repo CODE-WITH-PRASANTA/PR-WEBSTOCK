@@ -1,0 +1,550 @@
+/*==================================================
+                    GENDER
+==================================================*/
+
+.Gender {
+  width: 100%;
+}
+
+.Gender__card {
+  background:transparent;
+  border: 1px solid #ececec;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+  transition: 0.3s;
+}
+
+.Gender__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/*==================================================
+                    HEADER
+==================================================*/
+
+.Gender__header {
+  padding: 22px 24px;
+  border-bottom: 1px solid #ececec;
+}
+
+.Gender__header h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: hsl(224, 48%, 95%);
+}
+
+/*==================================================
+                  TOP SECTION
+==================================================*/
+
+.Gender__top {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
+  padding: 28px 24px;
+  align-items: flex-start;
+}
+
+/*==================================================
+                  PIE CHART
+==================================================*/
+
+.Gender__chartArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Gender__chartArea .recharts-wrapper {
+  margin: 0 auto;
+}
+
+.recharts-pie-label-text {
+  fill: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.recharts-default-tooltip {
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/*==================================================
+                    LEGEND
+==================================================*/
+
+.Gender__legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 18px;
+}
+
+.Gender__legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #f2f4f8;
+}
+
+.Gender__legendItem span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+}
+
+/*==================================================
+               INFORMATION AREA
+==================================================*/
+
+.Gender__info {
+  width: 100%;
+}
+
+.Gender__infoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.Gender__infoHeader h3 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: hsl(222, 83%, 98%);
+}
+
+.Gender__employees {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7280;
+  font-size: 18px;
+}
+
+.Gender__employees svg {
+  font-size: 22px;
+}
+
+/*==================================================
+                GENDER STATS
+==================================================*/
+
+.Gender__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.Gender__stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.Gender__statIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.Gender__stat span {
+  display: block;
+  color: hsl(220, 27%, 96%);
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.Gender__stat h4 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f4f6fa;
+}
+
+/*==================================================
+                  DIVIDER
+==================================================*/
+
+.Gender__divider {
+  width: 100%;
+  height: 1px;
+  background: #ececec;
+  margin: 30px 0 26px;
+}
+
+/*==================================================
+                SUMMARY CARDS
+==================================================*/
+
+.Gender__summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.Gender__summaryCard {
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.Gender__summaryCard span {
+  display: block;
+  color: #374151;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.Gender__summaryCard h2 {
+  margin: 0;
+  font-size: 42px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.Gender__score {
+  color: #34a853 !important;
+}
+
+/*==================================================
+                  TABLET
+==================================================*/
+
+@media (max-width: 1100px) {
+
+  .Gender__top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .Gender__chartArea {
+    max-width: 420px;
+    margin: auto;
+  }
+
+  .Gender__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*==================================================
+                  MOBILE
+==================================================*/
+
+@media (max-width: 768px) {
+
+  .Gender__header {
+    padding: 18px;
+  }
+
+  .Gender__header h2 {
+    font-size: 24px;
+  }
+
+  .Gender__top {
+    padding: 18px;
+  }
+
+  .Gender__infoHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .Gender__infoHeader h3 {
+    font-size: 22px;
+  }
+
+  .Gender__stats {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .Gender__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .Gender__summaryCard h2 {
+    font-size: 34px;
+  }
+
+  .Gender__legend {
+    gap: 16px;
+  }
+
+  .Gender__legendItem {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .Gender__chartArea {
+    width: 100%;
+  }
+
+  .Gender__summaryCard {
+    padding: 18px;
+  }
+
+  .Gender__summaryCard h2 {
+    font-size: 30px;
+  }
+
+  .Gender__statIcon {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .Gender__stat h4 {
+    font-size: 22px;
+  }
+
+  .Gender__employees {
+    font-size: 16px;
+  }
+}
+/*==================================================
+          DEPARTMENT TABLE SECTION
+==================================================*/
+
+.Gender__bottom {
+  padding: 0 24px 24px;
+}
+
+.Gender__tableTitle {
+  margin: 0 0 18px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f1f3f9;
+}
+
+.Gender__tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.Gender__tableWrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.Gender__tableWrapper::-webkit-scrollbar-thumb {
+  background: #d5d5d5;
+  border-radius: 30px;
+}
+
+.Gender__table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+}
+
+.Gender__table thead tr {
+  background: #fafafa;
+}
+
+.Gender__table th {
+  padding: 18px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid #ececec;
+}
+
+.Gender__table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #ececec;
+  color: #374151;
+  font-size: 17px;
+  vertical-align: middle;
+}
+
+.Gender__table tbody tr {
+  transition: .25s;
+}
+
+.Gender__table tbody tr:hover {
+  background: #fafafa;
+}
+
+.Gender__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/*==================================================
+             PROGRESS BAR
+==================================================*/
+
+.Gender__progressItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.Gender__progressItem span {
+  font-size: 17px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.Gender__progress {
+  width: 100%;
+  max-width: 300px;
+  height: 4px;
+  background: #ececec;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.Gender__progressFill {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.Gender__progressFill--male {
+  background: #437ce5;
+}
+
+.Gender__progressFill--female {
+  background: #ef3d2f;
+}
+
+.Gender__progressFill--other {
+  background: #fdb515;
+}
+
+/*==================================================
+              MOBILE CARDS
+==================================================*/
+
+.Gender__mobileList {
+  display: none;
+}
+
+.Gender__mobileCard {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+}
+
+.Gender__mobileCard h4 {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.Gender__mobileRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed #ececec;
+}
+
+.Gender__mobileRow:last-child {
+  border-bottom: none;
+}
+
+.Gender__mobileRow span {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.Gender__mobileRow strong {
+  color: #111827;
+  font-size: 16px;
+}
+
+/*==================================================
+                TABLET
+==================================================*/
+
+@media (max-width:1024px) {
+
+  .Gender__bottom {
+    padding: 0 18px 18px;
+  }
+
+  .Gender__table th,
+  .Gender__table td {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .Gender__progress {
+    max-width: 220px;
+  }
+}
+
+/*==================================================
+                MOBILE
+==================================================*/
+
+@media (max-width:768px) {
+
+  .Gender__tableWrapper {
+    display: none;
+  }
+
+  .Gender__mobileList {
+    display: block;
+  }
+
+  .Gender__tableTitle {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+}
+
+/*==================================================
+              SMALL MOBILE
+==================================================*/
+
+@media (max-width:480px) {
+
+  .Gender__bottom {
+    padding: 0 16px 16px;
+  }
+
+  .Gender__tableTitle {
+    font-size: 18px;
+  }
+
+  .Gender__mobileCard {
+    padding: 16px;
+  }
+
+  .Gender__mobileCard h4 {
+    font-size: 18px;
+  }
+
+  .Gender__mobileRow span,
+  .Gender__mobileRow strong {
+    font-size: 14px;
+  }
+}

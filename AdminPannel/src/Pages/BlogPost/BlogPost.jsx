@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import API from "../../api/axios";
 import "./BlogPost.css";
 import { Editor } from "@tinymce/tinymce-react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import {
   FaTrash,
@@ -11,7 +13,11 @@ import {
 } from "react-icons/fa";
 
 const BlogPost = () => {
-  const [tagInput, setTagInput] = useState("");
+ const { id } = useParams();
+const navigate = useNavigate();
+const [blogs, setBlogs] = useState([]);
+const [tagInput, setTagInput] = useState("");
+
 
   const [formData, setFormData] = useState({
     adminName: "",
@@ -26,7 +32,80 @@ const BlogPost = () => {
     tags: [],
   });
 
-  const [blogs, setBlogs] = useState([]);
+
+
+const fetchBlogs = async () => {
+  try {
+ const res = await API.get("/blogs");
+
+    const blogData = Array.isArray(res.data)
+      ? res.data
+      : res.data.data || [];
+
+    setBlogs(blogData);
+  } catch (error) {
+    console.log(error);
+  }
+};
+const fetchSingleBlog = async () => {
+  try {
+    const res = await API.get(`/blogs/${id}`);
+
+    const blog = res.data.data;
+
+    setFormData({
+      adminName: blog.adminName || "",
+      designation: blog.designation || "",
+      title: blog.title || "",
+      category: blog.category || "",
+      quote: blog.quote || "",
+      publishDate: blog.publishDate
+        ? blog.publishDate.split("T")[0]
+        : "",
+      description: blog.description || "",
+      image: null,
+      media: null,
+      tags: Array.isArray(blog.tags)
+  ? blog.tags
+  : JSON.parse(blog.tags || "[]"),
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+useEffect(() => {
+  fetchBlogs();
+
+  if (id) {
+    fetchSingleBlog();
+  }
+}, [id]);
+
+const uploadImage = async (file) => {
+  try {
+    const data = new FormData();
+
+    data.append("image", file);
+
+    const res = await API.post(
+      "/blogs/upload-image",
+      data,
+      {
+        headers: {
+          "Content-Type":
+            "multipart/form-data",
+        },
+      }
+    );
+
+    return res.data.image;
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
+};
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -64,41 +143,82 @@ const BlogPost = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    setBlogs([
-      ...blogs,
-      {
-        id: Date.now(),
-        ...formData,
-      },
-    ]);
+  try {
+    let imagePath = "";
+    let mediaPath = "";
+
+    if (formData.image) {
+      imagePath = await uploadImage(
+        formData.image
+      );
+    }
+
+    const payload = {
+      adminName: formData.adminName,
+      designation: formData.designation,
+      title: formData.title,
+      category: formData.category,
+      quote: formData.quote,
+      publishDate: formData.publishDate,
+      description: formData.description,
+      image: imagePath,
+      media: mediaPath,
+      tags: JSON.stringify(formData.tags),
+    };
+
+  if (id) {
+await API.put(`/blogs/${id}`, payload);
+
+   navigate("/blog-management");
+
+} else {
+
+   await API.post("/blogs", payload);
+
+}
+
+    fetchBlogs();
 
     setFormData({
-  adminName: "",
-  designation: "",
-  title: "",
-  category: "",
-  quote: "",
-  publishDate: "",
-  description: "",
-  image: null,
-  media: null,
-  tags: [],
-});
-  };
+      adminName: "",
+      designation: "",
+      title: "",
+      category: "",
+      quote: "",
+      publishDate: "",
+      description: "",
+      image: null,
+      media: null,
+      tags: [],
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+  const deleteBlog = async (id) => {
+  try {
+   await API.delete(`/blogs/${id}`);
+   
 
-  const deleteBlog = (id) => {
-    setBlogs(blogs.filter((blog) => blog.id !== id));
-  };
+    fetchBlogs();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 
   return (
     <div className="BlogPost">
       {/* FORM */}
       <div className="BlogPost_FormSection">
         <div className="BlogPost_FormHeader">
-          <h2>Create Blog Post</h2>
+         <h2>
+{id ? "Update Blog" : "Create Blog Post"}
+</h2>
         </div>
 
         <form
@@ -186,7 +306,7 @@ const BlogPost = () => {
   <label>Description</label>
 
   <Editor
-    apiKey="no-api-key"
+   apiKey="8hswbe7bfeeneui9eb9gjgsym8ku30nx5gwre9808ajdzniu"
     value={formData.description}
     onEditorChange={(content) =>
       setFormData({
@@ -290,12 +410,12 @@ const BlogPost = () => {
             </div>
           </div>
 
-          <button
-            className="BlogPost_SubmitBtn"
-            type="submit"
-          >
-            Publish Blog
-          </button>
+        <button
+className="BlogPost_SubmitBtn"
+type="submit"
+>
+{id ? "Update Blog" : "Publish Blog"}
+</button>
         </form>
       </div>
 
@@ -321,27 +441,46 @@ const BlogPost = () => {
 
             <tbody>
               {blogs.map((blog) => (
-                <tr key={blog.id}>
+               <tr key={blog._id}>
                   <td>
-                    <FaImage />
-                  </td>
+  {blog.image ? (
+    <img
+      src={`http://localhost:5000${blog.image}`}
+      alt={blog.title}
+      width="60"
+      height="40"
+      style={{
+        objectFit: "cover",
+        borderRadius: "6px",
+      }}
+    />
+  ) : (
+    <FaImage />
+  )}
+</td>
                   <td>{blog.title}</td>
                   <td>{blog.category}</td>
                   <td>{blog.adminName}</td>
                   <td>{blog.publishDate}</td>
                   <td>
-                    {blog.tags.join(", ")}
+                    {Array.isArray(blog.tags)
+  ? blog.tags.join(", ")
+  : JSON.parse(blog.tags || "[]").join(", ")}
                   </td>
 
                   <td>
                     <div className="BlogPost_ActionBtns">
-                      <button>
-                        <FaEdit />
+                <button
+                      onClick={() =>
+                      navigate(`/blog-post/${blog._id}`)
+                      }
+                      >
+                      <FaEdit />
                       </button>
 
                       <button
                         onClick={() =>
-                          deleteBlog(blog.id)
+                        deleteBlog(blog._id)
                         }
                       >
                         <FaTrash />

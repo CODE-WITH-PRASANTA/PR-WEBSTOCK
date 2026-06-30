@@ -1,14 +1,15 @@
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
-  const isAuth =
-    localStorage.getItem("adminAuth");
-
-  return isAuth ? (
-    children
-  ) : (
-    <Navigate to="/" />
+const Protected = ({ children }) => {
+  console.log(
+    "Protected:",
+    localStorage.getItem("adminAuth")
   );
+
+  const isAuth =
+    localStorage.getItem("adminAuth") === "true";
+
+  return isAuth ? children : <Navigate to="/" replace />;
 };
 
-export default ProtectedRoute;
+export default Protected;

@@ -1,100 +1,193 @@
-import React, { useState, useRef } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
 import "./Teammember.css";
 
+import API, {
+  IMG_URL,
+} from "../../api/axios";
+
 const Teammember = () => {
-  const [teamMembers, setTeamMembers] = useState([]);
-  const [memberName, setMemberName] = useState("");
-  const [memberDesignation, setMemberDesignation] = useState("");
-  const [memberImage, setMemberImage] = useState("");
-  const [fileName, setFileName] = useState("No file chosen");
-  const [editIndex, setEditIndex] = useState(null);
+  const [teamMembers, setTeamMembers] =
+    useState([]);
+
+  const [memberName, setMemberName] =
+    useState("");
+
+  const [
+    memberDesignation,
+    setMemberDesignation,
+  ] = useState("");
+
+  const [selectedFile, setSelectedFile] =
+    useState(null);
+
+  const [fileName, setFileName] =
+    useState("No file chosen");
+
+  const [editId, setEditId] =
+    useState(null);
 
   const fileRef = useRef(null);
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  const fetchMembers = async () => {
+    try {
+      const res = await API.get(
+        "/team-members"
+      );
+
+      setTeamMembers(
+        res.data.data || []
+      );
+    } catch (error) {
+      console.log(
+        "Fetch Error:",
+        error
+      );
+    }
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
 
     if (!file) return;
 
+    setSelectedFile(file);
     setFileName(file.name);
-
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setMemberImage(reader.result);
-    };
-
-    reader.readAsDataURL(file);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (
+    e
+  ) => {
     e.preventDefault();
 
-    if (
-      !memberName.trim() ||
-      !memberDesignation.trim() ||
-      !memberImage
-    ) {
-      alert("Please fill all fields");
-      return;
-    }
+    try {
+      if (
+        !memberName.trim() ||
+        !memberDesignation.trim()
+      ) {
+        alert(
+          "Please fill all fields"
+        );
+        return;
+      }
 
-    const memberData = {
-      image: memberImage,
-      name: memberName,
-      designation: memberDesignation,
-    };
+      const formData =
+        new FormData();
 
-    if (editIndex !== null) {
-      const updatedMembers = [...teamMembers];
-      updatedMembers[editIndex] = memberData;
-      setTeamMembers(updatedMembers);
-      setEditIndex(null);
-    } else {
-      setTeamMembers([...teamMembers, memberData]);
-    }
+      formData.append(
+        "name",
+        memberName
+      );
 
-    // Reset Form
-    setMemberName("");
-    setMemberDesignation("");
-    setMemberImage("");
-    setFileName("No file chosen");
+      formData.append(
+        "designation",
+        memberDesignation
+      );
 
-    if (fileRef.current) {
-      fileRef.current.value = "";
-    }
-  };
+      if (selectedFile) {
+        formData.append(
+          "image",
+          selectedFile
+        );
+      }
 
-  const handleEdit = (index) => {
-    const member = teamMembers[index];
+      if (editId) {
+        await API.put(
+          `/team-members/${editId}`,
+          formData,
+          {
+            headers: {
+              "Content-Type":
+                "multipart/form-data",
+            },
+          }
+        );
+      } else {
+        await API.post(
+          "/team-members",
+          formData,
+          {
+            headers: {
+              "Content-Type":
+                "multipart/form-data",
+            },
+          }
+        );
+      }
 
-    setMemberName(member.name);
-    setMemberDesignation(member.designation);
-    setMemberImage(member.image);
-    setFileName("Image Selected");
+      await fetchMembers();
 
-    setEditIndex(index);
-  };
-
-  const handleDelete = (index) => {
-    const updatedMembers = teamMembers.filter(
-      (_, i) => i !== index
-    );
-
-    setTeamMembers(updatedMembers);
-
-    if (editIndex === index) {
       setMemberName("");
       setMemberDesignation("");
-      setMemberImage("");
-      setFileName("No file chosen");
-      setEditIndex(null);
+      setSelectedFile(null);
+      setEditId(null);
+      setFileName(
+        "No file chosen"
+      );
+
+      if (fileRef.current) {
+        fileRef.current.value =
+          "";
+      }
+    } catch (error) {
+      console.log(
+        "Submit Error:",
+        error
+      );
     }
   };
+
+  const handleEdit = (
+    member
+  ) => {
+    setMemberName(member.name);
+
+    setMemberDesignation(
+      member.designation
+    );
+
+    setEditId(member._id);
+
+    setFileName(
+      "Current Image Selected"
+    );
+  };
+
+  const handleDelete =
+    async (id) => {
+      const confirmDelete =
+        window.confirm(
+          "Delete this member?"
+        );
+
+      if (!confirmDelete)
+        return;
+
+      try {
+        await API.delete(
+          `/team-members/${id}`
+        );
+
+        fetchMembers();
+      } catch (error) {
+        console.log(
+          "Delete Error:",
+          error
+        );
+      }
+    };
 
   return (
     <div className="tm-wrapper">
-      {/* Form Section */}
+      {/* FORM SECTION */}
       <div className="tm-form-section">
         <div className="tm-card">
           <h2 className="tm-title">
@@ -105,9 +198,10 @@ const Teammember = () => {
             className="tm-form"
             onSubmit={handleSubmit}
           >
-            {/* Image Upload */}
             <div className="tm-form-group">
-              <label>Profile Image</label>
+              <label>
+                Profile Image
+              </label>
 
               <div className="tm-file-upload-wrapper">
                 <label
@@ -126,13 +220,14 @@ const Teammember = () => {
                   type="file"
                   accept="image/*"
                   ref={fileRef}
-                  onChange={handleImageUpload}
+                  onChange={
+                    handleImageUpload
+                  }
                   className="tm-hidden-file"
                 />
               </div>
             </div>
 
-            {/* Name */}
             <div className="tm-form-group">
               <label>Name</label>
 
@@ -141,19 +236,24 @@ const Teammember = () => {
                 placeholder="Enter Name"
                 value={memberName}
                 onChange={(e) =>
-                  setMemberName(e.target.value)
+                  setMemberName(
+                    e.target.value
+                  )
                 }
               />
             </div>
 
-            {/* Designation */}
             <div className="tm-form-group">
-              <label>Designation</label>
+              <label>
+                Designation
+              </label>
 
               <input
                 type="text"
                 placeholder="Enter Designation"
-                value={memberDesignation}
+                value={
+                  memberDesignation
+                }
                 onChange={(e) =>
                   setMemberDesignation(
                     e.target.value
@@ -162,12 +262,11 @@ const Teammember = () => {
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="tm-submit-btn"
             >
-              {editIndex !== null
+              {editId
                 ? "Update Member"
                 : "Submit"}
             </button>
@@ -175,7 +274,7 @@ const Teammember = () => {
         </div>
       </div>
 
-      {/* Table Section */}
+      {/* TABLE SECTION */}
       <div className="tm-table-section">
         <div className="tm-card">
           <h2 className="tm-title">
@@ -194,22 +293,41 @@ const Teammember = () => {
               </thead>
 
               <tbody>
-                {teamMembers.length > 0 ? (
+                {teamMembers.length >
+                0 ? (
                   teamMembers.map(
-                    (member, index) => (
-                      <tr key={index}>
+                    (
+                      member
+                    ) => (
+                      <tr
+                        key={
+                          member._id
+                        }
+                      >
                         <td>
-                          <img
-                            src={member.image}
-                            alt={member.name}
-                            className="tm-table-image"
-                          />
+                         <img
+  src={`${IMG_URL}${member.image}`}
+  alt={member.name}
+  className="tm-table-image"
+  onError={() => {
+    console.log(
+      "BROKEN IMAGE URL:",
+      `${IMG_URL}${member.image}`
+    );
+  }}
+/>
                         </td>
 
-                        <td>{member.name}</td>
+                        <td>
+                          {
+                            member.name
+                          }
+                        </td>
 
                         <td>
-                          {member.designation}
+                          {
+                            member.designation
+                          }
                         </td>
 
                         <td>
@@ -218,7 +336,9 @@ const Teammember = () => {
                               type="button"
                               className="tm-edit-btn"
                               onClick={() =>
-                                handleEdit(index)
+                                handleEdit(
+                                  member
+                                )
                               }
                             >
                               Edit
@@ -228,7 +348,9 @@ const Teammember = () => {
                               type="button"
                               className="tm-delete-btn"
                               onClick={() =>
-                                handleDelete(index)
+                                handleDelete(
+                                  member._id
+                                )
                               }
                             >
                               Delete
@@ -244,7 +366,8 @@ const Teammember = () => {
                       colSpan="4"
                       className="tm-no-data"
                     >
-                      No Team Members Added
+                      No Team Members
+                      Found
                     </td>
                   </tr>
                 )}

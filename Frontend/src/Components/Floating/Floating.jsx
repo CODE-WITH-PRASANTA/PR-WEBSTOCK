@@ -24,18 +24,22 @@ const Floating = () => {
 
   return (
     <div className="floating-container">
+<<<<<<< HEAD
       {/* Phone */}
       <a
         href="tel:+917789801327"
         className="floating-btn phone"
         aria-label="Call"
       >
+=======
+>>>>>>> 45b1131bf0003c6b5cbc2b87c7fccb3ad9789408
       {/* Call Button */}
       <a href="tel:+917789801327" className="floating-btn phone">
         <span className="tooltip">Call Now</span>
         <FaPhoneAlt />
       </a>
 
+<<<<<<< HEAD
       {/* WhatsApp */}
       <a
         href="https://wa.me/917789801327"
@@ -54,6 +58,8 @@ const Floating = () => {
           className="floating-btn top"
           onClick={scrollToTop}
           aria-label="Back to Top"
+=======
+>>>>>>> 45b1131bf0003c6b5cbc2b87c7fccb3ad9789408
       {/* WhatsApp Button */}
           <a
           href="https://wa.me/917789801327?text=Hello%20PR-WEBSTOCK!%20I%20want%20a%20professional%20website%20for%20my%20business."

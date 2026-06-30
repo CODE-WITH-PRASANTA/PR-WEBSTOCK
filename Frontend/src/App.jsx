@@ -1,4 +1,11 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+
 import "./App.css";
 import Home from "./Pages/Home/Home";
 import Navbar from "./Components/Navbar/Navbar";
@@ -35,7 +42,7 @@ function AppContent() {
 
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [location.pathname]);
@@ -47,7 +54,6 @@ function AppContent() {
   return (
     <>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -69,10 +75,9 @@ function AppContent() {
           element={<SocialMediaManagement />}
         />
         <Route path="/get-quote" element={<GetFreeDemo />} />
-        <Route path="/Working" element={<Working />} />
+        <Route path="/blog/:id" element={<Working />} />
         <Route path="/project" element={<Projects />} />
       </Routes>
-
       <Form />
       <ContactUs />
       <Floating />
