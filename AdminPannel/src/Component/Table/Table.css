@@ -1,0 +1,465 @@
+/* =========================
+   ROOT
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.table-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 30px;
+  background: #f5f7fb;
+  transition: 0.3s;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.table-header h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px 15px;
+  width: 350px;
+}
+
+.search-box svg {
+  color: #6b7280;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  font-size: 15px;
+}
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+.theme-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  background: #111827;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.theme-btn:hover {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 50px;
+}
+
+table {
+  width: 100%;
+  min-width: 950px;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #4f46e5;
+}
+
+thead th {
+  color: #fff;
+  padding: 18px;
+  text-align: left;
+  font-size: 15px;
+}
+
+tbody tr {
+  transition: 0.3s;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+tbody tr:hover {
+  background: #eef2ff;
+}
+
+tbody td {
+  padding: 18px;
+  border-bottom: 1px solid #ececec;
+  color: #374151;
+  font-size: 15px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 30px;
+  font-weight: 600;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.action-cell {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  background: #2563eb;
+}
+
+.delete-btn {
+  background: #dc2626;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.pagination {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  min-width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #e5e7eb;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.pagination button:hover {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.active-page {
+  background: #4f46e5 !important;
+  color: #fff;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  padding: 20px;
+}
+
+.edit-modal {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  animation: popup 0.3s ease;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.edit-modal h2 {
+  margin-bottom: 25px;
+  text-align: center;
+  color: #4f46e5;
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.edit-modal input,
+.edit-modal textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  padding: 14px;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+}
+
+.edit-modal textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.save-btn {
+  width: 100%;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  background: #4f46e5;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #4338ca;
+}
+
+/* =========================
+   DARK THEME
+========================= */
+
+.dark-theme {
+  background: #0f172a;
+}
+
+.dark-theme .table-header h2 {
+  color: #fff;
+}
+
+.dark-theme .search-box {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark-theme .search-box input {
+  color: #fff;
+}
+
+.dark-theme .search-box svg {
+  color: #cbd5e1;
+}
+
+.dark-theme .table-responsive {
+  background: #111827;
+}
+
+.dark-theme tbody tr {
+  background: #111827;
+}
+
+.dark-theme tbody tr:nth-child(even) {
+  background: #172033;
+}
+
+.dark-theme tbody tr:hover {
+  background: #22304a;
+}
+
+.dark-theme tbody td {
+  color: #e2e8f0;
+  border-color: #283548;
+}
+
+.dark-theme .edit-modal {
+  background: #111827;
+}
+
+.dark-theme .edit-modal h2 {
+  color: white;
+}
+
+.dark-theme .edit-modal input,
+.dark-theme .edit-modal textarea {
+  background: #1e293b;
+  border-color: #334155;
+  color: white;
+}
+
+.dark-theme .pagination button {
+  background: #1e293b;
+  color: white;
+}
+
+.dark-theme .pagination button:hover,
+.dark-theme .active-page {
+  background: #2563eb !important;
+}
+
+.dark-theme .close-btn {
+  color: white;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+  .table-page {
+    padding: 20px;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-right {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .theme-btn {
+    width: 100%;
+    height: 48px;
+  }
+
+  .table-header h2 {
+    text-align: center;
+    font-size: 26px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .table-page {
+    padding: 15px;
+  }
+
+  .table-header h2 {
+    font-size: 22px;
+  }
+
+  thead th,
+  tbody td {
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .pagination button {
+    min-width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .edit-modal {
+    padding: 20px;
+  }
+
+  .edit-modal h2 {
+    font-size: 22px;
+  }
+
+  .save-btn {
+    font-size: 15px;
+  }
+}

@@ -1,4 +1,3 @@
-
 import React from "react";
 import onPageIcon from "../../assets/on-page-seo.png";
 import offPageIcon from "../../assets/off-page-seo.png";
@@ -69,16 +68,16 @@ const services = [
 const SeoServicesForAgency = () => {
   return (
     <section className="seo-services">
-
       <h2 className="seo-services-heading">
         SEO Services by PR WEBSTOCK in Bhubaneswar, Odisha
       </h2>
 
       <p className="seo-services-description">
-        PR WEBSTOCK provides professional SEO services in Bhubaneswar, Odisha,
-        helping businesses improve Google rankings, increase organic traffic,
-        and generate quality leads. Our SEO experts deliver customized
-        strategies designed for long-term online growth.
+        <span>PR WEBSTOCK</span> provides professional SEO services in{" "}
+        <span>Bhubaneswar, Odisha</span>, helping businesses improve Google
+        rankings, increase organic traffic, and generate quality leads. Our SEO
+        experts deliver customized strategies designed for long-term online
+        growth.
       </p>
 
       <div className="seo-grid">
@@ -86,6 +85,7 @@ const SeoServicesForAgency = () => {
           <div className="seo-card" key={index}>
             <img src={service.icon} alt={service.title} />
             <h3>{service.title}</h3>
+
             <ul>
               {service.points.map((point, i) => (
                 <li key={i}>{point}</li>
@@ -94,10 +94,8 @@ const SeoServicesForAgency = () => {
           </div>
         ))}
       </div>
-
     </section>
   );
 };
 
 export default SeoServicesForAgency;
-

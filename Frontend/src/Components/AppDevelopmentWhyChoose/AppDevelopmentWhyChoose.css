@@ -118,19 +118,33 @@
 
 /* -------------- Responsive -------------- */
 
-@media (max-width: 1024px) {
+/* ===========================
+   LARGE LAPTOP
+=========================== */
+@media (max-width: 1200px) {
+  .why-section {
+    padding: 0 30px 70px;
+  }
+
+  .why-title {
+    font-size: 36px;
+  }
+
+  .why-card {
+    padding: 28px;
+  }
+}
+
+/* ===========================
+   TABLET
+=========================== */
+@media (max-width: 992px) {
   .why-slide {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .why-card:nth-child(2n) {
     border-right: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .why-section {
-    padding: 0 20px 60px;
   }
 
   .why-title {
@@ -138,12 +152,41 @@
   }
 
   .why-intro-row {
+    grid-template-columns: 120px 1fr;
+    column-gap: 20px;
+  }
+
+  .why-card-title {
+    font-size: 20px;
+  }
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+@media (max-width: 768px) {
+  .why-section {
+    padding: 0 20px 60px;
+  }
+
+  .why-title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .why-intro-row {
     grid-template-columns: 1fr;
-    row-gap: 16px;
+    row-gap: 15px;
   }
 
   .why-intro-line {
-    width: 140px;
+    width: 120px;
+    margin: 0 auto;
+  }
+
+  .why-intro-text {
+    text-align: center;
+    font-size: 15px;
   }
 
   .why-slide {
@@ -153,9 +196,51 @@
   .why-card {
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
+    padding: 25px;
+    text-align: center;
   }
 
   .why-card:last-child {
     border-bottom: none;
+  }
+
+  .why-icon {
+    margin: 0 auto 20px;
+  }
+}
+
+/* ===========================
+   SMALL MOBILE
+=========================== */
+@media (max-width: 480px) {
+  .why-section {
+    padding: 0 15px 50px;
+  }
+
+  .why-title {
+    font-size: 24px;
+  }
+
+  .why-intro-text {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .why-card {
+    padding: 20px;
+  }
+
+  .why-card-title {
+    font-size: 18px;
+  }
+
+  .why-card-text {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .why-icon {
+    width: 50px;
+    height: 50px;
   }
 }

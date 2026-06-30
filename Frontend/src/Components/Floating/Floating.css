@@ -1,0 +1,105 @@
+.floating-container {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.floating-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+
+  color: #fff;
+  font-size: 24px;
+
+  position: relative;
+
+  transition: .3s;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+.floating-btn:hover {
+  transform: scale(1.08);
+}
+
+.phone {
+  background: #4b57b8;
+}
+
+.whatsapp {
+  background: #06c167;
+}
+
+.top {
+  background: #222;
+}
+
+.tooltip {
+  position: absolute;
+  right: 75px;
+  background: #343a40;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  font-size: 14px;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 8px solid #343a40;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.floating-btn:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width:768px) {
+  .floating-container {
+    right: 15px;
+    bottom: 15px;
+    gap: 12px;
+  }
+
+  .floating-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 21px;
+  }
+
+  .tooltip {
+    display: none;
+  }
+}
+
+@media (max-width:480px) {
+  .floating-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}

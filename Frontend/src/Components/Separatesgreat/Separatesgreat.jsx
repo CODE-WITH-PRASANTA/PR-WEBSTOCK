@@ -114,14 +114,31 @@ const Separatesgreat = () => {
 
                 <p className="Separatesgreat-card-desc">{c.desc}</p>
                 
-                <div className="Separatesgreat-card-footer">
-                  <span className="Separatesgreat-card-cta">
-                    Explore feature
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                </div>
+               <div className="Separatesgreat-card-footer">
+                    <a
+                      href="https://wa.me/917789801327?text=Hi%20PR%20WEBSTOCK!%20🚀%0A%0AI%20am%20interested%20in%20exploring%20a%20demo%20for%20your%20services.%20Please%20share%20more%20details%20about%20website%20development,%20digital%20marketing,%20and%20pricing.%20%0A%0ALooking%20forward%20to%20connecting!"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="Separatesgreat-card-cta"
+                    >
+                      Explore Demo
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6 12L10 8L6 4"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </div>
               </div>
             </article>
           ))}

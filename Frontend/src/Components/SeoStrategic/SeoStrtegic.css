@@ -4,6 +4,10 @@
 .seo-section {
   padding: 40px 0;
   background: #ffffff;
+
+  /* Only top & bottom border */
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 .seo-container {
@@ -69,11 +73,9 @@
   display: flex;
   gap: 20px;
   padding: 20px 0;
-  border-top: 1px solid #ddd;
-}
 
-.seo-list li:last-child {
-  border-bottom: 1px solid #ddd;
+  /* Removed item borders */
+  border: none;
 }
 
 .seo-list span {

@@ -1,0 +1,371 @@
+/* ====================================
+   PROJECT USER BLACK THEME
+==================================== */
+
+.project-user {
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
+  background: #0f1117;
+  box-sizing: border-box;
+}
+
+.project-user-container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* ====================================
+   50% - 50% LAYOUT
+==================================== */
+
+.project-user-form-section,
+.project-user-table-section {
+  flex: 0 0 calc(50% - 10px);
+  max-width: calc(50% - 10px);
+}
+
+/* ====================================
+   CARD
+==================================== */
+
+.project-user-card {
+  background: #181c25;
+  border: 1px solid #2b313d;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  height: 100%;
+}
+
+/* ====================================
+   HEADER
+==================================== */
+
+.project-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.project-user-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.project-user-badge {
+  padding: 8px 14px;
+  border-radius: 30px;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ====================================
+   FORM
+==================================== */
+
+.project-user-field {
+  margin-bottom: 18px;
+}
+
+.project-user-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: #d1d5db;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.project-user-field input,
+.project-user-field textarea {
+  width: 100%;
+  background: #0f1117;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  padding: 13px 15px;
+  color: #ffffff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.project-user-field input::placeholder,
+.project-user-field textarea::placeholder {
+  color: #6b7280;
+}
+
+.project-user-field input:focus,
+.project-user-field textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.project-user-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* ====================================
+   FILE INPUT
+==================================== */
+
+.project-user-field input[type="file"] {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.project-user-field input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  background: #3b82f6;
+  color: white;
+  padding: 9px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.project-user-field input[type="file"]::-webkit-file-upload-button:hover {
+  background: #2563eb;
+}
+
+/* ====================================
+   SUBMIT BUTTON
+==================================== */
+
+.project-user-submit-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.project-user-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+}
+
+/* ====================================
+   TABLE
+==================================== */
+
+.project-user-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.project-user-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.project-user-table-wrapper::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 20px;
+}
+
+.project-user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.project-user-table thead {
+  background: #111827;
+}
+
+.project-user-table th {
+  color: #ffffff;
+  padding: 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #2d3748;
+  white-space: nowrap;
+}
+
+.project-user-table td {
+  color: #d1d5db;
+  padding: 16px;
+  border-bottom: 1px solid #2d3748;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.project-user-table tbody tr {
+  transition: 0.3s;
+}
+
+.project-user-table tbody tr:hover {
+  background: #222833;
+}
+
+/* ====================================
+   IMAGE
+==================================== */
+
+.project-user-preview-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #2d3748;
+}
+
+/* ====================================
+   ACTION BUTTONS
+==================================== */
+
+.project-user-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+/* ====================================
+   EMPTY STATE
+==================================== */
+
+.project-user-empty {
+  text-align: center;
+  padding: 50px;
+  color: #9ca3af;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ====================================
+   SCROLLBAR
+==================================== */
+
+.project-user-table-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.project-user-table-wrapper::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 20px;
+}
+
+.project-user-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ====================================
+   RESPONSIVE
+==================================== */
+
+@media (max-width: 992px) {
+  .project-user-container {
+    flex-direction: column;
+  }
+
+  .project-user-form-section,
+  .project-user-table-section {
+    flex: 1;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-user {
+    padding: 15px;
+  }
+
+  .project-user-card {
+    padding: 20px;
+  }
+
+  .project-user-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .project-user-title {
+    font-size: 20px;
+  }
+
+  .project-user-table th,
+  .project-user-table td {
+    min-width: 150px;
+    padding: 12px;
+  }
+
+  .project-user-preview-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .project-user-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-user-title {
+    font-size: 18px;
+  }
+
+  .project-user-badge {
+    font-size: 12px;
+  }
+
+  .project-user-submit-btn {
+    font-size: 14px;
+  }
+
+  .project-user-field input,
+  .project-user-field textarea {
+    font-size: 13px;
+  }
+}

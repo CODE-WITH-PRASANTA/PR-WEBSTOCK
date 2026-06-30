@@ -510,27 +510,29 @@
 ------------------------------------------------- */
 @media (max-width: 1024px) {
   .zenfy-footer-columns {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
   }
 
   .zenfy-footer-col-logo {
-    grid-column: span 2;
+    grid-column: auto;
   }
 
   .zenfy-brand-container {
-    width: 280px;
-    height: 280px;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
   }
 
   .zenfy-logo-img {
-    width: 160px;
-    height: 160px;
+    width: 130px;
+    height: 130px;
   }
 
   .zenfy-bglogo-img {
-    width: 330px;
-    height: 330px;
+    width: 260px;
+    height: 260px;
   }
 }
 

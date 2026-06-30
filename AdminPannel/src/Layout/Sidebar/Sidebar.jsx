@@ -11,11 +11,9 @@ import {
   FaShieldAlt,
   FaChevronDown,
   FaBell,
-  FaCog,
   FaSignOutAlt,
   FaCommentDots,
   FaNetworkWired,
-  FaUserShield,
   FaPlus,
   FaSearch,
   FaTimes,
@@ -23,9 +21,8 @@ import {
   FaClipboardList,
   FaBookOpen,
   FaStar,
-  FaAddressBook,
-  FaBook
 } from "react-icons/fa";
+
 import { FaCalendarAlt } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -34,7 +31,6 @@ const Sidebar = () => {
   const [showChat, setShowChat] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const [openMenu, setOpenMenu] = useState("dashboard");
 
   return (
     <>
@@ -117,128 +113,119 @@ const Sidebar = () => {
         </div>
 
         {/* MENU */}
+<div className="sidebarMenu">
 
-       <div className="sidebarMenu">
-            {/* Dashboard */}
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebarLink active"
-                  : "sidebarLink"
-              }
-            >
-            <FaTachometerAlt />
-          <span>Executive Dashboard</span>
-            </NavLink>
+  {/* Dashboard */}
+  <NavLink
+    to="/dashboard"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaTachometerAlt />
+    <span>Dashboard</span>
+  </NavLink>
 
-            {/* Editor Management */}
-            <div
-              className="sidebarDropdown"
-              onClick={() =>
-                setOpenMenu(
-                  openMenu === "editor"
-                    ? ""
-                    : "editor"
-                )
-              }
-            >
-              <div className="sidebarDropdownLeft">
-              <FaUserTie />
-          <span>Editorial Management</span>
-              </div>
+  {/* Blog Post */}
+  <NavLink
+    to="/blog-post"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaPlus />
+    <span>Blog Post</span>
+  </NavLink>
 
-              <FaChevronDown />
-            </div>
+  {/* Blog Management */}
+  <NavLink
+    to="/blog-management"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaBookOpen />
+    <span>Blog Management</span>
+  </NavLink>
 
-            {openMenu === "editor" && (
-              <div className="sidebarSubMenu">
-                <NavLink to="/new-editor">
-                  New Editor
-                </NavLink>
+  {/* Lead Management */}
+  <NavLink
+    to="/lead-management"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaClipboardList />
+    <span>Lead Management</span>
+  </NavLink>
 
-                <NavLink to="/manage-editor">
-                  Manage Editor
-                </NavLink>
-              </div>
-            )}
+  {/* Career Management */}
+  <NavLink
+    to="/career-management"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaUserTie />
+    <span>Career Management</span>
+  </NavLink>
 
-            {/* Cold Lead Management */}
-            <NavLink
-              to="/cold-lead-management"
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebarLink active"
-                  : "sidebarLink"
-              }
-            >
-            <FaClipboardList />
-          <span>Lead Management Hub</span>
-            </NavLink>
+  {/* Project Management */}
+  <NavLink
+    to="/project-management"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaNetworkWired />
+    <span>Project Management</span>
+  </NavLink>
 
-            {/* Index & Abstracting Management */}
-            <NavLink
-              to="/index-abstracting-management"
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebarLink active"
-                  : "sidebarLink"
-              }
-            >
-            <FaBookOpen />
-          <span>Indexing & Abstracting</span>
-            </NavLink>
+  {/* Testimonial Management */}
+  <NavLink
+    to="/testimonial-management"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaStar />
+    <span>Testimonial Management</span>
+  </NavLink>
 
-            {/* Publication Management */}
-              <NavLink
-                to="/publication-management"
-                className={({ isActive }) =>
-                  isActive
-                    ? "sidebarLink active"
-                    : "sidebarLink"
-                }
-              >
-                <FaBook />
-                <span>Publication Management</span>
-              </NavLink>
+  {/* Gallery Management */}
+  <NavLink
+    to="/gallery-management"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaUsers />
+    <span>Gallery Management</span>
+  </NavLink>
 
-            {/* Testimonial Management */}
-            <NavLink
-              to="/testimonial-management"
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebarLink active"
-                  : "sidebarLink"
-              }
-            >
-              <FaStar />
-          <span>Author Testimonials</span>
-            </NavLink>
-              <NavLink
-                  to="/calendar-management"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "sidebarLink active"
-                      : "sidebarLink"
-                  }
-                >
-                  <FaCalendarAlt />
-                  <span>Calendar Management</span>
-                </NavLink> 
-            {/* Contact Management */}
-            <NavLink
-              to="/contact-management"
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebarLink active"
-                  : "sidebarLink"
-              }
-            >
-            <FaAddressBook />
-          <span>Contact & Support Center</span>
-            </NavLink>
+  {/* Team Member */}
+  <NavLink
+    to="/team-member"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaUser />
+    <span>Team Member</span>
+  </NavLink>
 
-      </div>
+  {/* Calendar Management */}
+  <NavLink
+    to="/calendar-management"
+    className={({ isActive }) =>
+      isActive ? "sidebarLink active" : "sidebarLink"
+    }
+  >
+    <FaCalendarAlt />
+    <span>Calendar Management</span>
+  </NavLink>
+
+</div>
 
         {/* FOOTER */}
 
