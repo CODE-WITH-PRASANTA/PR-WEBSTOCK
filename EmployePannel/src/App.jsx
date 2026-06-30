@@ -16,7 +16,6 @@ import TaskList from "./Components/TaskList/TaskList";
 import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
 import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
-import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
 
 const App = () => {
   return (
@@ -57,9 +56,6 @@ const App = () => {
         <Route
         path="/employe/policies"
         element={<CompanyPolicies/>}/>
-
-          <Route path="/team-leaves" element={<TeamLeaves />} />
-
       </Routes>
     </BrowserRouter>
   );
