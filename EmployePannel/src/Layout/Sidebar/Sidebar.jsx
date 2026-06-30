@@ -68,23 +68,23 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           isMobile ? (!collapsed ? "open" : "") : collapsed ? "collapsed" : ""
         }`}
       >
-        {/* Corporate Branding & Close Header Block */}
-        <div className="logo">
-          <div className="logoBrand">
-            <img
-              src="http://localhost:5173/src/assets/PR-WEB-LOGO.png"
-              alt="logo"
-            />
-            {!collapsed && <h2>PRWEBSTOCK</h2>}
+       <div className="logo">
+            <div className="logoBrand">
+              <img
+                src="http://localhost:5173/src/assets/PR-WEB-LOGO.png"
+                alt="PR WEBSTOCK Logo"
+              />
+            </div>
+
+            {isMobile && (
+              <button
+                className="sidebarClose"
+                onClick={() => setCollapsed(true)}
+              >
+                <FiX />
+              </button>
+            )}
           </div>
-          
-          {/* Mobile Close Trigger perfectly placed inline */}
-          {isMobile && (
-            <button className="sidebarClose" onClick={() => setCollapsed(true)}>
-              <FiX />
-            </button>
-          )}
-        </div>
 
         {/* User Profile Section */}
         {!collapsed && (
