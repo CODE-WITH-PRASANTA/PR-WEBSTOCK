@@ -10,7 +10,7 @@ import MainLayout from "./Layout/MainLayout/MainLayout";
 
 // Pages
 import Dashboard from "./Pages/Dashboard/Dashboard";
-import TeamMembers from "../TeamMembers/TeamMembers";
+import TeamMembers from "./Pages/TeamMembers/TeamMembers";
 
 const App = () => {
   return (
@@ -31,9 +31,6 @@ const App = () => {
             element={<Dashboard />}
           />
 
-          {/* Add more routes here */}
-          {/* <Route path="calendar" element={<Calendar />} /> */}
-          {/* <Route path="today-attendance" element={<TodayAttendance />} /> */}
 
         </Route>
 
