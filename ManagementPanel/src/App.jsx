@@ -7,11 +7,10 @@ import {
 } from "react-router-dom";
 
 import MainLayout from "./Layout/MainLayout/MainLayout";
-import Dashboard from "./Pages/Dashboard/Dashboard";
 
 // Pages
-
-
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import AllProjects from "./Pages/AllProjects/AllProjects";
 
 const App = () => {
   return (
@@ -27,10 +26,12 @@ const App = () => {
         {/* Employee Layout */}
         <Route path="/employee" element={<MainLayout />}>
 
+
           <Route
             path="dashboard"
-            element={<Dashboard/>}
+            element={<Dashboard />}
           />
+          <Route path="/management/allproject" element={<AllProjects />} />
 
 
         </Route>
@@ -39,9 +40,8 @@ const App = () => {
           path="*"
           element={<h1>404 Page Not Found</h1>}
         />
-
-        
-
+         
+          
       </Routes>
     </BrowserRouter>
   );
