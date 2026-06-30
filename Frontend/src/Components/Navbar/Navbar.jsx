@@ -138,28 +138,24 @@ const Navbar = () => {
               <p>+91 77898 01327</p>
             </div>
           </li>
+
+          
         </ul>
 
-        {/* Blog Section */}
-        <h3 className="quote-info-title">Latest Blog</h3>
+        {/* Office Hours */}
+      <div className="quote-info-hours">
+        <h3 className="quote-info-title">Office Hours</h3>
 
-        <div className="quote-news-list">
-          <div className="quote-news-item">
-            <img src={uploadedImagePath} alt="blog-1" />
-            <div>
-              <span className="quote-news-date">December 3, 2023</span>
-              <p className="quote-news-text">A very warm welcome to our new Treasurer</p>
-            </div>
-          </div>
-
-          <div className="quote-news-item">
-            <img src={uploadedImagePath} alt="blog-2" />
-            <div>
-              <span className="quote-news-date">February 15, 2023</span>
-              <p className="quote-news-text">German kinder and garten mean child</p>
-            </div>
-          </div>
+        <div className="quote-hours-item">
+          <span>Monday - Saturday</span>
+          <strong>09:00 AM - 05:00 PM</strong>
         </div>
+
+        <div className="quote-hours-item">
+          <span>Sunday</span>
+          <strong>Closed</strong>
+        </div>
+      </div>
       </div>
     </aside>
   </>

@@ -1,6 +1,59 @@
-/* ===========================
+/* ====================================
    MAIN SECTION
-=========================== */
+==================================== */
+
+.social-media-section {
+  width: 100%;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+/* ====================================
+   TOP HEADING
+==================================== */
+
+.social-heading {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 20px 20px;
+  text-align: center;
+}
+
+.social-tag {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 30px;
+  background: #eef2ff;
+  color: #2563eb;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.social-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.social-title span {
+  color: #2563eb;
+}
+
+.social-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* ====================================
+   MAIN SLIDER SECTION
+==================================== */
 
 .slider-container {
   width: 100%;
@@ -9,54 +62,35 @@
   grid-template-columns: 42% 58%;
   align-items: center;
   gap: 70px;
-  padding: 80px 7%;
-  background: #fafafa;
-  overflow: hidden;
+  padding: 60px 7% 80px;
 }
 
-/* ===========================
+/* ====================================
    IMAGE AREA
-=========================== */
+==================================== */
 
 .slider-img-wrapper {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .slider-image-box {
-  position: relative;
   width: 100%;
   max-width: 520px;
 }
 
 .slider-image-box img {
   width: 100%;
-  height: 500px;
   object-fit: cover;
   border-radius: 24px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-  transition: 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-/* Decorative Shape */
-
-.pink-bar {
-  position: absolute;
-  bottom: -18px;
-  left: -18px;
-  width: 120px;
-  height: 120px;
-  background: #111;
-  opacity: 0.05;
-  border-radius: 20px;
-  z-index: -1;
-}
-
-/* ===========================
+/* ====================================
    IMAGE ANIMATION
-=========================== */
+==================================== */
 
 .fade-animation {
   animation: imageFade 0.6s ease;
@@ -74,45 +108,31 @@
   }
 }
 
-/* ===========================
+/* ====================================
    CONTENT AREA
-=========================== */
+==================================== */
 
-.slider-content {
-  width: 100%;
+/* ====================================
+   HOVER DESCRIPTION
+==================================== */
+
+.slider-description {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.45s ease;
 }
 
-.slider-text-block {
-  padding: 18px 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.slider-description.show {
+  max-height: 250px;
+  opacity: 1;
+  margin-top: 14px;
 }
 
-.slider-text-block h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #111;
-  transition: 0.3s;
-  line-height: 1.3;
-}
-
-.slider-text-block:hover h2 {
-  color: #000;
-}
-
-.slider-text-block.active h2 {
-  color: #000;
-}
-
-.highlight-title {
-  color: #111;
-}
-
-.active-text {
-  font-size: 1rem;
+.slider-description p {
   color: #555;
+  font-size: 1rem;
   line-height: 1.8;
-  margin-top: 12px;
   max-width: 700px;
   animation: textFade 0.4s ease;
 }
@@ -129,25 +149,20 @@
   }
 }
 
+/* ====================================
+   DIVIDER
+==================================== */
+
 .divider {
   width: 100%;
   height: 1px;
   background: #e7e7e7;
-  margin-top: 18px;
+  margin-top: 22px;
 }
 
-/* ===========================
-   ACTIVE STATE
-=========================== */
-
-.slider-text-block.active {
-  padding-left: 18px;
-  border-left: 4px solid #111;
-}
-
-/* ===========================
-   LARGE SCREEN
-=========================== */
+/* ====================================
+   LARGE DESKTOP
+==================================== */
 
 @media (min-width: 1600px) {
   .slider-image-box img {
@@ -157,16 +172,20 @@
   .slider-text-block h2 {
     font-size: 2rem;
   }
+
+  .social-title {
+    font-size: 3.5rem;
+  }
 }
 
-/* ===========================
+/* ====================================
    LAPTOP
-=========================== */
+==================================== */
 
 @media (max-width: 1200px) {
   .slider-container {
     gap: 50px;
-    padding: 70px 5%;
+    padding: 60px 5%;
   }
 
   .slider-image-box img {
@@ -176,18 +195,22 @@
   .slider-text-block h2 {
     font-size: 1.45rem;
   }
+
+  .social-title {
+    font-size: 2.6rem;
+  }
 }
 
-/* ===========================
+/* ====================================
    TABLET
-=========================== */
+==================================== */
 
 @media (max-width: 1024px) {
   .slider-container {
-    min-height: auto;
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 60px 40px;
+    padding: 50px 40px;
+    min-height: auto;
   }
 
   .slider-img-wrapper {
@@ -207,39 +230,50 @@
     height: 380px;
   }
 
+  .social-title {
+    font-size: 2.3rem;
+  }
+
   .slider-text-block h2 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
   }
 }
 
-/* ===========================
+/* ====================================
    MOBILE
-=========================== */
+==================================== */
 
 @media (max-width: 768px) {
+  .social-heading {
+    padding: 60px 20px 20px;
+  }
+
+  .social-title {
+    font-size: 2rem;
+  }
+
+  .social-subtitle {
+    font-size: 0.95rem;
+  }
+
   .slider-container {
-    padding: 50px 20px;
+    padding: 40px 20px;
   }
 
   .slider-image-box img {
-    height: 250px;
+    height: 260px;
     border-radius: 18px;
   }
 
-  .pink-bar {
-    display: none;
-  }
-
   .slider-text-block {
-    padding: 14px 0;
+    padding: 16px 0;
   }
 
   .slider-text-block h2 {
     font-size: 1.15rem;
-    line-height: 1.4;
   }
 
-  .active-text {
+  .slider-description p {
     font-size: 0.95rem;
     line-height: 1.7;
   }
@@ -249,11 +283,20 @@
   }
 }
 
-/* ===========================
+/* ====================================
    SMALL MOBILE
-=========================== */
+==================================== */
 
 @media (max-width: 480px) {
+  .social-title {
+    font-size: 1.7rem;
+    line-height: 1.3;
+  }
+
+  .social-subtitle {
+    font-size: 0.9rem;
+  }
+
   .slider-image-box img {
     height: 220px;
   }
@@ -262,7 +305,7 @@
     font-size: 1rem;
   }
 
-  .active-text {
+  .slider-description p {
     font-size: 0.9rem;
   }
-} 
+}

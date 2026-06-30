@@ -10,13 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "framer-motion": "^12.40.0",
+=======
+    "axios": "^1.18.1",
+>>>>>>> 80b0b530ed0d37344c57635ca0ec9327ce60fedb
     "gsap": "^3.14.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^3.0.0",
     "react-icons": "^5.6.0",
     "react-router-dom": "^7.18.0",
-    "react-spinners": "^0.17.0"
+    "react-spinners": "^0.17.0",
+    "sweetalert2": "^11.26.25"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

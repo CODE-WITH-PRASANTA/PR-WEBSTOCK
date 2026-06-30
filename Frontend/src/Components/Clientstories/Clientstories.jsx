@@ -1,71 +1,56 @@
 import React, { useState, useEffect } from 'react';
+import API, { IMG_URL } from "../../api/axios"; // Uses pre-configured Axios instance and base assets directory
 import './Clientstories.css';
 
-// Testimonial data
-const testimonials = [
-  {
-    id: 1,
-    name: 'Flurance Miyagi',
-    role: 'CEO at astra.com',
-    company: 'YBC',
-    quote:
-      "The line's length and style can be changed to better fit your document's general layout and style. Stars, dashes, or even a graphical element are some other divider alternatives.",
-    rating: 5,
-    avatar:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face'
-  },
-  {
-    id: 2,
-    name: 'Sarah Johnson',
-    role: 'CTO at TechCorp',
-    company: 'TC',
-    quote:
-      "Zenfy's solutions transformed our workflow. Their team was professional, responsive, and delivered beyond expectations.",
-    rating: 5,
-    avatar:
-      'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face'
-  },
-  {
-    id: 3,
-    name: 'Michael Chen',
-    role: 'Product Manager at Innovate Inc',
-    company: 'II',
-    quote:
-      'Outstanding consulting service! The implementation was seamless and our team adapted quickly to the new system.',
-    rating: 4,
-    avatar:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face'
-  },
-  {
-    id: 4,
-    name: 'Priya Sharma',
-    role: 'Director at Global Solutions',
-    company: 'GS',
-    quote:
-      "The attention to detail and customer support has been exceptional. We've seen a 40% increase in productivity.",
-    rating: 5,
-    avatar:
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face'
-  }
-];
-
-const CsClientStoriesRoot = () => {
+const ClientStoriesRoot = () => {
+  const [testimonials, setTestimonials] = useState([]);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // FETCH: Sync component state with real-time database entries
+  const fetchTestimonials = async () => {
+    try {
+      setLoading(true);
+      const response = await API.get("/testimonial/all");
+      
+      console.log("CLIENT STORIES GET RESPONSE", response.data);
+
+      if (response.data && response.data.success) {
+        setTestimonials(response.data.data || []);
+      } else {
+        setTestimonials([]);
+      }
+    } catch (err) {
+      console.error("Client Stories Fetch Error:", err);
+      setError("Failed to fetch client stories.");
+      setTestimonials([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    fetchTestimonials();
+  }, []);
+
+  // CAROUSEL AUTOMATION TIMEOUT EFFECT
+  useEffect(() => {
+    if (!isAutoPlaying || testimonials.length <= 1) return;
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, testimonials.length]);
 
   const handleNext = () => {
+    if (testimonials.length === 0) return;
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
 
   const handlePrev = () => {
+    if (testimonials.length === 0) return;
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
@@ -73,7 +58,36 @@ const CsClientStoriesRoot = () => {
     setCurrentTestimonial(index);
   };
 
+  // Gracefully handle loading, missing data, or empty array returns
+  if (loading) {
+    return (
+      <section className="cs-root" aria-label="Client stories section">
+        <div className="cs-container" style={{ justifyContent: "center", alignItems: "center", minHeight: "300px" }}>
+          <p style={{ color: "inherit", opacity: 0.7 }}>Loading wonderful client stories...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return (
+      <section className="cs-root" aria-label="Client stories section">
+        <div className="cs-container" style={{ justifyContent: "center", alignItems: "center", minHeight: "300px" }}>
+          <p style={{ color: "inherit", opacity: 0.7 }}>No testimonials available at this moment.</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Safely grab the current slide row reference
   const data = testimonials[currentTestimonial];
+
+  // Map database response parameters dynamically
+  const resolvedName = data.name || "Anonymous";
+  const resolvedDesignation = data.designation || "Client";
+  const resolvedFeedback = data.feedback || "";
+  const resolvedRating = Number(data.rating || 0);
+  const resolvedImage = data.profileImage || data.photo;
 
   return (
     <section className="cs-root" aria-label="Client stories section">
@@ -117,28 +131,44 @@ const CsClientStoriesRoot = () => {
               <h3 className="cs-card-title">Great Consulting!</h3>
               <div className="cs-rating" aria-hidden>
                 {[...Array(5)].map((_, i) => (
-                  <span key={i} className={`cs-star ${i < data.rating ? 'cs-star-filled' : ''}`}>
+                  <span key={i} className={`cs-star ${i < resolvedRating ? 'cs-star-filled' : ''}`}>
                     ★
                   </span>
                 ))}
               </div>
             </div>
 
-            <blockquote className="cs-quote">“{data.quote}”</blockquote>
+            <blockquote className="cs-quote">“{resolvedFeedback}”</blockquote>
 
             <div className="cs-card-footer">
               <div className="cs-author">
-                <img className="cs-avatar" src={data.avatar} alt={`${data.name} avatar`} />
+                {resolvedImage ? (
+                  <img 
+                    className="cs-avatar" 
+                    src={`${IMG_URL}${resolvedImage}`} 
+                    alt={`${resolvedName} avatar`} 
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      // Safe vector icon fallback if a static production upload goes missing
+                      e.target.src = "https://cdn-images.mailchimp.com/icons/social-block/color-link-128.png";
+                    }}
+                  />
+                ) : (
+                  <div className="cs-avatar" style={{ backgroundColor: "#ccc", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "bold", fontSize: "14px" }}>
+                    {resolvedName.charAt(0)}
+                  </div>
+                )}
                 <div className="cs-author-meta">
-                  <div className="cs-author-name">{data.name}</div>
-                  <div className="cs-author-role">{data.role}</div>
+                  <div className="cs-author-name">{resolvedName}</div>
+                  <div className="cs-author-role">{resolvedDesignation}</div>
                 </div>
               </div>
 
               <div className="cs-quote-mark">“”</div>
 
               <div className="cs-company-logo" aria-hidden>
-                {data.company}
+                {/* Fallback to initials if company-specific text tracking was omitted */}
+                {data.company || resolvedName.split(' ').map(n => n[0]).join('').toUpperCase()}
               </div>
             </div>
 
@@ -176,14 +206,11 @@ const CsClientStoriesRoot = () => {
               </button>
             </div>
 
-            
           </div>
-
-          
         </div>
       </div>
     </section>
   );
 };
 
-export default CsClientStoriesRoot;
+export default ClientStoriesRoot;

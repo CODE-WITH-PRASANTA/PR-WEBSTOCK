@@ -1,28 +1,33 @@
-/* Keep styles scoped */
+/* ==========================================
+   GLOBAL STYLES
+========================================== */
+
 .bwd-section * {
   box-sizing: border-box;
 }
 
-/* SECTION BACKGROUND */
-
 .bwd-section {
-  padding: 80px 0 0px;
+  padding: 80px 0;
   background: #ffffff;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Segoe UI", sans-serif;
   color: #111827;
+  overflow: hidden;
 }
 
 .bwd-container {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 30px;
 }
 
-/* TOP HEADING AREA */
+/* ==========================================
+   TOP HEADING AREA
+========================================== */
 
 .bwd-top {
   display: flex;
-  gap: 60px;
+  gap: 70px;
   align-items: flex-start;
   margin-bottom: 70px;
 }
@@ -33,87 +38,205 @@
 
 .bwd-top-right {
   flex: 1;
-  font-size: 0.98rem;
+}
+
+.bwd-top-right p {
+  font-size: 1rem;
   line-height: 1.9;
   color: #4b5563;
+  margin-bottom: 20px;
 }
 
 .bwd-main-heading {
-  font-size: 2.7rem;
+  font-size: 3rem;
   line-height: 1.2;
   font-weight: 700;
-  margin: 0 0 16px;
+  color: #111827;
+  margin: 0;
 }
 
-.bwd-heading-line {
-  width: 100px;
-  height: 2px;
-  background: #111827;
-}
-
-/* MAIN LAYOUT (IMAGE + CONTENT) */
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
 
 .bwd-layout {
   display: flex;
-  align-items: stretch;    /* stretch both columns to same height */
-  gap: 70px;
+  gap: 80px;
+  align-items: flex-start;
 }
 
-/* LEFT – STICKY IMAGE COLUMN */
+/* ==========================================
+   LEFT IMAGE SECTION
+========================================== */
 
 .bwd-left {
-  flex: 0 0 360px;
-  padding-top: 120px;
-  align-self: stretch;    /* ensure full column height for sticky bounds */
+  flex: 0 0 500px;
 }
 
-/* Sticky wrapper (this sticks while right content scrolls) */
 .bwd-left-inner {
   position: sticky;
-  top: 250px;             /* distance from top while scrolling */
+  top: 100px;
 }
 
-.bwd-image-tilt {
+.bwd-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Attractive Premium Card */
+
+.bwd-image-card {
   position: relative;
+
   width: 100%;
-  transform: rotate(-65deg);
-  
-  
+  max-width: 550px;
+  height: 460px;
+
+  overflow: hidden;
+  border-radius: 30px;
+
+  background: #fff;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.12),
+    0 12px 35px rgba(59, 130, 246, 0.12);
+
+  transition: all 0.5s ease;
 }
 
-.bwd-image-tilt img {
+.bwd-image-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 35px 80px rgba(0, 0, 0, 0.18),
+    0 18px 45px rgba(59, 130, 246, 0.18);
+}
+
+.bwd-image-card img {
   width: 100%;
+  
+
+  object-fit: fill;
+  object-position: center;
+
   display: block;
-  border-radius: 8px;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
+
+  transition: transform 0.6s ease;
 }
 
+.bwd-image-card:hover img {
+  transform: scale(1.05);
+}
 
+/* Elegant Border Glow */
 
-/* RIGHT – FEATURES */
+.bwd-image-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: 30px;
+  padding: 2px;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #06b6d4,
+    #3b82f6
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1024px) {
+  .bwd-left {
+    width: 100%;
+    flex: 1;
+  }
+
+  .bwd-left-inner {
+    position: static;
+  }
+
+  .bwd-image-card {
+    max-width: 650px;
+    height: 550px;
+    margin: 0 auto 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bwd-image-card {
+    max-width: 100%;
+    height: 450px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bwd-image-card {
+    height: 350px;
+    border-radius: 20px;
+  }
+}
+
+/* ==========================================
+   RIGHT CONTENT SCROLL AREA
+========================================== */
+
+.bwd-right-scroll {
+  flex: 1;
+  height: 780px;
+  overflow-y: auto;
+  padding-right: 15px;
+  scroll-behavior: smooth;
+}
+
+/* Invisible Scrollbar */
+
+.bwd-right-scroll::-webkit-scrollbar {
+  width: 0px;
+}
+
+.bwd-right-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
 .bwd-right {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 50px;
 }
 
-/* GROUP WRAPPER */
+/* ==========================================
+   FEATURE GROUPS
+========================================== */
 
 .bwd-feature-group {
   border-top: 1px solid #e5e7eb;
 }
 
-.bwd-feature-group:first-of-type {
+.bwd-feature-group:first-child {
   border-top: none;
 }
 
 .bwd-feature-row {
   display: grid;
-  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  grid-template-columns: minmax(240px, 280px) 1fr;
   gap: 50px;
-  padding: 30px 0;
+  padding: 35px 0;
 }
 
 .bwd-divider {
@@ -121,78 +244,179 @@
   background: #e5e7eb;
 }
 
-/* TITLES */
+/* ==========================================
+   FEATURE TITLES
+========================================== */
 
 .bwd-feature-title {
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.4;
   color: #111827;
 }
 
+.bwd-feature-title.highlight {
+  color: #2563eb;
+}
 
-
-/* POINTS */
+/* ==========================================
+   FEATURE POINTS
+========================================== */
 
 .bwd-feature-points {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
 }
 
 .bwd-point {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
-  gap: 10px;
-  font-size: 0.96rem;
-  color: #374151;
-  line-height: 1.8;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
 }
 
 .bwd-arrow {
-  font-size: 1.1rem;
-  color: #111827;
+  color: #2563eb;
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
-/* RESPONSIVE */
+.bwd-point p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #4b5563;
+}
+
+/* ==========================================
+   TABLET RESPONSIVE
+========================================== */
+
+@media (max-width: 1100px) {
+  .bwd-layout {
+    gap: 50px;
+  }
+
+  .bwd-left {
+    flex: 0 0 420px;
+  }
+
+  .bwd-image-card {
+    height: 650px;
+  }
+
+  .bwd-right-scroll {
+    height: 650px;
+  }
+}
 
 @media (max-width: 1024px) {
   .bwd-top {
     flex-direction: column;
-    gap: 24px;
+    gap: 30px;
   }
 
   .bwd-main-heading {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 
   .bwd-layout {
     flex-direction: column;
-    align-items: flex-start;
+  }
+
+  .bwd-left {
+    width: 100%;
+    flex: 1;
   }
 
   .bwd-left-inner {
-    position: static; /* turn off sticky on small screens */
+    position: static;
   }
 
-  .bwd-image-tilt {
-    max-width: 320px;
-    margin: 0 auto;
+  .bwd-image-card {
+    max-width: 650px;
+    height: auto;
+    margin: 0 auto 40px;
   }
 
-  
+  .bwd-image-card img {
+    height: auto;
+  }
+
+  .bwd-right-scroll {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .bwd-feature-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
-@media (max-width: 640px) {
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
   .bwd-section {
-    padding: 20px  30px;
+    padding: 50px 0;
+  }
+
+  .bwd-container {
+    padding: 0 20px;
   }
 
   .bwd-main-heading {
     font-size: 2rem;
   }
 
+  .bwd-top-right p {
+    font-size: 0.95rem;
+  }
+
+  .bwd-feature-title {
+    font-size: 1.25rem;
+  }
+
+  .bwd-point p {
+    font-size: 0.95rem;
+  }
+
+  .bwd-image-card {
+    border-radius: 24px;
+  }
+
+  .bwd-image-card img {
+    min-height: 450px;
+    object-fit: cover;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+  .bwd-section {
+    padding: 40px 0;
+  }
+
+  .bwd-container {
+    padding: 0 15px;
+  }
+
+  .bwd-main-heading {
+    font-size: 1.7rem;
+  }
+
   .bwd-feature-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    padding: 28px 0;
+  }
+
+  .bwd-image-card img {
+    min-height: 350px;
   }
 }

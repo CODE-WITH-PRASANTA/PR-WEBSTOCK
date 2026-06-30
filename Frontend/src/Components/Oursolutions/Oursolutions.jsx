@@ -120,13 +120,14 @@ const cards = [
     link: '/services/payment-gateway'
   },
 
-  { 
-    icon: <IconSupport />, 
-    title: '24/7 IT Support & Maintenance', 
-    desc: 'Round-the-clock monitoring, bug fixing, uptime management, cloud support, and security maintenance. We ensure your website, application, CRM, or portal stays fast, secure, and running smoothly every day — with an average 3-minute response time.',
-    gradient: 'linear-gradient(135deg, #ef4444, #dc2626)',
-    link: '/services/support'
-  }
+ {
+  icon: <IconSupport />,
+  title: 'Google Ads & Meta Ads',
+  desc: 'Grow your business with high-performing Google Ads, Facebook Ads, and Instagram Ads. PR WEBSTOCK helps generate quality leads, increase website traffic, boost sales, and maximize ROI through targeted advertising campaigns and performance optimization.',
+  gradient: 'linear-gradient(135deg, #ef4444, #dc2626)',
+  link: '/services/digital-marketing'
+}
+
 ];
 
 

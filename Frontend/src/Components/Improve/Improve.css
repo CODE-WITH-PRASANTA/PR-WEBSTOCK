@@ -6,7 +6,6 @@
 
 .improve-section {
   width: 100%;
-  min-height: 380px;
   background: #f3f3fb;
   display: flex;
   align-items: center;
@@ -20,13 +19,45 @@
   text-align: center;
 }
 
+/* =========================
+   Banner Image
+========================= */
+
+.improve-banner {
+  width: 100%;
+  height: 70vh;
+  min-height: 280px;
+  max-height: 600px;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  background: #e9edf5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.improve-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================
+   Title
+========================= */
+
 .improve-title {
   font-size: 62px;
   font-weight: 700;
   line-height: 1.1;
   color: #232846;
   margin-bottom: 40px;
+  word-break: break-word;
 }
+
+/* =========================
+   Meta Section
+========================= */
 
 .improve-meta {
   display: flex;
@@ -35,7 +66,6 @@
   gap: 26px;
   flex-wrap: wrap;
 }
-
 
 .meta-item {
   display: flex;
@@ -49,6 +79,7 @@
 
 .meta-item svg {
   font-size: 20px;
+  color: #65769b;
 }
 
 .meta-dot {
@@ -57,13 +88,45 @@
   line-height: 1;
 }
 
+.improve-loading {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #232846;
+}
+
 /* =========================
-   Laptop
+   Large Laptop
 ========================= */
 
 @media (max-width: 1200px) {
   .improve-title {
     font-size: 54px;
+  }
+
+  .improve-banner {
+    height: 45vh;
+  }
+}
+
+/* =========================
+   Laptop
+========================= */
+
+@media (max-width: 992px) {
+  .improve-title {
+    font-size: 46px;
+  }
+
+  .improve-banner {
+    height: 40vh;
+  }
+
+  .meta-item {
+    font-size: 15px;
   }
 }
 
@@ -71,20 +134,20 @@
    Tablet
 ========================= */
 
-@media (max-width: 992px) {
-  .improve-title {
-    font-size: 46px;
-  }
-}
-
 @media (max-width: 768px) {
   .improve-section {
-    min-height: auto;
-    padding: 70px 20px;
+    padding: 50px 20px;
   }
 
   .improve-title {
     font-size: 38px;
+    margin-bottom: 25px;
+  }
+
+  .improve-banner {
+    height: 35vh;
+    min-height: 220px;
+    border-radius: 16px;
     margin-bottom: 30px;
   }
 
@@ -94,6 +157,11 @@
 
   .meta-item {
     font-size: 14px;
+    gap: 8px;
+  }
+
+  .meta-item svg {
+    font-size: 18px;
   }
 }
 
@@ -102,26 +170,57 @@
 ========================= */
 
 @media (max-width: 576px) {
+  .improve-section {
+    padding: 40px 16px;
+  }
+
   .improve-title {
     font-size: 30px;
     line-height: 1.3;
+    margin-bottom: 20px;
+  }
+
+  .improve-banner {
+    height: 30vh;
+    min-height: 180px;
+    border-radius: 12px;
+    margin-bottom: 25px;
   }
 
   .improve-meta {
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
   }
 
   .meta-dot {
     display: none;
   }
- 
-  .admin-image {
-    width: 50px;
-    height: 50px;
-  }
 
   .meta-item {
     justify-content: center;
+    font-size: 13px;
+  }
+
+  .meta-item svg {
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 380px) {
+  .improve-title {
+    font-size: 26px;
+  }
+
+  .improve-banner {
+    height: 26vh;
+    min-height: 160px;
+  }
+
+  .meta-item {
+    font-size: 12px;
   }
 }
