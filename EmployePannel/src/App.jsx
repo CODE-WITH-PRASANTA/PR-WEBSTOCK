@@ -14,6 +14,8 @@ import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
 import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
+import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
+import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
 
 const App = () => (
   <BrowserRouter>
@@ -30,6 +32,8 @@ const App = () => (
         <Route path="reimbursements" element={<SalaryDetails />} />
         <Route path="company-policies" element={<CompanyPolicies />} />
         <Route path="team-leaves" element={<TeamLeaves />} />
+        <Route path="profile-settings" element={<ProfileSettings />} />
+        <Route path="password-security" element={<PasswordSecurity />} />
       </Route>
 
       {/* 404 */}
