@@ -28,6 +28,7 @@ const App = () => (
         <Route path="my-tasks" element={<TaskList />} />
         <Route path="reimbursements" element={<SalaryDetails />} />
         <Route path="company-policies" element={<CompanyPolicies />} />
+        <Route path="team-attendance" element={<CompanyPolicies />} />
       </Route>
 
       {/* 404 */}
