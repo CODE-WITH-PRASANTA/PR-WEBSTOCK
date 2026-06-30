@@ -4,7 +4,7 @@
   --text-primary: #1f2937;
   --text-header-title: #5a667a; 
   --text-secondary: #4b5563;
-  --border-light: #e5e7eb;
+  --border-light: #0000004f;
   --status-completed-bg: #e6f4ea;
   --status-completed-txt: #137333;
   --status-review-bg: #fce8e6;
@@ -304,7 +304,7 @@ body {
 .performance-table td {
   padding: 14px 24px;
   color: #202124;
-  border-bottom: 1px solid #f1f3f4;
+  border-bottom: 1px solid #090d0e52;
   vertical-align: middle;
 }
 
