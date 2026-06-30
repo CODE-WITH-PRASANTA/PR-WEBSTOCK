@@ -17,6 +17,8 @@ import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
 import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
+import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
+import Calender from "./Components/Calender/Calender";
 
 const App = () => {
   return (
@@ -61,6 +63,10 @@ const App = () => {
     <Route
         path="policies"
         element={<CompanyPolicies />}
+    />  
+    <Route
+        path="calendar"
+        element={<Calender />}
     />
 
 </Route>
