@@ -12,13 +12,14 @@ const connectDB = require("./src/config/db");
 
 const teamRoutes = require("./src/routes/teamRoutes");
 const projectRoutes = require("./src/routes/projectRoutes");
-const testimonialRoutes = require("./src/routes/testimonialRoutes");
 const careerRoutes = require("./src/routes/careerRoutes");
 const blogRoutes = require("./src/routes/blogRoutes");
 const industryRoutes = require("./src/routes/industryRoutes");
 const galleryRoutes = require("./src/routes/galleryRoutes");
+const testimonialRoutes = require("./src/routes/testimonialRoutes");
 
 const app = express();
+
 
 // ==============================
 // Connect MongoDB
