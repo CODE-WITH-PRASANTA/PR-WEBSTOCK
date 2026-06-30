@@ -11,6 +11,7 @@ import MainLayout from "./Layout/MainLayout/MainLayout";
 // Pages
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import TeamMembers from "../TeamMembers/TeamMembers";
+import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
 
 const App = () => {
   return (
@@ -41,12 +42,14 @@ const App = () => {
           path="*"
           element={<h1>404 Page Not Found</h1>}
         />
-<Route
+       <Route
           path="/employe/Team-member"
           element={<TeamMembers />} />
-        
 
+        <Route path="/employee/Team-Performance"
+            element={<TeamPerformance/>} /> 
       </Routes>
+      
     </BrowserRouter>
   );
 };
