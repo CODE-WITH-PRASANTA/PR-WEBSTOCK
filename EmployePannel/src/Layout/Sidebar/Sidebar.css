@@ -1,0 +1,489 @@
+/* ======================================================
+   RESET
+====================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ======================================================
+   SIDEBAR
+====================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:280px;
+    height:100vh;
+
+    background:#fff;
+
+    border-right:1px solid #e9edf5;
+
+    overflow-y:auto;
+
+    transition:all .35s ease;
+
+    z-index:1000;
+}
+
+/* ======================================================
+   DESKTOP COLLAPSE
+====================================================== */
+
+.sidebar.collapsed{
+
+    width:80px;
+}
+
+/* ======================================================
+   LOGO
+====================================================== */
+
+.logo{
+
+    height:75px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    border-bottom:1px solid #eef1f5;
+
+    padding:0 18px;
+}
+
+.logo img{
+
+    width:42px;
+}
+
+.logo h2{
+
+    font-size:26px;
+
+    font-weight:600;
+
+    color:#1f2937;
+}
+
+/* ======================================================
+   PROFILE
+====================================================== */
+
+.profile{
+
+    text-align:center;
+
+    padding:25px 20px;
+}
+
+.profile img{
+
+    width:90px;
+    height:90px;
+
+    border-radius:18px;
+
+    object-fit:cover;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.12);
+}
+
+.profile h3{
+
+    margin-top:16px;
+
+    font-size:22px;
+
+    color:#1f2937;
+}
+
+.profile p{
+
+    margin-top:6px;
+
+    color:#6b7280;
+
+    font-size:15px;
+}
+
+/* ======================================================
+   MENU
+====================================================== */
+
+.menu{
+
+    padding:10px;
+}
+
+.menuItem{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    margin-bottom:8px;
+}
+
+.menuItem:hover{
+
+    background:#f4f7ff;
+}
+
+.menuLeft{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.menuLeft svg{
+
+    font-size:21px;
+
+    flex-shrink:0;
+}
+
+.menuLeft span{
+
+    font-size:16px;
+
+    font-weight:500;
+
+    color:#374151;
+}
+
+.menuItem>svg{
+
+    font-size:18px;
+
+    color:#777;
+}
+
+/* ======================================================
+   ACTIVE
+====================================================== */
+
+.menuItem.active{
+
+    background:#eef2ff;
+}
+
+.menuItem.active .menuLeft{
+
+    color:#4f46e5;
+}
+
+.menuItem.active span{
+
+    color:#4f46e5;
+
+    font-weight:600;
+}
+
+/* ======================================================
+   SUBMENU
+====================================================== */
+
+.submenu{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:max-height .35s ease;
+
+    padding-left:52px;
+}
+
+.submenu.show{
+
+    max-height:350px;
+}
+
+.submenuItem{
+
+    padding:12px 0;
+
+    color:#555;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.submenuItem:hover{
+
+    color:#4f46e5;
+
+    padding-left:8px;
+}
+
+/* ======================================================
+   COLLAPSED
+====================================================== */
+
+.sidebar.collapsed .menu{
+
+    padding:10px 6px;
+}
+
+.sidebar.collapsed .menuItem{
+
+    justify-content:center;
+
+    padding:15px 0;
+}
+
+.sidebar.collapsed .menuLeft{
+
+    justify-content:center;
+
+    width:100%;
+}
+
+.sidebar.collapsed .submenu{
+
+    display:none;
+}
+
+.sidebar.collapsed .logo{
+
+    justify-content:center;
+}
+
+/* ======================================================
+   MOBILE CLOSE BUTTON
+====================================================== */
+.menuItem{
+    text-decoration:none;
+    color:inherit;
+}
+
+.submenuItem{
+    display:block;
+    text-decoration:none;
+    color:#666;
+}
+
+.menuItem.active{
+    background:#eef2ff;
+    color:#4f46e5;
+}
+
+.menuItem.active .menuLeft span{
+    color:#4f46e5;
+    font-weight:600;
+}
+
+.activeSubmenu{
+    color:#4f46e5 !important;
+    font-weight:600;
+    padding-left:8px;
+}
+
+.activeSubmenu::before{
+    content:"";
+    display:inline-block;
+    width:6px;
+    height:6px;
+    background:#4f46e5;
+    border-radius:50%;
+    margin-right:10px;
+}
+.sidebarClose{
+
+    display:none;
+}
+
+/* ======================================================
+   OVERLAY
+====================================================== */
+
+.sidebarOverlay{
+
+    display:none;
+}
+
+/* ======================================================
+   SCROLLBAR
+====================================================== */
+
+.sidebar::-webkit-scrollbar{
+
+    width:5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:#d6dbe3;
+
+    border-radius:20px;
+}
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media(max-width:992px){
+
+.sidebar{
+
+    transform:translateX(-100%);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    width:280px;
+
+    transition:
+        transform .35s ease,
+        opacity .35s ease,
+        visibility .35s;
+}
+
+.sidebar.open{
+
+    transform:translateX(0);
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+.sidebar.collapsed{
+
+    width:280px;
+}
+
+/* Overlay */
+
+.sidebarOverlay{
+
+    display:block;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.35);
+
+    backdrop-filter:blur(2px);
+
+    z-index:999;
+}
+
+/* Close Button */
+
+.sidebarClose{
+
+    position:absolute;
+
+    top:18px;
+
+    right:18px;
+
+    width:40px;
+
+    height:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:none;
+
+    background:#f4f6fb;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.sidebarClose:hover{
+
+    background:#e9eef7;
+}
+
+.sidebarClose svg{
+
+    font-size:22px;
+
+    color:#444;
+}
+
+.logo{
+
+    justify-content:flex-start;
+
+    padding-left:22px;
+}
+
+}
+
+/* ======================================================
+   SMALL MOBILE
+====================================================== */
+
+@media(max-width:576px){
+
+.sidebar{
+
+    width:260px;
+}
+
+.logo h2{
+
+    font-size:24px;
+}
+
+.profile img{
+
+    width:80px;
+    height:80px;
+}
+
+.profile h3{
+
+    font-size:20px;
+}
+
+.menuItem{
+
+    padding:13px;
+}
+
+.menuLeft span{
+
+    font-size:15px;
+}
+
+}

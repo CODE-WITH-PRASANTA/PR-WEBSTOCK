@@ -14,6 +14,12 @@
   },
   "dependencies": {
     "@tinymce/tinymce-react": "^6.3.0",
+    "axios": "^1.17.0",
+    "framer-motion": "^12.40.0",
+    "react": "^19.2.6",
+    "react-countup": "^6.5.3",
+    "react-dom": "^19.2.6",
+    "react-icon": "^1.0.0",
     "axios": "^1.18.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
