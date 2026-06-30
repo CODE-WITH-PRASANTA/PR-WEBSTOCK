@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "axios": "^1.18.1",
+<<<<<<< HEAD
+    "framer-motion": "^12.40.0",
+=======
+>>>>>>> 7e5b6eebc8b817d6f320540e766ce84ab1dd37d5
     "gsap": "^3.14.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

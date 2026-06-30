@@ -29,7 +29,6 @@
 
 .AdminLayout-content{
     margin-top:70px;
-    padding:20px;
     min-height:calc(100vh - 70px);
 }
 
