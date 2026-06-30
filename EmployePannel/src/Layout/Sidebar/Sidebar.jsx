@@ -92,38 +92,38 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           {/* Dashboard */}
 
           <NavLink
-  to="/employee/dashboard"
-  className={({ isActive }) =>
-    `menuItem ${isActive ? "active" : ""}`
-  }
->
-  <div className="menuLeft">
-    <FiGrid />
-    {!collapsed && <span>Dashboard</span>}
-  </div>
-</NavLink>
-          {/* Attendance */}
+                  to="/employee/dashboard"
+                  className={({ isActive }) =>
+                    `menuItem ${isActive ? "active" : ""}`
+                  }
+                >
+                  <div className="menuLeft">
+                    <FiGrid />
+                    {!collapsed && <span>Dashboard</span>}
+                  </div>
+                </NavLink>
+                          {/* Attendance */}
 
-         <div
-  className="menuItem"
-  onClick={() => {
-    if (!collapsed) {
-      setAttendanceOpen(!attendanceOpen);
-    }
-  }}
->
-  <div className="menuLeft">
-    <FiClock />
-    {!collapsed && <span>Attendance</span>}
-  </div>
+                        <div
+                  className="menuItem"
+                  onClick={() => {
+                    if (!collapsed) {
+                      setAttendanceOpen(!attendanceOpen);
+                    }
+                  }}
+                >
+                  <div className="menuLeft">
+                    <FiClock />
+                    {!collapsed && <span>Attendance</span>}
+                  </div>
 
-  {!collapsed &&
-    (attendanceOpen ? (
-      <FiChevronDown />
-    ) : (
-      <FiChevronRight />
-    ))}
-</div>
+                  {!collapsed &&
+                    (attendanceOpen ? (
+                      <FiChevronDown />
+                    ) : (
+                      <FiChevronRight />
+                    ))}
+                </div>
 
           {!collapsed && (
             <div
@@ -132,69 +132,43 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               }`}
             >
               <NavLink
-  to="/employee/today-attendance"
-  className={({ isActive }) =>
-    `submenuItem ${isActive ? "activeSubmenu" : ""}`
-  }
->
-  Today's Attendance
-</NavLink>
+                  to="/employee/today-attendance"
+                  className={({ isActive }) =>
+                    `submenuItem ${isActive ? "activeSubmenu" : ""}`
+                  }
+                >
+                  Today's Attendance
+                </NavLink>
 
               <NavLink
-  to="/employee/monthly-attendance"
-  className={({ isActive }) =>
-    `submenuItem ${isActive ? "activeSubmenu" : ""}`
-  }
->
-  Monthly Attendance
-</NavLink>
+              to="/employee/monthly-attendance"
+              className={({ isActive }) =>
+                `submenuItem ${isActive ? "activeSubmenu" : ""}`
+              }
+            >
+              Monthly Attendance
+            </NavLink>
 
               <NavLink
-  to="/employee/attendance-history"
-  className={({ isActive }) =>
-    `submenuItem ${isActive ? "activeSubmenu" : ""}`
-  }
->
-  Attendance History
-</NavLink>
+              to="/employee/attendance-history"
+              className={({ isActive }) =>
+                `submenuItem ${isActive ? "activeSubmenu" : ""}`
+              }
+            >
+              Attendance History
+            </NavLink>
 
               <NavLink
-  to="/employee/overtime"
-  className={({ isActive }) =>
-    `submenuItem ${isActive ? "activeSubmenu" : ""}`
-  }
->
-  Overtime Requests
-</NavLink>
+                to="/employee/overtime"
+                className={({ isActive }) =>
+                  `submenuItem ${isActive ? "activeSubmenu" : ""}`
+                }
+              >
+                Overtime Requests
+              </NavLink>
               
             </div>
           )}
-
-          {/* Leaves */}
-
-          <div className="menuItem">
-
-            <div className="menuLeft">
-              <FiCalendar />
-
-              {!collapsed && <span>Leaves</span>}
-            </div>
-
-            {!collapsed && <FiChevronRight />}
-          </div>
-
-          {/* My Team */}
-
-          <div className="menuItem">
-
-            <div className="menuLeft">
-              <FiUsers />
-
-              {!collapsed && <span>My Team</span>}
-            </div>
-
-            {!collapsed && <FiChevronRight />}
-          </div>
 
         </div>
       </aside>
