@@ -10,6 +10,7 @@ import {
   FiLogOut,
   FiClock,
   FiFileText,
+  FiChevronDown,
 } from "react-icons/fi";
 
 const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
@@ -37,9 +38,7 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
     };
 
     document.addEventListener("mousedown", handleOutside);
-
-    return () =>
-      document.removeEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
   }, []);
 
   const notifications = [
@@ -49,12 +48,11 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
       title: "Please check your mail",
       time: "14 mins ago",
       action: "View",
-      color: "#31b24c",
+      color: "#4f46e5",
     },
     {
       id: 2,
-      avatar:
-        "https://randomuser.me/api/portraits/women/44.jpg",
+      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
       title: "New Patient Added..",
       time: "22 mins ago",
     },
@@ -63,13 +61,12 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
       icon: "calendar",
       title: "Your leave is approved!!",
       time: "3 hours ago",
-      color: "#ff9800",
+      color: "#f59e0b",
     },
     {
       id: 4,
-      avatar:
-        "https://randomuser.me/api/portraits/men/52.jpg",
-      title: "Lets break for lunch...",
+      avatar: "https://randomuser.me/api/portraits/men/52.jpg",
+      title: "Let's break for lunch...",
       time: "5 hours ago",
       action: "Reply",
     },
@@ -78,20 +75,19 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
       icon: "file",
       title: "Patient report generated",
       time: "14 mins ago",
-      color: "#39b54a",
+      color: "#10b981",
     },
   ];
 
   const renderIcon = (type, color) => {
     switch (type) {
       case "mail":
-        return <FiMail color={color} />;
-
+        return <FiMail style={{ color }} />;
       case "calendar":
         return (
           <svg
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             fill="none"
             stroke={color}
             strokeWidth="2"
@@ -99,200 +95,132 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
             strokeLinejoin="round"
             viewBox="0 0 24 24"
           >
-            <rect
-              x="3"
-              y="5"
-              width="18"
-              height="16"
-              rx="2"
-            />
+            <rect x="3" y="5" width="18" height="16" rx="2" />
             <line x1="16" y1="3" x2="16" y2="7" />
             <line x1="8" y1="3" x2="8" y2="7" />
             <line x1="3" y1="11" x2="21" y2="11" />
           </svg>
         );
-
       case "file":
-        return <FiFileText color={color} />;
-
+        return <FiFileText style={{ color }} />;
       default:
         return null;
     }
   };
 
-  const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-  };
-
   return (
-    <header className="Topbar">
-
-      {/* LEFT */}
-
+    <header className={`Topbar ${sidebarCollapsed ? "sidebar-collapsed" : ""}`}>
+      {/* LEFT SECTION */}
       <div className="Topbar-left">
-
         <button
           className="Topbar-toggle"
-          onClick={() =>
-            setSidebarCollapsed(!sidebarCollapsed)
-          }
+          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          aria-label="Toggle Sidebar"
         >
           <FiMenu />
         </button>
-
       </div>
 
-      {/* RIGHT */}
-
+      {/* RIGHT SECTION */}
       <div className="Topbar-right">
-
-       
-
-        {/* Notification */}
-
-        <div
-          className="Topbar-notificationWrapper"
-          ref={notificationRef}
-        >
+        
+        {/* Notification Bell Dropdown */}
+        <div className="Topbar-notificationWrapper" ref={notificationRef}>
           <button
-            className="Topbar-iconButton"
-            onClick={() =>
-              setNotificationOpen(!notificationOpen)
-            }
+            className={`Topbar-iconButton ${notificationOpen ? "active-btn" : ""}`}
+            onClick={() => setNotificationOpen(!notificationOpen)}
           >
             <FiBell />
-
-            <span className="Topbar-badge">
-              3
-            </span>
+            <span className="Topbar-badge">3</span>
           </button>
 
           {notificationOpen && (
             <div className="Topbar-notificationDropdown">
-
               <div className="Topbar-notificationHeader">
-
                 <h3>Notifications</h3>
-
-               
-
+                <button className="mark-button">Mark all read</button>
               </div>
 
               <div className="Topbar-notificationBody">
-
                 {notifications.map((item) => (
-                  <div
-                    className="Topbar-notificationItem"
-                    key={item.id}
-                  >
+                  <div className="Topbar-notificationItem" key={item.id}>
                     <div className="Topbar-notificationIcon">
-
                       {item.avatar ? (
-                        <img
-                          src={item.avatar}
-                          alt=""
-                        />
+                        <img src={item.avatar} alt="User Avatar" />
                       ) : (
-                        renderIcon(
-                          item.icon,
-                          item.color
-                        )
+                        <div className="svg-icon-container">
+                          {renderIcon(item.icon, item.color)}
+                        </div>
                       )}
-
                     </div>
 
                     <div className="Topbar-notificationContent">
-
                       <h4>{item.title}</h4>
-
                       <div className="Topbar-notificationTime">
-
                         <FiClock />
-
                         <span>{item.time}</span>
-
                       </div>
-
                       {item.action && (
-                        <button>
-                          {item.action}
-                        </button>
+                        <button className="Topbar-actionBtn">{item.action}</button>
                       )}
-
                     </div>
-
                   </div>
                 ))}
-
               </div>
 
               <div className="Topbar-notificationFooter">
-
-                <a href="/">
-                  Read All Notifications
-                </a>
-
+                <a href="/">See All Notifications</a>
               </div>
-
             </div>
           )}
         </div>
 
-        {/* Profile */}
-
-        <div
-          className="Topbar-profileWrapper"
-          ref={profileRef}
-        >
+        {/* User Profile Dropdown */}
+        <div className="Topbar-profileWrapper" ref={profileRef}>
           <button
-            className="Topbar-profileButton"
-            onClick={() =>
-              setProfileOpen(!profileOpen)
-            }
+            className={`Topbar-profileButton ${profileOpen ? "active-profile" : ""}`}
+            onClick={() => setProfileOpen(!profileOpen)}
           >
-            <span className="Topbar-userName">
-              Ella Jones
-            </span>
-
             <img
               src="https://randomuser.me/api/portraits/women/68.jpg"
-              alt=""
+              alt="User Avatar"
             />
+            <div className="Topbar-userMeta">
+              <span className="Topbar-userName">Ella Jones</span>
+              <span className="Topbar-userRole">Administrator</span>
+            </div>
+            <FiChevronDown className="Topbar-chevron" />
           </button>
 
           {profileOpen && (
             <div className="Topbar-profileDropdown">
-
+              <div className="Dropdown-userHeader">
+                <h4>Ella Jones</h4>
+                <p>ella.jones@company.com</p>
+              </div>
+              <div className="Dropdown-divider"></div>
               <a href="/">
                 <FiUser />
-                <span>Account</span>
+                <span>My Profile</span>
               </a>
-
               <a href="/">
                 <FiMail />
                 <span>Inbox</span>
               </a>
-
               <a href="/">
                 <FiSettings />
                 <span>Settings</span>
               </a>
-
-              <a href="/">
+              <div className="Dropdown-divider"></div>
+              <a href="/" className="logout-link">
                 <FiLogOut />
                 <span>Logout</span>
               </a>
-
             </div>
           )}
         </div>
 
       </div>
-
     </header>
   );
 };
