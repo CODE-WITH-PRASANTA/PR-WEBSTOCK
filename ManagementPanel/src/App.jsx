@@ -9,6 +9,9 @@ import AllProjects from "./Pages/AllProjects/AllProjects";
 import AddProjects from "./Components/AddProjects/AddProjects";
 import EditProjects from "./Components/EditProjects/EditProjects";
 import ProjectTasks from "./Components/ProjectTasks/ProjectTasks";
+import ProjectBudget from "./Components/ProjectBudget/ProjectBudget";
+import ProjectRiskIssue from "./Components/ProjectRiskIssue/ProjectRiskIssue";
+
 
 const App = () => {
   return (
@@ -25,6 +28,8 @@ const App = () => {
           <Route path="projects/add" element={<AddProjects />} />
           <Route path="projects/edit" element={<EditProjects />} />
           <Route path="projects/tasks" element={<ProjectTasks />} />
+          <Route path="projects/budget" element={<ProjectBudget/>}/>
+          <Route path="projects/risks" element={<ProjectRiskIssue/>}/>
         </Route>
 
         {/* 404 */}
