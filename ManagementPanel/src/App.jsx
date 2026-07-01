@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
+ 
 import MainLayout from "./Layout/MainLayout/MainLayout";
 
 // Pages
@@ -19,6 +19,8 @@ import AddProject from "./Components/AddProject/AddProject";
 import EmployeeShift from "./Components/EmployeeShift/EmployeeShift";
 import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
 import EditManagement from "./Components/EditManagement/EditManagement";
+import EmployeeDocuments from "./Components/EmployeeDocuments/EmployeeDocuments";
+import EmployeeAssets from "./Components/EmployeeAssets/EmployeeAssets";
 
 const App = () => {
   return (
@@ -44,8 +46,9 @@ const App = () => {
           <Route path="shift" element={<EmployeeShift/>}/>
           <Route path="profile" element={<EmployeeProfile/>}/>
           <Route path="edit" element={<EditManagement/>}/>
-          
-          
+          <Route path="documents" element={<EmployeeDocuments />} />
+          <Route path="assets" element={<EmployeeAssets />}/>
+
         </Route>
 
         {/* 404 */}
