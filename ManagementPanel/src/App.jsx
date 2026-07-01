@@ -15,6 +15,7 @@ import ProjectRiskIssue from "./Components/ProjectRiskIssue/ProjectRiskIssue";
 import ProjectMembers from "./Components/ProjectMembers/ProjectMembers";
 import ProjectFiles from "./Components/ProjectFiles/ProjectFiles";
 import AllEmployees from "./Components/AllEmployees/AllEmployees";
+import EditManagement from "./Components/EditManagement/EditManagement";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="projects/risks" element={<ProjectRiskIssue/>}/>
           <Route path="projects/members" element={<ProjectMembers/>}/>
           <Route path="projects/files" element={<ProjectFiles/>}/>
+          <Route path="edit" element={<EditManagement/>}/>
           
           
         </Route>
