@@ -1,0 +1,597 @@
+/* ==========================================================================
+   1. Base & Global Form Resets
+   ========================================================================== */
+   :root {
+    --bg-main: #f4f6f9;
+    --card-bg: #ffffff;
+    --border-color: #ced4da;
+    --border-focus: #1976d2;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --primary-action: #695aec;
+    --danger-action: #f44336;
+    --badge-high: #ffebee;
+    --badge-high-txt: #c62828;
+  }
+  
+  .edit-projects-bg {
+    background-color: var(--bg-main);
+    min-height: 100vh;
+    padding: 24px 16px;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-primary);
+    box-sizing: border-box;
+  }
+  
+  .max-page-wrapper {
+    max-width: 1140px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* ==========================================================================
+     2. Breadcrumb & Header Layout
+     ========================================================================== */
+  .header-breadcrumb-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .header-breadcrumb-row h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .breadcrumbs-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  
+  .breadcrumb-item-link {
+    cursor: pointer;
+    color: var(--text-secondary);
+  }
+  
+  .breadcrumb-item-link:hover {
+    color: var(--primary-action);
+  }
+  
+  .breadcrumb-divider {
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+  
+  .breadcrumb-item-active {
+    color: var(--text-muted);
+  }
+  
+  /* ==========================================================================
+     3. Form Container Card Layout
+     ========================================================================== */
+  .form-card-container {
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  
+  .form-card-header {
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid #edf2f9;
+  }
+  
+  .edit-project-form {
+    padding: 24px;
+  }
+  
+  .inputs-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .form-spacing-stack {
+    margin-top: 24px;
+  }
+  
+  /* ==========================================================================
+     4. Material Floating Outline Inputs & Selects
+     ========================================================================== */
+  .mat-outline-wrapper, .dropdown-relative-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  .mat-input-field {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .mat-input-field:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 1px var(--border-focus);
+  }
+  
+  /* Material Float Label Physics */
+  .mat-notch-label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card-bg);
+    padding: 0 4px;
+    color: var(--text-secondary);
+    font-size: 15px;
+    pointer-events: none;
+    transition: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Active text float triggers */
+  .mat-input-field:focus ~ .mat-notch-label,
+  .mat-input-field:not(:placeholder-shown) ~ .mat-notch-label,
+  .persistent-label {
+    top: 0;
+    font-size: 12px;
+    color: var(--border-focus);
+  }
+  
+  .mat-input-field:not(:focus):not(:placeholder-shown) ~ .mat-notch-label {
+    color: var(--text-secondary);
+  }
+  
+  .textarea-field {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Date specific resets */
+  .date-input {
+    color: var(--text-primary);
+  }
+  
+  /* ==========================================================================
+     5. Custom Dropdown Select Boxes
+     ========================================================================== */
+  .mat-select-trigger-box {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    min-height: 50px;
+  }
+  
+  .mat-select-trigger-box.opened-active {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 1px var(--border-focus);
+  }
+  
+  .dropdown-indicator-caret {
+    font-size: 10px;
+    color: var(--text-secondary);
+    user-select: none;
+  }
+  
+  .mat-popup-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 100;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  
+  .mat-dropdown-list-item {
+    padding: 10px 16px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .mat-dropdown-list-item:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .mat-dropdown-list-item.selected-active {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    font-weight: 500;
+  }
+  
+  .check-icon {
+    font-weight: bold;
+  }
+  
+  /* ==========================================================================
+     6. Priority Badges & Multi-Select Tags
+     ========================================================================== */
+  .priority-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .badge-high {
+    background-color: var(--badge-high);
+    color: var(--badge-high-txt);
+  }
+  
+  .team-chips-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  
+  .team-member-chip {
+    background: #f1f3f4;
+    border: 1px solid #dadce0;
+    padding: 2px 6px 2px 10px;
+    border-radius: 16px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .remove-chip-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  .remove-chip-btn:hover {
+    color: var(--danger-action);
+  }
+  
+  .placeholder-text {
+    color: var(--text-muted);
+  }
+  
+  .team-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* ==========================================================================
+     7. Radio Buttons Layout
+     ========================================================================== */
+  .radio-group-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .radio-group-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+  
+  .radio-items-inline-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .radio-item-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .radio-native-input {
+    display: none;
+  }
+  
+  .custom-radio-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+  }
+  
+  .radio-native-input:checked + .custom-radio-circle {
+    border-color: var(--primary-action);
+  }
+  
+  .radio-native-input:checked + .custom-radio-circle::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-action);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* ==========================================================================
+     8. PIXEL-PERFECT RICH TEXT EDITOR TOOLBAR (Matches Image)
+     ========================================================================== */
+  .editor-group-title {
+    display: block;
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+  
+  .editor-main-border-box {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  
+  .editor-horizontal-toolbar {
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 6px 8px;
+    gap: 2px;
+    flex-wrap: wrap;
+    user-select: none;
+  }
+  
+  .editor-action-btn {
+    background: transparent;
+    border: none;
+    color: #444444;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  
+  .editor-action-btn:hover {
+    background: #ebebeb;
+  }
+  
+  /* Specific Icon Styling Matches */
+  .font-weight-b { font-weight: 800; font-size: 15px; }
+  .font-style-i { font-style: italic; font-family: "Georgia", serif; font-weight: 600; }
+  .text-deco-u { text-decoration: underline; }
+  .text-deco-s { text-decoration: line-through; }
+  
+  .editor-toolbar-divider {
+    width: 1px;
+    height: 20px;
+    background: #e0e0e0;
+    margin: 0 6px;
+  }
+  
+  .code-brackets { font-weight: 600; color: #555; letter-spacing: -1px; }
+  .quote-marks { font-size: 20px; font-family: serif; font-weight: bold; line-height: 1; }
+  
+  /* Stacked Icons for List buttons */
+  .list-num, .list-bullet {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 0.7;
+    font-size: 8px;
+    gap: 2px;
+  }
+  .num-stack, .bullet-stack {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: #666;
+  }
+  .bullet-stack { font-size: 11px; }
+  .line-stack {
+    display: flex;
+    flex-direction: column;
+    font-size: 7px;
+    color: #888;
+    letter-spacing: -1px;
+  }
+  
+  /* Custom Heading Select UI Block */
+  .editor-horizontal-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 10px;
+    height: 32px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .editor-horizontal-dropdown-trigger:hover {
+    background: #ebebeb;
+  }
+  
+  .heading-text {
+    font-size: 14px;
+    color: #444444;
+  }
+  
+  .heading-caret {
+    font-size: 8px;
+    color: #777777;
+  }
+  
+  /* Color Selectors Indicators */
+  .text-color-a {
+    position: relative;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .color-bar-indicator {
+    position: absolute;
+    bottom: 4px;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: #000000;
+  }
+  
+  .bg-fill-bucket {
+    position: relative;
+    font-size: 13px;
+  }
+  
+  .bg-indicator {
+    background: #777777;
+  }
+  
+  /* Text Alignment Overrides */
+  .align-icon {
+    font-size: 11px;
+    letter-spacing: -0.5px;
+    color: #555;
+  }
+  .text-right-icon { text-align: right; }
+  
+  /* The Textarea Box */
+  .editor-textarea-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    resize: vertical;
+    min-height: 120px;
+    color: #333333;
+    font-family: inherit;
+  }
+  
+  /* ==========================================================================
+     9. Form Actions Buttons Row
+     ========================================================================== */
+  .form-actions-footer-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  
+  .action-btn-pill-update, .action-btn-pill-cancel {
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .action-btn-pill-update {
+    background-color: var(--primary-action);
+    color: #ffffff;
+  }
+  
+  .action-btn-pill-update:hover {
+    background-color: #5345d4;
+  }
+  
+  .action-btn-pill-cancel {
+    background-color: #e4e6eb;
+    color: #4b4b4b;
+  }
+  
+  .action-btn-pill-cancel:hover {
+    background-color: #d8dadf;
+  }
+  
+  /* ==========================================================================
+     10. Complete Multi-Device Responsive Breakpoints
+     ========================================================================== */
+  @media (max-width: 992px) {
+    .inputs-grid-layout {
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .inputs-grid-layout {
+      grid-template-columns: 1fr; /* Switch into stacked structure */
+      gap: 20px;
+    }
+    
+    .header-breadcrumb-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .edit-project-form {
+      padding: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .edit-projects-bg {
+      padding: 12px 8px;
+    }
+    
+    .radio-items-inline-wrap {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .form-actions-footer-row {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .action-btn-pill-update, .action-btn-pill-cancel {
+      width: 100%;
+      text-align: center;
+    }
+  }
