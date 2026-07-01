@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Router } from "react-router-dom";
 
 import MainLayout from "./Layout/MainLayout/MainLayout";
 
@@ -17,9 +17,11 @@ import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
 import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
 import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
+import Calendar from "./Components/Calender/Calender";
 import Payslips from "./Pages/Payslips/Payslips";
 import Chats from "./Pages/chats/chats";
 import Myproject from "./Pages/Myproject/Myproject";
+import Contacts from "./Components/Contacts/Contacts";
 
 const App = () => (
   <BrowserRouter>
@@ -40,9 +42,11 @@ const App = () => (
         <Route path="profile-settings" element={<ProfileSettings />} />
         <Route path="password-security" element={<PasswordSecurity />} />
         <Route path="Team-Performance" element={<TeamPerformance />} />
+        <Route path="Calendar" element={<Calendar />} />
         <Route path="payslips"element={<Payslips/>}/>
         <Route path="my-projects"element={<Myproject/>}/>
         <Route path="chat"element={<Chats/>}/>
+        <Route path="contacts" element={<Contacts />} />
       </Route>
 
       {/* 404 */}

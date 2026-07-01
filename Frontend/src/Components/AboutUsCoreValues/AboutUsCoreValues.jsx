@@ -5,7 +5,7 @@ import iconImg1 from "../../assets/icon-img1.webp";
 import iconImg2 from "../../assets/icon-img2.webp";
 import iconImg3 from "../../assets/icon-img3.webp";
 import iconImg4 from "../../assets/icon-img4.webp";
-
+ 
 const AboutUsCoreValues = () => {
   return (
     <section className="about-us-core-values">
