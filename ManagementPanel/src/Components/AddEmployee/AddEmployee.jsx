@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './AddProjects.css';
+import './AddEmployee.css';
 
-const AddProjects = () => {
+const AddEmployee = () => {
   const [formData, setFormData] = useState({
     firstName: '', lastName: '', gender: '', mobile: '',
     password: '', reEnterPassword: '', designation: '',
@@ -382,4 +382,4 @@ const AddProjects = () => {
   );
 };
 
-export default AddProjects;
+export default AddEmployee;
