@@ -12,6 +12,9 @@ import ProjectTasks from "./Components/ProjectTasks/ProjectTasks";
 import ProjectBudget from "./Components/ProjectBudget/ProjectBudget";
 import ProjectRiskIssue from "./Components/ProjectRiskIssue/ProjectRiskIssue";
 
+import ProjectMembers from "./Components/ProjectMembers/ProjectMembers";
+import ProjectFiles from "./Components/ProjectFiles/ProjectFiles";
+import AllEmployees from "./Components/AllEmployees/AllEmployees";
 
 const App = () => {
   return (
@@ -30,6 +33,10 @@ const App = () => {
           <Route path="projects/tasks" element={<ProjectTasks />} />
           <Route path="projects/budget" element={<ProjectBudget/>}/>
           <Route path="projects/risks" element={<ProjectRiskIssue/>}/>
+          <Route path="projects/members" element={<ProjectMembers/>}/>
+          <Route path="projects/files" element={<ProjectFiles/>}/>
+          
+          
         </Route>
 
         {/* 404 */}
