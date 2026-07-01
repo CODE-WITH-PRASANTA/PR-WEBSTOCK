@@ -1,0 +1,662 @@
+/* ==========================================================================
+   Project Variables & Structural Foundation Base Tokens
+   ========================================================================== */
+:root {
+  --pt-canvas-bg: #f5f6fa;
+  --pt-surface-card: #ffffff;
+  --pt-primary-indigo: #6036eb;
+  --pt-primary-purple: #9c27b0;
+  --pt-border-color: #e0e0e0;
+  --pt-text-main: #333333;
+  --pt-text-secondary: #666666;
+  
+  /* Badges color metrics mapping exactly to screenshots */
+  --pt-status-completed-bg: #e2f5ec;
+  --pt-status-completed-txt: #1bc5bd;
+  --pt-status-running-bg: #eee5ff;
+  --pt-status-running-txt: #8950fc;
+  --pt-status-pending-bg: #fff4de;
+  --pt-status-pending-txt: #ffa800;
+
+  --pt-priority-high-txt: #f64e60;
+  --pt-priority-medium-txt: #ffa800;
+  --pt-priority-low-txt: #1bc5bd;
+}
+
+.pt-workspace-shell {
+  background-color: var(--pt-canvas-bg);
+  min-height: 100vh;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--pt-text-main);
+  box-sizing: border-box;
+}
+
+
+.pt-editor-label {
+  display: block;
+  font-size: 15px;
+  color: var(--pt-text-secondary);
+  margin-bottom: 8px;
+}
+
+.pt-editor-box {
+  border: 1px solid var(--pt-border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pt-editor-toolbar {
+  background-color: #fafafa;
+  border-bottom: 1px solid var(--pt-border-color);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pt-tb-btn {
+  background: transparent;
+  border: none;
+  min-width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #555;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.pt-tb-btn:hover { background-color: #eceff1; }
+.pt-tb-btn.bold-txt { font-weight: 800; font-size: 14px; }
+.pt-tb-btn.italic-txt { font-style: italic; }
+.pt-tb-btn.underline-txt { text-decoration: underline; }
+.pt-tb-btn.strike-txt { text-decoration: line-through; }
+
+.pt-tb-divider {
+  width: 1px;
+  height: 18px;
+  background-color: var(--pt-border-color);
+  margin: 0 4px;
+}
+
+.pt-tb-dropdown-mock {
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pt-dropdown-arrow { font-size: 8px; color: #999; }
+
+.pt-editor-textarea {
+  min-height: 48px;
+  padding: 12px;
+  outline: none;
+  font-size: 14px;
+  color: #444;
+  background-color: #fff;
+}
+
+.pt-editor-textarea:empty:before {
+  content: attr(data-placeholder);
+  color: #999;
+}
+
+/* ==========================================================================
+   Image 2 & 3: Main Layout Board & Dynamic Header Suite Action Row
+   ========================================================================== */
+.pt-dashboard-surface {
+  background: var(--pt-surface-card);
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.pt-action-bar {
+  background-color: #e8eaf6;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  gap: 16px;
+}
+
+.pt-left-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.pt-board-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.pt-search-input-wrapper {
+  position: relative;
+  max-width: 240px;
+  width: 100%;
+}
+
+.pt-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #888;
+}
+
+.pt-search-input-wrapper input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 6px 12px 6px 32px;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+
+.pt-search-input-wrapper input:focus {
+  border-color: var(--pt-primary-indigo);
+}
+
+.pt-right-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pt-icon-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  color: #5c6bc0;
+  transition: background-color 0.2s;
+}
+
+.pt-icon-action-btn:hover { background-color: rgba(0,0,0,0.05); }
+
+.pt-icon-action-btn.success-variant {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   Image 4: Smooth View Layout Show/Hide Columns Component Dropdown
+   ========================================================================== */
+.pt-dropdown-anchor {
+  position: relative;
+}
+
+.pt-icon-action-btn.pt-filter-active {
+  background-color: rgba(0,0,0,0.08);
+}
+
+.pt-column-toggle-dropdown {
+  position: absolute;
+  right: 0;
+  top: 38px;
+  background: #ffffff;
+  border-radius: 6px;
+  min-width: 180px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  border: 1px solid var(--pt-border-color);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.pt-dropdown-header {
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  background: #f7f9fa;
+  border-bottom: 1px solid #f1f1f1;
+  text-align: center;
+}
+
+.pt-dropdown-body-scroll {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.pt-dropdown-checkbox-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.15s;
+}
+
+.pt-dropdown-checkbox-row:hover { background-color: #f4f5f7; }
+
+.pt-dropdown-checkbox-row input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: #3f51b5;
+  width: 15px;
+  height: 15px;
+}
+
+/* ==========================================================================
+   Responsive Core Data Grid Table System Layout View
+   ========================================================================== */
+.pt-table-responsive-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.pt-data-grid {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+  min-width: 900px;
+}
+
+.pt-data-grid th {
+  background-color: #ffffff;
+  color: #444444;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid #efefef;
+  white-space: nowrap;
+}
+
+.pt-data-grid td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f1f1;
+  color: #444;
+  vertical-align: middle;
+}
+
+.pt-data-grid tbody tr:hover { background-color: #fcfcfd; }
+.pt-data-grid tbody tr.row-selected { background-color: #f4f6fe; }
+
+.font-weight-medium { font-weight: 500; color: #111 !important; }
+
+/* Status and Priority Badge Decorators mapping */
+.pt-priority-lbl {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  gap: 4px;
+}
+.priority-high { color: var(--pt-priority-high-txt); }
+.priority-medium { color: var(--pt-priority-medium-txt); }
+.priority-low { color: var(--pt-priority-low-txt); }
+
+.pt-arrow-icon { font-size: 9px; }
+
+.pt-status-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+.status-completed { background-color: var(--pt-status-completed-bg); color: var(--pt-status-completed-txt); }
+.status-running { background-color: var(--pt-status-running-bg); color: var(--pt-status-running-txt); }
+.status-pending { background-color: var(--pt-status-pending-bg); color: var(--pt-status-pending-txt); }
+
+.pt-date-cell-view {
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Custom Inline Progress Module Architecture */
+.pt-slider-progress-module {
+  position: relative;
+  width: 120px;
+  padding: 8px 0;
+}
+
+.pt-slider-bar-track {
+  width: 100%;
+  height: 4px;
+  background: #e4e7eb;
+  border-radius: 2px;
+  position: relative;
+}
+
+.pt-slider-bar-fill {
+  height: 100%;
+  background: #3f51b5;
+  border-radius: 2px;
+  position: relative;
+}
+
+/* Tooltip rendering exact values visible on progress segment maps */
+.pt-slider-value-tooltip {
+  position: absolute;
+  right: -10px;
+  top: -24px;
+  background: #222222;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 3px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+.pt-slider-progress-module:hover .pt-slider-value-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pt-actions-flex-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pt-cell-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px;
+  transition: transform 0.1s;
+}
+.pt-cell-action-btn:hover { transform: scale(1.15); }
+
+.pt-table-empty-fallback {
+  text-align: center;
+  padding: 32px !important;
+  color: var(--pt-text-secondary);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Pagination Component Grid Layout Block Setup
+   ========================================================================== */
+.pt-table-pagination-footer {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid #efefef;
+  background: #ffffff;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.pt-pagination-right-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #444;
+}
+
+.pt-pagination-select {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  outline: none;
+}
+
+.pt-pagination-arrow-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pt-pag-nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  border-radius: 50%;
+}
+.pt-pag-nav-btn:disabled { color: #ccc; cursor: not-allowed; }
+.pt-pag-nav-btn:not(:disabled):hover { background-color: #f0f0f0; }
+
+/* ==========================================================================
+   Images 5 & 6: Interactive CRUD Overlay Window System Modals
+   ========================================================================== */
+.pt-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.pt-modal-window {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.pt-modal-header {
+  background: var(--pt-primary-purple);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+
+.pt-modal-title {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.pt-modal-close-cross {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.pt-modal-close-cross:hover { opacity: 1; }
+
+.pt-modal-form-body {
+  padding: 24px;
+}
+
+.pt-form-row-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  margin-bottom: 24px;
+}
+
+/* Styled Outlined Field Sets based exactly on Material UI specs */
+.pt-input-field-group {
+  position: relative;
+}
+
+.pt-floating-label {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: #ffffff;
+  padding: 0 4px;
+  font-size: 11px;
+  color: #666666;
+  z-index: 2;
+}
+
+.pt-form-control-input,
+.pt-form-control-select {
+  width: 100%;
+  border: 1px solid #757575;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+  background: transparent;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.pt-form-control-input:focus,
+.pt-form-control-select:focus {
+  border-color: var(--pt-primary-indigo);
+  border-width: 2px;
+  padding: 9px 11px; /* Offset spacing context match logic */
+}
+
+/* Handling Input Fields containing Inner Icon components */
+.pt-input-field-group.icon-input .pt-form-control-input {
+  padding-right: 36px;
+}
+
+.pt-field-inner-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #666;
+  pointer-events: none;
+}
+
+/* Progress Legend Box Structure Fieldsets (Image 5 & 6 bottom-right) */
+.pt-fieldset-wrapper {
+  border: 1px solid #757575;
+  border-radius: 4px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.pt-fieldset-legend {
+  font-size: 11px;
+  color: #666666;
+  padding: 0 4px;
+}
+
+.pt-fieldset-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  font-size: 13px;
+  background: transparent;
+}
+
+/* Modal Bottom Control Footer Action Blocks */
+.pt-form-actions-footer {
+  display: flex;
+  gap: 12px;
+}
+
+.pt-modal-btn {
+  border: none;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+}
+
+.pt-modal-btn.btn-save-action {
+  background-color: #e0e0e0;
+  color: #757575;
+}
+.pt-modal-btn.btn-save-action.edit-variant-style,
+.pt-modal-btn.btn-save-action[type="submit"] {
+  background-color: #2f3ba2;
+  color: #ffffff;
+}
+
+.pt-modal-btn.btn-cancel-action {
+  background-color: #b70000;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   CSS Keyframe Micro-Animations Suite
+   ========================================================================== */
+.animate-fade-in {
+  animation: fadeIn 0.18s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   Adaptive Viewport Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 768px) {
+  .pt-action-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pt-right-nav-group {
+    justify-content: flex-end;
+  }
+  .pt-form-row-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .pt-search-input-wrapper {
+    max-width: none;
+  }
+}

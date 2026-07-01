@@ -7,6 +7,8 @@ import MainLayout from "./Layout/MainLayout/MainLayout";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AllProjects from "./Pages/AllProjects/AllProjects";
 import AddProjects from "./Components/AddProjects/AddProjects";
+import EditProjects from "./Components/EditProjects/EditProjects";
+import ProjectTasks from "./Components/ProjectTasks/ProjectTasks";
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="allproject" element={<AllProjects />} />
           <Route path="projects/add" element={<AddProjects />} />
+          <Route path="projects/edit" element={<EditProjects />} />
+          <Route path="projects/tasks" element={<ProjectTasks />} />
         </Route>
 
         {/* 404 */}
