@@ -15,30 +15,9 @@
   min-height: 100vh;
   padding: 24px;
   box-sizing: border-box;
-  position: relative;
 }
 
-/* Floating Sidebar Gear Icon Box */
-.floating-settings {
-  position: fixed;
-  right: 0;
-  top: 350px;
-  background-color: #6366f1;
-  color: #ffffff;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  box-shadow: -2px 2px 8px rgba(0,0,0,0.15);
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 999;
-}
-
-/* Header layout */
+/* Header UI Layout */
 .team-header {
   display: flex;
   justify-content: space-between;
@@ -56,7 +35,7 @@
   margin: 0;
 }
 
-/* Breadcrumb Styling */
+/* Breadcrumbs Link Styling */
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -85,7 +64,7 @@
   font-weight: 500;
 }
 
-/* White Wrapper Container */
+/* White Base Content Wrapper Box */
 .team-content-wrapper {
   background-color: var(--bg-card-wrap);
   border-radius: 12px;
@@ -101,7 +80,7 @@
   gap: 24px;
 }
 
-/* Member Cards styling matching reference screenshots */
+/* Team Individual Cards Box Setup */
 .member-card {
   display: flex;
   background: #ffffff;
@@ -112,7 +91,7 @@
   align-items: flex-start;
 }
 
-/* Left Image Section Column */
+/* Left Image Section Styles */
 .member-image-column {
   flex-shrink: 0;
   margin-right: 28px;
@@ -133,7 +112,7 @@
   object-fit: cover;
 }
 
-/* Center Bio texts */
+/* Center Bio Column Data Text */
 .member-bio-column {
   flex: 1;
   padding-right: 30px;
@@ -152,7 +131,7 @@
   margin: 0 0 14px 0;
 }
 
-/* Ratings */
+/* Star Ratings Element Styling */
 .rating-container {
   display: flex;
   align-items: center;
@@ -193,7 +172,7 @@
   max-width: 750px;
 }
 
-/* Right Side Contact Column */
+/* Right Side Contact Data Info Rows */
 .member-contact-column {
   width: 320px;
   flex-shrink: 0;
@@ -230,7 +209,7 @@
   word-break: break-word;
 }
 
-/* Pagination Control UI Box */
+/* Pagination Control Layout Block */
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -276,9 +255,9 @@
   font-size: 12px;
 }
 
-/* Responsive Layout Configurations */
+/* Responsive Structural Adjustments */
 
-/* Tablets & Small Desktops */
+/* Medium Devices Viewports (Tablets) */
 @media (max-width: 992px) {
   .member-card {
     flex-direction: column;
@@ -297,7 +276,7 @@
   }
 }
 
-/* Mobile Devices */
+/* Small Devices Viewports (Mobile Screens) */
 @media (max-width: 576px) {
   .team-header {
     flex-direction: column;

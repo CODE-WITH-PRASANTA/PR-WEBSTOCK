@@ -1,215 +1,212 @@
+/* ===========================
+   CostPerUnit
+=========================== */
+
 .CostPerUnit {
+  width: 100%;
+  padding: 40px 20px;
+  background:black;
+}
+
+.CostPerUnit-container {
+  max-width: 1400px;
+  margin: 0 auto;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  width: 100%;
+  gap: 30px;
 }
 
-/* =========================
-   CARD
-========================= */
+/* ===========================
+   Card
+=========================== */
 
-.CostPerUnit_Card {
-  background: #181c24;
-  border-radius: 14px;
-  height: 20vh;
-  min-height: 180px;
+.CostPerUnit-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid #2a2f3a;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
+
+  border-radius: 14px;
+  padding: 22px 20px;
+
+  min-height: 160px;
+
+  color: #fff;
+
+  transition: 0.35s ease;
+
+  cursor: pointer;
 }
 
-.CostPerUnit_Card:hover {
-  transform: translateY(-3px);
-  border-color: #3a4150;
+.CostPerUnit-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
 }
 
-/* =========================
-   TOP AREA
-========================= */
+/* ===========================
+   Background Icons
+=========================== */
 
-.CostPerUnit_Top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 18px 20px 0;
+.CostPerUnit-bgIcon {
+  position: absolute;
+  right: 18px;
+  bottom: -10px;
+
+  font-size: 120px;
+  color: rgba(0, 0, 0, 0.08);
+
+  transition: .4s;
 }
 
-.CostPerUnit_Top h4 {
-  margin: 0;
-  font-size: 12px;
+.CostPerUnit-card:hover .CostPerUnit-bgIcon {
+  transform: scale(1.08) rotate(-8deg);
+}
+
+/* ===========================
+   Content
+=========================== */
+
+.CostPerUnit-content {
+  position: relative;
+  z-index: 2;
+}
+
+.CostPerUnit-title {
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.8px;
-  color: #8e9bb5;
-  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
-.CostPerUnit_Top h2 {
-  margin-top: 10px;
-  font-size: 34px;
+.CostPerUnit-value {
+  font-size: 42px;
   font-weight: 700;
   line-height: 1;
-  color: #ffffff;
+  margin-bottom: 22px;
 }
 
-/* =========================
-   ICON
-========================= */
+/* ===========================
+   Progress
+=========================== */
 
-.CostPerUnit_Icon {
-  width: 58px;
-  height: 58px;
-  min-width: 58px;
-  border-radius: 50%;
+.CostPerUnit-progress {
+  width: 100%;
+  height: 5px;
+  border-radius: 50px;
+  background: rgba(255,255,255,.65);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.CostPerUnit-progressFill {
+  height: 100%;
+  border-radius: 50px;
+}
+
+.green {
+  background: linear-gradient(135deg, #39c7b9, #5ca57f);
+}
+
+.blue {
+  background: linear-gradient(135deg, #3a8fe8, #4f87b4);
+}
+
+.purple {
+  background: linear-gradient(135deg, #8d3be8, #c04cb8);
+}
+
+.orange {
+  background: linear-gradient(135deg, #f38755, #d48a39);
+}
+/* Progress Colors */
+
+.yellowProgress {
+  background: #ffd400;
+}
+
+.blueProgress {
+  background: #2f6fff;
+}
+
+.greenProgress {
+  background: #32ff32;
+}
+
+/* ===========================
+   Bottom
+=========================== */
+
+.CostPerUnit-bottom {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 26px;
+  gap: 8px;
+
+  font-size: 15px;
+  font-weight: 600;
 }
 
-/* =========================
-   GRAPH
-========================= */
-
-.CostPerUnit_Graph {
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 100%;
-  height: 85px;
+.CostPerUnit-trendIcon {
+  font-size: 18px;
 }
 
-.CostPerUnit_Graph svg {
-  width: 100%;
-  height: 100%;
-}
+/* ===========================
+   Tablet
+=========================== */
 
-/* =========================
-   PURPLE CARD
-========================= */
+@media (max-width: 1100px) {
 
-.CostPerUnit_Card.purple {
-  color: #6366f1;
-}
-
-.CostPerUnit_Card.purple .CostPerUnit_Icon {
-  background: rgba(99, 102, 241, 0.15);
-  color: #6366f1;
-}
-
-/* =========================
-   BLUE CARD
-========================= */
-
-.CostPerUnit_Card.blue {
-  color: #60a5fa;
-}
-
-.CostPerUnit_Card.blue .CostPerUnit_Icon {
-  background: rgba(96, 165, 250, 0.15);
-  color: #60a5fa;
-}
-
-/* =========================
-   YELLOW CARD
-========================= */
-
-.CostPerUnit_Card.yellow {
-  color: #fbbf24;
-}
-
-.CostPerUnit_Card.yellow .CostPerUnit_Icon {
-  background: rgba(251, 191, 36, 0.15);
-  color: #fbbf24;
-}
-
-/* =========================
-   RED CARD
-========================= */
-
-.CostPerUnit_Card.red {
-  color: #f43f5e;
-}
-
-.CostPerUnit_Card.red .CostPerUnit_Icon {
-  background: rgba(244, 63, 94, 0.15);
-  color: #f43f5e;
-}
-
-/* =========================
-   LARGE LAPTOP
-========================= */
-
-@media (max-width: 1400px) {
-  .CostPerUnit {
+  .CostPerUnit-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .CostPerUnit_Card {
-    height: 22vh;
-  }
 }
 
-/* =========================
-   TABLET
-========================= */
+/* ===========================
+   Mobile
+=========================== */
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
+
   .CostPerUnit {
+    padding: 30px 16px;
+  }
+
+  .CostPerUnit-container {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .CostPerUnit_Card {
-    height: 190px;
-    min-height: 190px;
+  .CostPerUnit-card {
+    min-height: 150px;
+    padding: 20px;
   }
 
-  .CostPerUnit_Top h2 {
-    font-size: 30px;
+  .CostPerUnit-value {
+    font-size: 36px;
   }
 
-  .CostPerUnit_Icon {
-    width: 54px;
-    height: 54px;
-    font-size: 24px;
+  .CostPerUnit-bgIcon {
+    font-size: 95px;
+    right: 15px;
   }
+
 }
 
-/* =========================
-   MOBILE
-========================= */
+@media (max-width:480px) {
 
-@media (max-width: 480px) {
-  .CostPerUnit {
-    gap: 14px;
+  .CostPerUnit-title {
+    font-size: 15px;
   }
 
-  .CostPerUnit_Card {
-    height: 180px;
-    min-height: 180px;
+  .CostPerUnit-value {
+    font-size: 32px;
   }
 
-  .CostPerUnit_Top {
-    padding: 16px;
+  .CostPerUnit-bottom {
+    font-size: 14px;
   }
 
-  .CostPerUnit_Top h4 {
-    font-size: 11px;
+  .CostPerUnit-bgIcon {
+    font-size: 80px;
+    right: 10px;
   }
 
-  .CostPerUnit_Top h2 {
-    font-size: 26px;
-  }
-
-  .CostPerUnit_Icon {
-    width: 50px;
-    height: 50px;
-    font-size: 22px;
-  }
-
-  .CostPerUnit_Graph {
-    height: 75px;
-  }
 }
