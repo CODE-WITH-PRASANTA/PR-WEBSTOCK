@@ -1,0 +1,202 @@
+/* Container Layout Setup */
+.management-container {
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #4a5568;
+  box-sizing: border-box;
+}
+
+/* Header & Breadcrumbs Alignment */
+.management-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 20px auto;
+}
+
+.management-main-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.management-breadcrumbs {
+  font-size: 12px;
+  color: #718096;
+}
+
+/* Form Section Main Block Wrapper */
+.form-card-box {
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.card-inside-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.management-native-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Rows Flex Alignment layout */
+.form-flex-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-full-row {
+  width: 100%;
+}
+
+/* --- FIELDSET FLOATING OUTLINE LABEL EFFECT (Exact UI Style) --- */
+.fieldset-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.fieldset-input-container input,
+.fieldset-input-container select,
+.fieldset-input-container textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 13px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+  color: #2d3748;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* Textarea customization */
+.fieldset-input-container textarea {
+  resize: vertical;
+}
+
+/* Label Placement Setup */
+.fieldset-input-container label {
+  position: absolute;
+  left: 10px;
+  top: -8px;
+  background-color: #ffffff;
+  padding: 0 6px;
+  font-size: 11px;
+  color: #718096;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+/* Highlight style when field focused */
+.fieldset-input-container input:focus,
+.fieldset-input-container select:focus,
+.fieldset-input-container textarea:focus {
+  border-color: #4a5568;
+}
+
+/* --- UPLOAD CONTAINER INTERACTION BOX (Image 2) --- */
+.upload-image-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.upload-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #718096;
+  margin: 0;
+}
+
+.drag-drop-dashed-box {
+  border: 1px dashed #b2bdf3;
+  background-color: #fbfbfe;
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-choose-label-btn {
+  background-color: #f0f4f8;
+  border: 1px solid #cbd5e0;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0052cc;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.file-choose-label-btn input[type="file"] {
+  display: none;
+}
+
+.drag-drop-text {
+  font-size: 12px;
+  color: #718096;
+}
+
+/* --- FOOTER ACTION STRIP BUTTONS (Exact Colors) --- */
+.form-action-buttons-strip {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.action-btn-node {
+  border: none;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.action-btn-node:hover {
+  opacity: 0.9;
+}
+
+.action-btn-node.submit-blue-btn {
+  background-color: #0052cc;
+  color: #ffffff;
+}
+
+.action-btn-node.cancel-red-btn {
+  background-color:red;
+  color: #ffffff;
+}
+
+/* --- RESPONSIVENESS BREAKPOINTS --- */
+@media (max-width: 768px) {
+  .management-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .form-flex-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

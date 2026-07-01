@@ -8,6 +8,9 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import AllProjects from "./Pages/AllProjects/AllProjects";
 import EditProjects from "./Components/EditProjects/EditProjects";
 import ProjectTasks from "./Components/ProjectTasks/ProjectTasks";
+import ProjectBudget from "./Components/ProjectBudget/ProjectBudget";
+import ProjectRiskIssue from "./Components/ProjectRiskIssue/ProjectRiskIssue";
+
 import ProjectMembers from "./Components/ProjectMembers/ProjectMembers";
 import ProjectFiles from "./Components/ProjectFiles/ProjectFiles";
 import AllEmployees from "./Components/AllEmployees/AllEmployees";
@@ -15,6 +18,7 @@ import AddEmployee from "./Components/AddEmployee/AddEmployee";
 import AddProject from "./Components/AddProject/AddProject";
 import EmployeeShift from "./Components/EmployeeShift/EmployeeShift";
 import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
+import EditManagement from "./Components/EditManagement/EditManagement";
 
 const App = () => {
   return (
@@ -30,6 +34,8 @@ const App = () => {
           <Route path="allproject" element={<AllProjects />} />
           <Route path="projects/edit" element={<EditProjects />} />
           <Route path="projects/tasks" element={<ProjectTasks />} />
+          <Route path="projects/budget" element={<ProjectBudget/>}/>
+          <Route path="projects/risks" element={<ProjectRiskIssue/>}/>
           <Route path="projects/members" element={<ProjectMembers/>}/>
           <Route path="projects/files" element={<ProjectFiles/>}/>
           <Route path="all" element={<AllEmployees/>}/>
@@ -37,6 +43,9 @@ const App = () => {
           <Route path="projects/add" element={<AddProject/>}/>
           <Route path="shift" element={<EmployeeShift/>}/>
           <Route path="profile" element={<EmployeeProfile/>}/>
+          <Route path="edit" element={<EditManagement/>}/>
+          
+          
         </Route>
 
         {/* 404 */}
