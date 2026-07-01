@@ -9,6 +9,7 @@ import AllProjects from "./Pages/AllProjects/AllProjects";
 import AddProjects from "./Components/AddProjects/AddProjects";
 import EditProjects from "./Components/EditProjects/EditProjects";
 import ProjectTasks from "./Components/ProjectTasks/ProjectTasks";
+import ProjectMembers from "./Components/ProjectMembers/ProjectMembers";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="projects/add" element={<AddProjects />} />
           <Route path="projects/edit" element={<EditProjects />} />
           <Route path="projects/tasks" element={<ProjectTasks />} />
+          <Route path="project/member" element={<ProjectMembers/>}/>
         </Route>
 
         {/* 404 */}
