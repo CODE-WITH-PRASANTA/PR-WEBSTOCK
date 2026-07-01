@@ -17,6 +17,9 @@ import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
 import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
 import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
+import Payslips from "./Pages/Payslips/Payslips";
+import Chats from "./Pages/chats/chats";
+import Myproject from "./Pages/Myproject/Myproject";
 
 const App = () => (
   <BrowserRouter>
@@ -37,6 +40,9 @@ const App = () => (
         <Route path="profile-settings" element={<ProfileSettings />} />
         <Route path="password-security" element={<PasswordSecurity />} />
         <Route path="Team-Performance" element={<TeamPerformance />} />
+        <Route path="payslips"element={<Payslips/>}/>
+        <Route path="my-projects"element={<Myproject/>}/>
+        <Route path="chat"element={<Chats/>}/>
       </Route>
 
       {/* 404 */}

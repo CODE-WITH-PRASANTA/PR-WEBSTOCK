@@ -10,6 +10,8 @@ import AddProjects from "./Components/AddProjects/AddProjects";
 import EditProjects from "./Components/EditProjects/EditProjects";
 import ProjectTasks from "./Components/ProjectTasks/ProjectTasks";
 import ProjectMembers from "./Components/ProjectMembers/ProjectMembers";
+import ProjectFiles from "./Components/ProjectFiles/ProjectFiles";
+import AllEmployees from "./Components/AllEmployees/AllEmployees";
 
 const App = () => {
   return (
@@ -26,7 +28,9 @@ const App = () => {
           <Route path="projects/add" element={<AddProjects />} />
           <Route path="projects/edit" element={<EditProjects />} />
           <Route path="projects/tasks" element={<ProjectTasks />} />
-          <Route path="project/member" element={<ProjectMembers/>}/>
+          <Route path="projects/members" element={<ProjectMembers/>}/>
+          <Route path="projects/files" element={<ProjectFiles/>}/>
+          <Route path="all" element={<AllEmployees/>}/>
         </Route>
 
         {/* 404 */}
