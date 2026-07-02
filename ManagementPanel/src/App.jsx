@@ -28,6 +28,16 @@ import AllClients from "./Components/AllClients/AllClients";
 import AddClient from "./Components/AddClient/AddClient";
 import EditClient from "./Components/EditClient/EditClient";
 import ClientProfile from "./Components/ClientProfile/ClientProfile";
+import ProjectDetails from "./Components/ProjectDetails/ProjectDetails";
+import Estimates from "./Components/Estimates/Estimates";
+import ClientContacts from "./Components/ClientContacts/ClientContacts";
+import ClientProjects from "./Components/ClientProjects/ClientProjects";
+import ClientInvoices from "./Components/ClientInvoices/ClientInvoices";
+import ClientPayments from "./Components/ClientPayments/ClientPayments";
+
+import Overtime from "./Pages/Overtime/Overtime";
+import ShiftPlanning from "./Pages/ShiftPlanning/ShiftPlanning";
+import Remote from "./Pages/Remote/Remote";
 
 const App = () => {
   return (
@@ -38,7 +48,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/management/dashboard" replace />} />
 
         {/* Employee Layout */}
-        <Route path="/management" element={<MainLayout />}>
+        <Route path="management" element={<MainLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="allproject" element={<AllProjects />} />
           <Route path="projects/edit" element={<EditProjects />} />
@@ -53,7 +63,7 @@ const App = () => {
           <Route path="shift" element={<EmployeeShift/>}/>
           <Route path="profile" element={<EmployeeProfile/>}/>
           <Route path="edit" element={<EditManagement/>}/>
-          <Route path="documents" element={<EmployeeDocuments />} />
+          <Route path="documents" element={<EmployeeDocuments />}/>
           <Route path="assets" element={<EmployeeAssets />}/>
           <Route path="holidays/all" element={<AllHolidays/>}/>
          <Route path="holidays/add" element={<AddHoliday/>}/>
@@ -62,6 +72,16 @@ const App = () => {
          <Route path="clients/add" element={<AddClient/>}/>
          <Route path="clients/edit" element={<EditClient/>}/>
          <Route path="clients/profile" element={<ClientProfile/>}/>
+          <Route path="projects/details" element={<ProjectDetails/>}/>
+          <Route path="projects/estimates" element={<Estimates/>}/>
+          <Route path="clients/contacts" element={<ClientContacts/>}/>
+          <Route path="clients/projects"element={<ClientProjects/>}/>
+          <Route path="clients/invoices" element={<ClientInvoices/>}/>
+          <Route path="clients/payments" element={<ClientPayments/>}/>
+          <Route path="overtime"element={<Overtime/>}/>
+          <Route path="shift-planning"element={<ShiftPlanning/>}/>
+          <Route path="remote"element={<Remote/>}/>
+
         </Route>
 
         {/* 404 */}
