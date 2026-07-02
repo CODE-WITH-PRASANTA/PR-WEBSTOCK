@@ -1,0 +1,641 @@
+/* ==================================================================
+   DashboardHome.css
+   Component-scoped styles — class names are namespaced per section
+   so they can be dropped into any project without collisions.
+   ================================================================== */
+
+:root {
+  --db-bg: #eef1f5;
+  --db-surface: #ffffff;
+  --db-border: #e7eaf0;
+  --db-text-primary: #101828;
+  --db-text-secondary: #667085;
+  --db-text-muted: #94a3b8;
+  --db-radius-lg: 18px;
+  --db-radius-md: 12px;
+  --db-radius-sm: 8px;
+  --db-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.06);
+  --db-shadow-hover: 0 4px 10px rgba(16, 24, 40, 0.06), 0 12px 28px rgba(16, 24, 40, 0.09);
+
+  --db-green: #27ae60;
+  --db-green-bg: #e7f7ee;
+  --db-red: #eb5757;
+  --db-red-bg: #fdecec;
+  --db-orange: #f2994a;
+  --db-orange-bg: #fef2e6;
+  --db-blue: #2f80ed;
+  --db-blue-bg: #e8f1fd;
+  --db-purple: #9b51e0;
+  --db-yellow: #f2c94c;
+  --db-gray: #718096;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Shell                                                              */
+/* ---------------------------------------------------------------- */
+
+.dashboard {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(16px, 2.5vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 24px);
+  background: var(--db-bg);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--db-text-primary);
+}
+
+/* ---------------------------------------------------------------- */
+/* Stat cards row                                                     */
+/* ---------------------------------------------------------------- */
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--db-surface);
+  border: 1px solid var(--db-border);
+  border-radius: var(--db-radius-lg);
+  box-shadow: var(--db-shadow);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card:hover {
+  box-shadow: var(--db-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.stat-card__top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--db-radius-sm);
+  flex-shrink: 0;
+}
+
+.stat-icon--green {
+  background: var(--db-green-bg);
+  color: var(--db-green);
+}
+.stat-icon--red {
+  background: var(--db-red-bg);
+  color: var(--db-red);
+}
+.stat-icon--blue {
+  background: var(--db-blue-bg);
+  color: var(--db-blue);
+}
+
+.stat-card__label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--db-text-secondary);
+}
+
+.stat-card__value-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stat-card__value {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0;
+}
+
+.stat-card__unit {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--db-text-secondary);
+  margin-left: 4px;
+}
+
+.stat-card__trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.stat-card__trend--up {
+  color: var(--db-green);
+}
+.stat-card__trend--down {
+  color: var(--db-red);
+}
+
+.stat-card__caption {
+  margin: -6px 0 0;
+  font-size: 12.5px;
+  color: var(--db-text-muted);
+}
+
+.sparkline {
+  width: 100%;
+  height: 34px;
+  margin-top: 2px;
+}
+
+.spark--green path {
+  stroke: var(--db-green);
+}
+.spark--red path {
+  stroke: var(--db-red);
+}
+.spark--blue path {
+  stroke: var(--db-blue);
+}
+
+/* ---------------------------------------------------------------- */
+/* Panels grid (Employee Summary + Attendance Overview)               */
+/* ---------------------------------------------------------------- */
+
+.panels-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--db-surface);
+  border: 1px solid var(--db-border);
+  border-radius: var(--db-radius-lg);
+  box-shadow: var(--db-shadow);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel__title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* -- 3-dot menu -- */
+
+.panel-menu {
+  position: relative;
+}
+
+.panel-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--db-radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--db-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.panel-menu__trigger:hover,
+.panel-menu__trigger[aria-expanded='true'] {
+  background: var(--db-bg);
+  color: var(--db-text-primary);
+}
+
+.panel-menu__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 150px;
+  background: var(--db-surface);
+  border: 1px solid var(--db-border);
+  border-radius: var(--db-radius-md);
+  box-shadow: var(--db-shadow-hover);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 20;
+  animation: db-dropdown-in 0.12s ease-out;
+}
+
+@keyframes db-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 8px 10px;
+  border-radius: var(--db-radius-sm);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--db-text-primary);
+  cursor: pointer;
+  text-align: left;
+}
+
+.panel-menu__item:hover {
+  background: var(--db-bg);
+}
+
+.chart-heading {
+  font-size: 14.5px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Employee Summary                                                   */
+/* ---------------------------------------------------------------- */
+
+.employee-summary__body {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.employee-summary__metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.metric-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--db-bg);
+  border-radius: var(--db-radius-md);
+  padding: 12px 14px;
+}
+
+.metric-row__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.metric-icon--blue {
+  background: var(--db-blue);
+}
+.metric-icon--green {
+  background: var(--db-green);
+}
+.metric-icon--orange {
+  background: var(--db-orange);
+}
+
+.metric-row__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.metric-row__value {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.metric-row__label {
+  font-size: 12.5px;
+  color: var(--db-text-secondary);
+}
+
+.employee-summary__chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.employee-summary__chart .chart-heading {
+  align-self: flex-start;
+}
+
+.donut-chart {
+  width: 100%;
+}
+
+.chart-legend {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 16px;
+}
+
+.chart-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--db-text-secondary);
+  font-weight: 500;
+}
+
+.chart-legend__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.department-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.department-list__item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--db-bg);
+  border-left: 4px solid;
+  border-radius: var(--db-radius-sm);
+  padding: 10px 12px;
+}
+
+.department-list__name {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.department-list__count {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.department-list__percent {
+  font-size: 12px;
+  color: var(--db-text-muted);
+}
+
+/* ---------------------------------------------------------------- */
+/* Attendance Overview                                                */
+/* ---------------------------------------------------------------- */
+
+.attendance-overview__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.attendance-today {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.attend-card {
+  border-radius: var(--db-radius-md);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #fff;
+}
+
+.attend-card__value {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.attend-card__label {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+.attend-card__percent {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.attend-card--present {
+  background: var(--db-green);
+}
+.attend-card--absent {
+  background: var(--db-red);
+}
+.attend-card--late {
+  background: var(--db-orange);
+}
+.attend-card--leave {
+  background: var(--db-blue);
+  padding: 16px 18px;
+}
+
+.attendance-weekly__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.weekly-legend {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  gap: 14px;
+}
+
+.weekly-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--db-text-secondary);
+  font-weight: 500;
+}
+
+.weekly-legend__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.weekly-legend__dot--present {
+  background: var(--db-green);
+}
+.weekly-legend__dot--absent {
+  background: var(--db-red);
+}
+.weekly-legend__dot--late {
+  background: var(--db-orange);
+}
+
+.weekly-bar-chart {
+  width: 100%;
+}
+
+.attendance-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: none;
+  background: var(--db-blue-bg);
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.action-btn:hover {
+  background: #d9e8fc;
+  transform: translateY(-1px);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+/* ==================================================================
+   Responsive breakpoints
+   ================================================================== */
+
+/* Large tablets / small laptops */
+@media (max-width: 1180px) {
+  .panels-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .employee-summary__body {
+    grid-template-columns: 1fr;
+  }
+
+  .department-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .attendance-today {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .dashboard {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 16px;
+  }
+
+  .department-list {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-today {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .attend-card--leave {
+    grid-column: span 2;
+  }
+
+  .stat-card__value {
+    font-size: 26px;
+  }
+
+  .panel-menu__dropdown {
+    right: -6px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .attendance-today {
+    grid-template-columns: 1fr;
+  }
+
+  .attend-card--leave {
+    grid-column: span 1;
+  }
+}

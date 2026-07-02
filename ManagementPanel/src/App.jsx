@@ -21,6 +21,9 @@ import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
 import EditManagement from "./Components/EditManagement/EditManagement";
 import EmployeeDocuments from "./Components/EmployeeDocuments/EmployeeDocuments";
 import EmployeeAssets from "./Components/EmployeeAssets/EmployeeAssets";
+import Overtime from "./Pages/Overtime/Overtime";
+import ShiftPlanning from "./Pages/ShiftPlanning/ShiftPlanning";
+import Remote from "./Pages/Remote/Remote";
 
 const App = () => {
   return (
@@ -48,6 +51,9 @@ const App = () => {
           <Route path="edit" element={<EditManagement/>}/>
           <Route path="documents" element={<EmployeeDocuments />} />
           <Route path="assets" element={<EmployeeAssets />}/>
+          <Route path="overtime"element={<Overtime/>}/>
+          <Route path="shift-planning"element={<ShiftPlanning/>}/>
+          <Route path="remote"element={<Remote/>}/>
 
         </Route>
 

@@ -233,9 +233,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/attendance/management" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Attendance</NavLink>
               <NavLink to="/attendance/sheet" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Attendance Sheet</NavLink>
               <NavLink to="/attendance/timesheets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Timesheets</NavLink>
-              <NavLink to="/attendance/overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
-              <NavLink to="/attendance/shift-planning" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Shift Planning</NavLink>
-              <NavLink to="/attendance/remote" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Remote / WFH Requests</NavLink>
+              <NavLink to="/management/overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
+              <NavLink to="/management/shift-planning" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Shift Planning</NavLink>
+              <NavLink to="/management/remote" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Remote / WFH Requests</NavLink>
             </div>
           )}
 
