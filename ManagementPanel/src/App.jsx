@@ -21,6 +21,13 @@ import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
 import EditManagement from "./Components/EditManagement/EditManagement";
 import EmployeeDocuments from "./Components/EmployeeDocuments/EmployeeDocuments";
 import EmployeeAssets from "./Components/EmployeeAssets/EmployeeAssets";
+import ProjectDetails from "./Components/ProjectDetails/ProjectDetails";
+import Estimates from "./Components/Estimates/Estimates";
+import ClientContacts from "./Components/ClientContacts/ClientContacts";
+import ClientProjects from "./Components/ClientProjects/ClientProjects";
+import ClientInvoices from "./Components/ClientInvoices/ClientInvoices";
+import ClientPayments from "./Components/ClientPayments/ClientPayments";
+
 
 const App = () => {
   return (
@@ -31,7 +38,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/management/dashboard" replace />} />
 
         {/* Employee Layout */}
-        <Route path="/management" element={<MainLayout />}>
+        <Route path="management" element={<MainLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="allproject" element={<AllProjects />} />
           <Route path="projects/edit" element={<EditProjects />} />
@@ -46,8 +53,14 @@ const App = () => {
           <Route path="shift" element={<EmployeeShift/>}/>
           <Route path="profile" element={<EmployeeProfile/>}/>
           <Route path="edit" element={<EditManagement/>}/>
-          <Route path="documents" element={<EmployeeDocuments />} />
+          <Route path="documents" element={<EmployeeDocuments />}/>
           <Route path="assets" element={<EmployeeAssets />}/>
+          <Route path="projects/details" element={<ProjectDetails/>}/>
+          <Route path="projects/estimates" element={<Estimates/>}/>
+          <Route path="clients/contacts" element={<ClientContacts/>}/>
+          <Route path="clients/projects"element={<ClientProjects/>}/>
+          <Route path="clients/invoices" element={<ClientInvoices/>}/>
+          <Route path="clients/payments" element={<ClientPayments/>}/>
 
         </Route>
 

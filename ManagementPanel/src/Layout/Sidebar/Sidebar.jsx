@@ -275,10 +275,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/clients/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Client</NavLink>
               <NavLink to="/clients/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit Client</NavLink>
               <NavLink to="/clients/profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Profile</NavLink>
-              <NavLink to="/clients/contacts" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Contacts</NavLink>
-              <NavLink to="/clients/projects" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Projects</NavLink>
-              <NavLink to="/clients/invoices" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Invoices</NavLink>
-              <NavLink to="/clients/payments" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Payments</NavLink>
+              <NavLink to="/management/clients/contacts" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Contacts</NavLink>
+              <NavLink to="/management/clients/projects" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Projects</NavLink>
+              <NavLink to="/management/clients/invoices" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Invoices</NavLink>
+              <NavLink to="/management/clients/payments" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Payments</NavLink>
             </div>
           )}
 
