@@ -1,0 +1,359 @@
+/* ==========================================================================
+   GLOBAL APP WRAPPER LAYOUT & SETTINGS
+   ========================================================================== */
+.payslip-view__container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f4f8;
+  padding: 24px;
+  min-height: 100vh;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+.payslip-view__container * {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   TOP BAR ARCHITECTURE BREADCRUMBS
+   ========================================================================== */
+.payslip-view__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.payslip-view__title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #212529;
+}
+
+.payslip-view__breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.payslip-view__breadcrumbs span {
+  cursor: pointer;
+}
+
+.payslip-view__breadcrumbs strong {
+  color: #495057;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   MAIN WHITE DOCUMENT SHEET PANEL
+   ========================================================================== */
+.payslip-view__card {
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.payslip-view__card-label {
+  font-size: 15px;
+  color: #495057;
+  font-weight: 500;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 12px;
+  margin-bottom: 30px;
+}
+
+/* Document Title Header */
+.payslip-view__doc-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #495057;
+  text-decoration: underline;
+  margin-top: 10px;
+  margin-bottom: 35px;
+  letter-spacing: 0.5px;
+}
+
+/* Meta Details Row */
+.payslip-view__meta-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.payslip-view__meta-item {
+  font-size: 14px;
+  color: #495057;
+}
+
+.payslip-view__meta-item strong {
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.payslip-view__divider {
+  border: 0;
+  border-top: 1px solid #e9ecef;
+  margin: 15px 0 30px 0;
+}
+
+/* ==========================================================================
+   PARTIES STRUCTURAL GRIDS ADDRESS INFO
+   ========================================================================== */
+.payslip-view__parties {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.payslip-view__company-side {
+  flex: 1;
+  min-width: 280px;
+}
+
+.payslip-view__employee-side {
+  flex: 1;
+  min-width: 280px;
+  text-align: right;
+}
+
+/* Logo Representation Component */
+.payslip-view__logo-placeholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #adb5bd;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.payslip-view__party-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #343a40;
+  margin: 0 0 10px 0;
+}
+
+.payslip-view__payment-to-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+.payslip-view__party-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6c757d;
+  margin: 0 0 6px 0;
+  max-width: 340px;
+}
+
+.payslip-view__employee-side .payslip-view__party-text {
+  margin-left: auto;
+}
+
+.payslip-view__party-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   SALARY STATEMENT COLUMNS (EARNINGS VS DEDUCTIONS)
+   ========================================================================== */
+.payslip-view__ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 35px;
+}
+
+.payslip-view__ledger-block {
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.payslip-view__ledger-header {
+  font-size: 15px;
+  font-weight: 700;
+  color: #333333;
+  padding: 12px 16px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.payslip-view__ledger-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.payslip-view__ledger-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #495057;
+  border-bottom: 1px solid #f1f3f5;
+  background-color: #fafbfc;
+}
+
+.payslip-view__ledger-row:last-child {
+  border-bottom: none;
+}
+
+.payslip-view__item-label {
+  font-weight: 400;
+}
+
+.payslip-view__item-val {
+  font-weight: 400;
+}
+
+/* Summary Row Panel Accents matches UI Coloring scheme exactly */
+.payslip-view__ledger-row--total-earnings {
+  background-color: #e8f4fd !important;
+  color: #000000;
+  font-weight: 700;
+  border-top: 1px solid #dee2e6;
+}
+.payslip-view__ledger-row--total-earnings * {
+  font-weight: 700;
+}
+
+.payslip-view__ledger-row--total-deductions {
+  background-color: #fde8e8 !important;
+  color: #000000;
+  font-weight: 700;
+  border-top: 1px solid #dee2e6;
+}
+.payslip-view__ledger-row--total-deductions * {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   NET PAY CORES DATA DISPLAY SECTION
+   ========================================================================== */
+.payslip-view__summary-block {
+  text-align: center;
+  margin: 35px 0;
+}
+
+.payslip-view__net-amount {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 6px;
+}
+
+.payslip-view__net-words {
+  font-size: 14px;
+  color: #868e96;
+}
+
+/* ==========================================================================
+   AUTHORISED SIGN BLOCK LAYOUT
+   ========================================================================== */
+.payslip-view__signature-block {
+  text-align: right;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+
+.payslip-view__sign-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 6px;
+}
+
+.payslip-view__sign-subtitle {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* ==========================================================================
+   ACTION HANDLERS ELEMENTS BUTTON INTERACTIVE
+   ========================================================================== */
+.payslip-view__actions-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  border-top: 1px solid #e9ecef;
+  padding-top: 24px;
+}
+
+.payslip-view__print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payslip-view__print-btn:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   MEDIA RESPONSIVE GRIDS QUERIES 
+   ========================================================================== */
+@media (max-width: 768px) {
+  .payslip-view__ledger-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .payslip-view__employee-side {
+    text-align: left;
+  }
+
+  .payslip-view__employee-side .payslip-view__party-text {
+    margin-left: 0;
+  }
+
+  .payslip-view__card {
+    padding: 20px;
+  }
+}
+
+/* ==========================================================================
+   NATIVE SYSTEM PRINT SPECIFIC CSS STYLES INJECTIONS
+   ========================================================================== */
+@media print {
+  body, .payslip-view__container {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .payslip-view__card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}

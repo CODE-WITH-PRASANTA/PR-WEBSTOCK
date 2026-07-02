@@ -44,6 +44,10 @@ import ClientPayments from "./Components/ClientPayments/ClientPayments";
 import Overtime from "./Pages/Overtime/Overtime";
 import ShiftPlanning from "./Pages/ShiftPlanning/ShiftPlanning";
 import Remote from "./Pages/Remote/Remote";
+import EmployeeSalary from "./Components/EmployeeSalary/EmployeeSalary";
+import PaySlip from "./Components/PaySlip/PaySlip";
+import SalaryStructure from "./Components/SalaryStructure/SalaryStructure";
+
 
 const App = () => {
   return (
@@ -76,9 +80,8 @@ const App = () => {
           <Route path="leaves/settings" element={<LeaveSettings />} />
           <Route path="balance" element={<LeaveBalance />} />
           <Route path="leaves/types" element={<LeaveTypes />} />
-          
-          
-          
+          <Route path="salary" element={<EmployeeSalary />} />
+          <Route path="payslip" element={<PaySlip />} />
           <Route path="documents" element={<EmployeeDocuments />}/>
           <Route path="assets" element={<EmployeeAssets />}/>
           <Route path="holidays/all" element={<AllHolidays/>}/>
@@ -97,6 +100,7 @@ const App = () => {
           <Route path="overtime"element={<Overtime/>}/>
           <Route path="shift-planning"element={<ShiftPlanning/>}/>
           <Route path="remote"element={<Remote/>}/>
+          <Route path="structure"element={<SalaryStructure/>}/>
 
         </Route>
 
