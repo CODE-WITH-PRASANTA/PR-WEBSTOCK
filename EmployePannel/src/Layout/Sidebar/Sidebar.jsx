@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
+import logo from '../../assets/prwebstock_logo.png'
+
 
 import {
   FiGrid,
@@ -71,7 +73,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
        <div className="logo">
             <div className="logoBrand">
               <img
-                src="http://localhost:5173/src/assets/PR-WEB-LOGO.png"
+                src={logo}
                 alt="PR WEBSTOCK Logo"
               />
             </div>

@@ -1,0 +1,540 @@
+:root {
+  --primary-accent: #5e66f2;
+  --panel-background: #f4f6f9;
+  --text-primary-dark: #333333;
+  --text-muted-gray: #777777;
+  --border-element-color: #e2e8f0;
+  
+  --morning-bg: #dcfce7;
+  --morning-text: #15803d;
+  --evening-bg: #fef3c7;
+  --evening-text: #b45309;
+  --night-bg: #fee2e2;
+  --night-text: #b91c1c;
+}
+
+.EmployeeShift-container {
+  padding: 24px;
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary-dark);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Header Node Component Layout */
+.EmployeeShift-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.EmployeeShift-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.EmployeeShift-breadcrumb {
+  font-size: 13px;
+  color: var(--text-muted-gray);
+}
+
+.current-node {
+  color: var(--text-primary-dark);
+  font-weight: 500;
+}
+
+/* System Control Toolbar Styles */
+.EmployeeShift-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eef2f7;
+  padding: 14px 20px;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.toolbar-section-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.active-tab-title {
+  font-weight: 600;
+  color: #475569;
+  font-size: 15px;
+}
+
+.search-field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-embedded-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+}
+
+.search-control {
+  padding: 8px 12px 8px 38px;
+  border: 1px solid var(--border-element-color);
+  border-radius: 6px;
+  outline: none;
+  width: 240px;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+.toolbar-section-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-action-btn {
+  background: white;
+  border: 1px solid var(--border-element-color);
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 16px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.control-action-btn:hover {
+  background: #f1f5f9;
+}
+
+.control-action-btn.create-trigger-btn {
+  color: #22c55e;
+}
+
+/* Column Configuration Options Dropdown Drop Window */
+.column-visibility-dropdown {
+  position: absolute;
+  right: 120px;
+  top: 60px;
+  background: white;
+  border: 1px solid var(--border-element-color);
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  z-index: 200;
+  width: 220px;
+}
+
+.dropdown-panel-header {
+  padding: 12px;
+  font-weight: 600;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border-element-color);
+  text-align: center;
+  background-color: #f8fafc;
+}
+
+.dropdown-scroll-body {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.visibility-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.visibility-checkbox-row:hover {
+  background: #f1f5f9;
+}
+
+.column-label-text {
+  text-transform: capitalize;
+}
+
+/* Interactive Data Grid Core Setup */
+.table-overflow-adapter {
+  overflow-x: auto;
+  background: white;
+  border: 1px solid var(--border-element-color);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.EmployeeShift-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+  white-space: nowrap;
+}
+
+.EmployeeShift-table th, 
+.EmployeeShift-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.EmployeeShift-table th {
+  background-color: #ffffff;
+  color: #475569;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.EmployeeShift-table tr:hover {
+  background-color: #f8fafc;
+}
+
+.row-selected-highlight {
+  background-color: #f0fdf4 !important;
+}
+
+/* Sub-Row Identity Elements and Labels */
+.identity-cell-layout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.avatar-placeholder-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #334155;
+}
+
+.time-string-cell {
+  font-family: monospace;
+  color: #475569;
+  font-size: 13px;
+}
+
+/* Status Shift Indicators Badges Mapping rules */
+.shift-tag-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.shift-tag-badge.morning { background: var(--morning-bg); color: var(--morning-text); }
+.shift-tag-badge.evening { background: var(--evening-bg); color: var(--evening-text); }
+.shift-tag-badge.night { background: var(--night-bg); color: var(--night-text); }
+
+.table-inline-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-button-edit, 
+.action-button-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px;
+  transition: transform 0.1s;
+}
+
+.action-button-edit { color: #3b82f6; }
+.action-button-delete { color: #ef4444; }
+
+/* Custom Adaptive Component Scroller layout */
+.custom-scrollbar-layout::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar-layout::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.custom-scrollbar-layout::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+/* Footer Pagination Layout */
+.EmployeeShift-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.pagination-controls-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.items-per-page-selector {
+  padding: 4px 8px;
+  border: 1px solid var(--border-element-color);
+  border-radius: 4px;
+  background: white;
+}
+
+.pagination-nav-arrow {
+  background: none;
+  border: none;
+  cursor: not-allowed;
+  font-size: 14px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+}
+
+/* Workflow Overlay Architecture Modals UI elements */
+.workflow-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.workflow-modal-card {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.workflow-modal-header {
+  background: var(--primary-accent);
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-title-layout-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-title-layout-group h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-dismiss-cross {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.workflow-form-wrapper {
+  padding: 24px;
+}
+
+.workflow-form-page-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-inputs-inline-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.input-field-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-field-block label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.input-field-block input,
+.input-field-block select {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Wizard workflow page step handlers pagination row buttons */
+.workflow-step-indicators-footer {
+  margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.btn-action-primary-step {
+  background: #e2e8f0;
+  color: #475569;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-action-secondary-step {
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-action-cancel-step {
+  background: #ba1c1c;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Destruction verification dialogue box container */
+.delete-confirmation-dialog-box {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  width: 365px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.delete-confirmation-dialog-box h3 {
+  margin: 0 0 16px 0;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.deleted-row-context-summary {
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.warning-text-muted-caption {
+  font-size: 12px;
+  color: #94a3b8;
+  display: block;
+  margin-top: 6px;
+}
+
+.delete-dialog-action-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-confirm-destruction {
+  background: #b91c1c;
+  color: white;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-abort-destruction {
+  background: #0284c7;
+  color: white;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Animations CSS Rules definitions */
+.animate-slide-in {
+  animation: slideInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-pop-in {
+  animation: scaleIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive Fluid Breakpoints Adapter styles rules queries */
+@media (max-width: 768px) {
+  .EmployeeShift-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .toolbar-section-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .form-inputs-inline-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
