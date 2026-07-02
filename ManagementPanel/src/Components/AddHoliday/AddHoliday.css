@@ -1,0 +1,318 @@
+:root {
+  --primary-blue: #0b57d0;
+  --bg-canvas: #f0f4f9;
+  --bg-surface: #ffffff;
+  --border-grey: #c4c7c5;
+  --error-red: #b3261e;
+  --text-dark: #1f1f1f;
+  --text-grey: #444746;
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.AddHoliday {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-canvas);
+  padding: 24px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Header Area styling */
+.AddHoliday-breadcrumb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.AddHoliday-breadcrumb h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.AddHoliday-breadcrumb-path {
+  font-size: 13px;
+  color: var(--text-grey);
+}
+
+.AddHoliday-breadcrumb-path span.active {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+/* Card Body Layout */
+.AddHoliday-card {
+  background-color: var(--bg-surface);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+  padding: 24px;
+}
+
+.AddHoliday-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #004a77;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #e0e2ec;
+  padding-bottom: 10px;
+}
+
+/* Matrix Form Structure setup */
+.AddHoliday-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.AddHoliday-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+/* Field Floating Outline Simulation styling */
+.AddHoliday-form-group label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-size: 12px;
+  color: var(--text-grey);
+  background: var(--bg-surface);
+  padding: 0 6px;
+  z-index: 5;
+}
+
+.AddHoliday-form-group input,
+.AddHoliday-form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border-grey);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-dark);
+  box-sizing: border-box;
+  outline: none;
+  background-color: transparent;
+  transition: border-color 0.2s var(--transition-smooth), box-shadow 0.2s var(--transition-smooth);
+}
+
+.AddHoliday-form-group input:focus,
+.AddHoliday-form-group textarea:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 1px var(--primary-blue);
+}
+
+/* Focused active default field border state layout */
+.AddHoliday-form-group.focused input {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 1px var(--primary-blue);
+}
+
+/* Error boundary rules */
+.AddHoliday-form-group.error-boundary input {
+  border-color: var(--error-red) !important;
+}
+
+.AddHoliday-form-group label.error-text {
+  color: var(--error-red) !important;
+}
+
+.AddHoliday-error-message {
+  color: var(--error-red);
+  font-size: 11px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+/* Custom Calendar Input Container */
+.AddHoliday-date-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.AddHoliday-date-input-wrapper input {
+  cursor: pointer;
+  padding-right: 44px;
+}
+
+.AddHoliday-calendar-icon {
+  position: absolute;
+  right: 16px;
+  font-size: 18px;
+  color: #444;
+  cursor: pointer;
+}
+
+/* 2nd Reference Image: Custom Calendar Card Picker UI */
+.AddHoliday-calendar-dropdown {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  background: #eef2fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  width: 290px;
+  z-index: 100;
+  box-sizing: border-box;
+  animation: slideFadeIn 0.2s var(--transition-smooth);
+}
+
+.AddHoliday-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.AddHoliday-calendar-ym {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1f1f1f;
+  cursor: pointer;
+}
+
+.AddHoliday-calendar-arrows button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #444746;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+}
+
+.AddHoliday-calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.weekday-lbl {
+  font-size: 13px;
+  font-weight: 400;
+  color: #444746;
+  padding-bottom: 6px;
+}
+
+.AddHoliday-calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 4px;
+  text-align: center;
+  position: relative;
+}
+
+/* Month Text row alignment watermark display */
+.month-row-lbl {
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f1f1f;
+  pointer-events: none;
+}
+
+.calendar-day-cell {
+  font-size: 13px;
+  padding: 8px 0;
+  color: #1f1f1f;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.calendar-day-cell:hover:not(.empty) {
+  background-color: #dfe3eb;
+}
+
+.calendar-day-cell.empty {
+  cursor: default;
+}
+
+/* Today mock highlight view ring (July 2nd reference image styling) */
+.calendar-day-cell.today-highlight {
+  border: 1.5px solid #0066cc;
+  background-color: #cbd5e1;
+  font-weight: 500;
+}
+
+.calendar-day-cell.selected {
+  background-color: var(--primary-blue) !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+/* Action Control Buttons wrapper */
+.AddHoliday-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.AddHoliday-btn-submit {
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.AddHoliday-btn-submit.active {
+  background-color: var(--primary-blue);
+  color: white;
+  cursor: pointer;
+}
+
+.AddHoliday-btn-submit.disabled {
+  background-color: #e1e2e4;
+  color: #9aa0a6;
+  cursor: not-allowed;
+}
+
+.AddHoliday-btn-cancel {
+  background-color: #ba1a1a;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Subtle animation sequence */
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Adaptive Layout Blocks */
+@media (max-width: 768px) {
+  .AddHoliday {
+    padding: 16px;
+  }
+  .AddHoliday-card {
+    padding: 16px;
+  }
+  .AddHoliday-form-actions {
+    flex-direction: row;
+    width: 100%;
+  }
+  .AddHoliday-btn-submit, 
+  .AddHoliday-btn-cancel {
+    flex: 1;
+    text-align: center;
+  }
+}

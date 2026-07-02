@@ -13,7 +13,9 @@ import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
 import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
+import AttendanceAtten from "./Pages/AttendanceAtten/AttendanceAtten";
 import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
+import MyDocuments from "./Components/MyDocuments/MyDocuments";
 import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
 import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
@@ -37,6 +39,9 @@ const App = () => (
         <Route path="my-tasks" element={<TaskList />} />
         <Route path="reimbursements" element={<SalaryDetails />} />
         <Route path="company-policies" element={<CompanyPolicies />} />
+        <Route path="team-attendance" element={<AttendanceAtten />} />
+        <Route path="team-leaves" element={<TeamLeaves />} />
+        <Route path="my-documents" element={<MyDocuments />} />
         <Route path="team-attendance" element={<CompanyPolicies />} />
         <Route path="team-leaves" element={<TeamLeaves />} />
         <Route path="profile-settings" element={<ProfileSettings />} />

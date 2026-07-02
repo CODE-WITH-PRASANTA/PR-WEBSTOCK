@@ -1,0 +1,553 @@
+/* ================= CONTAINERS & ALIGNMENTS ================= */
+.pay-layout-root-container {
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ================= BREADCRUMB TRACK ROW ================= */
+.pay-breadcrumb-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pay-crumb-left h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #334155;
+  margin: 0;
+}
+
+.pay-crumb-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.pay-home-icon-node {
+  font-size: 14px;
+  color: #475569;
+}
+
+.pay-separator-node {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.pay-dim-node {
+  color: #475569;
+}
+
+.pay-active-node {
+  color: #64748b;
+}
+
+/* ================= WORKSPACE TABLE SURFACE OVERVIEW ================= */
+.pay-main-table-panel {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.pay-panel-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eef2f9;
+  padding: 12px 20px;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.pay-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pay-panel-tab-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.pay-search-input-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pay-search-inside-ico {
+  position: absolute;
+  left: 10px;
+  color: #94a3b8;
+  font-size: 15px;
+}
+
+.pay-search-input-field input {
+  padding: 6px 10px 6px 32px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 200px;
+  font-size: 13px;
+  outline: none;
+  background: #ffffff;
+}
+
+.pay-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.pay-tool-act-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.pay-tool-act-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pay-tool-act-btn.color-red { color: #ef4444; }
+.pay-tool-act-btn.color-blue { color: #3b82f6; }
+.pay-tool-act-btn.color-green { color: #22c55e; }
+.pay-tool-act-btn.color-gray { color: #6b7280; }
+
+/* REPOSITIONED OPTION COLUMN POPUP BOX */
+.pay-columns-dropdown-popup {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 220px;
+  z-index: 999;
+}
+
+.pay-popup-header-label {
+  padding: 12px;
+  font-weight: 500;
+  font-size: 13.5px;
+  color: #111111;
+  border-bottom: 1px solid #dddddd;
+  text-align: center;
+}
+
+.pay-popup-scroll-area {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.pay-popup-row-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.pay-popup-row-item:hover {
+  background: #dddddd;
+}
+
+.pay-popup-row-item input[type="checkbox"] {
+  display: none;
+}
+
+.pay-checkbox-visual-node {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #0056b3;
+  border-radius: 2px;
+  margin-right: 12px;
+  position: relative;
+  display: inline-block;
+  background: #ffffff;
+}
+
+.pay-popup-row-item input[type="checkbox"]:checked + .pay-checkbox-visual-node {
+  background: #0056b3;
+}
+
+.pay-popup-row-item input[type="checkbox"]:checked + .pay-checkbox-visual-node::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.pay-checkbox-txt-label {
+  font-size: 13px;
+  color: #333333;
+}
+
+/* ================= SLIDABLE HORIZONTAL SLIDER VIEW ================= */
+.pay-table-viewport-slider {
+  overflow-x: auto;
+  background: #ffffff;
+}
+
+.pay-custom-data-table-node {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+  min-width: 1100px;
+}
+
+.pay-custom-data-table-node th {
+  background: #ffffff;
+  color: #1e293b;
+  font-weight: 500;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.pay-custom-data-table-node td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.pay-row-highlighted-active {
+  background-color: #f8fafc;
+}
+
+.pay-cell-checkbox-dimension {
+  width: 45px;
+}
+
+.pay-id-field-txt {
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.pay-date-cell-flex-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pay-calendar-brown-ico {
+  color: #b45309;
+}
+
+.pay-amount-weight-node {
+  font-weight: 400;
+  color: #111111;
+}
+
+/* Status Pill Node Color Palette Mapping */
+.pay-status-pill-badge {
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.pay-status-pill-badge.tag-completed { background-color: #dcfce7; color: #15803d; }
+.pay-status-pill-badge.tag-pending { background-color: #ffedd5; color: #ea580c; }
+.pay-status-pill-badge.tag-failed { background-color: #ffe4e6; color: #e11d48; }
+
+.pay-actions-flex-holder {
+  display: flex;
+  gap: 14px;
+}
+
+.pay-action-row-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-edit-tint { color: #3b82f6; }
+.btn-delete-tint { color: #ea580c; }
+
+.pay-empty-fallback-message {
+  text-align: center;
+  padding: 30px !important;
+  color: #94a3b8;
+}
+
+/* ================= PAGINATION BOTTOM PANEL FOOTER ================= */
+.pay-pagination-footer-row-layout {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: #ffffff;
+  padding: 12px 20px;
+  border-top: 1px solid #cbd5e1;
+}
+
+.pay-pagination-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pay-footer-dim-label {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.pay-select-native-box-wrapper select {
+  padding: 4px 20px 4px 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+}
+
+.pay-footer-range-label {
+  font-size: 12px;
+  color: #334155;
+}
+
+.pay-footer-navigation-arrows {
+  display: flex;
+  gap: 4px;
+}
+
+.pay-footer-navigation-arrows button {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.pay-footer-navigation-arrows button:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* ================= FIELDSET SHAPED INPUT OVERLAY GRID (image_61721e.png) ================= */
+.pay-fullscreen-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.pay-large-card-form-modal {
+  background: #ffffff;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+  animation: smoothFade 0.2s ease-out;
+}
+
+.pay-form-modal-header-banner {
+  background: #5c67f2;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pay-form-modal-header-banner h3 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pay-form-close-x-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.pay-modal-form-body-wrapper {
+  padding: 24px;
+}
+
+.pay-form-inputs-two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+
+/* Fieldset borders definition */
+.pay-fieldset-input-node {
+  position: relative;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-fieldset-input-node legend {
+  font-size: 12px;
+  color: #475569;
+  padding: 0 4px;
+  margin-left: -4px;
+}
+
+.pay-input-icon-rel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.pay-input-icon-rel-wrapper input,
+.pay-fieldset-input-node select {
+  width: 100%;
+  padding: 8px 0;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  background: transparent;
+  color: #1e293b;
+}
+
+.pay-input-icon-rel-wrapper input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.pay-fieldset-input-node.active-blue-border-outline {
+  border-color: #2563eb;
+  border-width: 2px;
+}
+
+.active-blue-legend {
+  color: #2563eb !important;
+  font-weight: 500;
+}
+
+.pay-embedded-form-input-ico {
+  position: absolute;
+  right: 4px;
+  color: #475569;
+  font-size: 16px;
+}
+
+.pay-form-action-footer-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.pay-form-btn-node {
+  padding: 10px 28px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-save-blue { background-color: #0056b3; color: #ffffff; }
+.btn-cancel-red { background-color: #b91c1c; color: #ffffff; }
+
+/* ================= INLINE PROMPT ALERTS SHADINGS (image_617501.png) ================= */
+.pay-delete-alert-backdrop-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.pay-alert-box-card-node {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 320px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.pay-alert-box-card-node h4 {
+  margin: 0 0 16px 0;
+  font-size: 22px;
+  font-weight: 400;
+  color: #1e293b;
+}
+
+.pay-alert-details-body {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.pay-alert-details-body p { margin: 4px 0; }
+
+.pay-alert-footer-action-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.pay-alert-btn {
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-confirm-danger { background-color: #b91c1c; color: #ffffff; }
+.btn-cancel-blue { background-color: #0056b3; color: #ffffff; }
+
+@keyframes smoothFade {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ================= MOBILE MEDIA LAYOUT VIEWPORT ================= */
+@media (max-width: 768px) {
+  .pay-form-inputs-two-col-grid {
+    grid-template-columns: 1fr;
+  }
+  .pay-panel-toolbar-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
