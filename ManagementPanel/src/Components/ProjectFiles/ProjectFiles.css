@@ -1,0 +1,600 @@
+/* Base Layout Variables & Resets */
+.ProjectFiles-container {
+  min-height: 100vh;
+  background-color: #f4f7fc;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+  color: #495057;
+}
+
+.ProjectFiles-container * {
+  box-sizing: border-box;
+}
+
+/* Header & Breadcrumbs Paths */
+.ProjectFiles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ProjectFiles-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.ProjectFiles-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.ProjectFiles-home-icon,
+.ProjectFiles-link {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ProjectFiles-home-icon:hover,
+.ProjectFiles-link:hover {
+  color: #5c6bc0;
+}
+
+.ProjectFiles-arrow-icon {
+  font-size: 18px;
+  color: #adb5bd;
+}
+
+.ProjectFiles-current {
+  color: #adb5bd;
+}
+
+/* Central Workspace Board Section */
+.ProjectFiles-workspace-card {
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #eef2f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: visible;
+}
+
+/* Action Toolbar Segment Header */
+.ProjectFiles-toolbar {
+  background-color: #dee6f2;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid #ced4da;
+}
+
+.ProjectFiles-left-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ProjectFiles-section-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #495057;
+}
+
+/* Integrated Embedded Search Widget */
+.ProjectFiles-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ProjectFiles-search-icon {
+  position: absolute;
+  left: 10px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.ProjectFiles-search-input {
+  padding: 8px 12px 8px 34px;
+  font-size: 13px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 200px;
+  height: 34px;
+  background-color: #ffffff;
+  outline: none;
+  transition: width 0.25s ease;
+}
+
+.ProjectFiles-search-input:focus {
+  border-color: #5c6bc0;
+  width: 260px;
+}
+
+/* Right Toolbar Action Icons Button Groups */
+.ProjectFiles-right-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.ProjectFiles-tool-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ProjectFiles-tool-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ProjectFiles-tool-btn.text-blue { color: #0288d1; }
+.ProjectFiles-tool-btn.text-green { color: #2e7d32; font-size: 20px; }
+.ProjectFiles-tool-btn.text-dark { color: #37474f; font-size: 15px; }
+.ProjectFiles-tool-btn.text-blue-light { color: #03a9f4; font-size: 20px; }
+
+/* Show/Hide Columns Dropdown Box (3rd Reference Match) */
+.ProjectFiles-column-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background-color: #f1f3f5;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 90;
+  width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease-in-out;
+}
+
+.ProjectFiles-column-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.ProjectFiles-dropdown-header {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #343a40;
+  text-align: center;
+  border-bottom: 1px solid #ced4da;
+}
+
+.ProjectFiles-dropdown-list {
+  padding: 8px 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.ProjectFiles-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.ProjectFiles-dropdown-item:hover {
+  background-color: #dee2e6;
+}
+
+.ProjectFiles-item-label {
+  font-size: 14px;
+  color: #495057;
+}
+
+/* Custom Standard Uniform Checkboxes UI */
+.ProjectFiles-custom-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #0062cc;
+}
+
+/* Table Grid View Core Styles */
+.ProjectFiles-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ProjectFiles-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+  background-color: #ffffff;
+}
+
+.ProjectFiles-table th {
+  background-color: #ffffff;
+  color: #343a40;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid #e9ecef;
+  white-space: nowrap;
+}
+
+.ProjectFiles-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eed2f5;
+  color: #495057;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.ProjectFiles-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.ProjectFiles-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.ProjectFiles-table tr.row-selected {
+  background-color: #f1f3f9;
+}
+
+.font-medium { font-weight: 500; }
+.text-dark { color: #212529 !important; }
+
+/* Table Elements Internals Sub-classes */
+.ProjectFiles-table-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #495057;
+}
+
+.ProjectFiles-date-icon {
+  color: #b57d53;
+  font-size: 15px;
+}
+
+.ProjectFiles-action-cell-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ProjectFiles-action-icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.ProjectFiles-action-icon-btn:hover {
+  transform: scale(1.15);
+}
+
+.ProjectFiles-action-icon-btn.gray-btn { color: #888d94; font-size: 20px;}
+.ProjectFiles-action-icon-btn.blue-btn { color: #3b82f6; }
+.ProjectFiles-action-icon-btn.red-btn { color: #ef4444; }
+
+.ProjectFiles-empty-state {
+  text-align: center;
+  padding: 40px !important;
+  color: #8c95a0;
+  font-style: italic;
+}
+
+/* Pagination Control Footer Section */
+.ProjectFiles-pagination-bar {
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.ProjectFiles-pagination-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.ProjectFiles-pagination-text,
+.ProjectFiles-pagination-text-summary {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.ProjectFiles-per-page-select select {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.ProjectFiles-pagination-arrows {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ProjectFiles-arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #495057;
+  cursor: pointer;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.ProjectFiles-arrow-btn:disabled {
+  color: #ced4da;
+  cursor: not-allowed;
+}
+
+/* --- OVERLAY MODALS STYLING SYSTEM --- */
+.ProjectFiles-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.28s ease-in-out;
+}
+
+.ProjectFiles-modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ProjectFiles-modal-card {
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: transform 0.28s ease-in-out;
+}
+
+.ProjectFiles-modal-overlay.show .ProjectFiles-modal-card {
+  transform: scale(1);
+}
+
+.max-width-lg { max-width: 900px; }
+.max-width-sm { max-width: 360px; }
+.text-align-left { text-align: left; }
+.border-radius-sm { border-radius: 8px !important; }
+.p-24 { padding: 24px !important; }
+.mt-24 { margin-top: 24px; }
+
+/* Modal Headers */
+.ProjectFiles-modal-header {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+
+.bg-gradient-blue {
+  background: linear-gradient(to right, #4f6bf2, #6b4ff6);
+}
+
+.ProjectFiles-modal-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.ProjectFiles-modal-close {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Form Fields Styling Grid Structure */
+.ProjectFiles-modal-form {
+  padding: 24px;
+}
+
+.ProjectFiles-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.ProjectFiles-input-field-group {
+  position: relative;
+}
+
+.ProjectFiles-input-field-group.full-width {
+  grid-column: span 2;
+}
+
+.ProjectFiles-input-field-group label {
+  position: absolute;
+  top: -9px;
+  left: 12px;
+  background-color: #ffffff;
+  padding: 0 4px;
+  font-size: 11px;
+  color: #757575;
+  font-weight: 500;
+  z-index: 2;
+}
+
+.ProjectFiles-input-field-group input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #b0b0b0;
+  border-radius: 4px;
+  outline: none;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.ProjectFiles-input-field-group input:focus {
+  border-color: #4f6bf2;
+}
+
+.ProjectFiles-input-field-group.icon-inside-wrapper input {
+  padding-right: 36px;
+}
+
+.input-right-side-icon {
+  position: absolute;
+  right: 14px;
+  top: 13px;
+  color: #555555;
+  font-size: 16px;
+}
+
+/* File Drag & Drop Box Area Component Styling */
+.ProjectFiles-upload-dropzone {
+  border: 1px dashed #b2c2df;
+  background-color: #f4f7fc;
+  border-radius: 6px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ProjectFiles-dropzone-cloud {
+  font-size: 42px;
+  color: #90a4ae;
+  margin-bottom: 8px;
+}
+
+.ProjectFiles-upload-dropzone p {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  color: #455a64;
+}
+
+.ProjectFiles-upload-dropzone .browse-link {
+  color: #5c4ff6;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProjectFiles-upload-dropzone .formats-note {
+  font-size: 11px;
+  color: #78909c;
+}
+
+/* Modal Footer Buttons Action */
+.ProjectFiles-modal-footer {
+  display: flex;
+  gap: 12px;
+}
+
+.flex-row-reverse-start {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+.gap-12 { gap: 12px; }
+
+.ProjectFiles-btn {
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.ProjectFiles-btn:hover {
+  opacity: 0.9;
+}
+
+.bg-save { background-color: #0056b3; color: #ffffff; }
+.bg-save-active { background-color: #0062cc; color: #ffffff; }
+.bg-cancel { background-color: #b31414; color: #ffffff; }
+.bg-delete-red { background-color: #f44336; color: #ffffff; }
+
+.px-24 { padding-left: 24px !important; padding-right: 24px !important; }
+.border-radius-round { border-radius: 20px !important; }
+
+/* Delete Specific Typography */
+.ProjectFiles-delete-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: #212529;
+  margin: 0 0 16px 0;
+}
+
+.ProjectFiles-delete-body p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #495057;
+}
+
+/* --- RESPONSIVE DEVICE QUERIES BREAKPOINTS --- */
+@media (max-width: 768px) {
+  .ProjectFiles-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .ProjectFiles-right-tools {
+    justify-content: flex-end;
+  }
+
+  .ProjectFiles-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ProjectFiles-input-field-group.full-width {
+    grid-column: span 1;
+  }
+}

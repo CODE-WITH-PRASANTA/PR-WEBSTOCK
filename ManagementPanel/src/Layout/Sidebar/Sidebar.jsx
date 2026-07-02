@@ -184,15 +184,15 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.managements ? "show" : ""}`}>
-              <NavLink to="/managements/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All managements</NavLink>
-              <NavLink to="/managements/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add management</NavLink>
-              <NavLink to="/managements/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit management</NavLink>
-              <NavLink to="/managements/shift" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Shift</NavLink>
-              <NavLink to="/managements/profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Profile</NavLink>
-              <NavLink to="/managements/documents" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Documents</NavLink>
-              <NavLink to="/managements/assets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Assets</NavLink>
-              <NavLink to="/managements/performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Performance</NavLink>
-              <NavLink to="/managements/exit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Exit / Offboarding</NavLink>
+              <NavLink to="/management/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All managements</NavLink>
+              <NavLink to="/management/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add management</NavLink>
+              <NavLink to="/management/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit management</NavLink>
+              <NavLink to="/management/shift" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Shift</NavLink>
+              <NavLink to="/management/profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Profile</NavLink>
+              <NavLink to="/management/documents" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Documents</NavLink>
+              <NavLink to="/management/assets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Assets</NavLink>
+              <NavLink to="/management/performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Performance</NavLink>
+              <NavLink to="/management/exit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Exit / Offboarding</NavLink>
             </div>
           )}
 
@@ -209,10 +209,17 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.leaveManagement ? "show" : ""}`}>
-              <NavLink to="/leaves/requests" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All Leave Requests</NavLink>
-              <NavLink to="/leaves/balance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Balance</NavLink>
-              <NavLink to="/leaves/types" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Types</NavLink>
-              <NavLink to="/leaves/settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Settings</NavLink>
+              <NavLink
+    to="/management/requests"
+    className={({ isActive }) =>
+      `submenuItem ${isActive ? "activeSubmenu" : ""}`
+    }
+>
+    All Leave Requests
+</NavLink>
+              <NavLink to="/management/balance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Balance</NavLink>
+              <NavLink to="/management/leaves/types" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Types</NavLink>
+              <NavLink to="/management/leaves/settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Settings</NavLink>
             </div>
           )}
 
