@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
+import logo from '../../assets/prwebstock_logo.png'
 
 import {
   FiGrid,
@@ -59,7 +60,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
     forms: false,
     tables: false,
     charts: false,
-    timeline: false,
     icons: false,
     authentication: false,
     extraPages: false,
@@ -103,8 +103,8 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         <div className="logo">
           <div className="logoBrand">
             <img
-              src="https://prwebstock.com/assets/PR-WEB-LOGO-TBnf1jw-.png"
-              alt="PR WEBSTOCK Logo"
+              src={logo}
+              alt="PR WEBSTOCKLogo"
             />
           </div>
 
@@ -162,7 +162,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/projects/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit Project</NavLink>
               <NavLink to="/management/projects/estimates" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Estimates</NavLink>
               <NavLink to="/management/projects/details" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Project Details</NavLink>
-              <NavLink to="/management/projects/timeline" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Project Timeline</NavLink>
               <NavLink to="/management/projects/tasks" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Project Tasks</NavLink>
               <NavLink to="/management/projects/members" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Project Members</NavLink>
               <NavLink to="/management/projects/files" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Project Files</NavLink>
@@ -187,12 +186,12 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All managements</NavLink>
               <NavLink to="/management/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add management</NavLink>
               <NavLink to="/management/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit management</NavLink>
-              <NavLink to="/management/shift" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Shift</NavLink>
-              <NavLink to="/management/profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Profile</NavLink>
-              <NavLink to="/management/documents" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Documents</NavLink>
-              <NavLink to="/management/assets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Assets</NavLink>
-              <NavLink to="/management/performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Performance</NavLink>
-              <NavLink to="/management/exit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Exit / Offboarding</NavLink>
+              <NavLink to="/management/shift" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Management Shift</NavLink>
+              <NavLink to="/management/profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Management Profile</NavLink>
+              <NavLink to="/management/documents" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Management Documents</NavLink>
+              <NavLink to="/management/assets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Management Assets</NavLink>
+              <NavLink to="/management/performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Management Performance</NavLink>
+              <NavLink to="/management/exit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Management Exit / Offboarding</NavLink>
             </div>
           )}
 
