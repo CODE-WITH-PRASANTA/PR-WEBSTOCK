@@ -24,25 +24,19 @@ const Floating = () => {
 
   return (
     <div className="floating-container">
-<<<<<<< HEAD
-      {/* Phone */}
+      {/* Call Button */}
       <a
         href="tel:+917789801327"
         className="floating-btn phone"
-        aria-label="Call"
+        aria-label="Call Now"
       >
-=======
->>>>>>> 45b1131bf0003c6b5cbc2b87c7fccb3ad9789408
-      {/* Call Button */}
-      <a href="tel:+917789801327" className="floating-btn phone">
         <span className="tooltip">Call Now</span>
         <FaPhoneAlt />
       </a>
 
-<<<<<<< HEAD
-      {/* WhatsApp */}
+      {/* WhatsApp Button */}
       <a
-        href="https://wa.me/917789801327"
+        href="https://wa.me/917789801327?text=Hello%20PR-WEBSTOCK!%20I%20want%20a%20professional%20website%20for%20my%20business."
         target="_blank"
         rel="noopener noreferrer"
         className="floating-btn whatsapp"
@@ -52,28 +46,13 @@ const Floating = () => {
         <FaWhatsapp />
       </a>
 
-      {/* Scroll to Top */}
+      {/* Back To Top */}
       {showTop && (
         <button
           className="floating-btn top"
           onClick={scrollToTop}
           aria-label="Back to Top"
-=======
->>>>>>> 45b1131bf0003c6b5cbc2b87c7fccb3ad9789408
-      {/* WhatsApp Button */}
-          <a
-          href="https://wa.me/917789801327?text=Hello%20PR-WEBSTOCK!%20I%20want%20a%20professional%20website%20for%20my%20business."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="floating-btn whatsapp"
         >
-          <span className="tooltip">WhatsApp</span>
-          <FaWhatsapp />
-        </a>
-
-      {/* Back To Top */}
-      {showTop && (
-        <button className="floating-btn top" onClick={scrollToTop}>
           <span className="tooltip">Back to Top</span>
           <FaArrowUp />
         </button>

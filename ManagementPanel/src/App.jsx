@@ -28,6 +28,9 @@ import ClientProjects from "./Components/ClientProjects/ClientProjects";
 import ClientInvoices from "./Components/ClientInvoices/ClientInvoices";
 import ClientPayments from "./Components/ClientPayments/ClientPayments";
 
+import Overtime from "./Pages/Overtime/Overtime";
+import ShiftPlanning from "./Pages/ShiftPlanning/ShiftPlanning";
+import Remote from "./Pages/Remote/Remote";
 
 const App = () => {
   return (
@@ -61,6 +64,9 @@ const App = () => {
           <Route path="clients/projects"element={<ClientProjects/>}/>
           <Route path="clients/invoices" element={<ClientInvoices/>}/>
           <Route path="clients/payments" element={<ClientPayments/>}/>
+          <Route path="overtime"element={<Overtime/>}/>
+          <Route path="shift-planning"element={<ShiftPlanning/>}/>
+          <Route path="remote"element={<Remote/>}/>
 
         </Route>
 
