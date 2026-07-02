@@ -1,0 +1,541 @@
+/* Core Viewport Container Styles */
+.AllClients-container {
+  min-height: 100vh;
+  background-color: #f0f4f8;
+  padding: 1.5rem 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #334155;
+}
+
+/* Header Row & Breadcrumbs Mapping */
+.AllClients-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.AllClients-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+.AllClients-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.825rem;
+  color: #64748b;
+}
+.AllClients-home-icon {
+  font-size: 0.9rem;
+}
+.AllClients-arrow {
+  color: #94a3b8;
+  font-size: 0.75rem;
+}
+.AllClients-active-path {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* Master White Grid Board Layout Card */
+.AllClients-board-card {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  overflow: visible;
+  position: relative;
+}
+
+/* Functional Sub Toolbar Section */
+.AllClients-top-bar {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  position: relative;
+}
+.AllClients-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  max-width: 25rem;
+}
+.AllClients-tag-pill {
+  background: #e2e8f0;
+  color: #475569;
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.AllClients-search-box {
+  position: relative;
+  width: 100%;
+}
+.AllClients-search-lens {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+.AllClients-search-box input {
+  width: 100%;
+  padding: 0.45rem 0.75rem 0.45rem 2.2rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  outline: none;
+}
+.AllClients-search-box input:focus {
+  border-color: #3b82f6;
+}
+
+.AllClients-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+.AllClients-tool-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+.AllClients-tool-btn:hover, .AllClients-tool-btn.active {
+  background: #f8fafc;
+  color: #2563eb;
+  border-color: #94a3b8;
+}
+.AllClients-btn-green {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #ffffff;
+}
+.AllClients-btn-green:hover {
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #ffffff;
+}
+
+/* EXTREMELY HIGH ACCURACY REPLICATION: SHOW/HIDE COLUMN POPUP (IMAGE 2) */
+.AllClients-column-filter-popup {
+  position: absolute;
+  right: 7rem;
+  top: 2.6rem;
+  background: #f1f3f5;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.4rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  width: 14.5rem;
+  z-index: 999;
+  padding: 0;
+  font-family: sans-serif;
+}
+.AllClients-popup-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #334155;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px dashed #cbd5e1;
+}
+.AllClients-popup-scroll-area {
+  max-height: 12.8rem;
+  overflow-y: scroll;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: #f1f3f5;
+}
+
+/* Styling the exact thick native scrollbar seen in Image 2 */
+.AllClients-popup-scroll-area::-webkit-scrollbar {
+  width: 14px;
+}
+.AllClients-popup-scroll-area::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 7px;
+}
+.AllClients-popup-scroll-area::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 7px;
+  border: 2px solid #e2e8f0;
+}
+.AllClients-popup-scroll-area::-webkit-scrollbar-button:start:decrement,
+.AllClients-popup-scroll-area::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 8px;
+  background: transparent;
+}
+
+.AllClients-popup-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.9rem;
+  color: #334155;
+  cursor: pointer;
+  user-select: none;
+}
+.AllClients-popup-row input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: #0066cc;
+  cursor: pointer;
+  margin: 0;
+}
+.AllClients-popup-text {
+  font-weight: 400;
+  color: #475569;
+}
+
+/* Responsive Table Matrix Elements */
+.AllClients-responsive-grid {
+  width: 100%;
+  overflow-x: auto;
+}
+.AllClients-data-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 85rem;
+}
+.AllClients-data-matrix th {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #475569;
+  text-align: left;
+}
+.AllClients-col-cb {
+  width: 3.5rem;
+  text-align: center !important;
+}
+.AllClients-data-matrix td {
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.85rem;
+  color: #475569;
+  vertical-align: middle;
+}
+.AllClients-data-matrix tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.AllClients-data-matrix input[type="checkbox"] {
+  width: 0.95rem;
+  height: 0.95rem;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+/* Custom Styled Avatar Layout Rules */
+.AllClients-profile-pack {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.AllClients-avatar-circle {
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+.AllClients-profile-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.AllClients-cell-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+.AllClients-icon-green { color: #22c55e; font-size: 0.8rem; }
+.AllClients-icon-red { color: #f87171; font-size: 0.8rem; }
+
+/* Status Badges Matching Images */
+.AllClients-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+.AllClients-badge.active {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+.AllClients-badge.inactive {
+  background-color: #ffe4e6;
+  color: #dc2626;
+}
+
+.AllClients-download-trigger {
+  color: #2563eb;
+  cursor: pointer;
+}
+.AllClients-dash-line {
+  color: #cbd5e1;
+}
+
+/* Action Control Cell Modifiers */
+.AllClients-actions-block {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.AllClients-act-btn {
+  background: none;
+  border: none;
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.95rem;
+}
+.AllClients-act-btn.AllClients-edit { color: #2563eb; }
+.AllClients-act-btn.AllClients-edit:hover { background: #eff6ff; }
+.AllClients-act-btn.AllClients-delete { color: #dc2626; }
+.AllClients-act-btn.AllClients-delete:hover { background: #fff1f2; }
+
+.AllClients-id-text {
+  font-family: monospace;
+  color: #94a3b8;
+}
+.AllClients-address-fade {
+  color: #64748b;
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.AllClients-center { text-align: center !important; }
+.AllClients-capitalize { text-transform: capitalize; }
+
+/* Table Pagination Footer Layout Row */
+.AllClients-pagination-footer {
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.825rem;
+  color: #64748b;
+  border-top: 1px solid #f1f5f9;
+}
+.AllClients-pagination-controls {
+  display: flex;
+  gap: 0.35rem;
+}
+.AllClients-arrow-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  color: #cbd5e1;
+  cursor: not-allowed;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Modals & Backdrop Structural Design Rules */
+.AllClients-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+.AllClients-modal-container {
+  background: #ffffff;
+  border-radius: 0.4rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 54rem;
+  overflow: hidden;
+  animation: AllClientsPopupIn 0.2s ease-out;
+}
+.AllClients-modal-banner {
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+.AllClients-indigo { background-color: #5c6bc0; }
+.AllClients-modal-headline {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.AllClients-modal-headline h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.AllClients-circle-avatar-placeholder {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+.AllClients-modal-close-cross {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.AllClients-modal-close-cross:hover { color: #ffffff; }
+
+.AllClients-modal-inner-form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-height: 78vh;
+  overflow-y: auto;
+}
+.AllClients-inputs-double-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+@media (min-width: 640px) {
+  .AllClients-inputs-double-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.AllClients-field-set {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.AllClients-field-set label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #475569;
+}
+.AllClients-field-set input, .AllClients-field-set select, .AllClients-field-set textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  outline: none;
+  background-color: #ffffff;
+  color: #334155;
+  box-sizing: border-box;
+}
+.AllClients-field-set input:focus, .AllClients-field-set select:focus, .AllClients-field-set textarea:focus {
+  border-color: #5c6bc0;
+}
+.AllClients-full-row { grid-column: span 1; }
+@media (min-width: 640px) {
+  .AllClients-full-row { grid-column: span 2; }
+}
+
+.AllClients-modal-footer-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.AllClients-modal-action-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.AllClients-save-blue { background-color: #0066cc; color: #ffffff; }
+.AllClients-save-blue:hover { background-color: #0052a3; }
+.AllClients-cancel-red { background-color: #b30000; color: #ffffff; }
+.AllClients-cancel-red:hover { background-color: #990000; }
+
+/* Delete Notification Prompt Overlay Styles */
+.AllClients-alert-box {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 22rem;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
+  text-align: center;
+}
+.AllClients-alert-heading {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin: 0 0 1rem 0;
+}
+.AllClients-alert-summary {
+  text-align: left;
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.AllClients-alert-summary p { margin: 0; }
+.AllClients-alert-summary span { color: #64748b; }
+.AllClients-alert-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.AllClients-pill-btn {
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.55rem 2rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  min-width: 6.5rem;
+}
+.AllClients-confirm-bg-red { background-color: #b30000; }
+.AllClients-confirm-bg-red:hover { background-color: #990000; }
+.AllClients-cancel-bg-blue { background-color: #0066cc; }
+.AllClients-cancel-bg-blue:hover { background-color: #0052a3; }
+
+@keyframes AllClientsPopupIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}

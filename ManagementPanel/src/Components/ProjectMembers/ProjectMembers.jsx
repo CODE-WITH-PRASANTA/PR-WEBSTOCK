@@ -4,7 +4,7 @@ import { MdChevronRight, MdKeyboardArrowDown } from 'react-icons/md';
 import { AiOutlineMail } from 'react-icons/ai';
 import { FaUser, FaRegCommentDots } from 'react-icons/fa';
 import './ProjectMembers.css';
-
+ 
 const ProjectMembers = () => {
   // Mock Projects List based on the 2nd reference image
   const projects = [

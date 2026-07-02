@@ -1,0 +1,571 @@
+:root {
+  --body-bg-layer: #f3f4f6;
+  --card-canvas: #ffffff;
+  --text-main-dark: #1f2937;
+  --text-paragraph-muted: #6b7280;
+  --theme-blue-action: #0b5ed7;
+  --border-element: #ced4da;
+}
+
+.ClientProfile-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--body-bg-layer);
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Breadcrumbs Section Header styling */
+.ClientProfile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ClientProfile-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+}
+
+.ClientProfile-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-paragraph-muted);
+}
+
+.breadcrumb-home-icon {
+  font-size: 0.9rem;
+}
+
+.breadcrumb-arrow {
+  color: #adb5bd;
+  font-size: 0.75rem;
+}
+
+.breadcrumb-active {
+  color: #212529;
+}
+
+/* Master Responsive Layout Split Grid */
+.ClientProfile-layout-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* LEFT COLUMN PRESENTATION CARDS DECORATIONS */
+.ClientProfile-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Main Profile Hero card style matching picture frames blueprint */
+.ClientProfile-hero-card {
+  background: var(--card-canvas);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding-bottom: 24px;
+}
+
+.ClientProfile-purple-banner {
+  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+  padding: 36px 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.ClientProfile-purple-banner h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.ClientProfile-purple-banner p {
+  margin: 6px 0 0 0;
+  font-size: 0.82rem;
+  opacity: 0.85;
+}
+
+/* Centered Overlapping Circle Image Container block */
+.ClientProfile-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: -45px;
+  margin-bottom: 16px;
+}
+
+.ClientProfile-avatar-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ClientProfile-hero-details {
+  padding: 0 20px;
+  text-align: center;
+}
+
+.ClientProfile-hero-bio {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #718096;
+  margin: 0 0 16px 0;
+}
+
+.ClientProfile-geo-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  color: #4a5568;
+}
+
+.ClientProfile-divider {
+  border: 0;
+  border-top: 1px solid #edf2f7;
+  margin: 20px 0;
+}
+
+/* Mini Counter statistical layout rows */
+.ClientProfile-stats-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10px;
+}
+
+.ClientProfile-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ClientProfile-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.blue-circle { background-color: #3b82f6; }
+.orange-circle { background-color: #f97316; }
+.green-circle { background-color: #10b981; }
+
+.ClientProfile-stat-num {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.ClientProfile-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-paragraph-muted);
+  margin-top: 2px;
+}
+
+/* Informational Side Quick Contacts list styling blocks */
+.ClientProfile-contact-card {
+  background: var(--card-canvas);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.ClientProfile-contact-card h4 {
+  font-size: 0.92rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #212529;
+}
+
+.ClientProfile-contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ClientProfile-contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.contact-val {
+  font-size: 0.85rem;
+}
+
+.highlight-blue {
+  color: #2563eb;
+}
+
+.highlight-blue-link {
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.highlight-blue-link:hover {
+  text-decoration: underline;
+}
+
+/* RIGHT COLUMN NAVIGATION WINDOW & TABS STRUCTURAL SHELL DESIGN */
+.ClientProfile-tabs-card {
+  background: var(--card-canvas);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Nav Menu Headers layout area block */
+.ClientProfile-tabs-header-bar {
+  display: flex;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #ffffff;
+}
+
+.ClientProfile-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #495057;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  transition: color 0.15s ease;
+}
+
+.ClientProfile-tab-btn:hover {
+  color: var(--theme-blue-action);
+}
+
+/* Animated switching active underline tabs line representation border */
+.ClientProfile-tab-btn.tab-btn-active {
+  color: #000000;
+}
+
+.ClientProfile-tab-btn.tab-btn-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--theme-blue-action);
+}
+
+.tab-icon {
+  font-size: 0.95rem;
+}
+
+/* Content rendering section viewport window area padding block */
+.ClientProfile-tab-view-window {
+  padding: 24px;
+  min-height: 380px;
+}
+
+/* Smooth layout view opening transition */
+.ClientProfile-view-fadein {
+  animation: componentFadeIn 0.25s ease-out forwards;
+}
+
+@keyframes componentFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ClientProfile-section-block {
+  margin-bottom: 28px;
+}
+
+.ClientProfile-block-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #212529;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.ClientProfile-block-heading.border-decoration {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.ClientProfile-block-heading.border-decoration::after {
+  content: '';
+  display: block;
+  width: 45px;
+  height: 3px;
+  background-color: #6366f1;
+  margin-top: 6px;
+}
+
+.ClientProfile-block-paragraph {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #718096;
+  margin: 0;
+}
+
+/* Matrix layout structure for information badges widgets */
+.ClientProfile-badges-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ClientProfile-info-badge {
+  padding: 14px 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.badge-purple { background-color: #f3e8ff; }
+.badge-cyan { background-color: #e0f2fe; }
+.badge-green { background-color: #e8f5e9; }
+.badge-yellow { background-color: #fef3c7; }
+
+.badge-title {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.badge-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.badge-pill-status {
+  background-color: #a7f3d0;
+  color: #065f46;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: max-content;
+}
+
+/* Key achievement area dashed card components layout configuration box */
+.ClientProfile-achievement-dashed-box {
+  border: 1px dashed #ced4da;
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.gold-star-icon {
+  color: #fbbf24;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.achievement-message strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #212529;
+  margin-bottom: 4px;
+}
+
+.achievement-message p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #718096;
+}
+
+/* ACCOUNT SETTINGS EDITOR MODULE FORM ELEMENT FIELDS OVERRIDE SECTION AREA */
+.ClientProfile-settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ClientProfile-form-input-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.ClientProfile-field-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Float Label layout matching configuration schemas */
+.ClientProfile-floating-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background-color: #ffffff;
+  padding: 0 4px;
+  font-size: 0.76rem;
+  color: var(--text-paragraph-muted);
+  z-index: 5;
+}
+
+.ClientProfile-input-with-icon-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.ClientProfile-input-with-icon-wrapper input {
+  width: 100%;
+  height: 48px;
+  padding: 0 42px 0 16px;
+  border: 1px solid var(--border-element);
+  border-radius: 4px;
+  font-size: 0.92rem;
+  color: var(--text-main-dark);
+  box-sizing: border-box;
+  outline: none;
+  background-color: transparent;
+}
+
+.ClientProfile-input-with-icon-wrapper input:focus {
+  border-color: #4f46e5;
+}
+
+.field-adornment-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #495057;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.field-adornment-icon.placement-marker {
+  font-size: 0.95rem;
+}
+
+/* Checkboxes preferences rows setup */
+.ClientProfile-checkboxes-row {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.ClientProfile-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  width: max-content;
+}
+
+.ClientProfile-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-custom-text {
+  font-size: 0.88rem;
+  color: #333333;
+}
+
+/* Processing Actions triggers area */
+.ClientProfile-settings-action-triggers {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.ClientProfile-btn-save {
+  background-color: #f4f7fe;
+  color: var(--theme-blue-action);
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ClientProfile-btn-save:hover {
+  background-color: var(--theme-blue-action);
+  color: #ffffff;
+}
+
+.ClientProfile-btn-reset {
+  background-color: transparent;
+  color: #212529;
+  border: 1px solid var(--border-element);
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ClientProfile-btn-reset:hover {
+  background-color: #f8f9fa;
+}
+
+/* RESPONSIVE FLUID MEDIA SCREEN BREAKPOINT ADAPTATION QUERIES */
+@media (max-width: 1024px) {
+  .ClientProfile-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ClientProfile-form-input-row {
+    grid-template-columns: 1fr;
+  }
+  .ClientProfile-badges-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ClientProfile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ClientProfile-badges-container {
+    grid-template-columns: 1fr;
+  }
+}

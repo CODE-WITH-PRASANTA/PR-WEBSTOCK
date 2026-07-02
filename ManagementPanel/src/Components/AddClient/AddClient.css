@@ -1,0 +1,389 @@
+:root {
+  --primary-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --border-color: #bababa;
+  --error-color: #dc2626;
+  --error-bg-border: #dc2626;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --btn-cancel-bg: #b91c1c;
+  --btn-submit-disabled: #e5e7eb;
+  --btn-submit-text-disabled: #9ca3af;
+  --btn-submit-active: #4f46e5;
+  --calendar-blue: #3b82f6;
+}
+
+.AddClient-container {
+  font-family: var(--primary-font);
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Header & Breadcrumb styling */
+.AddClient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.AddClient-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.AddClient-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb-separator {
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+.breadcrumb-active {
+  color: #111827;
+}
+
+/* Card layout */
+.AddClient-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+}
+
+.AddClient-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* Grid Layout definitions */
+.AddClient-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 11fr);
+  column-gap: 24px;
+  row-gap: 24px;
+  margin-bottom: 24px;
+}
+
+.AddClient-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.AddClient-form-group.full-width {
+  grid-column: span 2;
+  margin-bottom: 24px;
+}
+
+/* Form Input Control elements */
+.AddClient-form-group input,
+.AddClient-select-wrapper select {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background-color: #fff;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.AddClient-form-group input::placeholder {
+  color: #757575;
+}
+
+.AddClient-form-group input:focus,
+.AddClient-select-wrapper select:focus {
+  border-color: #6366f1;
+}
+
+/* Error States */
+.AddClient-form-group.error input,
+.AddClient-form-group.error .AddClient-input-with-icon input {
+  border-color: var(--error-bg-border);
+}
+
+.AddClient-form-group.error input::placeholder {
+  color: var(--error-color);
+}
+
+.AddClient-error-text {
+  color: var(--error-color);
+  font-size: 0.75rem;
+  margin-top: 5px;
+  position: absolute;
+  bottom: -18px;
+  left: 4px;
+}
+
+/* Input Icon Container setups */
+.AddClient-input-with-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.AddClient-input-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+
+/* Select element overrides */
+.AddClient-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.AddClient-select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.AddClient-select-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #444;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+/* File Dropzone Section design */
+.AddClient-upload-section {
+  margin-bottom: 28px;
+}
+
+.AddClient-upload-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+
+.AddClient-upload-dropzone {
+  border: 1px dashed #3b82f6;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.AddClient-upload-btn {
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.AddClient-upload-text {
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+/* Form Footer Actions positioning */
+.AddClient-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.AddClient-btn-submit {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 28px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.AddClient-btn-submit.disabled {
+  background-color: var(--btn-submit-disabled);
+  color: var(--btn-submit-text-disabled);
+  cursor: not-allowed;
+}
+
+.AddClient-btn-submit.active {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.AddClient-btn-cancel {
+  background-color: var(--btn-cancel-bg);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 28px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Smooth-Opening Custom Calendar Popover matching image 2 */
+.date-picker-group {
+  position: relative;
+}
+
+.AddClient-calendar-dropdown {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  z-index: 100;
+  width: 290px;
+  background: #eef2f7;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  animation: slideSmooth 0.2s ease-out;
+}
+
+@keyframes slideSmooth {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.AddClient-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.AddClient-calendar-month-year {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.dropdown-arrow-small {
+  font-size: 0.7rem;
+  color: #4b5563;
+}
+
+.AddClient-calendar-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.AddClient-calendar-nav button {
+  background: none;
+  border: none;
+  color: #374151;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px;
+}
+
+.AddClient-calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.weekday-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.AddClient-calendar-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 8px;
+  text-align: center;
+}
+
+.AddClient-calendar-month-label {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #111827;
+  pointer-events: none;
+}
+
+.AddClient-calendar-day {
+  font-size: 0.85rem;
+  color: #111827;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  font-weight: 400;
+}
+
+.AddClient-calendar-day.empty {
+  cursor: default;
+}
+
+/* Today circle indicator (Matches July 2nd inside image) */
+.AddClient-calendar-day.today {
+  border: 1px solid var(--calendar-blue);
+  background-color: rgba(59, 130, 246, 0.15);
+  font-weight: 600;
+}
+
+.AddClient-calendar-day.selected {
+  background-color: var(--calendar-blue) !important;
+  color: #fff !important;
+}
+
+.AddClient-calendar-day:not(.empty):hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive breakpoint styling rules */
+@media (max-width: 768px) {
+  .AddClient-form-grid {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+  .AddClient-form-group.full-width {
+    grid-column: span 1;
+  }
+  .AddClient-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
