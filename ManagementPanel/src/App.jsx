@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
+ 
 import MainLayout from "./Layout/MainLayout/MainLayout";
 
 // Pages
@@ -21,7 +21,8 @@ import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
 import EditManagement from "./Components/EditManagement/EditManagement";
 import TodayAttendance from "./Components/TodayAttendance/TodayAttendance";
 import EmployeeAttendance from "./Components/EmployeeAttendance/EmployeeAttendance";
-import AttendanceSheet from "./Components/AttendanceSheet/AttendanceSheet";
+import EmployeeDocuments from "./Components/EmployeeDocuments/EmployeeDocuments";
+import EmployeeAssets from "./Components/EmployeeAssets/EmployeeAssets";
 
 const App = () => {
   return (
@@ -49,9 +50,11 @@ const App = () => {
           <Route path="edit" element={<EditManagement/>}/>
           <Route path="today" element={<TodayAttendance/>}/>
           <Route path="management" element={<EmployeeAttendance/>}/>
-          <Route path="sheet" element={<AttendanceSheet/>}/>
           
           
+          <Route path="documents" element={<EmployeeDocuments />} />
+          <Route path="assets" element={<EmployeeAssets />}/>
+
         </Route>
 
         {/* 404 */}

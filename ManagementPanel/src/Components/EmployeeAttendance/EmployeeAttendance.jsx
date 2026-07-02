@@ -20,6 +20,7 @@ import {
   Cell,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 
 const attendanceData = [
@@ -370,24 +371,34 @@ const EmployeeAttendance = () => {
               <PieChart>
 
                 <Pie
-                  data={chartData}
-                  dataKey="value"
-                  outerRadius={120}
-                  label
-                >
+  data={chartData}
+  dataKey="value"
+  cx="50%"
+  cy="50%"
+  innerRadius={70}
+  outerRadius={120}
+  paddingAngle={4}
+  cornerRadius={8}
+  labelLine={false}
+  label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+>
+  {chartData.map((entry, index) => (
+    <Cell
+      key={index}
+      fill={entry.color}
+      stroke="#ffffff"
+      strokeWidth={3}
+    />
+  ))}
+</Pie>
 
-                  {chartData.map((entry, index) => (
+<Tooltip />
 
-                    <Cell
-                      key={index}
-                      fill={entry.color}
-                    />
-
-                  ))}
-
-                </Pie>
-
-                <Tooltip />
+<Legend
+  verticalAlign="bottom"
+  height={40}
+  iconType="circle"
+/>
 
               </PieChart>
 

@@ -261,3 +261,253 @@ grid-template-columns:1fr;
 flex-wrap:wrap;
 }
 }
+
+
+
+/*===========================
+      ANALYTICS SECTION
+===========================*/
+
+.employeeAttendance_analytics{
+    display:grid;
+    grid-template-columns:1.45fr .85fr;
+    gap:28px;
+    margin-top:24px;
+}
+
+/*===========================
+      CHART CARD
+===========================*/
+
+.employeeAttendance_chart,
+.employeeAttendance_statusCard{
+    background:#fff;
+    border-radius:20px;
+    padding:28px;
+    border:1px solid #edf1f7;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.05),
+        0 3px 10px rgba(0,0,0,.03);
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.employeeAttendance_chart::before,
+.employeeAttendance_statusCard::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(90deg,#4f46e5,#3b82f6,#06b6d4);
+}
+
+.employeeAttendance_chart:hover,
+.employeeAttendance_statusCard:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.08),
+        0 8px 18px rgba(0,0,0,.05);
+}
+
+/*===========================
+          TITLES
+===========================*/
+
+.employeeAttendance_chart h3,
+.employeeAttendance_statusCard h3{
+    font-size:20px;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.employeeAttendance_chart h3::after,
+.employeeAttendance_statusCard h3::after{
+    content:"";
+    width:70px;
+    height:4px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#4f46e5,#06b6d4);
+}
+
+/*===========================
+      STATUS GRID
+===========================*/
+
+.employeeAttendance_statusGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+/*===========================
+      STATUS CARD
+===========================*/
+
+.employeeAttendance_statusBox{
+    background:#fafcff;
+    border:1px solid #edf1f7;
+    border-radius:18px;
+    padding:24px 18px;
+    text-align:center;
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.employeeAttendance_statusBox::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(90deg,#4f46e5,#3b82f6);
+    transform:scaleX(0);
+    transition:.35s;
+}
+
+.employeeAttendance_statusBox:hover::before{
+    transform:scaleX(1);
+}
+
+.employeeAttendance_statusBox:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 30px rgba(79,70,229,.12);
+    background:#fff;
+}
+
+/*===========================
+     CIRCLE INDICATOR
+===========================*/
+
+.employeeAttendance_circle{
+    width:105px;
+    height:105px;
+    border:9px solid;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto auto 18px;
+    background:#fff;
+    box-shadow:
+        inset 0 0 18px rgba(0,0,0,.05),
+        0 8px 20px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.employeeAttendance_statusBox:hover
+.employeeAttendance_circle{
+    transform:scale(1.08) rotate(6deg);
+}
+
+.employeeAttendance_circle strong{
+    font-size:22px;
+    font-weight:700;
+    color:#1e293b;
+}
+
+/*===========================
+      TEXT
+===========================*/
+
+.employeeAttendance_statusBox h4{
+    font-size:17px;
+    color:#1f2937;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.employeeAttendance_statusBox p{
+    font-size:14px;
+    color:#64748b;
+}
+
+/*===========================
+      PIE CHART
+===========================*/
+
+.recharts-wrapper{
+    margin:auto;
+}
+
+.recharts-pie-label-text{
+    font-size:13px;
+    font-weight:600;
+    fill:#334155;
+}
+
+.recharts-tooltip-wrapper{
+    border-radius:12px !important;
+}
+
+.recharts-default-tooltip{
+    border:none !important;
+    border-radius:12px !important;
+    box-shadow:0 10px 25px rgba(0,0,0,.12) !important;
+    padding:12px !important;
+}
+
+/*===========================
+      RESPONSIVE
+===========================*/
+
+@media(max-width:1100px){
+
+.employeeAttendance_analytics{
+grid-template-columns:1fr;
+}
+
+.employeeAttendance_chart{
+order:1;
+}
+
+.employeeAttendance_statusCard{
+order:2;
+}
+
+}
+
+@media(max-width:768px){
+
+.employeeAttendance_chart,
+.employeeAttendance_statusCard{
+padding:20px;
+}
+
+.employeeAttendance_statusGrid{
+grid-template-columns:1fr;
+gap:18px;
+}
+
+.employeeAttendance_circle{
+width:90px;
+height:90px;
+}
+
+.employeeAttendance_circle strong{
+font-size:20px;
+}
+
+}
+
+@media(max-width:480px){
+
+.employeeAttendance_chart h3,
+.employeeAttendance_statusCard h3{
+font-size:18px;
+}
+
+.employeeAttendance_chart,
+.employeeAttendance_statusCard{
+padding:16px;
+}
+
+}
