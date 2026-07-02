@@ -21,6 +21,13 @@ import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
 import EditManagement from "./Components/EditManagement/EditManagement";
 import EmployeeDocuments from "./Components/EmployeeDocuments/EmployeeDocuments";
 import EmployeeAssets from "./Components/EmployeeAssets/EmployeeAssets";
+import AllHolidays from "./Components/AllHolidays/AllHolidays";
+import AddHoliday from "./Components/AddHoliday/AddHoliday";
+import EditHoliday from "./Components/EditHoliday/EditHoliday";
+import AllClients from "./Components/AllClients/AllClients";
+import AddClient from "./Components/AddClient/AddClient";
+import EditClient from "./Components/EditClient/EditClient";
+import ClientProfile from "./Components/ClientProfile/ClientProfile";
 
 const App = () => {
   return (
@@ -48,7 +55,13 @@ const App = () => {
           <Route path="edit" element={<EditManagement/>}/>
           <Route path="documents" element={<EmployeeDocuments />} />
           <Route path="assets" element={<EmployeeAssets />}/>
-
+          <Route path="holidays/all" element={<AllHolidays/>}/>
+         <Route path="holidays/add" element={<AddHoliday/>}/>
+         <Route path="holidays/edit" element={<EditHoliday/>}/>
+         <Route path="clients/all" element={<AllClients/>}/>
+         <Route path="clients/add" element={<AddClient/>}/>
+         <Route path="clients/edit" element={<EditClient/>}/>
+         <Route path="clients/profile" element={<ClientProfile/>}/>
         </Route>
 
         {/* 404 */}
@@ -58,4 +71,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App; 

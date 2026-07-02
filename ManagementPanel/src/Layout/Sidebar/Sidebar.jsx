@@ -252,9 +252,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.holidays ? "show" : ""}`}>
-              <NavLink to="/holidays/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All Holidays</NavLink>
-              <NavLink to="/holidays/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Holiday</NavLink>
-              <NavLink to="/holidays/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit Holiday</NavLink>
+              <NavLink to="/management/holidays/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All Holidays</NavLink>
+              <NavLink to="/management/holidays/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Holiday</NavLink>
+              <NavLink to="/management/holidays/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit Holiday</NavLink>
             </div>
           )}
 
@@ -271,10 +271,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.clients ? "show" : ""}`}>
-              <NavLink to="/clients/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All Clients</NavLink>
-              <NavLink to="/clients/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Client</NavLink>
-              <NavLink to="/clients/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit Client</NavLink>
-              <NavLink to="/clients/profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Profile</NavLink>
+              <NavLink to="/management/clients/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All Clients</NavLink>
+              <NavLink to="/management/clients/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Client</NavLink>
+              <NavLink to="/management/clients/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit Client</NavLink>
+              <NavLink to="/management/clients/profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Profile</NavLink>
               <NavLink to="/clients/contacts" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Contacts</NavLink>
               <NavLink to="/clients/projects" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Projects</NavLink>
               <NavLink to="/clients/invoices" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Invoices</NavLink>
