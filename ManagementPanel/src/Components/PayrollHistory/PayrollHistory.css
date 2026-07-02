@@ -1,0 +1,609 @@
+:root {
+  --primary-color: #7c4dff;
+  --primary-hover: #651fff;
+  --bg-color: #f4f6fa;
+  --card-bg: #ffffff;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --border-color: #e0e0e0;
+  --success-bg: #e6f4ea;
+  --success-text: #137333;
+  --danger-color: #b30000;
+  --action-edit: #7c4dff;
+  --action-delete: #ff5722;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+.payroll-container {
+  padding: 24px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Breadcrumbs section styles */
+.payroll-breadcrumb-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.payroll-breadcrumb-row h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.active-crumb {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Main Display Card Base */
+.payroll-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+/* Inner Toolbar */
+.payroll-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #eef2fa;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-grow: 1;
+}
+
+.toolbar-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #444;
+}
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.2s;
+}
+
+.search-wrapper input:focus {
+  border-color: var(--primary-color);
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: rgba(0,0,0,0.05);
+  color: #111;
+}
+
+.icon-btn.add-btn {
+  color: #28a745;
+}
+
+.icon-btn.add-btn:hover {
+  background-color: rgba(40,167,69,0.1);
+}
+
+/* Show/Hide column component menu box configuration */
+.column-popover-container {
+  position: relative;
+}
+
+.column-dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 220px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+.dropdown-header {
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+  color: #333;
+}
+
+.dropdown-scroll-body {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #555;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-item input {
+  margin-right: 10px;
+  accent-color: var(--primary-color);
+}
+
+.capitalize-label {
+  text-transform: capitalize;
+}
+
+/* Core Data Table Structure Formatting */
+.table-responsive-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.payroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.payroll-table th {
+  background-color: #ffffff;
+  color: #333;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.payroll-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.payroll-table tr:hover {
+  background-color: #fafbfc;
+}
+
+.payroll-table tr.selected-row {
+  background-color: #f2eeff;
+}
+
+/* Table internals */
+.emp-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.emp-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.emp-name {
+  font-weight: 500;
+  color: #222;
+}
+
+.date-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+}
+
+.calendar-inline-icon {
+  color: #a0a0a0;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-badge.paid {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* Action button icons styles */
+.action-cell-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.action-btn.edit {
+  color: var(--action-edit);
+}
+
+.action-btn.edit:hover {
+  background-color: #f0eaff;
+}
+
+.action-btn.delete {
+  color: var(--action-delete);
+}
+
+.action-btn.delete:hover {
+  background-color: #ffebe5;
+}
+
+.empty-table-state {
+  text-align: center;
+  padding: 40px !important;
+  color: var(--text-muted);
+}
+
+/* Pagination Footer Bar */
+.payroll-pagination-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid var(--border-color);
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.items-per-page-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.custom-select-wrapper select {
+  padding: 6px 24px 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #333;
+}
+
+.pagination-arrow {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  color: #444;
+}
+
+.pagination-arrow:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-arrow:not(:disabled):hover {
+  background-color: #f0f0f0;
+}
+
+/* Modal Popup Core Backdrop Base Overlay */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.modal-window-card {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 780px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header-bar {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #651fff 100%);
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-title-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.modal-header-bar h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.modal-close-btn:hover {
+  opacity: 1;
+}
+
+.modal-form-content {
+  padding: 28px 24px;
+}
+
+/* Grid parameters inside popup */
+.form-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+/* Material Outline Style Floating Input System */
+.floating-input-group {
+  position: relative;
+  width: 100%;
+}
+
+.floating-input-group input,
+.floating-input-group select {
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid #ababab;
+  border-radius: 6px;
+  font-size: 15px;
+  background: transparent;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.floating-input-group input:focus,
+.floating-input-group select:focus {
+  border-color: var(--primary-color);
+  border-width: 2px;
+}
+
+.floating-input-group label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  padding: 0 4px;
+  color: #777;
+  transition: 0.2s ease all;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+/* Input floating logic triggers */
+.floating-input-group input:focus ~ label,
+.floating-input-group input:not(:placeholder-shown) ~ label,
+.floating-input-group select ~ label {
+  top: 0px;
+  font-size: 12px;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.disabled-styled-input input {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  color: #777;
+}
+
+.disabled-styled-input label {
+  background-color: transparent;
+}
+
+/* Inline accessory layout inside popup forms */
+.input-inline-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  pointer-events: none;
+}
+
+.input-inline-icon.font-icon {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Actions footer alignment */
+.modal-actions-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.modal-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.modal-btn:hover {
+  opacity: 0.9;
+}
+
+.modal-btn.save-btn {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.modal-btn.cancel-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Core Responsive Media Breakpoints for Fluid Sizing across layout viewports */
+@media (max-width: 768px) {
+  .form-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .payroll-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .toolbar-left {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .search-wrapper {
+    max-width: 100%;
+  }
+
+  .toolbar-right {
+    justify-content: space-between;
+  }
+
+  .payroll-breadcrumb-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

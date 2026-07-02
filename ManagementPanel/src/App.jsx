@@ -21,6 +21,11 @@ import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
 import EditManagement from "./Components/EditManagement/EditManagement";
 import EmployeeDocuments from "./Components/EmployeeDocuments/EmployeeDocuments";
 import EmployeeAssets from "./Components/EmployeeAssets/EmployeeAssets";
+import EmployeePerformance from "./Components/EmployeePerformance/EmployeePerformance";
+import PayrollHistory from "./Components/PayrollHistory/PayrollHistory";
+import BonusesIncentives from "./Components/BonusesIncentives/BonusesIncentives";
+import Deductions from "./Components/Deductions/Deductions";
+import StatutoryCompliance from "./Components/StatutoryCompliance/StatutoryCompliance";
 
 const App = () => {
   return (
@@ -48,7 +53,12 @@ const App = () => {
           <Route path="edit" element={<EditManagement/>}/>
           <Route path="documents" element={<EmployeeDocuments />} />
           <Route path="assets" element={<EmployeeAssets />}/>
-
+          <Route path="performance" element={<EmployeePerformance />} />
+          <Route path="payroll/history" element={<PayrollHistory />} />
+          <Route path="payroll/bonuses" element={<BonusesIncentives />} />
+          <Route path="payroll/deductions" element={<Deductions />} />
+          <Route path="payroll/compliance" element={<StatutoryCompliance />}/>
+          
         </Route>
 
         {/* 404 */}

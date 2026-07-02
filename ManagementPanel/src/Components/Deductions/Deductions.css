@@ -1,0 +1,609 @@
+:root {
+  --primary-accent-brand: #7c4dff;
+  --primary-gradient-terminal: #651fff;
+  --viewport-canvas-bg: #f4f6fa;
+  --surface-card-bg: #ffffff;
+  --text-color-primary: #333333;
+  --text-color-secondary: #666666;
+  --element-border-color: #e0e0e0;
+  --color-brand-danger: #b30000;
+  
+  /* Deduction Status Badges */
+  --badge-deducted-bg: #ffebee;
+  --badge-deducted-text: #ef5350;
+  --badge-pending-bg: #fff3e0;
+  --badge-pending-text: #ffb74d;
+}
+
+body {
+  margin: 0;
+  background-color: var(--viewport-canvas-bg);
+  color: var(--text-color-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.deductions-view-wrapper {
+  padding: 24px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Breadcrumb Layout Navigation Nodes */
+.view-navigation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.view-navigation-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.navigation-trail-node {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-color-secondary);
+}
+
+.current-node-active {
+  color: var(--text-color-primary);
+  font-weight: 500;
+}
+
+/* Base Display Board Grid Frame Wrapper */
+.deductions-layout-frame {
+  background: var(--surface-card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--element-border-color);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+/* Toolbar Layout Row Configuration */
+.layout-control-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #eef2fa;
+  border-bottom: 1px solid var(--element-border-color);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.toolbar-left-cluster {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-grow: 1;
+}
+
+.grid-component-identity {
+  font-weight: 600;
+  font-size: 16px;
+  color: #444;
+}
+
+.input-search-field-frame {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+.embedded-search-vector {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+}
+
+.input-search-field-frame input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: border-color 0.2s;
+}
+
+.input-search-field-frame input:focus {
+  border-color: var(--primary-accent-brand);
+}
+
+.toolbar-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toolbar-action-trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toolbar-action-trigger:hover {
+  background-color: rgba(0,0,0,0.05);
+  color: #111;
+}
+
+.toolbar-action-trigger.add-record-highlight {
+  color: #28a745;
+}
+
+.toolbar-action-trigger.add-record-highlight:hover {
+  background-color: rgba(40,167,69,0.1);
+}
+
+/* Visibility Control Hiding Menu Popover Framework (Screenshot 2026-07-02 194411.png) */
+.dropdown-popover-context {
+  position: relative;
+}
+
+.column-visibility-popover-box {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 220px;
+  background: #ffffff;
+  border: 1px solid var(--element-border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  z-index: 200;
+}
+
+.popover-title-bar {
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.popover-checkbox-container {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.popover-checkbox-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #444;
+}
+
+.popover-checkbox-row:hover {
+  background-color: #f5f5f5;
+}
+
+.popover-checkbox-row input {
+  margin-right: 10px;
+  accent-color: var(--primary-accent-brand);
+}
+
+.popover-item-text-normalize {
+  text-transform: capitalize;
+}
+
+/* Core Data Grid Frame Construction Matrix */
+.responsive-table-scroll-shield {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.deductions-core-datagrid {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.deductions-core-datagrid th {
+  background-color: #ffffff;
+  color: #333;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--element-border-color);
+  white-space: nowrap;
+}
+
+.deductions-core-datagrid td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #444;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.deductions-core-datagrid tr:hover {
+  background-color: #fafbfc;
+}
+
+.deductions-core-datagrid tr.row-state-highlighted {
+  background-color: #f2eeff;
+}
+
+/* Embedded Table Component Blocks Layouts */
+.employee-identity-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.identity-avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.identity-display-name {
+  font-weight: 500;
+  color: #222;
+}
+
+.numeric-amount-item-val {
+  font-weight: 500;
+}
+
+.grid-calendar-capsule {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+}
+
+.embedded-calendar-vector {
+  color: #9e9e9e;
+}
+
+.grid-description-truncate {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Status Pill Capsule Layout Framework */
+.status-badge-capsule {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-badge-capsule.state-deducted {
+  background-color: var(--badge-deducted-bg);
+  color: var(--badge-deducted-text);
+}
+
+.status-badge-capsule.state-pending {
+  background-color: var(--badge-pending-bg);
+  color: var(--badge-pending-text);
+}
+
+/* Action Control Items */
+.row-interactive-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-row-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.action-row-trigger.trigger-edit {
+  color: var(--primary-accent-brand);
+}
+
+.action-row-trigger.trigger-edit:hover {
+  background-color: #f0eaff;
+}
+
+.action-row-trigger.trigger-delete {
+  color: #ff5722;
+}
+
+.action-row-trigger.trigger-delete:hover {
+  background-color: #ffebe5;
+}
+
+.datagrid-blankstate-notice {
+  text-align: center;
+  padding: 40px !important;
+  color: var(--text-color-secondary);
+}
+
+/* Pagination Row Track Controller Layout (Screenshot 2026-07-02 194515.png) */
+.layout-datagrid-pagination-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid var(--element-border-color);
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-dropdown-selector-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.native-select-wrapper select {
+  padding: 6px 24px 6px 10px;
+  border: 1px solid var(--element-border-color);
+  border-radius: 4px;
+  background: #ffffff;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.footer-navigator-buttons-track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navigator-index-display {
+  font-size: 14px;
+}
+
+.navigator-arrow-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  color: #444;
+}
+
+.navigator-arrow-btn:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.navigator-arrow-btn:not(:disabled):hover {
+  background-color: #f0f0f0;
+}
+
+/* Smooth Form Window Popup Dialog Layer Design Setup */
+.modal-viewport-backdrop-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.modal-dialog-surface-card {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 780px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  overflow: hidden;
+  animation: modalCascadeEntrance 0.25s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+@keyframes modalCascadeEntrance {
+  from { transform: translateY(15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-surface-header-gradient {
+  background: linear-gradient(135deg, var(--primary-accent-brand) 0%, var(--primary-gradient-terminal) 100%);
+  color: #ffffff;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-profile-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-avatar-circle-frame {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.modal-surface-header-gradient h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-dismissal-cross-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.modal-dismissal-cross-btn:hover {
+  opacity: 1;
+}
+
+.modal-dialog-form-body {
+  padding: 28px 24px;
+}
+
+/* Form Matrix Inputs Two Column Alignment Setup */
+.modal-form-inputs-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+/* Float Form Labelling Styling System Mechanics */
+.material-input-layout-group {
+  position: relative;
+  width: 100%;
+}
+
+.material-input-layout-group input,
+.material-input-layout-group select {
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid #ababab;
+  border-radius: 6px;
+  font-size: 15px;
+  background: transparent;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.material-input-layout-group input:focus,
+.material-input-layout-group select:focus {
+  border-color: var(--primary-accent-brand);
+  border-width: 2px;
+}
+
+.material-input-layout-group label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  padding: 0 4px;
+  color: #666;
+  transition: 0.2s ease combined;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+/* Anchor Animations Hooks toggling labels up */
+.material-input-layout-group input:focus ~ label,
+.material-input-layout-group input:not(:placeholder-shown) ~ label,
+.material-input-layout-group select ~ label {
+  top: 0px;
+  font-size: 12px;
+  color: var(--primary-accent-brand);
+  font-weight: 500;
+}
+
+.material-field-suffix-vector {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+}
+
+.material-field-suffix-vector.typographical-symbol-icon {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Committing Action Call Button Rules Configuration */
+.modal-dialog-commit-actions-row {
+  display: flex;
+  gap: 12px;
+}
+
+.dialog-action-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease-in;
+}
+
+.dialog-action-btn:hover {
+  opacity: 0.9;
+}
+
+.dialog-action-btn.variant-save {
+  background-color: #3f51b5;
+  color: #ffffff;
+}
+
+.dialog-action-btn.variant-cancel {
+  background-color: var(--color-brand-danger);
+  color: #ffffff;
+}
+
+/* Adaptive Display Device Viewport Reflow Rules */
+@media (max-width: 768px) {
+  .modal-form-inputs-matrix-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .layout-control-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-left-cluster {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .input-search-field-frame {
+    max-width: 100%;
+  }
+
+  .toolbar-right-cluster {
+    justify-content: space-between;
+  }
+
+  .view-navigation-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
