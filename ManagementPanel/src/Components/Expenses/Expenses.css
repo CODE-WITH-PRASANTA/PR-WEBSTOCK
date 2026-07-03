@@ -1,0 +1,523 @@
+:root {
+  --bg-main: #f0f4f8;
+  --card-bg: #ffffff;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --primary-blue: #3b5998;
+  --accent-blue: #1e3d59;
+  --border-color: #e2e8f0;
+  
+  /* Status Colors */
+  --bg-approved: #e6f4ea;
+  --text-approved: #137333;
+  --bg-completed: #e8f0fe;
+  --text-completed: #1a73e8;
+  --bg-pending: #fef7e0;
+  --text-pending: #b06000;
+  
+  /* Action buttons */
+  --btn-edit: #1a73e8;
+  --btn-delete: #d93025;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.Expenses-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Breadcrumbs Design */
+.Expenses-header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Expenses-header-nav h2 {
+  margin: 0;
+  font-size: 22px;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.Expenses-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.Expenses-breadcrumb .active {
+  color: #888;
+}
+
+/* Search Bar & Utilities Toolbar Layout */
+.Expenses-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 14px 20px;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.Expenses-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.Expenses-search-icon {
+  position: absolute;
+  left: 12px;
+  color: #9aa0a6;
+}
+
+.Expenses-search-wrapper input {
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  width: 240px;
+  font-size: 14px;
+  outline: none;
+  background-color: #f8f9fa;
+}
+
+.Expenses-actions-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.Expenses-btn.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.filter-btn { color: #5f6368; }
+.add-btn { color: #137333; font-size: 20px; }
+.refresh-btn { color: #5f6368; }
+.download-btn { color: #1a73e8; }
+
+/* Filter Column Popover Menu styling */
+.Expenses-filter-dropdown-container {
+  position: relative;
+}
+
+.Expenses-filter-menu {
+  position: absolute;
+  right: 0;
+  top: 36px;
+  background: #f1f3f4;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  width: 210px;
+}
+
+.Expenses-filter-title {
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid #dadce0;
+  color: #3c4043;
+}
+
+.Expenses-filter-options-scroll {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+/* Accurate custom uniform styling for Checkboxes matching Reference 2 & 3 */
+.Expenses-checkbox-label {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #3c4043;
+  transition: background 0.2s;
+}
+
+.Expenses-checkbox-label:hover {
+  background: #e8eaed;
+}
+
+.Expenses-checkbox-label input,
+.Expenses-table-checkbox input {
+  display: none;
+}
+
+.Expenses-custom-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #1a73e8;
+  border-radius: 2px;
+  margin-right: 12px;
+  display: inline-block;
+  position: relative;
+  background: #1a73e8;
+}
+
+.Expenses-checkbox-label input:checked + .Expenses-custom-checkbox::after,
+.Expenses-table-checkbox input:checked + .Expenses-custom-checkbox::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.Expenses-checkbox-label input:not(:checked) + .Expenses-custom-checkbox,
+.Expenses-table-checkbox input:not(:checked) + .Expenses-custom-checkbox {
+  background: transparent;
+  border: 2px solid #5f6368;
+}
+
+/* Master Expenses Table Structure */
+.Expenses-table-card {
+  background: var(--card-bg);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.Expenses-table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.Expenses-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.Expenses-table th {
+  background-color: #ffffff;
+  color: #202124;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.Expenses-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: #3c4043;
+  white-space: nowrap;
+}
+
+.Expenses-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.Expenses-table tbody tr.row-selected {
+  background-color: #f1f3f4;
+}
+
+.Expenses-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cell-icon {
+  color: #e8710a;
+}
+
+.Expenses-truncate-text {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Badges styling */
+.Expenses-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-approved { background-color: var(--bg-approved); color: var(--text-approved); }
+.badge-completed { background-color: var(--bg-completed); color: var(--text-completed); }
+.badge-pending { background-color: var(--bg-pending); color: var(--text-pending); }
+
+/* Row Action Buttons design */
+.Expenses-action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.Expenses-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px;
+}
+
+.edit-action { color: var(--btn-edit); }
+.delete-action { color: var(--btn-delete); }
+
+/* Pagination system styling */
+.Expenses-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 24px;
+  font-size: 13px;
+  color: #5f6368;
+  border-top: 1px solid var(--border-color);
+}
+
+.Expenses-pagination-left, .Expenses-pagination-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.Expenses-page-select {
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  outline: none;
+}
+
+.Expenses-pager-btn {
+  background: transparent;
+  border: none;
+  color: #5f6368;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+/* --- OVERLAY MODALS AND FORMS (Reference 4, 5 & 6) --- */
+.Expenses-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.Expenses-modal-card {
+  background: #f8f9fa;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.Expenses-modal-header {
+  background: #5c6bc0;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Expenses-modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.Expenses-modal-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.Expenses-modal-form {
+  padding: 24px;
+}
+
+.Expenses-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.Expenses-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.Expenses-form-group.full-width {
+  grid-column: span 2;
+}
+
+.Expenses-form-group label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.Expenses-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.Expenses-form-group input, 
+.Expenses-form-group select, 
+.Expenses-form-group textarea {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.Expenses-form-group textarea {
+  padding: 10px;
+  resize: vertical;
+}
+
+.Expenses-form-group select {
+  padding-right: 12px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  color: #5f6368;
+}
+
+/* Form Action Buttons styling */
+.Expenses-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.Expenses-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-save {
+  background-color: #0069c0;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #b91c1c;
+  color: white;
+}
+
+/* Delete confirmation box layout (Reference 6) */
+.Expenses-delete-card {
+  background: #f8f9fa;
+  padding: 24px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.Expenses-delete-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: #202124;
+}
+
+.Expenses-delete-details {
+  margin: 16px 0 24px 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.Expenses-delete-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-delete-confirm {
+  background-color: #b91c1c;
+  color: white;
+  flex: 1;
+}
+
+.btn-cancel-confirm {
+  background-color: #0069c0;
+  color: white;
+  flex: 1;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 768px) {
+  .Expenses-toolbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .Expenses-search-wrapper input {
+    width: 100%;
+  }
+
+  .Expenses-actions-right {
+    justify-content: flex-end;
+  }
+
+  .Expenses-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .Expenses-form-group.full-width {
+    grid-column: span 1;
+  }
+}

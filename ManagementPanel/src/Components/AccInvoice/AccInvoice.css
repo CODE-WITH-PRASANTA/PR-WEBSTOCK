@@ -1,0 +1,361 @@
+:root {
+  --primary-bg: #f4f6f9;
+  --card-bg: #ffffff;
+  --text-dark: #333333;
+  --text-grey: #555555;
+  --border-color: #e8ebf3;
+  --status-green: #2e7d32;
+  --btn-blue: #0052cc;
+}
+
+body {
+  background-color: var(--primary-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+}
+
+.AccInvoice-container {
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Nav Breadcrumb Section Styling */
+.AccInvoice-header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.AccInvoice-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2b3674;
+}
+
+.AccInvoice-breadcrumb {
+  font-size: 13px;
+  color: var(--text-grey);
+}
+
+.AccInvoice-active-crumb {
+  color: #a3aed0;
+}
+
+/* Main Display Invoice Card Component */
+.AccInvoice-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-color);
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* Typography Title Row */
+.AccInvoice-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid #555555;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.AccInvoice-main-heading {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.AccInvoice-number {
+  font-size: 26px;
+  font-weight: 400;
+  color: #555555;
+}
+
+/* Upper Address Segments Box Framework */
+.AccInvoice-billing-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  gap: 30px;
+}
+
+.AccInvoice-vendor-side,
+.AccInvoice-client-side {
+  display: flex;
+  flex-direction: column;
+  max-width: 45%;
+}
+
+.AccInvoice-client-side {
+  align-items: flex-end;
+}
+
+/* PR WEBSTOCK Custom Geometric Logo Placeholder Rendering Styling */
+.AccInvoice-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.AccInvoice-logo-placeholder {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: rotate(45deg);
+}
+
+.AccInvoice-logo-placeholder .slice {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+
+.AccInvoice-logo-placeholder .s1 { top: 0; left: 0; background: #ff7675; }
+.AccInvoice-logo-placeholder .s2 { top: 0; left: 50%; background: #ffeaa7; }
+.AccInvoice-logo-placeholder .s3 { top: 50%; left: 0; background: #55efc4; }
+.AccInvoice-logo-placeholder .s4 { top: 50%; left: 50%; background: #74b9ff; }
+
+.AccInvoice-company-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: -0.5px;
+}
+
+.AccInvoice-bill-to-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.AccInvoice-client-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.AccInvoice-address {
+  font-style: normal;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-grey);
+}
+
+.AccInvoice-address.text-right {
+  text-align: right;
+}
+
+/* Metadata Segment Details Configuration */
+.AccInvoice-metadata-block {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.AccInvoice-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.AccInvoice-meta-label {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.AccInvoice-meta-val {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-grey);
+}
+
+.AccInvoice-calendar-icon {
+  color: #333333;
+}
+
+.AccInvoice-status-badge {
+  background-color: var(--status-green);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Grid Table Segment Configuration styling */
+.AccInvoice-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 40px;
+}
+
+.AccInvoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.AccInvoice-table th {
+  color: var(--text-dark);
+  font-weight: 700;
+  padding: 12px 10px;
+  border-bottom: 1px solid #b0bec5;
+  white-space: nowrap;
+}
+
+.AccInvoice-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--border-color);
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+/* Global utility alignment formatting tags */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Dynamic Calculations Sheet Total Layout blocks */
+.AccInvoice-totals-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  padding-right: 10px;
+}
+
+.AccInvoice-totals-row {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+  font-size: 13px;
+  color: var(--text-grey);
+  padding: 6px 0;
+}
+
+.AccInvoice-totals-row.border-bottom-item {
+  border-bottom: 1px solid #b0bec5;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.AccInvoice-total-label {
+  text-align: right;
+  flex-grow: 1;
+  padding-right: 15px;
+}
+
+.AccInvoice-total-value {
+  width: 70px;
+  text-align: right;
+}
+
+.AccInvoice-final-row {
+  display: flex;
+  justify-content: space-between;
+  width: 260px;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.AccInvoice-final-label {
+  text-align: right;
+  flex-grow: 1;
+  padding-right: 15px;
+}
+
+.AccInvoice-final-value {
+  width: 90px;
+  text-align: right;
+}
+
+/* Footer Bottom Strip Actions Panel styling */
+.AccInvoice-actions-panel {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 25px;
+  margin-top: 20px;
+}
+
+.AccInvoice-btn-print {
+  background-color: var(--btn-blue);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 82, 204, 0.25);
+  transition: opacity 0.2s;
+}
+
+.AccInvoice-btn-print:hover {
+  opacity: 0.9;
+}
+
+/* Adaptive Responsive Viewport Configurations handling */
+@media (max-width: 768px) {
+  .AccInvoice-card {
+    padding: 20px;
+  }
+  .AccInvoice-billing-details {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .AccInvoice-vendor-side,
+  .AccInvoice-client-side {
+    max-width: 100%;
+  }
+  .AccInvoice-client-side {
+    align-items: flex-start;
+  }
+  .AccInvoice-address.text-right {
+    text-align: left;
+  }
+  .AccInvoice-metadata-block {
+    align-items: flex-start;
+  }
+  .AccInvoice-totals-section {
+    width: 100%;
+    align-items: flex-end;
+  }
+}
+
+/* Print View Sheet Overrides ruleset */
+@media print {
+  body {
+    background: white;
+  }
+  .AccInvoice-container {
+    padding: 0;
+  }
+  .AccInvoice-card {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+  .AccInvoice-actions-panel,
+  .AccInvoice-header-nav {
+    display: none !important;
+  }
+}
