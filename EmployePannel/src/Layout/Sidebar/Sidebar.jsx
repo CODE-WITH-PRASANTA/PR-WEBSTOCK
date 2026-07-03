@@ -130,7 +130,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/today-attendance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Today's Attendance</NavLink>
               <NavLink to="/employee/monthly-attendance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Monthly Attendance</NavLink>
               <NavLink to="/employee/attendance-history" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Attendance History</NavLink>
-              <NavLink to="/employee/overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
+              <NavLink to="/employee/attendance-overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
+              <NavLink to="/employee/shift-schedule" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Shift Schedule</NavLink>
+              
             </div>
           )}
 
