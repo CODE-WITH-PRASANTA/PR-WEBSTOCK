@@ -101,6 +101,8 @@ const App = () => {
           <Route path="payroll/bonuses" element={<BonusesIncentives />} />
           <Route path="payroll/deductions" element={<Deductions />} />
           <Route path="payroll/compliance" element={<StatutoryCompliance />}/>
+          <Route path="payroll/structure"element={<SalaryStructure/>}/>
+
           
           <Route path="holidays/all" element={<AllHolidays/>}/>
          <Route path="holidays/add" element={<AddHoliday/>}/>
@@ -118,7 +120,6 @@ const App = () => {
           <Route path="overtime"element={<Overtime/>}/>
           <Route path="shift-planning"element={<ShiftPlanning/>}/>
           <Route path="remote"element={<Remote/>}/>
-          <Route path="structure"element={<SalaryStructure/>}/>
 
         </Route>
 
