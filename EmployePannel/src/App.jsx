@@ -36,6 +36,10 @@ import Leave from "./Components/Leave/Leave";
 import LeavesRequstes from "./Components/LeavesRequstes/LeavesRequstes";
 import LeaveBalance from "./Components/LeaveBalance/LeaveBalance";
 import ShiftSchedule from "./Components/ShiftSchedule/ShiftSchedule";
+import UploadDocument from "./Components/UploadDocument/UploadDocument";
+import EmailInbox from "./Components/EmailInbox/EmailInbox";
+import EmailCompose from "./Components/EmailCompose/EmailCompose";
+import EmailRead from "./Components/EmailRead/EmailRead";
 
 const App = () => (
   <BrowserRouter>
@@ -78,6 +82,10 @@ const App = () => (
         <Route path="shift-schedule" element={<ShiftSchedule/>}/>
             
 
+        <Route path="upload-documents" element={<UploadDocument/>}/>
+        <Route path="email-inbox" element={<EmailInbox/>}/>
+        <Route path="email-compose" element={<EmailCompose/>}/>
+        <Route path="email-read" element={<EmailRead/>}/>
       </Route>
 
       {/* 404 */}
