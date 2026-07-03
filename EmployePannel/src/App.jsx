@@ -24,6 +24,10 @@ import Payslips from "./Pages/Payslips/Payslips";
 import Chats from "./Pages/chats/chats";
 import Myproject from "./Pages/Myproject/Myproject";
 import Contacts from "./Components/Contacts/Contacts";
+import UploadDocument from "./Components/UploadDocument/UploadDocument";
+import EmailInbox from "./Components/EmailInbox/EmailInbox";
+import EmailCompose from "./Components/EmailCompose/EmailCompose";
+import EmailRead from "./Components/EmailRead/EmailRead";
 
 const App = () => (
   <BrowserRouter>
@@ -52,6 +56,10 @@ const App = () => (
         <Route path="my-projects"element={<Myproject/>}/>
         <Route path="chat"element={<Chats/>}/>
         <Route path="contacts" element={<Contacts />} />
+        <Route path="upload-documents" element={<UploadDocument/>}/>
+        <Route path="email-inbox" element={<EmailInbox/>}/>
+        <Route path="email-compose" element={<EmailCompose/>}/>
+        <Route path="email-read" element={<EmailRead/>}/>
       </Route>
 
       {/* 404 */}
