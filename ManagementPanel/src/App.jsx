@@ -92,8 +92,8 @@ const App = () => {
           <Route path="leaves/settings" element={<LeaveSettings />} />
           <Route path="balance" element={<LeaveBalance />} />
           <Route path="leaves/types" element={<LeaveTypes />} />
-          <Route path="salary" element={<EmployeeSalary />} />
-          <Route path="payslip" element={<PaySlip />} />
+          <Route path="payroll/salary" element={<EmployeeSalary />} />
+          <Route path="payroll/payslip" element={<PaySlip />} />
           <Route path="documents" element={<EmployeeDocuments />}/>
           <Route path="assets" element={<EmployeeAssets />}/>
           <Route path="performance" element={<EmployeePerformance />} />
