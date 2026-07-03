@@ -54,6 +54,13 @@ import Remote from "./Pages/Remote/Remote";
 import EmployeeSalary from "./Components/EmployeeSalary/EmployeeSalary";
 import PaySlip from "./Components/PaySlip/PaySlip";
 import SalaryStructure from "./Components/SalaryStructure/SalaryStructure";
+import PayrollProcessing from "./Components/PayrollProcessing/PayrollProcessing";
+import CompanyDocument from "./Components/CompanyDocument/CompanyDocument";
+import ManagementDocument from "./Components/ManagementDocument/ManagementDocument";
+import DocumentPolicies from "./Components/DocumentPolicies/DocumentPolicies";
+import ESignatures from "./Components/ESignatures/ESignatures";
+import DocumentTemplates from "./Components/DocumentTemplates/DocumentTemplates";
+import Calender from "./Components/Calender/Calender";
 
 
 const App = () => {
@@ -102,6 +109,13 @@ const App = () => {
           <Route path="payroll/deductions" element={<Deductions />} />
           <Route path="payroll/compliance" element={<StatutoryCompliance />}/>
           <Route path="payroll/structure"element={<SalaryStructure/>}/>
+          <Route path="payroll/processing"element={<PayrollProcessing/>}/>
+          <Route path="company"element={<CompanyDocument/>}/>
+          <Route path="management-doc"element={<ManagementDocument/>}/>
+          <Route path="policies"element={<DocumentPolicies/>}/>
+          <Route path="templates"element={<DocumentTemplates/>}/>
+          <Route path="signatures"element={<ESignatures/>}/>
+          <Route path="shortlist"element={<Calender/>}/>
 
           
           <Route path="holidays/all" element={<AllHolidays/>}/>

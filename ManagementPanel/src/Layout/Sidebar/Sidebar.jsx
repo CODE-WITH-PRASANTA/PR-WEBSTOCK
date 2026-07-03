@@ -325,11 +325,11 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.documents ? "show" : ""}`}>
-              <NavLink to="/documents/company" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Company Documents</NavLink>
-              <NavLink to="/documents/management" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Documents</NavLink>
-              <NavLink to="/documents/policies" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>HR Policies</NavLink>
-              <NavLink to="/documents/templates" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Document Templates</NavLink>
-              <NavLink to="/documents/signatures" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>E-Signatures</NavLink>
+              <NavLink to="/management/company" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Company Documents</NavLink>
+              <NavLink to="/management/management-doc" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Documents</NavLink>
+              <NavLink to="/management/policies" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>HR Policies</NavLink>
+              <NavLink to="/management/templates" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Document Templates</NavLink>
+              <NavLink to="/management/signatures" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>E-Signatures</NavLink>
             </div>
           )}
 
@@ -538,7 +538,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           {!collapsed && <div className="menuSectionHeader">APPS</div>}
           
           <NavLink
-            to="/apps/calendar"
+            to="/management/shortlist"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
             <div className="menuLeft">
