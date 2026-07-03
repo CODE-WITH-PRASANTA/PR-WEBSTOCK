@@ -1,0 +1,281 @@
+/* Container Base Styles */
+.attendance-container {
+  background-color: #f0f4f8;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.attendance-container *, 
+.attendance-container *::before, 
+.attendance-container *::after {
+  box-sizing: border-box;
+}
+
+/* Breadcrumb Header styling */
+.attendance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.active-breadcrumb {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Main White Card Element */
+.attendance-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  width: 100%;
+  overflow: hidden; /* Keeps things enclosed */
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #34495e;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* Custom Dropdowns & Filter Controls layout */
+.filters-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  position: relative;
+  min-width: 280px;
+}
+
+.filter-label {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background: #fff;
+  padding: 0 6px;
+  font-size: 12px;
+  color: #7f8c8d;
+  z-index: 10;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  background-color: #fff;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  color: #2c3e50;
+}
+
+.filter-group::after {
+  content: '▼';
+  font-size: 10px;
+  color: #7f8c8d;
+  position: absolute;
+  right: 15px;
+  top: 16px;
+  pointer-events: none;
+}
+
+/* Focus highlights for active selection */
+.filter-group.group-month .filter-select {
+  border-color: #0066cc;
+}
+.filter-group.group-month .filter-label {
+  color: #0066cc;
+}
+
+/* Action Button Layout */
+.search-btn {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: #0052a3;
+}
+
+/* Layout for horizontal table scrolling */
+.table-responsive-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Fast momentum scroll for iOS */
+  border: 1px solid #eaedf1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+/* Scrollbar Customization */
+.table-responsive-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.table-responsive-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+.table-responsive-wrapper::-webkit-scrollbar-thumb {
+  background-color: #bdc3c7;
+  border-radius: 4px;
+}
+.table-responsive-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #a1a8ae;
+}
+
+/* Table Architecture */
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.attendance-table th, 
+.attendance-table td {
+  border: 1px solid #eaedf1;
+  padding: 12px 8px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.header-member {
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: left;
+  min-width: 180px;
+}
+
+.day-header {
+  font-weight: 600;
+  color: #2c3e50;
+  min-width: 40px;
+}
+
+.table-row:hover {
+  background-color: #f8fafd;
+}
+
+/* Member Bio Structure */
+.member-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  min-width: 180px; 
+}
+
+.member-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.member-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Status design structures */
+.status-cell {
+  vertical-align: middle;
+}
+
+.status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+.status-present {
+  background-color: #e6f7ed;
+  color: #2ecc71;
+}
+
+.status-absent {
+  background-color: #fde8e8;
+  color: #e74c3c;
+}
+
+.status-halfday {
+  background-color: #bdc3c7;
+  width: 16px;
+  height: 16px;
+}
+
+.status-holiday {
+  background-color: #fff9e6;
+  color: #f1c40f;
+  font-size: 14px;
+}
+
+/* Mobile Responsive Optimization Breakpoint */
+@media (max-width: 768px) {
+  .attendance-container {
+    padding: 12px;
+  }
+  
+  .attendance-card {
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .attendance-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .filters-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  
+  .filter-group {
+    min-width: 100%;
+  }
+  
+  .search-btn {
+    width: 100%;
+    border-radius: 6px;
+  }
+}

@@ -1,0 +1,578 @@
+:root {
+  --primary-purple: #7C4DFF;
+  --bg-light: #F4F6FA;
+  --text-dark: #333333;
+  --border-color: #E2E8F0;
+  --badge-completed-bg: #E6F7ED;
+  --badge-completed-text: #2E7D32;
+  --badge-review-bg: #FEECEB;
+  --badge-review-text: #D32F2F;
+  --badge-draft-bg: #EDE7F6;
+  --badge-draft-text: #673AB7;
+}
+
+body {
+  background-color: var(--bg-light);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+.perf-dashboard-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header & Navigation Breadcrumbs */
+.perf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.perf-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.perf-breadcrumbs {
+  font-size: 14px;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.perf-breadcrumbs .home-icon {
+  font-size: 16px;
+}
+
+.perf-breadcrumbs .active-crumb {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Master Layout Base Card */
+.perf-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid var(--border-color);
+  overflow: visible;
+}
+
+/* Sub-header Toolbar Control Area */
+.perf-toolbar {
+  background-color: #E8EAF6;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: relative;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.summary-title {
+  font-weight: 600;
+  color: #4A4A4A;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.search-box-wrapper {
+  position: relative;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  width: 100%;
+  max-width: 260px;
+  border: 1px solid #CBD5E1;
+}
+
+.search-box-wrapper input {
+  border: none;
+  outline: none;
+  padding: 6px 6px 6px 28px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.search-box-wrapper .search-icon {
+  position: absolute;
+  left: 10px;
+  color: #888;
+  pointer-events: none;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.tool-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #5C6BC0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.tool-btn:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.add-record-btn {
+  color: #2E7D32;
+}
+
+/* Custom Column Configuration Sub-Dropdown Window */
+.column-dropdown-popover {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  width: 220px;
+  z-index: 100;
+  padding: 12px 0;
+}
+
+.dropdown-header {
+  padding: 0 16px 8px 16px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin-bottom: 8px;
+}
+
+.dropdown-list {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4A4A4A;
+}
+
+.dropdown-item:hover {
+  background-color: #F1F5F9;
+}
+
+.dropdown-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-purple);
+}
+
+/* Data Table Matrix Elements styling */
+.table-responsive-scroller {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.perf-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.perf-table th {
+  background-color: #ffffff;
+  padding: 14px 18px;
+  font-weight: 600;
+  color: #4A4A4A;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.perf-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-color);
+  color: #333;
+  vertical-align: middle;
+}
+
+.perf-table tr:hover {
+  background-color: #F8FAFC;
+}
+
+.perf-table tr.row-selected {
+  background-color: #F1F5F9;
+}
+
+.perf-table input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-purple);
+  cursor: pointer;
+}
+
+/* Profiles & Avatars UI segments */
+.employee-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.emp-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #E2E8F0;
+}
+
+.emp-name {
+  font-weight: 500;
+  color: #1E293B;
+}
+
+/* Table Operational Rows Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.badge-completed {
+  background-color: var(--badge-completed-bg);
+  color: var(--badge-completed-text);
+}
+
+.badge-in-review {
+  background-color: var(--badge-review-bg);
+  color: var(--badge-review-text);
+}
+
+.badge-draft {
+  background-color: var(--badge-draft-bg);
+  color: var(--badge-draft-text);
+}
+
+/* Action Trigger Cells buttons elements */
+.actions-cell-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: transform 0.1s;
+}
+
+.action-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Native Footer Pagination Controller Row */
+.perf-pagination {
+  padding: 12px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  background-color: #F8FAFC;
+}
+
+.pagination-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: #4A4A4A;
+}
+
+.select-dropdown-wrapper select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #CBD5E1;
+  background: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.pagination-arrow-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.arrow-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  border-radius: 4px;
+}
+
+.arrow-btn:disabled {
+  color: #CBD5E1;
+  cursor: not-allowed;
+}
+
+.arrow-btn:not(:disabled):hover {
+  background-color: #E2E8F0;
+}
+
+/* Global Popups and Overlay Modals Panels Structure */
+.modal-overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-window-box {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.animate-popup {
+  animation: smoothPopupScale 0.25s ease-out;
+}
+
+@keyframes smoothPopupScale {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-banner-header {
+  background-color: var(--primary-purple);
+  padding: 16px 24px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-left-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-header-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.modal-header-avatar-placeholder {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.modal-close-cross-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Interactive Input Elements inside popup cards */
+.modal-body-form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-grid-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-grid-row > div {
+  flex: 1;
+}
+
+.fieldset-input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldset-input-wrapper label {
+  font-size: 12px;
+  color: #64748B;
+  background: white;
+  padding: 0 4px;
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  z-index: 2;
+  font-weight: 500;
+}
+
+.fieldset-input-wrapper input,
+.fieldset-input-wrapper select {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  background: white;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.fieldset-input-wrapper input:focus,
+.fieldset-input-wrapper select:focus {
+  border-color: var(--primary-purple);
+}
+
+.input-with-inner-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-inner-icon input {
+  padding-right: 36px;
+}
+
+.inner-field-icon {
+  position: absolute;
+  right: 12px;
+  color: #94A3B8;
+  pointer-events: none;
+}
+
+/* Modals Bottom Control Row buttons styling */
+.modal-footer-action-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.footer-btn {
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.action-save-btn {
+  background-color: #3F51B5;
+  color: white;
+}
+
+.action-save-btn:hover {
+  background-color: #303F9F;
+}
+
+.action-cancel-btn {
+  background-color: #B71C1C;
+  color: white;
+}
+
+.action-cancel-btn:hover {
+  background-color: #900C3F;
+}
+
+/* Media Breakpoint Query Matrices for Ultimate Responsiveness */
+@media (max-width: 768px) {
+  .form-grid-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .perf-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .perf-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-left {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box-wrapper {
+    max-width: 100%;
+  }
+
+  .toolbar-right {
+    justify-content: flex-start;
+  }
+}

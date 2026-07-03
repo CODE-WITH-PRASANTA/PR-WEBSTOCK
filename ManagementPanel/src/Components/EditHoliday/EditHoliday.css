@@ -1,0 +1,309 @@
+:root {
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --border-color: #bababa;
+  --primary-blue: #005cc8;
+  --primary-blue-hover: #00469b;
+  --danger-red: #b90d13;
+  --danger-red-hover: #91090e;
+  --calendar-active-bg: #adc5e7;
+  --calendar-active-border: #1967d2;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+}
+
+.EditHoliday-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Header & Breadcrumbs */
+.EditHoliday-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.EditHoliday-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.EditHoliday-breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.EditHoliday-breadcrumb-icon {
+  margin-right: 4px;
+}
+
+.EditHoliday-breadcrumb-arrow {
+  margin: 0 6px;
+  font-size: 11px;
+}
+
+.EditHoliday-breadcrumb-active {
+  color: var(--text-main);
+}
+
+/* Card Layout */
+.EditHoliday-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+/* Floating Settings Widget Button on the right edge */
+/* .EditHoliday-settings-gear {
+  position: absolute;
+  right: -15px;
+  top: 120px;
+  background-color: #6366f1;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+} */
+
+.EditHoliday-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 0;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 10px;
+}
+
+.EditHoliday-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Custom Outlined Fieldsets styling matching the screenshot */
+.EditHoliday-fieldset {
+  position: relative;
+  width: 100%;
+}
+
+.EditHoliday-label {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background: var(--card-bg);
+  padding: 0 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  z-index: 1;
+}
+
+.EditHoliday-input, 
+.EditHoliday-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: transparent;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.EditHoliday-input:focus, 
+.EditHoliday-textarea:focus {
+  border-color: #4f46e5;
+}
+
+.EditHoliday-textarea {
+  resize: vertical;
+}
+
+/* Calendar Date Input Wrapper */
+.EditHoliday-date-wrapper {
+  position: relative;
+}
+
+.EditHoliday-input-with-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.EditHoliday-calendar-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  pointer-events: none;
+}
+
+/* Smooth Dropdown Custom Calendar Component */
+.EditHoliday-calendar-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  z-index: 10;
+  background: #e9ecef;
+  border-radius: 12px;
+  width: 280px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.EditHoliday-calendar-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.EditHoliday-cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 4px;
+}
+
+.EditHoliday-cal-month-year {
+  font-weight: 600;
+  font-size: 15px;
+  color: #3c4043;
+}
+
+.EditHoliday-cal-arrow-down {
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.EditHoliday-cal-nav span {
+  margin-left: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #5f6368;
+}
+
+.EditHoliday-cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 13px;
+  color: #5f6368;
+  margin-bottom: 8px;
+}
+
+.EditHoliday-cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  row-gap: 6px;
+}
+
+.EditHoliday-cal-day {
+  font-size: 13px;
+  color: #3c4043;
+  padding: 8px 0;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.EditHoliday-cal-day.clickable {
+  cursor: pointer;
+}
+
+.EditHoliday-cal-day.clickable:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Highlight matching day '2' in reference image */
+.EditHoliday-cal-day.active {
+  background-color: var(--calendar-active-bg);
+  border: 2px solid var(--calendar-active-border);
+  font-weight: 600;
+}
+
+/* Buttons Styling */
+.EditHoliday-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.EditHoliday-btn-submit, 
+.EditHoliday-btn-cancel {
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.EditHoliday-btn-submit {
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+.EditHoliday-btn-submit:hover:not(.disabled) {
+  background-color: var(--primary-blue-hover);
+}
+
+.EditHoliday-btn-submit.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.EditHoliday-btn-cancel {
+  background-color: var(--danger-red);
+  color: white;
+}
+
+.EditHoliday-btn-cancel:hover {
+  background-color: var(--danger-red-hover);
+}
+
+/* Responsive breakdowns */
+@media (max-width: 768px) {
+  .EditHoliday-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .EditHoliday-settings-gear {
+    right: 10px;
+    top: 15px;
+  }
+}

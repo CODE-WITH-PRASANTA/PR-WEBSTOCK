@@ -1,0 +1,1034 @@
+/* ===========================================
+   LEAVE TYPES
+=========================================== */
+
+.leaveTypes{
+    width:100%;
+    padding:24px;
+    background:#f5f7fb;
+    min-height:100vh;
+    font-family:"Poppins",sans-serif;
+    box-sizing:border-box;
+}
+
+.leaveTypes *{
+    box-sizing:border-box;
+}
+
+/* ===========================================
+   HEADER
+=========================================== */
+
+.leaveTypes__header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.leaveTypes__title{
+    font-size:32px;
+    font-weight:600;
+    color:#2f3b52;
+}
+
+.leaveTypes__toolbar{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* ===========================================
+   SEARCH
+=========================================== */
+
+.leaveTypes__search{
+    width:280px;
+    height:56px;
+    background:#fff;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    padding:0 18px;
+    border:1px solid #e3e7f2;
+    transition:.3s;
+}
+
+.leaveTypes__search:hover,
+.leaveTypes__search:focus-within{
+    border-color:#5d6ce6;
+    box-shadow:0 4px 15px rgba(93,108,230,.15);
+}
+
+.leaveTypes__search svg{
+    font-size:22px;
+    color:#666;
+}
+
+.leaveTypes__search input{
+    border:none;
+    outline:none;
+    width:100%;
+    margin-left:15px;
+    font-size:15px;
+    color:#444;
+    background:transparent;
+}
+
+/* ===========================================
+   ICONS
+=========================================== */
+
+.leaveTypes__icons{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.leaveTypes__iconBtn{
+    width:42px;
+    height:42px;
+    border:none;
+    background:transparent;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:.25s;
+    border-radius:50%;
+}
+
+.leaveTypes__iconBtn svg{
+    font-size:24px;
+}
+
+.leaveTypes__iconBtn:hover{
+    background:#eef2ff;
+    transform:scale(1.08);
+}
+
+.leaveTypes__iconBtn.filter{
+    color:#4d63dd;
+}
+
+.leaveTypes__iconBtn.add{
+    color:#35b34a;
+}
+
+.leaveTypes__iconBtn.refresh{
+    color:#8c5a28;
+}
+
+.leaveTypes__iconBtn.download{
+    color:#1b87ff;
+}
+
+.leaveTypes__iconBtn.delete{
+    color:#ff3b30;
+}
+
+/* ===========================================
+   TABLE
+=========================================== */
+
+.leaveTypes__tableWrapper{
+    background:#fff;
+    border-radius:12px;
+    overflow-x:auto;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.leaveTypes__table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1400px;
+}
+
+.leaveTypes__table thead{
+    background:#eef1ff;
+}
+
+.leaveTypes__table th{
+    text-align:left;
+    padding:18px;
+    font-size:16px;
+    color:#1d1d1d;
+    font-weight:600;
+    border-bottom:1px solid #ddd;
+    white-space:nowrap;
+}
+
+.leaveTypes__table td{
+    padding:16px 18px;
+    font-size:15px;
+    color:#333;
+    border-bottom:1px solid #ececec;
+    white-space:nowrap;
+}
+
+.leaveTypes__table tbody tr{
+    transition:.25s;
+}
+
+.leaveTypes__table tbody tr:hover{
+    background:#f7f9ff;
+}
+
+/* ===========================================
+   CHECKBOX
+=========================================== */
+
+.leaveTypes__checkbox{
+    width:20px;
+    height:20px;
+    accent-color:#4d63dd;
+    cursor:pointer;
+}
+
+/* ===========================================
+   STATUS BADGES
+=========================================== */
+
+.leaveTypes__status{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:82px;
+    padding:7px 18px;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:600;
+}
+
+.leaveTypes__status.active{
+    background:#dff2e8;
+    color:#16803d;
+}
+
+.leaveTypes__status.inactive{
+    background:#ffdce3;
+    color:#ff3058;
+}
+
+/* ===========================================
+   ACTION BUTTONS
+=========================================== */
+
+.leaveTypes__actions{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.leaveTypes__actionBtn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:22px;
+    transition:.25s;
+}
+
+.leaveTypes__actionBtn.edit{
+    color:#5b68ff;
+}
+
+.leaveTypes__actionBtn.delete{
+    color:#ff5a21;
+}
+
+.leaveTypes__actionBtn:hover{
+    transform:scale(1.15);
+}
+
+/* ===========================================
+   COLUMN DROPDOWN
+=========================================== */
+
+.leaveTypes__columnMenu{
+    position:absolute;
+    right:0;
+    top:58px;
+    width:280px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+    overflow:hidden;
+    z-index:999;
+}
+
+.leaveTypes__columnTitle{
+    text-align:center;
+    padding:18px;
+    font-size:18px;
+    font-weight:600;
+    border-bottom:1px solid #eee;
+}
+
+.leaveTypes__columnBody{
+    max-height:360px;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.leaveTypes__columnItem{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:16px;
+    font-size:16px;
+}
+
+.leaveTypes__columnItem input{
+    width:22px;
+    height:22px;
+    accent-color:#0b5ed7;
+}
+/* ===========================================
+   POPUP MODAL
+=========================================== */
+
+.leaveTypes__modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:leaveTypesFade .3s ease;
+}
+
+.leaveTypes__modalContent{
+    width:95%;
+    max-width:1100px;
+    max-height:92vh;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    animation:leaveTypesPopup .35s ease;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===========================================
+   POPUP HEADER
+=========================================== */
+
+.leaveTypes__modalHeader{
+    background:#5d6ce6;
+    color:#fff;
+    padding:22px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.leaveTypes__modalHeader h2{
+    margin:0;
+    font-size:28px;
+    font-weight:600;
+}
+
+.leaveTypes__close{
+    border:none;
+    background:none;
+    color:#fff;
+    font-size:32px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.leaveTypes__close:hover{
+    transform:rotate(90deg);
+}
+
+/* ===========================================
+   FORM
+=========================================== */
+
+.leaveTypes__form{
+    padding:30px;
+    overflow-y:auto;
+    flex:1;
+}
+
+.leaveTypes__form::-webkit-scrollbar{
+    width:8px;
+}
+
+.leaveTypes__form::-webkit-scrollbar-thumb{
+    background:#888;
+    border-radius:20px;
+}
+
+.leaveTypes__form::-webkit-scrollbar-track{
+    background:#eee;
+}
+
+.leaveTypes__grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+.leaveTypes__field{
+    display:flex;
+    flex-direction:column;
+}
+
+.leaveTypes__field label{
+    margin-bottom:8px;
+    font-size:15px;
+    font-weight:600;
+    color:#444;
+}
+
+.leaveTypes__field input,
+.leaveTypes__field textarea,
+.leaveTypes__field select{
+    width:100%;
+    border:1px solid #cfd6ea;
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:15px;
+    outline:none;
+    transition:.25s;
+    background:#fff;
+}
+
+.leaveTypes__field input:focus,
+.leaveTypes__field textarea:focus,
+.leaveTypes__field select:focus{
+    border-color:#5d6ce6;
+    box-shadow:0 0 0 3px rgba(93,108,230,.12);
+}
+
+.leaveTypes__field textarea{
+    resize:none;
+    height:120px;
+}
+
+.leaveTypes__field.full{
+    grid-column:1/3;
+}
+
+/* ===========================================
+   BUTTONS
+=========================================== */
+
+.leaveTypes__buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    margin-top:35px;
+}
+
+.leaveTypes__save{
+    border:none;
+    background:#5d6ce6;
+    color:#fff;
+    padding:13px 38px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.leaveTypes__save:hover{
+    background:#4454d4;
+}
+
+.leaveTypes__deleteBtn{
+    border:none;
+    background:#ff4b4b;
+    color:#fff;
+    padding:13px 38px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.leaveTypes__deleteBtn:hover{
+    background:#e13232;
+}
+
+/* ===========================================
+   PAGINATION
+=========================================== */
+
+.leaveTypes__pagination{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 10px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.leaveTypes__paginationLeft{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#555;
+}
+
+.leaveTypes__paginationLeft select{
+    width:80px;
+    height:40px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    padding:0 10px;
+}
+
+.leaveTypes__paginationRight{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.leaveTypes__paginationRight button{
+    width:36px;
+    height:36px;
+    border:none;
+    background:#fff;
+    cursor:pointer;
+    border-radius:50%;
+    transition:.25s;
+}
+
+.leaveTypes__paginationRight button:hover{
+    background:#eef2ff;
+}
+
+.leaveTypes__paginationRight svg{
+    font-size:18px;
+    color:#666;
+}
+
+/* ===========================================
+   SCROLLBAR TABLE
+=========================================== */
+
+.leaveTypes__tableWrapper::-webkit-scrollbar{
+    height:8px;
+}
+
+.leaveTypes__tableWrapper::-webkit-scrollbar-thumb{
+    background:#8f98c5;
+    border-radius:20px;
+}
+
+.leaveTypes__tableWrapper::-webkit-scrollbar-track{
+    background:#edf0f8;
+}
+/* =====================================================
+   POPUP FORM (Material Style)
+===================================================== */
+
+.leaveTypes__modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.leaveTypes__modalContent {
+  width: 100%;
+  max-width: 1140px;
+  max-height: 94vh;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: popup .35s ease;
+}
+
+.leaveTypes__modalHeader {
+  background: #5d6ce6;
+  color: #fff;
+  padding: 22px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leaveTypes__modalHeader h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.leaveTypes__close {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.leaveTypes__close:hover {
+  transform: rotate(90deg);
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.leaveTypes__form {
+  padding: 35px;
+  overflow-y: auto;
+}
+
+.leaveTypes__formGrid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 28px;
+}
+
+.leaveTypes__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.leaveTypes__field.full {
+  grid-column: 1 / -1;
+}
+
+.leaveTypes__field label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.leaveTypes__field input,
+.leaveTypes__field select,
+.leaveTypes__field textarea {
+  width: 100%;
+  border: 1.5px solid #bfc4d3;
+  border-radius: 6px;
+  padding: 16px;
+  font-size: 15px;
+  background: #fff;
+  outline: none;
+  transition: .3s;
+}
+
+.leaveTypes__field input:focus,
+.leaveTypes__field select:focus,
+.leaveTypes__field textarea:focus {
+  border-color: #5d6ce6;
+  box-shadow: 0 0 0 3px rgba(93,108,230,.12);
+}
+
+.leaveTypes__field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* =====================================================
+   INPUT ICON
+===================================================== */
+
+.leaveTypes__inputIcon {
+  position: relative;
+}
+
+.leaveTypes__inputIcon input {
+  padding-right: 55px;
+}
+
+.fieldIcon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: #666;
+  pointer-events: none;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.leaveTypes__buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 35px;
+}
+
+.leaveTypes__save {
+  border: none;
+  background: #5d6ce6;
+  color: #fff;
+  padding: 13px 38px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.leaveTypes__save:hover {
+  background: #4455d6;
+}
+
+.leaveTypes__cancel {
+  border: 1px solid #d5d5d5;
+  background: #f5f5f5;
+  color: #444;
+  padding: 13px 38px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.leaveTypes__cancel:hover {
+  background: #e8e8e8;
+}
+
+/* =====================================================
+   TOOLBAR ICONS
+===================================================== */
+
+.leaveTypes__icon {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: .3s;
+}
+
+.leaveTypes__icon svg {
+  font-size: 18px;
+}
+
+.leaveTypes__icon:hover {
+  transform: translateY(-2px);
+}
+
+.leaveTypes__icon.add {
+  color: #27ae60;
+}
+
+.leaveTypes__icon.refresh {
+  color: #d68910;
+}
+
+.leaveTypes__icon.download {
+  color: #2980b9;
+}
+
+.leaveTypes__icon.delete {
+  color: #e74c3c;
+}
+
+/* =====================================================
+   ACTION ICONS
+===================================================== */
+
+.leaveTypes__actionBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  background: #f6f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.leaveTypes__actionBtn svg {
+  font-size: 16px;
+}
+
+.leaveTypes__actionBtn.edit {
+  color: #4f6bed;
+}
+
+.leaveTypes__actionBtn.delete {
+  color: #e74c3c;
+}
+
+.leaveTypes__actionBtn.menu {
+  color: #555;
+}
+
+.leaveTypes__actionBtn:hover {
+  transform: scale(1.08);
+  background: #eef2ff;
+}
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+.leaveTypes__pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.leaveTypes__paginationRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.leaveTypes__paginationRight button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.leaveTypes__paginationRight button:hover:not(:disabled) {
+  background: #5d6ce6;
+  color: #fff;
+}
+
+.leaveTypes__paginationRight button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.leaveTypes__pageNo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #5d6ce6;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width:992px) {
+
+  .leaveTypes__formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .leaveTypes__field.full {
+    grid-column: auto;
+  }
+
+}
+
+@media (max-width:768px) {
+
+  .leaveTypes__modalContent {
+    max-height: 96vh;
+  }
+
+  .leaveTypes__form {
+    padding: 20px;
+  }
+
+  .leaveTypes__modalHeader {
+    padding: 18px 20px;
+  }
+
+  .leaveTypes__modalHeader h2 {
+    font-size: 22px;
+  }
+
+  .leaveTypes__buttons {
+    flex-direction: column;
+  }
+
+  .leaveTypes__save,
+  .leaveTypes__cancel {
+    width: 100%;
+  }
+
+}
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes popup {
+
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:1200px){
+
+.leaveTypes__table{
+    min-width:1350px;
+}
+
+}
+
+@media(max-width:992px){
+
+.leaveTypes__header{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.leaveTypes__toolbar{
+    width:100%;
+}
+
+.leaveTypes__search{
+    width:100%;
+}
+
+.leaveTypes__grid{
+    grid-template-columns:1fr;
+}
+
+.leaveTypes__field.full{
+    grid-column:auto;
+}
+
+.leaveTypes__modalContent{
+    width:96%;
+}
+
+}
+
+@media(max-width:768px){
+
+.leaveTypes{
+    padding:15px;
+}
+
+.leaveTypes__title{
+    font-size:24px;
+}
+
+.leaveTypes__modalHeader{
+    padding:18px;
+}
+
+.leaveTypes__modalHeader h2{
+    font-size:22px;
+}
+
+.leaveTypes__form{
+    padding:18px;
+}
+
+.leaveTypes__buttons{
+    flex-direction:column;
+}
+
+.leaveTypes__save,
+.leaveTypes__deleteBtn{
+    width:100%;
+}
+
+.leaveTypes__pagination{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+}
+
+@media(max-width:480px){
+
+.leaveTypes__search{
+    height:50px;
+}
+
+.leaveTypes__search input{
+    font-size:14px;
+}
+
+.leaveTypes__table th,
+.leaveTypes__table td{
+    padding:14px;
+    font-size:14px;
+}
+
+.leaveTypes__iconBtn{
+    width:38px;
+    height:38px;
+}
+
+.leaveTypes__iconBtn svg{
+    font-size:20px;
+}
+
+}
+
+/* ===========================================
+   ANIMATIONS
+=========================================== */
+
+@keyframes leaveTypesPopup{
+
+    from{
+        opacity:0;
+        transform:translateY(-40px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+@keyframes leaveTypesFade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}

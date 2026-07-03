@@ -13,7 +13,9 @@ import SalaryDetails from "./Components/SalaryDetails/SalaryDetails";
 import SalaryHeader from "./Components/SalaryHeader/SalaryHeader";
 import CompanyPolicies from "./Components/CompanyPolicies/CompanyPolicies";
 import TeamMembers from "./Components/TeamMembers/TeamMembers";
+import AttendanceAtten from "./Pages/AttendanceAtten/AttendanceAtten";
 import TeamLeaves from "./Components/TeamLeaves/TeamLeaves";
+import MyDocuments from "./Components/MyDocuments/MyDocuments";
 import ProfileSettings from "./Components/ProfileSettings/ProfileSettings";
 import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
 import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
@@ -22,6 +24,10 @@ import Payslips from "./Pages/Payslips/Payslips";
 import Chats from "./Pages/chats/chats";
 import Myproject from "./Pages/Myproject/Myproject";
 import Contacts from "./Components/Contacts/Contacts";
+import UploadDocument from "./Components/UploadDocument/UploadDocument";
+import EmailInbox from "./Components/EmailInbox/EmailInbox";
+import EmailCompose from "./Components/EmailCompose/EmailCompose";
+import EmailRead from "./Components/EmailRead/EmailRead";
 
 const App = () => (
   <BrowserRouter>
@@ -37,6 +43,9 @@ const App = () => (
         <Route path="my-tasks" element={<TaskList />} />
         <Route path="reimbursements" element={<SalaryDetails />} />
         <Route path="company-policies" element={<CompanyPolicies />} />
+        <Route path="team-attendance" element={<AttendanceAtten />} />
+        <Route path="team-leaves" element={<TeamLeaves />} />
+        <Route path="my-documents" element={<MyDocuments />} />
         <Route path="team-attendance" element={<CompanyPolicies />} />
         <Route path="team-leaves" element={<TeamLeaves />} />
         <Route path="profile-settings" element={<ProfileSettings />} />
@@ -47,6 +56,10 @@ const App = () => (
         <Route path="my-projects"element={<Myproject/>}/>
         <Route path="chat"element={<Chats/>}/>
         <Route path="contacts" element={<Contacts />} />
+        <Route path="upload-documents" element={<UploadDocument/>}/>
+        <Route path="email-inbox" element={<EmailInbox/>}/>
+        <Route path="email-compose" element={<EmailCompose/>}/>
+        <Route path="email-read" element={<EmailRead/>}/>
       </Route>
 
       {/* 404 */}
