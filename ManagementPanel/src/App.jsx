@@ -20,6 +20,8 @@ import AddProject from "./Components/AddProject/AddProject";
 import EmployeeShift from "./Components/EmployeeShift/EmployeeShift";
 import EmployeeProfile from "./Components/EmployeeProfile/EmployeeProfile";
 import EditManagement from "./Components/EditManagement/EditManagement";
+import TodayAttendance from "./Components/TodayAttendance/TodayAttendance";
+import EmployeeAttendance from "./Components/EmployeeAttendance/EmployeeAttendance";
 import LeaveRequest from "./Components/LeaveRequest/LeaveRequest";
 import LeaveBalance from "./Components/LeaveBalance/LeaveBalance";
 import LeaveTypes from "./Components/LeaveTypes/LeaveTypes";
@@ -81,6 +83,11 @@ const App = () => {
           <Route path="shift" element={<EmployeeShift/>}/>
           <Route path="profile" element={<EmployeeProfile/>}/>
           <Route path="edit" element={<EditManagement/>}/>
+          <Route path="today" element={<TodayAttendance/>}/>
+          <Route path="management" element={<EmployeeAttendance/>}/>
+          
+          
+          <Route path="documents" element={<EmployeeDocuments />} />
           <Route path="requests" element={<LeaveRequest />} />
           <Route path="leaves/settings" element={<LeaveSettings />} />
           <Route path="balance" element={<LeaveBalance />} />

@@ -235,9 +235,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.attendance ? "show" : ""}`}>
-              <NavLink to="/attendance/today" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Today's Attendance</NavLink>
-              <NavLink to="/attendance/management" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Attendance</NavLink>
-              <NavLink to="/attendance/sheet" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Attendance Sheet</NavLink>
+              <NavLink to="/management/today" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Today's Attendance</NavLink>
+              <NavLink to="/management/management" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Attendance</NavLink>
+              <NavLink to="/management/sheet" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Attendance Sheet</NavLink>
               <NavLink to="/attendance/timesheets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Timesheets</NavLink>
               <NavLink to="/management/overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
               <NavLink to="/management/shift-planning" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Shift Planning</NavLink>
@@ -301,7 +301,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.payroll ? "show" : ""}`}>
-<<<<<<< HEAD
               <NavLink to="/payroll/salary" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Salary</NavLink>
               <NavLink to="/payroll/payslip" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Payslip</NavLink>
               <NavLink to="/payroll/structure" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Salary Structure</NavLink>
@@ -310,7 +309,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/payroll/bonuses" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Bonuses & Incentives</NavLink>
               <NavLink to="/management/payroll/deductions" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Deductions</NavLink>
               <NavLink to="/management/payroll/compliance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Statutory Compliance</NavLink>
-=======
               <NavLink to="/management/salary" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Salary</NavLink>
               <NavLink to="/management/payslip" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Payslip</NavLink>
               <NavLink to="/management/structure" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Salary Structure</NavLink>
@@ -319,7 +317,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/payroll/bonuses" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Bonuses & Incentives</NavLink>
               <NavLink to="/payroll/deductions" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Deductions</NavLink>
               <NavLink to="/payroll/compliance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Statutory Compliance</NavLink>
->>>>>>> 8c3b42e49d06b94126b70c3e3b376580e1dc0143
             </div>
           )}
 
