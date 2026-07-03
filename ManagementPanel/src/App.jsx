@@ -54,6 +54,16 @@ import Remote from "./Pages/Remote/Remote";
 import EmployeeSalary from "./Components/EmployeeSalary/EmployeeSalary";
 import PaySlip from "./Components/PaySlip/PaySlip";
 import SalaryStructure from "./Components/SalaryStructure/SalaryStructure";
+import AccPayments from "./Components/AccPayments/AccPayments";
+import AccAddpayments from "./Components/AccAddpayments/AccAddpayments";
+import AccInvoice from "./Components/AccInvoice/AccInvoice";
+import AccInvoiceDetails from "./Components/AccInvoiceDetails/AccInvoiceDetails";
+import Expenses from "./Components/Expenses/Expenses";
+import ExpenseApprovals from "./Components/ExpenseApprovals/ExpenseApprovals";
+import Reimbursements from "./Components/Reimbursements/Reimbursements";
+import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
+import TaxReports from "./Components/TaxReports/TaxReports";
+import Task from "./Components/Task/Task";
 
 
 const App = () => {
@@ -119,7 +129,16 @@ const App = () => {
           <Route path="shift-planning"element={<ShiftPlanning/>}/>
           <Route path="remote"element={<Remote/>}/>
           <Route path="structure"element={<SalaryStructure/>}/>
-
+          <Route path="accounts/payments" element={<AccPayments/>}/>
+          <Route path="accounts/add-payment" element={<AccAddpayments/>}/>
+          <Route path="accounts/invoice" element={<AccInvoice/>}/>
+          <Route path="accounts/invoice-details" element={<AccInvoiceDetails/>}/>
+          <Route path="accounts/expenses" element={<Expenses/>}/>
+          <Route path="accounts/expense-approvals" element={<ExpenseApprovals/>}/>
+          <Route path="accounts/reimbursements" element={<Reimbursements/>}/>
+          <Route path="accounts/summary" element={<FinancialSummary/>}/>
+          <Route path="accounts/tax-reports" element={<TaxReports/>}/>
+          <Route path="apps/task" element={<Task/>}/>
         </Route>
 
         {/* 404 */}
