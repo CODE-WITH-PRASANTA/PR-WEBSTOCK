@@ -399,6 +399,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+    
 }
 
 .department-list__item {
@@ -410,6 +411,7 @@
   border-left: 4px solid;
   border-radius: var(--db-radius-sm);
   padding: 10px 12px;
+   height: 140px;
 }
 
 .department-list__name {
