@@ -54,12 +54,31 @@ import Remote from "./Pages/Remote/Remote";
 import EmployeeSalary from "./Components/EmployeeSalary/EmployeeSalary";
 import PaySlip from "./Components/PaySlip/PaySlip";
 import SalaryStructure from "./Components/SalaryStructure/SalaryStructure";
+
 import AttendanceSheet from "./Components/AttendanceSheet/AttendanceSheet";
 import Timesheets from "./Components/Timesheets/Timesheets";
 import EmployeeExit from "./Components/EmployeeExit/EmployeeExit";
 import LeaveReport from "./Components/LeaveReport/LeaveReport";
 import ExpenseReport from "./Components/ExpenseReport/ExpenseReport";
 import Leads from "./Components/Leads/Leads";
+
+import PayrollProcessing from "./Components/PayrollProcessing/PayrollProcessing";
+import CompanyDocument from "./Components/CompanyDocument/CompanyDocument";
+import ManagementDocument from "./Components/ManagementDocument/ManagementDocument";
+import DocumentPolicies from "./Components/DocumentPolicies/DocumentPolicies";
+import ESignatures from "./Components/ESignatures/ESignatures";
+import DocumentTemplates from "./Components/DocumentTemplates/DocumentTemplates";
+import Calender from "./Components/Calender/Calender";
+import AccPayments from "./Components/AccPayments/AccPayments";
+import AccAddpayments from "./Components/AccAddpayments/AccAddpayments";
+import AccInvoice from "./Components/AccInvoice/AccInvoice";
+import AccInvoiceDetails from "./Components/AccInvoiceDetails/AccInvoiceDetails";
+import Expenses from "./Components/Expenses/Expenses";
+import ExpenseApprovals from "./Components/ExpenseApprovals/ExpenseApprovals";
+import Reimbursements from "./Components/Reimbursements/Reimbursements";
+import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
+import TaxReports from "./Components/TaxReports/TaxReports";
+import Task from "./Components/Task/Task";
 
 
 const App = () => {
@@ -98,8 +117,8 @@ const App = () => {
           <Route path="leaves/settings" element={<LeaveSettings />} />
           <Route path="balance" element={<LeaveBalance />} />
           <Route path="leaves/types" element={<LeaveTypes />} />
-          <Route path="salary" element={<EmployeeSalary />} />
-          <Route path="payslip" element={<PaySlip />} />
+          <Route path="payroll/salary" element={<EmployeeSalary />} />
+          <Route path="payroll/payslip" element={<PaySlip />} />
           <Route path="documents" element={<EmployeeDocuments />}/>
           <Route path="assets" element={<EmployeeAssets />}/>
           <Route path="performance" element={<EmployeePerformance />} />
@@ -107,6 +126,15 @@ const App = () => {
           <Route path="payroll/bonuses" element={<BonusesIncentives />} />
           <Route path="payroll/deductions" element={<Deductions />} />
           <Route path="payroll/compliance" element={<StatutoryCompliance />}/>
+          <Route path="payroll/structure"element={<SalaryStructure/>}/>
+          <Route path="payroll/processing"element={<PayrollProcessing/>}/>
+          <Route path="company"element={<CompanyDocument/>}/>
+          <Route path="management-doc"element={<ManagementDocument/>}/>
+          <Route path="policies"element={<DocumentPolicies/>}/>
+          <Route path="templates"element={<DocumentTemplates/>}/>
+          <Route path="signatures"element={<ESignatures/>}/>
+          <Route path="shortlist"element={<Calender/>}/>
+
           
           <Route path="holidays/all" element={<AllHolidays/>}/>
          <Route path="holidays/add" element={<AddHoliday/>}/>
@@ -131,6 +159,26 @@ const App = () => {
          <Route path="leave" element={<LeaveReport />} />
          <Route path="expense" element={<ExpenseReport />} />
          <Route path="leaders" element={<Leads />} />
+          <Route path="projects/details" element={<ProjectDetails/>}/>
+          <Route path="projects/estimates" element={<Estimates/>}/>
+          <Route path="clients/contacts" element={<ClientContacts/>}/>
+          <Route path="clients/projects"element={<ClientProjects/>}/>
+          <Route path="clients/invoices" element={<ClientInvoices/>}/>
+          <Route path="clients/payments" element={<ClientPayments/>}/>
+          <Route path="overtime"element={<Overtime/>}/>
+          <Route path="shift-planning"element={<ShiftPlanning/>}/>
+          <Route path="remote"element={<Remote/>}/>
+          <Route path="structure"element={<SalaryStructure/>}/>
+          <Route path="accounts/payments" element={<AccPayments/>}/>
+          <Route path="accounts/add-payment" element={<AccAddpayments/>}/>
+          <Route path="accounts/invoice" element={<AccInvoice/>}/>
+          <Route path="accounts/invoice-details" element={<AccInvoiceDetails/>}/>
+          <Route path="accounts/expenses" element={<Expenses/>}/>
+          <Route path="accounts/expense-approvals" element={<ExpenseApprovals/>}/>
+          <Route path="accounts/reimbursements" element={<Reimbursements/>}/>
+          <Route path="accounts/summary" element={<FinancialSummary/>}/>
+          <Route path="accounts/tax-reports" element={<TaxReports/>}/>
+          <Route path="apps/task" element={<Task/>}/>
 
         </Route>
 

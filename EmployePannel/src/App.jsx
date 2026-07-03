@@ -24,6 +24,22 @@ import Payslips from "./Pages/Payslips/Payslips";
 import Chats from "./Pages/chats/chats";
 import Myproject from "./Pages/Myproject/Myproject";
 import Contacts from "./Components/Contacts/Contacts";
+import UploadDocuments from "./Components/UploadDocuments/UploadDocuments";
+import Inbox from "./Components/Inbox/Inbox";
+import Compose from "./Components/Compose/Compose";
+import ReadEmail from "./Components/ReadEmail/ReadEmail";
+import TeacherAttenanced from "./Components/TeacherAttenanced/TeacherAttenanced";
+import MonthlyAttendance from "./Components/MonthlyAttendance/MonthlyAttendance";
+import Attendance from "./Components/Attendance/Attendance";
+import OverTime from "./Components/OverTime/OverTime";
+import Leave from "./Components/Leave/Leave";
+import LeavesRequstes from "./Components/LeavesRequstes/LeavesRequstes";
+import LeaveBalance from "./Components/LeaveBalance/LeaveBalance";
+import ShiftSchedule from "./Components/ShiftSchedule/ShiftSchedule";
+import UploadDocument from "./Components/UploadDocument/UploadDocument";
+import EmailInbox from "./Components/EmailInbox/EmailInbox";
+import EmailCompose from "./Components/EmailCompose/EmailCompose";
+import EmailRead from "./Components/EmailRead/EmailRead";
 
 const App = () => (
   <BrowserRouter>
@@ -52,6 +68,24 @@ const App = () => (
         <Route path="my-projects"element={<Myproject/>}/>
         <Route path="chat"element={<Chats/>}/>
         <Route path="contacts" element={<Contacts />} />
+        <Route path="upload-documents" element ={<UploadDocuments/>}/>
+        <Route path="email-inbox" element={<Inbox/>}/>
+        <Route path="email-compose" element={<Compose/>}/>
+        <Route path="email-read" element={<ReadEmail/>}/>
+        <Route path="today-attendance" element={<TeacherAttenanced/>}/>
+        <Route path="monthly-attendance" element={<MonthlyAttendance/>}/>
+        <Route path="attendance-history" element={<Attendance/>}/>
+        <Route path="attendance-overtime" element={<OverTime/>}/>
+        <Route path="apply-leave" element={<Leave/>}/>
+        <Route path="leave-requests" element={<LeavesRequstes/>}/>
+        <Route path="leave-balance" element={<LeaveBalance/>}/> 
+        <Route path="shift-schedule" element={<ShiftSchedule/>}/>
+            
+
+        <Route path="upload-documents" element={<UploadDocument/>}/>
+        <Route path="email-inbox" element={<EmailInbox/>}/>
+        <Route path="email-compose" element={<EmailCompose/>}/>
+        <Route path="email-read" element={<EmailRead/>}/>
       </Route>
 
       {/* 404 */}

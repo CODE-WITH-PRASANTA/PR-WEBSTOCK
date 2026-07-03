@@ -1,0 +1,472 @@
+:root {
+  --primary-color: #4f46e5;
+  --bg-light: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --success: #def7ec;
+  --success-text: #03543f;
+  --warning: #fef3c7;
+  --warning-text: #92400e;
+  --danger: #fde8e8;
+  --danger-text: #9b1c1c;
+  --info: #e1effe;
+  --info-text: #1e429f;
+}
+
+.ReimbursementsContainer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  padding: 24px;
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  color: var(--text-main);
+}
+
+/* Breadcrumb Header Layout */
+.ReimbursementsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ReimbursementsHeader h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ReimbursementsBreadcrumb {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.BreadcrumbActive {
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+/* Card Element Box Layout */
+.ReimbursementsCard {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  padding: 16px;
+  position: relative;
+}
+
+/* Top Toolbar Filter Bar Controls */
+.ReimbursementsControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ReimbursementsSearchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.SearchIcon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.ReimbursementsSearchInput {
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  width: 260px;
+  font-size: 14px;
+  outline: none;
+}
+
+.ReimbursementsActionButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ControlBtn {
+  background: white;
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--primary-color);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.ControlBtn:hover {
+  background: var(--bg-light);
+}
+
+/* Column Picker Dropdown Menu Component CSS */
+.FilterDropdownWrapper {
+  position: relative;
+}
+
+.ColumnToggleDropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  z-index: 100;
+  min-width: 180px;
+}
+
+.DropdownHeader {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.ColumnToggleDropdown hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 8px 0;
+}
+
+.DropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.DropdownItem input {
+  cursor: pointer;
+}
+
+/* Table Design Pattern Component Grid */
+.ReimbursementsTableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.ReimbursementsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.ReimbursementsTable th,
+.ReimbursementsTable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ReimbursementsTable th {
+  background-color: #fafafa;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.SelectedRow {
+  background-color: #f5f7ff;
+}
+
+.TextBold {
+  font-weight: 500;
+}
+
+.TextMuted {
+  color: var(--text-muted);
+}
+
+.DateCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.RowDateIcon {
+  color: #94a3b8;
+}
+
+/* Action Operations Icon Buttons */
+.RowActionIcons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.RowActionIcons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 4px;
+}
+
+.ActionBtnEdit {
+  color: #3b82f6;
+}
+
+.ActionBtnDelete {
+  color: #ef4444;
+}
+
+/* Dynamic State Badges UI Elements */
+.StatusBadge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.Status-Pending { background-color: var(--warning); color: var(--warning-text); }
+.Status-Approved { background-color: var(--success); color: var(--success-text); }
+.Status-Rejected { background-color: var(--danger); color: var(--danger-text); }
+.Status-Paid { background-color: var(--info); color: var(--info-text); }
+.Status-Completed { background-color: #e0f2fe; color: #0369a1; }
+
+/* Table Footer Pagination Layout Control Styles */
+.ReimbursementsFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 32px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.ItemsPerPageWrapper, .PaginationInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ItemsSelect {
+  border: 1px solid var(--border-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.PaginationArrows {
+  display: flex;
+  gap: 4px;
+}
+
+.ArrowBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+  padding: 6px;
+}
+
+.ArrowBtn:disabled {
+  color: var(--border-color);
+  cursor: not-allowed;
+}
+
+/* Overlay & Form Input Modal Layout Framework Elements */
+.ModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ModalContent {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 650px;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.ModalHeader {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ModalHeader h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.CloseModalBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.ModalBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.FormRow {
+  display: flex;
+  gap: 16px;
+}
+
+.FormGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.FullWidth {
+  flex: none;
+  width: 100%;
+}
+
+.FormGroup label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.InputIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.InputIconWrapper input, 
+.FormSelect, 
+.FormGroup textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.InputIconWrapper input:focus, 
+.FormSelect:focus, 
+.FormGroup textarea:focus {
+  border-color: var(--primary-color);
+}
+
+.FieldIcon {
+  position: absolute;
+  right: 12px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.FormActionFooter {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.BtnSave, .BtnDeleteConfirm {
+  background-color: #0284c7;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.BtnCancel, .BtnDeleteCancel {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Delete Prompt Modal Layout Structure Component */
+.DeleteDialogContent {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.DeleteDialogContent h2 {
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.DeleteMeta {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.DeleteMeta p {
+  margin: 4px 0;
+}
+
+.DeleteActionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Responsive Adaptive Fluid Layout Media Rules */
+@media (max-width: 768px) {
+  .ReimbursementsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .ReimbursementsControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .ReimbursementsSearchInput {
+    width: 100%;
+  }
+
+  .FormRow {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
