@@ -258,8 +258,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             <div className={`submenu ${dropdowns.settings ? "show" : ""}`}>
               <NavLink to="/employee/profile-settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Profile Settings</NavLink>
               <NavLink to="/employee/password-security" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Password & Security</NavLink>
-              <NavLink to="/employee/notification-settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Notification Settings</NavLink>
-              <NavLink to="/employee/preferences" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Preferences</NavLink>
             </div>
           )}
 

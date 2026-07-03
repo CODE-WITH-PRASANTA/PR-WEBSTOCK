@@ -102,8 +102,8 @@ const App = () => {
           <Route path="leaves/settings" element={<LeaveSettings />} />
           <Route path="balance" element={<LeaveBalance />} />
           <Route path="leaves/types" element={<LeaveTypes />} />
-          <Route path="salary" element={<EmployeeSalary />} />
-          <Route path="payslip" element={<PaySlip />} />
+          <Route path="payroll/salary" element={<EmployeeSalary />} />
+          <Route path="payroll/payslip" element={<PaySlip />} />
           <Route path="documents" element={<EmployeeDocuments />}/>
           <Route path="assets" element={<EmployeeAssets />}/>
           <Route path="performance" element={<EmployeePerformance />} />
@@ -111,6 +111,8 @@ const App = () => {
           <Route path="payroll/bonuses" element={<BonusesIncentives />} />
           <Route path="payroll/deductions" element={<Deductions />} />
           <Route path="payroll/compliance" element={<StatutoryCompliance />}/>
+          <Route path="payroll/structure"element={<SalaryStructure/>}/>
+
           
           <Route path="holidays/all" element={<AllHolidays/>}/>
          <Route path="holidays/add" element={<AddHoliday/>}/>
@@ -139,6 +141,7 @@ const App = () => {
           <Route path="accounts/summary" element={<FinancialSummary/>}/>
           <Route path="accounts/tax-reports" element={<TaxReports/>}/>
           <Route path="apps/task" element={<Task/>}/>
+
         </Route>
 
         {/* 404 */}
