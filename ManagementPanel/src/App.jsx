@@ -54,6 +54,12 @@ import Remote from "./Pages/Remote/Remote";
 import EmployeeSalary from "./Components/EmployeeSalary/EmployeeSalary";
 import PaySlip from "./Components/PaySlip/PaySlip";
 import SalaryStructure from "./Components/SalaryStructure/SalaryStructure";
+import AttendanceSheet from "./Components/AttendanceSheet/AttendanceSheet";
+import Timesheets from "./Components/Timesheets/Timesheets";
+import EmployeeExit from "./Components/EmployeeExit/EmployeeExit";
+import LeaveReport from "./Components/LeaveReport/LeaveReport";
+import ExpenseReport from "./Components/ExpenseReport/ExpenseReport";
+import Leads from "./Components/Leads/Leads";
 
 
 const App = () => {
@@ -109,16 +115,22 @@ const App = () => {
          <Route path="clients/add" element={<AddClient/>}/>
          <Route path="clients/edit" element={<EditClient/>}/>
          <Route path="clients/profile" element={<ClientProfile/>}/>
-          <Route path="projects/details" element={<ProjectDetails/>}/>
-          <Route path="projects/estimates" element={<Estimates/>}/>
-          <Route path="clients/contacts" element={<ClientContacts/>}/>
-          <Route path="clients/projects"element={<ClientProjects/>}/>
-          <Route path="clients/invoices" element={<ClientInvoices/>}/>
-          <Route path="clients/payments" element={<ClientPayments/>}/>
-          <Route path="overtime"element={<Overtime/>}/>
-          <Route path="shift-planning"element={<ShiftPlanning/>}/>
-          <Route path="remote"element={<Remote/>}/>
-          <Route path="structure"element={<SalaryStructure/>}/>
+         <Route path="projects/details" element={<ProjectDetails/>}/>
+         <Route path="projects/estimates" element={<Estimates/>}/>
+         <Route path="clients/contacts" element={<ClientContacts/>}/>
+         <Route path="clients/projects"element={<ClientProjects/>}/>
+         <Route path="clients/invoices" element={<ClientInvoices/>}/>
+         <Route path="clients/payments" element={<ClientPayments/>}/>
+         <Route path="overtime"element={<Overtime/>}/>
+         <Route path="shift-planning"element={<ShiftPlanning/>}/>
+         <Route path="remote"element={<Remote/>}/>
+         <Route path="structure"element={<SalaryStructure/>}/>
+         <Route path="sheet" element={<AttendanceSheet />} />
+         <Route path="timesheets" element={<Timesheets />} />
+         <Route path="exit" element={<EmployeeExit />} />
+         <Route path="leave" element={<LeaveReport />} />
+         <Route path="expense" element={<ExpenseReport />} />
+         <Route path="leaders" element={<Leads />} />
 
         </Route>
 

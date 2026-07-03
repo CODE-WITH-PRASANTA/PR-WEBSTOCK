@@ -238,7 +238,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/today" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Today's Attendance</NavLink>
               <NavLink to="/management/management" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>management Attendance</NavLink>
               <NavLink to="/management/sheet" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Attendance Sheet</NavLink>
-              <NavLink to="/attendance/timesheets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Timesheets</NavLink>
+              <NavLink to="/management/timesheets" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Timesheets</NavLink>
               <NavLink to="/management/overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
               <NavLink to="/management/shift-planning" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Shift Planning</NavLink>
               <NavLink to="/management/remote" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Remote / WFH Requests</NavLink>
@@ -514,8 +514,8 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.reports ? "show" : ""}`}>
-              <NavLink to="/reports/leave" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Report</NavLink>
-              <NavLink to="/reports/expense" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Expense Report</NavLink>
+              <NavLink to="/management/leave" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Report</NavLink>
+              <NavLink to="/management/expense" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Expense Report</NavLink>
             </div>
           )}
 

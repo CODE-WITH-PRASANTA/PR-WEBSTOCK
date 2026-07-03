@@ -1,0 +1,579 @@
+/* --- Global Workspace Configurations --- */
+.ld-workspace-wrapper {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 24px;
+  background-color: #f8f9fa;
+  color: #333333;
+}
+
+/* --- Breadcrumbs Row --- */
+.ld-structural-crumb-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ld-main-heading {
+  font-size: 24px;
+  margin: 0;
+  color: #222222;
+  font-weight: 600;
+}
+
+.ld-trail-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666666;
+}
+
+.ld-chevron-char {
+  color: #aaaaaa;
+}
+
+.ld-node-text.active-node {
+  color: #4D77FF;
+  font-weight: 500;
+}
+
+/* --- Main Surface Card --- */
+.ld-board-surface {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eef0f2;
+  overflow: hidden;
+}
+
+/* --- Action Control Toolbar --- */
+.ld-action-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eef0f2;
+  background-color: #ffffff;
+}
+
+.ld-toolbar-left-dock, .ld-toolbar-right-dock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ld-badge-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.ld-input-lens-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  padding: 6px 14px;
+  background: #ffffff;
+  width: 240px;
+}
+
+.ld-input-lens-wrapper svg {
+  color: #888888;
+  margin-right: 8px;
+}
+
+.ld-search-element {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* --- Utility Circle Control Buttons --- */
+.ld-circle-icon-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ld-circle-icon-btn:hover, .ld-circle-icon-btn.active-control {
+  background-color: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+/* --- Column Visibility Toggle Dropdown Matrix --- */
+.ld-dropdown-anchor {
+  position: relative;
+}
+
+.ld-filter-popover-card {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  border: 1px solid #e2e8f0;
+  width: 220px;
+  display: none;
+}
+
+.ld-filter-popover-card.popover-open {
+  display: block;
+}
+
+.ld-popover-title {
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #444;
+}
+
+.ld-popover-body-scroller {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.ld-popover-checkbox-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+}
+
+.ld-popover-checkbox-row:hover {
+  background-color: #f8fafc;
+}
+
+.ld-popover-checkbox-row input {
+  margin-right: 10px;
+}
+
+/* --- Responsive Layout Configurations Table Module --- */
+.ld-table-responsive-scroller {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.ld-table-engine {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.ld-table-engine th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  padding: 14px 18px;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.ld-table-engine td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ld-table-engine tr.ld-row-selected-state {
+  background-color: #f0f4ff !important;
+}
+
+.ld-table-engine tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* --- Custom Checkbox Node Architecture --- */
+.ld-table-checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.ld-table-checkbox-container input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.ld-styled-checkbox-node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+.ld-table-checkbox-container input:checked ~ .ld-styled-checkbox-node {
+  background-color: #4D77FF;
+  border-color: #4D77FF;
+}
+
+.ld-styled-checkbox-node:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.ld-table-checkbox-container input:checked ~ .ld-styled-checkbox-node:after {
+  display: block;
+}
+
+/* --- Avatars Matrix & Custom Floating Tooltips --- */
+.ld-identity-flex-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ld-avatar-hover-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.ld-identity-avatar-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #cbd5e1;
+}
+
+.ld-avatar-hover-tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.ld-avatar-hover-wrapper:hover .ld-avatar-hover-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ld-icon-text-flex-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Custom Action Clustered Triggers --- */
+.ld-actions-cluster-flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ld-action-inline-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s;
+}
+
+.ld-action-inline-trigger:hover {
+  background-color: #f1f5f9;
+}
+
+/* --- Table Empty States --- */
+.ld-empty-fallback-cell {
+  text-align: center;
+  padding: 40px !important;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* --- Control Footer & Pagination Interface --- */
+.ld-pagination-footer-dock {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.ld-pagination-controls-cluster {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.ld-select-element-wrapper {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.ld-footer-select-native {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.ld-arrow-nav-group {
+  display: flex;
+  gap: 4px;
+}
+
+.ld-arrow-nav-trigger {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #334155;
+  border-radius: 4px;
+}
+
+.ld-arrow-nav-trigger:hover:not(:disabled) {
+  background-color: #f1f5f9;
+}
+
+.ld-arrow-nav-trigger:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* --- Portal Popup Modal System Layouts --- */
+.ld-dialog-backdrop-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ld-dialog-window-box {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  animation: modalSlideUp 0.25s ease-out;
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.ld-dialog-title-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ld-dialog-header-identity-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ld-dialog-header-identity-left h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.ld-dialog-avatar-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ld-dialog-avatar-fallback {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ld-dialog-close-cross-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+.ld-dialog-close-cross-btn:hover {
+  color: #475569;
+}
+
+.ld-dialog-form-body {
+  padding: 24px;
+}
+
+.ld-form-fields-grid-engine {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+/* --- Animated CSS Floating Labels Matrix --- */
+.ld-floating-form-group {
+  position: relative;
+}
+
+.ld-field-input-box-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ld-field-input-box-row input {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: transparent;
+}
+
+.ld-field-input-box-row input:focus {
+  border-color: #4D77FF;
+  box-shadow: 0 0 0 3px rgba(77, 119, 255, 0.1);
+}
+
+.ld-field-input-box-row label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  padding: 0 4px;
+}
+
+/* Trigger animation on focus or content validity string parsing status */
+.ld-field-input-box-row input:focus ~ label,
+.ld-field-input-box-row input:not(:placeholder-shown) ~ label {
+  top: 0;
+  font-size: 12px;
+  color: #4D77FF;
+}
+
+.field-icon-glyph {
+  position: absolute;
+  right: 12px;
+  color: #94a3b8;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+/* --- Dialog Control Operations --- */
+.ld-dialog-actions-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+}
+
+.ld-btn-action-trigger {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.ld-btn-action-trigger.state-save {
+  background-color: #4D77FF;
+  color: #ffffff;
+}
+
+.ld-btn-action-trigger.state-save:hover:not(:disabled) {
+  background-color: #355ee0;
+}
+
+.ld-btn-action-trigger.state-cancel {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.ld-btn-action-trigger.state-cancel:hover {
+  background-color: #e2e8f0;
+}
+
+.disabled-save-btn {
+  background-color: #cbd5e1 !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed !important;
+}
