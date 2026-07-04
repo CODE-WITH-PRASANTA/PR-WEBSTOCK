@@ -1,0 +1,938 @@
+:root {
+  --primary-color: #5c67f2;
+  --bg-body: #f3f4f9;
+  --bg-card: #ffffff;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --border-color: #e8ebf3;
+  --toolbar-blue: #dee2f7;
+  
+  --status-pub-bg: #e2f4ec;
+  --status-pub-fg: #2e8b57;
+  --status-draft-bg: #e6edff;
+  --status-draft-fg: #4d7cfe;
+  --status-review-bg: #fff0e6;
+  --status-review-fg: #f39c12;
+  --danger-color: #bd1d1d;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+.PerformanceReviews-container {
+  padding: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Header Top Section Styling */
+.PerformanceReviews-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.PerformanceReviews-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #3e465b;
+  margin: 0;
+}
+
+.PerformanceReviews-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.PerformanceReviews-home-icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--text-muted);
+}
+
+.PerformanceReviews-separator {
+  color: #b0b5c1;
+}
+
+.PerformanceReviews-active-crumb {
+  color: #444;
+  font-weight: 500;
+}
+
+/* Main Block Card Wrapper */
+.PerformanceReviews-card {
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  overflow: visible;
+  border: 1px solid var(--border-color);
+}
+
+/* Header Action Toolbar Styling Layout */
+.PerformanceReviews-toolbar {
+  background-color: #eef1f9;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.PerformanceReviews-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.PerformanceReviews-list-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4d5467;
+}
+
+.PerformanceReviews-search-box {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  width: 240px;
+  border: 1px solid transparent;
+}
+
+.PerformanceReviews-search-icon {
+  width: 18px;
+  height: 18px;
+  fill: #8a92a6;
+}
+
+.PerformanceReviews-search-box input {
+  border: none;
+  padding: 8px 10px;
+  font-size: 13px;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  color: var(--text-dark);
+}
+
+.PerformanceReviews-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.PerformanceReviews-action-wrapper {
+  position: relative;
+}
+
+/* Top Toolbar Operational Action Controls Custom Layout */
+.PerformanceReviews-tool-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  position: relative;
+}
+
+.PerformanceReviews-tool-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: #4d7cfe;
+  transition: transform 0.2s;
+}
+
+.PerformanceReviews-tool-btn.green-btn svg {
+  fill: #2e8b57;
+}
+
+.PerformanceReviews-tool-btn.blue-btn {
+  background-color: #d6e4ff;
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.PerformanceReviews-tool-btn.blue-btn svg {
+  fill: #3b71f7;
+  width: 18px;
+  height: 18px;
+}
+
+.PerformanceReviews-tool-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Standard CSS Managed Active Tooltip Hover Infrastructure Engine */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 5px 9px;
+  font-size: 11px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Dynamic Column Dropdown Box Selector Section Overlay View */
+.PerformanceReviews-columns-popup {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  z-index: 100;
+  width: 210px;
+}
+
+.PerformanceReviews-popup-header {
+  padding: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border-color);
+  color: #333;
+  background-color: #f8f9fc;
+}
+
+.PerformanceReviews-popup-scrollable {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.PerformanceReviews-popup-label {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #444;
+  user-select: none;
+}
+
+.PerformanceReviews-popup-label:hover {
+  background-color: #f1f3f9;
+}
+
+.PerformanceReviews-popup-label input[type="checkbox"],
+.PerformanceReviews-table-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.PerformanceReviews-custom-cb {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #b5bccb;
+  border-radius: 3px;
+  margin-right: 10px;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"]:checked + .PerformanceReviews-custom-cb {
+  background-color: #0052cc;
+  border-color: #0052cc;
+}
+
+input[type="checkbox"]:checked + .PerformanceReviews-custom-cb::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.PerformanceReviews-capitalize {
+  text-transform: capitalize;
+}
+
+/* Core Main Structural Responsive Data Grid Table Components Styles */
+.PerformanceReviews-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.PerformanceReviews-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.PerformanceReviews-table th {
+  background-color: #ffffff;
+  padding: 14px 18px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.PerformanceReviews-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-color);
+  color: #555555;
+  vertical-align: middle;
+}
+
+/* Operational Hover Effects on Table Rows */
+.PerformanceReviews-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.PerformanceReviews-table tbody tr:hover {
+  background-color: #f7f9fd;
+}
+
+.PerformanceReviews-table tr.row-selected {
+  background-color: #f0f4ff !important;
+}
+
+/* Custom Element Badges Cells Configurations Layout styles */
+.PerformanceReviews-emp-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.PerformanceReviews-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.PerformanceReviews-emp-name {
+  font-weight: 500;
+  color: #333333;
+}
+
+.PerformanceReviews-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+}
+
+.PerformanceReviews-inline-cal {
+  width: 16px;
+  height: 16px;
+  fill: #8c7662;
+}
+
+.PerformanceReviews-status-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.PerformanceReviews-status-badge.published {
+  background-color: var(--status-pub-bg);
+  color: var(--status-pub-fg);
+}
+
+.PerformanceReviews-status-badge.draft {
+  background-color: var(--status-draft-bg);
+  color: var(--status-draft-fg);
+}
+
+.PerformanceReviews-status-badge.in-review {
+  background-color: var(--status-review-bg);
+  color: var(--status-review-fg);
+}
+
+/* Action Control Command Row Interactive Icons */
+.PerformanceReviews-actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.PerformanceReviews-row-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.PerformanceReviews-row-action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.PerformanceReviews-row-action-btn.edit-icon svg {
+  fill: #4d7cfe;
+}
+
+.PerformanceReviews-row-action-btn.delete-icon svg {
+  fill: #ff6b6b;
+}
+
+.PerformanceReviews-row-action-btn:hover {
+  opacity: 0.7;
+}
+
+/* Pagination Control Strip Component Layer Styles */
+.PerformanceReviews-pagination-container {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+
+.PerformanceReviews-pagination-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.PerformanceReviews-ipp-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.PerformanceReviews-ipp-dropdown-wrapper {
+  position: relative;
+}
+
+.PerformanceReviews-ipp-select {
+  background: #ffffff;
+  border: 1px solid #ccd1d9;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  min-width: 60px;
+  justify-content: space-between;
+}
+
+.PerformanceReviews-ipp-select svg {
+  width: 16px;
+  height: 16px;
+  fill: #555;
+  transition: transform 0.2s;
+}
+
+.PerformanceReviews-ipp-select svg.flipped {
+  transform: rotate(180deg);
+}
+
+.PerformanceReviews-ipp-options {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ccd1d9;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+  z-index: 50;
+}
+
+.PerformanceReviews-ipp-options li {
+  padding: 8px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.PerformanceReviews-ipp-options li:hover {
+  background-color: #f1f3f9;
+}
+
+.PerformanceReviews-ipp-options li.selected {
+  background-color: #e2e7f7;
+  font-weight: 600;
+}
+
+.PerformanceReviews-page-range {
+  font-size: 13px;
+  color: #333333;
+  min-width: 80px;
+  text-align: center;
+}
+
+.PerformanceReviews-pag-nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.PerformanceReviews-pag-nav-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #999999;
+}
+
+.PerformanceReviews-pag-nav-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.PerformanceReviews-pag-nav-btn.circle-next.active-next {
+  background-color: #eef1f6;
+}
+
+.PerformanceReviews-pag-nav-btn.circle-next.active-next svg {
+  fill: #333333;
+}
+
+/* Modals Overlay Master Engine Frame CSS Layout Structure styling */
+.PerformanceReviews-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.PerformanceReviews-modal-box {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 720px;
+  max-width: 90%;
+  max-height: 90vh;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.PerformanceReviews-modal-header {
+  background-color: var(--primary-color);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+
+.PerformanceReviews-modal-title-layout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.PerformanceReviews-modal-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  object-fit: cover;
+}
+
+.PerformanceReviews-modal-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.PerformanceReviews-modal-close svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.PerformanceReviews-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #fdfdfd;
+}
+
+/* Grid Layout Matrix Configurations inside Popup forms modules */
+.PerformanceReviews-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.PerformanceReviews-form-grid .full-width {
+  grid-column: span 2;
+}
+
+/* Enhanced Floating Standard Input Controls Layout Architecture Frame */
+.PerformanceReviews-form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.PerformanceReviews-form-field label {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  color: #888888;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  padding: 0 4px;
+}
+
+.PerformanceReviews-form-field label.shrink {
+  top: -8px;
+  left: 10px;
+  font-size: 11px;
+  color: #555555;
+  background: #ffffff;
+  font-weight: 500;
+}
+
+.PerformanceReviews-form-field input,
+.PerformanceReviews-form-field select,
+.PerformanceReviews-form-field textarea {
+  border: 1px solid #c4cdd5;
+  border-radius: 6px;
+  padding: 13px 36px 13px 12px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.PerformanceReviews-form-field textarea {
+  padding-right: 12px;
+  resize: vertical;
+}
+
+.PerformanceReviews-form-field input:focus,
+.PerformanceReviews-form-field select:focus,
+.PerformanceReviews-form-field textarea:focus {
+  border-color: #0052cc;
+}
+
+/* Input Fields Floating Icons Styles */
+.PerformanceReviews-form-field .field-icon {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  width: 18px;
+  height: 18px;
+  fill: #637381;
+  pointer-events: none;
+}
+
+.PerformanceReviews-form-field .field-icon.blue-calendar {
+  fill: #4d7cfe;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.PerformanceReviews-form-field .text-area-icon {
+  top: auto;
+  bottom: 12px;
+}
+
+/* Outlined Score Field Custom Configuration styles */
+.PerformanceReviews-form-field.score-fieldset {
+  border: 1px solid #c4cdd5;
+  border-radius: 6px;
+  padding: 0;
+  position: relative;
+}
+
+.PerformanceReviews-form-field.score-fieldset .fieldset-legend {
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  font-size: 11px;
+  color: #555555;
+  background: #ffffff;
+  padding: 0 4px;
+  font-weight: 500;
+}
+
+.PerformanceReviews-form-field.score-fieldset input {
+  border: none !important;
+  padding: 13px 36px 13px 12px !important;
+}
+
+/* Custom Select Field Styles override layout configuration */
+.PerformanceReviews-form-field.select-field select {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Validation CSS Error Layout Styles */
+.PerformanceReviews-form-field.field-error input,
+.PerformanceReviews-form-field.field-error select {
+  border-color: var(--danger-color);
+  background-color: #fffafb;
+}
+
+.PerformanceReviews-form-field.field-error label {
+  color: var(--danger-color) !important;
+}
+
+.error-text {
+  color: var(--danger-color);
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Mini Popup Datepicker View Structure styles */
+.PerformanceReviews-custom-datepicker {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  background-color: #eef1f6;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  z-index: 500;
+  width: 240px;
+}
+
+.dp-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+  padding: 0 4px;
+}
+
+.dp-arrows span {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #666;
+}
+
+.dp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.dp-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 4px;
+}
+
+.dp-days span {
+  font-size: 11px;
+  padding: 5px 0;
+  cursor: pointer;
+  color: #333;
+  border-radius: 4px;
+}
+
+.dp-days span:hover:not(.empty) {
+  background-color: #cbd5e1;
+}
+
+.dp-days .selected-day {
+  background-color: #b9cbe7;
+  color: #1e3a8a;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+}
+
+/* Modal Operational Call To Actions Controls */
+.PerformanceReviews-form-actions {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+}
+
+.PerformanceReviews-btn-save {
+  background-color: #0052cc;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.PerformanceReviews-btn-cancel {
+  background-color: #bd1d1d;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.PerformanceReviews-btn-save:hover,
+.PerformanceReviews-btn-cancel:hover {
+  opacity: 0.9;
+}
+
+/* Confirmation Box Layout Module styles */
+.PerformanceReviews-delete-box {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 360px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.PerformanceReviews-delete-box h3 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #222222;
+}
+
+.PerformanceReviews-delete-details {
+  font-size: 13px;
+  color: #555555;
+  margin: 16px 0 24px;
+  line-height: 1.6;
+}
+
+.PerformanceReviews-delete-details p {
+  margin: 4px 0;
+}
+
+.PerformanceReviews-delete-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.PerformanceReviews-btn-delete-confirm {
+  background-color: #bd1d1d;
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.PerformanceReviews-btn-cancel-confirm {
+  background-color: #0052cc;
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  flex: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Master Device Specific Layout Responsiveness Adjustments Media Queries */
+@media (max-width: 768px) {
+  .PerformanceReviews-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .PerformanceReviews-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .PerformanceReviews-toolbar-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .PerformanceReviews-form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .PerformanceReviews-form-grid .full-width {
+    grid-column: span 1;
+  }
+  
+  .PerformanceReviews-modal-box {
+    width: 95%;
+  }
+}

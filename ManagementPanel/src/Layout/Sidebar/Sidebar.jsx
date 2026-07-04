@@ -442,9 +442,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           {!collapsed && (
             <div className={`submenu ${dropdowns.performance ? "show" : ""}`}>
               <NavLink to="/performance/goals" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Goals</NavLink>
-              <NavLink to="/performance/appraisals" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Appraisals</NavLink>
-              <NavLink to="/performance/reviews" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Performance Reviews</NavLink>
-              <NavLink to="/performance/feedback" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Feedback</NavLink>
+              <NavLink to="/management/appraisals" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Appraisals</NavLink>
+              <NavLink to="/management/reviews" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Performance Reviews</NavLink>
+              <NavLink to="/management/feedback" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Feedback</NavLink>
             </div>
           )}
 
