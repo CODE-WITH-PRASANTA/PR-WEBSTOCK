@@ -79,11 +79,17 @@ import Reimbursements from "./Components/Reimbursements/Reimbursements";
 import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
 import TaxReports from "./Components/TaxReports/TaxReports";
 import Task from "./Components/Task/Task";
+<<<<<<< HEAD
 import Announcement from "./Components/Announcement/Announcement";
 import Notifications from "./Components/Notifications/Notifications";
 import GolesPr from "./Components/GolesPr/GolesPr";
 import TrainingList from "./Components/TrainingList/TrainingList";
 import TrainersT from "./Components/TrainersT/TrainersT";
+=======
+import Appraisals from "./Components/Appraisals/Appraisals";
+import PerformanceReviews from "./Components/PerformanceReviews/PerformanceReviews";
+import Feedback from "./Components/Feedback/Feedback";
+>>>>>>> 6d752954a48096b9cdc9b62a9de49d558c32be4e
 
 
 const App = () => {
@@ -115,6 +121,10 @@ const App = () => {
           <Route path="edit" element={<EditManagement/>}/>
           <Route path="today" element={<TodayAttendance/>}/>
           <Route path="management" element={<EmployeeAttendance/>}/>
+          <Route path="appraisals" element={<Appraisals/>}/>
+          <Route path="reviews" element={<PerformanceReviews/>}/>
+          <Route path="feedback" element={<Feedback/>}/>
+
           
           
           <Route path="documents" element={<EmployeeDocuments />} />
