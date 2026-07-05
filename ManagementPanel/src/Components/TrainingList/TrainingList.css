@@ -1,0 +1,475 @@
+/* Container Layout */
+.tl-dashboard-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #f4f6f9;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Breadcrumb styling */
+.tl-breadcrumb {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Main white display card panel */
+.tl-panel {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Control Header layout */
+.tl-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #f8faff;
+  border-bottom: 1px solid #eaeaea;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.tl-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tl-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Rounded clean search element layout */
+.tl-search-container {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  width: 240px;
+}
+
+.tl-search-icon {
+  color: #888;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.tl-search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Action button configurations */
+.tl-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tl-action-btn {
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.tl-action-btn:hover {
+  background-color: #f0f4ff;
+  border-color: #4a77fa;
+}
+
+.tl-add-btn {
+  background-color: #e8f5e9;
+  border-color: #a5d6a7;
+  color: #2e7d32;
+}
+
+.tl-bulk-delete-btn {
+  width: auto !important;
+  padding: 0 15px;
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ffcdd2;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Multi-Column Visibility Dropdown styling configuration */
+.tl-dropdown-wrapper {
+  position: relative;
+}
+
+.tl-column-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  width: 220px;
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 10px;
+}
+
+.tl-dropdown-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: #555;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.tl-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px;
+  font-size: 13px;
+  color: #444;
+  cursor: pointer;
+}
+
+.tl-dropdown-item input {
+  cursor: pointer;
+}
+
+/* Scrollable View Table Layout */
+.tl-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.tl-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.tl-table th, .tl-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+.tl-table th {
+  background-color: #ffffff;
+  color: #555;
+  font-weight: 600;
+}
+
+.tl-clickable-row {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.tl-clickable-row:hover {
+  background-color: #f7f9fc;
+}
+
+.tl-bold-text {
+  font-weight: 500;
+  color: #111;
+}
+
+/* UI Avatars structure configuration */
+.tl-avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.tl-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-right: -8px;
+}
+
+.tl-avatar.text-avatar {
+  background: #3f51b5;
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+  margin-right: 0;
+}
+
+/* Row Action Buttons styling layout */
+.tl-row-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tl-row-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.tl-row-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Badges styling layout */
+.tl-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.tl-badge.completed { background-color: #e3f2fd; color: #0d47a1; }
+.tl-badge.scheduled { background-color: #e8f5e9; color: #1b5e20; }
+.tl-badge.in-progress { background-color: #fff3e0; color: #e65100; }
+
+/* Table Pagination footer structure layout */
+.tl-pagination-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #eaeaea;
+  font-size: 13px;
+  color: #555;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.tl-per-page, .tl-page-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tl-per-page select {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+}
+
+.tl-page-nav button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.tl-page-nav button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Smooth Modal Structure Overlay animations */
+.tl-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.tl-modal-box {
+  background: #fff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 850px;
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.tl-modal-header {
+  background: #5c6bc0;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tl-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.tl-close-x {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Form inputs & content layout grid mapping details */
+.tl-modal-form-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.tl-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.tl-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tl-input-group label {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.tl-input-group input, .tl-input-group select, .tl-input-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.tl-input-group input:focus, .tl-input-group select:focus, .tl-input-group textarea:focus {
+  border-color: #5c6bc0;
+}
+
+.tl-form-full-row {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Read-only view modal state modifications */
+.tl-input-group.read-only input, .tl-input-group.read-only textarea {
+  background-color: #f9f9f9;
+  border-color: #e0e0e0;
+  color: #333;
+  cursor: default;
+}
+
+/* Bottom Action Buttons inside Form modals */
+.tl-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.tl-btn-save {
+  background: #0d47a1;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tl-btn-cancel {
+  background: #b71c1c;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Custom Scrollbars Styling configuration rules */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #bcbcbc;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #9e9e9e;
+}
+
+/* Animation Declarations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Structural Breakdown Rules */
+@media (max-width: 768px) {
+  .tl-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .tl-panel-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tl-header-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tl-search-container {
+    width: 100%;
+  }
+}
