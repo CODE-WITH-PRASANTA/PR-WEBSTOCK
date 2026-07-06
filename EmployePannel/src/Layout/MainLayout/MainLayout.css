@@ -1,0 +1,83 @@
+.AdminLayout{
+    display:flex;
+    width:100%;
+    min-height:100vh;
+    background:#f5f7fb;
+}
+
+/* ===============================
+   MAIN
+================================ */
+
+.AdminLayout-main{
+    margin-left:280px;
+    width:calc(100% - 280px);
+    min-height:100vh;
+    transition:all .35s ease;
+}
+
+/* Sidebar collapsed */
+
+.AdminLayout-main.collapsed{
+    margin-left:80px;
+    width:calc(100% - 80px);
+}
+
+/* ===============================
+   CONTENT
+================================ */
+
+.AdminLayout-content{
+    margin-top:70px;
+    min-height:calc(100vh - 70px);
+}
+
+/* ===============================
+   TOPBAR
+================================ */
+
+.AdminLayout-main .Topbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:280px;
+
+    width:calc(100% - 280px);
+
+    transition:all .35s ease;
+}
+
+/* Sidebar collapsed */
+
+.AdminLayout-main.collapsed .Topbar{
+
+    left:80px;
+
+    width:calc(100% - 80px);
+}
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media(max-width:992px){
+
+.AdminLayout-main,
+.AdminLayout-main.collapsed{
+
+    margin-left:0;
+
+    width:100%;
+}
+
+.AdminLayout-main .Topbar,
+.AdminLayout-main.collapsed .Topbar{
+
+    left:0;
+
+    width:100%;
+}
+
+}

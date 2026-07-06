@@ -1,0 +1,1502 @@
+/* =========================================================
+   GOOGLE FONT
+========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+    width:290px;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:9999;
+
+    background:#0b1120;
+    border-right:1px solid rgba(255,255,255,.06);
+
+    display:flex;
+    flex-direction:column;
+
+    font-family:"Inter",sans-serif;
+
+    transition:.35s ease;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.sidebarLogoSection{
+    padding:22px 18px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    position:relative;
+}
+
+.sidebarLogoWrapper{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    cursor:pointer;
+    color:#fff;
+}
+
+.sidebarLogoLeft{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+}
+
+.sidebarLogo{
+
+    width:70px;
+    height:48px;
+    object-fit:contain;
+
+}
+
+.sidebarLogoLeft span{
+
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:.3px;
+
+}
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.sidebarActions{
+
+    display:flex;
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.addNewBtn{
+
+    flex:1;
+
+    height:48px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#2563eb;
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.addNewBtn:hover{
+
+    background:#1d4ed8;
+    transform:translateY(-2px);
+
+}
+
+.searchBtn{
+
+    width:48px;
+    height:48px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#151f35;
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.searchBtn:hover{
+
+    background:#1f2b45;
+
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.sidebarMenu{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:18px 15px;
+
+}
+
+/* Scrollbar */
+
+.sidebarMenu::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+.sidebarMenu::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.sidebarMenu::-webkit-scrollbar-thumb{
+
+    background:#243148;
+    border-radius:50px;
+
+}
+
+.sidebarMenu::-webkit-scrollbar-thumb:hover{
+
+    background:#37517a;
+
+}
+
+/* =========================================================
+   NORMAL LINK
+========================================================= */
+
+.sidebarLink{
+
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    color:#cbd5e1;
+    text-decoration:none;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:.30s;
+
+    margin-bottom:8px;
+
+}
+
+.sidebarLink svg{
+
+    font-size:18px;
+    min-width:18px;
+
+}
+
+.sidebarLink:hover{
+
+    background:#151f35;
+    color:#fff;
+
+}
+
+.sidebarLink.active{
+
+    background:#2563eb;
+    color:#fff;
+
+    box-shadow:0 10px 30px rgba(37,99,235,.35);
+
+}
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.sidebarDropdown{
+
+    margin-bottom:10px;
+
+}
+
+.sidebarDropdownBtn{
+
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    background:#101827;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    color:#fff;
+
+    border-radius:14px;
+
+    padding:15px 18px;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    transition:.3s;
+
+}
+
+.sidebarDropdownBtn:hover{
+
+    background:#162238;
+
+}
+
+.sidebarDropdownLeft{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+}
+
+.sidebarDropdownLeft svg{
+
+    font-size:18px;
+
+}
+
+.sidebarDropdownBtn svg{
+
+    transition:.35s;
+
+}
+
+/* =========================================================
+   SUBMENU
+========================================================= */
+
+.sidebarSubMenu{
+
+    margin-top:10px;
+
+    margin-left:16px;
+
+    border-left:2px solid rgba(255,255,255,.08);
+
+    padding-left:14px;
+
+    animation:submenu .35s ease;
+
+}
+
+.sidebarSubLink{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:14px;
+    font-weight:500;
+
+    padding:11px 12px;
+
+    border-radius:10px;
+
+    transition:.30s;
+
+    margin-bottom:4px;
+
+}
+
+.sidebarSubLink svg{
+
+    font-size:15px;
+
+}
+
+.sidebarSubLink:hover{
+
+    background:#172338;
+
+    color:#fff;
+
+}
+
+.sidebarSubLink.active{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.sidebarDivider{
+
+    height:1px;
+
+    background:rgba(255,255,255,.05);
+
+    margin:18px 0;
+
+}
+/* =========================================================
+   LOGO POPUP CARD
+========================================================= */
+
+.logoPopupCard{
+
+    position:absolute;
+    top:95px;
+    left:18px;
+
+    width:265px;
+
+    background:#101827;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 18px 50px rgba(0,0,0,.45);
+
+    animation:popup .30s ease;
+
+    z-index:999;
+
+}
+
+.logoPopupCard a{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:15px 18px;
+
+    text-decoration:none;
+
+    color:#dbe4f3;
+
+    font-size:14px;
+    font-weight:500;
+
+    transition:.30s;
+
+}
+
+.logoPopupCard a svg{
+
+    font-size:17px;
+
+}
+
+.logoPopupCard a:hover{
+
+    background:#1b2940;
+
+    color:#fff;
+
+}
+
+.popupLogoutBtn{
+
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    padding:15px 18px;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    color:#ff6b6b;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.popupLogoutBtn:hover{
+
+    background:#2d1313;
+
+    color:#fff;
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.sidebarBottom{
+
+    padding:18px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:relative;
+
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profileCard{
+
+    cursor:pointer;
+
+}
+
+.profileCard img{
+
+    width:54px;
+    height:54px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #2563eb;
+
+    transition:.30s;
+
+}
+
+.profileCard img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* =========================================================
+   FOOTER ICONS
+========================================================= */
+
+.bottomActions{
+
+    display:flex;
+    gap:10px;
+
+}
+
+.bottomIcon{
+
+    width:45px;
+    height:45px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#172338;
+
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.bottomIcon svg{
+
+    font-size:17px;
+
+}
+
+.bottomIcon:hover{
+
+    background:#2563eb;
+
+    transform:translateY(-3px);
+
+}
+
+/* =========================================================
+   PROFILE POPUP
+========================================================= */
+
+.profilePopupCard{
+
+    position:absolute;
+
+    bottom:88px;
+    left:15px;
+
+    width:290px;
+
+    background:#101827;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:0 20px 55px rgba(0,0,0,.45);
+
+    animation:popup .30s ease;
+
+    z-index:999;
+
+}
+
+.profileHeader{
+
+    display:flex;
+    gap:15px;
+
+    margin-bottom:18px;
+
+    align-items:center;
+
+}
+
+.profileHeader img{
+
+    width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    border:3px solid #2563eb;
+
+}
+
+.profileHeader h4{
+
+    color:#fff;
+
+    font-size:17px;
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+.profileHeader p{
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+}
+
+.profilePopupCard a{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    text-decoration:none;
+
+    color:#dbe4f3;
+
+    font-size:14px;
+
+    padding:13px 14px;
+
+    border-radius:10px;
+
+    transition:.30s;
+
+}
+
+.profilePopupCard a:hover{
+
+    background:#172338;
+
+}
+
+.profilePopupCard a svg{
+
+    font-size:16px;
+
+}
+
+.logoutBtn{
+
+    width:100%;
+
+    height:48px;
+
+    margin-top:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:600;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.logoutBtn:hover{
+
+    background:#dc2626;
+
+}
+
+/* =========================================================
+   CHAT DRAWER
+========================================================= */
+
+.chatDrawer{
+
+    position:fixed;
+
+    top:0;
+    right:-420px;
+
+    width:400px;
+    height:100vh;
+
+    background:#0f172a;
+
+    border-left:1px solid rgba(255,255,255,.06);
+
+    display:flex;
+    flex-direction:column;
+
+    transition:.35s ease;
+
+    z-index:99999;
+
+}
+
+.chatDrawerOpen{
+
+    right:0;
+
+}
+
+/* =========================================================
+   CHAT HEADER
+========================================================= */
+
+.chatDrawerHeader{
+
+    height:72px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 22px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.chatDrawerHeader h3{
+
+    color:#fff;
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.chatDrawerHeader button{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#172338;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.chatDrawerHeader button:hover{
+
+    background:#2563eb;
+
+}
+
+/* =========================================================
+   CHAT BODY
+========================================================= */
+
+.chatDrawerBody{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+
+.chatDrawerBody::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.chatDrawerBody::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+    border-radius:30px;
+
+}
+
+/* =========================================================
+   CHAT MESSAGE
+========================================================= */
+
+.messageLeft,
+.messageRight{
+
+    max-width:80%;
+
+    padding:13px 16px;
+
+    border-radius:14px;
+
+    margin-bottom:14px;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+.messageLeft{
+
+    background:#172338;
+
+    color:#fff;
+
+}
+
+.messageRight{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    margin-left:auto;
+
+}
+
+/* =========================================================
+   CHAT FOOTER
+========================================================= */
+
+.chatDrawerFooter{
+
+    padding:18px;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+    display:flex;
+    gap:10px;
+
+}
+
+.chatDrawerFooter input{
+
+    flex:1;
+
+    height:48px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:12px;
+
+    padding:0 15px;
+
+    background:#172338;
+
+    color:#fff;
+
+    font-size:14px;
+
+}
+
+.chatDrawerFooter input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+.chatDrawerFooter button{
+
+    width:95px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.chatDrawerFooter button:hover{
+
+    background:#1d4ed8;
+
+}
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes popup {
+
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+@keyframes submenu {
+
+    from{
+        opacity:0;
+        transform:translateY(-10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes slideLeft{
+
+    from{
+        transform:translateX(100%);
+    }
+
+    to{
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobileMenuBtn{
+
+    display:none;
+
+    position:fixed;
+
+    top:18px;
+    left:18px;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    z-index:100001;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+
+    transition:.30s;
+
+}
+
+.mobileMenuBtn:hover{
+
+    transform:scale(1.06);
+
+}
+
+/* =========================================================
+   TABLET (1200px)
+========================================================= */
+
+@media(max-width:1200px){
+
+.sidebar{
+
+    width:90px;
+
+}
+
+.sidebarLogo{
+
+    width:42px;
+    height:42px;
+
+}
+
+.sidebarLogoLeft span,
+.addNewBtn span,
+.sidebarLink span,
+.sidebarDropdownLeft span,
+.sidebarSubMenu{
+
+    display:none;
+
+}
+
+.sidebarLogoWrapper{
+
+    justify-content:center;
+
+}
+
+.sidebarActions{
+
+    flex-direction:column;
+
+}
+
+.addNewBtn,
+.searchBtn{
+
+    width:100%;
+
+}
+
+.sidebarDropdownBtn{
+
+    justify-content:center;
+
+}
+
+.sidebarDropdownBtn svg:last-child{
+
+    display:none;
+
+}
+
+.sidebarDropdownLeft{
+
+    justify-content:center;
+
+}
+
+.sidebarLink{
+
+    justify-content:center;
+
+}
+
+.sidebarBottom{
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.profilePopupCard,
+.logoPopupCard{
+
+    left:100px;
+
+}
+
+}
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media(max-width:992px){
+
+.sidebar{
+
+    width:80px;
+
+}
+
+.sidebarMenu{
+
+    padding:12px;
+
+}
+
+.sidebarLink{
+
+    padding:14px;
+
+}
+
+.sidebarDropdownBtn{
+
+    padding:14px;
+
+}
+
+.bottomActions{
+
+    flex-direction:column;
+
+}
+
+.chatDrawer{
+
+    width:340px;
+
+}
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+.mobileMenuBtn{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+}
+
+.sidebar{
+
+    width:290px;
+
+    transform:translateX(-100%);
+
+    transition:.35s ease;
+
+    box-shadow:10px 0 40px rgba(0,0,0,.45);
+
+}
+
+.sidebar.mobileOpen{
+
+    transform:translateX(0);
+
+}
+
+.sidebarLogoLeft span,
+.sidebarLink span,
+.sidebarDropdownLeft span,
+.addNewBtn span{
+
+    display:block;
+
+}
+
+.sidebarSubMenu{
+
+    display:block;
+
+}
+
+.sidebarActions{
+
+    flex-direction:row;
+
+}
+
+.sidebarDropdownBtn{
+
+    justify-content:space-between;
+
+}
+
+.sidebarDropdownBtn svg:last-child{
+
+    display:block;
+
+}
+
+.sidebarLink{
+
+    justify-content:flex-start;
+
+}
+
+.sidebarBottom{
+
+    flex-direction:row;
+
+}
+
+.profilePopupCard,
+.logoPopupCard{
+
+    left:15px;
+
+}
+
+.chatDrawer{
+
+    width:100%;
+
+}
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media(max-width:576px){
+
+.sidebar{
+
+    width:260px;
+
+}
+
+.sidebarLogoSection{
+
+    padding:18px 14px;
+
+}
+
+.sidebarMenu{
+
+    padding:12px;
+
+}
+
+.sidebarLink{
+
+    font-size:14px;
+
+    padding:13px;
+
+}
+
+.sidebarDropdownBtn{
+
+    padding:13px;
+
+}
+
+.sidebarSubLink{
+
+    font-size:13px;
+
+}
+
+.profilePopupCard{
+
+    width:250px;
+
+}
+
+.logoPopupCard{
+
+    width:235px;
+
+}
+
+.chatDrawerHeader{
+
+    padding:0 15px;
+
+}
+
+.chatDrawerBody{
+
+    padding:15px;
+
+}
+
+.chatDrawerFooter{
+
+    padding:15px;
+
+}
+
+.chatDrawerFooter button{
+
+    width:80px;
+
+}
+
+}
+
+/* =========================================================
+   EXTRA SMALL
+========================================================= */
+
+@media(max-width:420px){
+
+.sidebar{
+
+    width:240px;
+
+}
+
+.sidebarLogo{
+
+    width:54px;
+
+}
+
+.sidebarLogoLeft{
+
+    gap:10px;
+
+}
+
+.sidebarLogoLeft span{
+
+    font-size:15px;
+
+}
+
+.addNewBtn{
+
+    font-size:13px;
+
+}
+
+.searchBtn{
+
+    width:44px;
+
+}
+
+.bottomIcon{
+
+    width:40px;
+    height:40px;
+
+}
+
+.profileCard img{
+
+    width:48px;
+    height:48px;
+
+}
+
+.profilePopupCard{
+
+    width:220px;
+
+}
+
+.logoPopupCard{
+
+    width:220px;
+
+}
+
+.messageLeft,
+.messageRight{
+
+    max-width:90%;
+
+    font-size:13px;
+
+}
+
+.chatDrawerFooter{
+
+    flex-direction:column;
+
+}
+
+.chatDrawerFooter button{
+
+    width:100%;
+    height:46px;
+
+}
+
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media(max-width:360px){
+
+.sidebar{
+
+    width:220px;
+
+}
+
+.sidebarLogo{
+
+    width:46px;
+    height:38px;
+
+}
+
+.sidebarLink{
+
+    padding:12px;
+
+}
+
+.sidebarDropdownBtn{
+
+    padding:12px;
+
+}
+
+.profilePopupCard{
+
+    width:205px;
+
+}
+
+.logoPopupCard{
+
+    width:205px;
+
+}
+
+.chatDrawerHeader h3{
+
+    font-size:18px;
+
+}
+
+}
+
+/* =========================================================
+   SMOOTH EFFECTS
+========================================================= */
+
+.sidebar *,
+.chatDrawer *,
+.profilePopupCard *,
+.logoPopupCard *{
+
+    transition:all .28s ease;
+
+}
+
+.sidebar svg{
+
+    flex-shrink:0;
+
+}
+
+.sidebar a{
+
+    user-select:none;
+
+}
+
+.sidebar button{
+
+    user-select:none;
+
+}

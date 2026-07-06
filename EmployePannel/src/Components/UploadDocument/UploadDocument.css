@@ -1,0 +1,294 @@
+/* Base Container Styles */
+.upload-document-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  padding: 24px 40px;
+  box-sizing: border-box;
+}
+
+/* Row wrapper separating layout header title and breadcrumbs */
+.upload-document-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+/* Page Header Title Text */
+.upload-document-page-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+  margin: 0;
+}
+
+/* Responsive Breadcrumb Navigation */
+.upload-document-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555555;
+}
+
+.breadcrumb-home-icon {
+  font-size: 16px;
+  color: #555555;
+}
+
+.breadcrumb-arrow-icon {
+  font-size: 12px;
+  color: #888888;
+}
+
+.breadcrumb-link {
+  color: #4f5d73;
+  cursor: pointer;
+}
+
+.breadcrumb-current {
+  color: #8a9ba8;
+}
+
+/* Card Design Frame */
+.upload-document-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.upload-document-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.upload-document-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Custom Dropdown Styling */
+.upload-document-dropdown-container {
+  position: relative;
+  width: 50%;
+  max-width: 600px;
+}
+
+.upload-document-dropdown-header {
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease;
+}
+
+.upload-document-dropdown-header:hover {
+  border-color: #333333;
+}
+
+.dropdown-label-text {
+  font-size: 15px;
+  color: #555555;
+}
+
+.dropdown-chevron-icon {
+  font-size: 18px;
+  color: #555555;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-chevron-icon.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown list wrapper height animation */
+.upload-document-dropdown-list-wrapper {
+  position: absolute;
+  top: 102%;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.upload-document-dropdown-list-wrapper.show {
+  max-height: 280px;
+}
+
+.upload-document-dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+/* Dropdown list options matching mockups */
+.upload-document-dropdown-item {
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #333333;
+  cursor: pointer;
+  background-color: #f4f4f5;
+  transition: background-color 0.2s;
+}
+
+.upload-document-dropdown-item:first-child {
+  background-color: #d1d1d6;
+}
+
+.upload-document-dropdown-item:hover {
+  background-color: #e4e4e7;
+}
+
+.upload-document-dropdown-item.selected {
+  background-color: #e4e4e7;
+  font-weight: 500;
+}
+
+/* Textarea Layout Base */
+.upload-document-textarea-container {
+  position: relative;
+  width: 100%;
+}
+
+.upload-document-textarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 16px;
+  font-size: 15px;
+  color: #333333;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.upload-document-textarea:focus {
+  border-color: #333333;
+}
+
+.upload-document-textarea-label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  font-size: 15px;
+  color: #777777;
+  pointer-events: none;
+  transition: 0.2s ease all;
+  background-color: #ffffff;
+  padding: 0 4px;
+}
+
+.upload-document-textarea:focus ~ .upload-document-textarea-label,
+.upload-document-textarea:not(:placeholder-shown) ~ .upload-document-textarea-label {
+  top: -10px;
+  left: 12px;
+  font-size: 12px;
+  color: #333333;
+}
+
+/* Drag Area Zone Box */
+.upload-document-drag-zone {
+  border: 1px dashed #cccccc;
+  border-radius: 6px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.upload-document-drag-zone:hover {
+  background-color: #fafafa;
+  border-color: #999999;
+}
+
+.upload-document-drag-zone.has-file {
+  border-color: #22c55e;
+  background-color: #f0fdf4;
+}
+
+.upload-document-zone-icon {
+  font-size: 38px;
+  color: #a0aec0;
+  margin-bottom: 12px;
+}
+
+.upload-document-zone-text {
+  font-size: 14px;
+  color: #4a5568;
+  margin: 0;
+}
+
+/* Action Button Frame settings */
+.upload-document-submit-btn {
+  align-self: flex-start;
+  padding: 12px 24px;
+  font-size: 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+}
+
+.upload-document-submit-btn.disabled {
+  background-color: #e2e8f0;
+  color: #a0aec0;
+}
+
+.upload-document-submit-btn.active {
+  background-color: #e2e8f0;
+  color: #6a7b95;
+  cursor: pointer;
+}
+
+.upload-document-submit-btn.active:hover {
+  background-color: #d4dbe5;
+}
+
+/* Responsive Adaptive Setup */
+@media (max-width: 768px) {
+  .upload-document-container {
+    padding: 15px;
+  }
+  
+  .upload-document-top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .upload-document-card {
+    padding: 20px;
+  }
+
+  .upload-document-dropdown-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
