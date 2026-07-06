@@ -10,6 +10,7 @@ import {
   FaUsers,
   FaShieldAlt,
   FaChevronDown,
+  FaChevronRight,
   FaBell,
   FaSignOutAlt,
   FaCommentDots,
@@ -22,9 +23,20 @@ import {
   FaBookOpen,
   FaStar,
   FaUserShield,
+  FaCalendarAlt,
+  FaFolderOpen,
+  FaProjectDiagram,
+  FaTasks,
+  FaFileAlt,
+  FaCog,
+  FaComments,
+  FaTicketAlt,
+  FaFileInvoiceDollar,
+  FaFileContract,
+  FaMoneyCheckAlt,
+  FaHistory,
+  FaFileSignature
 } from "react-icons/fa";
-
-import { FaCalendarAlt } from "react-icons/fa";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -34,20 +46,19 @@ const Sidebar = () => {
   const [showChat, setShowChat] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Logout Function
- const handleLogout = () => {
-  // Remove authentication
-  localStorage.removeItem("adminAuth");
+  // Dropdown States
+  const [projectOpen, setProjectOpen] = useState(true);
+  const [supportOpen, setSupportOpen] = useState(false);
+  const [billingOpen, setBillingOpen] = useState(false);
+  const [documentOpen, setDocumentOpen] = useState(false);
 
-  // Clear any other storage
-  sessionStorage.clear();
+  const handleLogout = () => {
+    localStorage.removeItem("adminAuth");
+    sessionStorage.clear();
+    navigate("/", { replace: true });
+    window.location.reload();
+  };
 
-  // Go to login page
-  navigate("/", { replace: true });
-
-  // Force React to reload and re-check ProtectedRoute
-  window.location.reload();
-};
   return (
     <>
       <button
@@ -57,24 +68,20 @@ const Sidebar = () => {
         ☰
       </button>
 
-      <aside
-        className={`sidebar ${
-          mobileOpen ? "mobileOpen" : ""
-        }`}
-      >
-        {/* LOGO SECTION */}
+      <aside className={`sidebar ${mobileOpen ? "mobileOpen" : ""}`}>
+
+        {/* ================= LOGO ================= */}
 
         <div className="sidebarLogoSection">
+
           <div
             className="sidebarLogoWrapper"
-            onClick={() =>
-              setShowLogoMenu(!showLogoMenu)
-            }
+            onClick={() => setShowLogoMenu(!showLogoMenu)}
           >
             <div className="sidebarLogoLeft">
               <img
                 src={logo}
-                alt="Logo"
+                alt="logo"
                 className="sidebarLogo"
               />
 
@@ -86,6 +93,7 @@ const Sidebar = () => {
 
           {showLogoMenu && (
             <div className="logoPopupCard">
+
               <NavLink to="/admin/profile">
                 <FaUser />
                 Profile Center
@@ -113,10 +121,12 @@ const Sidebar = () => {
                 <FaSignOutAlt />
                 Sign Out
               </button>
+
             </div>
           )}
 
           <div className="sidebarActions">
+
             <button className="addNewBtn">
               <FaPlus />
               Add New
@@ -125,14 +135,19 @@ const Sidebar = () => {
             <button className="searchBtn">
               <FaSearch />
             </button>
+
           </div>
+
         </div>
 
-        {/* MENU */}
+        {/* ================= MENU ================= */}
 
         <div className="sidebarMenu">
+
+          {/* Dashboard */}
+
           <NavLink
-            to="/admin/dashboard"
+            to="/client/dashboard"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -143,145 +158,299 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </NavLink>
 
-          <NavLink
-            to="/admin/blog-post"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaPlus />
-            <span>Blog Post</span>
-          </NavLink>
+          {/* ================= Projects ================= */}
+
+          <div className="sidebarDropdown">
+
+            <button
+              className="sidebarDropdownBtn"
+              onClick={() =>
+                setProjectOpen(!projectOpen)
+              }
+            >
+              <div className="sidebarDropdownLeft">
+                <FaFolderOpen />
+                <span>Projects</span>
+              </div>
+
+              {projectOpen ? (
+                <FaChevronDown />
+              ) : (
+                <FaChevronRight />
+              )}
+            </button>
+
+            {projectOpen && (
+
+              <div className="sidebarSubMenu">
+
+                <NavLink
+                  to="/client/projects"
+                  className="sidebarSubLink"
+                >
+                  My Projects
+                </NavLink>
+
+                <NavLink
+                  to="/client/project-details"
+                  className="sidebarSubLink"
+                >
+                  Project Details
+                </NavLink>
+
+                <NavLink
+                  to="/client/project-timeline"
+                  className="sidebarSubLink"
+                >
+                  Project Timeline
+                </NavLink>
+
+                <NavLink
+                  to="/client/project-tasks"
+                  className="sidebarSubLink"
+                >
+                  <FaTasks />
+                  Project Tasks
+                </NavLink>
+
+                <NavLink
+                  to="/client/project-files"
+                  className="sidebarSubLink"
+                >
+                  <FaFileAlt />
+                  Project Files
+                </NavLink>
+
+              </div>
+
+            )}
+
+          </div>
+                    {/* ================= Supports ================= */}
+
+          <div className="sidebarDropdown">
+
+            <button
+              className="sidebarDropdownBtn"
+              onClick={() => setSupportOpen(!supportOpen)}
+            >
+              <div className="sidebarDropdownLeft">
+                <FaTicketAlt />
+                <span>Supports</span>
+              </div>
+
+              {supportOpen ? (
+                <FaChevronDown />
+              ) : (
+                <FaChevronRight />
+              )}
+            </button>
+
+            {supportOpen && (
+              <div className="sidebarSubMenu">
+
+                <NavLink
+                  to="/client/tickets"
+                  className="sidebarSubLink"
+                >
+                  Tickets
+                </NavLink>
+
+                <NavLink
+                  to="/client/ticket-details"
+                  className="sidebarSubLink"
+                >
+                  Ticket Details
+                </NavLink>
+
+                <NavLink
+                  to="/client/create-ticket"
+                  className="sidebarSubLink"
+                >
+                  Create Ticket
+                </NavLink>
+
+                <NavLink
+                  to="/client/ticket-history"
+                  className="sidebarSubLink"
+                >
+                  <FaHistory />
+                  Ticket History
+                </NavLink>
+
+                <NavLink
+                  to="/client/sla-status"
+                  className="sidebarSubLink"
+                >
+                  SLA Status
+                </NavLink>
+
+              </div>
+            )}
+
+          </div>
+
+          {/* ================= Billing ================= */}
+
+          <div className="sidebarDropdown">
+
+            <button
+              className="sidebarDropdownBtn"
+              onClick={() => setBillingOpen(!billingOpen)}
+            >
+              <div className="sidebarDropdownLeft">
+                <FaFileInvoiceDollar />
+                <span>Billing</span>
+              </div>
+
+              {billingOpen ? (
+                <FaChevronDown />
+              ) : (
+                <FaChevronRight />
+              )}
+            </button>
+
+            {billingOpen && (
+              <div className="sidebarSubMenu">
+
+                <NavLink
+                  to="/client/invoices"
+                  className="sidebarSubLink"
+                >
+                  Invoices
+                </NavLink>
+
+                <NavLink
+                  to="/client/invoice-details"
+                  className="sidebarSubLink"
+                >
+                  Invoice Details
+                </NavLink>
+
+                <NavLink
+                  to="/client/payments"
+                  className="sidebarSubLink"
+                >
+                  <FaMoneyCheckAlt />
+                  Payments
+                </NavLink>
+
+                <NavLink
+                  to="/client/payment-history"
+                  className="sidebarSubLink"
+                >
+                  <FaHistory />
+                  Payment History
+                </NavLink>
+
+                <NavLink
+                  to="/client/payment-methods"
+                  className="sidebarSubLink"
+                >
+                  Payment Methods
+                </NavLink>
+
+              </div>
+            )}
+
+          </div>
+
+          {/* ================= Documents ================= */}
+
+          <div className="sidebarDropdown">
+
+            <button
+              className="sidebarDropdownBtn"
+              onClick={() => setDocumentOpen(!documentOpen)}
+            >
+              <div className="sidebarDropdownLeft">
+                <FaFileContract />
+                <span>Documents</span>
+              </div>
+
+              {documentOpen ? (
+                <FaChevronDown />
+              ) : (
+                <FaChevronRight />
+              )}
+            </button>
+
+            {documentOpen && (
+              <div className="sidebarSubMenu">
+
+                <NavLink
+                  to="/client/contracts"
+                  className="sidebarSubLink"
+                >
+                  Contracts
+                </NavLink>
+
+                <NavLink
+                  to="/client/ndas"
+                  className="sidebarSubLink"
+                >
+                  <FaFileSignature />
+                  NDAs
+                </NavLink>
+
+                <NavLink
+                  to="/client/project-documents"
+                  className="sidebarSubLink"
+                >
+                  <FaProjectDiagram />
+                  Project Documents
+                </NavLink>
+
+              </div>
+            )}
+
+          </div>
+
+          {/* ================= Chat ================= */}
 
           <NavLink
-            to="/admin/blog-management"
+            to="/client/chat"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
                 : "sidebarLink"
             }
           >
-            <FaBookOpen />
-            <span>Blog Management</span>
+            <FaComments />
+            <span>Chat</span>
           </NavLink>
+
+          {/* ================= Settings ================= */}
 
           <NavLink
-            to="/admin/lead-management"
+            to="/client/settings"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
                 : "sidebarLink"
             }
           >
-            <FaClipboardList />
-            <span>Lead Management</span>
+            <FaCog />
+            <span>Settings</span>
           </NavLink>
+                  </div>
 
-          <NavLink
-            to="/admin/career-management"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaUserTie />
-            <span>Career Management</span>
-          </NavLink>
-
-          <NavLink
-            to="/admin/project-management"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaNetworkWired />
-            <span>Project Management</span>
-          </NavLink>
-
-          <NavLink
-            to="/admin/testimonial-management"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaStar />
-            <span>Testimonial Management</span>
-          </NavLink>
-
-          <NavLink
-            to="/admin/gallery-management"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaUsers />
-            <span>Gallery Management</span>
-          </NavLink>
-
-          <NavLink
-            to="/admin/team-member"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaUser />
-            <span>Team Member</span>
-          </NavLink>
-
-          <NavLink
-            to="/admin/calendar-management"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaCalendarAlt />
-            <span>Calendar Management</span>
-          </NavLink>
-
-            <NavLink
-            to="/admin/industry-management"
-            className={({ isActive }) =>
-              isActive
-                ? "sidebarLink active"
-                : "sidebarLink"
-            }
-          >
-            <FaClipboardList />
-            <span>industry work management</span>
-          </NavLink>
-
-        </div>
-      
-
-        {/* FOOTER */}
+        {/* ================= FOOTER ================= */}
 
         <div className="sidebarBottom">
+
           <div
             className="profileCard"
-            onClick={() =>
-              setShowProfile(!showProfile)
-            }
+            onClick={() => setShowProfile(!showProfile)}
           >
             <img
-              src="https://i.pravatar.cc/150"
+              src="https://i.pravatar.cc/150?img=12"
               alt="Profile"
             />
           </div>
 
           <div className="bottomActions">
+
             <button
               className="bottomIcon"
               onClick={() => setShowChat(true)}
@@ -292,32 +461,40 @@ const Sidebar = () => {
             <button className="bottomIcon">
               <FaBell />
             </button>
+
           </div>
 
           {showProfile && (
+
             <div className="profilePopupCard">
+
               <div className="profileHeader">
+
                 <img
-                  src="https://i.pravatar.cc/150"
-                  alt=""
+                  src="https://i.pravatar.cc/150?img=12"
+                  alt="Profile"
                 />
 
                 <div>
                   <h4>Demo User</h4>
-                  <p>demo@email.com</p>
+                  <p>demo@prwebstock.com</p>
                 </div>
+
               </div>
 
-              <NavLink to="/profile">
-                Public Profile
+              <NavLink to="/client/profile">
+                <FaUser />
+                <span>My Profile</span>
               </NavLink>
 
-              <NavLink to="/my-profile">
-                My Profile
+              <NavLink to="/client/account">
+                <FaShieldAlt />
+                <span>Account Settings</span>
               </NavLink>
 
-              <NavLink to="/account">
-                My Account
+              <NavLink to="/client/notifications">
+                <FaBell />
+                <span>Notifications</span>
               </NavLink>
 
               <button
@@ -327,19 +504,25 @@ const Sidebar = () => {
                 <FaSignOutAlt />
                 Logout
               </button>
+
             </div>
+
           )}
+
         </div>
+
       </aside>
 
-      {/* CHAT DRAWER */}
+      {/* ================= CHAT DRAWER ================= */}
 
       <div
         className={`chatDrawer ${
           showChat ? "chatDrawerOpen" : ""
         }`}
       >
+
         <div className="chatDrawerHeader">
+
           <h3>Messages</h3>
 
           <button
@@ -347,26 +530,44 @@ const Sidebar = () => {
           >
             <FaTimes />
           </button>
+
         </div>
 
         <div className="chatDrawerBody">
+
           <div className="messageLeft">
-            Hello 👋
+            👋 Hello, welcome to PR WEBSTOCK.
           </div>
 
           <div className="messageRight">
-            Welcome Back 🚀
+            How can we help you today?
           </div>
 
           <div className="messageLeft">
-            New notifications available.
+            Your project updates are available.
           </div>
 
           <div className="messageRight">
-            Everything is working perfectly.
+            You have 3 unread notifications.
           </div>
+
         </div>
+
+        <div className="chatDrawerFooter">
+
+          <input
+            type="text"
+            placeholder="Type your message..."
+          />
+
+          <button>
+            Send
+          </button>
+
+        </div>
+
       </div>
+
     </>
   );
 };

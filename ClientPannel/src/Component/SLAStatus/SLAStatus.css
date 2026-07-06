@@ -1,0 +1,272 @@
+/* --- Core Container Reset --- */
+.SLAStatus {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  padding: 32px;
+  box-sizing: border-box;
+  color: #333d47;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.SLAStatus * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Interactive Action Buttons Block --- */
+.SLAStatus-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.SLAStatus-actions button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.SLAStatus-actions button:first-child {
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  color: #4a5568;
+}
+
+.SLAStatus-actions button:first-child:hover {
+  background-color: #f7fafc;
+}
+
+.SLAStatus-actions button:last-child {
+  background-color: #0052cc;
+  border: none;
+  color: #ffffff;
+}
+
+.SLAStatus-actions button:last-child:hover {
+  background-color: #0043a4;
+}
+
+/* --- Header & Navigation --- */
+.SLAStatus-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.SLAStatus-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333d47;
+}
+
+.SLAStatus-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #8a94a6;
+  margin-top: 4px;
+}
+
+/* --- Floating Settings Tab Accent --- */
+.SLAStatus-config-tab {
+  background-color: #6c5ce7;
+  color: #ffffff;
+  padding: 12px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  position: absolute;
+  right: -32px; /* Pulls right to flush with screen boundary like your reference image */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: -2px 2px 8px rgba(0,0,0,0.08);
+}
+
+/* --- Layout Grid --- */
+.SLAStatus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+/* --- Metric KPI Cards --- */
+.SLAStatus-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef1f0;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.SLAStatus-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Custom Card Color Categories mapped to the exact image spec colors */
+.SLAStatus-icon-box.bg-\[\#4caf50\] { background-color: #4caf50; }
+.SLAStatus-icon-box.bg-\[\#2196f3\] { background-color: #2196f3; }
+.SLAStatus-icon-box.bg-\[\#ff9800\] { background-color: #ff9800; }
+.SLAStatus-icon-box.bg-\[\#9c27b0\] { background-color: #9c27b0; }
+
+.SLAStatus-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.SLAStatus-card-meta {
+  font-size: 13px;
+  color: #a0aec0;
+  margin-top: 4px;
+}
+
+.SLAStatus-card-percentage {
+  font-size: 30px;
+  font-weight: 700;
+  color: #2d3748;
+  letter-spacing: -0.5px;
+}
+
+/* Progress indicator styling */
+.SLAStatus-progress-track {
+  width: 100%;
+  height: 4px;
+  background-color: #edf2f7;
+  border-radius: 2px;
+  margin-top: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.SLAStatus-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #0052cc; /* Blue compliance timeline match */
+  border-radius: 2px;
+}
+
+/* --- Table Summary Layout --- */
+.SLAStatus-overview-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef1f0;
+  width: 100%;
+}
+
+.SLAStatus-table-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 20px;
+}
+
+.SLAStatus-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.SLAStatus-table th {
+  padding-bottom: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.SLAStatus-table td {
+  padding: 16px 0;
+  font-size: 14px;
+  color: #2d3748;
+  border-bottom: 1px solid #f7fafc;
+}
+
+.SLAStatus-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Context Status Tags --- */
+.SLAStatus-badge-excellent {
+  background-color: #e6f6ec;
+  color: #2e7d32;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #c8e6c9;
+}
+
+.SLAStatus-badge-ontrack {
+  background-color: #e8f4fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #bbdefb;
+}
+
+/* --- Responsive Adaptations (Mobile / Tablet viewports) --- */
+@media (max-width: 768px) {
+  .SLAStatus {
+    padding: 16px;
+  }
+  .SLAStatus-grid {
+    grid-template-columns: 1fr; /* Switch metrics stack to clean column single lines */
+    gap: 16px;
+  }
+  .SLAStatus-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .SLAStatus-config-tab {
+    display: none !important; /* Drop overlapping margins layout hooks on mobile */
+  }
+}
+
+/* --- Native Printer Configuration Overrides --- */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .SLAStatus {
+    background-color: #ffffff !important;
+    padding: 0 !important;
+  }
+  .no-print, .SLAStatus-actions, .SLAStatus-config-tab {
+    display: none !important; /* Strips download controls gracefully from actual page captures */
+  }
+}
