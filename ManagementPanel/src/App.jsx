@@ -64,6 +64,14 @@ import Reimbursements from "./Components/Reimbursements/Reimbursements";
 import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
 import TaxReports from "./Components/TaxReports/TaxReports";
 import Task from "./Components/Task/Task";
+import JobsList from "./Components/JobsList/JobsList";
+import AddJob from "./Components/AddJob/AddJob";
+import JobDetails from "./Components/JobDetails/JobDetails";
+import CandidateProfile from "./Components/CandidateProfile/CandidateProfile";
+import InterviewSchedule from "./Components/InterviewSchedule/InterviewSchedule";
+import OfferLetters from "./Components/OfferLetters/OfferLetters";
+import HiringPipeline from "./Components/HiringPipeline/HiringPipeline";
+import Resumes from "./Components/Resumes/Resumes";
 
 
 const App = () => {
@@ -141,8 +149,15 @@ const App = () => {
           <Route path="accounts/summary" element={<FinancialSummary/>}/>
           <Route path="accounts/tax-reports" element={<TaxReports/>}/>
           <Route path="apps/task" element={<Task/>}/>
-
-        </Route>
+          <Route path="jobs/list" element={<JobsList/>}/>
+          <Route path="jobs/add" element={<AddJob/>}/>
+          <Route path="jobs/details" element={<JobDetails/>}/>
+          <Route path="jobs/candidate-profile" element={<CandidateProfile/>}/>
+          <Route path="jobs/interview" element={<InterviewSchedule/>}/>
+          <Route path="jobs/offers" element={<OfferLetters/>}/>
+          <Route path="jobs/pipeline" element={<HiringPipeline/>}/>
+          <Route path="jobs/resumes" element={<Resumes/>}/>
+        </Route> 
 
         {/* 404 */}
         <Route path="*" element={<h1>404 Page Not Found</h1>} />

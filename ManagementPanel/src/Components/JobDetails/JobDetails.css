@@ -1,0 +1,419 @@
+:root {
+  --jobdetails-bg-canvas: #f0f4f8;
+  --jobdetails-card-bg: #ffffff;
+  --jobdetails-text-heading: #333f54;
+  --jobdetails-text-paragraph: #8a99ad;
+  --jobdetails-text-meta: #a3b2c5;
+  --jobdetails-border-color: #eef2f6;
+  --jobdetails-badge-green: #4cd137;
+  --jobdetails-accent-blue: #1b64f2;
+}
+
+/* Base View Layout Overhaul */
+.JobDetails-container {
+  background-color: var(--jobdetails-bg-canvas);
+  min-height: 100vh;
+  padding: 24px 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Section Header Bar Alignment Design */
+.JobDetails-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.JobDetails-main-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.JobDetails-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.JobDetails-breadcrumb-home-icon {
+  font-size: 14px;
+}
+
+.JobDetails-breadcrumb-arrow {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.JobDetails-breadcrumb-active {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* Two Column Flexbox Workspace Grid Grid Structure */
+.JobDetails-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Component Level Layout Architecture Cards */
+.JobDetails-main-card {
+  background-color: var(--jobdetails-card-bg);
+  border-radius: 8px;
+  padding: 30px;
+  border: 1px solid var(--jobdetails-border-color);
+}
+
+.JobDetails-sidebar-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.JobDetails-sidebar-card {
+  background-color: var(--jobdetails-card-bg);
+  border-radius: 8px;
+  padding: 24px;
+  border: 1px solid var(--jobdetails-border-color);
+}
+
+/* Left Card Component Styles */
+.JobDetails-title-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.JobDetails-job-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--jobdetails-text-heading);
+  margin: 0;
+}
+
+.JobDetails-status-badge {
+  background-color: #2ed573;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+.JobDetails-metadata-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.JobDetails-metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--jobdetails-text-meta);
+  font-size: 13px;
+}
+
+.JobDetails-meta-icon {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* Horizontal Form Specification Panels */
+.JobDetails-info-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.JobDetails-section-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--jobdetails-text-heading);
+  margin: 0 0 12px 0;
+}
+
+.JobDetails-salary-display,
+.JobDetails-schedule-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.JobDetails-dollar-icon,
+.JobDetails-clock-icon {
+  color: var(--jobdetails-text-meta);
+  font-size: 14px;
+}
+
+.JobDetails-salary-text,
+.JobDetails-schedule-text {
+  font-size: 13px;
+  color: var(--jobdetails-text-meta);
+}
+
+/* Main Text Content Paragraph Formatting Blocks */
+.JobDetails-body-section {
+  margin-bottom: 28px;
+}
+
+.JobDetails-paragraph-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--jobdetails-text-paragraph);
+  margin: 0;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+/* Interactive Pill Badges Area styling */
+.JobDetails-skills-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.JobDetails-skill-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e8f0fe;
+  color: #1a73e8;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.JobDetails-skill-check-icon {
+  font-size: 12px;
+}
+
+/* Lower Section Framework split grid layout */
+.JobDetails-bottom-split-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 35px;
+  border-top: 1px solid var(--jobdetails-border-color);
+  padding-top: 24px;
+}
+
+.JobDetails-benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.JobDetails-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--jobdetails-text-paragraph);
+}
+
+.JobDetails-benefit-circle-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #2ed573;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Action Control Buttons panel area styling */
+.JobDetails-action-footer {
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid var(--jobdetails-border-color);
+  padding-top: 24px;
+}
+
+.JobDetails-btn-action-outline {
+  background-color: transparent;
+  border: 1px solid #dcdcdc;
+  color: #5c6b73;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.JobDetails-btn-action-outline:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+/* Sidebar Specific Structural Designs */
+.JobDetails-sidebar-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+}
+
+.JobDetails-divider {
+  border: 0;
+  border-top: 1px solid var(--jobdetails-border-color);
+  margin: 16px 0;
+}
+
+.JobDetails-stats-split-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px 0;
+}
+
+.JobDetails-stat-item-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.JobDetails-stat-big-number {
+  font-size: 26px;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.2;
+}
+
+.JobDetails-stat-label {
+  font-size: 12px;
+  color: var(--jobdetails-text-meta);
+  margin-top: 2px;
+}
+
+.JobDetails-stat-vertical-divider {
+  width: 1px;
+  height: 40px;
+  background-color: var(--jobdetails-border-color);
+}
+
+.JobDetails-experience-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.JobDetails-experience-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.JobDetails-experience-label {
+  font-size: 12px;
+  color: var(--jobdetails-text-meta);
+  margin-top: 2px;
+}
+
+/* Sidebar Applicant Listing Blocks Panel Styling */
+.JobDetails-applicants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.JobDetails-applicant-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.JobDetails-applicant-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #e2e8f0;
+}
+
+.JobDetails-applicant-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.JobDetails-applicant-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.JobDetails-applicant-time {
+  font-size: 11px;
+  color: var(--jobdetails-text-meta);
+  margin-top: 1px;
+}
+
+.JobDetails-view-all-wrapper {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.JobDetails-btn-view-all {
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--jobdetails-accent-blue);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.JobDetails-btn-view-all:hover {
+  text-decoration: underline;
+}
+
+/* Responsive View Media Breakpoint Rule Triggers */
+@media (max-width: 1024px) {
+  .JobDetails-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .JobDetails-container {
+    padding: 16px;
+  }
+  .JobDetails-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .JobDetails-info-row-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .JobDetails-bottom-split-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

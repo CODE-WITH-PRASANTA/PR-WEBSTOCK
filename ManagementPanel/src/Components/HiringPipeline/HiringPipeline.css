@@ -1,0 +1,203 @@
+.HiringPipeline {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f4f8;
+  padding: 24px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Breadcrumb Navigation and Section Alignment Header Rules */
+.HiringPipeline-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.HiringPipeline-main-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.HiringPipeline-breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #7f8c8d;
+  gap: 4px;
+}
+
+.HiringPipeline-breadcrumb-home-icon {
+  font-size: 14px;
+  margin-right: 2px;
+  color: #555555;
+}
+
+.HiringPipeline-breadcrumb-link {
+  cursor: pointer;
+}
+
+.HiringPipeline-breadcrumb-link:hover {
+  color: #34495e;
+}
+
+.HiringPipeline-breadcrumb-separator {
+  font-size: 12px;
+  color: #bdc3c7;
+}
+
+.HiringPipeline-breadcrumb-current {
+  color: #333333;
+}
+
+/* Board Layout Wrapper Matrix - 5 Columns configuration matches */
+.HiringPipeline-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Individual Column Swimlane Containers block setups */
+.HiringPipeline-column {
+  background-color: #f8fafc;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.HiringPipeline-column-header {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+/* Exact Reference Image Column Headers Hex Color Gradients Configuration rules */
+.HiringPipeline-column-new {
+  background-color: #6c7a89; /* Slate Gray */
+}
+
+.HiringPipeline-column-screening {
+  background-color: #f39c12; /* Golden Amber Orange */
+}
+
+.HiringPipeline-column-interview {
+  background-color: #1e90ff; /* Vivid Blue Sky */
+}
+
+.HiringPipeline-column-offered {
+  background-color: #9b59b6; /* Rich Purple */
+}
+
+.HiringPipeline-column-hired {
+  background-color: #2ecc71; /* Emerald Mint Green */
+}
+
+.HiringPipeline-column-lane {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+/* Candidate Profile Information Card Blocks Styles */
+.HiringPipeline-card {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.HiringPipeline-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.HiringPipeline-card-avatar-wrapper {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #e2e8f0;
+}
+
+.HiringPipeline-card-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.HiringPipeline-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.HiringPipeline-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 3px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.HiringPipeline-card-role {
+  font-size: 11px;
+  color: #95a5a6;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Adaptive Viewports Logic Layout Configurations */
+@media (max-width: 1200px) {
+  .HiringPipeline-board {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .HiringPipeline-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .HiringPipeline-board {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .HiringPipeline {
+    padding: 16px;
+  }
+
+  .HiringPipeline-board {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .HiringPipeline-column {
+    min-height: auto;
+  }
+}

@@ -1,0 +1,618 @@
+:root {
+  --primary-purple: #5c6bc0;
+  --bg-light-blue: #edf2f9;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --border-color: #e2e8f0;
+  --open-bg: #e2f6ed;
+  --open-text: #2ecc71;
+  --closed-bg: #ffeef0;
+  --closed-text: #f85a6b;
+  --cancelled-bg: #fff3e6;
+  --cancelled-text: #ff9f43;
+}
+
+body {
+  background-color: var(--bg-light-blue);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container & Header Setup */
+.JobsList-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.JobsList-breadcrumb {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.JobsList-breadcrumb-active {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Card Content Frame Layout */
+.JobsList-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+/* Action Control Bar Styling */
+.JobsList-actionbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8faff;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.JobsList-actionbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.JobsList-title {
+  margin: 0;
+  font-size: 18px;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.JobsList-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.JobsList-search-icon {
+  position: absolute;
+  left: 10px;
+  color: #a0aec0;
+  font-size: 18px;
+}
+
+.JobsList-search-box input {
+  padding: 8px 12px 8px 35px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  width: 220px;
+  background: #ffffff;
+}
+
+.JobsList-actionbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.JobsList-btn-icon {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #4a5568;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  padding: 5px;
+}
+
+.JobsList-btn-icon:hover {
+  color: var(--primary-purple);
+}
+
+.JobsList-btn-add {
+  color: #2ecc71;
+}
+
+.JobsList-btn-download {
+  color: #3498db;
+}
+
+/* Column Visibility Checkbox Popover Dropdown */
+.JobsList-filter-wrapper {
+  position: relative;
+}
+
+.JobsList-dropdown {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 100;
+  width: 210px;
+  padding: 10px 0;
+}
+
+.JobsList-dropdown-title {
+  font-weight: 600;
+  font-size: 15px;
+  padding: 5px 15px 10px 15px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+  color: #2d3748;
+}
+
+.JobsList-dropdown-scroll {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-top: 5px;
+}
+
+/* Custom Scrollbar for Popover Dropdown */
+.JobsList-dropdown-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+.JobsList-dropdown-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.JobsList-dropdown-scroll::-webkit-scrollbar-thumb {
+  background: #a0aec0;
+  border-radius: 10px;
+  border: 3px solid white;
+}
+
+.JobsList-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.JobsList-dropdown-item:hover {
+  background-color: #f7fafc;
+}
+
+.JobsList-dropdown-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #0066cc;
+}
+
+/* Responsive Table Layout */
+.JobsList-table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.JobsList-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.JobsList-table th {
+  background-color: #ffffff;
+  color: #4a5568;
+  font-weight: 600;
+  padding: 14px 18px;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.JobsList-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  color: #4a5568;
+  white-space: nowrap;
+}
+
+.JobsList-table tbody tr:hover {
+  background-color: #f8fbc5; /* Soft highlights on hover matching standard visual lists */
+}
+
+.JobsList-row-selected {
+  background-color: #f0f4ff;
+}
+
+.JobsList-table input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-purple);
+  cursor: pointer;
+}
+
+.JobsList-cell-title {
+  color: #4a5568 !important;
+  font-weight: 400;
+}
+
+/* Table Badge Elements styling */
+.JobsList-badge {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-open {
+  background-color: var(--open-bg);
+  color: var(--open-text);
+}
+
+.badge-closed {
+  background-color: var(--closed-bg);
+  color: var(--closed-text);
+}
+
+.badge-cancelled {
+  background-color: var(--cancelled-bg);
+  color: var(--cancelled-text);
+}
+
+.JobsList-cell-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.JobsList-cell-icon {
+  color: #b7a47a;
+  font-size: 16px;
+}
+
+/* Operations Action Buttons inside cell */
+.JobsList-actions-cell {
+  display: flex;
+  gap: 12px;
+}
+
+.JobsList-action-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.JobsList-action-btn.edit {
+  color: #5c6bc0;
+}
+
+.JobsList-action-btn.delete {
+  color: #ff6b6b;
+}
+
+.JobsList-no-data {
+  text-align: center;
+  padding: 30px !important;
+  color: var(--text-muted);
+}
+
+/* Bottom Pagination Row Styling */
+.JobsList-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  font-size: 13px;
+  color: #4a5568;
+  gap: 25px;
+  border-top: 1px solid var(--border-color);
+}
+
+.JobsList-pagination-left, 
+.JobsList-pagination-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.JobsList-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.JobsList-select-wrapper select {
+  appearance: none;
+  background: white;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  padding: 4px 24px 4px 8px;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.JobsList-select-chevron {
+  position: absolute;
+  right: 5px;
+  pointer-events: none;
+  color: #718096;
+}
+
+.JobsList-page-arrow {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #a0aec0;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+}
+
+/* Modal Window Base Overlays & Components Smooth Transitions */
+.JobsList-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.JobsList-modal-card {
+  background: white;
+  width: 100%;
+  max-width: 950px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin: 15px;
+  animation: slideUp 0.25s ease-out;
+}
+
+.JobsList-modal-header {
+  background-color: #5c6bc0;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.JobsList-modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.JobsList-modal-close-x {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Complex Modal Form Grid Elements */
+.JobsList-modal-form {
+  padding: 25px;
+}
+
+.JobsList-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.JobsList-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.JobsList-form-group.full-width {
+  margin-bottom: 20px;
+}
+
+.JobsList-form-group label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+/* Special Variant styling for Edit Job Floating Input Labels Frame */
+.JobsList-form-group.variant-focused label.floating-label {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: white;
+  padding: 0 4px;
+  z-index: 2;
+  font-size: 11px;
+  color: #718096;
+}
+
+.JobsList-input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.JobsList-input-icon-wrapper input,
+.JobsList-input-icon-wrapper select {
+  width: 100%;
+  padding: 12px 35px 12px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+/* Focus styles matching screenshot border details */
+.JobsList-input-icon-wrapper input:focus,
+.JobsList-input-icon-wrapper select:focus {
+  border-color: #4a5568;
+}
+
+.JobsList-input-icon {
+  position: absolute;
+  right: 12px;
+  font-size: 18px;
+  color: #4a5568;
+  pointer-events: none;
+}
+
+.JobsList-input-icon.select-arrow {
+  font-size: 20px;
+}
+
+.JobsList-input-icon-wrapper select {
+  appearance: none;
+}
+
+/* Modal Bottom Action Controls styling */
+.JobsList-modal-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.JobsList-btn-save {
+  background-color: #d3d3d3;
+  color: #666;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.JobsList-btn-save-blue {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.JobsList-btn-cancel {
+  background-color: #990000;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* --- DELETE CONFIRMATION CARD STYLE (6th Image) --- */
+.JobsList-delete-modal-card {
+  background: #f8faff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  animation: slideUp 0.2s ease-out;
+}
+
+.JobsList-delete-modal-card h2 {
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 500;
+  color: #2d3748;
+  margin-bottom: 20px;
+}
+
+.JobsList-delete-details {
+  font-size: 15px;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.JobsList-delete-details p {
+  margin: 6px 0;
+}
+
+.JobsList-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.JobsList-btn-delete-confirm {
+  background-color: #b81d24;
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.JobsList-btn-cancel-confirm {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* CSS Animations for smooth opening */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Adaptive CSS Breakpoints */
+@media (max-width: 768px) {
+  .JobsList-form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .JobsList-actionbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .JobsList-actionbar-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .JobsList-search-box input {
+    width: 100%;
+  }
+}

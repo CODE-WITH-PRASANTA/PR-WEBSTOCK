@@ -1,0 +1,546 @@
+:root {
+  --cp-bg-canvas: #f0f4f8;
+  --cp-card-bg: #ffffff;
+  --cp-text-main: #1e293b;
+  --cp-text-muted: #64748b;
+  --cp-text-placeholder: #8a99ad;
+  --cp-border-color: #eef2f6;
+  --cp-accent-blue: #1b64f2;
+  --cp-accent-blue-hover: #144ec2;
+  --cp-badge-orange: #ff9f43;
+  --cp-badge-green: #2ed573;
+}
+
+/* Base Canvas View Restructuring */
+.CandidateProfile-container {
+  background-color: var(--cp-bg-canvas);
+  min-height: 100vh;
+  padding: 24px 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Breadcrumb Navigation Strip Alignment */
+.CandidateProfile-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.CandidateProfile-main-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cp-text-main);
+  margin: 0;
+}
+
+.CandidateProfile-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--cp-text-muted);
+}
+
+.CandidateProfile-breadcrumb-icon {
+  font-size: 14px;
+}
+
+.CandidateProfile-breadcrumb-arrow {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.CandidateProfile-breadcrumb-active {
+  color: var(--cp-text-main);
+  font-weight: 500;
+}
+
+/* Structural Workspace Grid Layering */
+.CandidateProfile-grid-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Base Profile Dashboard Panels */
+.CandidateProfile-card {
+  background-color: var(--cp-card-bg);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--cp-border-color);
+}
+
+.CandidateProfile-card:last-child {
+  margin-bottom: 0;
+}
+
+/* Sidebar Specific Structural Scoping Styles */
+.CandidateProfile-left-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.CandidateProfile-hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Avatar Substructure with Active State Dot indicator */
+.CandidateProfile-avatar-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 16px;
+}
+
+.CandidateProfile-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.CandidateProfile-online-indicator {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--cp-badge-green);
+  border: 2px solid #ffffff;
+}
+
+.CandidateProfile-candidate-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333f54;
+  margin: 0 0 4px 0;
+}
+
+.CandidateProfile-candidate-title {
+  font-size: 13px;
+  color: var(--cp-accent-blue);
+  font-weight: 500;
+  margin: 0 0 10px 0;
+}
+
+.CandidateProfile-location-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--cp-text-placeholder);
+  margin-bottom: 20px;
+}
+
+.CandidateProfile-geo-icon {
+  font-size: 14px;
+}
+
+/* Button UI Micro-layout */
+.CandidateProfile-hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.CandidateProfile-btn-primary {
+  background-color: #f0f4f8;
+  color: var(--cp-accent-blue);
+  border: 1px solid #dbeafe;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.CandidateProfile-btn-primary:hover {
+  background-color: #e0ebf7;
+}
+
+.CandidateProfile-btn-outline {
+  background-color: transparent;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.CandidateProfile-btn-outline:hover {
+  background-color: #f8fafc;
+}
+
+.CandidateProfile-socials-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.CandidateProfile-social-link {
+  color: var(--cp-text-placeholder);
+  font-size: 16px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.CandidateProfile-social-link:hover {
+  color: var(--cp-accent-blue);
+}
+
+.CandidateProfile-divider {
+  border: 0;
+  border-top: 1px solid var(--cp-border-color);
+  width: 100%;
+  margin: 16px 0;
+}
+
+/* Contact Details Alignment Grid */
+.CandidateProfile-contact-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.CandidateProfile-contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.CandidateProfile-contact-label {
+  color: var(--cp-text-placeholder);
+}
+
+.CandidateProfile-contact-value {
+  color: #475569;
+  font-weight: 500;
+  word-break: break-all;
+  max-width: 65%;
+  text-align: right;
+}
+
+/* Badge Status Styling Blocks */
+.CandidateProfile-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+
+.CandidateProfile-badge-availability {
+  background-color: #e8f5e9;
+  color: var(--cp-badge-green);
+}
+
+.CandidateProfile-badge-status {
+  background-color: #fff3e0;
+  color: var(--cp-badge-orange);
+}
+
+/* Skill Progress Bars Section Component Layout */
+.CandidateProfile-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333f54;
+  margin: 0 0 16px 0;
+}
+
+.CandidateProfile-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.CandidateProfile-skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.CandidateProfile-skill-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.CandidateProfile-progress-bg {
+  background-color: #e2e8f0;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.CandidateProfile-progress-fill {
+  background-color: var(--cp-accent-blue);
+  height: 100%;
+  border-radius: 3px;
+}
+
+/* Pill Badges Interface Layout */
+.CandidateProfile-languages-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.CandidateProfile-lang-pill {
+  font-size: 12px;
+  color: #475569;
+  background-color: #f1f5f9;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Certifications Sub-layout Lists */
+.CandidateProfile-certs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.CandidateProfile-cert-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.CandidateProfile-cert-icon-box {
+  background-color: #fff9db;
+  color: #fab005;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.CandidateProfile-cert-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.CandidateProfile-cert-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.CandidateProfile-cert-issuer {
+  font-size: 11px;
+  color: var(--cp-text-placeholder);
+}
+
+/* Main Content Panel (Right Side Layout Column) */
+.CandidateProfile-main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.CandidateProfile-card-title-large {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333f54;
+  margin: 0 0 14px 0;
+}
+
+.CandidateProfile-body-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cp-text-placeholder);
+  margin: 0;
+}
+
+/* Detailed History Tabs Module Layout */
+.CandidateProfile-tabs-container {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.CandidateProfile-tabs-nav {
+  display: flex;
+  border-bottom: 1px solid var(--cp-border-color);
+  background-color: #fafbfc;
+  padding: 0 16px;
+}
+
+.CandidateProfile-tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.CandidateProfile-tab-btn:hover {
+  color: var(--cp-accent-blue);
+}
+
+.CandidateProfile-tab-active {
+  color: var(--cp-accent-blue);
+  border-bottom-color: var(--cp-accent-blue);
+  font-weight: 600;
+}
+
+.CandidateProfile-tab-icon {
+  font-size: 14px;
+}
+
+.CandidateProfile-tab-body {
+  padding: 30px;
+}
+
+/* History Timeline Styling Architecture */
+.CandidateProfile-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.CandidateProfile-timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background-color: #cbd5e1;
+}
+
+.CandidateProfile-timeline-item {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.CandidateProfile-timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.CandidateProfile-timeline-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--cp-accent-blue);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  z-index: 2;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px #ffffff;
+}
+
+.CandidateProfile-timeline-content {
+  flex-grow: 1;
+  background-color: #ffffff;
+}
+
+.CandidateProfile-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.CandidateProfile-timeline-role {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333f54;
+  margin: 0 0 2px 0;
+}
+
+.CandidateProfile-timeline-company {
+  font-size: 12px;
+  color: var(--cp-accent-blue);
+  font-weight: 500;
+}
+
+.CandidateProfile-timeline-period {
+  font-size: 11px;
+  color: var(--cp-text-placeholder);
+}
+
+.CandidateProfile-timeline-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--cp-text-placeholder);
+  margin: 0;
+}
+
+.CandidateProfile-tab-placeholder {
+  font-size: 13px;
+  color: var(--cp-text-placeholder);
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* Responsive View Media Breakpoint Adaptations */
+@media (max-width: 1024px) {
+  .CandidateProfile-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .CandidateProfile-container {
+    padding: 16px;
+  }
+  .CandidateProfile-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .CandidateProfile-tabs-nav {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .CandidateProfile-tab-btn {
+    padding: 12px 16px;
+    width: 50%;
+    justify-content: center;
+  }
+  .CandidateProfile-timeline-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

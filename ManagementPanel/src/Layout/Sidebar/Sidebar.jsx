@@ -357,14 +357,14 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.jobs ? "show" : ""}`}>
-              <NavLink to="/jobs/list" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Jobs List</NavLink>
-              <NavLink to="/jobs/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Job</NavLink>
-              <NavLink to="/jobs/details" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Job Details</NavLink>
-              <NavLink to="/jobs/candidate-profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Candidate Profile</NavLink>
-              <NavLink to="/jobs/interview" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Interview Schedule</NavLink>
-              <NavLink to="/jobs/offers" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Offer Letters</NavLink>
-              <NavLink to="/jobs/pipeline" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Hiring Pipeline</NavLink>
-              <NavLink to="/jobs/resumes" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Resumes</NavLink>
+              <NavLink to="/management/jobs/list" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Jobs List</NavLink>
+              <NavLink to="/management/jobs/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Job</NavLink>
+              <NavLink to="/management/jobs/details" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Job Details</NavLink>
+              <NavLink to="/management/jobs/candidate-profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Candidate Profile</NavLink>
+              <NavLink to="/management/jobs/interview" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Interview Schedule</NavLink>
+              <NavLink to="/management/jobs/offers" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Offer Letters</NavLink>
+              <NavLink to="/management/jobs/pipeline" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Hiring Pipeline</NavLink>
+              <NavLink to="/management/jobs/resumes" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Resumes</NavLink>
             </div>
           )}
 
@@ -396,7 +396,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             </div>
             {!collapsed && (dropdowns.departments ? <FiChevronDown /> : <FiChevronRight />)}
           </div>
-          {!collapsed && (
+          {/* {!collapsed && (
             <div className={`submenu ${dropdowns.departments ? "show" : ""}`}>
               <NavLink to="/departments/all" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>All Departments</NavLink>
               <NavLink to="/departments/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Department</NavLink>
@@ -405,7 +405,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/departments/budget" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Department Budget</NavLink>
               <NavLink to="/departments/performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Department Performance</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* TRAINING DROPDOWN */}
           <div
