@@ -17,12 +17,20 @@ const blogRoutes = require("./src/routes/blogRoutes");
 const industryRoutes = require("./src/routes/industryRoutes");
 const galleryRoutes = require("./src/routes/galleryRoutes");
 const testimonialRoutes = require("./src/routes/testimonialRoutes");
-
-const app = express();
+const employeeRoutes = require("./src/routes/employeeRoutes");
+const addEmployeeRoutes = require("./src/routes/addEmployeeRoutes");
+const employeeShiftRoutes = require("./src/routes/employeeShiftRoutes");
+const employeeAuthRoutes = require("./src/routes/employeeAuthRoutes");
 
 
 // ==============================
-// Connect MongoDB
+// Initialize App
+// ==============================
+
+const app = express();
+
+// ==============================
+// Connect Database
 // ==============================
 
 connectDB();
@@ -41,49 +49,46 @@ const allowedOrigins = [
   "http://localhost:3000",
 ];
 
-const corsOptions = {
-  origin(origin, callback) {
-    // Allow Postman, curl, server-to-server requests
-    if (!origin) {
-      return callback(null, true);
-    }
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
 
-    console.log("Blocked Origin:", origin);
-    return callback(new Error("Not allowed by CORS"));
-  },
+      console.log("Blocked Origin:", origin);
+      return callback(new Error("Not allowed by CORS"));
+    },
 
-  credentials: true,
+    credentials: true,
 
-  methods: [
-    "GET",
-    "POST",
-    "PUT",
-    "PATCH",
-    "DELETE",
-    "OPTIONS",
-  ],
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+    ],
 
-  allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "Authorization",
-  ],
-};
-
-app.use(cors(corsOptions));
+    allowedHeaders: [
+      "Origin",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+      "X-Requested-With",
+    ],
+  })
+);
 
 // ==============================
 // Body Parser
 // ==============================
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "20mb" }));
+app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
 // ==============================
 // Static Upload Folder
@@ -98,6 +103,7 @@ app.use(
 // API Routes
 // ==============================
 
+// Website APIs
 app.use("/api/team-members", teamRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/testimonial", testimonialRoutes);
@@ -106,8 +112,14 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/industries", industryRoutes);
 app.use("/api/gallery", galleryRoutes);
 
+// CRM APIs
+app.use("/api/employees", employeeRoutes);
+app.use("/api/addemployees", addEmployeeRoutes);
+app.use("/api/employee-shifts", employeeShiftRoutes);
+app.use("/api/auth", employeeAuthRoutes);
+
 // ==============================
-// Home Route
+// Health Check
 // ==============================
 
 app.get("/", (req, res) => {
@@ -148,5 +160,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server Running on http://localhost:${PORT}`);
+  console.log(`🚀 Server Running on Port ${PORT}`);
 });

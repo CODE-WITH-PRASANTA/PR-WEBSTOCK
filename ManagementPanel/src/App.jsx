@@ -79,6 +79,7 @@ import Reimbursements from "./Components/Reimbursements/Reimbursements";
 import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
 import TaxReports from "./Components/TaxReports/TaxReports";
 import Task from "./Components/Task/Task";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 
 
 const App = () => {
@@ -88,6 +89,8 @@ const App = () => {
 
         {/* Redirect */}
         <Route path="/" element={<Navigate to="/management/dashboard" replace />} />
+          <Route path="/login" element={<LoginPage />} />
+
 
         {/* Employee Layout */}
         <Route path="management" element={<MainLayout />}>
