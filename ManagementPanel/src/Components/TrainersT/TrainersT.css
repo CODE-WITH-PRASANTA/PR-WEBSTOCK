@@ -1,0 +1,847 @@
+/* ==========================================================================
+   1. CORE VARIABLES, SCOPE & CONFIGURATION MATRIX
+   ========================================================================== */
+.tt-workspace-context-wrapper {
+  --bkg: #f8fafc;
+  --panel-white: #ffffff;
+  --item-border: #e2e8f0;
+  --dark-slate: #0f172a;
+  --soft-slate: #475569;
+  --indigo-primary: #4f46e5;
+  --indigo-hover: #4338ca;
+  --indigo-tint: #f5f3ff;
+  --emerald-success: #10b981;
+  --emerald-bg: #ecfdf5;
+  --rose-danger: #ef4444;
+  --rose-bg: #fef2f2;
+  --slate-hover: #f1f5f9;
+  
+  box-sizing: border-box;
+  background-color: var(--bkg);
+  min-height: 100vh;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--soft-slate);
+  line-height: 1.5;
+}
+
+/* Local Reset Isolation Guardrail */
+.tt-workspace-context-wrapper *,
+.tt-workspace-context-wrapper *::before,
+.tt-workspace-context-wrapper *::after {
+  box-sizing: inherit;
+}
+
+/* ==========================================================================
+   2. BREADCRUMBS TRAIL HEADERS
+   ========================================================================== */
+.tt-breadcrumb-trail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tt-main-viewport-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark-slate);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.tt-path-indicator-chain {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.tt-delimiter {
+  user-select: none;
+}
+
+.tt-active-destination {
+  color: var(--dark-slate);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   3. CONTROL ACTIONS PANEL & TOOLBAR UTILITIES
+   ========================================================================== */
+.tt-control-actions-panel {
+  background: var(--panel-white);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border: 1px solid var(--item-border);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tt-search-composite-hull {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f1f5f9;
+  border: 1px solid var(--item-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 100%;
+  max-width: 360px;
+  transition: all 0.2s ease;
+}
+
+.tt-search-composite-hull:focus-within {
+  border-color: var(--indigo-primary);
+  background: var(--panel-white);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.tt-search-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--indigo-primary);
+  background: var(--indigo-tint);
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.tt-search-icon {
+  user-select: none;
+  font-size: 14px;
+}
+
+.tt-search-composite-hull input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--dark-slate);
+  width: 100%;
+}
+
+.tt-search-composite-hull input::placeholder {
+  color: #94a3b8;
+}
+
+.tt-utility-button-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tt-utility-icon-btn {
+  background: var(--panel-white);
+  border: 1px solid var(--item-border);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.tt-utility-icon-btn:hover {
+  background: var(--slate-hover);
+  color: var(--dark-slate);
+}
+
+.tt-utility-icon-btn.tt-state-on {
+  background: var(--indigo-tint);
+  border-color: var(--indigo-primary);
+  color: var(--indigo-primary);
+}
+
+.tt-utility-icon-btn.tt-additive-theme-btn {
+  background: var(--emerald-bg);
+  border-color: #a7f3d0;
+  color: #047857;
+}
+
+.tt-utility-icon-btn.tt-additive-theme-btn:hover {
+  background: #d1fae5;
+}
+
+.tt-utility-icon-btn.tt-download-theme-btn:hover {
+  background: var(--indigo-tint);
+  color: var(--indigo-primary);
+}
+
+.tt-bulk-delete-trigger-btn {
+  background: var(--rose-bg);
+  color: var(--rose-danger);
+  border: 1px solid #fca5a5;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.tt-bulk-delete-trigger-btn:hover {
+  background: var(--rose-danger);
+  color: var(--panel-white);
+  border-color: var(--rose-danger);
+}
+
+/* ==========================================================================
+   4. COLUMN VISIBILITY MANAGER POPOVER
+   ========================================================================== */
+.tt-popover-anchor-shell {
+  position: relative;
+}
+
+.tt-columns-manager-popover {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 8px;
+  width: 220px;
+  background: var(--panel-white);
+  border: 1px solid var(--item-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  z-index: 100;
+  padding: 8px 0;
+  animation: ttScaleOpen 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes ttScaleOpen {
+  from { opacity: 0; transform: scale(0.95) translateY(-4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.tt-popover-title {
+  padding: 4px 16px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  border-bottom: 1px solid #f1f5f9;
+  letter-spacing: 0.05em;
+}
+
+.tt-popover-scroller {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.tt-popover-checkbox-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  text-transform: capitalize;
+  font-weight: 500;
+  color: var(--soft-slate);
+  transition: background 0.12s ease;
+}
+
+.tt-popover-checkbox-line:hover {
+  background: var(--slate-hover);
+  color: var(--dark-slate);
+}
+
+.tt-popover-checkbox-line input[type="checkbox"],
+.tt-col-width-checkbox input[type="checkbox"] {
+  accent-color: var(--indigo-primary);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   5. DATA VIEWPORT GRID TABLE
+   ========================================================================== */
+.tt-table-viewport-canvas {
+  background: var(--panel-white);
+  border: 1px solid var(--item-border);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow-x: auto;
+}
+
+.tt-structured-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14.5px;
+  white-space: nowrap;
+}
+
+.tt-structured-data-table th {
+  background: #f8fafc;
+  padding: 16px;
+  font-weight: 600;
+  color: var(--soft-slate);
+  border-bottom: 1px solid var(--item-border);
+  user-select: none;
+}
+
+.tt-structured-data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--soft-slate);
+}
+
+.tt-interactive-table-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.tt-interactive-table-row:hover {
+  background: #f8fafc;
+}
+
+.tt-col-width-checkbox {
+  width: 50px;
+  text-align: center;
+}
+
+.tt-col-width-id {
+  width: 60px;
+  font-family: monospace;
+  color: #94a3b8;
+}
+
+.tt-col-width-actions {
+  width: 90px;
+  text-align: center;
+}
+
+.tt-cell-bold-text {
+  font-weight: 600;
+  color: var(--dark-slate);
+}
+
+.tt-text-dimmed {
+  color: #64748b;
+}
+
+.tt-expertise-tag {
+  background: #f1f5f9;
+  color: var(--dark-slate);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tt-status-pill {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.tt-status-pill.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.tt-status-pill.inactive {
+  background: var(--rose-bg);
+  color: #991b1b;
+}
+
+.tt-empty-table-fallback {
+  padding: 48px;
+  text-align: center;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   6. CONTEXT REVEAL & ACTIONS CONTEXT POPUP MENUS
+   ========================================================================== */
+.tt-row-flex-controls-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tt-checkbox-revealed-row-delete-btn {
+  background: var(--rose-bg);
+  border: 1px solid #fecdd3;
+  color: var(--rose-danger);
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  animation: ttScaleOpen 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tt-checkbox-revealed-row-delete-btn:hover {
+  background: var(--rose-danger);
+  color: var(--panel-white);
+  border-color: var(--rose-danger);
+}
+
+.tt-three-dots-trigger-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: var(--soft-slate);
+  transition: background 0.12s ease;
+  user-select: none;
+}
+
+.tt-three-dots-trigger-btn:hover {
+  background: var(--item-border);
+  color: var(--dark-slate);
+}
+
+.tt-row-relative-menu-anchor {
+  position: relative;
+}
+
+.tt-action-dropdown-popover-menu {
+  position: absolute;
+  right: 100%;
+  top: -5px;
+  margin-right: 8px;
+  width: 175px;
+  background: var(--panel-white);
+  border: 1px solid var(--item-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.02);
+  z-index: 110;
+  padding: 6px 0;
+  animation: ttScaleOpen 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tt-dropdown-action-line-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--soft-slate);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.12s ease;
+}
+
+.tt-dropdown-action-line-item:hover {
+  background: var(--slate-hover);
+  color: var(--dark-slate);
+}
+
+.tt-dropdown-action-line-item.blue-edit {
+  color: var(--indigo-primary);
+}
+
+.tt-dropdown-action-line-item.blue-edit:hover {
+  background: var(--indigo-tint);
+}
+
+.tt-dropdown-action-line-item.red-delete {
+  color: var(--rose-danger);
+}
+
+.tt-dropdown-action-line-item.red-delete:hover {
+  background: var(--rose-bg);
+}
+
+.tt-dropdown-divider {
+  border: 0;
+  border-top: 1px solid #f1f5f9;
+  margin: 6px 0;
+}
+
+/* ==========================================================================
+   7. STEPPER FOOTER PANEL
+   ========================================================================== */
+.tt-pagination-footer-panel {
+  margin-top: 16px;
+  background: var(--panel-white);
+  border: 1px solid var(--item-border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 14px;
+  user-select: none;
+}
+
+.tt-items-per-page-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--soft-slate);
+}
+
+.tt-items-per-page-selector select {
+  padding: 6px 24px 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--item-border);
+  background: #f8fafc;
+  font-weight: 600;
+  color: var(--dark-slate);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.tt-items-per-page-selector select:focus {
+  border-color: var(--indigo-primary);
+}
+
+.tt-pagination-stepper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 500;
+}
+
+.tt-stepper-arrows-flex {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.tt-stepper-arrows-flex button {
+  background: #f1f5f9;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--soft-slate);
+  transition: all 0.12s ease;
+}
+
+.tt-stepper-arrows-flex button:hover:not(:disabled) {
+  background: var(--item-border);
+  color: var(--dark-slate);
+}
+
+.tt-stepper-arrows-flex button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   8. POPUPS INTERACTIVE MODALS BACKDROP & GRID WINDOWS
+   ========================================================================== */
+.tt-modal-backdrop-blur {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+  animation: ttFadeIn 0.2s linear forwards;
+}
+
+.tt-modal-window-box {
+  background: var(--panel-white);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 680px;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(15px);
+  animation: ttSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes ttFadeIn { to { opacity: 1; } }
+@keyframes ttSlideUp { to { transform: translateY(0); opacity: 1; } }
+
+.tt-modal-header-banner {
+  background: var(--indigo-primary);
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--panel-white);
+}
+
+.tt-modal-header-banner h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tt-modal-dismiss-cross {
+  background: transparent;
+  border: none;
+  color: var(--panel-white);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.8;
+  transition: opacity 0.12s ease;
+  display: flex;
+  align-items: center;
+}
+
+.tt-modal-dismiss-cross:hover {
+  opacity: 1;
+}
+
+.tt-modal-scrollable-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.tt-form-css-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 540px) {
+  .tt-form-css-grid { grid-template-columns: 1fr 1fr; }
+  .tt-grid-span-full { grid-column: span 2; }
+}
+
+.tt-input-field-hull {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tt-input-field-hull label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.tt-input-field-hull input, 
+.tt-input-field-hull select {
+  padding: 11px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  color: var(--dark-slate);
+  background-color: var(--panel-white);
+  transition: all 0.15s ease;
+}
+
+.tt-input-field-hull input:focus,
+.tt-input-field-hull select:focus {
+  border-color: var(--indigo-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.tt-modal-footer-action-row {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.tt-action-btn-save {
+  background: var(--indigo-primary);
+  color: var(--panel-white);
+  border: none;
+  padding: 11px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.tt-action-btn-save:hover {
+  background: var(--indigo-hover);
+}
+
+.tt-action-btn-cancel {
+  background: #e2e8f0;
+  color: var(--soft-slate);
+  border: none;
+  padding: 11px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tt-action-btn-cancel:hover {
+  background: #cbd5e1;
+  color: var(--dark-slate);
+}
+
+/* ==========================================================================
+   9. EXTENDED USER PROFILES SCHEMA DETAILED MODAL
+   ========================================================================== */
+.tt-modal-window-box.detail-theme {
+  max-width: 580px;
+}
+
+.tt-modal-header-banner.detail-header {
+  background: var(--dark-slate);
+}
+
+.tt-detail-title-flex {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tt-avatar-fallback-placeholder {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--indigo-primary);
+  color: var(--panel-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.tt-sub-text-header {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.tt-detail-grid-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 480px) {
+  .tt-detail-grid-section { grid-template-columns: 1fr 1fr; }
+}
+
+.tt-detail-card-item {
+  padding: 14px;
+  background: #f8fafc;
+  border: 1px solid var(--item-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tt-detail-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tt-detail-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-slate);
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   10. SYSTEM SCROLLBAR MUTATIONS (PERSISTENT BRANDING OVERLAYS)
+   ========================================================================== */
+.unique-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.unique-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.unique-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.unique-scrollbar::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Firefox Support Alternate */
+.unique-scrollbar,
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+/* ==========================================================================
+   11. FLEX WEB RESPONSIVE ADAPTER SYSTEM
+   ========================================================================== */
+@media (max-width: 640px) {
+  .tt-control-actions-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .tt-search-composite-hull {
+    max-width: 100%;
+  }
+  
+  .tt-utility-button-cluster {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .tt-pagination-footer-panel {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}

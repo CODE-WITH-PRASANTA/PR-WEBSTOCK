@@ -1,0 +1,406 @@
+/* ================= CONTAINERS AND SYSTEM PALETTE ================= */
+.re-layout-root-container {
+  background-color: #eef2f9; /* Exact light slate gray background from image_d05c67.jpg */
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ================= BREADCRUMB HEADER STRIP ================= */
+.re-breadcrumb-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.re-crumb-left h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #334155;
+  margin: 0;
+}
+
+.re-crumb-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.re-home-icon-node {
+  font-size: 15px;
+  color: #475569;
+}
+
+.re-separator-node {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.re-dim-node {
+  color: #475569;
+}
+
+.re-active-node {
+  color: #64748b;
+}
+
+/* ================= GRID DIVISION LAYER WRAPPER ================= */
+.re-interface-grid-wrapper {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ================= LEFT INTERACTIVE SIDEBAR NAVIGATION ================= */
+.re-sidebar-left {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 250px;
+  flex-shrink: 0;
+  padding: 24px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.re-compose-btn-sidebar {
+  background-color: #0e8354; /* Exact dark forest emerald green from reference image */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+
+.re-folders-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.re-folder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: #475569;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.re-folder-item:hover {
+  background: #f1f5f9;
+}
+
+.re-folder-item.active-folder {
+  background: #3b82f6; /* Exact solid primary blue row highlight */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.folder-label-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.unread-counter-badge {
+  background-color: #f59e0b; /* Amber badge label container */
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.re-sidebar-section-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 20px 0;
+}
+
+.sidebar-group-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 12px;
+  padding-left: 12px;
+}
+
+.re-labels-tag-cloud {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 12px;
+}
+
+.tag-label-node {
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.tag-dot.dot-red { background-color: #ef4444; }
+.tag-dot.dot-blue { background-color: #3b82f6; }
+.tag-dot.dot-orange { background-color: #f97316; }
+.tag-dot.dot-teal { background-color: #0ea5e9; }
+.tag-dot.dot-cyan { background-color: #06b6d4; }
+
+.re-online-users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 12px;
+}
+
+.online-user-row {
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.online-dot-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #22c55e;
+}
+
+.online-dot-indicator.gold {
+  background-color: #eab308;
+}
+
+/* ================= RIGHT DISPLAY EMAIL CONSOLE ================= */
+.re-content-panel-right {
+  background: #ffffff;
+  border-radius: 4px;
+  flex-grow: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.re-email-subject-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 16px 0;
+}
+
+/* Sender Meta Row Layout precisely matching screenshot metrics */
+.re-email-meta-sender-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #edf2f7;
+  padding-top: 16px;
+  margin-bottom: 24px;
+}
+
+.meta-sender-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sender-profile-circle-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.meta-sender-txt-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.sender-profile-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #2563eb; /* Accurate profile blue hyperlink shade */
+}
+
+.sender-email-sub-label {
+  font-size: 11.5px;
+  color: #718096;
+  margin-top: 1px;
+}
+
+.meta-timestamp-right-node span {
+  font-size: 12.5px;
+  color: #2d3748;
+}
+
+/* Paragraph structures alignment rules mapping layout */
+.re-email-body-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.re-email-body-text-content p {
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.6;
+  margin: 0;
+  text-align: justify;
+}
+
+.blue-inline-link {
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.blue-inline-link:hover {
+  text-decoration: underline;
+}
+
+/* ================= ATTACHMENTS CARD AREA MATRIX ================= */
+.re-attachments-control-title-strip {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+
+.attachments-lbl-flex {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #4a5568;
+}
+
+.clip-icon-attachment-node {
+  font-size: 15px;
+  color: #4a5568;
+  margin-right: 8px;
+}
+
+.blue-action-trigger-link {
+  color: #2563eb;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.blue-action-trigger-link:hover {
+  text-decoration: underline;
+}
+
+.partition-pipe {
+  color: #cbd5e1;
+  margin: 0 8px;
+}
+
+/* Grid card preview rows alignment */
+.re-attachments-image-previews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.attachment-card-box-node {
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+}
+
+.attachment-image-aspect-frame {
+  width: 100%;
+  height: 110px;
+  background: #f7fafc;
+  overflow: hidden;
+}
+
+.attachment-image-aspect-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.attachment-card-footer-lbl-link {
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  font-size: 11px;
+}
+
+.attachment-filename-txt {
+  color: #2563eb;
+  cursor: pointer;
+  max-width: 85px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachment-filesize-txt {
+  color: #718096;
+}
+
+/* ================= QUICK REPLY PANEL ACTION STRIP ================= */
+.re-quick-reply-action-footer-panel {
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 16px 20px;
+  background-color: #ffffff;
+}
+
+.reply-placeholder-prompt-lbl {
+  margin: 0;
+  font-size: 13.5px;
+  color: #4a5568;
+}
+
+/* ================= SYSTEM MEDIA DEVICE RESPONSIVENESS ================= */
+@media (max-width: 992px) {
+  .re-interface-grid-wrapper {
+    flex-direction: column;
+  }
+  .re-sidebar-left {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .re-breadcrumb-header-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .re-email-meta-sender-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .meta-timestamp-right-node {
+    margin-left: 46px;
+  }
+}

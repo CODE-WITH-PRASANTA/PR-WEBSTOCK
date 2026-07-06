@@ -54,6 +54,21 @@ import Remote from "./Pages/Remote/Remote";
 import EmployeeSalary from "./Components/EmployeeSalary/EmployeeSalary";
 import PaySlip from "./Components/PaySlip/PaySlip";
 import SalaryStructure from "./Components/SalaryStructure/SalaryStructure";
+
+import AttendanceSheet from "./Components/AttendanceSheet/AttendanceSheet";
+import Timesheets from "./Components/Timesheets/Timesheets";
+import EmployeeExit from "./Components/EmployeeExit/EmployeeExit";
+import LeaveReport from "./Components/LeaveReport/LeaveReport";
+import ExpenseReport from "./Components/ExpenseReport/ExpenseReport";
+import Leads from "./Components/Leads/Leads";
+
+import PayrollProcessing from "./Components/PayrollProcessing/PayrollProcessing";
+import CompanyDocument from "./Components/CompanyDocument/CompanyDocument";
+import ManagementDocument from "./Components/ManagementDocument/ManagementDocument";
+import DocumentPolicies from "./Components/DocumentPolicies/DocumentPolicies";
+import ESignatures from "./Components/ESignatures/ESignatures";
+import DocumentTemplates from "./Components/DocumentTemplates/DocumentTemplates";
+import Calender from "./Components/Calender/Calender";
 import AccPayments from "./Components/AccPayments/AccPayments";
 import AccAddpayments from "./Components/AccAddpayments/AccAddpayments";
 import AccInvoice from "./Components/AccInvoice/AccInvoice";
@@ -64,6 +79,7 @@ import Reimbursements from "./Components/Reimbursements/Reimbursements";
 import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
 import TaxReports from "./Components/TaxReports/TaxReports";
 import Task from "./Components/Task/Task";
+<<<<<<< HEAD
 import JobsList from "./Components/JobsList/JobsList";
 import AddJob from "./Components/AddJob/AddJob";
 import JobDetails from "./Components/JobDetails/JobDetails";
@@ -72,6 +88,19 @@ import InterviewSchedule from "./Components/InterviewSchedule/InterviewSchedule"
 import OfferLetters from "./Components/OfferLetters/OfferLetters";
 import HiringPipeline from "./Components/HiringPipeline/HiringPipeline";
 import Resumes from "./Components/Resumes/Resumes";
+=======
+<<<<<<< HEAD
+import Announcement from "./Components/Announcement/Announcement";
+import Notifications from "./Components/Notifications/Notifications";
+import GolesPr from "./Components/GolesPr/GolesPr";
+import TrainingList from "./Components/TrainingList/TrainingList";
+import TrainersT from "./Components/TrainersT/TrainersT";
+=======
+import Appraisals from "./Components/Appraisals/Appraisals";
+import PerformanceReviews from "./Components/PerformanceReviews/PerformanceReviews";
+import Feedback from "./Components/Feedback/Feedback";
+>>>>>>> 6d752954a48096b9cdc9b62a9de49d558c32be4e
+>>>>>>> ee20f26719d573a9b529a5d9d14101891bbb1387
 
 
 const App = () => {
@@ -103,6 +132,10 @@ const App = () => {
           <Route path="edit" element={<EditManagement/>}/>
           <Route path="today" element={<TodayAttendance/>}/>
           <Route path="management" element={<EmployeeAttendance/>}/>
+          <Route path="appraisals" element={<Appraisals/>}/>
+          <Route path="reviews" element={<PerformanceReviews/>}/>
+          <Route path="feedback" element={<Feedback/>}/>
+
           
           
           <Route path="documents" element={<EmployeeDocuments />} />
@@ -120,6 +153,18 @@ const App = () => {
           <Route path="payroll/deductions" element={<Deductions />} />
           <Route path="payroll/compliance" element={<StatutoryCompliance />}/>
           <Route path="payroll/structure"element={<SalaryStructure/>}/>
+          <Route path="payroll/processing"element={<PayrollProcessing/>}/>
+          <Route path="company"element={<CompanyDocument/>}/>
+          <Route path="management-doc"element={<ManagementDocument/>}/>
+          <Route path="policies"element={<DocumentPolicies/>}/>
+          <Route path="templates"element={<DocumentTemplates/>}/>
+          <Route path="signatures"element={<ESignatures/>}/>
+          <Route path="shortlist"element={<Calender/>}/>
+          <Route path="announcements"element={<Announcement/>}/>
+          <Route path="notifications"element={<Notifications/>}/>
+          <Route path="goals"element={<GolesPr/>}/>
+          <Route path="list"element={<TrainingList/>}/>
+          <Route path="trainers"element={<TrainersT/>}/>
 
           
           <Route path="holidays/all" element={<AllHolidays/>}/>
@@ -129,6 +174,22 @@ const App = () => {
          <Route path="clients/add" element={<AddClient/>}/>
          <Route path="clients/edit" element={<EditClient/>}/>
          <Route path="clients/profile" element={<ClientProfile/>}/>
+         <Route path="projects/details" element={<ProjectDetails/>}/>
+         <Route path="projects/estimates" element={<Estimates/>}/>
+         <Route path="clients/contacts" element={<ClientContacts/>}/>
+         <Route path="clients/projects"element={<ClientProjects/>}/>
+         <Route path="clients/invoices" element={<ClientInvoices/>}/>
+         <Route path="clients/payments" element={<ClientPayments/>}/>
+         <Route path="overtime"element={<Overtime/>}/>
+         <Route path="shift-planning"element={<ShiftPlanning/>}/>
+         <Route path="remote"element={<Remote/>}/>
+         <Route path="structure"element={<SalaryStructure/>}/>
+         <Route path="sheet" element={<AttendanceSheet />} />
+         <Route path="timesheets" element={<Timesheets />} />
+         <Route path="exit" element={<EmployeeExit />} />
+         <Route path="leave" element={<LeaveReport />} />
+         <Route path="expense" element={<ExpenseReport />} />
+         <Route path="leaders" element={<Leads />} />
           <Route path="projects/details" element={<ProjectDetails/>}/>
           <Route path="projects/estimates" element={<Estimates/>}/>
           <Route path="clients/contacts" element={<ClientContacts/>}/>

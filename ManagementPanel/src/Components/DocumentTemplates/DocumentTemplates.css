@@ -1,0 +1,432 @@
+/* Color Palette Specifications */
+:root {
+  --tmpl-bg-canvas: #f8fafc;
+  --tmpl-surface-white: #ffffff;
+  --tmpl-text-main: #1e293b;
+  --tmpl-text-secondary: #64748b;
+  --tmpl-purple-theme: #6366f1;
+  --tmpl-border-tint: #cbd5e1;
+  --tmpl-crimson-red: #b91c1c;
+}
+
+/* Base Master Wrapper Area Framework */
+.tmpl-dashboard-view {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.tmpl-dashboard-header-path {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tmpl-dashboard-view-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--tmpl-text-main);
+}
+
+.tmpl-dashboard-breadcrumbs-trail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--tmpl-text-secondary);
+}
+
+.tmpl-dashboard-trail-arrow {
+  color: #94a3b8;
+}
+
+.tmpl-dashboard-trail-current {
+  color: var(--tmpl-text-main);
+  font-weight: 500;
+}
+
+/* Master Grid Card Enclosure Panel Component */
+.tmpl-dashboard-main-card {
+  background-color: var(--tmpl-surface-white);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Header Filter Toolbar Configurations styling rules */
+.tmpl-dashboard-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tmpl-dashboard-search-block {
+  position: relative;
+}
+
+.tmpl-dashboard-search-block input {
+  padding: 10px 12px 10px 38px;
+  border: 1px solid var(--tmpl-border-tint);
+  border-radius: 6px;
+  width: 240px;
+  outline: none;
+  font-size: 14px;
+}
+
+.tmpl-dashboard-search-block input:focus {
+  border-color: var(--tmpl-purple-theme);
+}
+
+.tmpl-dashboard-search-lens-icon {
+  position: absolute;
+  left: 14px;
+  top: 11px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.tmpl-dashboard-toolbar-actions-cluster {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.tmpl-dashboard-control-button {
+  background: white;
+  border: 1px solid var(--tmpl-border-tint);
+  border-radius: 6px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.tmpl-dashboard-control-button:hover {
+  background-color: #f1f5f9;
+}
+
+/* Contextual Checked Row Multiselect Execution Trigger button styling */
+.tmpl-dashboard-action-bulk-delete {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  padding: 0 16px;
+  height: 38px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tmpl-dashboard-action-bulk-delete:hover {
+  background-color: #fca5a5;
+}
+
+/* Popover Dropdown Selection Layout positioning from image_dd128f.png */
+.tmpl-dashboard-popover-anchor {
+  position: relative;
+}
+
+.tmpl-dashboard-popover-panel-menu {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  background: white;
+  border: 1px solid var(--tmpl-border-tint);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  width: 220px;
+  z-index: 100;
+  padding: 12px;
+}
+
+.tmpl-dashboard-popover-panel-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tmpl-text-main);
+}
+
+.tmpl-dashboard-popover-panel-line-break {
+  margin: 6px 0 10px;
+  border: 0;
+  border-top: 1px solid #f1f5f9;
+}
+
+.tmpl-dashboard-popover-panel-row-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tmpl-dashboard-popover-item-label-text {
+  text-transform: capitalize;
+}
+
+/* Matrix Data Table Layout Elements */
+.tmpl-dashboard-table-viewport-scroller {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.tmpl-dashboard-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.tmpl-dashboard-data-table th {
+  color: #475569;
+  font-weight: 600;
+  padding: 16px;
+  border-bottom: 2px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.tmpl-dashboard-data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.tmpl-dashboard-row-selected-highlight {
+  background-color: #f8fafc !important;
+}
+
+.tmpl-dashboard-cell-text-bold {
+  font-weight: 500;
+  color: var(--tmpl-text-main);
+}
+
+/* File Extension badges layouts */
+.tmpl-dashboard-file-badge-pill {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.file-type-pdf { background-color: #ef4444; }
+.file-type-docx { background-color: #3b82f6; }
+.file-type-xlsx { background-color: #10b981; }
+
+.tmpl-dashboard-column-centered { text-align: center !important; }
+.tmpl-dashboard-row-action-download-icon { background: none; border: none; cursor: pointer; font-size: 16px; }
+
+.tmpl-dashboard-cell-row-actions-block button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+}
+
+.tmpl-dashboard-empty-table-placeholder {
+  color: var(--tmpl-text-secondary);
+  padding: 40px 0 !important;
+  text-align: center;
+}
+
+/* Bottom Pagination Elements Structural Styling layout rules */
+.tmpl-dashboard-pagination-footer-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 14px 20px;
+  border-top: 1px solid #e2e8f0;
+  gap: 24px;
+  font-size: 14px;
+  color: #475569;
+  flex-wrap: wrap;
+}
+
+.tmpl-dashboard-items-per-page-selector-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tmpl-dashboard-items-per-page-selector-block select {
+  padding: 6px 10px;
+  border: 1px solid var(--tmpl-border-tint);
+  border-radius: 4px;
+  background: white;
+}
+
+.tmpl-dashboard-pagination-navigation-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tmpl-dashboard-pagination-arrows-wrapper {
+  display: flex;
+  gap: 4px;
+}
+
+.tmpl-dashboard-pagination-arrow {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tmpl-dashboard-pagination-arrow:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* ========================================================================
+   MODAL WINDOW DIALOG DICTIONARY OVERLAYS DEFINITIONS (IMAGE_DD12EA MATCHED)
+   ======================================================================== */
+.tmpl-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.tmpl-modal-container-box {
+  background-color: white;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.tmpl-modal-header-banner {
+  background-color: #6366f1;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.tmpl-modal-header-title-text { margin: 0; font-size: 18px; font-weight: 500; }
+.tmpl-modal-header-close-button-cross { background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
+
+.tmpl-modal-form-scroller-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #f8fafc;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Structured top attachment drag-drop view boundary zone layout box from image_dd12ea.png */
+.tmpl-modal-drag-drop-zone-box {
+  border: 2px dashed #cbd5e1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.tmpl-modal-drag-drop-cloud-icon { font-size: 36px; color: #6366f1; display: block; margin-bottom: 8px; }
+.tmpl-modal-drag-drop-text-prompt { font-size: 14px; color: #64748b; margin: 0; }
+.tmpl-modal-drag-drop-browse-highlight { color: #6366f1; font-weight: 600; text-decoration: underline; }
+
+.tmpl-modal-form-input-row { display: flex; gap: 16px; width: 100%; }
+.tmpl-modal-form-input-group { display: flex; flex-direction: column; gap: 6px; }
+.tmpl-modal-form-input-group.full-width-row { width: 100%; }
+.tmpl-modal-form-input-group.half-width-split { flex: 1; }
+.tmpl-modal-form-input-group label { font-size: 13px; font-weight: 500; color: #475569; }
+
+.tmpl-modal-input-icon-wrapper-frame { position: relative; display: flex; align-items: center; }
+
+.tmpl-modal-input-icon-wrapper-frame input,
+.tmpl-modal-form-select-tag,
+.tmpl-modal-form-textarea-tag {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--tmpl-border-tint);
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.tmpl-modal-input-icon-wrapper-frame input { padding-right: 38px; height: 42px; }
+.tmpl-modal-form-select-tag { height: 42px; }
+
+.tmpl-modal-input-embedded-icon {
+  position: absolute;
+  right: 14px;
+  font-size: 16px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.tmpl-modal-form-action-buttons-strip { display: flex; gap: 12px; margin-top: 12px; }
+
+.tmpl-modal-action-btn-submit {
+  background-color: var(--tmpl-crimson-red);
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tmpl-modal-action-btn-cancel {
+  background-color: #cbd5e1;
+  color: #334155;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ========================================================================
+   RESPONSIVE LAYOUT RESPONSIVENESS AND DEVICE BREAKPOINTS TUNING
+   ======================================================================== */
+@media (max-width: 768px) {
+  .tmpl-dashboard-toolbar { flex-direction: column; align-items: stretch; }
+  .tmpl-dashboard-search-block input { width: 100%; }
+  .tmpl-dashboard-toolbar-actions-cluster { justify-content: flex-end; width: 100%; }
+  .tmpl-modal-form-input-row { flex-direction: column; gap: 16px; }
+}

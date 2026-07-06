@@ -1,0 +1,790 @@
+:root {
+  --primary-purple: #8b5cf6;
+  --primary-purple-hover: #7c3aed;
+  --dark-red: #ba0000;
+  --light-bg-tint: #f3f4fd;
+  --border-grey: #cbd5e1;
+  --text-dark: #334155;
+  --text-muted: #64748b;
+  --white: #ffffff;
+}
+
+/* Base Body Application Container styling alignment */
+.ee-app-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  padding: 20px;
+  background-color: #f8fafc;
+  color: var(--text-dark);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.ee-app-container * {
+  box-sizing: border-box;
+}
+
+/* Breadcrumbs Title Bar Layout Area matching top section profile */
+.ee-breadcrumb-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ee-main-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  color: #1e293b;
+}
+
+.ee-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.ee-crumb-icon {
+  font-size: 16px;
+  color: #475569;
+}
+
+.ee-crumb-separator {
+  color: #94a3b8;
+  font-weight: 300;
+}
+
+.ee-crumb-active {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* Primary Card Layout Housing Grid components panels */
+.ee-card-panel {
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+/* Top Action Toolbar strip styling alignment */
+.ee-toolbar {
+  background-color: var(--light-bg-tint);
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ee-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ee-section-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Search Bar Container addon element styling profiles */
+.ee-search-input-wrapper {
+  position: relative;
+  background-color: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--border-grey);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  width: 240px;
+  transition: box-shadow 0.2s ease;
+}
+
+.ee-search-input-wrapper:focus-within {
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+  border-color: var(--primary-purple);
+}
+
+.ee-search-icon {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+.ee-search-control {
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  width: 100%;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+/* Right-aligned icon buttons cluster layout */
+.ee-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ee-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.ee-action-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ee-action-btn:active {
+  transform: scale(0.95);
+}
+
+.ee-action-btn.add-btn {
+  background-color: var(--white);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.ee-action-btn.add-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.ee-action-btn.add-btn .ee-icon-svg {
+  fill: #22c55e;
+}
+
+.ee-icon-svg {
+  width: 20px;
+  height: 20px;
+  fill: #64748b;
+}
+
+.ee-icon-svg.filter-icon {
+  fill: var(--primary-purple);
+}
+
+/* Column Visibility Checkbox Pop-down context structure layout matching Screenshot 2026-07-03 125229.png */
+.ee-dropdown-container {
+  position: relative;
+}
+
+.ee-column-menu-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+  width: 210px;
+  z-index: 100;
+  animation: eeFadeIn 0.15s ease-out;
+}
+
+.ee-dropdown-header {
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #1e293b;
+  text-align: center;
+}
+
+.ee-dropdown-divider {
+  height: 1px;
+  background-color: #f1f5f9;
+  margin: 0;
+}
+
+.ee-dropdown-body {
+  padding: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* Custom Styled native Scrollbars matching Screenshot scroll track profiles */
+.ee-dropdown-body::-webkit-scrollbar {
+  width: 6px;
+}
+.ee-dropdown-body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.ee-dropdown-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.ee-dropdown-item-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #475569;
+  transition: background-color 0.15s ease;
+}
+
+.ee-dropdown-item-label:hover {
+  background-color: #f8fafc;
+}
+
+.ee-dropdown-item-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-purple);
+  cursor: pointer;
+}
+
+.ee-capitalize-text {
+  text-transform: capitalize;
+}
+
+/* Primary Data Presentation Responsive Scroller layout engine blocks */
+.ee-table-responsive-scroller {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ee-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.ee-data-table th {
+  background-color: var(--white);
+  color: #475569;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid #edf2f7;
+  white-space: nowrap;
+}
+
+.ee-data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #edf2f7;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ee-data-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.ee-data-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.ee-data-table tbody tr.ee-row-selected {
+  background-color: #f5f3ff;
+}
+
+/* Table Input Checkbox alignment controls */
+.ee-data-table input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-purple);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Profile Cells detailing Avatar components blocks */
+.ee-employee-profile-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ee-avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #e2e8f0;
+}
+
+.ee-emp-name-txt {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* Calendar Date inline display rows styles matching screens */
+.ee-date-cell-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+}
+
+.ee-calendar-icon-inline {
+  color: #f97316;
+  font-size: 14px;
+}
+
+/* Status Pill Badges Layout matching color schemes precisely */
+.ee-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.ee-status-badge.status-completed {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.ee-status-badge.status-in-progress {
+  background-color: #fff3e0;
+  color: #b06000;
+}
+
+.ee-status-badge.status-pending {
+  background-color: #e8eaf6;
+  color: #3f51b5;
+}
+
+/* Internal Actions row cells item triggers layout */
+.ee-actions-cell-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ee-row-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.ee-row-action-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.ee-action-svg-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.ee-row-action-btn.edit .ee-action-svg-icon {
+  fill: var(--primary-purple);
+}
+
+.ee-row-action-btn.delete .ee-action-svg-icon {
+  fill: #ef4444;
+}
+
+.ee-no-records-fallback {
+  text-align: center;
+  padding: 30px !important;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Footer Section Pagination Nav bar matching Screenshot 2026-07-03 125333.png */
+.ee-pagination-footer-bar {
+  padding: 14px 18px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid #edf2f7;
+}
+
+.ee-pagination-controls-right-side {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.ee-pagination-label-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.ee-select-page-dropdown-wrapper {
+  position: relative;
+}
+
+.ee-native-page-selector {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--white);
+  border: 1px solid var(--border-grey);
+  border-radius: 4px;
+  padding: 6px 30px 6px 12px;
+  font-size: 13px;
+  color: var(--text-dark);
+  cursor: pointer;
+  outline: none;
+}
+
+.ee-select-page-dropdown-wrapper::after {
+  content: "▼";
+  font-size: 8px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.ee-pagination-summary-counter {
+  font-size: 13px;
+  color: var(--text-dark);
+  min-width: 80px;
+  text-align: center;
+}
+
+.ee-pagination-arrow-buttons-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ee-pager-nav-arrow {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #475569;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  line-height: 1;
+}
+
+.ee-pager-nav-arrow:hover:not(:disabled) {
+  background-color: #f1f5f9;
+}
+
+.ee-pager-nav-arrow:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Modals Overlay Surfaces matching Popup structures */
+.ee-modal-backdrop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.ee-modal-card-surface {
+  background-color: var(--white);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animation entry sequence profiles */
+.animate-pop-up {
+  animation: eeModalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ee-modal-banner-header {
+  background-color: var(--primary-purple);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+
+.ee-banner-left-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ee-modal-banner-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  object-fit: cover;
+}
+
+.ee-modal-title-text {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.ee-modal-close-x-btn {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+
+.ee-modal-close-x-btn:hover {
+  opacity: 1;
+}
+
+/* Outlined Fieldset Floating Input Box Elements matching Screenshots 2 and 4 */
+.ee-modal-form-body {
+  padding: 24px;
+  background-color: #f8fafc;
+}
+
+.ee-form-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.ee-form-single-full-row {
+  margin-bottom: 24px;
+}
+
+.ee-input-field-group-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Field Border box mimicking Outlined fieldsets */
+.ee-input-inner-addon-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.ee-input-field-group-container input,
+.ee-input-field-group-container select,
+.ee-input-field-group-container textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--text-dark);
+  background-color: var(--white);
+  border: 1px solid #a6b0cf;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ee-input-field-group-container input:focus,
+.ee-input-field-group-container select:focus,
+.ee-input-field-group-container textarea:focus {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+/* Right side add-on icons inside input fields */
+.ee-input-inner-addon-box input {
+  padding-right: 36px;
+}
+
+.ee-field-right-icon-indicator {
+  position: absolute;
+  right: 12px;
+  color: #74788d;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+/* Customized native calendar selector layouts */
+.ee-input-inner-addon-box input[type="date"] {
+  position: relative;
+}
+
+/* Custom CSS simulated floating Outlined label headers */
+.ee-fieldset-outlined-label {
+  align-self: flex-start;
+  margin-bottom: -8px;
+  margin-left: 10px;
+  padding: 0 4px;
+  background-color: #f8fafc; /* matches body bg to clip border lines */
+  font-size: 12px;
+  font-weight: 500;
+  color: #74788d;
+  z-index: 2;
+  position: relative;
+}
+
+/* Select input arrow layout normalization override handles */
+.ee-input-inner-addon-box select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.ee-input-inner-addon-box:has(select)::after {
+  content: "▼";
+  font-size: 10px;
+  position: absolute;
+  right: 14px;
+  color: #74788d;
+  pointer-events: none;
+}
+
+.ee-input-field-group-container textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Bottom Actions Control Strip components drawer bar layout */
+.ee-modal-form-actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.ee-btn-primary, .ee-btn-danger {
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.ee-btn-primary.save-action {
+  background-color: #3f51b5;
+  color: var(--white);
+}
+.ee-btn-primary.save-action:hover:not(.disabled-opacity) {
+  background-color: #303f9f;
+}
+
+.ee-btn-danger.cancel-action {
+  background-color: var(--dark-red);
+  color: var(--white);
+}
+.ee-btn-danger.cancel-action:hover {
+  background-color: #9a0000;
+}
+
+.ee-btn-primary:active, .ee-btn-danger:active {
+  transform: scale(0.97);
+}
+
+.disabled-opacity {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Core System Keyframe Sequences animations */
+@keyframes eeModalPop {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes eeFadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Media Queries Engine For Ultra All-Device Responsiveness --- */
+@media (max-width: 768px) {
+  .ee-form-grid-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .ee-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .ee-toolbar-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .ee-toolbar-left {
+    width: 100%;
+  }
+
+  .ee-search-input-wrapper {
+    width: 100%;
+  }
+  
+  .ee-pagination-footer-bar {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .ee-app-container {
+    padding: 10px;
+  }
+  
+  .ee-breadcrumb-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .ee-pagination-controls-right-side {
+    gap: 12px;
+    justify-content: center;
+  }
+  
+  .ee-modal-banner-header {
+    padding: 12px 14px;
+  }
+
+  .ee-modal-form-body {
+    padding: 16px;
+  }
+}

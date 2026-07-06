@@ -1,0 +1,398 @@
+/* ================= CONTAINERS AND PAGE FRAME ================= */
+.ib-layout-root-container {
+  background-color: #eef2f8; /* Soft light bluish-gray tint background */
+  padding: 24px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ================= BREADCRUMB TOP LAYOUT BAR ================= */
+.ib-breadcrumb-header-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ib-crumb-left h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #334155;
+  margin: 0;
+}
+
+.ib-crumb-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.ib-home-icon-node {
+  font-size: 15px;
+  color: #475569;
+}
+
+.ib-separator-node {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.ib-dim-node {
+  color: #475569;
+}
+
+.ib-active-node {
+  color: #64748b;
+}
+
+/* ================= SPLIT CONSOLE INTERFACE ================= */
+.ib-interface-grid-wrapper {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ================= LEFT ACTION PANEL SIDEBAR ================= */
+.ib-sidebar-left {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 250px;
+  flex-shrink: 0;
+  padding: 24px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.ib-compose-btn {
+  background-color: #0e8354; /* Exact dark emerald green tone */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+  transition: background-color 0.2s;
+}
+
+.ib-compose-btn:hover {
+  background-color: #0a6c43;
+}
+
+.ib-folders-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ib-folder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: #475569;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ib-folder-item:hover {
+  background: #f1f5f9;
+}
+
+.ib-folder-item.active-folder {
+  background: #3b82f6; /* Exact solid primary blue row highlight */
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.folder-label-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.folder-ico {
+  font-size: 16px;
+}
+
+.unread-counter-badge {
+  background-color: #f59e0b; /* Amber badge fill counter */
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.ib-sidebar-section-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 20px 0;
+}
+
+.sidebar-group-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 12px;
+  padding-left: 12px;
+}
+
+.ib-labels-tag-cloud {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 12px;
+}
+
+.tag-label-node {
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.tag-dot.dot-red { background-color: #ef4444; }
+.tag-dot.dot-blue { background-color: #3b82f6; }
+.tag-dot.dot-orange { background-color: #f97316; }
+.tag-dot.dot-teal { background-color: #0ea5e9; }
+.tag-dot.dot-cyan { background-color: #06b6d4; }
+
+.ib-online-users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 12px;
+}
+
+.online-user-row {
+  font-size: 13px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.online-dot-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #22c55e; /* Green status indicator node */
+}
+
+.online-dot-indicator.gold {
+  background-color: #eab308;
+}
+
+/* ================= RIGHT MAIN LAYOUT PANEL ================= */
+.ib-mail-container-right {
+  background: #ffffff;
+  border-radius: 8px;
+  flex-grow: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* HEADER ACTION TOOLBAR BLOCK */
+.ib-action-toolbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid #edf2f7;
+  background: #ffffff;
+}
+
+.toolbar-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ib-master-checkbox {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.tb-action-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #111111;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.tb-action-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.toolbar-right-pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.range-indicator-text {
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.arrow-controls-group {
+  display: flex;
+}
+
+.p-arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #4b5563;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.p-arrow-btn:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* ================= EMAILS RECORDS TABLE GRID ================= */
+.ib-emails-list-viewport {
+  display: flex;
+  flex-direction: column;
+}
+
+.ib-email-row-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s;
+}
+
+.ib-email-row-item:hover {
+  background-color: #fafafa;
+}
+
+.ib-email-row-item.row-selected {
+  background-color: #f8fafc;
+}
+
+.ib-email-row-item input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Distinctive structural cell alignments */
+.cell-checkbox { width: 35px; flex-shrink: 0; }
+.cell-star { width: 35px; flex-shrink: 0; cursor: pointer; display: flex; align-items: center; }
+.cell-sender-name { width: 140px; font-size: 13.5px; color: #334155; flex-shrink: 0; }
+.cell-content-snippet-block { flex-grow: 1; display: flex; align-items: center; gap: 10px; overflow: hidden; }
+.cell-attachment-clip { width: 35px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.cell-date-timestamp { width: 80px; text-align: right; font-size: 12.5px; color: #64748b; flex-shrink: 0; }
+
+.star-ico-graphic {
+  font-size: 16px;
+  color: #94a3b8;
+}
+
+/* Star selection highlighted color */
+.star-active-gold {
+  color: #f59e0b !important;
+  fill: #f59e0b;
+}
+
+.snippet-body-text {
+  font-size: 13.5px;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Bold weighting configuration matching screenshot rows */
+.unread-highlight .cell-sender-name,
+.unread-highlight .snippet-body-text {
+  font-weight: 600;
+  color: #000000;
+}
+
+.clip-ico-graphic {
+  color: #475569;
+  font-size: 14px;
+}
+
+/* Label badges rendering inside specific subject slots precisely */
+.badge-pill-lbl {
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.badge-pill-lbl.lbl-work { border: 1px solid #93c5fd; background: #eff6ff; color: #2563eb; }
+.badge-pill-lbl.lbl-shop { border: 1px solid #fca5a5; background: #fff5f5; color: #dc2626; }
+.badge-pill-lbl.lbl-family { border: 1px solid #67e8f9; background: #ecfeff; color: #0891b2; }
+.badge-pill-lbl.lbl-themeforest { border: 1px solid #d8b4fe; background: #faf5ff; color: #9333ea; }
+
+.empty-mailbox-fallback {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+  font-size: 13.5px;
+}
+
+/* ================= ALL DEVICE RESPONSIVENESS ================= */
+@media (max-width: 992px) {
+  .ib-interface-grid-wrapper {
+    flex-direction: column;
+  }
+  .ib-sidebar-left {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .ib-email-row-item {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+  }
+  .cell-sender-name {
+    width: calc(100% - 150px);
+  }
+  .cell-content-snippet-block {
+    width: 100%;
+    order: 3;
+  }
+  .cell-date-timestamp {
+    width: auto;
+    margin-left: auto;
+  }
+}
