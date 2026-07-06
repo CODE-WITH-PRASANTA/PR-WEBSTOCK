@@ -1,9 +1,13 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.2.0",
     "@mui/material": "^9.2.0",
     "dayjs": "^1.11.21"
+=======
+    "react-router-dom": "^7.18.1"
+>>>>>>> c69a8ff64808ab292421f4f51fbb2b0e381600d9
   }
 }
