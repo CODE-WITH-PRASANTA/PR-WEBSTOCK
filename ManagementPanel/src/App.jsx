@@ -80,6 +80,17 @@ import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
 import TaxReports from "./Components/TaxReports/TaxReports";
 import Task from "./Components/Task/Task";
 import LoginPage from "./Pages/LoginPage/LoginPage";
+import Announcement from "./Components/Announcement/Announcement";
+import Notifications from "./Components/Notifications/Notifications";
+import GolesPr from "./Components/GolesPr/GolesPr";
+import TrainingList from "./Components/TrainingList/TrainingList";
+import TrainersT from "./Components/TrainersT/TrainersT";
+import Appraisals from "./Components/Appraisals/Appraisals";
+import PerformanceReviews from "./Components/PerformanceReviews/PerformanceReviews";
+import Feedback from "./Components/Feedback/Feedback";
+import TrainingType from "./Components/TrainingType/TrainingType";
+import TrainingAttendance from "./Components/TrainingAttendance/TrainingAttendance";
+import TrainingFeedback from "./Components/TrainingFeedback/TrainingFeedback";
 
 
 const App = () => {
@@ -113,6 +124,10 @@ const App = () => {
           <Route path="edit" element={<EditManagement/>}/>
           <Route path="today" element={<TodayAttendance/>}/>
           <Route path="management" element={<EmployeeAttendance/>}/>
+          <Route path="appraisals" element={<Appraisals/>}/>
+          <Route path="reviews" element={<PerformanceReviews/>}/>
+          <Route path="feedback" element={<Feedback/>}/>
+
           
           
           <Route path="documents" element={<EmployeeDocuments />} />
@@ -137,6 +152,11 @@ const App = () => {
           <Route path="templates"element={<DocumentTemplates/>}/>
           <Route path="signatures"element={<ESignatures/>}/>
           <Route path="shortlist"element={<Calender/>}/>
+          <Route path="announcements"element={<Announcement/>}/>
+          <Route path="notifications"element={<Notifications/>}/>
+          <Route path="goals"element={<GolesPr/>}/>
+          <Route path="list"element={<TrainingList/>}/>
+          <Route path="trainers"element={<TrainersT/>}/>
 
           
           <Route path="holidays/all" element={<AllHolidays/>}/>
@@ -182,6 +202,12 @@ const App = () => {
           <Route path="accounts/summary" element={<FinancialSummary/>}/>
           <Route path="accounts/tax-reports" element={<TaxReports/>}/>
           <Route path="apps/task" element={<Task/>}/>
+          <Route path="training/type" element={<TrainingType/>}/>
+          <Route path="training/attendance"element={<TrainingAttendance/>}/>
+          <Route path="training/feedback" element={<TrainingFeedback/>}/>
+          <Route path="appraisals" element={<Appraisals/>}/>
+          
+
 
         </Route>
 
