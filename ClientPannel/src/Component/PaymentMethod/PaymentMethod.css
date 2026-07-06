@@ -1,0 +1,640 @@
+/* ==========================================================================
+   1. BASE CONTAINERS & GLOBAL OVERRIDES
+   ========================================================================== */
+.payment-method-container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  padding: 1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #374151;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .payment-method-container {
+    padding: 2rem;
+  }
+}
+
+.max-w-wrapper {
+  max-width: 80rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ==========================================================================
+   2. BREADCRUMB HEADER
+   ========================================================================== */
+.header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .header-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #4b5563;
+  margin: 0;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.breadcrumb-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item:hover {
+  color: #111827;
+}
+
+.breadcrumb-current {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.breadcrumb-arrow {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ==========================================================================
+   3. DASHBOARD MAIN PANEL & HERO BANNER
+   ========================================================================== */
+.main-card {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Deep Purple Header Background */
+.purple-banner {
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .purple-banner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.banner-icon-box {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.banner-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.banner-subtitle {
+  font-size: 0.875rem;
+  color: #e0e7ff;
+  margin: 0.125rem 0 0 0;
+}
+
+.btn-add-method {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-add-method:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-add-method:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   4. PAYMENT METHOD ITEMS GRID LAYOUT
+   ========================================================================== */
+.cards-grid {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.payment-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 230px;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.payment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.payment-card.default-card {
+  border: 2px solid #4f46e5;
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.brand-icon-wrapper {
+  color: #ffffff;
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.brand-icon-wrapper.visa-bg { background-color: #2563eb; }
+.brand-icon-wrapper.mastercard-bg { background-color: #ea580c; }
+.brand-icon-wrapper.bank-bg { background-color: #16a34a; }
+
+.btn-options {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+}
+
+.btn-options:hover {
+  color: #4b5563;
+}
+
+.card-middle {
+  margin-top: 1rem;
+}
+
+.badge-default {
+  background-color: #4f46e5;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: max-content;
+}
+
+.card-name {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin: 0.5rem 0 0 0;
+  color: #111827;
+}
+
+.card-number-hidden {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #4b5563;
+  letter-spacing: 0.15em;
+  font-size: 0.875rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.card-bottom-meta {
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.meta-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #9ca3af;
+  margin: 0 0 0.25rem 0;
+}
+
+.meta-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.btn-card-edit {
+  width: 100%;
+  margin-top: 1rem;
+  background: none;
+  border: 1px solid #e5e7eb;
+  color: #4f46e5;
+  padding: 0.5rem 0;
+  border-radius: 0.375rem;
+  font-size: 0.815rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-card-edit:hover {
+  background-color: #f5f3ff;
+  border-color: #c7d2fe;
+}
+
+/* ==========================================================================
+   5. CENTERED POPUP MODAL LAYOUT
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Modal Content Window Box - Aligned beautifully in the middle */
+.modal-window-box {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 32rem; /* Clean, spacious layout size */
+  max-height: calc(100vh - 2rem);
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: modalPopInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalPopInUp {
+  from { 
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-header-icon {
+  color: #4f46e5;
+  font-size: 1.125rem;
+}
+
+.modal-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.btn-modal-close {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  padding: 0.35rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-modal-close:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+.section-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+/* Method type selector radio options */
+.payment-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.type-option-label {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.type-option-label:hover {
+  background-color: #f9fafb;
+}
+
+.type-option-label.selected-type {
+  border-color: #4f46e5;
+  background-color: #f5f3ff;
+  box-shadow: 0 0 0 2px #e0e7ff;
+}
+
+.type-option-input {
+  accent-color: #4f46e5;
+  margin: 0;
+}
+
+.type-option-icon {
+  font-size: 1.35rem;
+  color: #4f46e5;
+}
+
+.type-option-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+/* ==========================================================================
+   6. FLOATING FORM FIELD INPUT LAYOUTS
+   ========================================================================== */
+.form-fields-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.input-group-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.floating-field-box {
+  position: relative;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.floating-field-box:focus-within {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 1px #4f46e5;
+}
+
+.floating-field-box.error-box {
+  border-color: #ef4444;
+}
+
+.field-label {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  background-color: #ffffff;
+  padding: 0 0.25rem;
+  font-size: 10px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.floating-field-box.error-box .field-label {
+  color: #ef4444;
+}
+
+.field-inner-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.125rem;
+}
+
+.field-input, .field-select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  color: #111827;
+  padding: 0.125rem 0;
+  margin: 0;
+}
+
+.field-input::placeholder {
+  color: #9ca3af;
+}
+
+.field-input.font-code {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  letter-spacing: 0.05em;
+}
+
+.field-select {
+  appearance: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.field-icon {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+/* Default Box Selection Toggle Switch Container */
+.default-toggle-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border: 1px solid #f3f4f6;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-element {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #4f46e5;
+  cursor: pointer;
+  margin-top: 0.125rem;
+}
+
+.toggle-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.toggle-desc {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0.125rem 0 0 0;
+}
+
+/* ==========================================================================
+   7. MODAL ACTION FOOTER CONTROLS
+   ========================================================================== */
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #f3f4f6;
+  background-color: #f9fafb;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-cancel, .btn-submit {
+  flex: 1;
+  padding: 0.625rem 0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  text-align: center;
+}
+
+.btn-cancel {
+  border: 1px solid #d1d5db;
+  color: #374151;
+  background-color: #ffffff;
+}
+
+.btn-cancel:hover {
+  background-color: #f3f4f6;
+}
+
+.btn-submit {
+  border: none;
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.btn-submit:hover {
+  background-color: #4338ca;
+}
+
+/* Custom Modal body Scrollbar layout */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
