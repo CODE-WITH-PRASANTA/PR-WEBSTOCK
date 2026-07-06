@@ -79,17 +79,17 @@ import Reimbursements from "./Components/Reimbursements/Reimbursements";
 import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
 import TaxReports from "./Components/TaxReports/TaxReports";
 import Task from "./Components/Task/Task";
-<<<<<<< HEAD
 import Announcement from "./Components/Announcement/Announcement";
 import Notifications from "./Components/Notifications/Notifications";
 import GolesPr from "./Components/GolesPr/GolesPr";
 import TrainingList from "./Components/TrainingList/TrainingList";
 import TrainersT from "./Components/TrainersT/TrainersT";
-=======
 import Appraisals from "./Components/Appraisals/Appraisals";
 import PerformanceReviews from "./Components/PerformanceReviews/PerformanceReviews";
 import Feedback from "./Components/Feedback/Feedback";
->>>>>>> 6d752954a48096b9cdc9b62a9de49d558c32be4e
+import TrainingType from "./Components/TrainingType/TrainingType";
+import TrainingAttendance from "./Components/TrainingAttendance/TrainingAttendance";
+import TrainingFeedback from "./Components/TrainingFeedback/TrainingFeedback";
 
 
 const App = () => {
@@ -199,6 +199,12 @@ const App = () => {
           <Route path="accounts/summary" element={<FinancialSummary/>}/>
           <Route path="accounts/tax-reports" element={<TaxReports/>}/>
           <Route path="apps/task" element={<Task/>}/>
+          <Route path="training/type" element={<TrainingType/>}/>
+          <Route path="training/attendance"element={<TrainingAttendance/>}/>
+          <Route path="training/feedback" element={<TrainingFeedback/>}/>
+          <Route path="appraisals" element={<Appraisals/>}/>
+          
+
 
         </Route>
 
