@@ -1,0 +1,469 @@
+/* --- Global Container & Wrapper Layout --- */
+.details-dashboard-container {
+  min-height: 100vh;
+  background-color: #f1f3f4;
+  padding: 24px;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #3c4043;
+  box-sizing: border-box;
+}
+
+/* --- Breadcrumb Styles --- */
+.details-breadcrumb {
+  max-width: 1200px;
+  margin: 0 auto 16px auto;
+  font-size: 13px;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.details-breadcrumb-link {
+  color: #5f6368;
+  text-decoration: none;
+}
+
+.details-breadcrumb-active {
+  color: #202124;
+  font-weight: 500;
+}
+
+/* --- Master Split Grid (Responsive Layout) --- */
+.details-main-layout-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2.2fr 0.9fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* --- Universal Component Base Card --- */
+.details-base-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* --- Left Column Core Details Header --- */
+.details-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.details-title-heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f58220;
+  margin: 0 0 8px 0;
+}
+
+.details-status-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #5f6368;
+}
+
+.details-badge-active {
+  background-color: #2e7d32;
+  color: #ffffff;
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.details-edit-link-btn {
+  color: #1a73e8;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: opacity 0.2s;
+}
+
+.details-edit-link-btn:hover {
+  text-decoration: underline;
+}
+
+/* --- Metadata Structured Parameters Grid --- */
+.details-metadata-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  margin: 24px 0;
+}
+
+.details-meta-item-box {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.details-meta-label {
+  font-weight: 700;
+  color: #3c4043;
+  width: 110px;
+  flex-shrink: 0;
+  text-align: right;
+  margin-right: 12px;
+}
+
+.details-meta-value {
+  color: #5f6368;
+}
+
+/* --- Team Avatar Pile Display Elements --- */
+.details-team-avatar-pile {
+  display: flex;
+  align-items: center;
+}
+
+.details-member-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  margin-right: -8px;
+  object-fit: cover;
+  background-color: #e0e0e0;
+}
+
+.details-member-avatar-plus {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #455a64;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+}
+
+/* --- Progress Completion Matrix Scale Layout --- */
+.details-progress-matrix-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.details-progress-track-bg {
+  background-color: #e8eaed;
+  height: 6px;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.details-progress-bar-fill {
+  background-color: #1a73e8;
+  height: 100%;
+}
+
+.details-progress-metric-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #3c4043;
+}
+
+/* --- Custom Layout Tab Controls (Image 3 Header Line Switcher) --- */
+.details-tabs-nav-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.details-tab-trigger-btn {
+  background: none;
+  border: none;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #5f6368;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.details-tab-trigger-btn.tab-state-active {
+  color: #1a73e8;
+}
+
+.details-tab-trigger-btn.tab-state-active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #1a73e8;
+}
+
+/* --- Sub-Tab Component Option 1 View Layer: Messages Content (Image 3) --- */
+.msg-stream-node {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.msg-stream-node:last-of-type {
+  border-bottom: none;
+}
+
+.msg-sender-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #e0e0e0;
+}
+
+.msg-body-wrapper {
+  flex: 1;
+}
+
+.msg-meta-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.msg-sender-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.msg-sender-name span {
+  font-weight: 400;
+  color: #5f6368;
+}
+
+.msg-timestamp-label {
+  font-size: 12px;
+  color: #80868b;
+}
+
+.msg-content-bubble-card {
+  background-color: #f1f3f9;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #3c4043;
+  line-height: 1.5;
+}
+
+.msg-interactive-actions-bar {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.msg-action-reaction-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+}
+
+.msg-action-reaction-btn:hover {
+  color: #1a73e8;
+}
+
+/* --- Sub-Tab Component Option 2 View Layer: Last Activity Table (Image 4) --- */
+.activity-matrix-scroll-layer {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.activity-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.activity-th-cell {
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #202124;
+  border-bottom: 2px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+.activity-td-cell {
+  padding: 12px;
+  font-size: 13px;
+  color: #3c4043;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.activity-status-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  display: inline-block;
+  text-align: center;
+  min-width: 75px;
+}
+
+.act-bg-completed { background-color: #2e7d32; }
+.act-bg-accepted { background-color: #ef6c00; }
+.act-bg-sent { background-color: #00b0ff; }
+.act-bg-reported { background-color: #1a73e8; }
+
+/* --- Right Column View Sidecards (Project Description & Metadata Info) --- */
+.sidecard-section-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: #202124;
+  margin: 0 0 14px 0;
+  border-bottom: 1px solid #f1f3f4;
+  padding-bottom: 8px;
+}
+
+.sidecard-narrative-paragraph {
+  font-size: 13px;
+  color: #5f6368;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.sidecard-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidecard-meta-row-node {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.sidecard-meta-label {
+  font-weight: 700;
+  color: #202124;
+}
+
+.sidecard-meta-value {
+  color: #5f6368;
+}
+
+/* --- Project Tags Cloud Layout --- */
+.sidecard-tags-flex-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sidecard-tag-pill {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* --- Project Associated File Downloads List Row Elements --- */
+.sidecard-files-list-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidecard-file-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidecard-file-icon-box {
+  width: 32px;
+  height: 36px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 10px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.sidecard-file-details-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.sidecard-filename-text {
+  color: #1a73e8;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sidecard-filename-text:hover {
+  text-decoration: underline;
+}
+
+.sidecard-filesize-text {
+  color: #80868b;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* --- Media Queries Framework Rules For Responsiveness --- */
+@media (max-width: 992px) {
+  .details-main-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .details-metadata-fields-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .details-meta-item-box {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .details-meta-label {
+    width: 95px;
+    text-align: left;
+    margin-right: 4px;
+  }
+}
