@@ -1,0 +1,491 @@
+/* Container & Base Variables */
+.pd-dashboard-wrapper {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f4f7fb;
+  padding: 24px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  color: #1e293b;
+}
+
+/* Header & Breadcrumbs */
+.pd-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.pd-page-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  color: #334155;
+}
+
+.pd-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.pd-breadcrumb-active {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Bulk Selection Banner */
+.pd-bulk-action-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  color: #991b1b;
+  font-size: 14px;
+  font-weight: 500;
+  animation: pdFadeIn 0.2s ease-out;
+}
+
+.pd-btn-bulk-delete {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+
+.pd-btn-bulk-delete:hover {
+  background-color: #dc2626;
+}
+
+/* Main Card & Toolbar */
+.pd-table-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.pd-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #eef2f6;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pd-toolbar-left, .pd-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pd-toolbar-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+}
+
+.pd-search-container {
+  position: relative;
+  width: 250px;
+}
+
+.pd-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  font-size: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.pd-search-input:focus {
+  border-color: #5873e8;
+}
+
+.pd-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.pd-action-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+.pd-action-icon-btn:hover { transform: scale(1.1); }
+.pd-icon-filter { color: #5873e8; }
+.pd-icon-add { color: #10b981; }
+.pd-icon-refresh { color: #64748b; }
+.pd-icon-download { color: #3b82f6; }
+
+/* Column Toggle Dropdown (Second Image) */
+.pd-dropdown-relative {
+  position: relative;
+}
+
+.pd-column-dropdown {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+  z-index: 50;
+  width: 200px;
+}
+
+.pd-dropdown-header {
+  padding: 0 16px 12px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pd-dropdown-list {
+  padding: 8px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.pd-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #475569;
+  cursor: pointer;
+}
+
+.pd-dropdown-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #0284c7;
+}
+
+/* Data Table */
+.pd-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.pd-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.pd-table th {
+  background-color: #ffffff;
+  border-bottom: 1px solid #cbd5e1;
+  padding: 16px 20px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pd-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #475569;
+  vertical-align: middle;
+}
+
+.pd-table tr:hover {
+  background-color: #f8fafc;
+}
+.pd-table tr.selected {
+  background-color: #f0f9ff;
+}
+
+.pd-table input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.pd-cell-flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Badges */
+.pd-badge {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pd-badge.approved { background-color: #d1fae5; color: #047857; }
+.pd-badge.pending-review { background-color: #ffedd5; color: #c2410c; }
+.pd-badge.draft { background-color: #e0e7ff; color: #4338ca; }
+
+/* Row Actions */
+.pd-row-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+}
+.pd-row-action-btn:hover { background-color: #e2e8f0; }
+.pd-row-action-btn.edit { color: #5873e8; }
+.pd-row-action-btn.delete { color: #ef4444; }
+.pd-row-action-btn.download { color: #334155; }
+
+/* Pagination */
+.pd-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.pd-page-size-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.pd-page-select-wrapper {
+  position: relative;
+}
+
+.pd-page-select {
+  appearance: none;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 6px 28px 6px 12px;
+  font-size: 13px;
+  background-color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.pd-page-select-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #64748b;
+}
+
+.pd-page-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: #475569;
+}
+
+.pd-page-nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #64748b;
+}
+.pd-page-nav-btn:disabled { color: #cbd5e1; cursor: not-allowed; }
+
+/* Modal Overlay & Form (Third Image) */
+.pd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.pd-modal-content {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Keeps it within viewport */
+  animation: pdSlideDown 0.2s ease-out;
+}
+
+.pd-modal-header {
+  background-color: #6366f1;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.pd-modal-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.pd-modal-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Scrollable Body area for Modal */
+.pd-modal-body {
+  padding: 24px;
+  overflow-y: auto; /* Adds the requested scrollbar */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pd-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.pd-modal-body::-webkit-scrollbar-track {
+  background: #f1f5f9; 
+}
+.pd-modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1; 
+  border-radius: 4px;
+}
+
+.pd-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.pd-form-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.pd-input-with-icon {
+  position: relative;
+}
+
+.pd-form-input, .pd-form-select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  color: #334155;
+}
+.pd-form-input:focus, .pd-form-select:focus { border-color: #6366f1; }
+
+.pd-input-with-icon .pd-form-input {
+  padding-right: 40px;
+}
+
+.pd-input-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+}
+
+.pd-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Drag & Drop Area */
+.pd-drag-drop {
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f8fafc;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.pd-drag-drop:hover { background-color: #f1f5f9; }
+.pd-drag-drop-text {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #64748b;
+}
+.pd-browse-link {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.pd-modal-footer {
+  padding-top: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.pd-btn {
+  padding: 10px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+.pd-btn-save { background-color: #94a3b8; color: white; }
+.pd-btn-save:hover { background-color: #64748b; }
+.pd-btn-cancel { background-color: #f8fafc; color: #475569; border: 1px solid #e2e8f0; }
+.pd-btn-cancel:hover { background-color: #f1f5f9; }
+
+/* Animations */
+@keyframes pdFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pdSlideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
