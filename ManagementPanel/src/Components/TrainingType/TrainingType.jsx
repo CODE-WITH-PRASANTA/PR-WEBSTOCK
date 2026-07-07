@@ -483,7 +483,6 @@ const styles = {
   },
   breadcrumbHeader: {
     display: 'flex',
-    justifyContent: 'between',
     alignItems: 'center',
     flexWrap: 'wrap',
     marginBottom: '15px',

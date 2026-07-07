@@ -98,6 +98,14 @@ import ReadEmail from "./Components/ReadEmail/ReadEmail";
 import Chat from "./Components/Chat/Chat";
 import Settings from "./Components/Settings/Settings";
 import Support from "./Components/Support/Support";
+import JobsList from "./Components/JobsList/JobsList";
+import AddJob from "./Components/AddJob/AddJob";
+import JobDetails from "./Components/JobDetails/JobDetails";
+import CandidateProfile from "./Components/CandidateProfile/CandidateProfile";
+import InterviewSchedule from "./Components/InterviewSchedule/InterviewSchedule";
+import OfferLetters from "./Components/OfferLetters/OfferLetters";
+import HiringPipeline from "./Components/HiringPipeline/HiringPipeline";
+import Resumes from "./Components/Resumes/Resumes";
 
 
 const App = () => {
@@ -227,8 +235,14 @@ const App = () => {
           <Route path="training/attendance"element={<TrainingAttendance/>}/>
           <Route path="training/feedback" element={<TrainingFeedback/>}/>
           <Route path="appraisals" element={<Appraisals/>}/>
-          
-
+          <Route path="jobs/list" element={<JobsList/>}/>
+          <Route path="jobs/add" element={<AddJob/>}/>
+          <Route path="jobs/details" element={<JobDetails/>}/>
+          <Route path="jobs/candidate-profile" element={<CandidateProfile/>}/>
+          <Route path="jobs/interview" element={<InterviewSchedule/>}/>
+          <Route path="jobs/offers" element={<OfferLetters/>}/>
+          <Route path="jobs/pipeline" element={<HiringPipeline/>}/>
+          <Route path="jobs/resumes" element={<Resumes/>}/>
 
         </Route>
 

@@ -1,1502 +1,455 @@
-/* =========================================================
-   GOOGLE FONT
-========================================================= */
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 /* =========================================================
-   SIDEBAR
+   THEME DESIGN CONFIGURATION (CLASSIC BLUE STYLING)
 ========================================================= */
+:root {
+  /* Dark Mode: Deep Classic Sapphire Slate Profile */
+  --bg-sidebar: #0f172a;        /* Elegant Dark Slate */
+  --bg-dropdown: #1e293b;       /* Crisp Muted Navy for subcontainers */
+  --bg-hover: #1d4ed8;          /* Bright Royal Blue Hover */
+  --bg-active: #2563eb;         /* Pure Electric Blue Active States */
+  --text-main: #38bdf8;         /* High-visibility Ice Blue text headings */
+  --text-muted: #93c5fd;        /* Soft Pastel Blue for clear legibility */
+  --text-sub: #cbd5e1;          /* Cool Grey-White for deep sublinks */
+  --border-color: rgba(56, 189, 248, 0.15); /* Light Sapphire glass boundaries */
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
 
-.sidebar{
-    width:290px;
-    height:100vh;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:9999;
-
-    background:#0b1120;
-    border-right:1px solid rgba(255,255,255,.06);
-
-    display:flex;
-    flex-direction:column;
-
-    font-family:"Inter",sans-serif;
-
-    transition:.35s ease;
+/* Light Mode: Professional Premium Ice-White Corporate Style */
+body.light-theme {
+  --bg-sidebar: #ffffff;        /* Pure White Solid Base */
+  --bg-dropdown: #e0f2fe;       /* Premium Light Ice Blue for Dropdowns */
+  --bg-hover: #bae6fd;          /* Vibrant Clear Sky Blue Accent */
+  --bg-active: #1d4ed8;         /* Strong Deep Royal Blue for active nodes */
+  --text-main: #1d4ed8;         /* Dominant Professional Classic Blue */
+  --text-muted: #2563eb;        /* Deep Responsive Indigo Blue */
+  --text-sub: #0369a1;          /* Dark Oceanic Teal-Blue for Submenu Content */
+  --border-color: #bae6fd;      /* Light Sky Border lines */
+  --shadow-color: rgba(3, 105, 161, 0.08);
 }
 
 /* =========================================================
-   LOGO
+   SIDEBAR CORE ELEMENT
 ========================================================= */
-
-.sidebarLogoSection{
-    padding:22px 18px;
-    border-bottom:1px solid rgba(255,255,255,.05);
-    position:relative;
+.sidebar {
+  width: 290px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: var(--bg-sidebar);
+  border-right: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  box-shadow: 4px 0 25px var(--shadow-color);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, border-color 0.3s ease;
 }
 
-.sidebarLogoWrapper{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    cursor:pointer;
-    color:#fff;
-}
-
-.sidebarLogoLeft{
-
-    display:flex;
-    align-items:center;
-    gap:14px;
-
-}
-
-.sidebarLogo{
-
-    width:70px;
-    height:48px;
-    object-fit:contain;
-
-}
-
-.sidebarLogoLeft span{
-
-    font-size:18px;
-    font-weight:700;
-    letter-spacing:.3px;
-
+/* Collapsed Sidebar Mode overrides */
+.sidebar.collapsed {
+  width: 85px;
 }
 
 /* =========================================================
-   ACTION BUTTONS
+   LOGO REGION
 ========================================================= */
-
-.sidebarActions{
-
-    display:flex;
-    gap:12px;
-
-    margin-top:20px;
-
+.sidebarLogoSection {
+  padding: 24px 18px;
+  border-bottom: 2px solid var(--border-color);
+  position: relative;
 }
 
-.addNewBtn{
-
-    flex:1;
-
-    height:48px;
-
-    border:none;
-    border-radius:12px;
-
-    background:#2563eb;
-    color:#fff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    font-size:15px;
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.sidebarLogoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-main);
 }
 
-.addNewBtn:hover{
-
-    background:#1d4ed8;
-    transform:translateY(-2px);
-
+.sidebar.collapsed .sidebarLogoWrapper {
+  justify-content: center;
 }
 
-.searchBtn{
-
-    width:48px;
-    height:48px;
-
-    border:none;
-    border-radius:12px;
-
-    background:#151f35;
-    color:#fff;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.sidebarLogoLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.searchBtn:hover{
+.sidebarLogo {
+  width: 50px;
+  height: 44px;
+  object-fit: contain;
+}
 
-    background:#1f2b45;
+/* Smart automatic image filter adjustments between modes */
+body.light-theme .sidebarLogo {
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+}
 
+.sidebarLogoLeft span {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* =========================================================
-   MENU
+   DESKTOP TOGGLE ICON BUTTON
 ========================================================= */
-
-.sidebarMenu{
-
-    flex:1;
-
-    overflow-y:auto;
-
-    padding:18px 15px;
-
+.desktopToggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-dropdown);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px;
+  cursor: pointer;
+  margin: 14px auto 0 auto;
+  width: 44px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow-color);
 }
-
-/* Scrollbar */
-
-.sidebarMenu::-webkit-scrollbar{
-
-    width:7px;
-
-}
-
-.sidebarMenu::-webkit-scrollbar-track{
-
-    background:transparent;
-
-}
-
-.sidebarMenu::-webkit-scrollbar-thumb{
-
-    background:#243148;
-    border-radius:50px;
-
-}
-
-.sidebarMenu::-webkit-scrollbar-thumb:hover{
-
-    background:#37517a;
-
+.desktopToggleBtn:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
 }
 
 /* =========================================================
-   NORMAL LINK
+   SIDEBAR ACTION CONTAINER
 ========================================================= */
-
-.sidebarLink{
-
-    width:100%;
-
-    display:flex;
-    align-items:center;
-    gap:14px;
-
-    padding:15px 18px;
-
-    border-radius:14px;
-
-    color:#cbd5e1;
-    text-decoration:none;
-
-    font-size:15px;
-    font-weight:600;
-
-    transition:.30s;
-
-    margin-bottom:8px;
-
+.sidebarActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.sidebarLink svg{
-
-    font-size:18px;
-    min-width:18px;
-
+.sidebar.collapsed .sidebarActions {
+  flex-direction: column;
+  align-items: center;
 }
 
-.sidebarLink:hover{
-
-    background:#151f35;
-    color:#fff;
-
+.addNewBtn {
+  flex: 1;
+  height: 46px;
+  border: none;
+  border-radius: 12px;
+  background: var(--bg-active);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+.addNewBtn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
 }
 
-.sidebarLink.active{
+.sidebar.collapsed .addNewBtn {
+  width: 46px;
+  flex: none;
+}
 
-    background:#2563eb;
-    color:#fff;
-
-    box-shadow:0 10px 30px rgba(37,99,235,.35);
-
+.searchBtn {
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-dropdown);
+  color: var(--text-main);
+  cursor: pointer;
+}
+.searchBtn:hover {
+  background: var(--bg-hover);
+  color: #ffffff;
 }
 
 /* =========================================================
-   DROPDOWN
+   NAVIGATION LINK ELEMENTS
 ========================================================= */
-
-.sidebarDropdown{
-
-    margin-bottom:10px;
-
+.sidebarMenu {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 14px;
 }
 
-.sidebarDropdownBtn{
-
-    width:100%;
-
-    border:none;
-    outline:none;
-
-    background:#101827;
-
-    border:1px solid rgba(255,255,255,.05);
-
-    color:#fff;
-
-    border-radius:14px;
-
-    padding:15px 18px;
-
-    cursor:pointer;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    transition:.3s;
-
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  border: 1px solid transparent;
 }
 
-.sidebarDropdownBtn:hover{
-
-    background:#162238;
-
+.sidebar.collapsed .sidebarLink {
+  justify-content: center;
+  padding: 14px 0;
 }
 
-.sidebarDropdownLeft{
-
-    display:flex;
-    align-items:center;
-    gap:14px;
-
+.sidebarLink svg {
+  font-size: 18px;
+  transition: transform 0.2s ease;
 }
 
-.sidebarDropdownLeft svg{
-
-    font-size:18px;
-
+.sidebarLink:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
+}
+.sidebarLink:hover svg {
+  transform: scale(1.1);
 }
 
-.sidebarDropdownBtn svg{
-
-    transition:.35s;
-
+.sidebarLink.active {
+  background: var(--bg-active);
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 }
 
 /* =========================================================
-   SUBMENU
+   DROPDOWN CONTROLS (MUTED / ICE-BLUE ACCENTS)
 ========================================================= */
-
-.sidebarSubMenu{
-
-    margin-top:10px;
-
-    margin-left:16px;
-
-    border-left:2px solid rgba(255,255,255,.08);
-
-    padding-left:14px;
-
-    animation:submenu .35s ease;
-
+.sidebarDropdown {
+  margin-bottom: 12px;
 }
 
-.sidebarSubLink{
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    text-decoration:none;
-
-    color:#94a3b8;
-
-    font-size:14px;
-    font-weight:500;
-
-    padding:11px 12px;
-
-    border-radius:10px;
-
-    transition:.30s;
-
-    margin-bottom:4px;
-
+.sidebarDropdownBtn {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-dropdown);
+  color: var(--text-muted);
+  border-radius: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+.sidebarDropdownBtn:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
 }
 
-.sidebarSubLink svg{
-
-    font-size:15px;
-
+.sidebar.collapsed .sidebarDropdownBtn {
+  justify-content: center;
+  padding: 14px 0;
 }
 
-.sidebarSubLink:hover{
-
-    background:#172338;
-
-    color:#fff;
-
+.sidebarDropdownLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.sidebarSubLink.active{
+/* Submenu layout configuration */
+.sidebarSubMenu {
+  margin-top: 8px;
+  margin-left: 18px;
+  border-left: 2px dashed var(--border-color);
+  padding-left: 12px;
+}
 
-    background:#2563eb;
-
-    color:#fff;
-
+.sidebarSubLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+.sidebarSubLink:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
 }
 
 /* =========================================================
-   DIVIDER
+   FOOTER PROFILE LAYOUT
 ========================================================= */
-
-.sidebarDivider{
-
-    height:1px;
-
-    background:rgba(255,255,255,.05);
-
-    margin:18px 0;
-
+.sidebarBottom {
+  padding: 20px 16px;
+  border-top: 2px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background: rgba(0, 0, 0, 0.05);
 }
-/* =========================================================
-   LOGO POPUP CARD
-========================================================= */
-
-.logoPopupCard{
-
-    position:absolute;
-    top:95px;
-    left:18px;
-
-    width:265px;
-
-    background:#101827;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    box-shadow:0 18px 50px rgba(0,0,0,.45);
-
-    animation:popup .30s ease;
-
-    z-index:999;
-
+body.light-theme .sidebarBottom {
+  background: #f8fafc;
 }
 
-.logoPopupCard a{
-
-    display:flex;
-    align-items:center;
-    gap:14px;
-
-    padding:15px 18px;
-
-    text-decoration:none;
-
-    color:#dbe4f3;
-
-    font-size:14px;
-    font-weight:500;
-
-    transition:.30s;
-
+.sidebar.collapsed .sidebarBottom {
+  flex-direction: column;
+  gap: 16px;
 }
 
-.logoPopupCard a svg{
-
-    font-size:17px;
-
+.profileCard img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg-active);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
-.logoPopupCard a:hover{
-
-    background:#1b2940;
-
-    color:#fff;
-
+.bottomActions {
+  display: flex;
+  gap: 8px;
+}
+.sidebar.collapsed .bottomActions {
+  flex-direction: column;
 }
 
-.popupLogoutBtn{
-
-    width:100%;
-
-    border:none;
-
-    background:transparent;
-
-    padding:15px 18px;
-
-    display:flex;
-    align-items:center;
-    gap:14px;
-
-    color:#ff6b6b;
-
-    font-size:15px;
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.30s;
-
+.bottomIcon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-dropdown);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.bottomIcon:hover {
+  background: var(--bg-active);
+  color: #ffffff !important;
 }
 
-.popupLogoutBtn:hover{
+/* POPUPS CARD ARCHITECTURE */
+.profilePopupCard, .logoPopupCard {
+  position: absolute;
+  background: var(--bg-sidebar);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+body.light-theme .profilePopupCard, 
+body.light-theme .logoPopupCard {
+  background: #ffffff;
+  box-shadow: 0 12px 40px rgba(3, 105, 161, 0.15);
+}
 
-    background:#2d1313;
+.logoPopupCard { top: 95px; left: 18px; width: 250px; }
+.profilePopupCard { bottom: 88px; left: 15px; width: 260px; padding: 16px; }
 
-    color:#fff;
+.profileHeader h4 { color: var(--text-main); font-weight: 700; }
+.profileHeader p { color: var(--text-sub); font-size: 12px; }
 
+.profilePopupCard a, .logoPopupCard a { 
+  color: var(--text-muted); 
+  display: flex; 
+  padding: 12px; 
+  gap: 12px; 
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+}
+.profilePopupCard a:hover, .logoPopupCard a:hover { 
+  background: var(--bg-hover); 
+  color: #ffffff !important; 
 }
 
 /* =========================================================
-   FOOTER
+   CHAT DRAWER INTERFACE SUPPORT
 ========================================================= */
-
-.sidebarBottom{
-
-    padding:18px;
-
-    border-top:1px solid rgba(255,255,255,.06);
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    position:relative;
-
+.chatDrawer {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 400px;
+  height: 100vh;
+  background: var(--bg-sidebar);
+  border-left: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 99999;
 }
+.chatDrawerOpen { right: 0; }
+.chatDrawerHeader h3 { color: var(--text-main); font-weight: 700; }
+.chatDrawerHeader button { background: var(--bg-dropdown); color: var(--text-main); border: 1px solid var(--border-color); }
+.messageLeft { background: var(--bg-dropdown); color: var(--text-sub); border: 1px solid var(--border-color); }
+.chatDrawerFooter input { background: var(--bg-dropdown); color: var(--text-sub); border: 1px solid var(--border-color); }
 
 /* =========================================================
-   PROFILE
+   RESPONSIVE DESIGN BREAKPOINTS & SNAPS
 ========================================================= */
-
-.profileCard{
-
-    cursor:pointer;
-
-}
-
-.profileCard img{
-
-    width:54px;
-    height:54px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-    border:3px solid #2563eb;
-
-    transition:.30s;
-
-}
-
-.profileCard img:hover{
-
-    transform:scale(1.05);
-
-}
-
-/* =========================================================
-   FOOTER ICONS
-========================================================= */
-
-.bottomActions{
-
-    display:flex;
-    gap:10px;
-
-}
-
-.bottomIcon{
-
-    width:45px;
-    height:45px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#172338;
-
-    color:#fff;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-}
-
-.bottomIcon svg{
-
-    font-size:17px;
-
-}
-
-.bottomIcon:hover{
-
-    background:#2563eb;
-
-    transform:translateY(-3px);
-
-}
-
-/* =========================================================
-   PROFILE POPUP
-========================================================= */
-
-.profilePopupCard{
-
-    position:absolute;
-
-    bottom:88px;
-    left:15px;
-
-    width:290px;
-
-    background:#101827;
-
-    border:1px solid rgba(255,255,255,.07);
-
-    border-radius:18px;
-
-    padding:18px;
-
-    box-shadow:0 20px 55px rgba(0,0,0,.45);
-
-    animation:popup .30s ease;
-
-    z-index:999;
-
-}
-
-.profileHeader{
-
-    display:flex;
-    gap:15px;
-
-    margin-bottom:18px;
-
-    align-items:center;
-
-}
-
-.profileHeader img{
-
-    width:58px;
-    height:58px;
-
-    border-radius:50%;
-
-    border:3px solid #2563eb;
-
-}
-
-.profileHeader h4{
-
-    color:#fff;
-
-    font-size:17px;
-    font-weight:700;
-
-    margin-bottom:4px;
-
-}
-
-.profileHeader p{
-
-    color:#94a3b8;
-
-    font-size:13px;
-
-}
-
-.profilePopupCard a{
-
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    text-decoration:none;
-
-    color:#dbe4f3;
-
-    font-size:14px;
-
-    padding:13px 14px;
-
-    border-radius:10px;
-
-    transition:.30s;
-
-}
-
-.profilePopupCard a:hover{
-
-    background:#172338;
-
-}
-
-.profilePopupCard a svg{
-
-    font-size:16px;
-
-}
-
-.logoutBtn{
-
-    width:100%;
-
-    height:48px;
-
-    margin-top:16px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#ef4444;
-
-    color:#fff;
-
-    font-size:15px;
-    font-weight:600;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-}
-
-.logoutBtn:hover{
-
-    background:#dc2626;
-
-}
-
-/* =========================================================
-   CHAT DRAWER
-========================================================= */
-
-.chatDrawer{
-
-    position:fixed;
-
-    top:0;
-    right:-420px;
-
-    width:400px;
-    height:100vh;
-
-    background:#0f172a;
-
-    border-left:1px solid rgba(255,255,255,.06);
-
-    display:flex;
-    flex-direction:column;
-
-    transition:.35s ease;
-
-    z-index:99999;
-
-}
-
-.chatDrawerOpen{
-
-    right:0;
-
-}
-
-/* =========================================================
-   CHAT HEADER
-========================================================= */
-
-.chatDrawerHeader{
-
-    height:72px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 22px;
-
-    border-bottom:1px solid rgba(255,255,255,.06);
-
-}
-
-.chatDrawerHeader h3{
-
-    color:#fff;
-
-    font-size:20px;
-
-    font-weight:700;
-
-}
-
-.chatDrawerHeader button{
-
-    width:42px;
-    height:42px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#172338;
-
-    color:#fff;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-}
-
-.chatDrawerHeader button:hover{
-
-    background:#2563eb;
-
-}
-
-/* =========================================================
-   CHAT BODY
-========================================================= */
-
-.chatDrawerBody{
-
-    flex:1;
-
-    overflow-y:auto;
-
-    padding:20px;
-
-}
-
-.chatDrawerBody::-webkit-scrollbar{
-
-    width:6px;
-
-}
-
-.chatDrawerBody::-webkit-scrollbar-thumb{
-
-    background:#334155;
-
-    border-radius:30px;
-
-}
-
-/* =========================================================
-   CHAT MESSAGE
-========================================================= */
-
-.messageLeft,
-.messageRight{
-
-    max-width:80%;
-
-    padding:13px 16px;
-
-    border-radius:14px;
-
-    margin-bottom:14px;
-
-    font-size:14px;
-
-    line-height:1.6;
-
-}
-
-.messageLeft{
-
-    background:#172338;
-
-    color:#fff;
-
-}
-
-.messageRight{
-
-    background:#2563eb;
-
-    color:#fff;
-
-    margin-left:auto;
-
-}
-
-/* =========================================================
-   CHAT FOOTER
-========================================================= */
-
-.chatDrawerFooter{
-
-    padding:18px;
-
-    border-top:1px solid rgba(255,255,255,.06);
-
-    display:flex;
-    gap:10px;
-
-}
-
-.chatDrawerFooter input{
-
-    flex:1;
-
-    height:48px;
-
-    border:none;
-
-    outline:none;
-
-    border-radius:12px;
-
-    padding:0 15px;
-
-    background:#172338;
-
-    color:#fff;
-
-    font-size:14px;
-
-}
-
-.chatDrawerFooter input::placeholder{
-
-    color:#94a3b8;
-
-}
-
-.chatDrawerFooter button{
-
-    width:95px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-}
-
-.chatDrawerFooter button:hover{
-
-    background:#1d4ed8;
-
-}
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes popup {
-
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.95);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-
-}
-
-@keyframes submenu {
-
-    from{
-        opacity:0;
-        transform:translateY(-10px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-@keyframes slideLeft{
-
-    from{
-        transform:translateX(100%);
-    }
-
-    to{
-        transform:translateX(0);
-    }
-
-}
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-    }
-
-    to{
-        opacity:1;
-    }
-
-}
-
-/* =========================================================
-   MOBILE MENU BUTTON
-========================================================= */
-
-.mobileMenuBtn{
-
-    display:none;
-
-    position:fixed;
-
-    top:18px;
-    left:18px;
-
-    width:48px;
-    height:48px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    font-size:20px;
-
-    cursor:pointer;
-
-    z-index:100001;
-
-    box-shadow:0 10px 25px rgba(37,99,235,.35);
-
-    transition:.30s;
-
-}
-
-.mobileMenuBtn:hover{
-
-    transform:scale(1.06);
-
-}
-
-/* =========================================================
-   TABLET (1200px)
-========================================================= */
-
-@media(max-width:1200px){
-
-.sidebar{
-
-    width:90px;
-
-}
-
-.sidebarLogo{
-
-    width:42px;
-    height:42px;
-
-}
-
-.sidebarLogoLeft span,
-.addNewBtn span,
-.sidebarLink span,
-.sidebarDropdownLeft span,
-.sidebarSubMenu{
-
-    display:none;
-
-}
-
-.sidebarLogoWrapper{
-
-    justify-content:center;
-
-}
-
-.sidebarActions{
-
-    flex-direction:column;
-
-}
-
-.addNewBtn,
-.searchBtn{
-
-    width:100%;
-
-}
-
-.sidebarDropdownBtn{
-
-    justify-content:center;
-
-}
-
-.sidebarDropdownBtn svg:last-child{
-
-    display:none;
-
-}
-
-.sidebarDropdownLeft{
-
-    justify-content:center;
-
-}
-
-.sidebarLink{
-
-    justify-content:center;
-
-}
-
-.sidebarBottom{
-
-    flex-direction:column;
-
-    gap:14px;
-
-}
-
-.profilePopupCard,
-.logoPopupCard{
-
-    left:100px;
-
-}
-
-}
-
-/* =========================================================
-   LAPTOP
-========================================================= */
-
-@media(max-width:992px){
-
-.sidebar{
-
-    width:80px;
-
-}
-
-.sidebarMenu{
-
-    padding:12px;
-
-}
-
-.sidebarLink{
-
-    padding:14px;
-
-}
-
-.sidebarDropdownBtn{
-
-    padding:14px;
-
-}
-
-.bottomActions{
-
-    flex-direction:column;
-
-}
-
-.chatDrawer{
-
-    width:340px;
-
-}
-
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:768px){
-
-.mobileMenuBtn{
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-}
-
-.sidebar{
-
-    width:290px;
-
-    transform:translateX(-100%);
-
-    transition:.35s ease;
-
-    box-shadow:10px 0 40px rgba(0,0,0,.45);
-
-}
-
-.sidebar.mobileOpen{
-
-    transform:translateX(0);
-
-}
-
-.sidebarLogoLeft span,
-.sidebarLink span,
-.sidebarDropdownLeft span,
-.addNewBtn span{
-
-    display:block;
-
-}
-
-.sidebarSubMenu{
-
-    display:block;
-
-}
-
-.sidebarActions{
-
-    flex-direction:row;
-
-}
-
-.sidebarDropdownBtn{
-
-    justify-content:space-between;
-
-}
-
-.sidebarDropdownBtn svg:last-child{
-
-    display:block;
-
-}
-
-.sidebarLink{
-
-    justify-content:flex-start;
-
-}
-
-.sidebarBottom{
-
-    flex-direction:row;
-
-}
-
-.profilePopupCard,
-.logoPopupCard{
-
-    left:15px;
-
-}
-
-.chatDrawer{
-
-    width:100%;
-
-}
-
-}
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media(max-width:576px){
-
-.sidebar{
-
-    width:260px;
-
-}
-
-.sidebarLogoSection{
-
-    padding:18px 14px;
-
-}
-
-.sidebarMenu{
-
-    padding:12px;
-
-}
-
-.sidebarLink{
-
-    font-size:14px;
-
-    padding:13px;
-
-}
-
-.sidebarDropdownBtn{
-
-    padding:13px;
-
-}
-
-.sidebarSubLink{
-
-    font-size:13px;
-
-}
-
-.profilePopupCard{
-
-    width:250px;
-
-}
-
-.logoPopupCard{
-
-    width:235px;
-
-}
-
-.chatDrawerHeader{
-
-    padding:0 15px;
-
-}
-
-.chatDrawerBody{
-
-    padding:15px;
-
-}
-
-.chatDrawerFooter{
-
-    padding:15px;
-
-}
-
-.chatDrawerFooter button{
-
-    width:80px;
-
-}
-
-}
-
-/* =========================================================
-   EXTRA SMALL
-========================================================= */
-
-@media(max-width:420px){
-
-.sidebar{
-
-    width:240px;
-
-}
-
-.sidebarLogo{
-
-    width:54px;
-
-}
-
-.sidebarLogoLeft{
-
-    gap:10px;
-
-}
-
-.sidebarLogoLeft span{
-
-    font-size:15px;
-
-}
-
-.addNewBtn{
-
-    font-size:13px;
-
-}
-
-.searchBtn{
-
-    width:44px;
-
-}
-
-.bottomIcon{
-
-    width:40px;
-    height:40px;
-
-}
-
-.profileCard img{
-
-    width:48px;
-    height:48px;
-
-}
-
-.profilePopupCard{
-
-    width:220px;
-
-}
-
-.logoPopupCard{
-
-    width:220px;
-
-}
-
-.messageLeft,
-.messageRight{
-
-    max-width:90%;
-
-    font-size:13px;
-
-}
-
-.chatDrawerFooter{
-
-    flex-direction:column;
-
-}
-
-.chatDrawerFooter button{
-
-    width:100%;
-    height:46px;
-
-}
-
-}
-
-/* =========================================================
-   VERY SMALL DEVICES
-========================================================= */
-
-@media(max-width:360px){
-
-.sidebar{
-
-    width:220px;
-
-}
-
-.sidebarLogo{
-
-    width:46px;
-    height:38px;
-
-}
-
-.sidebarLink{
-
-    padding:12px;
-
-}
-
-.sidebarDropdownBtn{
-
-    padding:12px;
-
-}
-
-.profilePopupCard{
-
-    width:205px;
-
-}
-
-.logoPopupCard{
-
-    width:205px;
-
-}
-
-.chatDrawerHeader h3{
-
-    font-size:18px;
-
-}
-
-}
-
-/* =========================================================
-   SMOOTH EFFECTS
-========================================================= */
-
-.sidebar *,
-.chatDrawer *,
-.profilePopupCard *,
-.logoPopupCard *{
-
-    transition:all .28s ease;
-
-}
-
-.sidebar svg{
-
-    flex-shrink:0;
-
-}
-
-.sidebar a{
-
-    user-select:none;
-
-}
-
-.sidebar button{
-
-    user-select:none;
-
+@media (max-width: 1200px) {
+  .desktopToggleBtn { display: none; }
+  .sidebar { width: 90px; }
+  .sidebarLogoLeft span, .addNewBtn span, .sidebarLink span, .sidebarDropdownLeft span, .sidebarSubMenu, .logoPopupCard, .profilePopupCard { display: none !important; }
+  .sidebarLogoWrapper { justify-content: center; }
+  .sidebarActions { flex-direction: column; }
+  .addNewBtn, .searchBtn { width: 100%; }
+  .sidebarDropdownBtn { justify-content: center; }
+  .sidebarLink { justify-content: center; }
+  .sidebarBottom { flex-direction: column; gap: 14px; }
+  .bottomActions { flex-direction: column; }
+}
+
+@media (max-width: 768px) {
+  .mobileMenuBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    background: var(--bg-active);
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 100001;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  }
+  .sidebar {
+    width: 290px !important;
+    transform: translateX(-100%);
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15);
+  }
+  .sidebar.mobileOpen { transform: translateX(0); }
+  .sidebarLogoLeft span, .sidebarLink span, .sidebarDropdownLeft span, .addNewBtn span { display: block !important; }
+  .sidebarSubMenu { display: block !important; }
+  .sidebarActions { flex-direction: row !important; }
+  .sidebarDropdownBtn { justify-content: space-between !important; }
+  .sidebarLink { justify-content: flex-start !important; }
+  .sidebarBottom { flex-direction: row !important; }
+  .bottomActions { flex-direction: row !important; }
+  .chatDrawer { width: 100%; }
+}
+
+/* Fluid global rendering engine properties */
+.sidebar *, .chatDrawer *, .profilePopupCard *, .logoPopupCard * {
+  transition: background 0.22s ease, color 0.22s ease, width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

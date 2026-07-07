@@ -1,0 +1,430 @@
+:root {
+  --app-bg: #edf2f9;
+  --card-background: #ffffff;
+  --text-dark-gray: #4a5568;
+  --text-muted: #718096;
+  --border-light: #cbd5e0;
+  --dropdown-hover: #e4e7eb;
+  --dropdown-active-bg: #d2d6dc;
+  --btn-cancel-border: #0056b3;
+}
+
+body {
+  background-color: var(--app-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Master Wrapper Layout */
+.AddJob-container {
+  padding: 24px;
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+/* Top Split Row Layout Header Title & Breadcrumbs */
+.AddJob-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.AddJob-main-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.AddJob-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.AddJob-breadcrumb-home-icon {
+  color: var(--text-muted);
+}
+
+.AddJob-breadcrumb-arrow {
+  color: #a0aec0;
+}
+
+.AddJob-breadcrumb-active {
+  color: #2d3748;
+  font-weight: 500;
+}
+
+/* Central Form Card View Layout */
+.AddJob-card {
+  background: var(--card-background);
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  padding: 25px;
+}
+
+.AddJob-card-header {
+  margin-bottom: 30px;
+}
+
+.AddJob-card-subtitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark-gray);
+  margin: 0;
+}
+
+/* Form Structural Layout Matrices */
+.AddJob-form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.AddJob-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.AddJob-form-grid-three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.AddJob-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Floating Input Field Form Labels CSS */
+.AddJob-floating-label {
+  position: absolute;
+  top: -9px;
+  left: 12px;
+  background: #ffffff;
+  padding: 0 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Input Fields & Selection Wrappers */
+.AddJob-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.AddJob-input-wrapper input {
+  width: 100%;
+  padding: 14px 45px 14px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 14px;
+  color: #2d3748;
+  outline: none;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.AddJob-input-wrapper input:focus {
+  border-color: #4a5568;
+}
+
+.AddJob-input-wrapper.select-box {
+  width: 100%;
+  padding: 14px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 14px;
+  color: #2d3748;
+  background: #ffffff;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  position: relative;
+}
+
+.AddJob-selected-text {
+  flex-grow: 1;
+}
+
+.AddJob-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Layout Alignment Icons */
+.AddJob-field-icon {
+  position: absolute;
+  right: 14px;
+  color: #718096;
+  pointer-events: none;
+}
+
+.AddJob-field-icon-select {
+  color: #718096;
+}
+
+.AddJob-arrow-icon {
+  color: #4a5568;
+  transition: transform 0.2s ease;
+}
+
+.AddJob-arrow-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Fieldset Simulation Layer for the Status Dropdown Grid */
+.AddJob-fieldset-wrapper {
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.AddJob-fieldset-legend {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 12px;
+  padding: 0 4px;
+}
+
+.status-select-box {
+  border: none !important;
+  padding: 6px 14px 12px 14px !important;
+}
+
+/* Dropdown Menu Overlays (2nd, 3rd, 4th, 5th reference layouts) */
+.AddJob-custom-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  right: -1px;
+  background: #eaeaea;
+  border: 1px solid var(--border-light);
+  border-top: none;
+  z-index: 99;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.AddJob-dropdown-option {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #333333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ededed;
+  transition: background-color 0.15s ease;
+}
+
+.AddJob-dropdown-option:hover {
+  background-color: var(--dropdown-hover);
+}
+
+.AddJob-dropdown-option.active-item {
+  background-color: var(--dropdown-active-bg);
+}
+
+.AddJob-check-icon {
+  color: #4a5568;
+}
+
+/* Animation Micro-Triggers */
+.open-smooth {
+  animation: slideDropdownDown 0.18s ease-out;
+}
+
+@keyframes slideDropdownDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Job Description Editor Framing */
+.AddJob-description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.AddJob-description-heading {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.AddJob-wysiwyg-box {
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.AddJob-wysiwyg-toolbar {
+  background-color: #f7fafc;
+  border-bottom: 1px solid var(--border-light);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.tool-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #4a5568;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.1s ease;
+}
+
+.tool-btn:hover {
+  background: #edf2f9;
+  color: #1a202c;
+}
+
+.tool-divider {
+  color: #cbd5e0;
+  margin: 0 4px;
+  user-select: none;
+}
+
+.tool-select-container {
+  display: inline-flex;
+  position: relative;
+}
+
+.tool-select {
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  padding: 3px 20px 3px 6px;
+  font-size: 12px;
+  color: #4a5568;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+.tool-select-container::after {
+  content: "▼";
+  font-size: 8px;
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #718096;
+  pointer-events: none;
+}
+
+.AddJob-textarea-input {
+  width: 100%;
+  min-height: 110px;
+  border: none;
+  outline: none;
+  padding: 15px;
+  font-size: 14px;
+  color: #2d3748;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* Action Control Button Row */
+.AddJob-form-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.AddJob-btn-submit {
+  background-color: #dcdcdc;
+  color: #8c8c8c;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 26px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+}
+
+.AddJob-btn-submit.ready-to-submit {
+  background-color: #e2e8f0;
+  color: #4a5568;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.AddJob-btn-submit.ready-to-submit:hover {
+  background-color: #cbd5e0;
+}
+
+.AddJob-btn-cancel {
+  background: transparent;
+  color: var(--btn-cancel-border);
+  border: 1px solid var(--btn-cancel-border);
+  border-radius: 20px;
+  padding: 10px 26px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.AddJob-btn-cancel:hover {
+  background-color: #f0f4ff;
+}
+
+/* Breakpoints Configuration rules */
+@media (max-width: 1024px) {
+  .AddJob-form-grid-three {
+    grid-template-columns: 1fr 1fr;
+  }
+  .status-group-container {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .AddJob-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .AddJob-form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .AddJob-form-grid-three {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .status-group-container {
+    grid-column: span 1;
+  }
+  .AddJob-container {
+    padding: 12px;
+  }
+}
