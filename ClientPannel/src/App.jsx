@@ -1,12 +1,15 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./Layout/MainLayout/MainLayout";
-import PaymentHistroy from "./Component/PaymentHistroy/PaymentHistroy";
-import Payments from "./Component/Payments/Payments";
-import InvoiceDetails from "./Component/InvoiceDetails/InvoiceDetails";
-import Invoices from "./Component/Invoices/Invoices";
+import MyProjects from "./Component/MyProjects/MyProjects";
+import ProjectDetails from "./Component/ProjectDetails/ProjectDetails";
+import ProjectTimeline from "./Component/ProjectTimeline/ProjectTimeline";
+import ProjectTask from "./Component/ProjectTask/ProjectTask";
+import ProjectFiles from "./Component/ProjectFiles/ProjectFiles";
+import Tickets from "./Component/Tickets/Tickets";
+import TicketDetails from "./Component/TicketDetails/TicketDetails";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
-import PaymentMethod from "./Component/PaymentMethod/PaymentMethod";
 
 
 // Pages
@@ -27,6 +30,16 @@ const App = () => {
 
 
 
+      
+      
+        <Route path="/client/projects" element={<MyProjects />} />
+        <Route path="/client/project-details" element={<ProjectDetails />} />
+        <Route path="/client/project-timeline" element={<ProjectTimeline />} />
+        <Route path="/client/project-tasks" element={<ProjectTask />} />
+        <Route path="/client/project-files" element={<ProjectFiles />} />
+        <Route path="/client/tickets" element={<Tickets />} />
+        <Route path="/client/ticket-details" element={<TicketDetails/>} />
+        <Route path="/client/dashboard" element={<Dashboard/>} />
         
         </Route>
       </Routes>
