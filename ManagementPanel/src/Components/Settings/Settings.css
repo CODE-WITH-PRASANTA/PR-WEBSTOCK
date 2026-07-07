@@ -1,0 +1,531 @@
+/*==============================
+Google Font
+===============================*/
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/*==============================
+Root
+===============================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.Settings {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px;
+  background: #eef2f7;
+}
+
+/*==============================
+Header
+===============================*/
+
+.Settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.Settings-pageTitle {
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  color: #2b3445;
+}
+
+.Settings-breadcrumb {
+  font-size: 15px !important;
+}
+
+.Settings-breadLink {
+  display: flex;
+  align-items: center;
+  color: #5f6b7b !important;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+
+.Settings-breadCurrent {
+  color: #3b82f6 !important;
+  font-weight: 600 !important;
+}
+
+/*==============================
+Card
+===============================*/
+
+.Settings-card {
+  width: 100%;
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.06) !important;
+  border: 1px solid #edf1f7;
+}
+
+.Settings-cardTitle {
+  font-size: 21px !important;
+  font-weight: 700 !important;
+  color: #30384d;
+  margin-bottom: 28px !important;
+}
+
+/*==============================
+Forms
+===============================*/
+
+.Settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.Settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/*==============================
+Address
+===============================*/
+
+.Settings-address {
+  grid-column: 1 / -1;
+}
+
+/*==============================
+Material TextField
+===============================*/
+
+.Settings-input .MuiOutlinedInput-root {
+  height: 58px;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: .35s;
+}
+
+.Settings-address .MuiOutlinedInput-root {
+  min-height: 130px;
+  align-items: flex-start;
+}
+
+.Settings-address textarea {
+  padding-top: 14px !important;
+}
+
+/* Border */
+
+.Settings-input .MuiOutlinedInput-notchedOutline {
+  border: 1px solid #ccd4df;
+}
+
+/* Hover */
+
+.Settings-input .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #3b82f6;
+}
+
+/* Focus */
+
+.Settings-input .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border: 2px solid #2563eb;
+}
+
+.Settings-input .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, .10);
+}
+
+/* Label */
+
+.Settings-input .MuiInputLabel-root {
+  color: #6b7280;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.Settings-input .MuiInputLabel-root.Mui-focused {
+  color: #2563eb;
+}
+
+/* Input */
+
+.Settings-input input,
+.Settings-input textarea {
+  color: #2f3748;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/*==============================
+Date Picker
+===============================*/
+
+.Settings-input .MuiSvgIcon-root {
+  color: #64748b;
+  font-size: 22px;
+  transition: .3s;
+}
+
+.Settings-input:hover .MuiSvgIcon-root {
+  color: #2563eb;
+}
+
+/*==============================
+Blood Group Dropdown
+===============================*/
+
+.MuiPaper-root.MuiMenu-paper {
+  border-radius: 12px !important;
+  box-shadow: 0 15px 35px rgba(0,0,0,.12) !important;
+}
+
+.MuiMenuItem-root {
+  font-size: 15px !important;
+  padding: 13px 18px !important;
+  transition: .3s;
+}
+
+.MuiMenuItem-root:hover {
+  background: #edf5ff !important;
+}
+
+.Mui-selected {
+  background: #dbeafe !important;
+}
+
+/*==================================================
+SAVE BUTTON
+==================================================*/
+
+.Settings-saveBtn {
+  margin-top: 30px !important;
+  background: #ffffff !important;
+  color: #2563eb !important;
+  text-transform: none !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  border-radius: 50px !important;
+  padding: 10px 34px !important;
+  border: 1px solid #d7dce5 !important;
+  box-shadow: 0 5px 16px rgba(0,0,0,.08) !important;
+  transition: all .35s ease !important;
+}
+
+.Settings-saveBtn:hover {
+  background: #2563eb !important;
+  color: #fff !important;
+  border-color: #2563eb !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37,99,235,.25) !important;
+}
+
+/*==================================================
+DATE PICKER
+==================================================*/
+
+.MuiPickersPopper-root .MuiPaper-root {
+  border-radius: 18px !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.15) !important;
+}
+
+.MuiPickersCalendarHeader-root {
+  padding: 14px 18px !important;
+}
+
+.MuiPickersCalendarHeader-label {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #2f3748;
+}
+
+.MuiDayCalendar-weekDayLabel {
+  font-weight: 600 !important;
+  color: #64748b !important;
+}
+
+.MuiPickersDay-root {
+  font-size: 14px !important;
+  transition: .25s;
+}
+
+.MuiPickersDay-root:hover {
+  background: #dbeafe !important;
+}
+
+.Mui-selected {
+  background: #2563eb !important;
+  color: #fff !important;
+}
+
+.MuiPickersDay-today {
+  border: 1px solid #2563eb !important;
+}
+
+/*==================================================
+SELECT
+==================================================*/
+
+.Settings-input .MuiSelect-select {
+  display: flex;
+  align-items: center;
+  height: 58px;
+}
+
+.Settings-input svg {
+  font-size: 18px;
+}
+
+/*==================================================
+TEXTAREA
+==================================================*/
+
+.Settings-address textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/*==================================================
+SCROLLBAR
+==================================================*/
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c8d0dc;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca8ba;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef2f7;
+}
+
+/*==================================================
+ANIMATION
+==================================================*/
+
+.Settings-card {
+  animation: SettingsFade .45s ease;
+}
+
+@keyframes SettingsFade {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/*==================================================
+RESPONSIVE
+==================================================*/
+
+@media (max-width:1200px){
+
+.Settings{
+padding:22px;
+}
+
+.Settings-card{
+padding:24px;
+}
+
+}
+
+@media (max-width:992px){
+
+.Settings-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:20px;
+
+}
+
+.Settings-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.Settings-pageTitle{
+
+font-size:28px !important;
+
+}
+
+}
+
+@media (max-width:768px){
+
+.Settings{
+
+padding:18px;
+
+}
+
+.Settings-card{
+
+padding:20px;
+
+border-radius:16px !important;
+
+}
+
+.Settings-grid{
+
+grid-template-columns:1fr;
+
+gap:18px;
+
+}
+
+.Settings-pageTitle{
+
+font-size:24px !important;
+
+}
+
+.Settings-cardTitle{
+
+font-size:20px !important;
+
+}
+
+.Settings-saveBtn{
+
+width:100%;
+
+padding:13px 0 !important;
+
+}
+
+.Settings-address{
+
+grid-column:auto;
+
+}
+
+}
+
+@media (max-width:576px){
+
+.Settings{
+
+padding:14px;
+
+}
+
+.Settings-card{
+
+padding:16px;
+
+}
+
+.Settings-pageTitle{
+
+font-size:22px !important;
+
+}
+
+.Settings-cardTitle{
+
+font-size:18px !important;
+
+}
+
+.Settings-input .MuiOutlinedInput-root{
+
+height:54px;
+
+}
+
+.Settings-address .MuiOutlinedInput-root{
+
+min-height:110px;
+
+}
+
+.Settings-breadcrumb{
+
+font-size:13px !important;
+
+}
+
+.Settings-saveBtn{
+
+font-size:14px !important;
+
+}
+
+}
+
+/*==================================================
+EXTRA POLISH
+==================================================*/
+
+.Settings-input .MuiOutlinedInput-root,
+.Settings-saveBtn,
+.Settings-card,
+.MuiMenu-paper,
+.MuiPickersPopper-root .MuiPaper-root{
+
+transition:all .3s ease;
+
+}
+
+.Settings-card:hover{
+
+box-shadow:0 18px 40px rgba(0,0,0,.08) !important;
+
+}
+
+.Settings-input input::placeholder,
+.Settings-input textarea::placeholder{
+
+color:#9ca3af;
+
+}
+
+.Settings-input input:focus,
+.Settings-input textarea:focus{
+
+outline:none;
+
+}
+
+.MuiMenu-paper{
+
+overflow:hidden;
+
+}
+
+.MuiMenu-list{
+
+padding:6px 0 !important;
+
+}

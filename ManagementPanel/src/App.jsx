@@ -91,6 +91,13 @@ import Feedback from "./Components/Feedback/Feedback";
 import TrainingType from "./Components/TrainingType/TrainingType";
 import TrainingAttendance from "./Components/TrainingAttendance/TrainingAttendance";
 import TrainingFeedback from "./Components/TrainingFeedback/TrainingFeedback";
+import Contact from "./Components/Contact/Contact";
+import Inbox from "./Components/Inbox/Inbox";
+import Compose from "./Components/Compose/Compose";
+import ReadEmail from "./Components/ReadEmail/ReadEmail";
+import Chat from "./Components/Chat/Chat";
+import Settings from "./Components/Settings/Settings";
+import Support from "./Components/Support/Support";
 
 
 const App = () => {
@@ -127,6 +134,20 @@ const App = () => {
           <Route path="appraisals" element={<Appraisals/>}/>
           <Route path="reviews" element={<PerformanceReviews/>}/>
           <Route path="feedback" element={<Feedback/>}/>
+          <Route path="contacts" element={<Contact/>}/>
+          <Route path="email/inbox" element={<Inbox/>}/>
+          <Route path="email/compose" element={<Compose/>}/>
+          <Route path="email/read" element={<ReadEmail/>}/>
+          <Route path="chat" element={<Chat/>}/>
+
+          <Route path="setting" element={<Settings/>}/>
+
+
+          <Route path="support" element={<Support/>}/>
+
+
+          
+
 
           
           
