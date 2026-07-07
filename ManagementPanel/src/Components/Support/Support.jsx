@@ -218,23 +218,47 @@ const Support = () => {
 
       {/* ================= Header ================= */}
 
-      <div className="Support-header">
+     {/* ================= Header ================= */}
 
-        <div>
+<div className="Support-header">
 
-          <h2>Support</h2>
+  {/* Left */}
+  <div className="Support-header-left">
+    <h2>Support</h2>
+  </div>
 
-          <p>
-            Home
-            <span>/</span>
-            Apps
-            <span>/</span>
-            Support
-          </p>
+  {/* Right */}
+  <div className="Support-header-right">
 
-        </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 9.5L12 3l9 6.5"></path>
+      <path d="M5 10v10h14V10"></path>
+      <path d="M9 20v-6h6v6"></path>
+    </svg>
 
-      </div>
+    <span className="Support-breadcrumb-divider">›</span>
+
+    <span className="Support-breadcrumb-link">Apps</span>
+
+    <span className="Support-breadcrumb-divider">›</span>
+
+    <span className="Support-breadcrumb-active">
+      Support
+    </span>
+
+  </div>
+
+</div>
 
       {/* ================= Card ================= */}
 

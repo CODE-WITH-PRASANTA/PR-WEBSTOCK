@@ -19,32 +19,82 @@ Support
 Header
 ==========================================*/
 
+/*==========================================
+Header
+==========================================*/
+
 .Support-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 22px;
+  padding: 0 2px;
 }
 
-.Support-header h2 {
-  font-size: 28px;
+.Support-header-left h2 {
+  font-size: 20px;
   font-weight: 700;
-  color: #26324b;
-  margin-bottom: 8px;
+  color: #2b3347;
+  margin: 0;
+  line-height: 1;
 }
 
-.Support-header p {
-  color: #707a8f;
+.Support-header-right {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #677188;
 }
 
-.Support-header span {
-  color: #a0a7bb;
+.Support-header-right svg {
+  width: 18px;
+  height: 18px;
+  color: #5f6778;
 }
 
+.Support-breadcrumb-divider {
+  color: #a4acbb;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.Support-breadcrumb-link {
+  color: #596273;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.Support-breadcrumb-link:hover {
+  color: #4f63ff;
+}
+
+.Support-breadcrumb-active {
+  color: #2c3348;
+  font-weight: 600;
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+  .Support-header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .Support-header-left h2{
+    font-size:30px;
+  }
+
+  .Support-header-right{
+    font-size:14px;
+    flex-wrap:wrap;
+  }
+
+}
 /*==========================================
 Card
 ==========================================*/
