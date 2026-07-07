@@ -79,6 +79,7 @@ import Reimbursements from "./Components/Reimbursements/Reimbursements";
 import FinancialSummary from "./Components/FinancialSummary/FinancialSummary";
 import TaxReports from "./Components/TaxReports/TaxReports";
 import Task from "./Components/Task/Task";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 import Announcement from "./Components/Announcement/Announcement";
 import Notifications from "./Components/Notifications/Notifications";
 import GolesPr from "./Components/GolesPr/GolesPr";
@@ -90,6 +91,21 @@ import Feedback from "./Components/Feedback/Feedback";
 import TrainingType from "./Components/TrainingType/TrainingType";
 import TrainingAttendance from "./Components/TrainingAttendance/TrainingAttendance";
 import TrainingFeedback from "./Components/TrainingFeedback/TrainingFeedback";
+import Contact from "./Components/Contact/Contact";
+import Inbox from "./Components/Inbox/Inbox";
+import Compose from "./Components/Compose/Compose";
+import ReadEmail from "./Components/ReadEmail/ReadEmail";
+import Chat from "./Components/Chat/Chat";
+import Settings from "./Components/Settings/Settings";
+import Support from "./Components/Support/Support";
+import JobsList from "./Components/JobsList/JobsList";
+import AddJob from "./Components/AddJob/AddJob";
+import JobDetails from "./Components/JobDetails/JobDetails";
+import CandidateProfile from "./Components/CandidateProfile/CandidateProfile";
+import InterviewSchedule from "./Components/InterviewSchedule/InterviewSchedule";
+import OfferLetters from "./Components/OfferLetters/OfferLetters";
+import HiringPipeline from "./Components/HiringPipeline/HiringPipeline";
+import Resumes from "./Components/Resumes/Resumes";
 
 
 const App = () => {
@@ -99,6 +115,8 @@ const App = () => {
 
         {/* Redirect */}
         <Route path="/" element={<Navigate to="/management/dashboard" replace />} />
+          <Route path="/login" element={<LoginPage />} />
+
 
         {/* Employee Layout */}
         <Route path="management" element={<MainLayout />}>
@@ -124,6 +142,20 @@ const App = () => {
           <Route path="appraisals" element={<Appraisals/>}/>
           <Route path="reviews" element={<PerformanceReviews/>}/>
           <Route path="feedback" element={<Feedback/>}/>
+          <Route path="contacts" element={<Contact/>}/>
+          <Route path="email/inbox" element={<Inbox/>}/>
+          <Route path="email/compose" element={<Compose/>}/>
+          <Route path="email/read" element={<ReadEmail/>}/>
+          <Route path="chat" element={<Chat/>}/>
+
+          <Route path="setting" element={<Settings/>}/>
+
+
+          <Route path="support" element={<Support/>}/>
+
+
+          
+
 
           
           
@@ -203,8 +235,14 @@ const App = () => {
           <Route path="training/attendance"element={<TrainingAttendance/>}/>
           <Route path="training/feedback" element={<TrainingFeedback/>}/>
           <Route path="appraisals" element={<Appraisals/>}/>
-          
-
+          <Route path="jobs/list" element={<JobsList/>}/>
+          <Route path="jobs/add" element={<AddJob/>}/>
+          <Route path="jobs/details" element={<JobDetails/>}/>
+          <Route path="jobs/candidate-profile" element={<CandidateProfile/>}/>
+          <Route path="jobs/interview" element={<InterviewSchedule/>}/>
+          <Route path="jobs/offers" element={<OfferLetters/>}/>
+          <Route path="jobs/pipeline" element={<HiringPipeline/>}/>
+          <Route path="jobs/resumes" element={<Resumes/>}/>
 
         </Route>
 

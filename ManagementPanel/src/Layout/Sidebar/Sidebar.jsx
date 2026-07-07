@@ -357,14 +357,14 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.jobs ? "show" : ""}`}>
-              <NavLink to="/jobs/list" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Jobs List</NavLink>
-              <NavLink to="/jobs/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Job</NavLink>
-              <NavLink to="/jobs/details" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Job Details</NavLink>
-              <NavLink to="/jobs/candidate-profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Candidate Profile</NavLink>
-              <NavLink to="/jobs/interview" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Interview Schedule</NavLink>
-              <NavLink to="/jobs/offers" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Offer Letters</NavLink>
-              <NavLink to="/jobs/pipeline" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Hiring Pipeline</NavLink>
-              <NavLink to="/jobs/resumes" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Resumes</NavLink>
+              <NavLink to="/management/jobs/list" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Jobs List</NavLink>
+              <NavLink to="/management/jobs/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Job</NavLink>
+              <NavLink to="/management/jobs/details" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Job Details</NavLink>
+              <NavLink to="/management/jobs/candidate-profile" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Candidate Profile</NavLink>
+              <NavLink to="/management/jobs/interview" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Interview Schedule</NavLink>
+              <NavLink to="/management/jobs/offers" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Offer Letters</NavLink>
+              <NavLink to="/management/jobs/pipeline" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Hiring Pipeline</NavLink>
+              <NavLink to="/management/jobs/resumes" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Resumes</NavLink>
             </div>
           )}
 
@@ -537,7 +537,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </NavLink>
 
           <NavLink
-            to="/apps/contacts"
+            to="/management/contacts"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
             <div className="menuLeft">
@@ -559,16 +559,16 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </div>
           {!collapsed && (
             <div className={`submenu ${dropdowns.email ? "show" : ""}`}>
-              <NavLink to="/apps/email/inbox" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Inbox</NavLink>
-              <NavLink to="/apps/email/compose" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Compose</NavLink>
-              <NavLink to="/apps/email/read" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Read Email</NavLink>
+              <NavLink to="/management/email/inbox" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Inbox</NavLink>
+              <NavLink to="/management/email/compose" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Compose</NavLink>
+              <NavLink to="/management/email/read" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Read Email</NavLink>
             </div>
           )}
 
          
 
           <NavLink
-            to="/apps/chat"
+            to="/management/chat"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
             <div className="menuLeft">
@@ -577,7 +577,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             </div>
           </NavLink>
           <NavLink
-            to="/apps/support"
+            to="support"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
             <div className="menuLeft">

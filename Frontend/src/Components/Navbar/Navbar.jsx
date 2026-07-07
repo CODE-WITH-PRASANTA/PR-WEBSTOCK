@@ -1,59 +1,45 @@
 import React, { useState, useRef, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
-
-// Icons (React Icons)
-import { AiFillHeart } from "react-icons/ai";
-import {
-  FaUserCircle,
-  FaShoppingCart,
-  FaEnvelope,
-  FaPhone,
-  FaBars,
-  FaTimes,
-  FaMapMarkerAlt,
-  FaFacebookF,
-  FaInstagram,
-  FaWhatsapp,
-  FaLinkedinIn,
-} from "react-icons/fa";
-import { MdCategory, MdLocalOffer } from "react-icons/md";
-import { FaHome, FaBlog, FaFire } from "react-icons/fa";
-
+import { Link, useLocation } from "react-router-dom";
+import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 import logo from "../../assets/PR-WEB-LOGO.png";
-// use the uploaded file path provided in conversation
-const uploadedImagePath = "/mnt/data/457bd679-da27-477c-9f1d-af23a1543f78.png";
-
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [openCat, setOpenCat] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openQuotePanel, setOpenQuotePanel] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const dropdownRef = useRef(null);
-  const catBtnRef = useRef(null);
+  const buttonRef = useRef(null);
+  const location = useLocation();
 
-  // Close dropdown when clicking outside
+  // Close dropdowns on route changes
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    setMobileServicesOpen(false);
+  }, [location]);
+
+  // Handle click outside to close desktop dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
       if (
-        openCat &&
+        servicesDropdownOpen &&
         dropdownRef.current &&
-        !dropdownRef.current.contains(e.target) &&
-        catBtnRef.current &&
-        !catBtnRef.current.contains(e.target)
+        !dropdownRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
       ) {
-        setOpenCat(false);
+        setServicesDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [openCat]);
+  }, [servicesDropdownOpen]);
 
-  // Lock body scroll when mobile menu OR quote panel open
+  // Lock scroll when mobile menu is active
   useEffect(() => {
-    if (mobileMenuOpen || openQuotePanel) {
+    if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -61,339 +47,126 @@ const Navbar = () => {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileMenuOpen, openQuotePanel]);
+  }, [mobileMenuOpen]);
 
-  // Close mobile menu on resize > breakpoint
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 992) {
-        setMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Close quote panel on ESC
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape" && openQuotePanel) setOpenQuotePanel(false);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [openQuotePanel]);
-
-  const toggleMobileMenu = () => setMobileMenuOpen((s) => !s);
-  const closeMobileMenu = () => setMobileMenuOpen(false);
-
-  const portalNode = typeof document !== "undefined" ? document.body : null;
-
-  const panel = (
-  <>
-    <div
-      className={`quote-info-overlay ${openQuotePanel ? "show" : ""}`}
-      onClick={() => setOpenQuotePanel(false)}
-      aria-hidden={!openQuotePanel}
-    />
-
-    <aside
-      className={`quote-info-panel ${openQuotePanel ? "open" : ""}`}
-      aria-hidden={!openQuotePanel}
-    >
-      <div className="quote-info-inner">
-        <button
-          className="quote-info-close"
-          onClick={() => setOpenQuotePanel(false)}
-          aria-label="Close info panel"
-        >
-          <FaTimes />
-        </button>
-
-        {/* Logo */}
-        <div className="quote-info-logo">
-          <img src={logo} alt="Logo" />
-        </div>
-
-        {/* Description */}
-        <p className="quote-info-desc">
-          We provide fast & reliable quotes for temple decor, brass idols, handicrafts, pooja items and more.
-          Reach out anytime — we’re happy to help.
-        </p>
-
-        {/* Contact Section */}
-        <h3 className="quote-info-title">Get In Touch</h3>
-
-        <ul className="quote-info-list">
-          <li>
-            <span className="quote-info-icon"><FaEnvelope /></span>
-            <div>
-              <p className="muted">Email</p>
-              <p>prwebstock.com@gmail.com</p>
-            </div>
-          </li>
-          <li>
-            <span className="quote-info-icon"><FaPhone /></span>
-            <div>
-              <p className="muted">Phone</p>
-              <p>+91 77898 01327</p>
-            </div>
-          </li>
-
-          
-        </ul>
-
-        {/* Office Hours */}
-      <div className="quote-info-hours">
-        <h3 className="quote-info-title">Office Hours</h3>
-
-        <div className="quote-hours-item">
-          <span>Monday - Saturday</span>
-          <strong>09:00 AM - 05:00 PM</strong>
-        </div>
-
-        <div className="quote-hours-item">
-          <span>Sunday</span>
-          <strong>Closed</strong>
-        </div>
-      </div>
-      </div>
-    </aside>
-  </>
-);
-
+  const servicesList = [
+    { name: "Web Development", path: "/services/web-development" },
+    { name: "App Development", path: "/services/app-development" },
+    { name: "Social Media Management", path: "/services/socialmedia-management" },
+    { name: "SEO", path: "/services/seo" },
+    { name: "Digital Marketing", path: "/services/digital-marketing" },
+  ];
 
   return (
-    <>
-      <header className="navbar-header" role="banner">
-        {/* TOP NAV */}
-        <div className="navbar-top navbar-container">
-          <div className="navbar-top-row">
-            <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              <img src={logo} alt="Brand Logo" />
-            </Link>
+    <header className="navbar-header">
+      <div className="navbar-container">
+        {/* LOGO */}
+        <Link to="/" className="navbar-logo-container">
+          <img src={logo} alt="PR Webstock Logo" className="navbar-logo-img" />
+        </Link>
 
-            {/* mobile-only right bar (icons + mobile socials) */}
-            <div className="navbar-right-bar navbar-right-bar--mobile">
-              
+        {/* DESKTOP NAVIGATION */}
+        <nav className="navbar-desktop-nav" aria-label="Main Navigation">
+          <Link to="/" className="navbar-nav-link">Home</Link>
+          <Link to="/about" className="navbar-nav-link">About</Link>
+          <Link to="/industry-work" className="navbar-nav-link">Industry Work</Link>
+          <Link to="/project" className="navbar-nav-link">Project</Link>
+          <Link to="/career" className="navbar-nav-link">Career</Link>
+          <Link to="/blog" className="navbar-nav-link">Blog</Link>
+          <Link to="/contact" className="navbar-nav-link">Contact</Link>
+        </nav>
 
-              {/* mobile social icons (visible on small screens) */}
-              <a
-                href="https://www.facebook.com/share/1Bm8zM2E5g/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="social-icon"
-              >
-                <FaFacebookF />
-              </a>
-
-              <a
-                href="https://www.instagram.com/prwebstock?igsh=MWs3em54aDl6NHNzcA=="
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="social-icon"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="https://wa.me/917789801327"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="social-icon"
-              >
-                <FaWhatsapp />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/pr-webstock/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="social-icon"
-              >
-                <FaLinkedinIn />
-              </a>
-              <button
-                className="topbar-hamburger"
-                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                onClick={toggleMobileMenu}
-              >
-                {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-              </button>
-            </div>
-          </div>
-
-          {/* CONTACT INFO */}
-          <div
-            className="navbar-contact"
-            role="region"
-            aria-label="Contact information"
-            data-uploaded-img={uploadedImagePath}
-          >
-            <a
-              className="contact-item contact-phone"
-              href="tel:+917789801327"
-              aria-label="Call +91-7789-801-327"
-            >
-              <FaPhone className="contact-svg" aria-hidden="true" style={{ transform: "rotate(90deg)" }} />
-              <span className="navbar-contact-text">+91-7789 801 327</span>
-            </a>
-
-            <a
-              className="contact-item contact-email"
-              href="mailto:prwebstock.com@gmail.com"
-              aria-label="Email prwebstock.com at gmail"
-            >
-              <FaEnvelope className="contact-svg" aria-hidden="true" />
-              <span className="navbar-contact-text">prwebstock.com@gmail.com</span>
-            </a>
-
-            <div className="contact-item contact-location" aria-label="Office location">
-              <FaMapMarkerAlt className="contact-svg" aria-hidden="true" />
-              <address className="navbar-contact-text">608A, Grand Bazar, Phulnakhara – 754001</address>
-            </div>
-          </div>
-
-          {/* Desktop-only Social Media Bar */}
-          <div className="navbar-right-bar navbar-right-bar--desktop social-bar">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="social-icon"
-            >
-              <FaFacebookF />
-            </a>
-
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="social-icon"
-            >
-              <FaInstagram />
-            </a>
-
-            <a
-              href="https://wa.me/917789801327"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="social-icon"
-            >
-              <FaWhatsapp />
-            </a>
-
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="social-icon"
-            >
-              <FaLinkedinIn />
-            </a>
-          </div>
-        </div>
-
-        <hr className="navbar-divider" />
-
-        {/* BOTTOM NAV */}
-        <div className="navbar-bottom navbar-container">
-          <button
-            ref={catBtnRef}
-            className={`navbar-category-btn ${openCat ? "open" : ""}`}
-            onClick={() => setOpenCat(!openCat)}
-            aria-haspopup="true"
-            aria-expanded={openCat}
-          >
-            <FaBars /> &nbsp; Services
-          </button>
-
-          <nav className="navbar-links" aria-label="Primary">
-            <Link to="/"> Home</Link>
-            <Link to="/about"> About</Link>
-            <Link to="/industry-work"> Industry Work</Link>
-            <Link to="/project"> Project</Link>
-            <Link to="/career">Career</Link>
-            <Link to="/blog">Blog</Link>
-            <Link to="/contact">Contact</Link>
-          </nav>
-
-          {/* Restore Get Free Demo button for desktop (hidden on mobile by CSS) */}
-          <div className="quote-box-wrapper">
+        {/* DESKTOP SERVICES BUTTON + CTA */}
+        <div className="navbar-actions">
+          {/* Main Desktop Services Button Trigger */}
+          <div className="navbar-dropdown-wrapper">
             <button
-              className="quote-box-icon-btn"
-              onClick={() => setOpenQuotePanel(true)}
-              aria-label="Open info panel"
+              ref={buttonRef}
+              className={`navbar-services-toggle-btn ${servicesDropdownOpen ? "active" : ""}`}
+              onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+              aria-expanded={servicesDropdownOpen}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect y="4" width="24" height="2" rx="1" fill="currentColor" />
-                <rect y="11" width="24" height="2" rx="1" fill="currentColor" />
-                <rect y="18" width="24" height="2" rx="1" fill="currentColor" />
-              </svg>
+              <FaBars className="navbar-services-bars-icon" /> Services
             </button>
 
-            {/* THIS is the Get Free Demo button visible on desktop/laptop */}
-            <Link to="/get-quote" className="navbar-quote-btn">
+            {/* Desktop Dropdown Panel */}
+            {servicesDropdownOpen && (
+              <ul ref={dropdownRef} className="navbar-dropdown-menu">
+                {servicesList.map((service, index) => (
+                  <li key={index}>
+                    <Link to={service.path} className="navbar-dropdown-item">
+                      {service.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <Link to="/get-quote" className="navbar-cta-btn">
+            Get Free Demo
+          </Link>
+        </div>
+
+        {/* MOBILE HAMBURGER BUTTON */}
+        <button
+          className="navbar-mobile-toggle"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+        >
+          {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      {/* MOBILE DRAWER SIDEBAR */}
+      <div className={`navbar-mobile-drawer ${mobileMenuOpen ? "is-open" : ""}`}>
+        {/* Scrim Overlay */}
+        <div className="navbar-drawer-overlay" onClick={() => setMobileMenuOpen(false)} />
+        
+        <div className="navbar-drawer-content">
+          <div className="navbar-drawer-header">
+            <img src={logo} alt="PR Webstock Logo" className="navbar-drawer-logo" />
+            <button className="navbar-drawer-close" onClick={() => setMobileMenuOpen(false)}>
+              <FaTimes />
+            </button>
+          </div>
+
+          <nav className="navbar-drawer-nav">
+            <Link to="/" className="navbar-drawer-link">Home</Link>
+            <Link to="/about" className="navbar-drawer-link">About</Link>
+            
+            {/* Mobile Collapsible Services Accordion */}
+            <div className="navbar-drawer-accordion">
+              <button 
+                className={`navbar-drawer-accordion-btn ${mobileServicesOpen ? "is-expanded" : ""}`}
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+              >
+                Services <FaChevronDown className="navbar-accordion-chevron" />
+              </button>
+              <div className={`navbar-drawer-accordion-panel ${mobileServicesOpen ? "is-open" : ""}`}>
+                {servicesList.map((service, index) => (
+                  <Link key={index} to={service.path} className="navbar-drawer-accordion-link">
+                    {service.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <Link to="/industry-work" className="navbar-drawer-link">Industry Work</Link>
+            <Link to="/project" className="navbar-drawer-link">Project</Link>
+            <Link to="/career" className="navbar-drawer-link">Career</Link>
+            <Link to="/blog" className="navbar-drawer-link">Blog</Link>
+            <Link to="/contact" className="navbar-drawer-link">Contact</Link>
+          </nav>
+
+          <div className="navbar-drawer-footer">
+            <Link to="/get-quote" className="navbar-drawer-cta">
               Get Free Demo
             </Link>
           </div>
         </div>
-
-        {/* CATEGORY DROPDOWN */}
-        <div ref={dropdownRef} className={`navbar-category-dropdown ${openCat ? "show" : ""}`}>
-          <ul>
-            <li><a href="/services/web-development">Web Development</a></li>
-            <li><a href="/services/app-development">App Development</a></li>
-           
-            <li><a href="/services/socialmedia-management">Social media management</a></li>
-            <li><a href="/services/seo">Seo</a></li>
-            <li><a href="/services/digital-marketing">Digital Marketing</a></li>
-            
-          </ul>
-        </div>
-
-        {/* MOBILE SIDEDRAWER */}
-        <aside className={`mobile-drawer ${mobileMenuOpen ? "open" : ""}`} aria-hidden={!mobileMenuOpen}>
-          <div className="drawer-inner">
-            <div className="drawer-top">
-              <Link to="/" onClick={closeMobileMenu} className="drawer-logo">
-                <img src={logo} alt="Logo" />
-              </Link>
-              <button className="drawer-close" onClick={closeMobileMenu} aria-label="Close menu"><FaTimes /></button>
-            </div>
-
-            {/* Mobile drawer: direct nav links (no tabs, no "Main" text) */}
-            <nav className="drawer-links" style={{ marginTop: 12 }}>
-              <Link to="/" onClick={closeMobileMenu}> Home</Link>
-              <Link to="/about" onClick={closeMobileMenu}> About</Link>
-              <Link to="/industry-work" onClick={closeMobileMenu}> Industry Work</Link>
-              <Link to="/pricing" onClick={closeMobileMenu}> Pricing</Link>
-              <Link to="/career" onClick={closeMobileMenu}> Career</Link>
-              <Link to="/blogs" onClick={closeMobileMenu}> Blog</Link>
-              <Link to="/contact" onClick={closeMobileMenu}> Contact</Link>
-            </nav>
-
-            {/* social icons with stagger animation */}
-            <div className="drawer-footer drawer-footer--social">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon" onClick={closeMobileMenu}><FaFacebookF /></a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon" onClick={closeMobileMenu}><FaInstagram /></a>
-              <a href="https://wa.me/917789801327" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon" onClick={closeMobileMenu}><FaWhatsapp /></a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon" onClick={closeMobileMenu}><FaLinkedinIn /></a>
-            </div>
-          </div>
-
-          {/* scrim to close drawer when clicking outside (mobile) */}
-          <button className="drawer-scrim" onClick={closeMobileMenu} aria-hidden={!mobileMenuOpen} />
-        </aside>
-      </header>
-
-      {portalNode ? ReactDOM.createPortal(panel, portalNode) : null}
-    </>
+      </div>
+    </header>
   );
 };
 

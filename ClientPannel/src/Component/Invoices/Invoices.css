@@ -322,10 +322,276 @@
   color: #94a3b8;
   cursor: not-allowed;
   font-size: 16px;
+:root {
+  --invoices-bg-surface: #f4f7f9;
+  --invoices-card-bg: #ffffff;
+  --invoices-border: #edf2f7;
+  --invoices-text-dark: #2d3748;
+  --invoices-text-medium: #4a5568;
+  --invoices-text-muted: #718096;
+  --invoices-link-blue: #3182ce;
+  
+  /* Exact Badge Palette matches the provided UI */
+  --invoices-paid-bg: #e6f6ec;
+  --invoices-paid-text: #2b7a4b;
+  --invoices-not-paid-bg: #ffeaf0;
+  --invoices-not-paid-text: #e53e3e;
+  --invoices-partial-bg: #fff1e6;
+  --invoices-partial-text: #dd6b20;
+}
+
+.Invoices-container {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  padding: 24px;
+  background-color: var(--invoices-bg-surface);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Common Card Architecture */
+.Invoices-table-card,
+.Invoices-review-card {
+  background-color: var(--invoices-card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--invoices-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Invoices-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.Invoices-card-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--invoices-text-dark);
+  margin: 0;
+}
+
+.Invoices-view-all-btn {
+  background: transparent;
+  border: none;
+  color: var(--invoices-link-blue);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Left Table Layout Styling */
+.Invoices-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.Invoices-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.Invoices-table th {
+  color: var(--invoices-text-dark);
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--invoices-border);
+  white-space: nowrap;
+}
+
+.Invoices-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--invoices-border);
+  vertical-align: middle;
+  color: var(--invoices-text-medium);
+}
+
+.Invoices-table tr:last-child td {
+  border-bottom: none;
+}
+
+.Invoices-number-text {
+  font-weight: 500;
+  color: var(--invoices-text-dark);
+}
+
+.Invoices-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Invoices-avatar-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.Invoices-name-text {
+  font-weight: 500;
+  color: var(--invoices-text-medium);
+}
+
+.Invoices-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--invoices-text-medium);
+}
+
+.Invoices-calendar-icon {
+  color: #a0aec0;
+  font-size: 1rem;
+}
+
+.Invoices-total-text {
+  font-weight: 500;
+  color: var(--invoices-text-dark);
+}
+
+/* Status Configuration */
+.Invoices-status-badge {
+  font-size: 0.775rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  text-align: center;
+}
+
+.Invoices-status-badge.status-paid {
+  background-color: var(--invoices-paid-bg);
+  color: var(--invoices-paid-text);
+}
+
+.Invoices-status-badge.status-not-paid {
+  background-color: var(--invoices-not-paid-bg);
+  color: var(--invoices-not-paid-text);
+}
+
+.Invoices-status-badge.status-partially-paid {
+  background-color: var(--invoices-partial-bg);
+  color: var(--invoices-partial-text);
+}
+
+/* Download Column Configuration */
+.Invoices-text-center {
+  text-align: center;
+}
+
+.Invoices-download-action {
+  display: flex;
+  justify-content: center;
+}
+
+.Invoices-download-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  color: #5c60f5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: transform 0.15s;
+}
+
+.Invoices-download-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Right Column Side Customer Review Styling */
+.Invoices-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.Invoices-review-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.Invoices-review-user-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.Invoices-review-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.Invoices-review-meta {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Invoices-review-username {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--invoices-text-dark);
+}
+
+.Invoices-review-time {
+  font-size: 0.75rem;
+  color: var(--invoices-text-muted);
+  margin-top: 2px;
+}
+
+.Invoices-rating-row {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.Invoices-star-filled {
+  color: #1a202c;
+  font-size: 1.1rem;
+}
+
+.Invoices-star-empty {
+  color: #cbd5e0;
+  font-size: 1.1rem;
+}
+
+.Invoices-review-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--invoices-text-medium);
+  margin: 0 0 12px 0;
+}
+
+.Invoices-review-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.Invoices-reaction-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
   display: flex;
   align-items: center;
 }
 
+<<<<<<< HEAD
 /* Seamless Device Adaptation Breakpoints */
 @media (max-width: 768px) {
   .Invoices-control-header {
@@ -353,5 +619,30 @@
   .Invoices-card {
     border: none;
     box-shadow: none;
+=======
+.Invoices-reaction-btn.like {
+  color: #3182ce;
+}
+
+.Invoices-reaction-btn.dislike {
+  color: #e53e3e;
+}
+
+/* Fully Responsive Breakpoints Configuration */
+@media (max-width: 1120px) {
+  .Invoices-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .Invoices-container {
+    padding: 12px;
+    gap: 16px;
+  }
+  .Invoices-table-card,
+  .Invoices-review-card {
+    padding: 16px;
+>>>>>>> 9f6548c74c54dacd3df5c63fa08663200c079e98
   }
 }

@@ -14,6 +14,10 @@ import Invoices from "./Component/Invoices/Invoices";
 import PaymentMethod from "./Component/PaymentMethod/PaymentMethod";
 import Payments from "./Component/Payments/Payments";
 import PaymentHistory from "./Component/PaymentHistroy/PaymentHistroy";
+import Contracts from "./Component/Contracts/Contracts";
+import Ndas from "./Component/Ndas/Ndas";
+import ProjectDocuments from "./Component/ProjectDocuments/ProjectDocuments";
+import Chat from "./Component/Chat/Chat";
 
 
 
@@ -46,6 +50,10 @@ const App = () => {
         <Route path="/client/tickets" element={<Tickets />} />
         <Route path="/client/ticket-details" element={<TicketDetails/>} />
         <Route path="/client/dashboard" element={<Dashboard/>} />
+        <Route path="/client/contracts" element={<Contracts/>} />
+        <Route path="/client/ndas" element={<Ndas/>} />
+        <Route path="/client/project-documents" element={<ProjectDocuments/>} />
+        <Route path="/client/chat" element={<Chat/>} />
         
         </Route>
       </Routes>

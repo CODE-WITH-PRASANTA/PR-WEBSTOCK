@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for routing
 import "./Topbar.css";
+import API from "../../api/axios"; 
+import Swal from "sweetalert2";
 
 import {
   FiMenu,
@@ -14,11 +17,28 @@ import {
 } from "react-icons/fi";
 
 const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
+  const navigate = useNavigate(); // Initialize navigation
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
   const notificationRef = useRef(null);
   const profileRef = useRef(null);
+
+  // Retrieve authenticated employee data dynamically and efficiently using state initialization
+  const [storedUser] = useState(
+    () => JSON.parse(localStorage.getItem("employeeData")) || {}
+  );
+
+  const currentUserName = storedUser.name || "Ella Jones";
+  const currentUserEmail = storedUser.email || "ella.jones@company.com";
+  const currentUserRole = storedUser.role || "Administrator";
+  
+  // Dynamically extract the origin from API config to eliminate hardcoded ports
+  const apiBaseUrl = API.defaults.baseURL ? new URL(API.defaults.baseURL).origin : "";
+
+  const currentUserAvatar = storedUser.profileImage 
+    ? `${apiBaseUrl}${storedUser.profileImage}` 
+    : "https://randomuser.me/api/portraits/women/68.jpg";
 
   useEffect(() => {
     const handleOutside = (e) => {
@@ -40,6 +60,46 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
     document.addEventListener("mousedown", handleOutside);
     return () => document.removeEventListener("mousedown", handleOutside);
   }, []);
+
+const handleLogout = async () => {
+  const result = await Swal.fire({
+    title: "Logout?",
+    html: `
+      <p style="margin:0;font-size:15px;color:#666;">
+        Are you sure you want to logout from your account?
+      </p>
+    `,
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Yes, Logout",
+    cancelButtonText: "Cancel",
+    reverseButtons: true,
+    focusCancel: true,
+    confirmButtonColor: "#e53935",
+    cancelButtonColor: "#6c757d",
+  });
+
+  if (!result.isConfirmed) return;
+
+  try {
+    await API.post("/auth/employee/logout");
+  } catch (err) {
+    console.error("Logout Error:", err);
+  }
+
+  localStorage.removeItem("employeeToken");
+  localStorage.removeItem("employeeData");
+
+  await Swal.fire({
+    icon: "success",
+    title: "Logged Out!",
+    text: "You have been logged out successfully.",
+    timer: 1500,
+    showConfirmButton: false,
+  });
+
+  navigate("/login");
+};
 
   const notifications = [
     {
@@ -182,12 +242,12 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
             onClick={() => setProfileOpen(!profileOpen)}
           >
             <img
-              src="https://randomuser.me/api/portraits/women/68.jpg"
+              src={currentUserAvatar}
               alt="User Avatar"
             />
             <div className="Topbar-userMeta">
-              <span className="Topbar-userName">Ella Jones</span>
-              <span className="Topbar-userRole">Administrator</span>
+              <span className="Topbar-userName">{currentUserName}</span>
+              <span className="Topbar-userRole">{currentUserRole}</span>
             </div>
             <FiChevronDown className="Topbar-chevron" />
           </button>
@@ -195,8 +255,8 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
           {profileOpen && (
             <div className="Topbar-profileDropdown">
               <div className="Dropdown-userHeader">
-                <h4>Ella Jones</h4>
-                <p>ella.jones@company.com</p>
+                <h4>{currentUserName}</h4>
+                <p>{currentUserEmail}</p>
               </div>
               <div className="Dropdown-divider"></div>
               <a href="/">
@@ -212,10 +272,15 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 <span>Settings</span>
               </a>
               <div className="Dropdown-divider"></div>
-              <a href="/" className="logout-link">
+              
+              {/* Converted component element to run logout securely */}
+            <button
+                onClick={handleLogout}
+                className="logout-link logout-btn"
+              >
                 <FiLogOut />
                 <span>Logout</span>
-              </a>
+              </button>
             </div>
           )}
         </div>
