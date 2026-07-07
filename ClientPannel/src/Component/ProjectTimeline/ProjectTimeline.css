@@ -1,0 +1,351 @@
+/* --- Global Container Style Framework --- */
+.timeline-dashboard-container {
+  min-height: 100vh;
+  background-color: #f1f3f4;
+  padding: 24px;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #3c4043;
+  box-sizing: border-box;
+}
+
+/* --- Navigation Breadcrumbs Track --- */
+.timeline-breadcrumb {
+  max-width: 1200px;
+  margin: 0 auto 16px auto;
+  font-size: 13px;
+  color: #5f6368;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeline-breadcrumb-link {
+  color: #5f6368;
+  text-decoration: none;
+}
+
+.timeline-breadcrumb-active {
+  color: #202124;
+  font-weight: 500;
+}
+
+/* --- Layout Frame Blocks --- */
+.timeline-layout-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.timeline-base-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.timeline-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #5f6368;
+  margin: 0 0 20px 0;
+}
+
+/* --- Dropdown Selector UI Components (Image 3) --- */
+.dropdown-control-wrapper {
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+}
+
+.dropdown-field-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background-color: #ffffff;
+  padding: 0 4px;
+  font-size: 11px;
+  color: #5f6368;
+  z-index: 1;
+}
+
+.dropdown-trigger-box {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #202124;
+  background-color: #ffffff;
+  border: 1px solid #80868b;
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.dropdown-trigger-box:focus {
+  outline: none;
+  border-color: #1a73e8;
+}
+
+.dropdown-arrow-icon {
+  border: solid #5f6368;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.dropdown-arrow-icon.arrow-rotated {
+  transform: rotate(-135deg);
+}
+
+/* Float Select Overlay Block Menu */
+.dropdown-menu-overlay {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px 2px rgba(60,64,67,0.15);
+  z-index: 10;
+  padding: 4px 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dropdown-menu-item {
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #202124;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-menu-item:hover {
+  background-color: #f1f3f4;
+}
+
+.dropdown-menu-item.item-state-selected {
+  background-color: #e8eaed;
+  font-weight: 500;
+}
+
+.dropdown-check-mark {
+  font-size: 16px;
+  color: #3c4043;
+}
+
+/* --- Core Project Tree Journey Timeline Graphic Display --- */
+.journey-tree-axis-container {
+  position: relative;
+  padding: 40px 0;
+}
+
+/* Central Vertical Baseline Column Wire */
+.journey-tree-axis-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: #e8eaed;
+  transform: translateX(-50%);
+}
+
+.journey-node-row {
+  display: flex;
+  position: relative;
+  margin-bottom: 48px;
+  width: 100%;
+}
+
+.journey-node-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternating Horizontal Form Columns Setup */
+.journey-node-left {
+  justify-content: flex-start;
+}
+
+.journey-node-right {
+  justify-content: flex-end;
+}
+
+/* Floating Card Shell Block */
+.journey-info-card-panel {
+  width: 44%;
+  background-color: #ffffff;
+  border: 1px solid #e8eaed;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+/* Indicator Anchor Pointer Box Tips */
+.journey-node-left .journey-info-card-panel::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #ffffff;
+}
+
+.journey-node-left .journey-info-card-panel::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: -9px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #e8eaed;
+  z-index: -1;
+}
+
+.journey-node-right .journey-info-card-panel::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #ffffff;
+}
+
+.journey-node-right .journey-info-card-panel::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: -9px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #e8eaed;
+  z-index: -1;
+}
+
+/* Center Axis Focal Sphere Elements */
+.journey-center-badge-sphere {
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Typography Inside Cards */
+.journey-node-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #3c4043;
+  margin: 0 0 6px 0;
+}
+
+.journey-node-timestamp {
+  font-size: 12px;
+  color: #80868b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.journey-node-narrative {
+  font-size: 13px;
+  color: #5f6368;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+/* --- Modular Lifecycle Status Badges --- */
+.journey-status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pill-bg-completed {
+  background-color: #e6f4ea;
+  color: #137333;
+}
+
+.pill-bg-progress {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
+.pill-bg-upcoming {
+  background-color: #feeee3;
+  color: #d93025;
+}
+
+/* --- Media Queries Framework Rules For Responsiveness --- */
+@media (max-width: 768px) {
+  .journey-tree-axis-container::before {
+    left: 20px;
+  }
+  
+  .journey-node-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 54px;
+    box-sizing: border-box;
+  }
+  
+  .journey-info-card-panel {
+    width: 100%;
+  }
+  
+  .journey-center-badge-sphere {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+  
+  /* Reset all tip alignments to left borders on mobile layout grid */
+  .journey-node-left .journey-info-card-panel::after,
+  .journey-node-right .journey-info-card-panel::after {
+    left: -8px;
+    right: auto;
+    border-right: 8px solid #ffffff;
+    border-left: none;
+  }
+  
+  .journey-node-left .journey-info-card-panel::before,
+  .journey-node-right .journey-info-card-panel::before {
+    left: -9px;
+    right: auto;
+    border-right: 8px solid #e8eaed;
+    border-left: none;
+  }
+}

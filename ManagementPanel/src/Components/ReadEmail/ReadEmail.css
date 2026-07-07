@@ -1,0 +1,695 @@
+/* ===============================
+   ReadEmail.css (PART 1)
+   =============================== */
+
+:root{
+    --ReadEmail-primary:#3b82f6;
+    --ReadEmail-primary-dark:#2563eb;
+    --ReadEmail-success:#1f8b4c;
+    --ReadEmail-bg:#edf2f7;
+    --ReadEmail-card:#ffffff;
+    --ReadEmail-border:#e5e7eb;
+    --ReadEmail-text:#1f2937;
+    --ReadEmail-text-light:#6b7280;
+    --ReadEmail-shadow:0 8px 25px rgba(0,0,0,.08);
+    --ReadEmail-radius:12px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.ReadEmail{
+    width:100%;
+    min-height:100vh;
+    background:var(--ReadEmail-bg);
+    padding:30px;
+    font-family:Inter,Segoe UI,Tahoma,sans-serif;
+}
+
+/*==========================
+PAGE HEADER
+===========================*/
+
+.ReadEmail-page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.ReadEmail-page-header h2{
+    font-size:31px;
+    color:#222;
+    font-weight:700;
+}
+
+.ReadEmail-breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#5d6778;
+    font-size:15px;
+}
+
+.ReadEmail-current{
+    color:#2c2c2c;
+    font-weight:600;
+}
+
+/*==========================
+MAIN LAYOUT
+===========================*/
+
+.ReadEmail-container{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:25px;
+    align-items:flex-start;
+}
+
+/*==========================
+SIDEBAR
+===========================*/
+
+.ReadEmail-sidebar{
+    background:#fff;
+    border-radius:14px;
+    padding:18px;
+    box-shadow:var(--ReadEmail-shadow);
+    transition:.35s;
+}
+
+.ReadEmail-sidebar:hover{
+    transform:translateY(-2px);
+}
+
+/*==========================
+COMPOSE BUTTON
+===========================*/
+
+.ReadEmail-compose-btn{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    background:#198754;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    border-radius:8px;
+    padding:13px;
+    transition:.35s;
+    letter-spacing:.4px;
+}
+
+.ReadEmail-compose-btn:hover{
+    background:#157347;
+    transform:translateY(-2px);
+    box-shadow:0 10px 18px rgba(25,135,84,.25);
+}
+
+/*==========================
+MENU
+===========================*/
+
+.ReadEmail-menu{
+    margin-top:22px;
+}
+
+.ReadEmail-menu-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 15px;
+    margin-bottom:8px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.35s;
+    color:#374151;
+}
+
+.ReadEmail-menu-item:hover{
+    background:#eef5ff;
+    color:#2563eb;
+    transform:translateX(6px);
+}
+
+.ReadEmail-menu-active{
+    background:#3d7cbc;
+    color:#fff;
+}
+
+.ReadEmail-menu-active:hover{
+    background:#3473b5;
+    color:#fff;
+}
+
+.ReadEmail-menu-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.ReadEmail-menu-icon{
+    font-size:17px;
+    display:flex;
+    align-items:center;
+}
+
+.ReadEmail-count{
+    background:#ff9800;
+    color:#fff;
+    min-width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50px;
+    font-size:12px;
+    font-weight:600;
+}
+
+/*==========================
+DIVIDER
+===========================*/
+
+.ReadEmail-divider{
+    width:100%;
+    height:1px;
+    background:#ececec;
+    margin:22px 0;
+}
+
+/*==========================
+SECTION TITLE
+===========================*/
+
+.ReadEmail-section-title{
+    font-size:20px;
+    font-weight:600;
+    color:#333;
+    margin-bottom:18px;
+}
+
+/*==========================
+LABELS
+===========================*/
+
+.ReadEmail-labels{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.ReadEmail-label-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    color:#404040;
+    transition:.35s;
+    padding:6px 8px;
+    border-radius:8px;
+}
+
+.ReadEmail-label-item:hover{
+    background:#f6f8fb;
+    transform:translateX(6px);
+}
+
+.ReadEmail-label-dot{
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    flex-shrink:0;
+}
+
+/*==========================
+ONLINE USERS
+===========================*/
+
+.ReadEmail-online-users{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.ReadEmail-online-item{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    cursor:pointer;
+    padding:7px 8px;
+    border-radius:8px;
+    transition:.35s;
+}
+
+.ReadEmail-online-item:hover{
+    background:#f5f8fc;
+    transform:translateX(6px);
+}
+
+.ReadEmail-online-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    flex-shrink:0;
+}
+
+/*==========================
+CONTENT CARD
+===========================*/
+
+.ReadEmail-content{
+    background:#fff;
+    border-radius:14px;
+    box-shadow:var(--ReadEmail-shadow);
+    padding:25px;
+    overflow:hidden;
+}
+
+.ReadEmail-subject{
+    font-size:33px;
+    font-weight:700;
+    color:#222;
+    margin-bottom:18px;
+}
+
+.ReadEmail-top-divider{
+    height:1px;
+    background:#ececec;
+    margin-bottom:18px;
+}
+
+/*==========================
+USER INFO
+===========================*/
+
+.ReadEmail-user-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:28px;
+}
+
+.ReadEmail-user-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.ReadEmail-avatar{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #f1f5f9;
+}
+
+.ReadEmail-user-left h4{
+    color:#2563eb;
+    font-size:23px;
+    margin-bottom:5px;
+}
+
+.ReadEmail-user-left span{
+    color:#777;
+    font-size:15px;
+}
+
+.ReadEmail-user-left a{
+    color:#7c8aa0;
+    text-decoration:none;
+}
+
+.ReadEmail-user-left a:hover{
+    color:#2563eb;
+}
+
+.ReadEmail-date{
+    color:#555;
+    font-size:16px;
+    font-weight:500;
+}
+
+/*==========================
+EMAIL BODY
+===========================*/
+
+.ReadEmail-message{
+    color:#3d3d3d;
+    font-size:17px;
+    line-height:1.9;
+}
+
+.ReadEmail-message p{
+    margin-bottom:26px;
+}
+
+.ReadEmail-link{
+    color:#2563eb;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.ReadEmail-link:hover{
+    text-decoration:underline;
+}
+
+/*==================================
+ATTACHMENT HEADER
+==================================*/
+
+.ReadEmail-attachment-header{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:35px;
+    margin-bottom:22px;
+    padding-top:20px;
+    border-top:1px solid #ececec;
+    color:#374151;
+    font-weight:600;
+}
+
+.ReadEmail-attachment-header svg{
+    color:#2563eb;
+    font-size:18px;
+}
+
+.ReadEmail-attachment-header a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:500;
+    transition:.3s;
+}
+
+.ReadEmail-attachment-header a:hover{
+    color:#1d4ed8;
+    text-decoration:underline;
+}
+
+/*==================================
+ATTACHMENTS
+==================================*/
+
+.ReadEmail-attachments{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.ReadEmail-attachment-card{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    overflow:hidden;
+    transition:all .35s ease;
+    cursor:pointer;
+}
+
+.ReadEmail-attachment-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+    border-color:#3b82f6;
+}
+
+.ReadEmail-image-wrapper{
+    overflow:hidden;
+}
+
+.ReadEmail-attachment-image{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    transition:transform .5s;
+}
+
+.ReadEmail-attachment-card:hover
+.ReadEmail-attachment-image{
+    transform:scale(1.08);
+}
+
+.ReadEmail-file-info{
+    padding:15px;
+}
+
+.ReadEmail-file-name{
+    display:block;
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+    margin-bottom:6px;
+    transition:.3s;
+}
+
+.ReadEmail-file-name:hover{
+    color:#1d4ed8;
+}
+
+.ReadEmail-file-size{
+    color:#6b7280;
+    font-size:14px;
+}
+
+/*==================================
+REPLY BOX
+==================================*/
+
+.ReadEmail-reply-box{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:22px;
+}
+
+.ReadEmail-reply-box p{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    color:#4b5563;
+    font-size:16px;
+}
+
+.ReadEmail-action-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:none;
+    outline:none;
+    background:#3b82f6;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:all .35s ease;
+}
+
+.ReadEmail-action-btn:hover{
+    background:#2563eb;
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(37,99,235,.25);
+}
+
+/*==================================
+SMOOTH SCROLLBAR
+==================================*/
+
+.ReadEmail-content::-webkit-scrollbar{
+    width:8px;
+}
+
+.ReadEmail-content::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:20px;
+}
+
+.ReadEmail-content::-webkit-scrollbar-thumb:hover{
+    background:#94a3b8;
+}
+
+/*==================================
+TABLET
+==================================*/
+
+@media (max-width:992px){
+
+.ReadEmail{
+    padding:20px;
+}
+
+.ReadEmail-container{
+    grid-template-columns:1fr;
+}
+
+.ReadEmail-sidebar{
+    order:2;
+}
+
+.ReadEmail-content{
+    order:1;
+}
+
+.ReadEmail-page-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.ReadEmail-subject{
+    font-size:28px;
+}
+
+.ReadEmail-user-row{
+    flex-direction:column;
+    gap:15px;
+}
+
+}
+
+/*==================================
+MOBILE
+==================================*/
+
+@media (max-width:768px){
+
+.ReadEmail{
+    padding:15px;
+}
+
+.ReadEmail-page-header h2{
+    font-size:26px;
+}
+
+.ReadEmail-breadcrumb{
+    font-size:13px;
+    flex-wrap:wrap;
+}
+
+.ReadEmail-content{
+    padding:18px;
+}
+
+.ReadEmail-subject{
+    font-size:24px;
+}
+
+.ReadEmail-user-left{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.ReadEmail-avatar{
+    width:60px;
+    height:60px;
+}
+
+.ReadEmail-user-left h4{
+    font-size:20px;
+}
+
+.ReadEmail-message{
+    font-size:15px;
+}
+
+.ReadEmail-attachments{
+    grid-template-columns:1fr;
+}
+
+.ReadEmail-reply-box p{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.ReadEmail-action-btn{
+    width:100%;
+    justify-content:center;
+}
+
+}
+
+/*==================================
+SMALL MOBILE
+==================================*/
+
+@media (max-width:480px){
+
+.ReadEmail{
+    padding:10px;
+}
+
+.ReadEmail-sidebar{
+    padding:15px;
+}
+
+.ReadEmail-content{
+    padding:15px;
+}
+
+.ReadEmail-subject{
+    font-size:20px;
+}
+
+.ReadEmail-compose-btn{
+    font-size:15px;
+}
+
+.ReadEmail-menu-item{
+    padding:12px;
+}
+
+.ReadEmail-section-title{
+    font-size:18px;
+}
+
+.ReadEmail-attachment-image{
+    height:140px;
+}
+
+.ReadEmail-file-info{
+    padding:12px;
+}
+
+.ReadEmail-action-btn{
+    padding:10px 15px;
+    font-size:14px;
+}
+
+}
+
+/*==================================
+ANIMATIONS
+==================================*/
+
+.ReadEmail-sidebar,
+.ReadEmail-content,
+.ReadEmail-menu-item,
+.ReadEmail-label-item,
+.ReadEmail-online-item,
+.ReadEmail-attachment-card,
+.ReadEmail-action-btn,
+.ReadEmail-compose-btn{
+    transition:all .35s ease;
+}
+
+@keyframes ReadEmailFade{
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.ReadEmail{
+    animation:ReadEmailFade .5s ease;
+}
