@@ -1,14 +1,29 @@
 const Employee = require("../models/Employee");
+const Counter = require("../models/Counter"); // ✅ FIXED: Points directly to your separate counter collection
 
-/**
- * ==========================================
- * Create Employee
- * POST : /api/employees
- * ==========================================
- */
 exports.createEmployee = async (req, res) => {
   try {
-    const employee = await Employee.create(req.body);
+    const payload = { ...req.body };
+
+    if (payload.gender === "") delete payload.gender;
+    if (payload.workLocation === "") delete payload.workLocation;
+
+    // Secure generation sequence
+    if (!payload.employeeId) {
+      const currentYear = new Date().getFullYear();
+      const counterId = `empId_${currentYear}`;
+
+      const counter = await Counter.findOneAndUpdate(
+        { idName: counterId },
+        { $inc: { seq: 1 } },
+        { new: true, upsert: true }
+      );
+
+      const sequenceNumber = String(counter.seq).padStart(3, "0");
+      payload.employeeId = `PRW-EMP-${currentYear}-${sequenceNumber}`;
+    }
+
+    const employee = await Employee.create(payload);
 
     return res.status(201).json({
       success: true,
@@ -17,24 +32,22 @@ exports.createEmployee = async (req, res) => {
     });
   } catch (error) {
     console.error("Create Employee Error:", error);
-
-    return res.status(500).json({
+    return res.status(400).json({
       success: false,
-      message: error.message,
+      message: error.message || "Validation failed during item initialization.",
     });
   }
 };
-
 /**
  * ==========================================
- * Get All Employees
+ * Get All Employees (Paginated & Searchable)
  * GET : /api/employees
  * ==========================================
  */
 exports.getEmployees = async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
     const search = req.query.search || "";
     const status = req.query.status || "";
 
@@ -45,6 +58,7 @@ exports.getEmployees = async (req, res) => {
         { name: { $regex: search, $options: "i" } },
         { department: { $regex: search, $options: "i" } },
         { role: { $regex: search, $options: "i" } },
+        { employeeId: { $regex: search, $options: "i" } } // Added ID search functionality
       ];
     }
 
@@ -53,7 +67,6 @@ exports.getEmployees = async (req, res) => {
     }
 
     const totalEmployees = await Employee.countDocuments(query);
-
     const employees = await Employee.find(query)
       .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
@@ -69,7 +82,6 @@ exports.getEmployees = async (req, res) => {
     });
   } catch (error) {
     console.error("Get Employees Error:", error);
-
     return res.status(500).json({
       success: false,
       message: error.message,
@@ -100,7 +112,6 @@ exports.getEmployee = async (req, res) => {
     });
   } catch (error) {
     console.error("Get Employee Error:", error);
-
     return res.status(500).json({
       success: false,
       message: error.message,
@@ -139,7 +150,6 @@ exports.updateEmployee = async (req, res) => {
     });
   } catch (error) {
     console.error("Update Employee Error:", error);
-
     return res.status(500).json({
       success: false,
       message: error.message,
@@ -172,7 +182,6 @@ exports.deleteEmployee = async (req, res) => {
     });
   } catch (error) {
     console.error("Delete Employee Error:", error);
-
     return res.status(500).json({
       success: false,
       message: error.message,

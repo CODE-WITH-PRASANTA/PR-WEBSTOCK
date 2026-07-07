@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
-  FiSearch, FiFilter, FiPlus, FiRotateCw, FiDownload, 
+  FiSearch, FiFilter, FiPlus, FiRotateCw, 
   FiEdit, FiTrash2, FiUser, FiBriefcase, FiFlag, 
   FiBookOpen, FiPhone, FiMail, FiCalendar, FiMapPin, 
   FiX, FiLoader
@@ -9,6 +9,8 @@ import './AllEmployees.css';
 import API from "../../api/axios"; // Your pre-configured axios instance
 
 const AllEmployees = () => {
+
+  
   // Server-driven state
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,10 +27,21 @@ const AllEmployees = () => {
   // Layout UI states
   const [selectedIds, setSelectedIds] = useState([]);
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
+  
+  // Columns visibility toggles
   const [visibleColumns, setVisibleColumns] = useState({
-    checkbox: true, employeeId: true, name: true, role: true, department: true, 
-    mobile: true, joiningDate: true, email: false, gender: false, address: false, 
-    status: true, actions: true
+    checkbox: true, 
+    employeeId: true, 
+    name: true, 
+    role: true, 
+    department: true, 
+    mobile: true, 
+    joiningDate: true, 
+    email: true,    
+    gender: true,   
+    address: true,  
+    status: true, 
+    actions: true
   });
 
   // Modal contexts
@@ -43,7 +56,7 @@ const AllEmployees = () => {
   };
   const [formData, setFormData] = useState(initialFormState);
 
-  // Fetch Employees from backend using parameters matching your controller
+  // Fetch Employees from backend
   const fetchEmployees = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -69,11 +82,11 @@ const AllEmployees = () => {
     }
   }, [currentPage, limit, searchTerm, statusFilter]);
 
-  // Sync component viewing parameters with backend datasets
+  // Debounced effect for live tracking search query updates
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       fetchEmployees();
-    }, 400); // 400ms Debounce layer to throttle heavy server requests on search type
+    }, 400);
 
     return () => clearTimeout(delayDebounceFn);
   }, [fetchEmployees]);
@@ -84,7 +97,7 @@ const AllEmployees = () => {
     return dateString.substring(0, 10);
   };
 
-  // Mass structural select workflows
+  // Mass selection mechanics
   const handleSelectAll = () => {
     if (selectedIds.length === employees.length) {
       setSelectedIds([]);
@@ -103,7 +116,7 @@ const AllEmployees = () => {
     setVisibleColumns(prev => ({ ...prev, [col]: !prev[col] }));
   };
 
-  // Open Modal setups
+  // Open Modal triggers
   const openAddModal = () => {
     setFormData(initialFormState);
     setModalType('add');
@@ -122,9 +135,9 @@ const AllEmployees = () => {
       gender: emp.gender || '',
       address: emp.address || '',
       joiningDate: formatDateForInput(emp.joiningDate),
-      salary: emp.salary || '',
+      salary: emp.salary ?? 0,
       lastPromotionDate: formatDateForInput(emp.lastPromotionDate),
-      employeeStatus: emp.employeeStatus || 'Active',
+      employeeStatus: emp.employeeStatus || 'Active', 
       workLocation: emp.workLocation || ''
     });
     setModalType('edit');
@@ -139,15 +152,44 @@ const AllEmployees = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const cleanedFormData = { ...formData };
+    if (!cleanedFormData.employeeId || cleanedFormData.employeeId === "") {
+      delete cleanedFormData.employeeId;
+    }
+
+    if (cleanedFormData.gender === "") cleanedFormData.gender = "";
+    if (cleanedFormData.workLocation === "") cleanedFormData.workLocation = "";
+    if (cleanedFormData.birthDate === "") delete cleanedFormData.birthDate;
+    if (cleanedFormData.joiningDate === "") delete cleanedFormData.joiningDate;
+    if (cleanedFormData.lastPromotionDate === "") delete cleanedFormData.lastPromotionDate;
+    
+    if (cleanedFormData.salary === "" || cleanedFormData.salary === null) {
+      cleanedFormData.salary = 0;
+    } else {
+      cleanedFormData.salary = Number(cleanedFormData.salary);
+    }
+
     try {
       if (modalType === 'add') {
-        await API.post('/employees/create', formData);
+        const response = await API.post('/employees/create', cleanedFormData); 
+        if (response.data.success && response.data.data) {
+          const newEmployee = response.data.data;
+          setEmployees(prev => [newEmployee, ...prev].slice(0, limit));
+          setTotalEmployees(prev => prev + 1);
+          alert(`Employee added successfully! Generated ID: ${newEmployee.employeeId}`);
+        }
       } else if (modalType === 'edit') {
-        await API.put(`/employees/${currentEmployee._id}`, formData);
+        const response = await API.put(`/employees/${currentEmployee._id}`, cleanedFormData);
+        if (response.data.success && response.data.data) {
+          const updatedEmployee = response.data.data;
+          setEmployees(prev => prev.map(emp => emp._id === updatedEmployee._id ? updatedEmployee : emp));
+        }
       }
       setModalType(null);
       fetchEmployees();
     } catch (err) {
+      console.error(err);
       alert(err.response?.data?.message || "Operation failed. Please review values.");
     } finally {
       setLoading(false);
@@ -160,7 +202,6 @@ const AllEmployees = () => {
     try {
       await API.delete(`/employees/${currentEmployee._id}`);
       setModalType(null);
-      // If deleting last item on page, scale page footprint backwards
       if (employees.length === 1 && currentPage > 1) {
         setCurrentPage(prev => prev - 1);
       } else {
@@ -174,63 +215,57 @@ const AllEmployees = () => {
   };
 
   const handleRefresh = async () => {
-  setSearchTerm("");
-  setStatusFilter("");
-  setSelectedIds([]);
-  setCurrentPage(1);
-
-  try {
-    setLoading(true);
-
-    const response = await API.get("/employees", {
-      params: {
-        page: 1,
-        limit,
-        search: "",
-        status: "",
-      },
-    });
-
-    if (response.data.success) {
-      setEmployees(response.data.data);
-      setTotalPages(response.data.totalPages);
-      setTotalEmployees(response.data.totalEmployees);
+    setSearchTerm("");
+    setStatusFilter("");
+    setSelectedIds([]);
+    setCurrentPage(1);
+    try {
+      setLoading(true);
+      const response = await API.get("/employees", {
+        params: { page: 1, limit, search: "", status: "" }
+      });
+      if (response.data.success) {
+        setEmployees(response.data.data);
+        setTotalPages(response.data.totalPages);
+        setTotalEmployees(response.data.totalEmployees);
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Failed to refresh employees.");
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error(err);
-    setError("Failed to refresh employees.");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
+
+  const activeColumnsCount = Object.values(visibleColumns).filter(Boolean).length;
 
   return (
-    <div className="AllEmployees-container">
+    <div className="All-Emp-container">
       {/* Top Header Breadcrumb */}
-      <div className="AllEmployees-header">
-        <h2 className="AllEmployees-title">Employee Management</h2>
-        <div className="AllEmployees-breadcrumb">
-          <span className="breadcrumb-home">🏠</span> &gt; Employees &gt; <span className="breadcrumb-active">All Records</span>
+      <div className="All-Emp-header">
+        <h2 className="All-Emp-title">Employee Management</h2>
+        <div className="All-Emp-breadcrumb">
+          <span className="All-Emp-breadcrumb-home">🏠</span> &gt; Employees &gt; <span className="All-Emp-breadcrumb-active">All Records</span>
         </div>
       </div>
 
       {/* Control Actions Bar */}
-      <div className="AllEmployees-toolbar">
-        <div className="toolbar-left">
-          <span className="toolbar-tab-active">Active Staff ({totalEmployees})</span>
-          <div className="search-container">
-            <FiSearch className="search-icon" />
+      <div className="All-Emp-toolbar">
+        <div className="All-Emp-toolbar-left">
+          <span className="All-Emp-tab-active">Active Staff ({totalEmployees})</span>
+          <div className="All-Emp-search-container">
+            <FiSearch className="All-Emp-search-icon" />
             <input 
               type="text" 
               placeholder="Search by name, department, role..." 
-              className="search-input"
+              className="All-Emp-search-input"
               value={searchTerm}
               onChange={(e) => { setSearchTerm(e.target.value); setCurrentPage(1); }}
             />
           </div>
           
           <select 
-            className="status-filter-select"
+            className="All-Emp-status-filter-select"
             value={statusFilter}
             onChange={(e) => { setStatusFilter(e.target.value); setCurrentPage(1); }}
           >
@@ -241,49 +276,48 @@ const AllEmployees = () => {
           </select>
         </div>
         
-        <div className="toolbar-right">
-          <button className="icon-btn filter-btn" title="Toggle Columns" onClick={() => setShowFilterDropdown(!showFilterDropdown)}>
+        <div className="All-Emp-toolbar-right">
+          <button className="All-Emp-icon-btn All-Emp-filter-btn" title="Toggle Columns" onClick={() => setShowFilterDropdown(!showFilterDropdown)}>
             <FiFilter />
           </button>
           
           {showFilterDropdown && (
-            <div className="column-dropdown">
-              <div className="dropdown-title">Display Columns</div>
-              <div className="dropdown-list custom-scrollbar">
+            <div className="All-Emp-column-dropdown">
+              <div className="All-Emp-dropdown-title">Display Columns</div>
+              <div className="All-Emp-dropdown-list All-Emp-custom-scrollbar">
                 {Object.keys(visibleColumns).map((col) => (
-                  <label key={col} className="dropdown-item">
+                  <label key={col} className="All-Emp-dropdown-item">
                     <input 
                       type="checkbox" 
                       checked={visibleColumns[col]} 
                       onChange={() => toggleColumn(col)} 
                     />
-                    <span className="capitalize">{col.replace(/([A-Z])/g, ' $1')}</span>
+                    <span className="All-Emp-capitalize">{col.replace(/([A-Z])/g, ' $1')}</span>
                   </label>
                 ))}
               </div>
             </div>
           )}
 
-          <button className="icon-btn add-btn" title="Add Employee" onClick={openAddModal}>
+          <button className="All-Emp-icon-btn All-Emp-add-btn" title="Add Employee" onClick={openAddModal}>
             <FiPlus />
           </button>
           <button
-                  className="icon-btn refresh-btn"
-                  title="Refresh Employees"
-                  onClick={handleRefresh}
-                  disabled={loading}
-                >
-                  <FiRotateCw className={loading ? "spin-animation" : ""} />
-                </button>
+            className="All-Emp-icon-btn All-Emp-refresh-btn"
+            title="Refresh Employees"
+            onClick={handleRefresh}
+            disabled={loading}
+          >
+            <FiRotateCw className={loading ? "All-Emp-spin-animation" : ""} />
+          </button>
         </div>
       </div>
 
-      {/* Primary Workspace Processing Conditions */}
-      {error && <div className="error-banner-overlay">{error}</div>}
+      {error && <div className="All-Emp-error-banner-overlay">{error}</div>}
 
       {/* Table Section */}
-      <div className="table-responsive-container custom-scrollbar">
-        <table className="AllEmployees-table">
+      <div className="All-Emp-table-responsive-container All-Emp-custom-scrollbar">
+        <table className="All-Emp-table">
           <thead>
             <tr>
               {visibleColumns.checkbox && (
@@ -311,17 +345,17 @@ const AllEmployees = () => {
           <tbody>
             {loading && employees.length === 0 ? (
               <tr>
-                <td colSpan="12" className="table-loader-cell">
-                  <FiLoader className="spin-animation loader-icon" /> Processing directory...
+                <td colSpan={activeColumnsCount} className="All-Emp-table-loader-cell">
+                  <FiLoader className="All-Emp-spin-animation All-Emp-loader-icon" /> Processing directory...
                 </td>
               </tr>
             ) : employees.length === 0 ? (
               <tr>
-                <td colSpan="12" className="table-empty-cell">No matching employee logs discovered.</td>
+                <td colSpan={activeColumnsCount} className="All-Emp-table-empty-cell">No matching employee logs discovered.</td>
               </tr>
             ) : (
               employees.map((emp) => (
-                <tr key={emp._id} className={selectedIds.includes(emp._id) ? 'row-selected' : ''}>
+                <tr key={emp._id} className={selectedIds.includes(emp._id) ? 'All-Emp-row-selected' : ''}>
                   {visibleColumns.checkbox && (
                     <td>
                       <input 
@@ -331,46 +365,46 @@ const AllEmployees = () => {
                       />
                     </td>
                   )}
-                  {visibleColumns.employeeId && <td className="text-bold">{emp.employeeId || 'Generating...'}</td>}
+                  {visibleColumns.employeeId && <td className="All-Emp-text-bold">{emp.employeeId || 'Generating...'}</td>}
                   {visibleColumns.name && (
-                    <td className="cell-name">
-                      <div className="avatar-placeholder">{emp.name?.charAt(0).toUpperCase()}</div>
+                    <td className="All-Emp-cell-name">
+                      <div className="All-Emp-avatar-placeholder">{emp.name?.charAt(0).toUpperCase()}</div>
                       <span>{emp.name}</span>
                     </td>
                   )}
                   {visibleColumns.role && <td>{emp.role}</td>}
                   {visibleColumns.department && <td>{emp.department}</td>}
                   {visibleColumns.mobile && (
-                    <td className="cell-icon text-muted"><FiPhone className="cell-inline-icon text-green" /> {emp.mobile}</td>
+                    <td className="All-Emp-cell-icon All-Emp-text-muted"><FiPhone className="All-Emp-cell-inline-icon All-Emp-text-green" /> {emp.mobile}</td>
                   )}
                   {visibleColumns.joiningDate && (
-                    <td className="cell-icon"><FiCalendar className="cell-inline-icon text-orange" /> {emp.joiningDate ? new Date(emp.joiningDate).toLocaleDateString() : 'N/A'}</td>
+                    <td className="All-Emp-cell-icon"><FiCalendar className="All-Emp-cell-inline-icon All-Emp-text-orange" /> {emp.joiningDate ? new Date(emp.joiningDate).toLocaleDateString() : 'N/A'}</td>
                   )}
                   {visibleColumns.email && (
-                    <td className="cell-icon"><FiMail className="cell-inline-icon text-red" /> <span className="truncated-text">{emp.email}</span></td>
+                    <td className="All-Emp-cell-icon"><FiMail className="All-Emp-cell-inline-icon All-Emp-text-red" /> <span className="All-Emp-truncated-text">{emp.email}</span></td>
                   )}
                   {visibleColumns.gender && (
                     <td>
-                      <span className={`badge-gender ${(emp.gender || 'other').toLowerCase()}`}>
+                      <span className={`All-Emp-badge-gender ${(emp.gender || 'unspecified').toLowerCase()}`}>
                         {emp.gender || 'Unspecified'}
                       </span>
                     </td>
                   )}
                   {visibleColumns.address && (
-                    <td className="cell-icon"><FiMapPin className="cell-inline-icon text-blue" /> <span className="truncated-text">{emp.address || 'N/A'}</span></td>
+                    <td className="All-Emp-cell-icon"><FiMapPin className="All-Emp-cell-inline-icon All-Emp-text-blue" /> <span className="All-Emp-truncated-text">{emp.address || 'N/A'}</span></td>
                   )}
                   {visibleColumns.status && (
                     <td>
-                      <span className={`badge-status ${(emp.employeeStatus || 'active').toLowerCase().replace(" ", "")}`}>
+                      <span className={`All-Emp-badge-status ${(emp.employeeStatus || 'active').toLowerCase().replace(" ", "")}`}>
                         {emp.employeeStatus}
                       </span>
                     </td>
                   )}
                   {visibleColumns.actions && (
                     <td>
-                      <div className="action-buttons">
-                        <button className="action-edit" title="Edit Profile" onClick={() => openEditModal(emp)}><FiEdit /></button>
-                        <button className="action-delete" title="Remove Record" onClick={() => openDeleteModal(emp)}><FiTrash2 /></button>
+                      <div className="All-Emp-action-buttons">
+                        <button className="All-Emp-action-edit" title="Edit Profile" onClick={() => openEditModal(emp)}><FiEdit /></button>
+                        <button className="All-Emp-action-delete" title="Remove Record" onClick={() => openDeleteModal(emp)}><FiTrash2 /></button>
                       </div>
                     </td>
                   )}
@@ -381,31 +415,31 @@ const AllEmployees = () => {
         </table>
       </div>
 
-      {/* Pagination Footer Elements */}
-      <div className="AllEmployees-footer">
-        <div className="pagination-right">
+      {/* Pagination Footer */}
+      <div className="All-Emp-footer">
+        <div className="All-Emp-pagination-right">
           <span>Items per page:</span>
           <select 
-            className="items-select" 
+            className="All-Emp-items-select" 
             value={limit} 
-            onChange={(e) => { setLimit(parseInt(e.target.value)); setCurrentPage(1); }}
+            onChange={(e) => { setLimit(parseInt(e.target.value, 10)); setCurrentPage(1); }}
           >
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="25">25</option>
           </select>
-          <span className="pagination-count">
+          <span className="All-Emp-pagination-count">
             Showing {employees.length === 0 ? 0 : (currentPage - 1) * limit + 1} - {Math.min(currentPage * limit, totalEmployees)} of {totalEmployees}
           </span>
           <button 
-            className="page-nav-btn" 
+            className="All-Emp-page-nav-btn" 
             disabled={currentPage === 1 || loading} 
             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
           >
             &lt;
           </button>
           <button 
-            className="page-nav-btn" 
+            className="All-Emp-page-nav-btn" 
             disabled={currentPage === totalPages || totalPages === 0 || loading} 
             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
           >
@@ -416,74 +450,74 @@ const AllEmployees = () => {
 
       {/* ================= ADD / EDIT MODAL WORKFLOWS ================= */}
       {(modalType === 'add' || modalType === 'edit') && (
-        <div className="modal-overlay">
-          <div className="modal-container scrollable-modal">
-            <div className="modal-header-bar">
-              <div className="modal-title-layout">
-                <div className="modal-header-avatar">👤</div>
+        <div className="All-Emp-modal-overlay">
+          <div className="All-Emp-modal-container All-Emp-scrollable-modal">
+            <div className="All-Emp-modal-header-bar">
+              <div className="All-Emp-modal-title-layout">
+                <div className="All-Emp-modal-header-avatar">👤</div>
                 <h3>{modalType === 'add' ? 'New Employee Entry' : `Modify Profile: ${currentEmployee?.name}`}</h3>
               </div>
-              <button className="modal-close-btn" onClick={() => setModalType(null)}><FiX /></button>
+              <button className="All-Emp-modal-close-btn" onClick={() => setModalType(null)}><FiX /></button>
             </div>
             
-            <form onSubmit={handleSave} className="modal-form-body custom-scrollbar">
-              <div className="form-grid">
-                <div className="form-field">
+            <form onSubmit={handleSave} className="All-Emp-modal-form-body All-Emp-custom-scrollbar">
+              <div className="All-Emp-form-grid">
+                <div className="All-Emp-form-field">
                   <label>Name*</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
-                    <FiUser className="input-field-icon" />
+                    <FiUser className="All-Emp-input-field-icon" />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Department*</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="text" required value={formData.department} onChange={(e) => setFormData({...formData, department: e.target.value})} />
-                    <FiBriefcase className="input-field-icon" />
+                    <FiBriefcase className="All-Emp-input-field-icon" />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Role*</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="text" required value={formData.role} onChange={(e) => setFormData({...formData, role: e.target.value})} />
-                    <FiFlag className="input-field-icon" />
+                    <FiFlag className="All-Emp-input-field-icon" />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Degree</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="text" value={formData.degree} onChange={(e) => setFormData({...formData, degree: e.target.value})} />
-                    <FiBookOpen className="input-field-icon" />
+                    <FiBookOpen className="All-Emp-input-field-icon" />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Mobile*</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="text" required value={formData.mobile} onChange={(e) => setFormData({...formData, mobile: e.target.value})} />
-                    <FiPhone className="input-field-icon" />
+                    <FiPhone className="All-Emp-input-field-icon" />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Email*</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-                    <FiMail className="input-field-icon" />
+                    <FiMail className="All-Emp-input-field-icon" />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Birth Date</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="date" value={formData.birthDate} onChange={(e) => setFormData({...formData, birthDate: e.target.value})} />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Gender</label>
                   <select value={formData.gender} onChange={(e) => setFormData({...formData, gender: e.target.value})}>
                     <option value="">Select Gender</option>
@@ -493,33 +527,33 @@ const AllEmployees = () => {
                   </select>
                 </div>
 
-                <div className="form-field full-width">
+                <div className="All-Emp-form-field All-Emp-full-width">
                   <label>Address</label>
                   <textarea rows="2" value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} placeholder="Full residential location status..."></textarea>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Joining Date</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="date" value={formData.joiningDate} onChange={(e) => setFormData({...formData, joiningDate: e.target.value})} />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Salary</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="number" value={formData.salary} onChange={(e) => setFormData({...formData, salary: e.target.value})} />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Last Promotion Date</label>
-                  <div className="input-wrapper">
+                  <div className="All-Emp-input-wrapper">
                     <input type="date" value={formData.lastPromotionDate} onChange={(e) => setFormData({...formData, lastPromotionDate: e.target.value})} />
                   </div>
                 </div>
 
-                <div className="form-field">
+                <div className="All-Emp-form-field">
                   <label>Employee Status*</label>
                   <select value={formData.employeeStatus} onChange={(e) => setFormData({...formData, employeeStatus: e.target.value})}>
                     <option value="Active">Active</option>
@@ -528,7 +562,7 @@ const AllEmployees = () => {
                   </select>
                 </div>
 
-                <div className="form-field full-width">
+                <div className="All-Emp-form-field All-Emp-full-width">
                   <label>Work Location</label>
                   <select value={formData.workLocation} onChange={(e) => setFormData({...formData, workLocation: e.target.value})}>
                     <option value="">Select Operational Hub</option>
@@ -539,11 +573,11 @@ const AllEmployees = () => {
                 </div>
               </div>
 
-              <div className="modal-actions-footer">
-                <button type="submit" className="btn-save" disabled={loading}>
+              <div className="All-Emp-modal-actions-footer">
+                <button type="submit" className="All-Emp-btn-save" disabled={loading}>
                   {loading ? 'Processing...' : 'Save Database Entry'}
                 </button>
-                <button type="button" className="btn-cancel" onClick={() => setModalType(null)}>Cancel</button>
+                <button type="button" className="All-Emp-btn-cancel" onClick={() => setModalType(null)}>Cancel</button>
               </div>
             </form>
           </div>
@@ -552,20 +586,20 @@ const AllEmployees = () => {
 
       {/* ================= DELETE CONFIRMATION MODAL ================= */}
       {modalType === 'delete' && (
-        <div className="modal-overlay">
-          <div className="confirmation-dialog">
+        <div className="All-Emp-modal-overlay">
+          <div className="All-Emp-confirmation-dialog">
             <h3>Confirm Record Destruction</h3>
-            <p className="warn-text">Warning: This action breaks local indices and completely purges the collection document metadata permanently.</p>
-            <div className="confirmation-details">
+            <p className="All-Emp-warn-text">Warning: This action breaks local indices and completely purges the collection document metadata permanently.</p>
+            <div className="All-Emp-confirmation-details">
               <p><strong>Target Name:</strong> {currentEmployee?.name}</p>
               <p><strong>Department:</strong> {currentEmployee?.department}</p>
               <p><strong>Employee ID:</strong> {currentEmployee?.employeeId || 'N/A'}</p>
             </div>
-            <div className="confirmation-actions">
-              <button className="btn-delete-confirm" onClick={handleDeleteConfirm} disabled={loading}>
+            <div className="All-Emp-confirmation-actions">
+              <button className="All-Emp-btn-delete-confirm" onClick={handleDeleteConfirm} disabled={loading}>
                 {loading ? 'Dropping...' : 'Confirm Disconnect'}
               </button>
-              <button className="btn-cancel-confirm" onClick={() => setModalType(null)}>Retain Log</button>
+              <button className="All-Emp-btn-cancel-confirm" onClick={() => setModalType(null)}>Retain Log</button>
             </div>
           </div>
         </div>
