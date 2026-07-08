@@ -273,13 +273,6 @@ a { text-decoration: none; color: inherit; }
 .mobile-drawer {
   position: fixed;
   inset: 0;
-  display: none;
-  z-index: 2100;
-}
-/* ============= SMOOTH & PROFESSIONAL MOBILE DRAWER ============= */
-.mobile-drawer {
-  position: fixed;
-  inset: 0;
   display: flex;
   z-index: 2100;
 
@@ -293,33 +286,13 @@ a { text-decoration: none; color: inherit; }
   opacity: 1;
   pointer-events: auto;
 }
-.drawer-inner {
-  width: 320px;
-  background: linear-gradient(135deg, #ffffff 0%, var(--brand-soft) 100%);
-  transform: translateX(-100%);
-  transition: transform 0.45s cubic-bezier(.25,.8,.25,1);
-  box-shadow: 5px 0 25px rgba(0,0,0,0.18);
-  padding: 24px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 2110;
-  position: relative;
-  overflow-y: auto;
-  border-right: 1px solid var(--brand-border);
-}
 
-.mobile-drawer.open .drawer-inner {
-  transform: translateX(0);
-}
-
-/* Elegant slide-in animation for drawer inner */
 .mobile-drawer .drawer-inner {
   width: 320px;
   background: linear-gradient(135deg, #ffffff 0%, var(--brand-soft) 100%);
   transform: translateX(-100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 2px 0 24px rgba(122, 46, 27, 0.12), 8px 0 40px rgba(122, 46, 27, 0.08);
+  box-shadow: 2px 0 24px rgba(37, 99, 235, 0.12), 8px 0 40px rgba(37, 99, 235, 0.08);
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
@@ -329,7 +302,6 @@ a { text-decoration: none; color: inherit; }
   overflow-y: auto;
   border-right: 1px solid var(--brand-border);
 }
-
 
 .mobile-drawer.open .drawer-inner { transform: translateX(0); }
 
@@ -364,7 +336,7 @@ a { text-decoration: none; color: inherit; }
   object-fit: contain;
   background: var(--brand-soft);
   padding: 6px;
-  box-shadow: 0 4px 16px rgba(122, 46, 27, 0.15);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.15);
   transition: transform 0.3s ease;
 }
 
@@ -388,85 +360,6 @@ a { text-decoration: none; color: inherit; }
   background: var(--brand-primary);
   color: white;
   transform: rotate(90deg);
-}
-
-/* drawer contact area (React Icons) */
-.drawer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 8px 0 12px;
-}
-
-.drawer-contact-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  color: var(--brand-primary);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.drawer-contact-row svg { font-size: 18px; color: var(--brand-primary); }
-
-/* ========== TABBED INTERFACE ========== */
-.drawer-tabs {
-  display: flex;
-  background: var(--brand-soft);
-  border-radius: 12px;
-  padding: 4px;
-  border: 1px solid var(--brand-border);
-  margin-bottom: 16px;
-}
-
-.drawer-tab {
-  flex: 1;
-  padding: 12px 16px;
-  border: none;
-  background: transparent;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--brand-primary);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.drawer-tab.active {
-  background: var(--brand-primary);
-  color: white;
-  box-shadow: 0 2px 8px rgba(122, 46, 27, 0.2);
-}
-
-.drawer-tab:not(.active):hover {
-  background: rgba(122, 46, 27, 0.1);
-  transform: translateY(-1px);
-}
-
-.drawer-content { flex: 1; position: relative; overflow: hidden; }
-
-.drawer-tab-pane {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transform: translateX(20px);
-  pointer-events: none;
-  transition: all 0.3s ease;
-  overflow-y: auto;
-}
-
-.drawer-tab-pane.active {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: all;
 }
 
 /* Enhanced drawer links with elegant animations */
@@ -511,20 +404,194 @@ a { text-decoration: none; color: inherit; }
   color: var(--brand-primary-dark);
 }
 
+/* ---------- Mobile "Services" accordion — premium card treatment ---------- */
+.drawer-services-btn {
+  width: 100%;
+  text-align: left;
+  padding: 15px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, var(--brand-soft) 100%);
+  border: 1px solid var(--brand-border);
+  color: var(--brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease, transform 0.15s ease;
+}
+
+.drawer-services-btn-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.drawer-services-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--brand-primary);
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.drawer-services-btn:hover {
+  border-color: var(--brand-primary);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.14);
+}
+
+.drawer-services-btn:active { transform: scale(0.99); }
+
+.drawer-services-btn.open {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
+  color: #fff;
+  border-color: var(--brand-primary-dark);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.drawer-services-btn.open .drawer-services-btn-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.drawer-services-chevron {
+  font-size: 12px;
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer-services-btn.open .drawer-services-chevron {
+  transform: rotate(180deg);
+}
+
+/* expand/collapse wrapper */
+.drawer-services-list {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer-services-list.open {
+  grid-template-rows: 1fr;
+  margin-top: 6px;
+}
+
+.drawer-services-list-inner {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 2px 4px 14px;
+  position: relative;
+}
+
+/* connecting rail down the left, like a premium settings menu */
+.drawer-services-list-inner::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--brand-border) 0%, transparent 100%);
+  border-radius: 2px;
+}
+
+.drawer-service-item {
+  padding: 11px 14px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1e3a6b;
+  background: #ffffff;
+  border: 1px solid var(--brand-border);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.05);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease,
+    transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.drawer-services-list.open .drawer-service-item {
+  animation: serviceItemIn 0.35s ease forwards;
+  animation-delay: calc(0.05s * var(--i));
+}
+
+@keyframes serviceItemIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.drawer-service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 9px;
+  background: var(--brand-soft);
+  color: var(--brand-primary);
+  font-size: 14px;
+  transition: background 0.22s ease, color 0.22s ease;
+}
+
+.drawer-service-label {
+  flex: 1;
+  line-height: 1.3;
+}
+
+.drawer-service-arrow {
+  font-size: 18px;
+  color: var(--brand-border);
+  transition: transform 0.22s ease, color 0.22s ease;
+}
+
+.drawer-service-item:hover,
+.drawer-service-item:focus-visible {
+  background: var(--brand-primary);
+  color: #fff;
+  border-color: var(--brand-primary);
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.22);
+}
+
+.drawer-service-item:hover .drawer-service-icon {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.drawer-service-item:hover .drawer-service-arrow {
+  color: #fff;
+  transform: translateX(3px);
+}
+
 /* Enhanced quote button in drawer */
 .drawer-links .drawer-quote {
   background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%) !important;
   color: white !important;
   font-weight: 600;
-  margin-top: 16px;
+  margin-top: 10px;
   justify-content: center;
   border: none !important;
-  box-shadow: 0 4px 12px rgba(122, 46, 27, 0.2);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .drawer-links .drawer-quote:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(122, 46, 27, 0.3);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
 }
 
 .drawer-links .drawer-quote::before { display: none; }
@@ -554,19 +621,20 @@ a { text-decoration: none; color: inherit; }
 .drawer-footer a:hover { background: var(--brand-primary); color: white; transform: translateY(-3px); }
 
 /* Staggered animation for drawer links when opening */
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a {
+.mobile-drawer.open .drawer-links > a,
+.mobile-drawer.open .drawer-links > button {
   opacity: 0;
   transform: translateX(-20px);
   animation: slideInRight 0.4s ease forwards;
 }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a:nth-child(1) { animation-delay: 0.1s; }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a:nth-child(2) { animation-delay: 0.15s; }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a:nth-child(3) { animation-delay: 0.2s; }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a:nth-child(4) { animation-delay: 0.25s; }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a:nth-child(5) { animation-delay: 0.3s; }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a:nth-child(6) { animation-delay: 0.35s; }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links a:nth-child(7) { animation-delay: 0.4s; }
-.mobile-drawer.open .drawer-tab-pane.active .drawer-links .drawer-quote { animation-delay: 0.45s; }
+.mobile-drawer.open .drawer-links > a:nth-child(1) { animation-delay: 0.06s; }
+.mobile-drawer.open .drawer-links > button:nth-child(2) { animation-delay: 0.11s; }
+.mobile-drawer.open .drawer-links > a:nth-child(4) { animation-delay: 0.16s; }
+.mobile-drawer.open .drawer-links > a:nth-child(5) { animation-delay: 0.21s; }
+.mobile-drawer.open .drawer-links > a:nth-child(6) { animation-delay: 0.26s; }
+.mobile-drawer.open .drawer-links > a:nth-child(7) { animation-delay: 0.31s; }
+.mobile-drawer.open .drawer-links > a:nth-child(8) { animation-delay: 0.36s; }
+.mobile-drawer.open .drawer-links > a:nth-child(9) { animation-delay: 0.41s; }
 
 @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
 
@@ -629,9 +697,6 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Mobile: compact single-line contact row (phone, email, location) */
-/* Place this at the end of Navbar.css (after your other media queries),
-   or replace your existing @media (max-width: 576px) block with this enhanced version. */
-
 @media (max-width: 576px) {
   .navbar-top { padding: 8px 12px; gap: 6px; }
   .navbar-top-row { align-items: center; }
@@ -680,18 +745,17 @@ a { text-decoration: none; color: inherit; }
   }
 
   /* keep other mobile adjustments */
-  .drawer-contact-row { padding: 10px 12px; }
   .navbar-bottom, .navbar-links, .navbar-category-btn, .navbar-quote-btn { display: none; }
   .navbar-divider { display: none; }
   .mobile-drawer .drawer-inner { width: 280px; padding: 20px 16px; }
-  .drawer-links a { padding: 12px 14px; font-size: 15px; }
-  .drawer-tab { padding: 10px 12px; font-size: 14px; }
+  .drawer-links a, .drawer-services-btn { padding: 12px 14px; font-size: 15px; }
+  .drawer-service-item { font-size: 13.5px; padding: 10px 12px; gap: 10px; }
+  .drawer-service-icon { width: 28px; height: 28px; min-width: 28px; font-size: 13px; }
 }
 
 /* Final mobile visibility patch:
    Ensure phone + email remain visible on very small screens.
-   Hide the location in the compact header (it remains in drawer).
-   Remove the .contact-location rule if you want location visible too. */
+   Hide the location in the compact header (it remains in drawer). */
 @media (max-width: 420px) {
   .navbar-contact { gap: 8px; justify-content: center; }
 
@@ -706,8 +770,6 @@ a { text-decoration: none; color: inherit; }
   /* Prefer phone + email in the header on very small screens */
   .navbar-contact .contact-location { display: none; }
 }
-
-
 
 /* Wrapper: aligns icon + button */
 .quote-box-wrapper { display: flex; align-items: center; gap: 12px; }
@@ -755,7 +817,7 @@ a { text-decoration: none; color: inherit; }
 .quote-info-title::after { content: ""; display: block; width: 46px; height: 4px; background: #2563eb; margin-top: 8px; border-radius: 3px; }
 .quote-info-list { list-style: none; padding: 0; margin: 14px 0 10px; }
 .quote-info-list li { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
-.quote-info-icon { min-width: 46px; min-height: 46px; border-radius: 50%; background: #2563eb; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; box-shadow: 0 6px 18px rgba(255,214,0,0.08); }
+.quote-info-icon { min-width: 46px; min-height: 46px; border-radius: 50%; background: #2563eb; display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; box-shadow: 0 6px 18px rgba(37,99,235,0.08); }
 .quote-info-icon svg { transform: scaleX(-1); }
 .quote-info-list .muted { color: #777; font-size: 12px; margin: 0 0 4px 0; }
 .quote-info-list p { margin: 0; font-size: 14px; color: #222; }
@@ -794,7 +856,6 @@ a { text-decoration: none; color: inherit; }
   animation: fadeInUp 0.46s ease forwards;
 }
 
-
 /* stagger delays — slower/visible one-by-one effect */
 .mobile-drawer.open .drawer-footer .social-icon:nth-child(1) { animation-delay: 0.12s; }
 .mobile-drawer.open .drawer-footer .social-icon:nth-child(2) { animation-delay: 0.28s; }
@@ -831,6 +892,6 @@ a { text-decoration: none; color: inherit; }
 }
 
 .quote-hours-item strong {
-  color: #8B5E3C;
+  color: #2563eb;
   font-weight: 600;
 }
