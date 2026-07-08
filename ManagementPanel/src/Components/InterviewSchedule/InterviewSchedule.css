@@ -1,0 +1,574 @@
+:root {
+  --primary-bg: #f5f7fa;
+  --panel-bg: #ffffff;
+  --border-color: #eef2f5;
+  --text-main: #333333;
+  --text-muted: #7e8b9b;
+  
+  --status-scheduled-bg: #e3f2fd;
+  --status-scheduled-txt: #1e88e5;
+  --status-completed-bg: #e8f5e9;
+  --status-completed-txt: #43a047;
+  --status-pending-bg: #fff3e0;
+  --status-pending-txt: #fb8c00;
+  --status-rescheduled-bg: #f3e5f5;
+  --status-rescheduled-txt: #8e24aa;
+  --status-cancelled-bg: #ffebee;
+  --status-cancelled-txt: #e53935;
+}
+
+.InterviewSchedule {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--primary-bg);
+  padding: 24px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* External outer layout alignment tracking the top headers */
+.InterviewSchedule-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.InterviewSchedule-main-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #212529;
+  margin: 0;
+}
+
+.InterviewSchedule-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.InterviewSchedule-breadcrumb-root {
+  color: var(--text-muted);
+}
+
+.InterviewSchedule-breadcrumb-separator {
+  color: #b0bec5;
+}
+
+.InterviewSchedule-breadcrumb-current {
+  color: #555;
+}
+
+.InterviewSchedule-container {
+  background: var(--panel-bg);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+/* Grey horizontal bar inner alignments fixes */
+.InterviewSchedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #e8edf4;
+  border-bottom: 1px solid #dbe3ec;
+}
+
+.InterviewSchedule-header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.InterviewSchedule-inner-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.InterviewSchedule-search-box {
+  position: relative;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ced4da;
+  padding: 0 8px;
+}
+
+.InterviewSchedule-search-box input {
+  border: none;
+  outline: none;
+  padding: 6px 4px 6px 24px;
+  font-size: 13px;
+  width: 160px;
+}
+
+.InterviewSchedule-search-icon {
+  position: absolute;
+  left: 8px;
+  color: #888;
+  font-size: 14px;
+}
+
+.InterviewSchedule-header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.InterviewSchedule-icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #5a6a85;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.InterviewSchedule-btn-add {
+  color: #2e7d32;
+  font-size: 18px;
+}
+
+/* Dropdown styles matching Image 2 & 3 custom components */
+.InterviewSchedule-filter-wrapper {
+  position: relative;
+}
+
+.InterviewSchedule-dropdown {
+  position: absolute;
+  top: 32px;
+  right: -5px;
+  background: #f1f3f5;
+  border: 1px solid #dcdfe3;
+  border-radius: 4px;
+  width: 210px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.InterviewSchedule-dropdown-title {
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  border-bottom: 1px solid #dbdee2;
+}
+
+.InterviewSchedule-dropdown-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.InterviewSchedule-dropdown-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.InterviewSchedule-dropdown-scroll::-webkit-scrollbar-thumb {
+  background: #bcbcbc;
+  border-radius: 4px;
+}
+
+.InterviewSchedule-dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #444;
+}
+
+.InterviewSchedule-dropdown-item:hover {
+  background: #e2e6ea;
+}
+
+.InterviewSchedule-dropdown-item input[type="checkbox"],
+.InterviewSchedule-table-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Checkbox design logic configurations */
+.InterviewSchedule-custom-checkbox {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #6c757d;
+  border-radius: 2px;
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  box-sizing: border-box;
+}
+
+input:checked + .InterviewSchedule-custom-checkbox {
+  background: #0066cc;
+  border-color: #0066cc;
+  color: white;
+  font-size: 10px;
+}
+
+/* Content Data Architecture rows style configuration */
+.InterviewSchedule-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.InterviewSchedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: #495057;
+}
+
+.InterviewSchedule-table th {
+  background-color: white;
+  font-weight: 600;
+  padding: 12px 16px;
+  color: #333;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.InterviewSchedule-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.InterviewSchedule-table tr.selected-row {
+  background-color: #f8fafc;
+}
+
+.font-medium {
+  font-weight: 500;
+  color: #212529;
+}
+
+.InterviewSchedule-cell-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+}
+
+.InterviewSchedule-cell-icon {
+  color: #999;
+}
+
+/* Status Component badges layout styles configuration code elements */
+.InterviewSchedule-status {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-scheduled { background-color: var(--status-scheduled-bg); color: var(--status-scheduled-txt); }
+.badge-completed { background-color: var(--status-completed-bg); color: var(--status-completed-txt); }
+.badge-pending { background-color: var(--status-pending-bg); color: var(--status-pending-txt); }
+.badge-rescheduled { background-color: var(--status-rescheduled-bg); color: var(--status-rescheduled-txt); }
+.badge-cancelled { background-color: var(--status-cancelled-bg); color: var(--status-cancelled-txt); }
+
+.InterviewSchedule-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.InterviewSchedule-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0;
+}
+
+.action-edit { color: #1e88e5; }
+.action-delete { color: #e53935; }
+
+/* Footers architectures components codes styling components layout styling */
+.InterviewSchedule-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #666;
+  gap: 24px;
+}
+
+.InterviewSchedule-footer-left,
+.InterviewSchedule-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.InterviewSchedule-page-select {
+  border: 1px solid #ccc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: white;
+}
+
+.InterviewSchedule-pagination-btns button {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: #ccc;
+  cursor: default;
+  padding: 0 4px;
+}
+
+/* Modals designs layers styles setup code mapping configurations */
+.InterviewSchedule-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.InterviewSchedule-modal-card {
+  background: white;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 850px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: modalAnim 0.2s ease-out;
+}
+
+.InterviewSchedule-modal-header {
+  background-color: #5c6bc0;
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.InterviewSchedule-modal-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.InterviewSchedule-modal-header .close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.InterviewSchedule-modal-form {
+  padding: 20px;
+}
+
+.InterviewSchedule-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.InterviewSchedule-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.InterviewSchedule-form-group.full-width {
+  grid-column: span 2;
+}
+
+.InterviewSchedule-form-group label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.InterviewSchedule-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.InterviewSchedule-input-wrapper input {
+  width: 100%;
+  border: 1px solid #757575;
+  border-radius: 4px;
+  padding: 8px 32px 8px 10px;
+  font-size: 13px;
+  outline: none;
+}
+
+.InterviewSchedule-input-wrapper .input-icon {
+  position: absolute;
+  right: 10px;
+  color: #555;
+}
+
+/* Label Borders Outline styles configurations settings maps properties */
+.relative-label {
+  border: 1px solid #757575;
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-top: 4px;
+}
+
+.relative-label .floating-tag {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: white;
+  padding: 0 4px;
+  font-size: 11px;
+  color: #555;
+}
+
+.relative-label .InterviewSchedule-input-wrapper input {
+  border: none;
+  padding: 6px 0;
+}
+
+.InterviewSchedule-select-field {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 6px 0;
+  font-size: 13px;
+  background: transparent;
+}
+
+/* Dynamic saving button designs setup logic */
+.InterviewSchedule-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.InterviewSchedule-form-actions button {
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-save {
+  background-color: #e0e0e0;
+  color: #888;
+}
+
+.InterviewSchedule-modal-form:valid .btn-save {
+  background-color: #0066cc;
+  color: white;
+}
+
+.btn-save.btn-edit-blue {
+  background-color: #0066cc;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #ba1a1a;
+  color: white;
+}
+
+/* Delete Modal Dialog layout setup configuration updates matching screen 6 */
+.InterviewSchedule-delete-card {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  animation: modalAnim 0.15s ease-out;
+}
+
+.InterviewSchedule-delete-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #212529;
+}
+
+.delete-subtitle {
+  color: #495057;
+  font-size: 13px;
+  margin: 0 0 12px 0;
+}
+
+.delete-info-box {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.delete-info-box p {
+  margin: 4px 0;
+}
+
+.InterviewSchedule-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.InterviewSchedule-delete-actions button {
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.btn-delete-confirm, .btn-cancel-confirm {
+  background-color: #0066cc;
+}
+
+@keyframes modalAnim {
+  from { transform: translateY(-15px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Mobile responsive breakpoints alignment adjustments layout updates code */
+@media (max-width: 768px) {
+  .InterviewSchedule-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .InterviewSchedule-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .InterviewSchedule-header-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .InterviewSchedule-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .InterviewSchedule-form-group.full-width {
+    grid-column: span 1;
+  }
+}

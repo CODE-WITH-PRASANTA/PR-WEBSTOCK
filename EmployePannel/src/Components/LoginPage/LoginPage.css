@@ -1,0 +1,314 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+/*=========================
+Wrapper
+=========================*/
+
+.LoginPage-wrapper{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    background:linear-gradient(135deg,#edf5ff,#d7ebff,#f7fbff);
+}
+
+/*=========================
+Card
+=========================*/
+
+.LoginPage-card{
+    width:1150px;
+    max-width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:#fff;
+    overflow:hidden;
+    border-radius:24px;
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.08),
+    0 40px 80px rgba(21,101,192,.12);
+    animation:LoginPageFade .5s ease;
+}
+
+@keyframes LoginPageFade{
+
+from{
+    opacity:0;
+    transform:translateY(25px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+/*=========================
+Left
+=========================*/
+
+.LoginPage-left{
+    padding:60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.LoginPage-logoBox{
+    margin-bottom:20px;
+}
+
+.LoginPage-logo{
+    height:100px;
+    object-fit:contain;
+}
+
+.LoginPage-headingSection{
+    margin-bottom:35px;
+}
+
+.LoginPage-title{
+    font-size:36px;
+    font-weight:700;
+    color:#12355b;
+    margin-bottom:10px;
+}
+
+.LoginPage-subtitle{
+    font-size:15px;
+    color:#666;
+    line-height:25px;
+}
+
+/*=========================
+Form
+=========================*/
+
+.LoginPage-form{
+    width:100%;
+}
+
+.LoginPage-inputGroup{
+    margin-bottom:24px;
+}
+
+.LoginPage-label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:600;
+    color:#444;
+}
+
+.LoginPage-input{
+    width:100%;
+    height:55px;
+    border:1px solid #d6d6d6;
+    border-radius:12px;
+    padding:0 18px;
+    font-size:15px;
+    transition:.35s;
+    background:#fafafa;
+}
+
+.LoginPage-input:focus{
+    border-color:#1565c0;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(21,101,192,.12);
+    outline:none;
+}
+
+.LoginPage-input::placeholder{
+    color:#999;
+}
+
+/*=========================
+Password
+=========================*/
+
+.LoginPage-passwordBox{
+    position:relative;
+}
+
+.LoginPage-passwordInput{
+    padding-right:55px;
+}
+
+.LoginPage-eyeIcon{
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    font-size:19px;
+    color:#666;
+    transition:.3s;
+}
+
+.LoginPage-eyeIcon:hover{
+    color:#1565c0;
+}
+
+/*=========================
+Remember
+=========================*/
+
+.LoginPage-optionRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:28px 0;
+}
+
+.LoginPage-remember{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+    color:#555;
+    cursor:pointer;
+}
+
+.LoginPage-remember input{
+    width:16px;
+    height:16px;
+    accent-color:#1565c0;
+}
+
+.LoginPage-forgotLink{
+    text-decoration:none;
+    color:#1565c0;
+    font-weight:600;
+    transition:.3s;
+}
+
+.LoginPage-forgotLink:hover{
+    color:#0d47a1;
+}
+
+/*=========================
+Button
+=========================*/
+
+.LoginPage-loginBtn{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(90deg,#1565c0,#5e35b1);
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.35s;
+    letter-spacing:.4px;
+}
+
+.LoginPage-loginBtn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 30px rgba(21,101,192,.35);
+}
+
+.LoginPage-loginBtn:active{
+    transform:scale(.98);
+}
+
+/*=========================
+Right
+=========================*/
+
+.LoginPage-right{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(180deg,#f7f9fc,#eef6ff);
+    padding:50px;
+}
+
+.LoginPage-imageWrapper{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.LoginPage-image{
+    width:100%;
+    max-width:450px;
+    object-fit:contain;
+    animation:LoginPageFloat 4s infinite ease-in-out;
+}
+
+@keyframes LoginPageFloat{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+/*=========================
+Responsive
+=========================*/
+
+@media(max-width:992px){
+
+.LoginPage-card{
+    grid-template-columns:1fr;
+}
+
+.LoginPage-right{
+    display:none;
+}
+
+.LoginPage-left{
+    padding:45px;
+}
+
+}
+
+@media(max-width:576px){
+
+.LoginPage-wrapper{
+    padding:20px;
+}
+
+.LoginPage-left{
+    padding:30px;
+}
+
+.LoginPage-title{
+    font-size:30px;
+}
+
+.LoginPage-logo{
+    height:60px;
+}
+
+.LoginPage-optionRow{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.LoginPage-loginBtn{
+    height:52px;
+}
+
+}

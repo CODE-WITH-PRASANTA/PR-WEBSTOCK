@@ -1,0 +1,615 @@
+/* Container & Global Scope Framework */
+.ndas-dashboard-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f1f5f9;
+  padding: 24px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  color: #1e293b;
+}
+
+/* Breadcrumb Navigation Header */
+.ndas-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ndas-main-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.ndas-breadcrumb-trail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.ndas-breadcrumb-link {
+  color: #64748b;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ndas-breadcrumb-link.active {
+  color: #334155;
+  font-weight: 600;
+}
+
+/* Checkbox State Alert Deletion Header Banner */
+.ndas-bulk-alert-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  color: #991b1b;
+  font-size: 14px;
+  font-weight: 500;
+  animation: ndasFadeIn 0.2s ease-out;
+}
+
+.ndas-bulk-delete-btn {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.ndas-bulk-delete-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Data Table Card Wrapper & Dynamic Toolbar */
+.ndas-table-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.ndas-table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #edf2f9;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ndas-toolbar-left-panel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.ndas-toolbar-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+}
+
+.ndas-search-input-box {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+}
+
+.ndas-search-field {
+  width: 100%;
+  padding: 7px 12px 7px 36px;
+  font-size: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ndas-search-field:focus {
+  border-color: #4f46e5;
+}
+
+.ndas-search-field-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.ndas-toolbar-right-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ndas-icon-action-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease;
+}
+
+.ndas-icon-action-button:hover {
+  transform: scale(1.08);
+}
+
+.ndas-icon-action-button.col-visibility { color: #4f46e5; }
+.ndas-icon-action-button.create-trigger { color: #16a34a; }
+.ndas-icon-action-button.refresh-trigger { color: #475569; }
+.ndas-icon-action-button.download-trigger { color: #2563eb; }
+
+/* Custom Multi-Column Visibility Dropdown Panel */
+.ndas-column-dropdown-anchor {
+  position: relative;
+}
+
+.ndas-column-selection-menu {
+  position: absolute;
+  right: 0;
+  top: 32px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  z-index: 40;
+  width: 180px;
+  box-sizing: border-box;
+  animation: ndasScaleIn 0.15s ease-out;
+}
+
+.ndas-column-dropdown-heading {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  border-b: 1px solid #f1f5f9;
+  padding-bottom: 4px;
+}
+
+.ndas-column-checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ndas-column-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  cursor: pointer;
+}
+
+.ndas-column-checkbox-input {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}
+
+/* Master Data Matrix Core Table Structure */
+.ndas-responsive-table-view {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ndas-core-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ndas-core-data-table th {
+  background-color: #ffffff;
+  border-bottom: 1px solid #cbd5e1;
+  padding: 14px 16px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ndas-core-data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.ndas-row-element {
+  transition: background-color 0.15s ease;
+}
+
+.ndas-row-element:hover {
+  background-color: #f8fafc;
+}
+
+.ndas-row-element.active-selected {
+  background-color: #f5f3ff;
+}
+
+.ndas-id-bold-field {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.ndas-title-truncated-text {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #475569;
+}
+
+.ndas-calendar-cell-alignment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+}
+
+/* Precise Status Badge Options styling */
+.ndas-status-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.ndas-status-badge-pill.active { background-color: #dcfce7; color: #15803d; }
+.ndas-status-badge-pill.expired { background-color: #fee2e2; color: #b91c1c; }
+.ndas-status-badge-pill.pending-signature { background-color: #ffedd5; color: #c2410c; }
+
+/* Action row columns trigger button setups */
+.ndas-row-action-icon-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.1s ease;
+}
+
+.ndas-row-action-icon-button:hover {
+  background-color: #f1f5f9;
+}
+
+.ndas-row-action-icon-button.download-icon { color: #475569; }
+.ndas-row-action-icon-button.dots-icon { color: #64748b; }
+
+/* Custom Row Level Three-Dot Context dropdown menu panel (Second Image Layout) */
+.ndas-row-dropdown-menu {
+  position: absolute;
+  right: 16px;
+  margin-top: 4px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 30;
+  width: 140px;
+  padding: 4px;
+  box-sizing: border-box;
+  animation: ndasScaleIn 0.1s ease-out;
+}
+
+.ndas-row-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.ndas-row-dropdown-item:hover { background-color: #f1f5f9; }
+.ndas-row-dropdown-item.edit-action { color: #2563eb; }
+.ndas-row-dropdown-item.delete-action { color: #dc2626; }
+.ndas-row-dropdown-divider { height: 1px; background-color: #e2e8f0; margin: 4px 0; }
+
+.ndas-table-empty-fallback {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Pagination Footer Navigation panel */
+.ndas-pagination-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ndas-pagination-items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.ndas-page-dropdown-container {
+  position: relative;
+}
+
+.ndas-page-size-selector {
+  appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 4px 28px 4px 10px;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ndas-page-selector-chevron {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #64748b;
+}
+
+.ndas-pagination-controls-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.ndas-pagination-navigation-arrows {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ndas-pagination-arrow-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+}
+
+.ndas-pagination-arrow-btn:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Scrollable Form Popup Overlay & Container Modal (Third Image Layout) */
+.ndas-modal-overlay-container {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.ndas-modal-window-frame {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 60vh; /* Limits maximum height viewport boundaries */
+  animation: ndasSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ndas-modal-top-header {
+  background-color: #5873e8;
+  color: #ffffff;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ndas-modal-header-text {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ndas-modal-close-header-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Smooth Integrated Internal Form Scroll Container */
+.ndas-modal-scrollable-form {
+  padding: 24px;
+  overflow-y: auto; /* Activates structural vertical scroll interface functionality */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Custom Scrollbar Properties for Form Modal Container */
+.ndas-modal-scrollable-form::-webkit-scrollbar {
+  width: 8px;
+}
+.ndas-modal-scrollable-form::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.ndas-modal-scrollable-form::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.ndas-modal-scrollable-form::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.ndas-form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.ndas-form-input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.ndas-form-input-relative-housing {
+  position: relative;
+}
+
+.ndas-form-input-element, .ndas-form-select-element {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ndas-form-input-element:focus, .ndas-form-select-element:focus {
+  border-color: #5873e8;
+}
+
+.ndas-form-input-element.has-right-icon {
+  padding-right: 36px;
+}
+
+.ndas-form-input-embedded-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+}
+
+.ndas-form-input-grid-split {
+  display: grid;
+  grid-template-cols: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .ndas-form-input-grid-split { grid-template-cols: 1fr 1fr; }
+}
+
+/* Drag Drop File Upload Panel Zone UI Layout */
+.ndas-file-drag-upload-panel {
+  border: 2px dashed #cbd5e1;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.ndas-file-drag-upload-panel:hover {
+  background-color: #f1f5f9;
+}
+
+.ndas-upload-info-message {
+  margin: 10px 0 0 0;
+  font-size: 13px;
+  color: #475569;
+}
+
+.ndas-upload-browse-action-link {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Form Action Trigger Control row buttons styling */
+.ndas-modal-action-footer-row {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.ndas-form-control-btn {
+  padding: 10px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.ndas-form-control-btn.confirm-save { background-color: #94a3b8; color: #ffffff; }
+.ndas-form-control-btn.confirm-save:hover { background-color: #64748b; }
+.ndas-form-control-btn.dismiss-cancel { background-color: #f1f5f9; color: #475569; }
+.ndas-form-control-btn.dismiss-cancel:hover { background-color: #e2e8f0; }
+
+/* Structural Keyframe Animations */
+@keyframes ndasFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ndasScaleIn { from { transform: scale(0.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes ndasSlideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }

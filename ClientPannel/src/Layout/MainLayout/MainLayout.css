@@ -1,0 +1,42 @@
+.mainLayout {
+  background: #07090f;
+  min-height: 100vh;
+  transition: background 0.3s ease;
+}
+
+/* Light Theme Variant */
+body.light-theme .mainLayout {
+  background: #f8fafc;
+}
+
+/* Default Desktop Main View Content Panel */
+.mainLayoutContent {
+  margin-left: 290px; /* Synchronized perfectly with expanded standard layout */
+  min-height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+}
+
+/* Dynamic shifting structure when sidebar is in icon-only mode */
+.sidebar.collapsed ~ .mainLayoutContent {
+  margin-left: 85px;
+}
+
+/* Tablet Layout adjustments */
+@media (max-width: 1200px) {
+  .mainLayoutContent {
+    margin-left: 90px;
+  }
+  .sidebar.collapsed ~ .mainLayoutContent {
+    margin-left: 90px;
+  }
+}
+
+/* Mobile responsive layout structural snap */
+@media (max-width: 768px) {
+  .mainLayoutContent {
+    margin-left: 0 !important;
+    padding: 85px 15px 15px 15px;
+  }
+}

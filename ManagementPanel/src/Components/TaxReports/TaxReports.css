@@ -1,0 +1,526 @@
+:root {
+  --bg-app-layout: #ebf1f6;
+  --bg-panel-surface: #ffffff;
+  --text-main-color: #333333;
+  --text-grey-muted: #8a94a6;
+  --blue-brand-primary: #3b82f6;
+  --blue-action-hover: #2563eb;
+  --red-alert-primary: #b91c1c;
+  --border-panel-color: #e2e8f0;
+}
+
+body {
+  background-color: var(--bg-app-layout);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-main-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+.tax-reports-container {
+  padding: 24px;
+  max-width: 1600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Header & Navigation Breadcrumbs */
+.tax-reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tax-reports-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #334155;
+  margin: 0;
+}
+
+.tax-reports-breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-grey-muted);
+  gap: 6px;
+}
+
+.tax-reports-breadcrumb .arrow-icon {
+  font-size: 11px;
+}
+
+.tax-reports-breadcrumb .active-path {
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Master Panel Styling Container */
+.tax-reports-panel {
+  background-color: var(--bg-panel-surface);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-panel-color);
+  overflow: hidden;
+}
+
+/* Toolbar Controls Section */
+.tax-reports-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #eef2f7;
+  border-bottom: 1px solid var(--border-panel-color);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.toolbar-left-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrapper input {
+  padding: 8px 12px 8px 34px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  width: 210px;
+  outline: none;
+  background-color: #fff;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-grey-muted);
+  font-size: 16px;
+}
+
+.toolbar-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--blue-brand-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: transform 0.1s ease, color 0.1s ease;
+}
+
+.icon-btn:hover {
+  color: var(--blue-action-hover);
+  transform: scale(1.05);
+}
+
+.add-btn {
+  color: #10b981;
+}
+.add-btn:hover {
+  color: #059669;
+}
+
+/* Interactive Dropdown Column Selector Popover Style (Reference 2 & 3) */
+.action-popover-anchor {
+  position: relative;
+}
+
+.tax-reports-column-dropdown {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid var(--border-panel-color);
+  border-radius: 6px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  z-index: 50;
+  padding: 10px 0;
+}
+
+.dropdown-header {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 14px 8px;
+  border-bottom: 1px solid var(--border-panel-color);
+  color: #334155;
+  text-align: center;
+}
+
+.dropdown-scroll-box {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #475569;
+  cursor: pointer;
+}
+
+.checkbox-item:hover {
+  background-color: #f1f5f9;
+}
+
+.checkbox-item input {
+  cursor: pointer;
+  accent-color: var(--blue-brand-primary);
+}
+
+/* Responsive Table Grid Elements Formatting */
+.tax-reports-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.tax-reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.tax-reports-table th {
+  padding: 14px 16px;
+  font-weight: 500;
+  color: #1e293b;
+  border-bottom: 1px solid var(--border-panel-color);
+  white-space: nowrap;
+}
+
+.tax-reports-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-panel-color);
+  color: #334155;
+  white-space: nowrap;
+}
+
+.tax-reports-table tr:hover {
+  background-color: #f8fafc;
+}
+
+.row-selected {
+  background-color: #f0fdf4 !important;
+}
+
+.text-bold-ref {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.text-muted-notes {
+  color: var(--text-grey-muted);
+}
+
+.date-cell-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inline-calendar-icon {
+  color: #64748b;
+}
+
+/* Design Status Badges Mapping */
+.status-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pill-submitted { background-color: #d1fae5; color: #065f46; }
+.pill-completed { background-color: #dbeafe; color: #1e40af; }
+.pill-processing { background-color: #f3e8ff; color: #6b21a8; }
+.pill-pending { background-color: #ffedd5; color: #9a3412; }
+.pill-draft { background-color: #f1f5f9; color: #475569; }
+
+/* Inline Actions Layout Row buttons */
+.action-buttons-flex {
+  display: flex;
+  gap: 12px;
+}
+
+.action-row-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px;
+}
+
+.edit-action { color: #3b82f6; }
+.delete-action { color: #ef4444; }
+
+/* Dashboard Content Grid Footer */
+.tax-reports-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 14px 20px;
+  gap: 32px;
+  font-size: 13px;
+  color: #64748b;
+  border-top: 1px solid var(--border-panel-color);
+}
+
+.items-per-page-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inline-dropdown-view {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.pagination-count-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pagination-arrows-disabled {
+  display: flex;
+  gap: 8px;
+  font-size: 18px;
+}
+
+.arrow-nav-mock {
+  cursor: not-allowed;
+  user-select: none;
+  padding: 0 4px;
+}
+
+/* OVERLAY MODAL GLASS STYLING (Reference 4, 5, 6) */
+.tax-reports-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* Add/Edit Dynamic Form Cards */
+.tax-reports-form-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 760px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.form-card-header {
+  background-color: #6366f1;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+
+.form-card-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+}
+
+.form-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-input-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.floating-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.floating-input-group label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.field-icon-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon-input input,
+.field-icon-input select,
+.field-icon-input textarea {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.field-icon-input select {
+  appearance: none;
+  padding-right: 30px;
+  background-color: #fff;
+}
+
+.field-inner-icon {
+  position: absolute;
+  right: 12px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.field-inner-select-icon {
+  position: absolute;
+  right: 32px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.area-icon-fix {
+  top: 12px;
+}
+
+.full-width-field {
+  grid-column: span 2;
+}
+
+/* Bottom Actions Control Footer Rules */
+.form-actions-footer-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.modal-blue-btn {
+  background-color: #0256cc;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal-red-btn {
+  background-color: #b91c1c;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.form-cancel-btn, .form-submit-btn {
+  min-width: 100px;
+}
+
+/* Prompt Delete layout Modal Box (Reference 6) */
+.tax-reports-delete-dialog {
+  background-color: #ffffff;
+  padding: 24px 32px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.tax-reports-delete-dialog h3 {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: #1e293b;
+}
+
+.delete-info-line {
+  margin: 6px 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.delete-dialog-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  justify-content: flex-end;
+}
+
+/* Device Adaptation Breakpoints */
+@media (max-width: 768px) {
+  .tax-reports-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .form-input-grid-row {
+    grid-template-columns: 1fr;
+  }
+  .full-width-field {
+    grid-column: span 1;
+  }
+}

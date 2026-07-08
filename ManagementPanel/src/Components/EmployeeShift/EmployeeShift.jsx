@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   FiSearch, FiFilter, FiPlus, FiRotateCw, FiDownload, 
   FiEdit, FiTrash2, FiX, FiCheck, FiChevronRight, FiChevronLeft
 } from 'react-icons/fi';
 import './EmployeeShift.css';
-
-// Exact mock data values parsed directly from snapshot context
-const initialShifts = [
-  { id: 1, name: "John Doe", department: "Java", shift: "Morning", minStartTime: "07:30:00", startTime: "08:00:00", maxStartTime: "08:30:00", minEndTime: "16:30:00", endTime: "17:00:00", maxEndTime: "17:30:00" },
-  { id: 2, name: "Jane Smith", department: "UI/UX", shift: "Evening", minStartTime: "15:30:00", startTime: "16:00:00", maxStartTime: "16:30:00", minEndTime: "23:30:00", endTime: "00:00:00", maxEndTime: "00:30:00" },
-  { id: 3, name: "Mike Johnson", department: "Management", shift: "Night", minStartTime: "23:30:00", startTime: "00:00:00", maxStartTime: "00:30:00", minEndTime: "07:30:00", endTime: "08:00:00", maxEndTime: "08:30:00" },
-  { id: 4, name: "Lisa Wang", department: "Quality Assurance", shift: "Morning", minStartTime: "07:30:00", startTime: "08:00:00", maxStartTime: "08:30:00", minEndTime: "16:30:00", endTime: "17:00:00", maxEndTime: "17:30:00" },
-  { id: 5, name: "Alex Brown", department: "Operations", shift: "Evening", minStartTime: "15:30:00", startTime: "16:00:00", maxStartTime: "16:30:00", minEndTime: "23:30:00", endTime: "00:00:00", maxEndTime: "00:30:00" }
-];
+import API from "../../api/axios"; // Pre-configured axios instance
 
 const EmployeeShift = () => {
-  const [shifts, setShifts] = useState(initialShifts);
+  // Database Connected Dynamic State Matrices
+  const [shifts, setShifts] = useState([]);
+  const [masterEmployeeRoster, setMasterEmployeeRoster] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [selectedIds, setSelectedIds] = useState([]);
   const [searchVal, setSearchVal] = useState('');
   
-  // Columns visibilities mapped directly to 2nd reference layout state
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [visibleCols, setVisibleCols] = useState({
     checkbox: true, id: false, name: true, department: true, shift: true,
@@ -27,23 +23,67 @@ const EmployeeShift = () => {
     minEndTime: true, endTime: true, maxEndTime: true, actions: true
   });
 
-  // Flow controllers ('add' or 'edit' or 'delete')
   const [activeWorkflow, setActiveWorkflow] = useState(null);
-  const [workflowPage, setWorkflowPage] = useState(1); // 1 or 2 as verified via image 3/4 & 5/6
+  const [workflowPage, setWorkflowPage] = useState(1); 
   const [selectedShiftRow, setSelectedShiftRow] = useState(null);
 
-  // Unified Multi-step Form State Matrix
   const [formData, setFormData] = useState({
-    name: '', department: '', shift: '',
-    minStartTime: '', startTime: '', maxStartTime: '',
-    minEndTime: '', endTime: '', maxEndTime: ''
+    employeeId: '', 
+    department: '', 
+    shift: '',
+    minStartTime: '00:00:00', startTime: '00:00:00', maxStartTime: '00:00:00',
+    minEndTime: '00:00:00', endTime: '00:00:00', maxEndTime: '00:00:00'
   });
+
+  // Fetch all assigned shifts from backend records
+  const fetchShiftsData = async () => {
+    setIsLoading(true);
+    setErrorMessage('');
+    try {
+      const response = await API.get('/employee-shifts');
+      if (response.data && response.data.success) {
+        setShifts(response.data.data);
+      }
+    } catch (err) {
+      setErrorMessage(err.response?.data?.message || 'Failed to download shift logs.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch master unassigned roster choices
+  const fetchRosterDropdown = async () => {
+    try {
+      const response = await API.get('/employee-shifts/employees');
+      if (response.data && response.data.success) {
+        setMasterEmployeeRoster(response.data.data);
+      }
+    } catch (err) {
+      console.error('Failed to read master employees roster values:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchShiftsData();
+    fetchRosterDropdown();
+  }, []);
+
+  // Professional Native PDF Export Engine
+  const handleExportPDF = () => {
+    const originalTitle = document.title;
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Set custom clean filename for the PDF save print dialog
+    document.title = `Employee_Shift_Report_${today}`;
+    window.print();
+    document.title = originalTitle;
+  };
 
   const handleSelectAll = () => {
     if (selectedIds.length === filteredShifts.length) {
       setSelectedIds([]);
     } else {
-      setSelectedIds(filteredShifts.map(s => s.id));
+      setSelectedIds(filteredShifts.map(s => s._id));
     }
   };
 
@@ -59,10 +99,9 @@ const EmployeeShift = () => {
     setVisibleCols(prev => ({ ...prev, [colKey]: !prev[colKey] }));
   };
 
-  // Launch handlers
   const openAddWorkflow = () => {
     setFormData({
-      name: '', department: '', shift: '',
+      employeeId: '', department: '', shift: '',
       minStartTime: '00:00:00', startTime: '00:00:00', maxStartTime: '00:00:00',
       minEndTime: '00:00:00', endTime: '00:00:00', maxEndTime: '00:00:00'
     });
@@ -72,7 +111,17 @@ const EmployeeShift = () => {
 
   const openEditWorkflow = (row) => {
     setSelectedShiftRow(row);
-    setFormData({ ...row });
+    setFormData({
+      employeeId: row.employee?._id || row.employeeId,
+      department: row.department,
+      shift: row.shift,
+      minStartTime: row.minStartTime,
+      startTime: row.startTime,
+      maxStartTime: row.maxStartTime,
+      minEndTime: row.minEndTime,
+      endTime: row.endTime,
+      maxEndTime: row.maxEndTime
+    });
     setWorkflowPage(1);
     setActiveWorkflow('edit');
   };
@@ -82,40 +131,80 @@ const EmployeeShift = () => {
     setActiveWorkflow('delete');
   };
 
-  const handleFormSubmission = (e) => {
-    e.preventDefault();
-    if (activeWorkflow === 'add') {
-      const freshRecord = { ...formData, id: Date.now() };
-      setShifts([...shifts, freshRecord]);
-    } else if (activeWorkflow === 'edit') {
-      setShifts(shifts.map(s => s.id === selectedShiftRow.id ? { ...formData } : s));
+  const handleEmployeeSelectionChange = (e) => {
+    const targetMongoId = e.target.value; 
+    const matchingEmployee = masterEmployeeRoster.find(emp => emp._id === targetMongoId);
+
+    if (matchingEmployee) {
+      setFormData({
+        ...formData,
+        employeeId: targetMongoId,
+        department: matchingEmployee.department 
+      });
+    } else {
+      setFormData({ ...formData, employeeId: '', department: '' });
     }
-    setActiveWorkflow(null);
   };
 
-  const confirmDeleteExecution = () => {
-    setShifts(shifts.filter(s => s.id !== selectedShiftRow.id));
-    setActiveWorkflow(null);
+  const handleFormSubmission = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+    try {
+      if (activeWorkflow === 'add') {
+        const response = await API.post('/employee-shifts', formData);
+        if (response.data && response.data.success) {
+          setActiveWorkflow(null);
+          fetchShiftsData(); 
+        }
+      } else if (activeWorkflow === 'edit') {
+        const response = await API.put(`/employee-shifts/${selectedShiftRow._id}`, formData);
+        if (response.data && response.data.success) {
+          setActiveWorkflow(null);
+          fetchShiftsData();
+        }
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Transaction could not be verified on schema parameters.');
+    }
+  };
+
+  const confirmDeleteExecution = async () => {
+    try {
+      const response = await API.delete(`/employee-shifts/${selectedShiftRow._id}`);
+      if (response.data && response.data.success) {
+        setActiveWorkflow(null);
+        setSelectedIds(selectedIds.filter(id => id !== selectedShiftRow._id));
+        fetchShiftsData();
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Deletion processing error caught.');
+    }
   };
 
   const filteredShifts = shifts.filter(s => 
-    s.name.toLowerCase().includes(searchVal.toLowerCase()) ||
-    s.department.toLowerCase().includes(searchVal.toLowerCase()) ||
-    s.shift.toLowerCase().includes(searchVal.toLowerCase())
+    (s.name || '').toLowerCase().includes(searchVal.toLowerCase()) ||
+    (s.department || '').toLowerCase().includes(searchVal.toLowerCase()) ||
+    (s.shift || '').toLowerCase().includes(searchVal.toLowerCase())
   );
 
   return (
-    <div className="EmployeeShift-container">
+    <div className="EmployeeShift-container Printable-Report-Root">
       {/* Structural Breadcrumb Layout Header */}
-      <div className="EmployeeShift-header">
+      <div className="EmployeeShift-header Print-Hide">
         <h2 className="EmployeeShift-title">Employee Shift</h2>
         <div className="EmployeeShift-breadcrumb">
           <span className="home-icon">🏠</span> &gt; Employees &gt; <span className="current-node">Employee Shift</span>
         </div>
       </div>
 
+      {/* Corporate PDF Header Branding — Visible ONLY during print generation */}
+      <div className="Print-Only-Header">
+        <h1>PR WEBSTOCK ( OPC ) PVT LTD </h1>
+        <p className="Print-Sub-Field">Generated on: {new Date().toLocaleDateString()} | Total Records: {filteredShifts.length}</p>
+      </div>
+
       {/* Control Action Toolbar Bar */}
-      <div className="EmployeeShift-toolbar">
+      <div className="EmployeeShift-toolbar Print-Hide">
         <div className="toolbar-section-left">
           <span className="active-tab-title">Employee Shift</span>
           <div className="search-field-wrapper">
@@ -135,7 +224,6 @@ const EmployeeShift = () => {
             <FiFilter />
           </button>
 
-          {/* Collapsible Grid Visibility Filter Checkboxes Panel (Reference Image 2) */}
           {showFilterDropdown && (
             <div className="column-visibility-dropdown">
               <div className="dropdown-panel-header">Show/Hide Column</div>
@@ -154,92 +242,103 @@ const EmployeeShift = () => {
             </div>
           )}
 
-          <button className="control-action-btn create-trigger-btn" onClick={openAddWorkflow}>
+          <button className="control-action-btn create-trigger-btn" onClick={openAddWorkflow} title="Add Shift">
             <FiPlus />
           </button>
-          <button className="control-action-btn refresh-trigger-btn" onClick={() => setShifts(initialShifts)}>
+          <button className="control-action-btn refresh-trigger-btn" onClick={fetchShiftsData} title="Refresh Table">
             <FiRotateCw />
           </button>
-          <button className="control-action-btn export-trigger-btn">
+          <button className="control-action-btn export-trigger-btn" onClick={handleExportPDF} title="Download Report PDF">
             <FiDownload />
           </button>
         </div>
       </div>
 
+      {errorMessage && <div className="error-banner-alert Print-Hide" style={{color: 'red', padding: '10px'}}>{errorMessage}</div>}
+
       {/* Main Responsive Table Scroller Grid */}
       <div className="table-overflow-adapter custom-scrollbar-layout">
-        <table className="EmployeeShift-table">
-          <thead>
-            <tr>
-              {visibleCols.checkbox && (
-                <th width="40px">
-                  <input 
-                    type="checkbox" 
-                    checked={filteredShifts.length > 0 && selectedIds.length === filteredShifts.length} 
-                    onChange={handleSelectAll} 
-                  />
-                </th>
-              )}
-              {visibleCols.id && <th>ID</th>}
-              {visibleCols.name && <th>Name</th>}
-              {visibleCols.department && <th>Department</th>}
-              {visibleCols.shift && <th>Shift</th>}
-              {visibleCols.minStartTime && <th>Min Start Time</th>}
-              {visibleCols.startTime && <th>Start Time</th>}
-              {visibleCols.maxStartTime && <th>Max Start Time</th>}
-              {visibleCols.minEndTime && <th>Min End Time</th>}
-              {visibleCols.endTime && <th>End Time</th>}
-              {visibleCols.maxEndTime && <th>Max End Time</th>}
-              {visibleCols.actions && <th>Actions</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {filteredShifts.map((s) => (
-              <tr key={s.id} className={selectedIds.includes(s.id) ? 'row-selected-highlight' : ''}>
+        {isLoading ? (
+          <div style={{textAlign: 'center', padding: '40px'}}>Processing Roster Profiles...</div>
+        ) : (
+          <table className="EmployeeShift-table">
+            <thead>
+              <tr>
                 {visibleCols.checkbox && (
-                  <td>
+                  <th width="40px" className="Print-Hide">
                     <input 
                       type="checkbox" 
-                      checked={selectedIds.includes(s.id)} 
-                      onChange={() => handleSelectRow(s.id)} 
+                      checked={filteredShifts.length > 0 && selectedIds.length === filteredShifts.length} 
+                      onChange={handleSelectAll} 
                     />
-                  </td>
+                  </th>
                 )}
-                {visibleCols.id && <td>{s.id}</td>}
-                {visibleCols.name && (
-                  <td className="identity-cell-layout">
-                    <div className="avatar-placeholder-circle">{s.name.charAt(0)}</div>
-                    <span className="profile-name-span">{s.name}</span>
-                  </td>
-                )}
-                {visibleCols.department && <td>{s.department}</td>}
-                {visibleCols.shift && (
-                  <td>
-                    <span className={`shift-tag-badge ${s.shift.toLowerCase()}`}>{s.shift}</span>
-                  </td>
-                )}
-                {visibleCols.minStartTime && <td className="time-string-cell">{s.minStartTime}</td>}
-                {visibleCols.startTime && <td className="time-string-cell">{s.startTime}</td>}
-                {visibleCols.maxStartTime && <td className="time-string-cell">{s.maxStartTime}</td>}
-                {visibleCols.minEndTime && <td className="time-string-cell">{s.minEndTime}</td>}
-                {visibleCols.endTime && <td className="time-string-cell">{s.endTime}</td>}
-                {visibleCols.maxEndTime && <td className="time-string-cell">{s.maxEndTime}</td>}
-                {visibleCols.actions && (
-                  <td>
-                    <div className="table-inline-actions">
-                      <button className="action-button-edit" onClick={() => openEditWorkflow(s)}><FiEdit /></button>
-                      <button className="action-button-delete" onClick={() => openDeleteWorkflow(s)}><FiTrash2 /></button>
-                    </div>
-                  </td>
-                )}
+                {visibleCols.id && <th>ID</th>}
+                {visibleCols.name && <th>Name</th>}
+                {visibleCols.department && <th>Department</th>}
+                {visibleCols.shift && <th>Shift</th>}
+                {visibleCols.minStartTime && <th>Min Start Time</th>}
+                {visibleCols.startTime && <th>Start Time</th>}
+                {visibleCols.maxStartTime && <th>Max Start Time</th>}
+                {visibleCols.minEndTime && <th>Min End Time</th>}
+                {visibleCols.endTime && <th>End Time</th>}
+                {visibleCols.maxEndTime && <th>Max End Time</th>}
+                {visibleCols.actions && <th className="Print-Hide">Actions</th>}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredShifts.map((s) => (
+                <tr key={s._id} className={selectedIds.includes(s._id) ? 'row-selected-highlight' : ''}>
+                  {visibleCols.checkbox && (
+                    <td className="Print-Hide">
+                      <input 
+                        type="checkbox" 
+                        checked={selectedIds.includes(s._id)} 
+                        onChange={() => handleSelectRow(s._id)} 
+                      />
+                    </td>
+                  )}
+                  {visibleCols.id && <td>{s._id}</td>}
+                  {visibleCols.name && (
+                    <td className="identity-cell-layout">
+                      <div className="avatar-placeholder-circle Print-Hide">{(s.name || 'E').charAt(0)}</div>
+                      <div className="profile-identity-block">
+                        <span className="profile-name-span">{s.name}</span>
+                        <small className="profile-empid-caption" style={{ display: 'block', color: '#888', fontSize: '11px' }}>
+                          {s.employeeId || 'N/A'}
+                        </small>
+                      </div>
+                    </td>
+                  )}
+                  {visibleCols.department && <td>{s.department}</td>}
+                  {visibleCols.shift && (
+                    <td>
+                      <span className={`shift-tag-badge ${(s.shift || '').toLowerCase()}`}>{s.shift}</span>
+                    </td>
+                  )}
+                  {visibleCols.minStartTime && <td className="time-string-cell">{s.minStartTime}</td>}
+                  {visibleCols.startTime && <td className="time-string-cell">{s.startTime}</td>}
+                  {visibleCols.maxStartTime && <td className="time-string-cell">{s.maxStartTime}</td>}
+                  {visibleCols.minEndTime && <td className="time-string-cell">{s.minEndTime}</td>}
+                  {visibleCols.endTime && <td className="time-string-cell">{s.endTime}</td>}
+                  {visibleCols.maxEndTime && <td className="time-string-cell">{s.maxEndTime}</td>}
+                  {visibleCols.actions && (
+                    <td className="Print-Hide">
+                      <div className="table-inline-actions">
+                        <button className="action-button-edit" onClick={() => openEditWorkflow(s)}><FiEdit /></button>
+                        <button className="action-button-delete" onClick={() => openDeleteWorkflow(s)}><FiTrash2 /></button>
+                      </div>
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
 
       {/* Table Pagination Footer */}
-      <div className="EmployeeShift-footer">
+      <div className="EmployeeShift-footer Print-Hide">
         <div className="pagination-controls-block">
           <span>Items per page:</span>
           <select className="items-per-page-selector" defaultValue="10">
@@ -253,9 +352,9 @@ const EmployeeShift = () => {
         </div>
       </div>
 
-      {/* ================= MULTI-PAGE WORKFLOW SLIDER SLIDE (ADD & EDIT) ================= */}
+      {/* ================= MULTI-PAGE WORKFLOW MODAL (ADD & EDIT) ================= */}
       {(activeWorkflow === 'add' || activeWorkflow === 'edit') && (
-        <div className="workflow-modal-overlay">
+        <div className="workflow-modal-overlay Print-Hide">
           <div className="workflow-modal-card animate-slide-in">
             <div className="workflow-modal-header">
               <div className="modal-title-layout-group">
@@ -266,28 +365,32 @@ const EmployeeShift = () => {
             </div>
 
             <form onSubmit={handleFormSubmission} className="workflow-form-wrapper">
-              
-              {/* PAGE STEP 1: Basic Metadata Inputs (Reference Image 3 & 5) */}
               {workflowPage === 1 && (
                 <div className="workflow-form-page-body custom-scrollbar-layout">
                   <div className="input-field-block">
-                    <label>Employee Name*</label>
-                    <input 
-                      type="text" 
-                      required 
-                      value={formData.name} 
-                      onChange={(e) => setFormData({...formData, name: e.target.value})} 
-                      placeholder="Enter Full Name"
-                    />
+                    <label>Select Employee*</label>
+                    <select 
+                      required
+                      disabled={activeWorkflow === 'edit'} 
+                      value={formData.employeeId}
+                      onChange={handleEmployeeSelectionChange}
+                    >
+                      <option value="">Choose Employee</option>
+                      {masterEmployeeRoster.map((emp) => (
+                        <option key={emp._id} value={emp._id}>
+                          {emp.employeeId} - {emp.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div className="input-field-block">
                     <label>Department*</label>
                     <input 
                       type="text" 
                       required 
+                      readOnly 
                       value={formData.department} 
-                      onChange={(e) => setFormData({...formData, department: e.target.value})} 
-                      placeholder="e.g. Java, UI/UX"
+                      placeholder="Select employee to set department"
                     />
                   </div>
                   <div className="input-field-block">
@@ -311,36 +414,71 @@ const EmployeeShift = () => {
                 </div>
               )}
 
-              {/* PAGE STEP 2: Precise Time Ranges Config (Reference Image 4 & 6) */}
               {workflowPage === 2 && (
                 <div className="workflow-form-page-body custom-scrollbar-layout">
                   <div className="form-inputs-inline-row">
                     <div className="input-field-block">
                       <label>Min Start Time*</label>
-                      <input type="text" required value={formData.minStartTime} onChange={(e) => setFormData({...formData, minStartTime: e.target.value})} />
+                      <input 
+                        type="time" 
+                        step="1" 
+                        required 
+                        value={formData.minStartTime} 
+                        onChange={(e) => setFormData({...formData, minStartTime: e.target.value})} 
+                      />
                     </div>
                     <div className="input-field-block">
                       <label>Start Time*</label>
-                      <input type="text" required value={formData.startTime} onChange={(e) => setFormData({...formData, startTime: e.target.value})} />
+                      <input 
+                        type="time" 
+                        step="1" 
+                        required 
+                        value={formData.startTime} 
+                        onChange={(e) => setFormData({...formData, startTime: e.target.value})} 
+                      />
                     </div>
                     <div className="input-field-block">
                       <label>Max Start Time*</label>
-                      <input type="text" required value={formData.maxStartTime} onChange={(e) => setFormData({...formData, maxStartTime: e.target.value})} />
+                      <input 
+                        type="time" 
+                        step="1" 
+                        required 
+                        value={formData.maxStartTime} 
+                        onChange={(e) => setFormData({...formData, maxStartTime: e.target.value})} 
+                      />
                     </div>
                   </div>
 
                   <div className="form-inputs-inline-row">
                     <div className="input-field-block">
                       <label>Min End Time*</label>
-                      <input type="text" required value={formData.minEndTime} onChange={(e) => setFormData({...formData, minEndTime: e.target.value})} />
+                      <input 
+                        type="time" 
+                        step="1" 
+                        required 
+                        value={formData.minEndTime} 
+                        onChange={(e) => setFormData({...formData, minEndTime: e.target.value})} 
+                      />
                     </div>
                     <div className="input-field-block">
                       <label>End Time*</label>
-                      <input type="text" required value={formData.endTime} onChange={(e) => setFormData({...formData, endTime: e.target.value})} />
+                      <input 
+                        type="time" 
+                        step="1" 
+                        required 
+                        value={formData.endTime} 
+                        onChange={(e) => setFormData({...formData, endTime: e.target.value})} 
+                      />
                     </div>
                     <div className="input-field-block">
                       <label>Max End Time*</label>
-                      <input type="text" required value={formData.maxEndTime} onChange={(e) => setFormData({...formData, maxEndTime: e.target.value})} />
+                      <input 
+                        type="time" 
+                        step="1" 
+                        required 
+                        value={formData.maxEndTime} 
+                        onChange={(e) => setFormData({...formData, maxEndTime: e.target.value})} 
+                      />
                     </div>
                   </div>
 
@@ -350,15 +488,14 @@ const EmployeeShift = () => {
                   </div>
                 </div>
               )}
-
             </form>
           </div>
         </div>
       )}
 
-      {/* ================= RECORD DELETE VERIFICATION (Reference Image 7) ================= */}
+      {/* ================= RECORD DELETE VERIFICATION ================= */}
       {activeWorkflow === 'delete' && (
-        <div className="workflow-modal-overlay">
+        <div className="workflow-modal-overlay Print-Hide">
           <div className="delete-confirmation-dialog-box animate-pop-in">
             <h3>Are you sure?</h3>
             <div className="deleted-row-context-summary">

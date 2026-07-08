@@ -1,0 +1,455 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/* =========================================================
+   THEME DESIGN CONFIGURATION (CLASSIC BLUE STYLING)
+========================================================= */
+:root {
+  /* Dark Mode: Deep Classic Sapphire Slate Profile */
+  --bg-sidebar: #0f172a;        /* Elegant Dark Slate */
+  --bg-dropdown: #1e293b;       /* Crisp Muted Navy for subcontainers */
+  --bg-hover: #1d4ed8;          /* Bright Royal Blue Hover */
+  --bg-active: #2563eb;         /* Pure Electric Blue Active States */
+  --text-main: #38bdf8;         /* High-visibility Ice Blue text headings */
+  --text-muted: #93c5fd;        /* Soft Pastel Blue for clear legibility */
+  --text-sub: #cbd5e1;          /* Cool Grey-White for deep sublinks */
+  --border-color: rgba(56, 189, 248, 0.15); /* Light Sapphire glass boundaries */
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Light Mode: Professional Premium Ice-White Corporate Style */
+body.light-theme {
+  --bg-sidebar: #ffffff;        /* Pure White Solid Base */
+  --bg-dropdown: #e0f2fe;       /* Premium Light Ice Blue for Dropdowns */
+  --bg-hover: #bae6fd;          /* Vibrant Clear Sky Blue Accent */
+  --bg-active: #1d4ed8;         /* Strong Deep Royal Blue for active nodes */
+  --text-main: #1d4ed8;         /* Dominant Professional Classic Blue */
+  --text-muted: #2563eb;        /* Deep Responsive Indigo Blue */
+  --text-sub: #0369a1;          /* Dark Oceanic Teal-Blue for Submenu Content */
+  --border-color: #bae6fd;      /* Light Sky Border lines */
+  --shadow-color: rgba(3, 105, 161, 0.08);
+}
+
+/* =========================================================
+   SIDEBAR CORE ELEMENT
+========================================================= */
+.sidebar {
+  width: 290px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: var(--bg-sidebar);
+  border-right: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  box-shadow: 4px 0 25px var(--shadow-color);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Collapsed Sidebar Mode overrides */
+.sidebar.collapsed {
+  width: 85px;
+}
+
+/* =========================================================
+   LOGO REGION
+========================================================= */
+.sidebarLogoSection {
+  padding: 24px 18px;
+  border-bottom: 2px solid var(--border-color);
+  position: relative;
+}
+
+.sidebarLogoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-main);
+}
+
+.sidebar.collapsed .sidebarLogoWrapper {
+  justify-content: center;
+}
+
+.sidebarLogoLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebarLogo {
+  width: 50px;
+  height: 44px;
+  object-fit: contain;
+}
+
+/* Smart automatic image filter adjustments between modes */
+body.light-theme .sidebarLogo {
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.sidebarLogoLeft span {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================================
+   DESKTOP TOGGLE ICON BUTTON
+========================================================= */
+.desktopToggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-dropdown);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px;
+  cursor: pointer;
+  margin: 14px auto 0 auto;
+  width: 44px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+.desktopToggleBtn:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   SIDEBAR ACTION CONTAINER
+========================================================= */
+.sidebarActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.sidebar.collapsed .sidebarActions {
+  flex-direction: column;
+  align-items: center;
+}
+
+.addNewBtn {
+  flex: 1;
+  height: 46px;
+  border: none;
+  border-radius: 12px;
+  background: var(--bg-active);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+.addNewBtn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.sidebar.collapsed .addNewBtn {
+  width: 46px;
+  flex: none;
+}
+
+.searchBtn {
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-dropdown);
+  color: var(--text-main);
+  cursor: pointer;
+}
+.searchBtn:hover {
+  background: var(--bg-hover);
+  color: #ffffff;
+}
+
+/* =========================================================
+   NAVIGATION LINK ELEMENTS
+========================================================= */
+.sidebarMenu {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 14px;
+}
+
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  border: 1px solid transparent;
+}
+
+.sidebar.collapsed .sidebarLink {
+  justify-content: center;
+  padding: 14px 0;
+}
+
+.sidebarLink svg {
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.sidebarLink:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
+}
+.sidebarLink:hover svg {
+  transform: scale(1.1);
+}
+
+.sidebarLink.active {
+  background: var(--bg-active);
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* =========================================================
+   DROPDOWN CONTROLS (MUTED / ICE-BLUE ACCENTS)
+========================================================= */
+.sidebarDropdown {
+  margin-bottom: 12px;
+}
+
+.sidebarDropdownBtn {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-dropdown);
+  color: var(--text-muted);
+  border-radius: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+.sidebarDropdownBtn:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
+}
+
+.sidebar.collapsed .sidebarDropdownBtn {
+  justify-content: center;
+  padding: 14px 0;
+}
+
+.sidebarDropdownLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Submenu layout configuration */
+.sidebarSubMenu {
+  margin-top: 8px;
+  margin-left: 18px;
+  border-left: 2px dashed var(--border-color);
+  padding-left: 12px;
+}
+
+.sidebarSubLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+}
+.sidebarSubLink:hover {
+  background: var(--bg-hover);
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   FOOTER PROFILE LAYOUT
+========================================================= */
+.sidebarBottom {
+  padding: 20px 16px;
+  border-top: 2px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background: rgba(0, 0, 0, 0.05);
+}
+body.light-theme .sidebarBottom {
+  background: #f8fafc;
+}
+
+.sidebar.collapsed .sidebarBottom {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profileCard img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg-active);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.bottomActions {
+  display: flex;
+  gap: 8px;
+}
+.sidebar.collapsed .bottomActions {
+  flex-direction: column;
+}
+
+.bottomIcon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-dropdown);
+  color: var(--text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.bottomIcon:hover {
+  background: var(--bg-active);
+  color: #ffffff !important;
+}
+
+/* POPUPS CARD ARCHITECTURE */
+.profilePopupCard, .logoPopupCard {
+  position: absolute;
+  background: var(--bg-sidebar);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+body.light-theme .profilePopupCard, 
+body.light-theme .logoPopupCard {
+  background: #ffffff;
+  box-shadow: 0 12px 40px rgba(3, 105, 161, 0.15);
+}
+
+.logoPopupCard { top: 95px; left: 18px; width: 250px; }
+.profilePopupCard { bottom: 88px; left: 15px; width: 260px; padding: 16px; }
+
+.profileHeader h4 { color: var(--text-main); font-weight: 700; }
+.profileHeader p { color: var(--text-sub); font-size: 12px; }
+
+.profilePopupCard a, .logoPopupCard a { 
+  color: var(--text-muted); 
+  display: flex; 
+  padding: 12px; 
+  gap: 12px; 
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 8px;
+}
+.profilePopupCard a:hover, .logoPopupCard a:hover { 
+  background: var(--bg-hover); 
+  color: #ffffff !important; 
+}
+
+/* =========================================================
+   CHAT DRAWER INTERFACE SUPPORT
+========================================================= */
+.chatDrawer {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 400px;
+  height: 100vh;
+  background: var(--bg-sidebar);
+  border-left: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 99999;
+}
+.chatDrawerOpen { right: 0; }
+.chatDrawerHeader h3 { color: var(--text-main); font-weight: 700; }
+.chatDrawerHeader button { background: var(--bg-dropdown); color: var(--text-main); border: 1px solid var(--border-color); }
+.messageLeft { background: var(--bg-dropdown); color: var(--text-sub); border: 1px solid var(--border-color); }
+.chatDrawerFooter input { background: var(--bg-dropdown); color: var(--text-sub); border: 1px solid var(--border-color); }
+
+/* =========================================================
+   RESPONSIVE DESIGN BREAKPOINTS & SNAPS
+========================================================= */
+@media (max-width: 1200px) {
+  .desktopToggleBtn { display: none; }
+  .sidebar { width: 90px; }
+  .sidebarLogoLeft span, .addNewBtn span, .sidebarLink span, .sidebarDropdownLeft span, .sidebarSubMenu, .logoPopupCard, .profilePopupCard { display: none !important; }
+  .sidebarLogoWrapper { justify-content: center; }
+  .sidebarActions { flex-direction: column; }
+  .addNewBtn, .searchBtn { width: 100%; }
+  .sidebarDropdownBtn { justify-content: center; }
+  .sidebarLink { justify-content: center; }
+  .sidebarBottom { flex-direction: column; gap: 14px; }
+  .bottomActions { flex-direction: column; }
+}
+
+@media (max-width: 768px) {
+  .mobileMenuBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    background: var(--bg-active);
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 100001;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  }
+  .sidebar {
+    width: 290px !important;
+    transform: translateX(-100%);
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15);
+  }
+  .sidebar.mobileOpen { transform: translateX(0); }
+  .sidebarLogoLeft span, .sidebarLink span, .sidebarDropdownLeft span, .addNewBtn span { display: block !important; }
+  .sidebarSubMenu { display: block !important; }
+  .sidebarActions { flex-direction: row !important; }
+  .sidebarDropdownBtn { justify-content: space-between !important; }
+  .sidebarLink { justify-content: flex-start !important; }
+  .sidebarBottom { flex-direction: row !important; }
+  .bottomActions { flex-direction: row !important; }
+  .chatDrawer { width: 100%; }
+}
+
+/* Fluid global rendering engine properties */
+.sidebar *, .chatDrawer *, .profilePopupCard *, .logoPopupCard * {
+  transition: background 0.22s ease, color 0.22s ease, width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

@@ -1,0 +1,521 @@
+:root {
+  --bg-main-canvas: #f0f4f8;
+  --card-surface: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-line: #e2e8f0;
+  
+  /* Priority Brand Colors */
+  --priority-hi: #ea4335;
+  --priority-med: #fbbc05;
+  --priority-lo: #34a853;
+
+  /* Reference System Badges Colors */
+  --bg-approved-lbl: #e6f4ea;
+  --text-approved-lbl: #137333;
+  --bg-completed-lbl: #e8f0fe;
+  --text-completed-lbl: #1a73e8;
+  --bg-pending-lbl: #fef7e0;
+  --text-pending-lbl: #b06000;
+  --bg-rejected-lbl: #fce8e6;
+  --text-rejected-lbl: #c5221f;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main-canvas);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.ExpenseApprovals-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header and Navigation Breadcrumbs styling layout */
+.ExpenseApprovals-header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ExpenseApprovals-header-nav h2 {
+  margin: 0;
+  font-size: 22px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.ExpenseApprovals-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.ExpenseApprovals-breadcrumb .active {
+  color: #888888;
+}
+
+/* Actions Toolbar Sub-Header block styling */
+.ExpenseApprovals-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-surface);
+  padding: 14px 20px;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--border-line);
+}
+
+.ExpenseApprovals-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ExpenseApprovals-search-icon {
+  position: absolute;
+  left: 12px;
+  color: #9aa0a6;
+}
+
+.ExpenseApprovals-search-wrapper input {
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--border-line);
+  border-radius: 4px;
+  width: 240px;
+  font-size: 14px;
+  outline: none;
+  background-color: #f8f9fa;
+}
+
+.ExpenseApprovals-actions-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.ExpenseApprovals-btn.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.filter-btn { color: #5f6368; }
+.add-btn { color: #137333; font-size: 20px; }
+.refresh-btn { color: #5f6368; }
+.download-btn { color: #1a73e8; }
+
+/* Filter Checkbox Popover Drawer layout (References 2 & 3) */
+.ExpenseApprovals-filter-dropdown-container {
+  position: relative;
+}
+
+.ExpenseApprovals-filter-menu {
+  position: absolute;
+  right: 0;
+  top: 36px;
+  background: #f1f3f4;
+  border: 1px solid var(--border-line);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  width: 210px;
+}
+
+.ExpenseApprovals-filter-title {
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: 1px solid #dadce0;
+  color: #3c4043;
+}
+
+.ExpenseApprovals-filter-options-scroll {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+/* Custom Checklist Checkbox Components Styles matching reference imagery blueprints */
+.ExpenseApprovals-checkbox-label {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #3c4043;
+  transition: background 0.2s;
+}
+
+.ExpenseApprovals-checkbox-label:hover {
+  background: #e8eaed;
+}
+
+.ExpenseApprovals-checkbox-label input,
+.ExpenseApprovals-table-checkbox input {
+  display: none;
+}
+
+.ExpenseApprovals-custom-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #1a73e8;
+  border-radius: 2px;
+  margin-right: 12px;
+  display: inline-block;
+  position: relative;
+  background: #1a73e8;
+}
+
+.ExpenseApprovals-checkbox-label input:checked + .ExpenseApprovals-custom-checkbox::after,
+.ExpenseApprovals-table-checkbox input:checked + .ExpenseApprovals-custom-checkbox::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.ExpenseApprovals-checkbox-label input:not(:checked) + .ExpenseApprovals-custom-checkbox,
+.ExpenseApprovals-table-checkbox input:not(:checked) + .ExpenseApprovals-custom-checkbox {
+  background: transparent;
+  border: 2px solid #5f6368;
+}
+
+/* Content Matrix Table Area Grid Design */
+.ExpenseApprovals-table-card {
+  background: var(--card-surface);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.ExpenseApprovals-table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.ExpenseApprovals-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.ExpenseApprovals-table th {
+  background-color: #ffffff;
+  color: #202124;
+  font-weight: 600;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--border-line);
+  white-space: nowrap;
+}
+
+.ExpenseApprovals-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-line);
+  color: #3c4043;
+  white-space: nowrap;
+}
+
+.ExpenseApprovals-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.ExpenseApprovals-table tbody tr.row-selected {
+  background-color: #f1f3f4;
+}
+
+.ExpenseApprovals-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cell-icon {
+  color: #e8710a;
+}
+
+.ExpenseApprovals-priority-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.Priority-icon-up { color: var(--priority-hi); font-size: 16px; }
+.Priority-icon-med { color: var(--priority-med); font-size: 16px; }
+.Priority-icon-down { color: var(--priority-lo); font-size: 16px; }
+
+.ExpenseApprovals-truncate-text {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* System Row Labels Badges styling */
+.ExpenseApprovals-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-approved { background-color: var(--bg-approved-lbl); color: var(--text-approved-lbl); }
+.badge-completed { background-color: var(--bg-completed-lbl); color: var(--text-completed-lbl); }
+.badge-pending { background-color: var(--bg-pending-lbl); color: var(--text-pending-lbl); }
+.badge-rejected { background-color: var(--bg-rejected-lbl); color: var(--text-rejected-lbl); }
+
+/* Table Modifier Action Controls buttons */
+.ExpenseApprovals-action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.ExpenseApprovals-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px;
+}
+
+.edit-action { color: #1a73e8; }
+.delete-action { color: #d93025; }
+
+/* Grid Pagination block styling */
+.ExpenseApprovals-pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 24px;
+  font-size: 13px;
+  color: #5f6368;
+  border-top: 1px solid var(--border-line);
+}
+
+.ExpenseApprovals-pagination-left, .ExpenseApprovals-pagination-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ExpenseApprovals-page-select {
+  padding: 4px 8px;
+  border: 1px solid var(--border-line);
+  border-radius: 4px;
+  outline: none;
+}
+
+.ExpenseApprovals-pager-btn {
+  background: transparent;
+  border: none;
+  color: #5f6368;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+/* --- OPERATION SLIDE IN OVERLAY DIALOG MODALS (References 4, 5 & 6) --- */
+.ExpenseApprovals-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ExpenseApprovals-modal-card {
+  background: #f8f9fa;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.ExpenseApprovals-modal-header {
+  background: #5c6bc0;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ExpenseApprovals-modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ExpenseApprovals-modal-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.ExpenseApprovals-modal-form {
+  padding: 24px;
+}
+
+.ExpenseApprovals-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.ExpenseApprovals-form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ExpenseApprovals-form-group label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.ExpenseApprovals-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ExpenseApprovals-form-group input, 
+.ExpenseApprovals-form-group select {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ExpenseApprovals-form-group select {
+  padding-right: 12px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  color: #5f6368;
+}
+
+/* Modal form controls workflow execution layouts */
+.ExpenseApprovals-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ExpenseApprovals-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-save {
+  background-color: #0069c0;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #b91c1c;
+  color: white;
+}
+
+/* Danger Prompt Deletion layout block (Reference 6) */
+.ExpenseApprovals-delete-card {
+  background: #f8f9fa;
+  padding: 24px;
+  border-radius: 8px;
+  width: 340px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.ExpenseApprovals-delete-card h3 {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: #202124;
+}
+
+.ExpenseApprovals-delete-details {
+  margin: 16px 0 24px 0;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.ExpenseApprovals-delete-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-delete-confirm {
+  background-color: #b91c1c;
+  color: white;
+  flex: 1;
+}
+
+.btn-cancel-confirm {
+  background-color: #0069c0;
+  color: white;
+  flex: 1;
+}
+
+/* --- CROSS DEVICE FLEXIBLE BREAKDOWN MEDIA QUERY GRID --- */
+@media (max-width: 768px) {
+  .ExpenseApprovals-toolbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .ExpenseApprovals-search-wrapper input {
+    width: 100%;
+  }
+
+  .ExpenseApprovals-actions-right {
+    justify-content: flex-end;
+  }
+
+  .ExpenseApprovals-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Sidebar.css";
-import logo from '../../assets/prwebstock_logo.png'
-
+import logo from '../../assets/prwebstock_logo.png';
+import API from "../../api/axios"; 
+import Swal from "sweetalert2";
 
 import {
   FiGrid,
@@ -24,7 +25,9 @@ import {
 } from "react-icons/fi";
 
 const Sidebar = ({ collapsed, setCollapsed }) => {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
+  const [liveLastLogin, setLiveLastLogin] = useState(null);
   
   // State management for all sidebar dropdown items
   const [dropdowns, setDropdowns] = useState({
@@ -37,10 +40,59 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
     email: false,
   });
 
+  // Safe extraction of values from localStorage using State
+  const [storedUser, setStoredUser] = useState(
+    () => JSON.parse(localStorage.getItem("employeeData")) || {}
+  );
+
+  const currentUserName = storedUser.name || "Employee Profile";
+  const currentUserRole = storedUser.role || "Staff Member";
+  
+  // Dynamically extract the origin from API config to eliminate hardcoded ports
+  const apiBaseUrl = API.defaults.baseURL ? new URL(API.defaults.baseURL).origin : "";
+  
+  // Handle fallback dynamic image asset pathing
+  const currentUserAvatar = storedUser.profileImage 
+    ? `${apiBaseUrl}${storedUser.profileImage}` 
+    : "https://randomuser.me/api/portraits/men/32.jpg";
+
+  // Dynamic formatting logic for the fetched timestamp
+  const formatLastLogin = () => {
+    const timestamp = liveLastLogin || storedUser.lastLoginTime;
+    if (!timestamp) return "First login session";
+    
+    const dateObj = new Date(timestamp);
+    return dateObj.toLocaleString([], {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   useEffect(() => {
+    // Single consolidated function to fetch profile data and sync layout states
+    const fetchProfileData = async () => {
+      try {
+        const { data } = await API.get("/auth/employee/profile");
+        if (data && data.success) {
+          // Sync with LocalStorage
+          localStorage.setItem("employeeData", JSON.stringify(data.employee));
+          // Update local state to immediately trigger visual UI updates
+          setStoredUser(data.employee);
+          setLiveLastLogin(data.lastLoginTime || data.employee.lastLoginTime);
+        }
+      } catch (err) {
+        console.error("Failed to fetch fresh user profile information from server:", err.message);
+      }
+    };
+
+    fetchProfileData();
+
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 992);
     };
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -54,8 +106,28 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
     }
   };
 
-  const handleLogout = () => {
-    console.log("User logged out");
+  // Connect cleanly to your backend logout history processor logic 
+  const handleLogout = async () => {
+    try {
+      // Fires the API endpoint update logic to record the logout time stamp
+      await API.post("/auth/employee/logout"); 
+    } catch (err) {
+      console.error("Backend session logout tracking failed:", err.message);
+    } finally {
+      // Always flush tokens and redirect the UI regardless of server response
+      localStorage.removeItem("employeeToken");
+      localStorage.removeItem("employeeData");
+      
+      Swal.fire({
+        icon: "success",
+        title: "Logged Out",
+        text: "You have logged out successfully.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      navigate("/login");
+    }
   };
 
   return (
@@ -70,33 +142,27 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           isMobile ? (!collapsed ? "open" : "") : collapsed ? "collapsed" : ""
         }`}
       >
-       <div className="logo">
-            <div className="logoBrand">
-              <img
-                src={logo}
-                alt="PR WEBSTOCK Logo"
-              />
-            </div>
-
-            {isMobile && (
-              <button
-                className="sidebarClose"
-                onClick={() => setCollapsed(true)}
-              >
-                <FiX />
-              </button>
-            )}
+        <div className="logo">
+          <div className="logoBrand">
+            <img src={logo} alt="PR WEBSTOCK Logo" />
           </div>
 
-        {/* User Profile Section */}
+          {isMobile && (
+            <button className="sidebarClose" onClick={() => setCollapsed(true)}>
+              <FiX />
+            </button>
+          )}
+        </div>
+
+        {/* Dynamic Authenticated User Profile Section */}
         {!collapsed && (
           <div className="profile">
-            <img
-              src="https://randomuser.me/api/portraits/men/32.jpg"
-              alt="profile"
-            />
-            <h3>Ashton Cox</h3>
-            <p>Employee</p>
+            <img src={currentUserAvatar} alt="Profile" />
+            <h3>{currentUserName}</h3>
+            <p>{currentUserRole}</p>
+            <span className="last-login-time-display" style={{ fontSize: "11px", color: "#8aa", display: "block", marginTop: "4px" }}>
+              Last Login: {formatLastLogin()}
+            </span>
           </div>
         )}
 
@@ -130,7 +196,8 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/today-attendance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Today's Attendance</NavLink>
               <NavLink to="/employee/monthly-attendance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Monthly Attendance</NavLink>
               <NavLink to="/employee/attendance-history" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Attendance History</NavLink>
-              <NavLink to="/employee/overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
+              <NavLink to="/employee/attendance-overtime" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Overtime Requests</NavLink>
+              <NavLink to="/employee/shift-schedule" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Shift Schedule</NavLink>
             </div>
           )}
 
@@ -308,7 +375,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
 
         {/* Pinned Logout Area */}
         <div className="sidebarFooter">
-          <div className="logoutButton" onClick={handleLogout}>
+          <div className="logoutButton" onClick={handleLogout} style={{ cursor: "pointer" }}>
             <FiLogOut />
             {!collapsed && <span>Logout</span>}
           </div>

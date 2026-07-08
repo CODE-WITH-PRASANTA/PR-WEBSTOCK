@@ -1,0 +1,180 @@
+/* Container layout arrangements */
+.main-content {
+  padding: 20px;
+  background-color: #f9fbfd;
+  font-family: 'Roboto', sans-serif;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.ts-container {
+  background: #ffffff;
+  border: 1px solid #e3e8ec;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.ts-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-field {
+  max-width: 260px;
+  background-color: #f1f3f5;
+  border-radius: 4px;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+/* Table Style customisations */
+.m-table th {
+  background-color: #f8f9fa !important;
+  color: #495057;
+  font-weight: 600;
+}
+
+.m-table-row {
+  cursor: pointer;
+}
+
+.m-edit-btn {
+  color: #1976d2 !important;
+  margin-right: 4px !important;
+}
+
+.m-delete-btn {
+  color: #d32f2f !important;
+}
+
+/* Status Badges */
+.m-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-approved {
+  background-color: #e2f6ed;
+  color: #0f5132;
+}
+
+.badge-pending {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+.badge-rejected {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+/* Custom Footer Controls */
+.m-custom-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 16px;
+  gap: 12px;
+}
+
+.p-label {
+  color: #6c757d;
+}
+
+.p-select {
+  min-width: 70px;
+}
+
+/* Dialog Header layout adjustments */
+.m-modal-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border-bottom: 1px solid #e3e8ec;
+  padding: 16px 24px !important;
+}
+
+.m-close-modal {
+  color: #6c757d !important;
+  padding: 4px !important;
+}
+
+/* Grid input form configurations */
+.m-modal-body {
+  padding: 24px !important;
+}
+
+.m-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.m-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.m-form-field label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333333;
+}
+
+.m-full-width {
+  grid-column: span 2;
+}
+
+.m-modal-footer {
+  padding: 16px 24px !important;
+  border-top: 1px solid #e3e8ec;
+}
+
+.m-save-btn {
+  background-color: #2e7d32 !important;
+  color: #ffffff !important;
+}
+
+.m-cancel-btn {
+  background-color: #f8f9fa !important;
+  color: #212529 !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+/* Responsive breakpoint fallback setups */
+@media (max-width: 768px) {
+  .m-form {
+    grid-template-columns: 1fr;
+  }
+  .m-full-width {
+    grid-column: span 1;
+  }
+  .ts-toolbar {
+    flex-wrap: wrap;
+  }
+  .search-field {
+    max-width: 100%;
+    width: 100%;
+  }
+}
