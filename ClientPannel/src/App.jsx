@@ -18,7 +18,7 @@ import Contracts from "./Component/Contracts/Contracts";
 import Ndas from "./Component/Ndas/Ndas";
 import ProjectDocuments from "./Component/ProjectDocuments/ProjectDocuments";
 import Chat from "./Component/Chat/Chat";
-import SLAStatus from "./Component/SLAStatus/SLAStatus";
+
 
 
 
@@ -35,8 +35,7 @@ const App = () => {
         <Route path= "/client/payment-method" element={<PaymentMethod />} />
         <Route path= "/client/payment-history" element={<PaymentHistory />} />
         <Route path= "/client/payments" element={<Payments />} />
-        <Route path= "/status" element={<SLAStatus />} />
-
+        
 
 
 
