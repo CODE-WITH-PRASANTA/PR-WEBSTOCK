@@ -550,3 +550,50 @@ body {
   .dashboard-card { padding: 1.1rem; }
   .action-circle { width: 104px; height: 104px; }
 }
+
+/* Warning and Error Banners for Geolocation */
+.geo-alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  animation: slideInDown 0.3s ease;
+}
+
+.geo-alert-banner.system-error {
+  background-color: #fde8e8;
+  color: #9b1c1c;
+  border: 1px solid #f8b4b4;
+}
+
+.geo-alert-banner.system-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+/* Custom Status Color for Fence Breaches */
+.status-badge-pill.outside-geofence {
+  background: #fde8e8;
+  color: #c81e1e;
+}
+.status-badge-pill.outside-geofence .status-indicator-dot {
+  background: #e11d48;
+  box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.2);
+}
+
+/* Dynamic Activity Register status styles */
+.tag-auto-punched-out {
+  background-color: #fde8e8 !important;
+  color: #9b1c1c !important;
+  border: 1px solid #f8b4b4;
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

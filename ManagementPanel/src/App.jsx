@@ -25,7 +25,7 @@ import EmployeeAttendance from "./Components/EmployeeAttendance/EmployeeAttendan
 import LeaveRequest from "./Components/LeaveRequest/LeaveRequest";
 import LeaveBalance from "./Components/LeaveBalance/LeaveBalance";
 import LeaveTypes from "./Components/LeaveTypes/LeaveTypes";
-import LeaveSettings from "./Components/LeaveSettings/LeaveSettings";
+// import LeaveSettings from "./Components/LeaveSettings/LeaveSettings";
 
 import EmployeeDocuments from "./Components/EmployeeDocuments/EmployeeDocuments";
 import EmployeeAssets from "./Components/EmployeeAssets/EmployeeAssets";
@@ -161,7 +161,7 @@ const App = () => {
           
           <Route path="documents" element={<EmployeeDocuments />} />
           <Route path="requests" element={<LeaveRequest />} />
-          <Route path="leaves/settings" element={<LeaveSettings />} />
+          {/* <Route path="leaves/settings" element={<LeaveSettings />} /> */}
           <Route path="balance" element={<LeaveBalance />} />
           <Route path="leaves/types" element={<LeaveTypes />} />
           <Route path="payroll/salary" element={<EmployeeSalary />} />

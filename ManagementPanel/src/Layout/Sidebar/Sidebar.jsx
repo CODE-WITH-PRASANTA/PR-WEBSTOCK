@@ -209,16 +209,16 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           {!collapsed && (
             <div className={`submenu ${dropdowns.leaveManagement ? "show" : ""}`}>
               <NavLink
-    to="/management/requests"
-    className={({ isActive }) =>
-      `submenuItem ${isActive ? "activeSubmenu" : ""}`
-    }
->
-    All Leave Requests
-</NavLink>
+              to="/management/requests"
+              className={({ isActive }) =>
+                `submenuItem ${isActive ? "activeSubmenu" : ""}`
+              }
+          >
+              All Leave Requests
+          </NavLink>
               <NavLink to="/management/balance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Balance</NavLink>
               <NavLink to="/management/leaves/types" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Types</NavLink>
-              <NavLink to="/management/leaves/settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Settings</NavLink>
+              {/* <NavLink to="/management/leaves/settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Settings</NavLink> */}
             </div>
           )}
 
