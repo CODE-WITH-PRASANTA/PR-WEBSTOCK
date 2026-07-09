@@ -18,6 +18,7 @@ import Contracts from "./Component/Contracts/Contracts";
 import Ndas from "./Component/Ndas/Ndas";
 import ProjectDocuments from "./Component/ProjectDocuments/ProjectDocuments";
 import Chat from "./Component/Chat/Chat";
+import SLAStatus from "./Component/SLAStatus/SLAStatus";
 
 
 
@@ -31,9 +32,10 @@ const App = () => {
         <Route path="/" element={<MainLayout />}>
         <Route path= "/client/invoice-details" element={<InvoiceDetails />} />
         <Route path= "/client/invoices" element={<Invoices />} />
-        <Route path= "/client/payment-methods" element={<PaymentMethod />} />
+        <Route path= "/client/payment-method" element={<PaymentMethod />} />
         <Route path= "/client/payment-history" element={<PaymentHistory />} />
         <Route path= "/client/payments" element={<Payments />} />
+        <Route path= "/status" element={<SLAStatus />} />
 
 
 
