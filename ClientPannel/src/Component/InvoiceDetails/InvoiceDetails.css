@@ -1,0 +1,414 @@
+:root {
+  --invoice-primary: #5c59c2;
+  --invoice-primary-hover: #4b48aa;
+  --invoice-bg: #f3f4f9;
+  --invoice-card-bg: #ffffff;
+  --invoice-text-dark: #1e293b;
+  --invoice-text-muted: #64748b;
+  --invoice-border: #f1f5f9;
+  --invoice-success-bg: #dcfce7;
+  --invoice-success-text: #15803d;
+}
+
+.InvoiceDetails-container {
+  min-height: 100vh;
+  background-color: var(--invoice-bg);
+  padding: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+.InvoiceDetails-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Breadcrumbs Section */
+.InvoiceDetails-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.InvoiceDetails-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--invoice-text-dark);
+  margin: 0;
+}
+
+.InvoiceDetails-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--invoice-text-muted);
+}
+
+.InvoiceDetails-breadcrumb-arrow {
+  font-size: 0.7rem;
+}
+
+.InvoiceDetails-breadcrumb-link {
+  cursor: pointer;
+}
+
+.InvoiceDetails-breadcrumb-link:hover {
+  color: var(--invoice-primary);
+}
+
+.InvoiceDetails-breadcrumb-current {
+  color: var(--invoice-text-dark);
+  font-weight: 500;
+}
+
+/* Primary Invoice Base Container Sheet */
+.InvoiceDetails-card {
+  background: var(--invoice-card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+/* Header Banner Components */
+.InvoiceDetails-banner {
+  background: var(--invoice-primary);
+  color: #ffffff;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.InvoiceDetails-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.InvoiceDetails-logo-wrapper {
+  background: rgba(255, 255, 255, 0.15);
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.InvoiceDetails-banner-left h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.InvoiceDetails-banner-left p {
+  margin: 0.15rem 0 0 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.InvoiceDetails-banner-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.InvoiceDetails-banner-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.15s ease;
+}
+
+.InvoiceDetails-btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.InvoiceDetails-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.InvoiceDetails-btn-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.InvoiceDetails-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Structured Title Labeling Header Rule */
+.InvoiceDetails-block-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #3b82f6;
+  font-size: 0.725rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+/* Metadata Dual Grid blocks */
+.InvoiceDetails-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--invoice-border);
+}
+
+@media (min-width: 768px) {
+  .InvoiceDetails-meta-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.InvoiceDetails-meta-block {
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.InvoiceDetails-meta-block:first-child {
+  border-bottom: 1px solid var(--invoice-border);
+}
+
+@media (min-width: 768px) {
+  .InvoiceDetails-meta-block:first-child {
+    border-bottom: none;
+    border-right: 1px solid var(--invoice-border);
+  }
+}
+
+.InvoiceDetails-block-content h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--invoice-text-dark);
+}
+
+.InvoiceDetails-block-content p {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--invoice-text-muted);
+  line-height: 1.5;
+}
+
+/* Date Specific Content Configuration Row mapping */
+.date-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.date-matrix-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.date-matrix-row .label {
+  color: var(--invoice-text-muted);
+}
+
+.date-matrix-row .val {
+  color: var(--invoice-text-dark);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.pill-paid {
+  background: var(--invoice-success-bg);
+  color: var(--invoice-success-text);
+}
+
+/* Project Row Box Frame */
+.InvoiceDetails-project-panel {
+  padding: 1.5rem 2rem;
+  background: #fafafa;
+  border-bottom: 1px solid var(--invoice-border);
+}
+
+.InvoiceDetails-project-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f97316;
+}
+
+/* Table Area Section Container Layout */
+.InvoiceDetails-items-panel {
+  padding: 2rem;
+}
+
+.panel-title-spacing {
+  margin-bottom: 1.25rem;
+}
+
+.InvoiceDetails-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.InvoiceDetails-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.InvoiceDetails-table th {
+  background: #f8fafc;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--invoice-text-dark);
+  border-top: 1px solid var(--invoice-border);
+  border-bottom: 1px solid var(--invoice-border);
+  font-size: 0.75rem;
+}
+
+.InvoiceDetails-table td {
+  padding: 1.15rem 1rem;
+  border-bottom: 1px solid var(--invoice-border);
+  color: var(--invoice-text-dark);
+}
+
+.item-desc {
+  font-weight: 500;
+}
+
+.item-qty, .item-rate, .item-amount {
+  color: #475569;
+}
+
+/* Alignment Utilities */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.bold-text { font-weight: 600; }
+
+/* Financial Layout Zone Frame Summary details */
+.InvoiceDetails-financial-summary {
+  padding: 0 2rem 2.5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .InvoiceDetails-financial-summary {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.financial-summary-left h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--invoice-text-dark);
+}
+
+.financial-summary-left p {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.78rem;
+  color: var(--invoice-text-muted);
+}
+
+.calculation-breakdown-card {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--invoice-text-dark);
+}
+
+.border-under {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.85rem;
+}
+
+.total-row {
+  padding-top: 0.25rem;
+  font-weight: 700;
+}
+
+.total-highlight-value {
+  font-size: 1.45rem;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* Native CSS Window Print Layout Drivers overrides */
+@media print {
+  body, .InvoiceDetails-container {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .InvoiceDetails-card {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .InvoiceDetails-banner {
+    background: #5c59c2 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #fff !important;
+    padding: 1.5rem !important;
+  }
+
+  .InvoiceDetails-logo-wrapper {
+    background: rgba(255, 255, 255, 0.2) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .calculation-breakdown-card {
+    background: #f8fafc !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .status-pill {
+    background: #dcfce7 !important;
+    color: #15803d !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -82,11 +82,11 @@
   margin: 0;
 }
 
-/* Dynamic Summary Card Variants */
-.card-present { background-color: #4caf50; }
-.card-absent { background-color: #f44336; }
-.card-late { background-color: #ff9800; }
-.card-halfday { background-color: #2196f3; }
+/* Dynamic Summary Top Card Theme Colors */
+.card-present { background-color: #28a745; }
+.card-absent { background-color: #dc3545; }
+.card-late { background-color: #ffc107; color: #333333 !important; } /* Dark font for visibility on yellow */
+.card-halfday { background-color: #6c757d; }
 
 /* Dashboard Calendar Sheet */
 .calendar-panel {
@@ -102,88 +102,122 @@
   color: #1e293b;
   margin: 0 0 24px 0;
 }
-
-/* Calendar Matrix Layout (7 Columns Like Reference Images) */
+/* Calendar Matrix Layout (7 Columns) */
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr)); /* Force columns to remain perfectly identical */
   gap: 16px;
   margin-bottom: 32px;
 }
 
-/* Square Date Box Base Styling & Transitions */
+/* Square Date Box Base Styling */
 .date-box {
-  aspect-ratio: 1 / 1;
+  width: 100%;                          /* Take full width of the grid item */
+  aspect-ratio: 1 / 1;                  /* Forces uniform square shape */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
   font-weight: 700;
   border-radius: 12px;
-  border: 1px solid;
   cursor: pointer;
-  /* Added transitions for a super smooth interactive hover effect */
+  box-sizing: border-box;               /* Prevents borders from altering dimensions */
+  overflow: hidden;                     /* Prevents text content blowouts */
+  white-space: nowrap;                  /* Keeps the day text perfectly centered without line wraps */
+  
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
               background-color 0.2s ease, 
               border-color 0.2s ease, 
               box-shadow 0.2s ease;
 }
 
-/* --- DYNAMIC STATES & THEIR SPECIFIC HOVER EFFECTS --- */
-
-/* Default / Unmarked State */
-.date-box.status-default {
-  background-color: #f8f9fa;
-  color: #b0b0b0;
-  border-color: #f1f1f1;
+/* Responsive Grid Viewports — Fixes the sub-768px breakages */
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr)); /* Maintain 7 columns for true calendar visual */
+    gap: 8px; /* Slightly tighten spacing on smaller devices */
+  }
+  .date-box {
+    font-size: 14px; /* Scaled down slightly to stay symmetric */
+  }
+  .attendance-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
-.date-box.status-default:hover {
+
+@media (max-width: 480px) {
+  .calendar-grid {
+    gap: 4px;
+  }
+  .date-box {
+    font-size: 12px;
+    border-radius: 6px; /* Smooth corners on tiny screens */
+  }
+}
+/* Default State */
+.status-default {
+  background-color: #ffffff;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+.status-default:hover {
   background-color: #f1f3f5;
   border-color: #cbd5e1;
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* Present State (Green) */
-.date-box.status-present {
-  background-color: #edf7ed;
-  color: #2e7d32;
-  border-color: #c8e6c9;
+/* Present State (Soft Green Theme) */
+.status-present {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
-.date-box.status-present:hover {
-  background-color: #e1f0e1;
-  border-color: #a1d9a4;
+.status-present:hover {
+  background-color: #c3e6cb;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px -2px rgba(46, 125, 50, 0.15);
+  box-shadow: 0 4px 8px -2px rgba(40, 167, 69, 0.2);
 }
 
-/* Absent State (Red) */
-.date-box.status-absent {
-  background-color: #fdeded;
-  color: #d32f2f;
-  border-color: #ffcdd2;
+/* Absent State (Soft Red Theme) */
+.status-absent {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
-.date-box.status-absent:hover {
-  background-color: #fbe0e0;
-  border-color: #ef9a9a;
+.status-absent:hover {
+  background-color: #f5c6cb;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px -2px rgba(211, 47, 47, 0.15);
+  box-shadow: 0 4px 8px -2px rgba(220, 53, 69, 0.2);
 }
 
-/* Late State (Orange) */
-.date-box.status-late {
-  background-color: #fff4e5;
-  color: #ed6c02;
-  border-color: #ffe0b2;
+/* Late State (Soft Yellow/Orange Theme) */
+.status-late {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
 }
-.date-box.status-late:hover {
-  background-color: #ffeace;
-  border-color: #ffcc80;
+.status-late:hover {
+  background-color: #ffeeba;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px -2px rgba(237, 108, 2, 0.15);
+  box-shadow: 0 4px 8px -2px rgba(255, 193, 7, 0.2);
 }
 
-/* Lower Legend Index Markers */
+/* Half Day State (Soft Grey Theme) */
+.status-halfday {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border: 1px solid #d6d8db;
+}
+.status-halfday:hover {
+  background-color: #d6d8db;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px -2px rgba(108, 117, 125, 0.2);
+}
+
+/* Lower Legend Markers */
 .legend-container {
   display: flex;
   flex-wrap: wrap;
@@ -207,12 +241,40 @@
   border-radius: 50%;
 }
 
-.dot-present { background-color: #4caf50; }
-.dot-absent { background-color: #f44336; }
-.dot-late { background-color: #ff9800; }
-.dot-halfday { background-color: #2196f3; }
+.dot-present { background-color: #28a745; }
+.dot-absent { background-color: #dc3545; }
+.dot-late { background-color: #ffc107; }
+.dot-halfday { background-color: #6c757d; }
 
-/* Responsive Media Viewports */
+/* Spinner Loading Component Styles */
+.attendance-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  margin-bottom: 12px;
+  color: #4a90e2;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error Container */
+.attendance-error-msg {
+  color: #dc3545;
+  font-weight: 600;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Responsive Grid Viewports */
 @media (max-width: 1024px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);

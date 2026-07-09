@@ -49,7 +49,7 @@ const AttendanceAtten = () => {
       case 'absent':
         return <span className="status-icon status-absent">✖</span>;
       case 'halfday':
-        return <span className="status-icon status-halfday"></span>;
+        return <span className="status-icon attendance-status-halfday"></span>;
       case 'holiday':
         return <span className="status-icon status-holiday">★</span>;
       default:

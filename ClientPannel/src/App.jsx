@@ -9,6 +9,11 @@ import ProjectFiles from "./Component/ProjectFiles/ProjectFiles";
 import Tickets from "./Component/Tickets/Tickets";
 import TicketDetails from "./Component/TicketDetails/TicketDetails";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import InvoiceDetails from "./Component/InvoiceDetails/InvoiceDetails";
+import Invoices from "./Component/Invoices/Invoices";
+import PaymentMethod from "./Component/PaymentMethod/PaymentMethod";
+import Payments from "./Component/Payments/Payments";
+import PaymentHistory from "./Component/PaymentHistroy/PaymentHistroy";
 import Contracts from "./Component/Contracts/Contracts";
 import Ndas from "./Component/Ndas/Ndas";
 import ProjectDocuments from "./Component/ProjectDocuments/ProjectDocuments";
@@ -24,6 +29,17 @@ const App = () => {
       <Routes>
         {/* Main Layout */}
         <Route path="/" element={<MainLayout />}>
+        <Route path= "/client/invoice-details" element={<InvoiceDetails />} />
+        <Route path= "/client/invoices" element={<Invoices />} />
+        <Route path= "/client/payment-methods" element={<PaymentMethod />} />
+        <Route path= "/client/payment-history" element={<PaymentHistory />} />
+        <Route path= "/client/payments" element={<Payments />} />
+
+
+
+
+
+
       
       
         <Route path="/client/projects" element={<MyProjects />} />

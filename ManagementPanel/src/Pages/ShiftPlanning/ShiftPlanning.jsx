@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import './ShiftPlanning.css';
+import API from "../../api/axios"; // Uses your pre-configured Axios instance
 
 /* ---------------------------------- Icons ---------------------------------- */
-
 const IconSearch = () => (
   <svg viewBox="0 0 24 24" fill="none" className="icon">
     <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
@@ -21,10 +21,7 @@ const IconPlus = () => (
 );
 const IconRefresh = ({ spinning }) => (
   <svg viewBox="0 0 24 24" fill="none" className={`icon ${spinning ? 'icon--spin' : ''}`}>
-    <path
-      d="M4 12a8 8 0 0 1 14.2-5M20 12a8 8 0 0 1-14.2 5M4 4v5h5M20 20v-5h-5"
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-    />
+    <path d="M4 12a8 8 0 0 1 14.2-5M20 12a8 8 0 0 1-14.2 5M4 4v5h5M20 20v-5h-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 const IconDownload = () => (
@@ -46,12 +43,6 @@ const IconTrash = () => (
 const IconClose = () => (
   <svg viewBox="0 0 24 24" fill="none" className="icon">
     <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-  </svg>
-);
-const IconUser = () => (
-  <svg viewBox="0 0 24 24" fill="none" className="icon">
-    <circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="2" />
-    <path d="M4.5 20c1.4-3.6 4.4-5.5 7.5-5.5s6.1 1.9 7.5 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 const IconChevron = () => (
@@ -84,10 +75,22 @@ const IconCheck = () => (
 );
 
 /* ------------------------------- Constants -------------------------------- */
+const SHIFT_TYPES = ['Morning', 'Evening', 'Night'];
 
-const SHIFT_TYPES = ['Morning', 'Afternoon', 'Evening', 'Night'];
-const DEPARTMENTS = ['Engineering', 'Support', 'Security', 'HR', 'Marketing', 'Sales', 'IT', 'Admin', 'Finance', 'Operations'];
-const STATUSES = ['Active', 'Scheduled', 'Completed', 'Cancelled'];
+const DEPARTMENTS = [
+  'Internship',
+  'Full stack devloper',
+  'Mern Stack Devloper',
+  'Frontend Devloper',
+  'Sales',
+  'Business Devlopement Executive',
+  'Managment',
+  'Students',
+  'Social media Manaagement',
+  'Digital marketing staff'
+];
+
+const STATUSES = ['Active', 'In-Active'];
 
 const COLUMN_CONFIG = [
   { key: 'checkbox', label: 'Checkbox' },
@@ -101,27 +104,11 @@ const COLUMN_CONFIG = [
   { key: 'actions', label: 'Actions' },
 ];
 
-const SEED_DATA = [
-  { id: 1, employeeName: 'John Doe', shiftType: 'Morning', startTime: '08:00', endTime: '16:00', date: '2025-01-10', department: 'Engineering', status: 'Active' },
-  { id: 2, employeeName: 'Sarah Smith', shiftType: 'Evening', startTime: '16:00', endTime: '00:00', date: '2025-01-10', department: 'Support', status: 'Scheduled' },
-  { id: 3, employeeName: 'Robert Johnson', shiftType: 'Night', startTime: '00:00', endTime: '08:00', date: '2025-01-11', department: 'Security', status: 'Scheduled' },
-  { id: 4, employeeName: 'Maria Garcia', shiftType: 'Morning', startTime: '08:00', endTime: '16:00', date: '2025-01-11', department: 'Engineering', status: 'Active' },
-  { id: 5, employeeName: 'David Miller', shiftType: 'Morning', startTime: '08:00', endTime: '16:00', date: '2025-01-10', department: 'HR', status: 'Completed' },
-  { id: 6, employeeName: 'Linda Wilson', shiftType: 'Evening', startTime: '16:00', endTime: '00:00', date: '2025-01-11', department: 'Marketing', status: 'Scheduled' },
-  { id: 7, employeeName: 'James Taylor', shiftType: 'Morning', startTime: '08:00', endTime: '16:00', date: '2025-01-12', department: 'Sales', status: 'Scheduled' },
-  { id: 8, employeeName: 'Patricia Brown', shiftType: 'Evening', startTime: '16:00', endTime: '00:00', date: '2025-01-12', department: 'IT', status: 'Scheduled' },
-  { id: 9, employeeName: 'Michael Davis', shiftType: 'Night', startTime: '00:00', endTime: '08:00', date: '2025-01-12', department: 'Security', status: 'Scheduled' },
-  { id: 10, employeeName: 'Jennifer Lopez', shiftType: 'Morning', startTime: '08:00', endTime: '16:00', date: '2025-01-13', department: 'Admin', status: 'Scheduled' },
-  { id: 11, employeeName: 'Kevin Anderson', shiftType: 'Afternoon', startTime: '12:00', endTime: '20:00', date: '2025-01-13', department: 'Finance', status: 'Active' },
-  { id: 12, employeeName: 'Anna Martinez', shiftType: 'Night', startTime: '00:00', endTime: '08:00', date: '2025-01-14', department: 'Operations', status: 'Cancelled' },
-];
+const EMPTY_FORM = { employeeId: '', shiftType: '', startTime: '', endTime: '', fromDate: '', toDate: '', date: '', department: '', status: 'Active' };
 
-const EMPTY_FORM = { employeeName: '', shiftType: '', startTime: '', endTime: '', date: '', department: '', status: 'Scheduled' };
-
-/* ------------------------------ Small pieces ------------------------------ */
-
+/* ------------------------------ Components ------------------------------ */
 const StatusBadge = ({ status }) => (
-  <span className={`sp-badge sp-badge--${status.toLowerCase()}`}>{status}</span>
+  <span className={`sp-badge sp-badge--${(status || 'Active').toLowerCase().replace(/[^a-z0-9]/g, '')}`}>{status}</span>
 );
 
 const TimeField = ({ label, icon: Icon, value, onChange, required }) => {
@@ -147,19 +134,80 @@ const TimeField = ({ label, icon: Icon, value, onChange, required }) => {
 };
 
 /* ------------------------------ Shift Modal -------------------------------- */
-
-const ShiftModal = ({ title, initialData, onSave, onClose, accent }) => {
+const ShiftModal = ({ title, initialData, onSave, onClose, accent, isEdit, employees, shifts }) => {
   const [form, setForm] = useState(initialData);
-  const nameRef = useRef(null);
 
-  useEffect(() => { nameRef.current && nameRef.current.focus(); }, []);
+  const isValid = useMemo(() => {
+    return (
+      form.employeeId &&
+      form.shiftType &&
+      form.startTime &&
+      form.endTime &&
+      form.department &&
+      form.status &&
+      (isEdit ? form.date : form.fromDate && form.toDate)
+    );
+  }, [form, isEdit]);
 
-  const isValid = useMemo(
-    () => Object.entries(form).every(([k, v]) => (k === 'status' ? true : String(v).trim() !== '')) && form.status,
-    [form]
-  );
+  // Helper logic to generate an array of dates between two dates (inclusive)
+  const getDatesInRange = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const dateArray = [];
+    while (start <= end) {
+      dateArray.push(start.toISOString().split('T')[0]);
+      start.setDate(start.getDate() + 1);
+    }
+    return dateArray;
+  };
+
+  // Warning Detection Hook for overlapping dates
+  const overlappingDatesWarning = useMemo(() => {
+    if (!form.employeeId) return null;
+
+    // Get conflicting dates based on current mode
+    let targetDatesToCheck = [];
+    if (isEdit && form.date) {
+      targetDatesToCheck = [form.date.split('T')[0]];
+    } else if (!isEdit && form.fromDate && form.toDate) {
+      if (new Date(form.fromDate) > new Date(form.toDate)) return null;
+      targetDatesToCheck = getDatesInRange(form.fromDate, form.toDate);
+    }
+
+    if (targetDatesToCheck.length === 0) return null;
+
+    // Find if employee already has an entry on any of these target dates
+    const conflictingShifts = shifts.filter(shift => {
+      // Exclude the current shift record if we are editing it
+      if (isEdit && shift._id === form._id) return false;
+
+      const shiftEmpId = shift.employee?._id || shift.employeeId;
+      if (String(shiftEmpId) !== String(form.employeeId)) return false;
+
+      const shiftDateCleaned = shift.date ? shift.date.split('T')[0] : '';
+      return targetDatesToCheck.includes(shiftDateCleaned);
+    });
+
+    if (conflictingShifts.length > 0) {
+      const datesString = conflictingShifts.map(s => s.date?.split('T')[0]).filter(Boolean).join(', ');
+      return `Warning: This employee already has a shift assigned on: ${datesString}`;
+    }
+
+    return null;
+  }, [form.employeeId, form.fromDate, form.toDate, form.date, shifts, isEdit, form._id]);
 
   const set = (key) => (val) => setForm((f) => ({ ...f, [key]: val }));
+
+  const handleEmployeeChange = (empId) => {
+    setForm(prev => {
+      const selectedEmp = employees.find(e => e._id === empId);
+      return {
+        ...prev,
+        employeeId: empId,
+        department: selectedEmp ? selectedEmp.department : prev.department
+      };
+    });
+  };
 
   const handleSave = () => {
     if (!isValid) return;
@@ -177,19 +225,30 @@ const ShiftModal = ({ title, initialData, onSave, onClose, accent }) => {
         </div>
 
         <div className="sp-modal__body">
+          {/* Render Warning Box if a duplicate entry date is detected */}
+          {overlappingDatesWarning && (
+            <div className="sp-alert sp-alert--warning" style={{ backgroundColor: '#fff3cd', color: '#856404', padding: '10px 14px', borderRadius: '4px', marginBottom: '16px', fontSize: '14px', borderLeft: '4px solid #ffc107' }}>
+              <strong>⚠️ Alert:</strong> {overlappingDatesWarning}
+            </div>
+          )}
+
           <div className="sp-grid">
+            
             <div className="sp-field">
               <label className="sp-field__label">Employee Name<span className="sp-field__req">*</span></label>
               <div className="sp-field__control">
-                <input
-                  ref={nameRef}
-                  type="text"
-                  className="sp-field__input"
-                  placeholder="Employee Name"
-                  value={form.employeeName}
-                  onChange={(e) => set('employeeName')(e.target.value)}
-                />
-                <span className="sp-field__icon"><IconUser /></span>
+                <select
+                  className="sp-field__input sp-field__select"
+                  value={form.employeeId}
+                  onChange={(e) => handleEmployeeChange(e.target.value)}
+                  disabled={isEdit}
+                >
+                  <option value="" disabled>Select employee</option>
+                  {employees.map((emp) => (
+                    <option key={emp._id} value={emp._id}>{emp.name}</option>
+                  ))}
+                </select>
+                <span className="sp-field__icon sp-field__icon--static"><IconChevron /></span>
               </div>
             </div>
 
@@ -211,18 +270,47 @@ const ShiftModal = ({ title, initialData, onSave, onClose, accent }) => {
             <TimeField label="Start Time" icon={IconClock} value={form.startTime} onChange={set('startTime')} required />
             <TimeField label="End Time" icon={IconClock} value={form.endTime} onChange={set('endTime')} required />
 
-            <div className="sp-field">
-              <label className="sp-field__label">Date<span className="sp-field__req">*</span></label>
-              <div className="sp-field__control">
-                <input
-                  type="date"
-                  className="sp-field__input"
-                  value={form.date}
-                  onChange={(e) => set('date')(e.target.value)}
-                />
-                <span className="sp-field__icon sp-field__icon--static"><IconCalendar /></span>
+            {isEdit ? (
+              <div className="sp-field">
+                <label className="sp-field__label">Date<span className="sp-field__req">*</span></label>
+                <div className="sp-field__control">
+                  <input
+                    type="date"
+                    className="sp-field__input"
+                    value={form.date || ''}
+                    onChange={(e) => set('date')(e.target.value)}
+                  />
+                  <span className="sp-field__icon sp-field__icon--static"><IconCalendar /></span>
+                </div>
               </div>
-            </div>
+            ) : (
+              <>
+                <div className="sp-field">
+                  <label className="sp-field__label">From Date<span className="sp-field__req">*</span></label>
+                  <div className="sp-field__control">
+                    <input
+                      type="date"
+                      className="sp-field__input"
+                      value={form.fromDate || ''}
+                      onChange={(e) => set('fromDate')(e.target.value)}
+                    />
+                    <span className="sp-field__icon sp-field__icon--static"><IconCalendar /></span>
+                  </div>
+                </div>
+                <div className="sp-field">
+                  <label className="sp-field__label">To Date<span className="sp-field__req">*</span></label>
+                  <div className="sp-field__control">
+                    <input
+                      type="date"
+                      className="sp-field__input"
+                      value={form.toDate || ''}
+                      onChange={(e) => set('toDate')(e.target.value)}
+                    />
+                    <span className="sp-field__icon sp-field__icon--static"><IconCalendar /></span>
+                  </div>
+                </div>
+              </>
+            )}
 
             <div className="sp-field">
               <label className="sp-field__label">Department<span className="sp-field__req">*</span></label>
@@ -239,7 +327,7 @@ const ShiftModal = ({ title, initialData, onSave, onClose, accent }) => {
               </div>
             </div>
 
-            <div className="sp-field sp-field--full">
+            <div className="sp-field">
               <label className="sp-field__label">Status<span className="sp-field__req">*</span></label>
               <div className="sp-field__control">
                 <select
@@ -256,7 +344,7 @@ const ShiftModal = ({ title, initialData, onSave, onClose, accent }) => {
         </div>
 
         <div className="sp-modal__footer">
-          <button className="sp-btn sp-btn--primary" disabled={!isValid} onClick={handleSave}>Save</button>
+          <button className="sp-btn sp-btn--primary" disabled={!isValid} onClick={handleSave}>Save Plan</button>
           <button className="sp-btn sp-btn--danger" onClick={onClose}>Cancel</button>
         </div>
       </div>
@@ -264,11 +352,15 @@ const ShiftModal = ({ title, initialData, onSave, onClose, accent }) => {
   );
 };
 
-/* --------------------------------- Main ------------------------------------ */
-
+/* --------------------------------- Main Component ------------------------------------ */
 const ShiftPlanning = () => {
-  const [shifts, setShifts] = useState(SEED_DATA);
+  const [shifts, setShifts] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const [search, setSearch] = useState('');
+  
+  const [filterFromDate, setFilterFromDate] = useState('');
+  const [filterToDate, setFilterToDate] = useState('');
+
   const [visibleColumns, setVisibleColumns] = useState(
     COLUMN_CONFIG.reduce((acc, c) => ({ ...acc, [c.key]: true }), {})
   );
@@ -284,6 +376,11 @@ const ShiftPlanning = () => {
   const filterRef = useRef(null);
 
   useEffect(() => {
+    fetchEmployees();
+    fetchShifts();
+  }, [filterFromDate, filterToDate, search]);
+
+  useEffect(() => {
     const handler = (e) => {
       if (filterRef.current && !filterRef.current.contains(e.target)) setShowFilter(false);
     };
@@ -297,28 +394,46 @@ const ShiftPlanning = () => {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    if (!q) return shifts;
-    return shifts.filter((s) =>
-      s.employeeName.toLowerCase().includes(q) ||
-      s.department.toLowerCase().includes(q) ||
-      s.shiftType.toLowerCase().includes(q) ||
-      s.status.toLowerCase().includes(q)
-    );
-  }, [shifts, search]);
+  // API Call: Fetch Dropdown Selection Employees
+  const fetchEmployees = async () => {
+    try {
+      const response = await API.get('/shifts/employees');
+      if (response.data.success) {
+        setEmployees(response.data.data);
+      }
+    } catch (err) {
+      console.error('Error getting employees list:', err.message);
+    }
+  };
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
+  // API Call: Get Shifts with Range Querying Filters
+  const fetchShifts = async () => {
+    try {
+      const params = {};
+      if (filterFromDate) params.fromDate = filterFromDate;
+      if (filterToDate) params.toDate = filterToDate;
+      if (search) params.search = search;
+
+      const response = await API.get('/shifts', { params });
+      if (response.data.success) {
+        setShifts(response.data.data);
+      }
+    } catch (err) {
+      console.error('Error fetching shifts database data:', err.message);
+    }
+  };
+
+  const totalPages = Math.max(1, Math.ceil(shifts.length / itemsPerPage));
   const safePage = Math.min(currentPage, totalPages);
   const pageStart = (safePage - 1) * itemsPerPage;
-  const pageRows = filtered.slice(pageStart, pageStart + itemsPerPage);
+  const pageRows = shifts.slice(pageStart, pageStart + itemsPerPage);
 
-  useEffect(() => { setCurrentPage(1); }, [search, itemsPerPage]);
+  useEffect(() => { setCurrentPage(1); }, [search, filterFromDate, filterToDate, itemsPerPage]);
 
   const toggleColumn = (key) => setVisibleColumns((v) => ({ ...v, [key]: !v[key] }));
 
   const toggleSelectAll = () => {
-    const pageIds = pageRows.map((r) => r.id);
+    const pageIds = pageRows.map((r) => r._id);
     const allSelected = pageIds.every((id) => selectedRows.includes(id));
     setSelectedRows((prev) =>
       allSelected ? prev.filter((id) => !pageIds.includes(id)) : [...new Set([...prev, ...pageIds])]
@@ -328,67 +443,136 @@ const ShiftPlanning = () => {
   const toggleSelectRow = (id) =>
     setSelectedRows((prev) => (prev.includes(id) ? prev.filter((r) => r !== id) : [...prev, id]));
 
-  const handleAddShift = (form) => {
-    const nextId = shifts.length ? Math.max(...shifts.map((s) => s.id)) + 1 : 1;
-    setShifts((prev) => [{ id: nextId, ...form }, ...prev]);
-    setShowAddModal(false);
-    setToast('Shift created successfully');
+  // API Integration: Create Shift Range Database entries
+  const handleAddShift = async (form) => {
+    try {
+      const response = await API.post('/shifts', form);
+      if (response.data.success) {
+        setShowAddModal(false);
+        setToast(response.data.message || 'Shifts created successfully');
+        fetchShifts();
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Error creating shift entries');
+    }
   };
 
-  const handleUpdateShift = (form) => {
-    setShifts((prev) => prev.map((s) => (s.id === editingShift.id ? { ...s, ...form } : s)));
-    setEditingShift(null);
-    setToast('Shift updated successfully');
+  // API Integration: Update Single Entry Cell
+  const handleUpdateShift = async (form) => {
+    try {
+      const response = await API.put(`/shifts/${editingShift._id}`, form);
+      if (response.data.success) {
+        setEditingShift(null);
+        setToast('Shift updated successfully');
+        fetchShifts();
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Error updating target cell');
+    }
   };
 
-  const handleDelete = (id) => {
+  // API Integration: Delete Row Record
+  const handleDelete = async (id) => {
     if (!window.confirm('Delete this shift? This action cannot be undone.')) return;
-    setShifts((prev) => prev.filter((s) => s.id !== id));
-    setSelectedRows((prev) => prev.filter((r) => r !== id));
-    setToast('Shift deleted');
+    try {
+      const response = await API.delete(`/shifts/${id}`);
+      if (response.data.success) {
+        setSelectedRows((prev) => prev.filter((r) => r !== id));
+        setToast('Shift deleted successfully');
+        fetchShifts();
+      }
+    } catch (err) {
+      alert('Failed to erase record from system database.');
+    }
   };
 
   const handleRefresh = () => {
     setSpinning(true);
     setSearch('');
+    setFilterFromDate('');
+    setFilterToDate('');
     setSelectedRows([]);
+    fetchShifts();
     setTimeout(() => setSpinning(false), 650);
   };
 
-  const handleDownload = () => {
+  const handleDownloadExcel = () => {
     const cols = COLUMN_CONFIG.filter((c) => visibleColumns[c.key] && c.key !== 'checkbox' && c.key !== 'actions');
-    const header = cols.map((c) => c.label).join(',');
-    const rows = filtered.map((s) => cols.map((c) => `"${String(s[c.key]).replace(/"/g, '""')}"`).join(','));
-    const csv = [header, ...rows].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv' });
+    let tsvContent = cols.map(c => c.label).join('\t') + '\n';
+
+    shifts.forEach((shift) => {
+      const rowData = cols.map(c => {
+        if (c.key === 'employeeName') return shift.employee?.name || 'N/A';
+        if (c.key === 'date' && shift.date) return shift.date.split('T')[0];
+        return shift[c.key] || '';
+      });
+      tsvContent += rowData.join('\t') + '\n';
+    });
+
+    const blob = new Blob([tsvContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'shift-planning.csv';
+    a.download = `Shift_Plan_Export.xls`;
     a.click();
     URL.revokeObjectURL(url);
   };
 
-  const pageIds = pageRows.map((r) => r.id);
+  const pageIds = pageRows.map((r) => r._id);
   const allPageSelected = pageIds.length > 0 && pageIds.every((id) => selectedRows.includes(id));
+
+  // Truncate timestamp strings to target YYYY-MM-DD compatibility hooks
+  const startEditing = (shift) => {
+    const sanitizedDate = shift.date ? shift.date.split('T')[0] : '';
+    setEditingShift({ 
+      ...shift, 
+      employeeId: shift.employee?._id,
+      date: sanitizedDate 
+    });
+  };
 
   return (
     <div className="sp">
-      {/* Header */}
+      {toast && <div className="sp-toast">{toast}</div>}
+
+      {/* Header Panel */}
       <div className="sp-header">
         <div className="sp-header__title">
           <span className="sp-header__icon"><IconCalendar /></span>
           <h1>Shift Planning</h1>
         </div>
 
+        {/* Global Search Input */}
         <div className="sp-header__search">
           <IconSearch />
           <input
             type="text"
-            placeholder="Search by name, department, status..."
+            placeholder="Search details..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+        </div>
+
+        {/* Dynamic Date Selection From-To Filter Block */}
+        <div className="sp-header__range-filters">
+          <div className="sp-range-box">
+            <span className="sp-range-label">From:</span>
+            <input 
+              type="date" 
+              value={filterFromDate} 
+              onChange={(e) => setFilterFromDate(e.target.value)}
+              className="sp-range-input"
+            />
+          </div>
+          <div className="sp-range-box">
+            <span className="sp-range-label">To:</span>
+            <input 
+              type="date" 
+              value={filterToDate} 
+              onChange={(e) => setFilterToDate(e.target.value)}
+              className="sp-range-input"
+            />
+          </div>
         </div>
 
         <div className="sp-header__actions">
@@ -421,19 +605,19 @@ const ShiftPlanning = () => {
             )}
           </div>
 
-          <button className="sp-icon-btn sp-icon-btn--primary" onClick={() => setShowAddModal(true)} aria-label="Add shift">
+          <button className="sp-icon-btn sp-icon-btn--primary" onClick={() => setShowAddModal(true)} aria-label="Add shift range">
             <IconPlus />
           </button>
           <button className="sp-icon-btn" onClick={handleRefresh} aria-label="Refresh">
             <IconRefresh spinning={spinning} />
           </button>
-          <button className="sp-icon-btn" onClick={handleDownload} aria-label="Download CSV">
+          <button className="sp-icon-btn" onClick={handleDownloadExcel} aria-label="Download Excel Schedule">
             <IconDownload />
           </button>
         </div>
       </div>
 
-      {/* Table */}
+      {/* Table Section */}
       <div className="sp-table-wrapper">
         <table className="sp-table">
           <thead>
@@ -461,43 +645,43 @@ const ShiftPlanning = () => {
           <tbody>
             {pageRows.length === 0 && (
               <tr>
-                <td colSpan={9} className="sp-table__empty">No shifts match your search.</td>
+                <td colSpan={9} className="sp-table__empty">No active shifts found inside this range criteria.</td>
               </tr>
             )}
             {pageRows.map((s) => (
-              <tr key={s.id} className="sp-row">
+              <tr key={s._id} className="sp-row">
                 {visibleColumns.checkbox && (
-                  <td data-label="" className="sp-table__checkbox-col">
+                  <td className="sp-table__checkbox-col">
                     <span
-                      className={`sp-checkbox ${selectedRows.includes(s.id) ? 'sp-checkbox--checked' : ''}`}
-                      onClick={() => toggleSelectRow(s.id)}
+                      className={`sp-checkbox ${selectedRows.includes(s._id) ? 'sp-checkbox--checked' : ''}`}
+                      onClick={() => toggleSelectRow(s._id)}
                     >
-                      {selectedRows.includes(s.id) && <IconCheck />}
+                      {selectedRows.includes(s._id) && <IconCheck />}
                     </span>
                   </td>
                 )}
                 {visibleColumns.employeeName && (
-                  <td data-label="Employee Name">
-                    <button className="sp-row__name" onClick={() => setEditingShift(s)}>
-                      {s.employeeName}
+                  <td>
+                    <button className="sp-row__name" onClick={() => startEditing(s)}>
+                      {s.employee?.name || 'Unknown Employee'}
                     </button>
                   </td>
                 )}
-                {visibleColumns.shiftType && <td data-label="Shift Type">{s.shiftType}</td>}
-                {visibleColumns.startTime && <td data-label="Start Time">{s.startTime}</td>}
-                {visibleColumns.endTime && <td data-label="End Time">{s.endTime}</td>}
-                {visibleColumns.date && <td data-label="Date">{s.date}</td>}
-                {visibleColumns.department && <td data-label="Department">{s.department}</td>}
+                {visibleColumns.shiftType && <td>{s.shiftType}</td>}
+                {visibleColumns.startTime && <td>{s.startTime}</td>}
+                {visibleColumns.endTime && <td>{s.endTime}</td>}
+                {visibleColumns.date && <td>{s.date ? s.date.split('T')[0] : ''}</td>}
+                {visibleColumns.department && <td>{s.department}</td>}
                 {visibleColumns.status && (
-                  <td data-label="Status"><StatusBadge status={s.status} /></td>
+                  <td><StatusBadge status={s.status} /></td>
                 )}
                 {visibleColumns.actions && (
-                  <td data-label="Actions" className="sp-table__actions-col">
+                  <td className="sp-table__actions-col">
                     <div className="sp-row-actions">
-                      <button className="sp-row-actions__btn sp-row-actions__btn--edit" onClick={() => setEditingShift(s)} aria-label="Edit">
+                      <button className="sp-row-actions__btn sp-row-actions__btn--edit" onClick={() => startEditing(s)} aria-label="Edit">
                         <IconEdit />
                       </button>
-                      <button className="sp-row-actions__btn sp-row-actions__btn--delete" onClick={() => handleDelete(s.id)} aria-label="Delete">
+                      <button className="sp-row-actions__btn sp-row-actions__btn--delete" onClick={() => handleDelete(s._id)} aria-label="Delete">
                         <IconTrash />
                       </button>
                     </div>
@@ -518,46 +702,39 @@ const ShiftPlanning = () => {
           </select>
         </div>
         <div className="sp-footer__range">
-          {filtered.length === 0 ? '0 of 0' : `${pageStart + 1} – ${Math.min(pageStart + itemsPerPage, filtered.length)} of ${filtered.length}`}
+          {shifts.length === 0 ? '0 of 0' : `${pageStart + 1} – ${Math.min(pageStart + itemsPerPage, shifts.length)} of ${shifts.length}`}
         </div>
         <div className="sp-footer__nav">
-          <button disabled={safePage === 1} onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} aria-label="Previous page">
-            <svg viewBox="0 0 24 24" fill="none" className="icon"><path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </button>
-          <button disabled={safePage === totalPages} onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))} aria-label="Next page">
-            <svg viewBox="0 0 24 24" fill="none" className="icon"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </button>
+          <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)}>Prev</button>
+          <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>Next</button>
         </div>
       </div>
 
+      {/* Modals Handling */}
       {showAddModal && (
         <ShiftModal
-          title="New Shift"
+          title="Create Shifts"
           initialData={EMPTY_FORM}
-          onClose={() => setShowAddModal(false)}
           onSave={handleAddShift}
+          onClose={() => setShowAddModal(false)}
+          employees={employees}
+          shifts={shifts} // Passed state down for verification
+          isEdit={false}
         />
       )}
 
       {editingShift && (
         <ShiftModal
-          title={editingShift.employeeName}
-          initialData={{
-            employeeName: editingShift.employeeName,
-            shiftType: editingShift.shiftType,
-            startTime: editingShift.startTime,
-            endTime: editingShift.endTime,
-            date: editingShift.date,
-            department: editingShift.department,
-            status: editingShift.status,
-          }}
-          accent
-          onClose={() => setEditingShift(null)}
+          title="Edit Shift"
+          initialData={editingShift}
           onSave={handleUpdateShift}
+          onClose={() => setEditingShift(null)}
+          employees={employees}
+          shifts={shifts} // Passed state down for verification
+          isEdit={true}
+          accent
         />
       )}
-
-      {toast && <div className="sp-toast">{toast}</div>}
     </div>
   );
 };

@@ -1032,3 +1032,105 @@
     }
 
 }
+
+/* Container for the filter icon button and dropdown */
+.leaveTypes__menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Card Wrapper */
+.leaveTypes__dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1000;
+  width: 240px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 14px;
+  animation: fadeInFilter 0.2s ease-out;
+}
+
+/* Dropdown Menu Header */
+.leaveTypes__dropdown h4 {
+  margin: 0 0 10px 0;
+  padding-bottom: 8px;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #f1f5f9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Individual Column Selection Labels */
+.leaveTypes__dropdown label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  color: #475569;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  text-transform: capitalize;
+}
+
+/* Hover Highlight State */
+.leaveTypes__dropdown label:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Dropdown Checkbox Input Customization Elements */
+.leaveTypes__dropdown input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  outline: none;
+  background-color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.leaveTypes__dropdown input[type="checkbox"]:checked {
+  background-color: #4f46e5; /* Primary brand color matching save indicators */
+  border-color: #4f46e5;
+}
+
+.leaveTypes__dropdown input[type="checkbox"]:checked::before {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+.leaveTypes__dropdown input[type="checkbox"]:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 1px;
+}
+
+/* Entry Animation Logic Matrix */
+@keyframes fadeInFilter {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
