@@ -1,0 +1,50 @@
+/* ... (Keep previous styles for .ticket-card, .ticket-input, etc.) */
+
+/* Actions */
+.ticket-actions { 
+  display: flex; 
+  gap: 15px; 
+  margin-top: 10px; 
+}
+
+/* This class controls both buttons */
+.ticket-btn { 
+  padding: 12px 0; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-weight: 600; 
+  width: 160px; /* Explicitly set to 160px */
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Raise Button State Logic */
+.btn-raise { 
+  background: #f0f0f0; 
+  color: #aaa; 
+  border: none; 
+}
+
+.btn-raise.active { 
+  background: #3d5afe; 
+  color: white; 
+  border: none;
+}
+
+/* Cancel Button */
+.btn-cancel { 
+  background: white; 
+  color: #666; 
+  border: 1px solid #ccc; /* Explicit border for consistency */
+}
+
+.btn-cancel:hover {
+  background: #f9f9f9;
+}
+
+/* Responsive Logic */
+@media (max-width: 600px) {
+  .ticket-form-row { flex-direction: column; }
+  .ticket-btn { width: 100%; } /* Stacks buttons on mobile */
+}

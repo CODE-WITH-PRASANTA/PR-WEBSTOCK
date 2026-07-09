@@ -18,6 +18,7 @@ import Contracts from "./Component/Contracts/Contracts";
 import Ndas from "./Component/Ndas/Ndas";
 import ProjectDocuments from "./Component/ProjectDocuments/ProjectDocuments";
 import Chat from "./Component/Chat/Chat";
+import CreateTicket from "./Component/CreateTicket/CreateTicket";
 
 
 
@@ -54,6 +55,8 @@ const App = () => {
         <Route path="/client/ndas" element={<Ndas/>} />
         <Route path="/client/project-documents" element={<ProjectDocuments/>} />
         <Route path="/client/chat" element={<Chat/>} />
+        <Route path="/client/create-ticket" element={<CreateTicket/>} />
+        
         
         </Route>
       </Routes>
