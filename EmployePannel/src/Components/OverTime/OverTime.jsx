@@ -1,32 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './OverTime.css';
+import API from "../../api/axios"; // Your pre-configured Axios instance
+import Swal from 'sweetalert2'; // Imported SweetAlert2 library
 
 const OverTime = () => {
-  // Existing & New Requests state
-  const [requests, setRequests] = useState([
-    {
-      id: 1,
-      date: 'January 15, 2026',
-      appliedDate: 'Jan 14, 2026',
-      hours: '2 Hours',
-      status: 'Approved',
-      reason: 'Project deadline.',
-    },
-    {
-      id: 2,
-      date: 'January 21, 2026',
-      appliedDate: 'Jan 20, 2026',
-      hours: '1.5 Hours',
-      status: 'Pending',
-      reason: 'Support ticket surge.',
-    },
-  ]);
+  // Existing & New Requests state connected to Database
+  const [requests, setRequests] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Modal & Dropdown UI states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
-  // Form Field states
+  // Form Field states (Pre-configured for June 2026 as per your mock design)
   const [formData, setFormData] = useState({
     date: '2026-06-29',
     hours: '1.0',
@@ -35,7 +22,28 @@ const OverTime = () => {
 
   // Calendar setup for June 2026 mapping
   const juneDays = Array.from({ length: 30 }, (_, i) => i + 1);
-  const startOffsetDays = [1, 2, 3, 4, 5]; // Offset spaces for Monday start if needed, matching UI format
+  const startOffsetDays = [1, 2, 3, 4, 5]; // Offset spaces for Monday start if needed
+
+  // Fetch overtime history on component mount
+  useEffect(() => {
+    fetchOvertimeHistory();
+  }, []);
+
+  const fetchOvertimeHistory = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await API.get('/overtime/history');
+      if (response.data && response.data.success) {
+        setRequests(response.data.data);
+      }
+    } catch (err) {
+      console.error("Error fetching overtime history:", err);
+      setError(err.response?.data?.message || "Failed to load overtime history.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,38 +63,73 @@ const OverTime = () => {
     setIsCalendarOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.date || !formData.hours || !formData.reason.trim()) return;
 
-    // Convert input date format to view presentation format
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const dateObj = new Date(formData.date);
-    const formattedDisplayDate = dateObj.toLocaleDateString('en-US', options);
-    
-    const formattedAppliedDate = new Date().toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
+    // Capture values for modal presentation hooks before resetting form
+    const targetedDate = formData.date;
+    const targetedHours = formData.hours;
 
-    const newRequest = {
-      id: Date.now(),
-      date: formattedDisplayDate,
-      appliedDate: formattedAppliedDate,
-      hours: `${formData.hours} Hours`,
-      status: 'Pending',
-      reason: formData.reason,
-    };
+    try {
+      const payload = {
+        date: targetedDate,
+        hours: parseFloat(targetedHours),
+        reason: formData.reason.trim()
+      };
 
-    setRequests([newRequest, ...requests]);
-    handleCloseModal();
+      const response = await API.post('/overtime/submit', payload);
+
+      if (response.data && response.data.success) {
+        setRequests((prev) => [response.data.data, ...prev]);
+        handleCloseModal();
+
+        // Elegant SweetAlert Success notification matching your requested layout
+        Swal.fire({
+          title: "<strong>Submission Successful!</strong>",
+          icon: "success",
+          html: `
+            Your overtime request for <b>${formatDisplayDate(targetedDate, 'full')}</b> 
+            (${targetedHours} Hours) has been sent. It is now <b>Pending</b> review.
+          `,
+          showCloseButton: true,
+          focusConfirm: false,
+          confirmButtonText: `
+            <i class="fa fa-thumbs-up"></i> Great!
+          `,
+          confirmButtonAriaLabel: "Thumbs up, great!"
+        });
+      }
+    } catch (err) {
+      console.error("Error submitting overtime request:", err);
+      const serverErrorMessage = err.response?.data?.message || "Something went wrong while submitting your request.";
+      
+      // SweetAlert Error Dialog window injection
+      Swal.fire({
+        title: "<strong>Submission Failed</strong>",
+        icon: "error",
+        text: serverErrorMessage,
+        confirmButtonText: "Try Again",
+        confirmButtonColor: "#d33"
+      });
+    }
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setIsCalendarOpen(false);
     setFormData({ date: '2026-06-29', hours: '1.0', reason: '' });
+  };
+
+  // UI Date Helper to parse ISO DB Timestamps elegantly
+  const formatDisplayDate = (dateString, variant) => {
+    if (!dateString) return '';
+    const dateObj = new Date(dateString);
+    
+    if (variant === 'full') {
+      return dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    return dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
   // Helper validation to toggle Submit active styling
@@ -115,32 +158,42 @@ const OverTime = () => {
           </button>
         </div>
 
+        {error && <div className="ot-error-message" style={{ color: 'red', marginBottom: '15px' }}>{error}</div>}
+
         {/* Requests Dashboard Grid */}
-        <div className="ot-requests-grid">
-          {requests.map((req) => (
-            <div key={req.id} className="ot-card">
-              <div className="ot-card-header">
-                <div>
-                  <h3 className="ot-card-date">{req.date}</h3>
-                  <p className="ot-card-applied">Applied: {req.appliedDate}</p>
+        {isLoading ? (
+          <div className="ot-loading-text">Loading requests...</div>
+        ) : (
+          <div className="ot-requests-grid">
+            {requests.length === 0 ? (
+              <p className="ot-no-data">No overtime requests found.</p>
+            ) : (
+              requests.map((req) => (
+                <div key={req._id} className="ot-card">
+                  <div className="ot-card-header">
+                    <div>
+                      <h3 className="ot-card-date">{formatDisplayDate(req.date, 'full')}</h3>
+                      <p className="ot-card-applied">Applied: {formatDisplayDate(req.appliedDate || req.createdAt, 'short')}</p>
+                    </div>
+                    <span className={`ot-badge ${req.status.toLowerCase()}`}>
+                      {req.status}
+                    </span>
+                  </div>
+                  <div className="ot-divider"></div>
+                  <div className="ot-card-body">
+                    <div className="ot-hours-display">
+                      <span className="ot-clock-icon">🕒</span>
+                      <span className="ot-hours-text">{req.hours} Hours</span>
+                    </div>
+                    <div className="ot-reason-box">
+                      <p>{req.reason}</p>
+                    </div>
+                  </div>
                 </div>
-                <span className={`ot-badge ${req.status.toLowerCase()}`}>
-                  {req.status}
-                </span>
-              </div>
-              <div className="ot-divider"></div>
-              <div className="ot-card-body">
-                <div className="ot-hours-display">
-                  <span className="ot-clock-icon">🕒</span>
-                  <span className="ot-hours-text">{req.hours}</span>
-                </div>
-                <div className="ot-reason-box">
-                  <p>{req.reason}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              ))
+            )}
+          </div>
+        )}
       </main>
 
       {/* Dynamic Request Creation Dialog Modal Overlay */}
@@ -186,7 +239,7 @@ const OverTime = () => {
                       {juneDays.map((day) => (
                         <span
                           key={day}
-                          className={`ot-cal-day-cell ${day === 29 ? 'selected' : ''}`}
+                          className={`ot-cal-day-cell ${formData.date.endsWith(`-${day < 10 ? '0' + day : day}`) ? 'selected' : ''}`}
                           onClick={() => selectCalendarDate(day)}
                         >
                           {day}

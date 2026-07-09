@@ -21,6 +21,13 @@ const employeeRoutes = require("./src/routes/employeeRoutes");
 const addEmployeeRoutes = require("./src/routes/addEmployeeRoutes");
 const employeeShiftRoutes = require("./src/routes/employeeShiftRoutes");
 const employeeAuthRoutes = require("./src/routes/employeeAuthRoutes");
+const leaveRoutes = require("./src/routes/leaveRoutes");
+const leaveTypeRoutes = require("./src/routes/leaveTypeRoutes");
+const leaveBalanceRoutes = require("./src/routes/leaveBalanceRoutes");
+const attendanceRoutes = require("./src/routes/attendanceRoutes");
+const shiftRoutes = require("./src/routes/shiftRoutes");
+const overtimeRoutes = require('./src/routes/overtimeRoutes');
+
 
 
 // ==============================
@@ -117,6 +124,14 @@ app.use("/api/employees", employeeRoutes);
 app.use("/api/addemployees", addEmployeeRoutes);
 app.use("/api/employee-shifts", employeeShiftRoutes);
 app.use("/api/auth", employeeAuthRoutes);
+app.use('/api/leaves', leaveRoutes);
+app.use("/api/leave-types", leaveTypeRoutes);
+app.use("/api/leave-balances", leaveBalanceRoutes);
+app.use('/api/attendance', attendanceRoutes);
+app.use("/api/shifts", shiftRoutes);
+app.use('/api/overtime', overtimeRoutes);
+
+
 
 // ==============================
 // Health Check

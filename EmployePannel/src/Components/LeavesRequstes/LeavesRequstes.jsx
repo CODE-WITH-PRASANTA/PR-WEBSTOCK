@@ -1,24 +1,22 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import './LeavesRequstes.css';
-
-const INITIAL_LEAVE_DATA = [
-  { id: 1, applyDate: '02/22/2019', fromDate: '02/22/2019', toDate: '02/26/2019', halfDay: 'Yes', type: 'Casual Leave', status: 'Approved', reason: 'Lorem Ipsum is si...' },
-  { id: 2, applyDate: '02/17/2019', fromDate: '02/22/2019', toDate: '02/26/2019', halfDay: 'Yes', type: 'Sick Leave', status: 'Rejected', reason: 'Lorem Ipsum is si...' },
-  { id: 3, applyDate: '02/17/2019', fromDate: '02/12/2019', toDate: '02/26/2019', halfDay: 'No', type: 'Sick Leave', status: 'Rejected', reason: 'Lorem Ipsum is si...' },
-  { id: 4, applyDate: '05/11/2019', fromDate: '03/17/2019', toDate: '03/26/2019', halfDay: 'No', type: 'Casual Leave', status: 'Pending', reason: 'Lorem Ipsum is sim..' },
-  { id: 5, applyDate: '07/15/2019', fromDate: '02/22/2019', toDate: '02/26/2019', halfDay: 'No', type: 'Casual Leave', status: 'Approved', reason: 'Lorem Ipsum is si...' },
-  { id: 6, applyDate: '02/17/2019', fromDate: '04/22/2019', toDate: '02/26/2019', halfDay: 'Yes', type: 'Privilege Leave', status: 'Pending', reason: 'Lorem Ipsum is si...' },
-  { id: 7, applyDate: '02/20/2019', fromDate: '02/22/2019', toDate: '02/26/2019', halfDay: 'No', type: 'Casual Leave', status: 'Rejected', reason: 'Lorem Ipsum is si...' },
-  { id: 8, applyDate: '03/24/2019', fromDate: '02/22/2019', toDate: '02/26/2019', halfDay: 'Yes', type: 'Marriage Leave', status: 'Approved', reason: 'Lorem Ipsum is si...' },
-  { id: 9, applyDate: '02/13/2019', fromDate: '03/17/2019', toDate: '02/26/2019', halfDay: 'No', type: 'Maternity Leave', status: 'Approved', reason: 'Lorem Ipsum is si...' }
-];
+import API from "../../api/axios"; 
 
 const LeavesRequstes = () => {
   // Master Core States
-  const [leaves, setLeaves] = useState(INITIAL_LEAVE_DATA);
+  const [leaves, setLeaves] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [timeFilter, setTimeFilter] = useState('all'); // Values: 'all', 'week', 'month', '3months'
   
+  // Dynamic Leave Types list fetched from backend
+  const [leaveTypesList, setLeaveTypesList] = useState([]);
+  
+  // App Mechanics States
+  const [loading, setLoading] = useState(false);
+  const [fetchingTypes, setFetchingTypes] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   // Pagination States
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -27,11 +25,6 @@ const LeavesRequstes = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItemId, setEditingItemId] = useState(null); 
   const [isColumnDropdownOpen, setIsColumnDropdownOpen] = useState(false);
-  const [activeFormDropdown, setActiveFormDropdown] = useState(null); 
-  
-  // Custom Delete Dialog States
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [itemToDelete, setItemToDelete] = useState(null);
 
   // Dynamic Column Visibility States
   const [visibleColumns, setVisibleColumns] = useState({
@@ -46,50 +39,134 @@ const LeavesRequstes = () => {
     actions: true
   });
 
-  // Modal Configuration Input State
+  // Modal Input State
   const [formData, setFormData] = useState({
-    applyDate: '2026-06-29',
-    fromDate: '2026-06-29',
-    toDate: '2026-06-30',
+    fromDate: new Date().toISOString().split('T')[0],
+    toDate: new Date().toISOString().split('T')[0],
     halfDay: 'No',
-    type: 'Casual Leave',
-    status: 'Pending',
+    leaveType: '', // Initialized empty to enforce system selection validation
     reason: ''
   });
 
-  // Date Parsing Helpers
-  const convertToInputDateFormat = (displayDate) => {
-    if (!displayDate || !displayDate.includes('/')) return '2026-06-29';
-    const [m, d, y] = displayDate.split('/');
-    return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+  // Simplified Native Date Formatter helper
+  const formatDateForDisplay = (isoString) => {
+    if (!isoString) return '';
+    const d = new Date(isoString);
+    if (isNaN(d.getTime())) return isoString;
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
   };
 
-  const convertToDisplayDateFormat = (dateInput) => {
-    const d = new Date(dateInput);
-    if (isNaN(d.getTime())) return dateInput;
-    return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
+  const formatDateForInput = (isoString) => {
+    if (!isoString) return '';
+    return isoString.split('T')[0];
   };
 
-  // Global Refresh Action Handler
+  // --- API INTEGRATION METHOD PIPELINES ---
+
+  // 1. Fetch Leaves Types from backend
+  const fetchLeaveTypesOptions = async () => {
+    setFetchingTypes(true);
+    try {
+      const token = localStorage.getItem('employeeToken');
+      const response = await API.get('/leave-types', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (response.data && response.data.success) {
+        // Keeps only structural Active variants
+        const activeTypes = response.data.data.filter(item => item.status === 'Active');
+        setLeaveTypesList(activeTypes);
+        
+        // Sets a default value for fallback matching
+        if (activeTypes.length > 0 && !formData.leaveType) {
+          setFormData(prev => ({ ...prev, leaveType: activeTypes[0].leaveName }));
+        }
+      }
+    } catch (err) {
+      console.error("Error pulling database leave types system names:", err);
+    } finally {
+      setFetchingTypes(false);
+    }
+  };
+
+  // 2. Fetch User Leaves records
+  const fetchEmployeeLeaves = async () => {
+    setLoading(true);
+    setErrorMessage('');
+    try {
+      const token = localStorage.getItem('employeeToken');
+      if (!token) throw new Error('Authentication token missing. Please log in again.');
+
+      const response = await API.get('/leaves/my-leaves', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      setLeaves(response.data.data || []);
+    } catch (err) {
+      setErrorMessage(err.response?.data?.message || err.message || 'Failed to sync leaves dataset.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Trigger setup configuration requests on initialization
+  useEffect(() => {
+    fetchEmployeeLeaves();
+    fetchLeaveTypesOptions();
+  }, []);
+
   const handleRefresh = () => {
-    setLeaves(INITIAL_LEAVE_DATA);
     setSelectedIds([]);
     setSearchQuery('');
+    setTimeFilter('all');
     setCurrentPage(1);
     setIsColumnDropdownOpen(false);
-    setActiveFormDropdown(null);
     setEditingItemId(null);
+    fetchEmployeeLeaves();
+    fetchLeaveTypesOptions();
   };
 
-  // Simulated Excel Spreadsheet Exporter
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const token = localStorage.getItem('employeeToken');
+      if (!token) throw new Error('Authentication token missing.');
+
+      if (editingItemId !== null) {
+        await API.put(`/leaves/${editingItemId}`, formData, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+      } else {
+        await API.post('/leaves', {
+          leaveType: formData.leaveType,
+          fromDate: formData.fromDate,
+          toDate: formData.toDate,
+          halfDay: formData.halfDay,
+          reason: formData.reason
+        }, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+      }
+
+      setIsModalOpen(false);
+      setEditingItemId(null);
+      fetchEmployeeLeaves(); 
+    } catch (err) {
+      alert(err.response?.data?.message || err.message || 'Error executing request submit changes.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // --- LOCAL UI INTERACTION LOGICS ---
+
   const handleDownload = () => {
-    alert("Exporting current tabular view dataset down to 'Leaves_Report_2026.xlsx' spreadsheet layout file.");
+    alert("Exporting data view down to 'Leaves_Report_2026.xlsx' spreadsheet layout file.");
   };
 
-  // Row selection logic configurations
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      setSelectedIds(currentPagedItems.map(item => item.id));
+      setSelectedIds(currentPagedItems.map(item => item._id));
     } else {
       setSelectedIds([]);
     }
@@ -101,38 +178,13 @@ const LeavesRequstes = () => {
     );
   };
 
-  const handleDeleteSelected = () => {
-    if (window.confirm(`Are you sure you want to delete ${selectedIds.length} records globally?`)) {
-      setLeaves(prev => prev.filter(item => !selectedIds.includes(item.id)));
-      setSelectedIds([]);
-      setCurrentPage(1);
-    }
-  };
-
-  // Trigger Custom Delete Dialog Box View
-  const handleOpenDeleteDialog = (item) => {
-    setItemToDelete(item);
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleConfirmDeleteSingle = () => {
-    if (!itemToDelete) return;
-    setLeaves(prev => prev.filter(item => item.id !== itemToDelete.id));
-    setSelectedIds(prev => prev.filter(sid => sid !== itemToDelete.id));
-    setIsDeleteModalOpen(false);
-    setItemToDelete(null);
-  };
-
-  // Trigger Edit Configuration Pipeline
   const handleOpenEditDialog = (item) => {
-    setEditingItemId(item.id);
+    setEditingItemId(item._id);
     setFormData({
-      applyDate: convertToInputDateFormat(item.applyDate),
-      fromDate: convertToInputDateFormat(item.fromDate),
-      toDate: convertToInputDateFormat(item.toDate),
+      fromDate: formatDateForInput(item.fromDate),
+      toDate: formatDateForInput(item.toDate),
       halfDay: item.halfDay,
-      type: item.type,
-      status: item.status,
+      leaveType: item.leaveType,
       reason: item.reason
     });
     setIsModalOpen(true);
@@ -141,25 +193,47 @@ const LeavesRequstes = () => {
   const handleOpenCreateDialog = () => {
     setEditingItemId(null);
     setFormData({
-      applyDate: '2026-06-29',
-      fromDate: '2026-06-29',
-      toDate: '2026-06-30',
+      fromDate: new Date().toISOString().split('T')[0],
+      toDate: new Date().toISOString().split('T')[0],
       halfDay: 'No',
-      type: 'Casual Leave',
-      status: 'Pending',
+      leaveType: leaveTypesList.length > 0 ? leaveTypesList[0].leaveName : '',
       reason: ''
     });
     setIsModalOpen(true);
   };
 
-  // Filtering and Pagination processing engine
+  // --- ADVANCED SEARCH, TIMEFRAME FILTERING, & SORT PROCESSING ---
   const filteredLeaves = useMemo(() => {
-    return leaves.filter(item => 
-      item.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.status.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.reason.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [leaves, searchQuery]);
+    const now = new Date();
+
+    const processedItems = leaves.filter(item => {
+      const matchesSearch = 
+        item.leaveType?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.status?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.reason?.toLowerCase().includes(searchQuery.toLowerCase());
+
+      if (!matchesSearch) return false;
+
+      const itemDate = new Date(item.applicationDate || item.createdAt);
+      if (isNaN(itemDate.getTime())) return true; 
+
+      const differenceInTime = now.getTime() - itemDate.getTime();
+      const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+
+      if (timeFilter === 'week') return differenceInDays <= 7;
+      if (timeFilter === 'month') return differenceInDays <= 30;
+      if (timeFilter === '3months') return differenceInDays <= 90;
+
+      return true; 
+    });
+
+    return processedItems.sort((a, b) => {
+      const dateA = new Date(a.applicationDate || a.createdAt);
+      const dateB = new Date(b.applicationDate || b.createdAt);
+      return dateB - dateA; 
+    });
+
+  }, [leaves, searchQuery, timeFilter]);
 
   const currentPagedItems = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -168,52 +242,22 @@ const LeavesRequstes = () => {
 
   const totalPages = Math.ceil(filteredLeaves.length / itemsPerPage) || 1;
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    if (editingItemId !== null) {
-      setLeaves(prev => prev.map(item => {
-        if (item.id === editingItemId) {
-          return {
-            ...item,
-            applyDate: convertToDisplayDateFormat(formData.applyDate),
-            fromDate: convertToDisplayDateFormat(formData.fromDate),
-            toDate: convertToDisplayDateFormat(formData.toDate),
-            halfDay: formData.halfDay,
-            type: formData.type,
-            status: formData.status,
-            reason: formData.reason
-          };
-        }
-        return item;
-      }));
-    } else {
-      const newRecord = {
-        id: Date.now(),
-        applyDate: convertToDisplayDateFormat(formData.applyDate),
-        fromDate: convertToDisplayDateFormat(formData.fromDate),
-        toDate: convertToDisplayDateFormat(formData.toDate),
-        halfDay: formData.halfDay,
-        type: formData.type,
-        status: formData.status,
-        reason: formData.reason || 'No details provided.'
-      };
-      setLeaves([newRecord, ...leaves]);
-    }
-
-    setIsModalOpen(false);
-    setEditingItemId(null);
-  };
-
   return (
-    <div className="lv-dashboard-container" onClick={() => { setIsColumnDropdownOpen(false); setActiveFormDropdown(null); }}>
+    <div className="lv-dashboard-container" onClick={() => { setIsColumnDropdownOpen(false); }}>
       <header className="lv-header">
         <h1 className="lv-main-title">My Leaves</h1>
       </header>
 
       <main className="lv-card-wrapper">
+        
+        {errorMessage && (
+          <div style={{ padding: '12px', marginBottom: '15px', color: '#c92a2a', backgroundColor: '#fff5f5', borderRadius: '6px', fontWeight: '600' }}>
+            {errorMessage}
+          </div>
+        )}
+
         <div className="lv-toolbar">
-          <div className="lv-toolbar-left">
+          <div className="lv-toolbar-left" style={{ gap: '12px' }}>
             <div className="lv-search-box">
               <span className="lv-search-icon">🔍</span>
               <input 
@@ -223,11 +267,20 @@ const LeavesRequstes = () => {
                 onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
               />
             </div>
-            {selectedIds.length > 0 && (
-              <button className="lv-btn-delete-multi" onClick={handleDeleteSelected}>
-                🗑️ Delete Selected ({selectedIds.length})
-              </button>
-            )}
+
+            <div className="lv-time-filter-wrapper">
+              <select 
+                className="lv-time-select-dropdown"
+                value={timeFilter}
+                onChange={(e) => { setTimeFilter(e.target.value); setCurrentPage(1); }}
+                style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid #ccc', background: '#fff', outline: 'none', cursor: 'pointer', height: '36px', fontWeight: '500' }}
+              >
+                <option value="all">All History</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+                <option value="3months">Past 3 Months</option>
+              </select>
+            </div>
           </div>
 
           <div className="lv-toolbar-right">
@@ -265,7 +318,7 @@ const LeavesRequstes = () => {
               <span className="lv-plus-symbol">+</span>
             </button>
             
-            <button className="lv-icon-btn" title="Refresh Board" onClick={handleRefresh}>
+            <button className="lv-icon-btn" title="Refresh Board" onClick={handleRefresh} disabled={loading}>
               <span className="lv-refresh-symbol">↻</span>
             </button>
             
@@ -300,50 +353,53 @@ const LeavesRequstes = () => {
               </tr>
             </thead>
             <tbody>
-              {currentPagedItems.length === 0 ? (
+              {loading ? (
                 <tr>
-                  <td colSpan="9" className="lv-no-data-cell">No active leave records matching system search queries.</td>
+                  <td colSpan="9" className="lv-no-data-cell">Loading active employee leave datasets...</td>
+                </tr>
+              ) : currentPagedItems.length === 0 ? (
+                <tr>
+                  <td colSpan="9" className="lv-no-data-cell">No active leave records matching system criteria.</td>
                 </tr>
               ) : (
                 currentPagedItems.map((item) => (
-                  <tr key={item.id} className={selectedIds.includes(item.id) ? 'lv-row-selected' : ''}>
+                  <tr key={item._id} className={selectedIds.includes(item._id) ? 'lv-row-selected' : ''}>
                     {visibleColumns.checkbox && (
                       <td className="lv-td-checkbox">
                         <input 
                           type="checkbox" 
                           className="lv-native-checkbox"
-                          checked={selectedIds.includes(item.id)}
-                          onChange={() => handleSelectRow(item.id)}
+                          checked={selectedIds.includes(item._id)}
+                          onChange={() => handleSelectRow(item._id)}
                         />
                       </td>
                     )}
                     {visibleColumns.applyDate && (
                       <td>
-                        <span className="lv-cell-calendar-icon">📅</span> {item.applyDate}
+                        <span className="lv-cell-calendar-icon">📅</span> {formatDateForDisplay(item.applicationDate || item.createdAt)}
                       </td>
                     )}
                     {visibleColumns.fromDate && (
                       <td>
-                        <span className="lv-cell-calendar-icon">📅</span> {item.fromDate}
+                        <span className="lv-cell-calendar-icon">📅</span> {formatDateForDisplay(item.fromDate)}
                       </td>
                     )}
                     {visibleColumns.toDate && (
                       <td>
-                        <span className="lv-cell-calendar-icon">📅</span> {item.toDate}
+                        <span className="lv-cell-calendar-icon">📅</span> {formatDateForDisplay(item.toDate)}
                       </td>
                     )}
                     {visibleColumns.halfDay && <td>{item.halfDay}</td>}
-                    {visibleColumns.type && <td>{item.type}</td>}
+                    {visibleColumns.type && <td style={{ textTransform: 'capitalize' }}>{item.leaveType} Leave</td>}
                     {visibleColumns.status && (
                       <td>
-                        <span className={`lv-status-badge ${item.status.toLowerCase()}`}>{item.status}</span>
+                        <span className={`lv-status-badge ${item.status?.toLowerCase()}`}>{item.status}</span>
                       </td>
                     )}
                     {visibleColumns.reason && <td className="lv-cell-reason" title={item.reason}>{item.reason}</td>}
                     {visibleColumns.actions && (
                       <td className="lv-cell-actions">
                         <button className="lv-action-edit-btn" title="Edit request details" onClick={() => handleOpenEditDialog(item)}>📝</button>
-                        <button className="lv-action-delete-btn" title="Delete request item" onClick={() => handleOpenDeleteDialog(item)}>🗑️</button>
                       </td>
                     )}
                   </tr>
@@ -391,6 +447,7 @@ const LeavesRequstes = () => {
         </footer>
       </main>
 
+      {/* CREATE & EDIT FORM MODAL */}
       {isModalOpen && (
         <div className="lv-modal-overlay" onClick={() => setIsModalOpen(false)}>
           <div className="lv-modal-window" onClick={(e) => e.stopPropagation()}>
@@ -399,147 +456,89 @@ const LeavesRequstes = () => {
               <button className="lv-modal-close-cross" onClick={() => setIsModalOpen(false)}>&times;</button>
             </div>
 
-           <form onSubmit={handleFormSubmit} className="lv-modal-body">
-  <div className="lv-form-grid">
+            <form onSubmit={handleFormSubmit} className="lv-modal-body">
+              <div className="lv-form-grid">
 
-    {/* Apply Date */}
-    <div className="lv-form-group">
-      <label>Apply Date *</label>
-      <input
-        type="date"
-        value={formData.applyDate}
-        onChange={(e) =>
-          setFormData({ ...formData, applyDate: e.target.value })
-        }
-        required
-      />
-    </div>
+                {/* From Date */}
+                <div className="lv-form-group">
+                  <label>From Date *</label>
+                  <input
+                    type="date"
+                    value={formData.fromDate}
+                    onChange={(e) => setFormData({ ...formData, fromDate: e.target.value })}
+                    required
+                  />
+                </div>
 
-    {/* From Date */}
-    <div className="lv-form-group">
-      <label>From Date *</label>
-      <input
-        type="date"
-        value={formData.fromDate}
-        onChange={(e) =>
-          setFormData({ ...formData, fromDate: e.target.value })
-        }
-        required
-      />
-    </div>
+                {/* To Date */}
+                <div className="lv-form-group">
+                  <label>To Date *</label>
+                  <input
+                    type="date"
+                    min={formData.fromDate}
+                    value={formData.toDate}
+                    onChange={(e) => setFormData({ ...formData, toDate: e.target.value })}
+                    required
+                  />
+                </div>
 
-    {/* To Date */}
-    <div className="lv-form-group">
-      <label>To Date *</label>
-      <input
-        type="date"
-        value={formData.toDate}
-        onChange={(e) =>
-          setFormData({ ...formData, toDate: e.target.value })
-        }
-        required
-      />
-    </div>
+                {/* Half Day */}
+                <div className="lv-form-group">
+                  <label>Half Day *</label>
+                  <select
+                    value={formData.halfDay}
+                    onChange={(e) => setFormData({ ...formData, halfDay: e.target.value })}
+                  >
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                  </select>
+                </div>
 
-    {/* Half Day */}
-    <div className="lv-form-group">
-      <label>Half Day *</label>
-      <select
-        value={formData.halfDay}
-        onChange={(e) =>
-          setFormData({ ...formData, halfDay: e.target.value })
-        }
-      >
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
-      </select>
-    </div>
+                {/* Dynamic Leave Type Dropdown */}
+                <div className="lv-form-group">
+                  <label>Leave Type *</label>
+                  <select
+                    value={formData.leaveType}
+                    onChange={(e) => setFormData({ ...formData, leaveType: e.target.value })}
+                    required
+                    disabled={fetchingTypes}
+                  >
+                    {fetchingTypes ? (
+                      <option value="">Loading types...</option>
+                    ) : leaveTypesList.length === 0 ? (
+                      <option value="">No configurations found</option>
+                    ) : (
+                      leaveTypesList.map((type) => (
+                        <option key={type.id || type._id} value={type.leaveName}>
+                          {type.leaveName}
+                        </option>
+                      ))
+                    )}
+                  </select>
+                </div>
+              </div>
 
-    {/* Leave Type */}
-    <div className="lv-form-group">
-      <label>Leave Type *</label>
-      <select
-        value={formData.type}
-        onChange={(e) =>
-          setFormData({ ...formData, type: e.target.value })
-        }
-      >
-        <option>Casual Leave</option>
-        <option>Sick Leave</option>
-        <option>Privilege Leave</option>
-        <option>Marriage Leave</option>
-        <option>Maternity Leave</option>
-      </select>
-    </div>
+              {/* Reason */}
+              <div className="lv-form-group full-width">
+                <label>Reason *</label>
+                <textarea
+                  rows={4}
+                  placeholder="Write your structural reason details..."
+                  value={formData.reason}
+                  onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
+                  required
+                />
+              </div>
 
-    {/* Status */}
-    <div className="lv-form-group">
-      <label>Status *</label>
-      <select
-        value={formData.status}
-        onChange={(e) =>
-          setFormData({ ...formData, status: e.target.value })
-        }
-      >
-        <option>Pending</option>
-        <option>Approved</option>
-        <option>Rejected</option>
-      </select>
-    </div>
-
-  </div>
-
-  {/* Reason */}
-  <div className="lv-form-group full-width">
-    <label>Reason *</label>
-    <textarea
-      rows={4}
-      placeholder="Write your reason..."
-      value={formData.reason}
-      onChange={(e) =>
-        setFormData({ ...formData, reason: e.target.value })
-      }
-      required
-    />
-  </div>
-
-  <div className="lv-modal-footer">
-    <button type="submit" className="lv-save-btn">
-      Save
-    </button>
-
-    <button
-      type="button"
-      className="lv-cancel-btn"
-      onClick={() => setIsModalOpen(false)}
-    >
-      Cancel
-    </button>
-  </div>
-</form>
-          </div>
-        </div>
-      )}
-
-      {isDeleteModalOpen && itemToDelete && (
-        <div className="lv-delete-modal-overlay" onClick={() => setIsDeleteModalOpen(false)}>
-          <div className="lv-delete-modal-window" onClick={(e) => e.stopPropagation()}>
-            <h2 className="lv-delete-modal-title">Are you sure?</h2>
-            
-            <div className="lv-delete-modal-content-area">
-              <p><strong>Type:</strong> {itemToDelete.type}</p>
-              <p><strong>Status:</strong> {itemToDelete.status}</p>
-              <p className="lv-delete-meta-reason"><strong>Details:</strong> {itemToDelete.reason}</p>
-            </div>
-
-            <div className="lv-delete-modal-footer">
-              <button type="button" className="lv-btn-confirm-delete" onClick={handleConfirmDeleteSingle}>
-                Delete
-              </button>
-              <button type="button" className="lv-btn-cancel-delete" onClick={() => setIsDeleteModalOpen(false)}>
-                Cancel
-              </button>
-            </div>
+              <div className="lv-modal-footer">
+                <button type="submit" className="lv-save-btn" disabled={loading}>
+                  {loading ? 'Saving...' : 'Save'}
+                </button>
+                <button type="button" className="lv-cancel-btn" onClick={() => setIsModalOpen(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

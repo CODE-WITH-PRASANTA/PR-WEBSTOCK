@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./LeaveTypes.css";
+import API from "../../api/axios"; 
 
 import {
   FaSearch,
@@ -30,135 +31,31 @@ const defaultColumns = {
   action: true,
 };
 
-const dummyData = [
-  {
-    id: 1,
-    leaveName: "Work From Home",
-    leaveType: "Paid",
-    leaveUnit: "Days",
-    status: "Inactive",
-    duration: 5,
-    createdBy: "HR Department",
-    notification: "48 hours prior",
-    maxLeaves: 25,
-    maxLimit: 5,
-  },
-  {
-    id: 2,
-    leaveName: "Casual Leave",
-    leaveType: "Unpaid",
-    leaveUnit: "Hours",
-    status: "Active",
-    duration: 8,
-    createdBy: "HR Department",
-    notification: "24 hours prior",
-    maxLeaves: 18,
-    maxLimit: 3,
-  },
-  {
-    id: 3,
-    leaveName: "Emergency Leave",
-    leaveType: "Paid",
-    leaveUnit: "Days",
-    status: "Active",
-    duration: 3,
-    createdBy: "HR Department",
-    notification: "Immediate",
-    maxLeaves: 10,
-    maxLimit: 2,
-  },
-  {
-    id: 4,
-    leaveName: "Family Leave",
-    leaveType: "Paid",
-    leaveUnit: "Hours",
-    status: "Inactive",
-    duration: 12,
-    createdBy: "HR Department",
-    notification: "48 hours prior",
-    maxLeaves: 20,
-    maxLimit: 4,
-  },
-  {
-    id: 5,
-    leaveName: "Sick Leave",
-    leaveType: "Paid",
-    leaveUnit: "Days",
-    status: "Active",
-    duration: 10,
-    createdBy: "HR Department",
-    notification: "48 hours prior",
-    maxLeaves: 30,
-    maxLimit: 6,
-  },
-    {
-    id: 6,
-    leaveName: "Work From Home",
-    leaveType: "Paid",
-    leaveUnit: "Days",
-    status: "Inactive",
-    duration: 5,
-    createdBy: "HR Department",
-    notification: "48 hours prior",
-    maxLeaves: 25,
-    maxLimit: 5,
-  },
-  {
-    id: 7,
-    leaveName: "Casual Leave",
-    leaveType: "Unpaid",
-    leaveUnit: "Hours",
-    status: "Active",
-    duration: 8,
-    createdBy: "HR Department",
-    notification: "24 hours prior",
-    maxLeaves: 18,
-    maxLimit: 3,
-  },
-  {
-    id: 8,
-    leaveName: "Emergency Leave",
-    leaveType: "Paid",
-    leaveUnit: "Days",
-    status: "Active",
-    duration: 3,
-    createdBy: "HR Department",
-    notification: "Immediate",
-    maxLeaves: 10,
-    maxLimit: 2,
-  },
-  {
-    id: 9,
-    leaveName: "Family Leave",
-    leaveType: "Paid",
-    leaveUnit: "Hours",
-    status: "Inactive",
-    duration: 12,
-    createdBy: "HR Department",
-    notification: "48 hours prior",
-    maxLeaves: 20,
-    maxLimit: 4,
-  },
-  {
-    id: 10,
-    leaveName: "Sick Leave",
-    leaveType: "Paid",
-    leaveUnit: "Days",
-    status: "Active",
-    duration: 10,
-    createdBy: "HR Department",
-    notification: "48 hours prior",
-    maxLeaves: 30,
-    maxLimit: 6,
-  },
-];
+const initialFormState = {
+  leaveName: "",
+  leaveType: "",
+  leaveUnit: "",
+  status: "Active",
+  note: "",
+  duration: 0,
+  createdBy: "HR Department",
+  carryOver: "Not allowed",
+  notification: "24 hours prior",
+  maxLeaves: 0,
+  maxLimit: 0,
+};
 
 const LeaveTypes = () => {
-  const [tableData, setTableData] = useState(dummyData);
+  const [tableData, setTableData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [editingData, setEditingData] = useState(null);
+  
+  // Controlled Modal Form State
+  const [formData, setFormData] = useState(initialFormState);
 
   // Pagination
   const [page, setPage] = useState(1);
@@ -170,144 +67,210 @@ const LeaveTypes = () => {
 
   const menuRef = useRef(null);
 
+  // 1. Fetching data from the server
+  const fetchLeaveTypes = async (searchQuery = "") => {
+    setLoading(true);
+    setError(null);
+    try {
+     const response = await API.get("/leave-types", { 
+        params: searchQuery ? { search: searchQuery } : {},
+      });
+      
+      const resData = response.data;
+      if (resData.success) {
+        setTableData(resData.data || []);
+      } else {
+        setError(resData.message || "Failed to fetch data.");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || err.message || "Network connectivity failure.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Sync search input triggers
+  useEffect(() => {
+    fetchLeaveTypes(search);
+  }, [search]);
+
+  // Dropdown tracking configuration rules
   useEffect(() => {
     const closeMenu = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setShowColumnMenu(false);
       }
     };
-
     document.addEventListener("mousedown", closeMenu);
-
-    return () => {
-      document.removeEventListener("mousedown", closeMenu);
-    };
+    return () => document.removeEventListener("mousedown", closeMenu);
   }, []);
 
-  // Search Filter
-  const filteredData = tableData.filter((item) =>
-    item.leaveName.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Pagination
-  const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-
-  const currentRows = filteredData.slice(
-    (page - 1) * rowsPerPage,
-    page * rowsPerPage
-  );
-
-  // Checkbox
-  const handleCheckbox = (id) => {
-    if (selectedRows.includes(id)) {
-      setSelectedRows(selectedRows.filter((item) => item !== id));
+  // Update dynamic modal form defaults on popup states
+  useEffect(() => {
+    if (editingData) {
+      setFormData({
+        leaveName: editingData.leaveName || "",
+        leaveType: editingData.leaveType || "",
+        leaveUnit: editingData.leaveUnit || "",
+        status: editingData.status || "Active",
+        note: editingData.note || "",
+        duration: editingData.duration || 0,
+        createdBy: editingData.createdBy || "HR Department",
+        carryOver: editingData.carryOver || "Not allowed",
+        notification: editingData.notification || "24 hours prior",
+        maxLeaves: editingData.maxLeaves || 0,
+        maxLimit: editingData.maxLimit || 0,
+      });
     } else {
-      setSelectedRows([...selectedRows, id]);
+      setFormData(initialFormState);
     }
+  }, [editingData, showPopup]);
+
+  // Pagination bounds calculation parameters
+  const totalPages = Math.ceil(tableData.length / rowsPerPage);
+  const currentRows = tableData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
+  // Form Value Change Handler Logic
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Checkbox Select management handlers
+  const handleCheckbox = (id) => {
+    setSelectedRows((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
   const handleSelectAll = () => {
-    if (selectedRows.length === currentRows.length) {
-      setSelectedRows([]);
+    const currentIds = currentRows.map((row) => row.id || row._id);
+    const allSelected = currentIds.every((id) => selectedRows.includes(id));
+
+    if (allSelected) {
+      setSelectedRows((prev) => prev.filter((id) => !currentIds.includes(id)));
     } else {
-      setSelectedRows(currentRows.map((row) => row.id));
+      setSelectedRows((prev) => [...new Set([...prev, ...currentIds])]);
     }
   };
 
-  // Delete
-  const handleDelete = (id) => {
-    if (window.confirm("Delete this Leave Type?")) {
-      setTableData(tableData.filter((item) => item.id !== id));
+  // 2. Submit Actions (Create / Update handling via Axios)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let response;
+      const targetId = editingData?.id || editingData?._id;
+
+        if (editingData) {
+          response = await API.put(`/leave-types/${targetId}`, formData);
+        } else {
+          response = await API.post("/leave-types", formData);
+        } 
+
+      const data = response.data;
+      if (data.success) {
+        setShowPopup(false);
+        setFormData(initialFormState);
+        setEditingData(null);
+        fetchLeaveTypes(search); 
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (err) {
+      alert(`Submission failed: ${err.response?.data?.message || err.message}`);
     }
   };
 
-  const handleDeleteSelected = () => {
-    setTableData(
-      tableData.filter((item) => !selectedRows.includes(item.id))
-    );
-
-    setSelectedRows([]);
+  // 3. Single Item Deletion Processing Request Handler
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this Leave Type?")) {
+      try {
+       const response = await API.delete(`/leave-types/${id}`);
+        const data = response.data;
+        if (data.success) {
+          setSelectedRows((prev) => prev.filter((rowId) => rowId !== id));
+          fetchLeaveTypes(search);
+        } else {
+          alert(`Delete Failed: ${data.message}`);
+        }
+      } catch (err) {
+        alert(`Connection Error: ${err.message}`);
+      }
+    }
   };
 
-  // Refresh
+  // 4. Bulk Items Selection Elimination Handler Request Logic
+  const handleDeleteSelected = async () => {
+    if (window.confirm(`Are you sure you want to delete ${selectedRows.length} items?`)) {
+      try {
+          const response = await API.post("/leave-types/bulk-delete", { ids: selectedRows });        const data = response.data;
+        if (data.success) {
+          setSelectedRows([]);
+          fetchLeaveTypes(search);
+        } else {
+          alert(`Bulk Elimination Error: ${data.message}`);
+        }
+      } catch (err) {
+        alert(`Network Processing Issue: ${err.message}`);
+      }
+    }
+  };
+
   const handleRefresh = () => {
     setSearch("");
     setSelectedRows([]);
     setColumns(defaultColumns);
-    setTableData(dummyData);
     setPage(1);
+    fetchLeaveTypes("");
   };
 
-  // CSV Download
   const handleDownload = () => {
     const headers = [
-      "Leave Name",
-      "Leave Type",
-      "Leave Unit",
-      "Status",
-      "Duration",
-      "Created By",
-      "Notification",
-      "Max Leaves",
-      "Annual Limit",
+      "Leave Name", "Leave Type", "Leave Unit", "Status", 
+      "Duration", "Created By", "Notification", "Max Leaves", "Annual Limit"
     ];
 
     const csv = [
       headers.join(","),
       ...tableData.map((item) =>
         [
-          item.leaveName,
-          item.leaveType,
-          item.leaveUnit,
-          item.status,
-          item.duration,
-          item.createdBy,
-          item.notification,
-          item.maxLeaves,
-          item.maxLimit,
+          JSON.stringify(item.leaveName || ""),
+          JSON.stringify(item.leaveType || ""),
+          JSON.stringify(item.leaveUnit || ""),
+          JSON.stringify(item.status || ""),
+          item.duration || 0,
+          JSON.stringify(item.createdBy || ""),
+          JSON.stringify(item.notification || ""),
+          item.maxLeaves || 0,
+          item.maxLimit || 0
         ].join(",")
       ),
     ].join("\n");
 
-    const blob = new Blob([csv], {
-      type: "text/csv;charset=utf-8;",
-    });
-
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement("a");
-
     link.href = url;
     link.download = "LeaveTypes.csv";
     link.click();
+    URL.revokeObjectURL(url);
   };
 
-  // Column Toggle
   const toggleColumn = (key) => {
-    setColumns({
-      ...columns,
-      [key]: !columns[key],
-    });
+    setColumns((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   return (
     <div className="leaveTypes">
-
-      {/* Header */}
-
+      {/* Header Element */}
       <div className="leaveTypes__header">
-
-        <h2 className="leaveTypes__title">
-          Leave Types
-        </h2>
-
+        <h2 className="leaveTypes__title">Leave Types</h2>
         <div className="leaveTypes__toolbar">
-
-          {/* Search */}
-
           <div className="leaveTypes__search">
             <FaSearch />
-
             <input
               type="text"
               placeholder="Search Leave Type..."
@@ -319,47 +282,23 @@ const LeaveTypes = () => {
             />
           </div>
 
-          {/* Delete Selected */}
-
           {selectedRows.length > 0 && (
-            <button
-              className="leaveTypes__icon delete"
-              onClick={handleDeleteSelected}
-              title="Delete Selected"
-            >
+            <button className="leaveTypes__icon delete" onClick={handleDeleteSelected} title="Delete Selected">
               <FaTrash />
             </button>
           )}
 
-          {/* Column Filter */}
-
-          <div
-            className="leaveTypes__menu"
-            ref={menuRef}
-          >
-            <button
-              className="leaveTypes__icon"
-              onClick={() =>
-                setShowColumnMenu(!showColumnMenu)
-              }
-              title="Show / Hide Columns"
-            >
+          {/* Column Filter Component */}
+          <div className="leaveTypes__menu" ref={menuRef}>
+            <button className="leaveTypes__icon" onClick={() => setShowColumnMenu(!showColumnMenu)} title="Show / Hide Columns">
               <FaFilter />
             </button>
-
             {showColumnMenu && (
               <div className="leaveTypes__dropdown">
-
                 <h4>Show / Hide Columns</h4>
-
                 {Object.keys(columns).map((key) => (
                   <label key={key}>
-                    <input
-                      type="checkbox"
-                      checked={columns[key]}
-                      onChange={() => toggleColumn(key)}
-                    />
-
+                    <input type="checkbox" checked={columns[key]} onChange={() => toggleColumn(key)} />
                     {key}
                   </label>
                 ))}
@@ -367,306 +306,154 @@ const LeaveTypes = () => {
             )}
           </div>
 
-          {/* Add */}
-
-          <button
-            className="leaveTypes__icon add"
-            title="Add Leave Type"
-            onClick={() => {
-              setEditingData(null);
-              setShowPopup(true);
-            }}
-          >
+          <button className="leaveTypes__icon add" title="Add Leave Type" onClick={() => { setEditingData(null); setShowPopup(true); }}>
             <FaPlusCircle />
           </button>
 
-          {/* Refresh */}
-
-          <button
-            className="leaveTypes__icon refresh"
-            title="Refresh"
-            onClick={handleRefresh}
-          >
+          <button className="leaveTypes__icon refresh" title="Refresh" onClick={handleRefresh}>
             <FaSyncAlt />
           </button>
 
-          {/* Download */}
-
-          <button
-            className="leaveTypes__icon download"
-            title="Download CSV"
-            onClick={handleDownload}
-          >
+          <button className="leaveTypes__icon download" title="Download CSV" onClick={handleDownload}>
             <FaDownload />
           </button>
-
         </div>
       </div>
-            {/* ================= TABLE ================= */}
 
+      {error && <div className="leaveTypes__errorMsg">Error Encountered: {error}</div>}
+
+      {/* ================= DATA TABLE VIEW ================= */}
       <div className="leaveTypes__tableWrapper">
-        <table className="leaveTypes__table">
-
-          <thead>
-            <tr>
-
-              {columns.checkbox && (
-                <th>
-                  <input
-                    type="checkbox"
-                    checked={
-                      currentRows.length > 0 &&
-                      selectedRows.length === currentRows.length
-                    }
-                    onChange={handleSelectAll}
-                  />
-                </th>
-              )}
-
-              {columns.leaveName && <th>Leave Name</th>}
-              {columns.leaveType && <th>Leave Type</th>}
-              {columns.leaveUnit && <th>Leave Unit</th>}
-              {columns.status && <th>Status</th>}
-              {columns.duration && <th>Duration</th>}
-              {columns.createdBy && <th>Created By</th>}
-              {columns.notification && <th>Notification</th>}
-              {columns.maxLeaves && <th>Max Leaves</th>}
-              {columns.maxLimit && <th>Annual Limit</th>}
-              {columns.action && <th>Actions</th>}
-
-            </tr>
-          </thead>
-
-          <tbody>
-
-            {currentRows.length === 0 ? (
-
+        {loading ? (
+          <div className="leaveTypes__loading">Retrieving system data array matrices...</div>
+        ) : (
+          <table className="leaveTypes__table">
+            <thead>
               <tr>
-                <td
-                  colSpan="11"
-                  className="leaveTypes__empty"
-                >
-                  No Leave Types Found
-                </td>
+                {columns.checkbox && (
+                  <th>
+                    <input
+                      type="checkbox"
+                      checked={currentRows.length > 0 && currentRows.every(row => selectedRows.includes(row.id || row._id))}
+                      onChange={handleSelectAll}
+                    />
+                  </th>
+                )}
+                {columns.leaveName && <th>Leave Name</th>}
+                {columns.leaveType && <th>Leave Type</th>}
+                {columns.leaveUnit && <th>Leave Unit</th>}
+                {columns.status && <th>Status</th>}
+                {columns.duration && <th>Duration</th>}
+                {columns.createdBy && <th>Created By</th>}
+                {columns.notification && <th>Notification</th>}
+                {columns.maxLeaves && <th>Max Leaves</th>}
+                {columns.maxLimit && <th>Annual Limit</th>}
+                {columns.action && <th>Actions</th>}
               </tr>
-
-            ) : (
-
-              currentRows.map((item) => (
-
-                <tr key={item.id}>
-
-                  {columns.checkbox && (
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedRows.includes(item.id)}
-                        onChange={() => handleCheckbox(item.id)}
-                      />
-                    </td>
-                  )}
-
-                  {columns.leaveName && (
-                    <td>{item.leaveName}</td>
-                  )}
-
-                  {columns.leaveType && (
-                    <td>{item.leaveType}</td>
-                  )}
-
-                  {columns.leaveUnit && (
-                    <td>{item.leaveUnit}</td>
-                  )}
-
-                  {columns.status && (
-                    <td>
-                      <span
-                        className={
-                          item.status === "Active"
-                            ? "leaveTypes__status active"
-                            : "leaveTypes__status inactive"
-                        }
-                      >
-                        {item.status}
-                      </span>
-                    </td>
-                  )}
-
-                  {columns.duration && (
-                    <td>{item.duration}</td>
-                  )}
-
-                  {columns.createdBy && (
-                    <td>{item.createdBy}</td>
-                  )}
-
-                  {columns.notification && (
-                    <td>{item.notification}</td>
-                  )}
-
-                  {columns.maxLeaves && (
-                    <td>{item.maxLeaves}</td>
-                  )}
-
-                  {columns.maxLimit && (
-                    <td>{item.maxLimit}</td>
-                  )}
-
-                  {columns.action && (
-                    <td>
-
-                      <div className="leaveTypes__actions">
-
-                        <button
-                          className="leaveTypes__actionBtn edit"
-                          title="Edit"
-                          onClick={() => {
-                            setEditingData(item);
-                            setShowPopup(true);
-                          }}
-                        >
-                          <FaEdit />
-                        </button>
-
-                        <button
-                          className="leaveTypes__actionBtn delete"
-                          title="Delete"
-                          onClick={() => handleDelete(item.id)}
-                        >
-                          <FaTrash />
-                        </button>
-
-                        <button
-                          className="leaveTypes__actionBtn menu"
-                          title="More"
-                        >
-                          <FaEllipsisV />
-                        </button>
-
-                      </div>
-
-                    </td>
-                  )}
-
+            </thead>
+            <tbody>
+              {currentRows.length === 0 ? (
+                <tr>
+                  <td colSpan="11" className="leaveTypes__empty">No Leave Types Found</td>
                 </tr>
-
-              ))
-
-            )}
-
-          </tbody>
-
-        </table>
+              ) : (
+                currentRows.map((item) => {
+                  const itemId = item.id || item._id;
+                  return (
+                    <tr key={itemId}>
+                      {columns.checkbox && (
+                        <td>
+                          <input type="checkbox" checked={selectedRows.includes(itemId)} onChange={() => handleCheckbox(itemId)} />
+                        </td>
+                      )}
+                      {columns.leaveName && <td>{item.leaveName}</td>}
+                      {columns.leaveType && <td>{item.leaveType}</td>}
+                      {columns.leaveUnit && <td>{item.leaveUnit}</td>}
+                      {columns.status && (
+                        <td>
+                          <span className={item.status === "Active" ? "leaveTypes__status active" : "leaveTypes__status inactive"}>
+                            {item.status}
+                          </span>
+                        </td>
+                      )}
+                      {columns.duration && <td>{item.duration}</td>}
+                      {columns.createdBy && <td>{item.createdBy}</td>}
+                      {columns.notification && <td>{item.notification}</td>}
+                      {columns.maxLeaves && <td>{item.maxLeaves}</td>}
+                      {columns.maxLimit && <td>{item.maxLimit}</td>}
+                      {columns.action && (
+                        <td>
+                          <div className="leaveTypes__actions">
+                            <button className="leaveTypes__actionBtn edit" title="Edit" onClick={() => { setEditingData(item); setShowPopup(true); }}>
+                              <FaEdit />
+                            </button>
+                            <button className="leaveTypes__actionBtn delete" title="Delete" onClick={() => handleDelete(itemId)}>
+                              <FaTrash />
+                            </button>
+                            <button className="leaveTypes__actionBtn menu" title="More">
+                              <FaEllipsisV />
+                            </button>
+                          </div>
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        )}
       </div>
 
-      {/* ================= PAGINATION ================= */}
-
+      {/* ================= PAGINATION LAYOUT ================= */}
       <div className="leaveTypes__pagination">
-
         <div className="leaveTypes__paginationLeft">
-
           <span>
-            Showing{" "}
-            <strong>
-              {(page - 1) * rowsPerPage + 1}
-            </strong>
-
-            {" - "}
-
-            <strong>
-              {Math.min(
-                page * rowsPerPage,
-                filteredData.length
-              )}
-            </strong>
-
-            {" of "}
-
-            <strong>{filteredData.length}</strong>
-
-            entries
+            Showing <strong>{tableData.length === 0 ? 0 : (page - 1) * rowsPerPage + 1}</strong> - <strong>{Math.min(page * rowsPerPage, tableData.length)}</strong> of <strong>{tableData.length}</strong> entries
           </span>
-
         </div>
-
         <div className="leaveTypes__paginationRight">
-
-          <button
-            disabled={page === 1}
-            onClick={() => setPage(page - 1)}
-          >
+          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
             <FaChevronLeft />
           </button>
-
-          <span className="leaveTypes__pageNo">
-            {page}
-          </span>
-
-          <button
-            disabled={page === totalPages || totalPages === 0}
-            onClick={() => setPage(page + 1)}
-          >
+          <span className="leaveTypes__pageNo">{page}</span>
+          <button disabled={page === totalPages || totalPages === 0} onClick={() => setPage(page + 1)}>
             <FaChevronRight />
           </button>
-
         </div>
-
       </div>
 
-      {/* ================= NEW POPUP ================= */}
-
+      {/* ================= FORM MODAL ================= */}
       {showPopup && (
-
         <div className="leaveTypes__modal">
-
           <div className="leaveTypes__modalContent">
-
             <div className="leaveTypes__modalHeader">
-
-              <h2>
-                {editingData
-                  ? "Edit Leave Type"
-                  : "New Leave Type"}
-              </h2>
-
-              <button
-                className="leaveTypes__close"
-                onClick={() => setShowPopup(false)}
-              >
+              <h2>{editingData ? "Edit Leave Type" : "New Leave Type"}</h2>
+              <button className="leaveTypes__close" onClick={() => setShowPopup(false)}>
                 <FaTimes />
               </button>
-
             </div>
-                        <form className="leaveTypes__form">
-
+            <form className="leaveTypes__form" onSubmit={handleSubmit}>
               <div className="leaveTypes__formGrid">
-
-                {/* Leave Name */}
-
+                
                 <div className="leaveTypes__field">
                   <label>Leave Name *</label>
-
                   <div className="leaveTypes__inputIcon">
-
                     <input
                       type="text"
+                      name="leaveName"
+                      required
                       placeholder="Enter Leave Name"
-                      defaultValue={editingData?.leaveName || ""}
+                      value={formData.leaveName}
+                      onChange={handleInputChange}
                     />
-
                     <FaRegSmile className="fieldIcon" />
-
                   </div>
                 </div>
 
-                {/* Leave Type */}
-
                 <div className="leaveTypes__field">
                   <label>Leave Type *</label>
-
-                  <select
-                    defaultValue={editingData?.leaveType || ""}
-                  >
+                  <select name="leaveType" required value={formData.leaveType} onChange={handleInputChange}>
                     <option value="">Select Leave Type</option>
                     <option value="Paid">Paid</option>
                     <option value="Unpaid">Unpaid</option>
@@ -674,162 +461,110 @@ const LeaveTypes = () => {
                   </select>
                 </div>
 
-                {/* Leave Unit */}
-
                 <div className="leaveTypes__field">
                   <label>Leave Unit *</label>
-
-                  <select
-                    defaultValue={editingData?.leaveUnit || ""}
-                  >
+                  <select name="leaveUnit" required value={formData.leaveUnit} onChange={handleInputChange}>
                     <option value="">Select Unit</option>
-                    <option>Days</option>
-                    <option>Hours</option>
+                    <option value="Days">Days</option>
+                    <option value="Hours">Hours</option>
                   </select>
                 </div>
-
-                {/* Status */}
 
                 <div className="leaveTypes__field">
                   <label>Status</label>
-
-                  <select
-                    defaultValue={editingData?.status || "Active"}
-                  >
-                    <option>Active</option>
-                    <option>Inactive</option>
+                  <select name="status" value={formData.status} onChange={handleInputChange}>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
                   </select>
                 </div>
-
-                {/* Note */}
 
                 <div className="leaveTypes__field full">
                   <label>Note</label>
-
                   <textarea
                     rows="4"
+                    name="note"
                     placeholder="Write note..."
+                    value={formData.note}
+                    onChange={handleInputChange}
                   />
                 </div>
-
-                {/* Duration */}
 
                 <div className="leaveTypes__field">
                   <label>Duration *</label>
-
                   <input
                     type="number"
+                    name="duration"
+                    required
                     placeholder="0"
-                    defaultValue={editingData?.duration || 0}
+                    value={formData.duration}
+                    onChange={handleInputChange}
                   />
                 </div>
-
-                {/* Created By */}
 
                 <div className="leaveTypes__field">
                   <label>Created By *</label>
-
                   <input
                     type="text"
-                    defaultValue={
-                      editingData?.createdBy ||
-                      "HR Department"
-                    }
+                    name="createdBy"
+                    required
+                    value={formData.createdBy}
+                    onChange={handleInputChange}
                   />
                 </div>
-
-                {/* Carry Over */}
 
                 <div className="leaveTypes__field">
                   <label>Carry Over</label>
-
-                  <select>
-
-                    <option>Not allowed</option>
-                    <option>Allowed</option>
-
+                  <select name="carryOver" value={formData.carryOver} onChange={handleInputChange}>
+                    <option value="Not allowed">Not allowed</option>
+                    <option value="Allowed">Allowed</option>
                   </select>
                 </div>
-
-                {/* Notification */}
 
                 <div className="leaveTypes__field">
                   <label>Notification Period</label>
-
-                  <select
-                    defaultValue={
-                      editingData?.notification ||
-                      "24 hours prior"
-                    }
-                  >
-                    <option>Immediate</option>
-                    <option>12 hours prior</option>
-                    <option>24 hours prior</option>
-                    <option>48 hours prior</option>
+                  <select name="notification" value={formData.notification} onChange={handleInputChange}>
+                    <option value="Immediate">Immediate</option>
+                    <option value="12 hours prior">12 hours prior</option>
+                    <option value="24 hours prior">24 hours prior</option>
+                    <option value="48 hours prior">48 hours prior</option>
                   </select>
                 </div>
 
-                {/* Max Leaves */}
-
                 <div className="leaveTypes__field">
                   <label>Max Leaves *</label>
-
                   <input
                     type="number"
+                    name="maxLeaves"
+                    required
                     placeholder="0"
-                    defaultValue={
-                      editingData?.maxLeaves || 0
-                    }
+                    value={formData.maxLeaves}
+                    onChange={handleInputChange}
                   />
                 </div>
-
-                {/* Annual Limit */}
 
                 <div className="leaveTypes__field">
                   <label>Annual Limit *</label>
-
                   <input
                     type="number"
+                    name="maxLimit"
+                    required
                     placeholder="0"
-                    defaultValue={
-                      editingData?.maxLimit || 0
-                    }
+                    value={formData.maxLimit}
+                    onChange={handleInputChange}
                   />
                 </div>
 
               </div>
 
-              {/* Footer Buttons */}
-
               <div className="leaveTypes__buttons">
-
-                <button
-                  type="submit"
-                  className="leaveTypes__save"
-                >
-                  Save
-                </button>
-
-                <button
-                  type="button"
-                  className="leaveTypes__cancel"
-                  onClick={() => setShowPopup(false)}
-                >
-                  Cancel
-                </button>
-
+                <button type="submit" className="leaveTypes__save">Save</button>
+                <button type="button" className="leaveTypes__cancel" onClick={() => setShowPopup(false)}>Cancel</button>
               </div>
-
             </form>
-
           </div>
-
         </div>
-
       )}
-
     </div>
-
   );
 };
 
