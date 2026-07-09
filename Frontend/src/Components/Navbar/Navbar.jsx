@@ -16,6 +16,12 @@ import {
   FaInstagram,
   FaWhatsapp,
   FaLinkedinIn,
+  FaChevronDown,
+  FaLaptopCode,
+  FaMobileAlt,
+  FaHashtag,
+  FaSearch,
+  FaBullhorn,
 } from "react-icons/fa";
 import { MdCategory, MdLocalOffer } from "react-icons/md";
 import { FaHome, FaBlog, FaFire } from "react-icons/fa";
@@ -26,9 +32,20 @@ const uploadedImagePath = "/mnt/data/457bd679-da27-477c-9f1d-af23a1543f78.png";
 
 import "./Navbar.css";
 
+// Single source of truth for the services/category list so the desktop
+// dropdown and the mobile drawer never go out of sync again.
+const SERVICES = [
+  { label: "Web Development", href: "/services/web-development", icon: FaLaptopCode },
+  { label: "App Development", href: "/services/app-development", icon: FaMobileAlt },
+  { label: "Social media management", href: "/services/socialmedia-management", icon: FaHashtag },
+  { label: "Seo", href: "/services/seo", icon: FaSearch },
+  { label: "Digital Marketing", href: "/services/digital-marketing", icon: FaBullhorn },
+];
+
 const Navbar = () => {
   const [openCat, setOpenCat] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [openQuotePanel, setOpenQuotePanel] = useState(false);
 
   const dropdownRef = useRef(null);
@@ -84,83 +101,83 @@ const Navbar = () => {
   }, [openQuotePanel]);
 
   const toggleMobileMenu = () => setMobileMenuOpen((s) => !s);
-  const closeMobileMenu = () => setMobileMenuOpen(false);
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setMobileServicesOpen(false);
+  };
 
   const portalNode = typeof document !== "undefined" ? document.body : null;
 
   const panel = (
-  <>
-    <div
-      className={`quote-info-overlay ${openQuotePanel ? "show" : ""}`}
-      onClick={() => setOpenQuotePanel(false)}
-      aria-hidden={!openQuotePanel}
-    />
+    <>
+      <div
+        className={`quote-info-overlay ${openQuotePanel ? "show" : ""}`}
+        onClick={() => setOpenQuotePanel(false)}
+        aria-hidden={!openQuotePanel}
+      />
 
-    <aside
-      className={`quote-info-panel ${openQuotePanel ? "open" : ""}`}
-      aria-hidden={!openQuotePanel}
-    >
-      <div className="quote-info-inner">
-        <button
-          className="quote-info-close"
-          onClick={() => setOpenQuotePanel(false)}
-          aria-label="Close info panel"
-        >
-          <FaTimes />
-        </button>
+      <aside
+        className={`quote-info-panel ${openQuotePanel ? "open" : ""}`}
+        aria-hidden={!openQuotePanel}
+      >
+        <div className="quote-info-inner">
+          <button
+            className="quote-info-close"
+            onClick={() => setOpenQuotePanel(false)}
+            aria-label="Close info panel"
+          >
+            <FaTimes />
+          </button>
 
-        {/* Logo */}
-        <div className="quote-info-logo">
-          <img src={logo} alt="Logo" />
-        </div>
+          {/* Logo */}
+          <div className="quote-info-logo">
+            <img src={logo} alt="Logo" />
+          </div>
 
-        {/* Description */}
-        <p className="quote-info-desc">
-          We provide fast & reliable quotes for temple decor, brass idols, handicrafts, pooja items and more.
-          Reach out anytime — we’re happy to help.
-        </p>
+          {/* Description */}
+          <p className="quote-info-desc">
+            We provide fast & reliable quotes for temple decor, brass idols, handicrafts, pooja items and more.
+            Reach out anytime — we’re happy to help.
+          </p>
 
-        {/* Contact Section */}
-        <h3 className="quote-info-title">Get In Touch</h3>
+          {/* Contact Section */}
+          <h3 className="quote-info-title">Get In Touch</h3>
 
-        <ul className="quote-info-list">
-          <li>
-            <span className="quote-info-icon"><FaEnvelope /></span>
-            <div>
-              <p className="muted">Email</p>
-              <p>prwebstock.com@gmail.com</p>
+          <ul className="quote-info-list">
+            <li>
+              <span className="quote-info-icon"><FaEnvelope /></span>
+              <div>
+                <p className="muted">Email</p>
+                <p>prwebstock.com@gmail.com</p>
+              </div>
+            </li>
+            <li>
+              <span className="quote-info-icon"><FaPhone /></span>
+              <div>
+                <p className="muted">Phone</p>
+                <p>+91 77898 01327</p>
+              </div>
+            </li>
+          </ul>
+
+          {/* Office Hours */}
+          <div className="quote-info-hours">
+            <h3 className="quote-info-title">Office Hours</h3>
+
+            <div className="quote-hours-item">
+              <span>Monday - Saturday</span>
+              <strong>09:00 AM - 05:00 PM</strong>
             </div>
-          </li>
-          <li>
-            <span className="quote-info-icon"><FaPhone /></span>
-            <div>
-              <p className="muted">Phone</p>
-              <p>+91 77898 01327</p>
+
+            <div className="quote-hours-item">
+              <span>Sunday</span>
+              <strong>Closed</strong>
             </div>
-          </li>
-
-          
-        </ul>
-
-        {/* Office Hours */}
-      <div className="quote-info-hours">
-        <h3 className="quote-info-title">Office Hours</h3>
-
-        <div className="quote-hours-item">
-          <span>Monday - Saturday</span>
-          <strong>09:00 AM - 05:00 PM</strong>
+          </div>
         </div>
-
-        <div className="quote-hours-item">
-          <span>Sunday</span>
-          <strong>Closed</strong>
-        </div>
-      </div>
-      </div>
-    </aside>
-  </>
-);
-
+      </aside>
+    </>
+  );
 
   return (
     <>
@@ -174,8 +191,6 @@ const Navbar = () => {
 
             {/* mobile-only right bar (icons + mobile socials) */}
             <div className="navbar-right-bar navbar-right-bar--mobile">
-              
-
               {/* mobile social icons (visible on small screens) */}
               <a
                 href="https://www.facebook.com/share/1Bm8zM2E5g/"
@@ -257,43 +272,16 @@ const Navbar = () => {
 
           {/* Desktop-only Social Media Bar */}
           <div className="navbar-right-bar navbar-right-bar--desktop social-bar">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="social-icon"
-            >
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon">
               <FaFacebookF />
             </a>
-
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="social-icon"
-            >
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">
               <FaInstagram />
             </a>
-
-            <a
-              href="https://wa.me/917789801327"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="social-icon"
-            >
+            <a href="https://wa.me/917789801327" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon">
               <FaWhatsapp />
             </a>
-
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="social-icon"
-            >
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
               <FaLinkedinIn />
             </a>
           </div>
@@ -323,7 +311,7 @@ const Navbar = () => {
             <Link to="/contact">Contact</Link>
           </nav>
 
-          {/* Restore Get Free Demo button for desktop (hidden on mobile by CSS) */}
+          {/* Get Free Demo button for desktop (hidden on mobile by CSS) */}
           <div className="quote-box-wrapper">
             <button
               className="quote-box-icon-btn"
@@ -337,23 +325,20 @@ const Navbar = () => {
               </svg>
             </button>
 
-            {/* THIS is the Get Free Demo button visible on desktop/laptop */}
             <Link to="/get-quote" className="navbar-quote-btn">
               Get Free Demo
             </Link>
           </div>
         </div>
 
-        {/* CATEGORY DROPDOWN */}
+        {/* CATEGORY DROPDOWN (desktop) */}
         <div ref={dropdownRef} className={`navbar-category-dropdown ${openCat ? "show" : ""}`}>
           <ul>
-            <li><a href="/services/web-development">Web Development</a></li>
-            <li><a href="/services/app-development">App Development</a></li>
-           
-            <li><a href="/services/socialmedia-management">Social media management</a></li>
-            <li><a href="/services/seo">Seo</a></li>
-            <li><a href="/services/digital-marketing">Digital Marketing</a></li>
-            
+            {SERVICES.map((s) => (
+              <li key={s.href}>
+                <a href={s.href}>{s.label}</a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -367,15 +352,60 @@ const Navbar = () => {
               <button className="drawer-close" onClick={closeMobileMenu} aria-label="Close menu"><FaTimes /></button>
             </div>
 
-            {/* Mobile drawer: direct nav links (no tabs, no "Main" text) */}
+            {/* Mobile drawer: direct nav links + collapsible Services */}
             <nav className="drawer-links" style={{ marginTop: 12 }}>
-              <Link to="/" onClick={closeMobileMenu}> Home</Link>
-              <Link to="/about" onClick={closeMobileMenu}> About</Link>
-              <Link to="/industry-work" onClick={closeMobileMenu}> Industry Work</Link>
-              <Link to="/pricing" onClick={closeMobileMenu}> Pricing</Link>
-              <Link to="/career" onClick={closeMobileMenu}> Career</Link>
-              <Link to="/blogs" onClick={closeMobileMenu}> Blog</Link>
-              <Link to="/contact" onClick={closeMobileMenu}> Contact</Link>
+              <Link to="/" onClick={closeMobileMenu}>Home</Link>
+
+              {/* Services accordion — mirrors the desktop category dropdown */}
+              <button
+                type="button"
+                className={`drawer-services-btn ${mobileServicesOpen ? "open" : ""}`}
+                onClick={() => setMobileServicesOpen((s) => !s)}
+                aria-expanded={mobileServicesOpen}
+                aria-controls="drawer-services-list"
+              >
+                <span className="drawer-services-btn-label">
+                  <span className="drawer-services-btn-icon"><MdCategory /></span>
+                  Services
+                </span>
+                <FaChevronDown className="drawer-services-chevron" aria-hidden="true" />
+              </button>
+
+              <div
+                id="drawer-services-list"
+                className={`drawer-services-list ${mobileServicesOpen ? "open" : ""}`}
+              >
+                <div className="drawer-services-list-inner">
+                  {SERVICES.map((s, i) => {
+                    const Icon = s.icon;
+                    return (
+                      <a
+                        key={s.href}
+                        href={s.href}
+                        onClick={closeMobileMenu}
+                        className="drawer-service-item"
+                        style={{ "--i": i }}
+                      >
+                        <span className="drawer-service-icon">
+                          <Icon />
+                        </span>
+                        <span className="drawer-service-label">{s.label}</span>
+                        <span className="drawer-service-arrow">›</span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <Link to="/about" onClick={closeMobileMenu}>About</Link>
+              <Link to="/industry-work" onClick={closeMobileMenu}>Industry Work</Link>
+              <Link to="/project" onClick={closeMobileMenu}>Project</Link>
+              <Link to="/career" onClick={closeMobileMenu}>Career</Link>
+              <Link to="/blog" onClick={closeMobileMenu}>Blog</Link>
+              <Link to="/contact" onClick={closeMobileMenu}>Contact</Link>
+              <Link to="/get-quote" onClick={closeMobileMenu} className="drawer-quote">
+                Get Free Demo
+              </Link>
             </nav>
 
             {/* social icons with stagger animation */}

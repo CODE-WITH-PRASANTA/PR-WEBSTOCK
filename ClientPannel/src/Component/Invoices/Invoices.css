@@ -1,3 +1,327 @@
+/* Container Page Architecture */
+.Invoices-page-wrapper {
+  background-color: #f4f6f9;
+  padding: 24px;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #333333;
+}
+
+/* Breadcrumbs Styling */
+.Invoices-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.Invoices-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.Invoices-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.Invoices-bread-icon {
+  font-size: 14px;
+}
+
+.Invoices-active-bread {
+  color: #34495e;
+  font-weight: 500;
+}
+
+/* Card Shell matching image 1 shadow & rounding */
+.Invoices-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Soft light-purple control panel background from Reference image 1 */
+.Invoices-control-header {
+  background-color: #eef2f9;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.Invoices-left-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.Invoices-list-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #4a5568;
+}
+
+/* Pristine Search input block layout */
+.Invoices-search-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  width: 240px;
+}
+
+.Invoices-search-icon {
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+.Invoices-search-input {
+  border: none;
+  outline: none;
+  padding: 6px 8px;
+  font-size: 13px;
+  width: 100%;
+}
+
+.Invoices-right-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Minimal Action Top Icons styling */
+.Invoices-icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #4f46e5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  transition: transform 0.2s ease;
+}
+
+.Invoices-icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Exact Dropdown Overlay matching image 2 */
+.Invoices-dropdown-container {
+  position: relative;
+}
+
+.Invoices-col-dropdown {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: #f1f3f7;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  width: 250px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+.Invoices-dropdown-header {
+  padding: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2c3e50;
+  text-align: center;
+  border-bottom: 1px solid #e4e7ed;
+}
+
+.Invoices-dropdown-body {
+  padding: 10px 16px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar styling matching overlay image */
+.Invoices-dropdown-body::-webkit-scrollbar {
+  width: 10px;
+}
+.Invoices-dropdown-body::-webkit-scrollbar-thumb {
+  background: #909399;
+  border-radius: 10px;
+}
+
+.Invoices-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  font-size: 15px;
+  color: #485a6a;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Custom Clean Native Checkbox styling matching image 2 */
+.Invoices-checkbox-label input {
+  display: none;
+}
+
+.Invoices-custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #0066cc;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  background: #ffffff;
+}
+
+.Invoices-checkbox-label input:checked + .Invoices-custom-checkbox {
+  background: #0066cc;
+}
+
+.Invoices-checkbox-label input:checked + .Invoices-custom-checkbox::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Table Architecture Elements */
+.Invoices-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.Invoices-html-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.Invoices-html-table th {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-weight: 600;
+  padding: 16px 20px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.Invoices-html-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
+}
+
+.Invoices-id-cell {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.Invoices-amount-cell {
+  font-weight: 500;
+  color: #334155;
+}
+
+/* Date Icon Alignment styling */
+.Invoices-date-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Invoices-cal-icon {
+  color: #708090;
+}
+
+/* Soft Color Status Pills from Reference */
+.Invoices-status-badge {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.Invoices-status-paid {
+  background-color: #e6f7ed;
+  color: #2e7d32;
+}
+
+.Invoices-status-unpaid {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.Invoices-status-overdue {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.Invoices-row-action-btn {
+  background: transparent;
+  border: none;
+  color: #475569;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+}
+
+/* Footer Pagination Toolbar */
+.Invoices-footer-pagination {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.Invoices-pagination-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.Invoices-page-select {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 4px 8px;
+  outline: none;
+  background: #ffffff;
+}
+
+.Invoices-page-nav-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.Invoices-nav-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: not-allowed;
+  font-size: 16px;
 :root {
   --invoices-bg-surface: #f4f7f9;
   --invoices-card-bg: #ffffff;
@@ -267,6 +591,35 @@
   align-items: center;
 }
 
+<<<<<<< HEAD
+/* Seamless Device Adaptation Breakpoints */
+@media (max-width: 768px) {
+  .Invoices-control-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .Invoices-left-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .Invoices-search-container {
+    width: 100%;
+  }
+  .Invoices-right-controls {
+    justify-content: flex-end;
+  }
+}
+
+/* Production Print Visibility Filter */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .Invoices-card {
+    border: none;
+    box-shadow: none;
+=======
 .Invoices-reaction-btn.like {
   color: #3182ce;
 }
@@ -290,5 +643,6 @@
   .Invoices-table-card,
   .Invoices-review-card {
     padding: 16px;
+>>>>>>> 9f6548c74c54dacd3df5c63fa08663200c079e98
   }
 }
