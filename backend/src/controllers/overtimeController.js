@@ -31,3 +31,38 @@ exports.getMyOvertime = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
+// GET: Admin - Fetch all overtime requests
+exports.getAllOvertimeRequests = async (req, res) => {
+  try {
+    const requests = await Overtime.find().sort({ createdAt: -1 });
+    res.json({ success: true, data: requests });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+exports.updateOvertimeStatus = async (req, res) => {
+  try {
+    const { status } = req.body; 
+    
+    // Professional check: Ensure only valid transitions
+    if (!['Approved', 'Rejected', 'Pending'].includes(status)) {
+      return res.status(400).json({ success: false, message: "Invalid status value" });
+    }
+
+    const request = await Overtime.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+
+    if (!request) {
+      return res.status(404).json({ success: false, message: "Request not found" });
+    }
+
+    res.json({ success: true, message: "Status updated successfully", data: request });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

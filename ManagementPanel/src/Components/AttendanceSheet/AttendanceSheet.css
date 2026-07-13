@@ -331,3 +331,58 @@ th.sticky-employee-col {
     gap: 12px;
   }
 }
+
+
+/* Legend Styling */
+.attendance-legend {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Status Colors - Apply these to your existing status classes */
+.status-present { color: #27ae60; }   /* Green */
+.status-absent { color: #c0392b; }    /* Red */
+.status-halfday { color: #f39c12; }   /* Orange */
+.status-late { color: #e67e22; }      /* Dark Orange */
+.status-holiday { color: #8e44ad; }   /* Purple */
+.status-leave { color: #2980b9; }     /* Blue */
+.status-weekend { color: #7f8c8d; }   /* Grey */
+
+/* Ensure the icon has a consistent size */
+.status-indicator-icon {
+  font-weight: bold;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+.sticky-serial-col {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: white;
+  border-right: 1px solid #ddd;
+  width: 50px;
+  text-align: center;
+}
+
+.sticky-employee-col {
+  position: sticky;
+  left: 50px; /* Aligns right after Serial No column */
+  z-index: 3;
+  background: white;
+  border-right: 1px solid #ddd;
+  min-width: 150px;
+}

@@ -3,9 +3,9 @@ const Shift = require('../models/Shift');
 const { getDistanceInMeters } = require('../utils/geoUtils');
 
 // Configuration Constants
-const SCHOOL_LAT = 20.376787623763956; 
-const SCHOOL_LNG = 85.88828842333056;
-const GEOFENCE_RADIUS_METERS = 400; 
+const SCHOOL_LAT = 20.29620468274236; 
+const SCHOOL_LNG = 85.81203536565789;
+const GEOFENCE_RADIUS_METERS = 1000; 
 const GRACE_PERIOD_MS = 2 * 60 * 1000; 
 const MIN_REQUIRED_WORKING_MINUTES = (6 * 60) + 5; // 6.05 hours = 365 minutes
 
@@ -346,4 +346,121 @@ exports.getMonthlyAttendance = async (req, res) => {
   }
 };
 
+// attendanceController.js
 
+exports.getAllAttendanceReport = async (req, res) => {
+  try {
+    const report = await Attendance.aggregate([
+      // 1. Join with 'AddEmployee' model to get extra info if needed
+      {
+        $lookup: {
+          from: "addemployees", // Ensure this matches your MongoDB collection name (pluralized)
+          localField: "employeeId",
+          foreignField: "_id",
+          as: "employeeDetails"
+        }
+      },
+      { $unwind: { path: "$employeeDetails", preserveNullAndEmptyArrays: true } },
+      
+      // 2. Format the output
+      {
+        $project: {
+          _id: 1,
+          date: 1,
+          employeeCustomId: 1,
+          employeeName: "$name",
+          punchInTime: 1,
+          punchOutTime: 1,
+          dayStatus: 1,
+          totalWorkingMinutes: 1,
+          // Calculate breaks in minutes from the array
+          totalBreakMinutes: {
+            $divide: [
+              {
+                $reduce: {
+                  input: "$breaks",
+                  initialValue: 0,
+                  in: {
+                    $add: [
+                      "$$value",
+                      { $subtract: [{ $ifNull: ["$$this.end", new Date()] }, "$$this.start"] }
+                    ]
+                  }
+                }
+              },
+              60000 // Convert ms to minutes
+            ]
+          }
+        }
+      },
+      // 3. Sort: Latest date first, then by employee ID
+      { $sort: { date: -1, employeeCustomId: 1 } }
+    ]);
+
+    res.json({ success: true, count: report.length, data: report });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+// Inside attendanceController.js
+exports.updateAttendanceEntry = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { dayStatus, punchInTime, punchOutTime } = req.body;
+
+        const updated = await Attendance.findByIdAndUpdate(
+            id,
+            { dayStatus, punchInTime, punchOutTime },
+            { new: true }
+        );
+        res.json({ success: true, data: updated });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+};
+
+exports.getAllEmployeesMonthlyAttendance = async (req, res) => {
+  try {
+    const { year, month } = req.query;
+    if (!year || !month) return res.status(400).json({ message: "Year/Month required" });
+
+    const targetMonthPrefix = `${year}-${month.toString().padStart(2, '0')}`;
+    const totalDaysInMonth = new Date(year, month, 0).getDate();
+
+    // 1. Fetch all attendance logs for the month
+    const allLogs = await Attendance.find({
+      date: { $regex: `^${targetMonthPrefix}` }
+    }).lean();
+
+    // 2. Fetch all employees (assuming you have an Employee model)
+    const Employee = require('../models/AddEmployee'); 
+    const employees = await Employee.find().select('name _id').lean();
+
+    // 3. Process data into a grid format
+    const report = employees.map(emp => {
+      const empLogs = allLogs.filter(log => log.employeeId.toString() === emp._id.toString());
+      const logsMap = new Map(empLogs.map(log => [log.date, log]));
+
+      const days = Array.from({ length: totalDaysInMonth }, (_, i) => {
+        const dayStr = `${targetMonthPrefix}-${(i + 1).toString().padStart(2, '0')}`;
+        const log = logsMap.get(dayStr);
+        
+        let status = 'default';
+        if (log) {
+          if (log.dayStatus === 'Present') status = 'present';
+          else if (log.dayStatus === 'Late') status = 'late';
+          else if (log.dayStatus === 'Half Day') status = 'halfday';
+          else if (log.dayStatus === 'Absent') status = 'absent';
+        }
+        return { day: i + 1, status };
+      });
+
+      return { employeeId: emp._id, name: emp.name, days };
+    });
+
+    res.json({ success: true, data: report });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

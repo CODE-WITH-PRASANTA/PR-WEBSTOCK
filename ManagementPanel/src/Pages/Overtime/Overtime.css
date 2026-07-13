@@ -1023,3 +1023,170 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Modal Overlay */
+.overtime-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* Modal Content */
+.overtime-modal {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.overtime-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.overtime-modal__header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.overtime-modal__header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Modal Form Body */
+.overtime-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.overtime-modal__body input, 
+.overtime-modal__body textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.overtime-modal__body textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.overtime-modal__body .error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+/* Modal Footer */
+.overtime-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.overtime-modal__footer button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+.overtime-modal__footer button.primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+}
+
+/* --- Filter / Column Menu Dropdown --- */
+.overtime-column-menu {
+  position: absolute;
+  top: calc(100% + 8px); /* Positions it just below the button */
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 180px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  animation: slideDown 0.2s ease-out;
+}
+
+.overtime-column-menu__header {
+  padding: 4px 16px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6c757d;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.overtime-column-menu__label {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.overtime-column-menu__label:hover {
+  background-color: #f8f9fa;
+}
+
+/* Make disabled labels (like Checkbox) look greyed out */
+.overtime-column-menu__label:has(input:disabled) {
+  color: #adb5bd;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.overtime-column-menu__checkbox {
+  margin-right: 12px;
+  cursor: inherit;
+  width: 16px;
+  height: 16px;
+  accent-color: #007bff; /* Matches your save button color */
+}
+
+/* Optional: Smooth opening animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
