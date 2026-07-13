@@ -221,7 +221,11 @@ const Sidebar = () => {
             {billingOpen && !isCollapsed && (
               <div className="sidebarSubMenu">
                 <NavLink to="/client/invoices" className="sidebarSubLink">Invoices</NavLink>
-                <NavLink to="/client/payments" className="sidebarSubLink"><FaMoneyCheckAlt /> Payments</NavLink>
+                <NavLink to="/client/invoice-details" className="sidebarSubLink"> Invoice Details</NavLink>
+                <NavLink to="/client/payments" className="sidebarSubLink"> Payments</NavLink>
+                <NavLink to="/client/payment-history" className="sidebarSubLink"> Payment History</NavLink>
+                <NavLink to="/client/payment-method" className="sidebarSubLink"> Payment Method</NavLink>
+          
               </div>
             )}
           </div>

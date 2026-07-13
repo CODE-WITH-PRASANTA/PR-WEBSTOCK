@@ -18,6 +18,9 @@ import Contracts from "./Component/Contracts/Contracts";
 import Ndas from "./Component/Ndas/Ndas";
 import ProjectDocuments from "./Component/ProjectDocuments/ProjectDocuments";
 import Chat from "./Component/Chat/Chat";
+import CreateTicket from "./Component/CreateTicket/CreateTicket";
+import History from "./Component/History/History";
+
 
 
 
@@ -31,10 +34,10 @@ const App = () => {
         <Route path="/" element={<MainLayout />}>
         <Route path= "/client/invoice-details" element={<InvoiceDetails />} />
         <Route path= "/client/invoices" element={<Invoices />} />
-        <Route path= "/client/payment-methods" element={<PaymentMethod />} />
+        <Route path= "/client/payment-method" element={<PaymentMethod />} />
         <Route path= "/client/payment-history" element={<PaymentHistory />} />
         <Route path= "/client/payments" element={<Payments />} />
-
+        
 
 
 
@@ -54,6 +57,9 @@ const App = () => {
         <Route path="/client/ndas" element={<Ndas/>} />
         <Route path="/client/project-documents" element={<ProjectDocuments/>} />
         <Route path="/client/chat" element={<Chat/>} />
+        <Route path="/client/create-ticket" element={<CreateTicket/>} />
+        <Route path="/client/ticket-history" element={<History/>} />
+        
         
         </Route>
       </Routes>
