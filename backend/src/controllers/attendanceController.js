@@ -3,9 +3,9 @@ const Shift = require('../models/Shift');
 const { getDistanceInMeters } = require('../utils/geoUtils');
 
 // Configuration Constants
-const SCHOOL_LAT = 20.29620468274236; 
-const SCHOOL_LNG = 85.81203536565789;
-const GEOFENCE_RADIUS_METERS = 1000; 
+const SCHOOL_LAT = 20.37694322800968; 
+const SCHOOL_LNG = 85.88834069863758;
+const GEOFENCE_RADIUS_METERS = 400; 
 const GRACE_PERIOD_MS = 2 * 60 * 1000; 
 const MIN_REQUIRED_WORKING_MINUTES = (6 * 60) + 5; // 6.05 hours = 365 minutes
 
