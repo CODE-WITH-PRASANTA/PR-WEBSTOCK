@@ -68,7 +68,7 @@ const LoginPage = () => {
           timerProgressBar: true,
         });
 
-        navigate("/employee/dashboard");
+        navigate("/employee/today-attendance", { replace: true });
       } else {
         // Fallback catch if server returns 200 OK but success is explicitly false
         const failMessage = response.data?.message || "Invalid credentials provided.";

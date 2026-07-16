@@ -46,7 +46,10 @@ const App = () => (
       {/* 🔐 WRAPPED PROTECTED ROUTES BLOCK */}
       <Route element={<ProtectedRoute />}>
         <Route path="/employee" element={<MainLayout />}>
-          <Route index element={<TeacherAttenanced />} />
+          <Route
+              index
+              element={<Navigate to="today-attendance" replace />}
+            />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="team-members" element={<TeamMembers />} />
           <Route path="my-tasks" element={<TaskList />} />
