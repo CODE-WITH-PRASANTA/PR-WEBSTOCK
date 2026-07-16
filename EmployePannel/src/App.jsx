@@ -40,13 +40,13 @@ const App = () => (
   <BrowserRouter>
     <Routes>
       {/* Redirect Root */}
-      <Route path="/" element={<Navigate to="/employee/dashboard" replace />} />
+      <Route path="/" element={<Navigate to="/employee/today-attendance" replace />} />
       <Route path="/login" element={<LoginPage />} />
 
       {/* 🔐 WRAPPED PROTECTED ROUTES BLOCK */}
       <Route element={<ProtectedRoute />}>
         <Route path="/employee" element={<MainLayout />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<TeacherAttenanced />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="team-members" element={<TeamMembers />} />
           <Route path="my-tasks" element={<TaskList />} />
