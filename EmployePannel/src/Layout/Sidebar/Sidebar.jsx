@@ -170,7 +170,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         <div className="menu">
           
           {/* Main Dashboard Link */}
-          <NavLink
+          {/* <NavLink
             to="/employee/dashboard"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -178,7 +178,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiGrid />
               {!collapsed && <span>Dashboard</span>}
             </div>
-          </NavLink>
+          </NavLink> */}
 
           {/* ATTENDANCE DROPDOWN CONTAINER */}
           <div
@@ -221,7 +221,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           )}
 
           {/* MY TEAM DROPDOWN CONTAINER */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.team ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("team")}
           >
@@ -238,10 +238,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/team-leaves" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Team Leaves</NavLink>
               <NavLink to="/employee/team-performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Team Performance</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* MY PROJECTS ROW */}
-          <NavLink
+          {/* <NavLink
             to="/employee/my-projects"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -249,10 +249,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiBriefcase />
               {!collapsed && <span>My Projects</span>}
             </div>
-          </NavLink>
+          </NavLink> */}
 
           {/* MY TASKS LINK */}
-          <NavLink
+          {/* <NavLink
             to="/employee/my-tasks"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -260,10 +260,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiCheckSquare />
               {!collapsed && <span>My Tasks</span>}
             </div>
-          </NavLink>
+          </NavLink> */}
 
           {/* CHAT LINK */}
-          <NavLink
+          {/* <NavLink
             to="/employee/chat"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -271,10 +271,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiMessageSquare />
               {!collapsed && <span>Chat</span>}
             </div>
-          </NavLink>
+          </NavLink> */}
 
           {/* PAYROLL DROPDOWN CONTAINER */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.payroll ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("payroll")}
           >
@@ -289,10 +289,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/payslips" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Payslips</NavLink>
               <NavLink to="/employee/reimbursements" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Reimbursements</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* DOCUMENTS DROPDOWN CONTAINER */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.documents ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("documents")}
           >
@@ -308,10 +308,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/upload-documents" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Upload Documents</NavLink>
               <NavLink to="/employee/company-policies" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Company Policies</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* SETTINGS DROPDOWN CONTAINER */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.settings ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("settings")}
           >
@@ -326,10 +326,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/profile-settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Profile Settings</NavLink>
               <NavLink to="/employee/password-security" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Password & Security</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* EMAIL DROPDOWN CONTAINER */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.email ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("email")}
           >
@@ -345,12 +345,12 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/email-compose" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Compose</NavLink>
               <NavLink to="/employee/email-read" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Read Email</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* APPLICATION SUB-CATEGORY */}
           {!collapsed && <div className="menuSectionHeader">APPS</div>}
           
-          <NavLink
+          {/* <NavLink
             to="/employee/calendar"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -369,7 +369,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiUserPlus />
               {!collapsed && <span>Contacts</span>}
             </div>
-          </NavLink>
+          </NavLink> */}
 
         </div>
 

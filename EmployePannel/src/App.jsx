@@ -19,7 +19,7 @@ import PasswordSecurity from "./Components/PasswordSecurity/PasswordSecurity";
 import TeamPerformance from "./Pages/TeamPerformance/TeamPerformance";
 import Calendar from "./Components/Calender/Calender";
 import Payslips from "./Pages/Payslips/Payslips";
-import Chats from "./Pages/chats/chats";
+import Chats from "./Pages/Chats/Chats";
 import Myproject from "./Pages/Myproject/Myproject";
 import Contacts from "./Components/Contacts/Contacts";
 import TeacherAttenanced from "./Components/TeacherAttenanced/TeacherAttenanced";
