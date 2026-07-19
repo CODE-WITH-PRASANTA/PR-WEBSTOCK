@@ -1,145 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './AttendanceAtten.css';
+import API from "../../api/axios";
 
 const AttendanceAtten = () => {
-  // Mock data representing the structure of the team attendance sheet
-  const [selectedYear, setSelectedYear] = useState('2025');
-  const [selectedMonth, setSelectedMonth] = useState('January');
+  const [selectedYear, setSelectedYear] = useState('2026');
+  const [selectedMonth, setSelectedMonth] = useState('July');
+  const [attendanceData, setAttendanceData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const teamData = [
-    {
-      id: 1,
-      name: 'John Doe',
-      avatar: 'https://i.pravatar.cc/150?img=33',
-      attendance: ['absent', 'absent', 'absent', 'present', 'present', 'halfday', 'present', 'absent', 'holiday', 'halfday', 'holiday', 'present', 'absent', 'present', 'present', 'present', 'absent', 'present', 'absent', 'present', 'halfday', 'present', 'present', 'present', 'absent', 'halfday', 'present', 'present', 'absent', 'holiday']
-    },
-    {
-      id: 2,
-      name: 'Sarah Smith',
-      avatar: 'https://i.pravatar.cc/150?img=47',
-      attendance: ['present', 'present', 'halfday', 'present', 'present', 'present', 'halfday', 'present', 'halfday', 'present', 'present', 'present', 'present', 'present', 'absent', 'present', 'halfday', 'holiday', 'absent', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'halfday', 'present', 'present', 'present']
-    },
-    {
-      id: 3,
-      name: 'Mike Ross',
-      avatar: 'https://i.pravatar.cc/150?img=12',
-      attendance: ['present', 'halfday', 'holiday', 'present', 'holiday', 'holiday', 'present', 'present', 'present', 'halfday', 'present', 'holiday', 'present', 'absent', 'present', 'holiday', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'present', 'holiday', 'halfday', 'present']
-    },
-    {
-      id: 4,
-      name: 'Emily Blunt',
-      avatar: 'https://i.pravatar.cc/150?img=49',
-      attendance: ['present', 'present', 'present', 'present', 'present', 'present', 'absent', 'holiday', 'holiday', 'absent', 'holiday', 'present', 'present', 'present', 'present', 'halfday', 'present', 'present', 'absent', 'present', 'present', 'present', 'present', 'present', 'halfday', 'present', 'absent', 'present', 'present', 'present']
-    },
-    {
-      id: 5,
-      name: 'Deepak Rao',
-      avatar: 'https://i.pravatar.cc/150?img=11',
-      attendance: ['present', 'present', 'present', 'present', 'present', 'present', 'holiday', 'absent', 'present', 'present', 'present', 'absent', 'present', 'halfday', 'present', 'present', 'present', 'present', 'halfday', 'holiday', 'present', 'present', 'holiday', 'halfday', 'present', 'holiday', 'present', 'present', 'halfday', 'present']
-    }
-  ];
-
-  // Generate day columns from 1 to 30
-  const days = Array.from({ length: 30 }, (_, i) => i + 1);
-
-  const renderStatusIcon = (status) => {
-    switch (status) {
-      case 'present':
-        return <span className="status-icon status-present">✔</span>;
-      case 'absent':
-        return <span className="status-icon status-absent">✖</span>;
-      case 'halfday':
-        return <span className="status-icon attendance-status-halfday"></span>;
-      case 'holiday':
-        return <span className="status-icon status-holiday">★</span>;
-      default:
-        return null;
-    }
+  const monthMap = {
+    'January': '01', 'February': '02', 'March': '03', 'April': '04',
+    'May': '05', 'June': '06', 'July': '07', 'August': '08',
+    'September': '09', 'October': '10', 'November': '11', 'December': '12'
   };
 
+  const fetchAttendance = useCallback(async () => {
+    setLoading(true);
+    try {
+      const monthNum = monthMap[selectedMonth];
+      const response = await API.get(`/attendance/admin/monthly-report?year=${selectedYear}&month=${monthNum}`);
+      setAttendanceData(response.data.data || []);
+    } catch (error) {
+      console.error("Error fetching attendance:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedYear, selectedMonth]);
+
+  useEffect(() => { fetchAttendance(); }, [fetchAttendance]);
+
+  const daysInMonth = new Date(selectedYear, monthMap[selectedMonth], 0).getDate();
+  const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+
+const renderStatus = (status) => {
+    // The keys MUST match the strings returned by your backend API
+    const statusMap = {
+      'present': { char: '✔', class: 'present' },
+      'absent': { char: '✖', class: 'absent' },
+      'halfday': { char: '½', class: 'half' }, // Changed from 'half day' to 'halfday'
+      'late': { char: 'L', class: 'late' }
+    };
+    
+    // Normalize string
+    const normalizedStatus = status ? status.toString().toLowerCase().trim() : '';
+    const s = statusMap[normalizedStatus] || { char: '-', class: 'empty' };
+    
+    return <div className={`status-pill ${s.class}`}>{s.char}</div>;
+};
   return (
-    <div className="attendance-container">
-      {/* Breadcrumb Header */}
-      <div className="attendance-header">
-        <h1 className="main-title">Team Attendance</h1>
-        <div className="breadcrumb">
-          <span className="home-icon">🏠</span> &gt; My Team &gt; <span className="active-breadcrumb">Attendance</span>
+    <div className="attendance-dashboard">
+      <header className="dashboard-header">
+        <h1>Team Attendance</h1>
+        <div className="controls">
+          <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+            <option value="2026">2026</option>
+          </select>
+          <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
+            {Object.keys(monthMap).map(m => <option key={m} value={m}>{m}</option>)}
+          </select>
+          <button className="btn-primary" onClick={fetchAttendance} disabled={loading}>
+            {loading ? 'Refreshing...' : 'Apply Filters'}
+          </button>
         </div>
-      </div>
+      </header>
 
-      {/* Main Card */}
-      <div className="attendance-card">
-        <h2 className="card-title">Team Attendance Sheet</h2>
-        
-        {/* Filter Controls Wrapper */}
-        <div className="filters-wrapper">
-          <div className="filter-group">
-            <label className="filter-label label-year">Year</label>
-            <select 
-              className="filter-select" 
-              value={selectedYear} 
-              onChange={(e) => setSelectedYear(e.target.value)}
-            >
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-            </select>
-          </div>
-
-          <div className="filter-group group-month">
-            <label className="filter-label label-month">Month</label>
-            <select 
-              className="filter-select select-month" 
-              value={selectedMonth} 
-              onChange={(e) => setSelectedMonth(e.target.value)}
-            >
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="August">August</option>
-              <option value="September">September</option>
-              <option value="October">October</option>
-              <option value="November">November</option>
-              <option value="December">December</option>
-            </select>
-          </div>
-
-          <button className="search-btn">Search</button>
-        </div>
-
-        {/* Responsive Table View Wrapper */}
-        <div className="table-responsive-wrapper">
-          <table className="attendance-table">
-            <thead>
-              <tr>
-                <th className="header-member">Member Name</th>
-                {days.map(day => (
-                  <th key={day} className="day-header">{day}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {teamData.map((member) => (
-                <tr key={member.id} className="table-row">
-                  <td className="member-cell">
-                    <img src={member.avatar} alt={member.name} className="member-avatar" />
-                    <span className="member-name">{member.name}</span>
-                  </td>
-                  {member.attendance.map((status, index) => (
-                    <td key={index} className="status-cell">
-                      {renderStatusIcon(status)}
-                    </td>
+      <section className="attendance-grid-container">
+        {attendanceData.length > 0 ? (
+          <div className="grid-table">
+            <div className="grid-header">
+              <div className="sticky-col header-cell">Employee</div>
+              {daysArray.map(d => <div key={d} className="date-cell">{d}</div>)}
+            </div>
+            
+            <div className="grid-body">
+              {attendanceData.map((member) => (
+                <div key={member.employeeId} className="grid-row">
+                  <div className="sticky-col emp-name">{member.name}</div>
+                  {member.days.map((d, i) => (
+                    <div key={i} className="status-cell">{renderStatus(d.status)}</div>
                   ))}
-                </tr>
+                </div>
               ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            </div>
+          </div>
+        ) : (
+          <div className="empty-state">No attendance records found for this period.</div>
+        )}
+      </section>
     </div>
   );
 };

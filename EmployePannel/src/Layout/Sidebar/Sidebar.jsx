@@ -220,8 +220,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             </div>
           )}
 
-          {/* MY TEAM DROPDOWN CONTAINER */}
-          {/* <div
+          <div
             className={`menuItem ${!collapsed && dropdowns.team ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("team")}
           >
@@ -236,9 +235,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/employee/team-members" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Team Members</NavLink>
               <NavLink to="/employee/team-attendance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Team Attendance</NavLink>
               <NavLink to="/employee/team-leaves" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Team Leaves</NavLink>
-              <NavLink to="/employee/team-performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Team Performance</NavLink>
+              {/* <NavLink to="/employee/team-performance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Team Performance</NavLink> */}
             </div>
-          )} */}
+          )}
 
           {/* MY PROJECTS ROW */}
           {/* <NavLink

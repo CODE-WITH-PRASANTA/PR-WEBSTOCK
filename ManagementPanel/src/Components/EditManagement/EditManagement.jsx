@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // or import API from "../../api/axios" if you have a custom instance
 import "./EditManagement.css";
-
-const API_BASE_URL = "http://localhost:5000/api/addemployees"; // Adjust port based on your server settings
+import API from "../../api/axios"; // Uses your pre-configured axios instance
 
 const EditManagement = () => {
   const [employeeList, setEmployeeList] = useState([]);
@@ -25,14 +23,14 @@ const EditManagement = () => {
     salary: ""
   });
 
-  // 1. Fetch initial master list for select dropdown on mount
   useEffect(() => {
     fetchInitialEmployeeDropdown();
   }, []);
 
   const fetchInitialEmployeeDropdown = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/employees`);
+      // API call uses the baseURL from your axios instance
+      const response = await API.get("/addemployees/employees");
       if (response.data && response.data.data) {
         setEmployeeList(response.data.data);
       }
@@ -42,7 +40,6 @@ const EditManagement = () => {
     }
   };
 
-  // 2. Fetch profile payload details when a dropdown item is picked
   useEffect(() => {
     const loadEmployeeDetails = async () => {
       if (!selectedEmployee) {
@@ -50,16 +47,13 @@ const EditManagement = () => {
         return;
       }
       try {
-        const response = await axios.get(`${API_BASE_URL}/employees/${selectedEmployee}`);
+        const response = await API.get(`/addemployees/employees/${selectedEmployee}`);
         if (response.data && response.data.data) {
           const emp = response.data.data;
 
-          // Split full name safely back into separate UI fields
           const nameParts = emp.name ? emp.name.trim().split(" ") : ["", ""];
           const fName = nameParts[0] || "";
           const lName = nameParts.slice(1).join(" ") || "";
-
-          // Extract standard ISO date string format (YYYY-MM-DD) for HTML5 input field compatibility
           const formattedDate = emp.birthDate ? emp.birthDate.split("T")[0] : "";
 
           setFormData({
@@ -67,7 +61,7 @@ const EditManagement = () => {
             lastName: lName,
             gender: emp.gender || "Male",
             mobile: emp.mobile || "",
-            password: "", // Keep blank for security until update is explicitly required
+            password: "",
             rePassword: "",
             designation: emp.role || "",
             department: emp.department || "Development",
@@ -116,7 +110,6 @@ const EditManagement = () => {
     });
   };
 
-  // 3. Construct and process Multipart Submission Form matching your Backend Schemas
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -132,43 +125,29 @@ const EditManagement = () => {
 
     try {
       const submissionForm = new FormData();
-
-      // Merge text configurations into matching backend targets
       const fullName = `${formData.firstName.trim()} ${formData.lastName.trim()}`.trim();
+      
       submissionForm.append("name", fullName);
       submissionForm.append("gender", formData.gender);
       submissionForm.append("mobile", formData.mobile);
-      submissionForm.append("role", formData.designation); // maps to 'role' on Schema
+      submissionForm.append("role", formData.designation);
       submissionForm.append("department", formData.department);
       submissionForm.append("address", formData.address);
       submissionForm.append("email", formData.email);
       submissionForm.append("birthDate", formData.dob);
-      submissionForm.append("degree", formData.education); // maps to 'degree' on Schema
+      submissionForm.append("degree", formData.education);
       submissionForm.append("salary", formData.salary);
 
-      // Append optional properties only when explicitly modified
-      if (formData.password) {
-        submissionForm.append("password", formData.password);
-      }
-      if (selectedFile) {
-        // Matches upload.single("uploadedFile") parameter string inside router declaration
-        submissionForm.append("uploadedFile", selectedFile);
-      }
+      if (formData.password) submissionForm.append("password", formData.password);
+      if (selectedFile) submissionForm.append("uploadedFile", selectedFile);
 
-      const response = await axios.put(
-        `${API_BASE_URL}/employees/${selectedEmployee}`, 
-        submissionForm, 
-        {
-          headers: {
-            "Content-Type": "multipart/form-data"
-          }
-        }
-      );
+      // Using the API instance
+      const response = await API.put(`/addemployees/employees/${selectedEmployee}`, submissionForm, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
 
       if (response.data.success) {
         alert("Employee details updated successfully!");
-        
-        // Refresh master select layout menu list dynamically to replicate state change
         await fetchInitialEmployeeDropdown();
       }
     } catch (error) {
@@ -176,7 +155,7 @@ const EditManagement = () => {
       alert(error.response?.data?.message || "An error occurred while updating the profile.");
     }
   };
-
+  
   return (
     <>
       <div className="management-search-filter-section">

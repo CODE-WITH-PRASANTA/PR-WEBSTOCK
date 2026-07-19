@@ -39,4 +39,4 @@ totalWorkingMinutes: { type: Number, default: 0 },
 
 
 
-module.exports = mongoose.model('Attendance', AttendanceSchema);
+module.exports = mongoose.model('Attendance', AttendanceSchema); 

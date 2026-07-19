@@ -264,7 +264,6 @@ exports.punchOut = async (req, res) => {
 
 
 // Add this to your attendanceController.js file
-
 exports.getMonthlyAttendance = async (req, res) => {
   try {
     const { year, month } = req.query; // e.g., year=2026, month=01 (1-indexed base)
