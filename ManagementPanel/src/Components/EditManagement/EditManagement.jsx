@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./EditManagement.css";
-import API from "../../api/axios"; // Uses your pre-configured axios instance
+import API from "../../Api/axios"; 
 
 const EditManagement = () => {
   const [employeeList, setEmployeeList] = useState([]);

@@ -27,6 +27,10 @@ const leaveBalanceRoutes = require("./src/routes/leaveBalanceRoutes");
 const attendanceRoutes = require("./src/routes/attendanceRoutes");
 const shiftRoutes = require("./src/routes/shiftRoutes");
 const overtimeRoutes = require('./src/routes/overtimeRoutes');
+const addProjectRoutes = require('./src/routes/addprojectroutes');
+const estimateRoutes = require('./src/routes/estimateRoutes');
+const taskRoutes = require('./src/routes/taskRoutes');
+const projectFileRoutes = require('./src/routes/projectFileRoutes');
 
 
 
@@ -132,6 +136,10 @@ app.use("/api/leave-balances", leaveBalanceRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use("/api/shifts", shiftRoutes);
 app.use('/api/overtime', overtimeRoutes);
+app.use('/api/addprojects', addProjectRoutes);
+app.use("/api/estimates", estimateRoutes);
+app.use("/api/tasks", taskRoutes);
+app.use("/api/project-files", projectFileRoutes);
 
 
 

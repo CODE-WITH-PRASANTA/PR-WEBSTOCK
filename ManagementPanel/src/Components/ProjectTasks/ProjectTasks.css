@@ -1,662 +1,1543 @@
 /* ==========================================================================
-   Project Variables & Structural Foundation Base Tokens
+   ProjectTask Workspace — Refined SaaS Theme (Modern & Professional)
    ========================================================================== */
-:root {
-  --pt-canvas-bg: #f5f6fa;
-  --pt-surface-card: #ffffff;
-  --pt-primary-indigo: #6036eb;
-  --pt-primary-purple: #9c27b0;
-  --pt-border-color: #e0e0e0;
-  --pt-text-main: #333333;
-  --pt-text-secondary: #666666;
-  
-  /* Badges color metrics mapping exactly to screenshots */
-  --pt-status-completed-bg: #e2f5ec;
-  --pt-status-completed-txt: #1bc5bd;
-  --pt-status-running-bg: #eee5ff;
-  --pt-status-running-txt: #8950fc;
-  --pt-status-pending-bg: #fff4de;
-  --pt-status-pending-txt: #ffa800;
 
-  --pt-priority-high-txt: #f64e60;
-  --pt-priority-medium-txt: #ffa800;
-  --pt-priority-low-txt: #1bc5bd;
-}
-
-.pt-workspace-shell {
-  background-color: var(--pt-canvas-bg);
+/* Layout & Container Reset */
+.ProjectTask-workspace-shell {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 32px 24px;
+  background-color: #f8fafc;
+  color: #0f172a;
   min-height: 100vh;
-  padding: 24px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: var(--pt-text-main);
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-
-.pt-editor-label {
-  display: block;
-  font-size: 15px;
-  color: var(--pt-text-secondary);
-  margin-bottom: 8px;
-}
-
-.pt-editor-box {
-  border: 1px solid var(--pt-border-color);
-  border-radius: 4px;
+.ProjectTask-dashboard-surface {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 
+              0 10px 15px -3px rgba(0, 0, 0, 0.05),
+              0 0 0 1px rgba(226, 232, 240, 0.8);
   overflow: hidden;
+  transition: box-shadow 0.2s ease;
 }
 
-.pt-editor-toolbar {
-  background-color: #fafafa;
-  border-bottom: 1px solid var(--pt-border-color);
-  padding: 6px 12px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.pt-tb-btn {
-  background: transparent;
-  border: none;
-  min-width: 28px;
-  height: 28px;
-  cursor: pointer;
-  font-size: 13px;
-  color: #555;
-  border-radius: 3px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-}
-
-.pt-tb-btn:hover { background-color: #eceff1; }
-.pt-tb-btn.bold-txt { font-weight: 800; font-size: 14px; }
-.pt-tb-btn.italic-txt { font-style: italic; }
-.pt-tb-btn.underline-txt { text-decoration: underline; }
-.pt-tb-btn.strike-txt { text-decoration: line-through; }
-
-.pt-tb-divider {
-  width: 1px;
-  height: 18px;
-  background-color: var(--pt-border-color);
-  margin: 0 4px;
-}
-
-.pt-tb-dropdown-mock {
-  font-size: 13px;
-  color: #555;
-  cursor: pointer;
-  padding: 2px 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.pt-dropdown-arrow { font-size: 8px; color: #999; }
-
-.pt-editor-textarea {
-  min-height: 48px;
-  padding: 12px;
-  outline: none;
-  font-size: 14px;
-  color: #444;
-  background-color: #fff;
-}
-
-.pt-editor-textarea:empty:before {
-  content: attr(data-placeholder);
-  color: #999;
-}
-
-/* ==========================================================================
-   Image 2 & 3: Main Layout Board & Dynamic Header Suite Action Row
-   ========================================================================== */
-.pt-dashboard-surface {
-  background: var(--pt-surface-card);
-  border-radius: 6px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.06);
-}
-
-.pt-action-bar {
-  background-color: #e8eaf6;
-  padding: 12px 16px;
+/* Action Bar */
+.ProjectTask-action-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  padding: 20px 28px;
+  border-bottom: 1px solid #f1f5f9;
+  flex-wrap: wrap;
   gap: 16px;
+  background-color: #ffffff;
 }
 
-.pt-left-nav-group {
+.ProjectTask-left-nav-group {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex: 1;
+  gap: 20px;
 }
 
-.pt-board-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #2c3e50;
-  white-space: nowrap;
+.ProjectTask-board-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
 }
 
-.pt-search-input-wrapper {
+.ProjectTask-search-wrapper {
   position: relative;
-  max-width: 240px;
-  width: 100%;
-}
-
-.pt-search-icon {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px;
-  color: #888;
-}
-
-.pt-search-input-wrapper input {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 6px 12px 6px 32px;
-  font-size: 13px;
-  outline: none;
-  box-sizing: border-box;
-  transition: border 0.2s;
-}
-
-.pt-search-input-wrapper input:focus {
-  border-color: var(--pt-primary-indigo);
-}
-
-.pt-right-nav-group {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
-.pt-icon-action-btn {
-  background: transparent;
-  border: none;
+.ProjectTask-search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.ProjectTask-search-input {
+  padding: 9px 14px 9px 36px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  background-color: #f8fafc;
+  outline: none;
+  width: 260px;
+  transition: all 0.2s ease-in-out;
+}
+
+.ProjectTask-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.ProjectTask-search-input:focus {
+  background-color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.ProjectTask-right-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Button Variants */
+.ProjectTask-btn {
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  width: 32px;
-  height: 32px;
+  border: 1px solid transparent;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 14px;
-  color: #5c6bc0;
-  transition: background-color 0.2s;
+  gap: 8px;
+  user-select: none;
 }
 
-.pt-icon-action-btn:hover { background-color: rgba(0,0,0,0.05); }
-
-.pt-icon-action-btn.success-variant {
-  color: #2e7d32;
-  font-weight: bold;
+.ProjectTask-btn:active {
+  transform: scale(0.98);
 }
 
-/* ==========================================================================
-   Image 4: Smooth View Layout Show/Hide Columns Component Dropdown
-   ========================================================================== */
-.pt-dropdown-anchor {
+.ProjectTask-btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.ProjectTask-btn-primary:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.ProjectTask-btn-outline {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ProjectTask-btn-outline:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.ProjectTask-btn-icon {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #475569;
+  padding: 9px 12px;
+  border-radius: 8px;
+}
+
+.ProjectTask-btn-icon:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* Dropdown Styling */
+.ProjectTask-dropdown-anchor {
   position: relative;
 }
 
-.pt-icon-action-btn.pt-filter-active {
-  background-color: rgba(0,0,0,0.08);
-}
-
-.pt-column-toggle-dropdown {
+.ProjectTask-column-toggle-dropdown {
   position: absolute;
   right: 0;
-  top: 38px;
+  top: 100%;
+  margin-top: 10px;
+  width: 220px;
   background: #ffffff;
-  border-radius: 6px;
-  min-width: 180px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
-  border: 1px solid var(--pt-border-color);
-  z-index: 100;
-  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+  padding: 14px;
+  animation: fadeInDown 0.15s ease-out;
 }
 
-.pt-dropdown-header {
-  padding: 10px 14px;
-  font-weight: 600;
-  font-size: 13px;
-  background: #f7f9fa;
-  border-bottom: 1px solid #f1f1f1;
-  text-align: center;
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.pt-dropdown-body-scroll {
-  max-height: 240px;
-  overflow-y: auto;
-  padding: 6px 0;
+.ProjectTask-dropdown-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
 }
 
-.pt-dropdown-checkbox-row {
+.ProjectTask-dropdown-checkbox-row {
   display: flex;
   align-items: center;
-  padding: 8px 14px;
-  cursor: pointer;
+  gap: 10px;
   font-size: 13px;
-  transition: background-color 0.15s;
+  font-weight: 500;
+  color: #334155;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
 }
 
-.pt-dropdown-checkbox-row:hover { background-color: #f4f5f7; }
-
-.pt-dropdown-checkbox-row input[type="checkbox"] {
-  margin-right: 10px;
-  accent-color: #3f51b5;
-  width: 15px;
-  height: 15px;
+.ProjectTask-dropdown-checkbox-row:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
 }
 
-/* ==========================================================================
-   Responsive Core Data Grid Table System Layout View
-   ========================================================================== */
-.pt-table-responsive-scroll {
-  width: 100%;
+/* Data Table Styling */
+.ProjectTask-table-container {
   overflow-x: auto;
 }
 
-.pt-data-grid {
+.ProjectTask-data-grid {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   text-align: left;
-  font-size: 13px;
-  min-width: 900px;
+  font-size: 14px;
 }
 
-.pt-data-grid th {
-  background-color: #ffffff;
-  color: #444444;
+.ProjectTask-data-grid th {
+  background-color: #f8fafc;
+  padding: 14px 20px;
   font-weight: 600;
-  padding: 14px 16px;
-  border-bottom: 2px solid #efefef;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
   white-space: nowrap;
 }
 
-.pt-data-grid td {
-  padding: 12px 16px;
-  border-bottom: 1px solid #f1f1f1;
-  color: #444;
+.ProjectTask-data-grid td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
   vertical-align: middle;
+  transition: background-color 0.15s ease;
 }
 
-.pt-data-grid tbody tr:hover { background-color: #fcfcfd; }
-.pt-data-grid tbody tr.row-selected { background-color: #f4f6fe; }
+.ProjectTask-data-grid tbody tr:hover td {
+  background-color: #f8fafc;
+}
 
-.font-weight-medium { font-weight: 500; color: #111 !important; }
+.ProjectTask-row-selected td {
+  background-color: #eff6ff !important;
+}
 
-/* Status and Priority Badge Decorators mapping */
-.pt-priority-lbl {
+.ProjectTask-font-semibold {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.ProjectTask-project-tag {
+  display: inline-block;
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+}
+
+.ProjectTask-member-chips-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ProjectTask-member-chip {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #dbeafe;
+}
+
+/* Status & Priority Indicators */
+.ProjectTask-priority-pill {
   display: inline-flex;
   align-items: center;
-  font-weight: 500;
-  gap: 4px;
-}
-.priority-high { color: var(--pt-priority-high-txt); }
-.priority-medium { color: var(--pt-priority-medium-txt); }
-.priority-low { color: var(--pt-priority-low-txt); }
-
-.pt-arrow-icon { font-size: 9px; }
-
-.pt-status-pill {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 4px;
+  gap: 6px;
+  font-size: 12px;
   font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.3px;
-  text-align: center;
+  padding: 3px 10px;
+  border-radius: 6px;
 }
-.status-completed { background-color: var(--pt-status-completed-bg); color: var(--pt-status-completed-txt); }
-.status-running { background-color: var(--pt-status-running-bg); color: var(--pt-status-running-txt); }
-.status-pending { background-color: var(--pt-status-pending-bg); color: var(--pt-status-pending-txt); }
 
-.pt-date-cell-view {
-  color: #555;
+.ProjectTask-priority-high { color: #dc2626; background: #fef2f2; border: 1px solid #fee2e2; }
+.ProjectTask-priority-medium { color: #d97706; background: #fffbeb; border: 1px solid #fef3c7; }
+.ProjectTask-priority-low { color: #16a34a; background: #f0fdf4; border: 1px solid #dcfce7; }
+
+.ProjectTask-status-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.ProjectTask-status-completed { color: #15803d; background: #dcfce7; }
+.ProjectTask-status-running { color: #1d4ed8; background: #dbeafe; }
+.ProjectTask-status-pending { color: #b45309; background: #fef3c7; }
+
+/* Progress Bar */
+.ProjectTask-progress-bar-wrapper {
   display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ProjectTask-progress-bar-track {
+  flex: 1;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 90px;
+}
+
+.ProjectTask-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.ProjectTask-progress-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  min-width: 32px;
+}
+
+.ProjectTask-actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.ProjectTask-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.ProjectTask-action-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Pagination Footer */
+.ProjectTask-pagination-footer {
+  padding: 16px 28px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  background-color: #ffffff;
+}
+
+.ProjectTask-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.ProjectTask-pagination-select {
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #334155;
+  outline: none;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.ProjectTask-pagination-select:focus {
+  border-color: #2563eb;
+}
+
+.ProjectTask-pag-nav-btn {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ProjectTask-pag-nav-btn:hover:not(:disabled) {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.ProjectTask-pag-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Modal Window Setup */
+.ProjectTask-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ProjectTask-modal-window {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 640px;
+  max-width: 90vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  animation: modalScale 0.15s ease-out;
+}
+
+@keyframes modalScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ProjectTask-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 16px;
+}
+
+.ProjectTask-modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.ProjectTask-modal-close {
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.ProjectTask-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Form Layout Grid */
+.ProjectTask-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.ProjectTask-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ProjectTask-form-group.full-width {
+  grid-column: span 2;
+}
+
+.ProjectTask-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.ProjectTask-form-input,
+.ProjectTask-form-select,
+.ProjectTask-form-textarea {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+  background-color: #ffffff;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.ProjectTask-form-input:focus,
+.ProjectTask-form-select:focus,
+.ProjectTask-form-textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.ProjectTask-form-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Multi-Select Member Box */
+.ProjectTask-team-selector-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8fafc;
+}
+
+.ProjectTask-member-tag-btn {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ProjectTask-member-tag-btn:hover {
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.ProjectTask-member-tag-btn.selected {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+/* Range Slider */
+.ProjectTask-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProjectTask-slider-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.ProjectTask-form-range {
+  accent-color: #2563eb;
+  cursor: pointer;
+  height: 6px;
+  margin-top: 6px;
+}
+
+/* Upload Dropzone & Previews */
+.ProjectTask-file-upload-dropzone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 24px 16px;
+  text-align: center;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.ProjectTask-file-upload-dropzone:hover {
+  border-color: #2563eb;
+  background-color: #f0f6ff;
+}
+
+.ProjectTask-hidden-file-input {
+  display: none;
+}
+
+.ProjectTask-upload-trigger-label {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 6px;
 }
 
-/* Custom Inline Progress Module Architecture */
-.pt-slider-progress-module {
-  position: relative;
-  width: 120px;
-  padding: 8px 0;
+.ProjectTask-attachment-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
 }
 
-.pt-slider-bar-track {
+.ProjectTask-attachment-card {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ProjectTask-attachment-img {
   width: 100%;
-  height: 4px;
-  background: #e4e7eb;
-  border-radius: 2px;
-  position: relative;
-}
-
-.pt-slider-bar-fill {
   height: 100%;
-  background: #3f51b5;
-  border-radius: 2px;
-  position: relative;
+  object-fit: cover;
 }
 
-/* Tooltip rendering exact values visible on progress segment maps */
-.pt-slider-value-tooltip {
+.ProjectTask-file-icon-placeholder {
+  font-size: 22px;
+}
+
+.ProjectTask-attachment-name {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.ProjectTask-remove-attachment-btn {
   position: absolute;
-  right: -10px;
-  top: -24px;
-  background: #222222;
+  top: 4px;
+  right: 4px;
+  background: rgba(15, 23, 42, 0.7);
   color: #ffffff;
-  font-size: 9px;
-  font-weight: bold;
-  padding: 2px 4px;
-  border-radius: 3px;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-
-.pt-slider-progress-module:hover .pt-slider-value-tooltip {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.pt-actions-flex-cell {
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  transition: background-color 0.15s ease;
 }
 
-.pt-cell-action-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 2px;
-  transition: transform 0.1s;
-}
-.pt-cell-action-btn:hover { transform: scale(1.15); }
-
-.pt-table-empty-fallback {
-  text-align: center;
-  padding: 32px !important;
-  color: var(--pt-text-secondary);
-  font-style: italic;
+.ProjectTask-remove-attachment-btn:hover {
+  background: #dc2626;
 }
 
-/* ==========================================================================
-   Pagination Component Grid Layout Block Setup
-   ========================================================================== */
-.pt-table-pagination-footer {
-  padding: 8px 16px;
+.ProjectTask-modal-actions {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  border-top: 1px solid #efefef;
-  background: #ffffff;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
 }
 
-.pt-pagination-right-block {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 12px;
-  color: #444;
-}
-
-.pt-pagination-select {
-  border: none;
-  background: transparent;
-  padding: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  outline: none;
-}
-
-.pt-pagination-arrow-group {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.pt-pag-nav-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  border-radius: 50%;
-}
-.pt-pag-nav-btn:disabled { color: #ccc; cursor: not-allowed; }
-.pt-pag-nav-btn:not(:disabled):hover { background-color: #f0f0f0; }
 
 /* ==========================================================================
-   Images 5 & 6: Interactive CRUD Overlay Window System Modals
+   ProjectTask Workspace — Refined SaaS Theme (Modern, Professional & Responsive)
    ========================================================================== */
-.pt-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 16px;
+
+/* Layout & Container Reset */
+.ProjectTask-workspace-shell {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 32px 24px;
+  background-color: #f8fafc;
+  color: #0f172a;
+  min-height: 100vh;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.pt-modal-window {
+.ProjectTask-dashboard-surface {
   background: #ffffff;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 680px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 
+              0 10px 15px -3px rgba(0, 0, 0, 0.05),
+              0 0 0 1px rgba(226, 232, 240, 0.8);
   overflow: hidden;
+  transition: box-shadow 0.2s ease;
 }
 
-.pt-modal-header {
-  background: var(--pt-primary-purple);
-  padding: 14px 20px;
+/* Action Bar */
+.ProjectTask-action-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #ffffff;
+  padding: 20px 28px;
+  border-bottom: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 16px;
+  background-color: #ffffff;
 }
 
-.pt-modal-title {
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.3px;
+.ProjectTask-left-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.pt-modal-close-cross {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 14px;
-  cursor: pointer;
-  opacity: 0.8;
-}
-.pt-modal-close-cross:hover { opacity: 1; }
-
-.pt-modal-form-body {
-  padding: 24px;
+.ProjectTask-board-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
 }
 
-.pt-form-row-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px 24px;
-  margin-bottom: 24px;
-}
-
-/* Styled Outlined Field Sets based exactly on Material UI specs */
-.pt-input-field-group {
+.ProjectTask-search-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.pt-floating-label {
+.ProjectTask-search-icon {
   position: absolute;
-  top: -8px;
-  left: 10px;
-  background: #ffffff;
-  padding: 0 4px;
-  font-size: 11px;
-  color: #666666;
-  z-index: 2;
-}
-
-.pt-form-control-input,
-.pt-form-control-select {
-  width: 100%;
-  border: 1px solid #757575;
-  border-radius: 4px;
-  padding: 10px 12px;
-  font-size: 13px;
-  outline: none;
-  background: transparent;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-
-.pt-form-control-input:focus,
-.pt-form-control-select:focus {
-  border-color: var(--pt-primary-indigo);
-  border-width: 2px;
-  padding: 9px 11px; /* Offset spacing context match logic */
-}
-
-/* Handling Input Fields containing Inner Icon components */
-.pt-input-field-group.icon-input .pt-form-control-input {
-  padding-right: 36px;
-}
-
-.pt-field-inner-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 12px;
   font-size: 14px;
-  color: #666;
+  color: #94a3b8;
   pointer-events: none;
 }
 
-/* Progress Legend Box Structure Fieldsets (Image 5 & 6 bottom-right) */
-.pt-fieldset-wrapper {
-  border: 1px solid #757575;
-  border-radius: 4px;
-  padding: 0 10px;
-  margin: 0;
-}
-
-.pt-fieldset-legend {
-  font-size: 11px;
-  color: #666666;
-  padding: 0 4px;
-}
-
-.pt-fieldset-input {
-  width: 100%;
-  border: none;
+.ProjectTask-search-input {
+  padding: 9px 14px 9px 36px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  background-color: #f8fafc;
   outline: none;
-  padding: 8px 0;
-  font-size: 13px;
-  background: transparent;
+  width: 260px;
+  transition: all 0.2s ease-in-out;
 }
 
-/* Modal Bottom Control Footer Action Blocks */
-.pt-form-actions-footer {
+.ProjectTask-search-input::placeholder {
+  color: #94a3b8;
+}
+
+.ProjectTask-search-input:focus {
+  background-color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.ProjectTask-right-nav-group {
   display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Button Variants */
+.ProjectTask-btn {
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ProjectTask-btn:active {
+  transform: scale(0.98);
+}
+
+.ProjectTask-btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.ProjectTask-btn-primary:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.ProjectTask-btn-outline {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ProjectTask-btn-outline:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.ProjectTask-btn-icon {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #475569;
+  padding: 9px 12px;
+  border-radius: 8px;
+}
+
+.ProjectTask-btn-icon:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+/* Dropdown Styling */
+.ProjectTask-dropdown-anchor {
+  position: relative;
+}
+
+.ProjectTask-column-toggle-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 10px;
+  width: 220px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+  padding: 14px;
+  animation: fadeInDown 0.15s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ProjectTask-dropdown-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.ProjectTask-dropdown-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ProjectTask-dropdown-checkbox-row:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Data Table Styling */
+.ProjectTask-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ProjectTask-data-grid {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  font-size: 14px;
+}
+
+.ProjectTask-data-grid th {
+  background-color: #f8fafc;
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.ProjectTask-data-grid td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+  transition: background-color 0.15s ease;
+}
+
+.ProjectTask-data-grid tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+.ProjectTask-row-selected td {
+  background-color: #eff6ff !important;
+}
+
+.ProjectTask-font-semibold {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.ProjectTask-project-tag {
+  display: inline-block;
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.ProjectTask-member-chips-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ProjectTask-member-chip {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #dbeafe;
+  white-space: nowrap;
+}
+
+/* Status & Priority Indicators */
+.ProjectTask-priority-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.ProjectTask-priority-high { color: #dc2626; background: #fef2f2; border: 1px solid #fee2e2; }
+.ProjectTask-priority-medium { color: #d97706; background: #fffbeb; border: 1px solid #fef3c7; }
+.ProjectTask-priority-low { color: #16a34a; background: #f0fdf4; border: 1px solid #dcfce7; }
+
+.ProjectTask-status-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.ProjectTask-status-completed { color: #15803d; background: #dcfce7; }
+.ProjectTask-status-running { color: #1d4ed8; background: #dbeafe; }
+.ProjectTask-status-pending { color: #b45309; background: #fef3c7; }
+
+/* Progress Bar */
+.ProjectTask-progress-bar-wrapper {
+  display: flex;
+  align-items: center;
   gap: 12px;
 }
 
-.pt-modal-btn {
+.ProjectTask-progress-bar-track {
+  flex: 1;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 90px;
+}
+
+.ProjectTask-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.ProjectTask-progress-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  min-width: 32px;
+}
+
+.ProjectTask-actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.ProjectTask-action-btn {
+  background: transparent;
   border: none;
-  border-radius: 20px;
-  padding: 8px 24px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.ProjectTask-action-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Pagination Footer */
+.ProjectTask-pagination-footer {
+  padding: 16px 28px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+  background-color: #ffffff;
+}
+
+.ProjectTask-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+.ProjectTask-pagination-select {
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #334155;
+  outline: none;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.ProjectTask-pagination-select:focus {
+  border-color: #2563eb;
+}
+
+.ProjectTask-pag-nav-btn {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  padding: 6px 12px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  outline: none;
+  transition: all 0.15s ease;
 }
 
-.pt-modal-btn.btn-save-action {
-  background-color: #e0e0e0;
-  color: #757575;
-}
-.pt-modal-btn.btn-save-action.edit-variant-style,
-.pt-modal-btn.btn-save-action[type="submit"] {
-  background-color: #2f3ba2;
-  color: #ffffff;
+.ProjectTask-pag-nav-btn:hover:not(:disabled) {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
 }
 
-.pt-modal-btn.btn-cancel-action {
-  background-color: #b70000;
-  color: #ffffff;
+.ProjectTask-pag-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
-/* ==========================================================================
-   CSS Keyframe Micro-Animations Suite
-   ========================================================================== */
-.animate-fade-in {
-  animation: fadeIn 0.18s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.animate-scale-up {
-  animation: scaleUp 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+/* Modal Window Setup */
+.ProjectTask-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: fadeIn 0.15s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
+.ProjectTask-modal-window {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 640px;
+  max-width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  animation: modalScale 0.15s ease-out;
+}
+
+@keyframes modalScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ProjectTask-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 16px;
+}
+
+.ProjectTask-modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.ProjectTask-modal-close {
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.ProjectTask-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Form Layout Grid */
+.ProjectTask-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.ProjectTask-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ProjectTask-form-group.full-width {
+  grid-column: span 2;
+}
+
+.ProjectTask-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.ProjectTask-form-input,
+.ProjectTask-form-select,
+.ProjectTask-form-textarea {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+  background-color: #ffffff;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.ProjectTask-form-input:focus,
+.ProjectTask-form-select:focus,
+.ProjectTask-form-textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.ProjectTask-form-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Multi-Select Member Box */
+.ProjectTask-team-selector-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8fafc;
+}
+
+.ProjectTask-member-tag-btn {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ProjectTask-member-tag-btn:hover {
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.ProjectTask-member-tag-btn.selected {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+/* Range Slider */
+.ProjectTask-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProjectTask-slider-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.ProjectTask-form-range {
+  accent-color: #2563eb;
+  cursor: pointer;
+  height: 6px;
+  margin-top: 6px;
+}
+
+/* Upload Dropzone & Previews */
+.ProjectTask-file-upload-dropzone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 24px 16px;
+  text-align: center;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.ProjectTask-file-upload-dropzone:hover {
+  border-color: #2563eb;
+  background-color: #f0f6ff;
+}
+
+.ProjectTask-hidden-file-input {
+  display: none;
+}
+
+.ProjectTask-upload-trigger-label {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ProjectTask-attachment-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ProjectTask-attachment-card {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ProjectTask-attachment-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ProjectTask-file-icon-placeholder {
+  font-size: 22px;
+}
+
+.ProjectTask-attachment-name {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.ProjectTask-remove-attachment-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(15, 23, 42, 0.7);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.ProjectTask-remove-attachment-btn:hover {
+  background: #dc2626;
+}
+
+.ProjectTask-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
 }
 
 /* ==========================================================================
-   Adaptive Viewport Responsive Breakpoints
+   Responsive Breakpoints & Media Queries
    ========================================================================== */
-@media (max-width: 768px) {
-  .pt-action-bar {
+
+/* Tablets & Smaller Desktops (Max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .ProjectTask-workspace-shell {
+    padding: 20px 16px;
+  }
+
+  .ProjectTask-action-bar {
+    padding: 16px 20px;
+  }
+
+  .ProjectTask-data-grid th,
+  .ProjectTask-data-grid td {
+    padding: 12px 14px;
+  }
+}
+
+/* Tablets & Large Mobile Devices (Max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .ProjectTask-action-bar {
     flex-direction: column;
     align-items: stretch;
+    gap: 14px;
   }
-  .pt-right-nav-group {
-    justify-content: flex-end;
+
+  .ProjectTask-left-nav-group,
+  .ProjectTask-right-nav-group {
+    width: 100%;
+    justify-content: space-between;
   }
-  .pt-form-row-grid {
+
+  .ProjectTask-search-wrapper,
+  .ProjectTask-search-input {
+    width: 100%;
+  }
+
+  /* Form Layout adapt to single column */
+  .ProjectTask-form-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  .pt-search-input-wrapper {
-    max-width: none;
+
+  .ProjectTask-form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .ProjectTask-modal-window {
+    padding: 20px;
+    max-height: 90vh;
+  }
+
+  .ProjectTask-pagination-footer {
+    padding: 14px 20px;
+    justify-content: center;
+  }
+}
+
+/* Mobile Devices (Max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .ProjectTask-workspace-shell {
+    padding: 12px 8px;
+  }
+
+  .ProjectTask-board-title {
+    font-size: 18px;
+  }
+
+  .ProjectTask-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    flex: 1;
+  }
+
+  .ProjectTask-right-nav-group {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .ProjectTask-pagination-controls {
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .ProjectTask-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .ProjectTask-modal-actions .ProjectTask-btn {
+    width: 100%;
+  }
+
+  .ProjectTask-attachment-card {
+    width: 64px;
+    height: 64px;
   }
 }

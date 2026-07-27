@@ -133,7 +133,6 @@ const App = () => {
           <Route path="projects/files" element={<ProjectFiles/>}/>
           <Route path="all" element={<AllEmployees/>}/>
           <Route path="add" element={<AddEmployee/>}/>
-          <Route path="projects/add" element={<AddProject/>}/>
           <Route path="shift" element={<EmployeeShift/>}/>
           <Route path="profile" element={<EmployeeProfile/>}/>
           <Route path="edit" element={<EditManagement/>}/>

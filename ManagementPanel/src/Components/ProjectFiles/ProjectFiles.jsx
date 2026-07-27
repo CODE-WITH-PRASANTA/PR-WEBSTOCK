@@ -6,18 +6,12 @@ import { LuSquarePen } from 'react-icons/lu';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoClose } from 'react-icons/io5';
 import './ProjectFiles.css';
+import API from "../../Api/axios";
 
 const ProjectFiles = () => {
-  // 5 Initial Dummy Data entries based on the reference images
-  const initialFiles = [
-    { id: 1, name: 'Project_Requirements.pdf', type: 'PDF', size: '2.5 MB', uploadedBy: 'Sarah Smith', date: '2024-01-05' },
-    { id: 2, name: 'Design_Mockup.fig', type: 'Figma', size: '45.2 MB', uploadedBy: 'John Deo', date: '2024-01-12' },
-    { id: 3, name: 'Budget_Report.xlsx', type: 'Excel', size: '1.8 MB', uploadedBy: 'Pankaj Patel', date: '2024-01-20' },
-    { id: 4, name: 'Meeting_Notes.docx', type: 'Word', size: '500 KB', uploadedBy: 'Pooja Sharma', date: '2024-01-25' },
-    { id: 5, name: 'Logo_Final.png', type: 'Image', size: '1.2 MB', uploadedBy: 'Pankaj Patel', date: '2024-01-30' }
-  ];
-
-  const [files, setFiles] = useState(initialFiles);
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [selectedIds, setSelectedIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   
@@ -25,9 +19,14 @@ const ProjectFiles = () => {
   const [activeModal, setActiveModal] = useState(null); // 'add' | 'edit' | 'delete' | null
   const [targetFile, setTargetFile] = useState(null);
 
-  // Column Visibility List State (3rd Reference Image)
+  // File Upload State
+  const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef(null);
+
+  // Column Visibility List State (Added sNo)
   const [visibleColumns, setVisibleColumns] = useState({
     checkbox: true,
+    sNo: true,
     fileName: true,
     type: true,
     size: true,
@@ -41,6 +40,26 @@ const ProjectFiles = () => {
 
   // Form Fields State for Modals
   const [formData, setFormData] = useState({ name: '', type: '', size: '', uploadedBy: '', date: '' });
+
+  // Fetch Files from Backend API
+  const fetchFiles = async () => {
+    setLoading(true);
+    setErrorMsg('');
+    try {
+      const response = await API.get('/project-files');
+      if (response.data.success) {
+        setFiles(response.data.data);
+      }
+    } catch (err) {
+      setErrorMsg(err.response?.data?.message || 'Failed to fetch project files.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFiles();
+  }, []);
 
   // Handle Click Outside Column Menu Dropdown
   useEffect(() => {
@@ -56,7 +75,7 @@ const ProjectFiles = () => {
   // Checkbox Select All Logic
   const handleSelectAll = (e) => {
     if (e.target.checked) {
-      setSelectedIds(files.map(f => f.id));
+      setSelectedIds(files.map(f => f._id));
     } else {
       setSelectedIds([]);
     }
@@ -70,36 +89,91 @@ const ProjectFiles = () => {
     }
   };
 
+  // File Selection Helper
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setSelectedFile(file);
+      // Auto-populate input details if blank
+      if (!formData.name) setFormData(prev => ({ ...prev, name: file.name }));
+    }
+  };
+
   // Trigger Add Modal
   const openAddModal = () => {
-    setFormData({ name: '', type: '', size: '', uploadedBy: '', date: '' });
+    setFormData({ name: '', type: '', size: '', uploadedBy: '', date: new Date().toISOString().split('T')[0] });
+    setSelectedFile(null);
     setActiveModal('add');
   };
 
   // Submit Add Action
-  const handleAddSubmit = (e) => {
+  const handleAddSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name) return;
-    const newFile = {
-      id: Date.now(),
-      ...formData
-    };
-    setFiles([newFile, ...files]);
-    setActiveModal(null);
+    if (!selectedFile) {
+      alert('Please attach a file.');
+      return;
+    }
+
+    try {
+      const data = new FormData();
+      data.append('file', selectedFile);
+      if (formData.name) data.append('name', formData.name);
+      if (formData.type) data.append('type', formData.type);
+      if (formData.size) data.append('size', formData.size);
+      if (formData.uploadedBy) data.append('uploadedBy', formData.uploadedBy);
+      if (formData.date) data.append('date', formData.date);
+
+      const response = await API.post('/project-files', data, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+
+      if (response.data.success) {
+        setFiles([response.data.data, ...files]);
+        setActiveModal(null);
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to upload file.');
+    }
   };
 
   // Trigger Edit Modal
   const openEditModal = (file) => {
     setTargetFile(file);
-    setFormData({ ...file });
+    const formattedDate = file.date ? new Date(file.date).toISOString().split('T')[0] : '';
+    setFormData({
+      name: file.name || '',
+      type: file.type || '',
+      size: file.size || '',
+      uploadedBy: file.uploadedBy || '',
+      date: formattedDate
+    });
+    setSelectedFile(null);
     setActiveModal('edit');
   };
 
   // Submit Edit Action
-  const handleEditSubmit = (e) => {
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
-    setFiles(files.map(f => f.id === targetFile.id ? { ...f, ...formData } : f));
-    setActiveModal(null);
+    try {
+      const data = new FormData();
+      if (selectedFile) data.append('file', selectedFile);
+      data.append('name', formData.name);
+      data.append('type', formData.type);
+      data.append('size', formData.size);
+      data.append('uploadedBy', formData.uploadedBy);
+      data.append('date', formData.date);
+
+      const response = await API.put(`/project-files/${targetFile._id}`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+
+      if (response.data.success) {
+        setFiles(files.map(f => f._id === targetFile._id ? response.data.data : f));
+        setActiveModal(null);
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update file.');
+    }
   };
 
   // Trigger Delete Modal
@@ -109,23 +183,68 @@ const ProjectFiles = () => {
   };
 
   // Confirm Delete Action
-  const handleDeleteConfirm = () => {
-    setFiles(files.filter(f => f.id !== targetFile.id));
-    setSelectedIds(selectedIds.filter(id => id !== targetFile.id));
-    setActiveModal(null);
+  const handleDeleteConfirm = async () => {
+    try {
+      const response = await API.delete(`/project-files/${targetFile._id}`);
+      if (response.data.success) {
+        setFiles(files.filter(f => f._id !== targetFile._id));
+        setSelectedIds(selectedIds.filter(id => id !== targetFile._id));
+        setActiveModal(null);
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to delete file.');
+    }
+  };
+
+  // Single File Download Action
+  const handleDownload = async (file) => {
+    try {
+      const response = await API.get(`/project-files/download/${file._id}`, {
+        responseType: 'blob',
+      });
+      
+      const blob = new Blob([response.data], { 
+        type: response.headers['content-type'] || 'application/octet-stream' 
+      });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      
+      // Use filename from server to preserve extension, fallback to stored file.filename
+      link.setAttribute('download', file.filename || file.name);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Could not download file from server.');
+    }
+  };
+
+  // Batch Selected Download Action
+  const handleDownloadSelected = () => {
+    if (selectedIds.length === 0) {
+      alert('Please select at least one file to download.');
+      return;
+    }
+    const selectedFiles = files.filter(f => selectedIds.includes(f._id));
+    selectedFiles.forEach(file => handleDownload(file));
   };
 
   // Format Date View string safely
   const formatDateDisplay = (dateStr) => {
     if (!dateStr) return '';
-    const parts = dateStr.split('-');
-    if (parts.length === 3) return `${parts[1]}/${parts[2]}/${parts[0]}`;
-    return dateStr;
+    const dateObj = new Date(dateStr);
+    if (isNaN(dateObj.getTime())) return dateStr;
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const year = dateObj.getFullYear();
+    return `${month}/${day}/${year}`;
   };
 
   const filteredFiles = files.filter(f => 
-    f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    f.uploadedBy.toLowerCase().includes(searchQuery.toLowerCase())
+    (f.name && f.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (f.uploadedBy && f.uploadedBy.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   return (
@@ -163,7 +282,6 @@ const ProjectFiles = () => {
           </div>
           
           <div className="ProjectFiles-right-tools" ref={dropdownRef}>
-            {/* Filter Toggle Menu (Three Horizontal Lines icon) */}
             <button 
               className="ProjectFiles-tool-btn text-blue" 
               onClick={() => setIsColumnDropdownOpen(!isColumnDropdownOpen)}
@@ -174,10 +292,10 @@ const ProjectFiles = () => {
             <button className="ProjectFiles-tool-btn text-green" onClick={openAddModal} title="Add New File">
               <FiPlus />
             </button>
-            <button className="ProjectFiles-tool-btn text-dark" onClick={() => setFiles(initialFiles)} title="Reset Data">
+            <button className="ProjectFiles-tool-btn text-dark" onClick={fetchFiles} title="Refresh Data">
               <FiRefreshCw />
             </button>
-            <button className="ProjectFiles-tool-btn text-blue-light" title="Download Selected">
+            <button className="ProjectFiles-tool-btn text-blue-light" onClick={handleDownloadSelected} title="Download Selected">
               <MdFileDownload />
             </button>
 
@@ -194,7 +312,11 @@ const ProjectFiles = () => {
                       className="ProjectFiles-custom-checkbox"
                     />
                     <span className="ProjectFiles-item-label">
-                      {colKey === 'checkbox' ? 'Checkbox' : colKey.replace(/([A-Z])/g, ' $1').trim()}
+                      {colKey === 'checkbox' 
+                        ? 'Checkbox' 
+                        : colKey === 'sNo' 
+                        ? 'S.No.' 
+                        : colKey.replace(/([A-Z])/g, ' $1').trim()}
                     </span>
                   </label>
                 ))}
@@ -202,6 +324,8 @@ const ProjectFiles = () => {
             </div>
           </div>
         </div>
+
+        {errorMsg && <div className="ProjectFiles-alert-error" style={{ padding: '12px', color: 'red' }}>{errorMsg}</div>}
 
         {/* Data Responsive Table Layout View */}
         <div className="ProjectFiles-table-wrapper">
@@ -218,6 +342,7 @@ const ProjectFiles = () => {
                     />
                   </th>
                 )}
+                {visibleColumns.sNo && <th width="60">S.No.</th>}
                 {visibleColumns.fileName && <th>File Name</th>}
                 {visibleColumns.type && <th>Type</th>}
                 {visibleColumns.size && <th>Size</th>}
@@ -228,18 +353,23 @@ const ProjectFiles = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredFiles.map((file) => (
-                <tr key={file.id} className={selectedIds.includes(file.id) ? 'row-selected' : ''}>
+              {loading ? (
+                <tr>
+                  <td colSpan="9" className="ProjectFiles-empty-state">Loading files...</td>
+                </tr>
+              ) : filteredFiles.map((file, index) => (
+                <tr key={file._id} className={selectedIds.includes(file._id) ? 'row-selected' : ''}>
                   {visibleColumns.checkbox && (
                     <td>
                       <input 
                         type="checkbox"
-                        checked={selectedIds.includes(file.id)}
-                        onChange={() => handleSelectRow(file.id)}
+                        checked={selectedIds.includes(file._id)}
+                        onChange={() => handleSelectRow(file._id)}
                         className="ProjectFiles-custom-checkbox"
                       />
                     </td>
                   )}
+                  {visibleColumns.sNo && <td className="font-medium">{index + 1}</td>}
                   {visibleColumns.fileName && <td className="font-medium text-dark">{file.name}</td>}
                   {visibleColumns.type && <td>{file.type}</td>}
                   {visibleColumns.size && <td>{file.size}</td>}
@@ -254,7 +384,7 @@ const ProjectFiles = () => {
                   )}
                   {visibleColumns.download && (
                     <td>
-                      <button className="ProjectFiles-action-icon-btn gray-btn">
+                      <button className="ProjectFiles-action-icon-btn gray-btn" onClick={() => handleDownload(file)}>
                         <MdFileDownload />
                       </button>
                     </td>
@@ -273,9 +403,9 @@ const ProjectFiles = () => {
                   )}
                 </tr>
               ))}
-              {filteredFiles.length === 0 && (
+              {!loading && filteredFiles.length === 0 && (
                 <tr>
-                  <td colSpan="8" className="ProjectFiles-empty-state">No matching project files found.</td>
+                  <td colSpan="9" className="ProjectFiles-empty-state">No matching project files found.</td>
                 </tr>
               )}
             </tbody>
@@ -307,7 +437,7 @@ const ProjectFiles = () => {
 
       {/* --- MODAL DIALOGS OVERLAYS WRAPPERS --- */}
 
-      {/* 1. ADD MODAL WINDOW (4th Reference Image View) */}
+      {/* 1. ADD MODAL WINDOW */}
       <div className={`ProjectFiles-modal-overlay ${activeModal === 'add' ? 'show' : ''}`}>
         <div className="ProjectFiles-modal-card max-width-lg">
           <div className="ProjectFiles-modal-header bg-gradient-blue">
@@ -321,12 +451,12 @@ const ProjectFiles = () => {
                 <input type="text" required placeholder="File Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
               </div>
               <div className="ProjectFiles-input-field-group">
-                <label>File Type*</label>
-                <input type="text" required placeholder="File Type" value={formData.type} onChange={(e) => setFormData({...formData, type: e.target.value})} />
+                <label>File Type (Optional)</label>
+                <input type="text" placeholder="e.g. PDF, PNG" value={formData.type} onChange={(e) => setFormData({...formData, type: e.target.value})} />
               </div>
               <div className="ProjectFiles-input-field-group">
-                <label>File Size*</label>
-                <input type="text" required placeholder="File Size" value={formData.size} onChange={(e) => setFormData({...formData, size: e.target.value})} />
+                <label>File Size (Optional)</label>
+                <input type="text" placeholder="Auto calculated if empty" value={formData.size} onChange={(e) => setFormData({...formData, size: e.target.value})} />
               </div>
               <div className="ProjectFiles-input-field-group icon-inside-wrapper">
                 <label>Uploaded By*</label>
@@ -339,10 +469,22 @@ const ProjectFiles = () => {
               </div>
             </div>
 
-            {/* Drag & Drop Area Box */}
-            <div className="ProjectFiles-upload-dropzone">
+            {/* Drag & Drop / Input Dropzone Area */}
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              style={{ display: 'none' }} 
+              onChange={handleFileChange}
+            />
+            <div 
+              className="ProjectFiles-upload-dropzone" 
+              onClick={() => fileInputRef.current.click()}
+              style={{ cursor: 'pointer' }}
+            >
               <MdOutlineCloudUpload className="ProjectFiles-dropzone-cloud" />
-              <p>Drag & drop a file here or <span className="browse-link">browse</span></p>
+              <p>
+                {selectedFile ? `Selected: ${selectedFile.name}` : <>Drag & drop a file here or <span className="browse-link">browse</span></>}
+              </p>
               <span className="formats-note">Supported formats: PDF, DOCX, ZIP, PNG (Max 10MB)</span>
             </div>
 
@@ -354,7 +496,7 @@ const ProjectFiles = () => {
         </div>
       </div>
 
-      {/* 2. EDIT MODAL WINDOW (2nd Reference Image View) */}
+      {/* 2. EDIT MODAL WINDOW */}
       <div className={`ProjectFiles-modal-overlay ${activeModal === 'edit' ? 'show' : ''}`}>
         <div className="ProjectFiles-modal-card max-width-lg">
           <div className="ProjectFiles-modal-header bg-gradient-blue">
@@ -386,9 +528,21 @@ const ProjectFiles = () => {
               </div>
             </div>
 
-            <div className="ProjectFiles-upload-dropzone">
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              style={{ display: 'none' }} 
+              onChange={handleFileChange}
+            />
+            <div 
+              className="ProjectFiles-upload-dropzone" 
+              onClick={() => fileInputRef.current.click()}
+              style={{ cursor: 'pointer' }}
+            >
               <MdOutlineCloudUpload className="ProjectFiles-dropzone-cloud" />
-              <p>Drag & drop a file here or <span className="browse-link">browse</span></p>
+              <p>
+                {selectedFile ? `Selected New File: ${selectedFile.name}` : <>Click to replace existing physical file or <span className="browse-link">browse</span></>}
+              </p>
               <span className="formats-note">Supported formats: PDF, DOCX, ZIP, PNG (Max 10MB)</span>
             </div>
 
@@ -400,7 +554,7 @@ const ProjectFiles = () => {
         </div>
       </div>
 
-      {/* 3. DELETE CONFIRMATION MODAL WINDOW (5th Reference Image View) */}
+      {/* 3. DELETE CONFIRMATION MODAL WINDOW */}
       <div className={`ProjectFiles-modal-overlay ${activeModal === 'delete' ? 'show' : ''}`}>
         <div className="ProjectFiles-modal-card max-width-sm text-align-left border-radius-sm p-24">
           <h2 className="ProjectFiles-delete-title">Are you sure?</h2>

@@ -240,7 +240,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           )}
 
           {/* MY PROJECTS ROW */}
-          {/* <NavLink
+          <NavLink
             to="/employee/my-projects"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -248,10 +248,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiBriefcase />
               {!collapsed && <span>My Projects</span>}
             </div>
-          </NavLink> */}
+          </NavLink>
 
           {/* MY TASKS LINK */}
-          {/* <NavLink
+          <NavLink
             to="/employee/my-tasks"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -259,7 +259,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiCheckSquare />
               {!collapsed && <span>My Tasks</span>}
             </div>
-          </NavLink> */}
+          </NavLink>
 
           {/* CHAT LINK */}
           {/* <NavLink

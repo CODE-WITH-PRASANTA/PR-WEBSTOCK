@@ -1,7 +1,11 @@
 import axios from "axios";
 
+// Export the root backend server domain (for files, images, attachments)
+export const SERVER_URL = "http://localhost:5000";
+
+// API instance configured with /api prefix
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // Make sure this matches your port backend url
+  baseURL: `${SERVER_URL}/api`,
   timeout: 10000,
 });
 

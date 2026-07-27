@@ -1,32 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './ProjectTasks.css';
+import API, { IMG_URL } from "../../Api/axios";
 
-const INITIAL_TASKS = [
-  { id: 1, name: 'Design Homepage', assignee: 'Sarah Smith', priority: 'High', status: 'Completed', date: '2024-01-15', progress: 100 },
-  { id: 2, name: 'Develop API', assignee: 'John Deo', priority: 'Medium', status: 'Running', date: '2024-02-10', progress: 75 },
-  { id: 3, name: 'Testing Phase', assignee: 'Pankaj Patel', priority: 'Low', status: 'Pending', date: '2024-03-01', progress: 0 },
-  { id: 4, name: 'Client Review', assignee: 'Pooja Sharma', priority: 'High', status: 'Running', date: '2024-01-20', progress: 15 },
-  { id: 5, name: 'Setup Database', assignee: 'Jayesh Patel', priority: 'High', status: 'Completed', date: '2024-01-05', progress: 100 },
-  { id: 6, name: 'Fix Login Bugs', assignee: 'Rohan Sharma', priority: 'Medium', status: 'Running', date: '2024-01-25', progress: 60 },
-  { id: 7, name: 'Product Documentation', assignee: 'Emily Clark', priority: 'Low', status: 'Pending', date: '2024-03-15', progress: 5 },
-  { id: 8, name: 'CI/CD Pipeline', assignee: 'Michael Ross', priority: 'High', status: 'Running', date: '2024-02-05', progress: 40 },
-  { id: 9, name: 'UI Refactoring', assignee: 'Pankaj Patel', priority: 'Medium', status: 'Pending', date: '2024-02-28', progress: 2 },
-  { id: 10, name: 'User Feedback Analysis', assignee: 'Sarah Smith', priority: 'Low', status: 'Completed', date: '2024-01-10', progress: 100 }
-];
 
 const ProjectTasks = () => {
-  // Core Component State
-  const [tasks, setTasks] = useState(INITIAL_TASKS);
+  // Tasks state (Fetched live from API)
+  const [tasks, setTasks] = useState([]);
+  const [isTasksLoading, setIsTasksLoading] = useState(false);
+  const [tasksError, setTasksError] = useState(null);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Dynamic projects state
+  const [availableProjects, setAvailableProjects] = useState([]);
+  const [isProjectsLoading, setIsProjectsLoading] = useState(false);
+  const [projectsError, setProjectsError] = useState(null);
+
+  // Dynamic Team Members State
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [isEmployeesLoading, setIsEmployeesLoading] = useState(false);
+  const [employeesError, setEmployeesError] = useState(null);
 
   // Column Show/Hide Dropdown State
   const [showColumnDropdown, setShowColumnDropdown] = useState(false);
   const [columns, setColumns] = useState({
     checkbox: true,
     taskName: true,
+    project: true,
     assignedTo: true,
     priority: true,
     status: true,
@@ -37,13 +40,85 @@ const ProjectTasks = () => {
 
   // Modal State handling
   const [modalConfig, setModalConfig] = useState({ isOpen: false, type: 'add', taskData: null });
-  
-  // Controlled Form State matching image schema definitions
-  const [formFields, setFormFields] = useState({ name: '', assignee: '', priority: 'Medium', status: 'Pending', date: '', progress: 0 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Form State
+  const [formFields, setFormFields] = useState({
+    name: '',
+    project: '',
+    assignees: [],
+    priority: 'Medium',
+    status: 'Pending',
+    date: '',
+    progress: 0,
+    description: '',
+    attachments: [] // Stores raw File objects and preview URLs
+  });
 
   const dropdownRef = useRef(null);
 
-  // Close visibility dropdown on clicking outside bounds
+  // 1. Fetch All Tasks from Backend
+  const fetchBackendTasks = async () => {
+    setIsTasksLoading(true);
+    setTasksError(null);
+    try {
+      const response = await API.get('/tasks');
+      if (response.data && response.data.success) {
+        setTasks(response.data.data || []);
+      } else if (Array.isArray(response.data)) {
+        setTasks(response.data);
+      }
+    } catch (err) {
+      console.error("Failed to fetch tasks from backend:", err);
+      setTasksError("Failed to load tasks from server.");
+    } finally {
+      setIsTasksLoading(false);
+    }
+  };
+
+  // 2. Fetch Projects from MongoDB Backend API
+  const fetchBackendProjects = async () => {
+    setIsProjectsLoading(true);
+    setProjectsError(null);
+    try {
+      const response = await API.get('/addprojects');
+      if (response.data && response.data.success) {
+        const fetchedList = response.data.data.map(p => p.projectTitle);
+        setAvailableProjects(fetchedList);
+      }
+    } catch (err) {
+      console.error("Failed to fetch projects from backend:", err);
+      setProjectsError("Failed to load projects from server");
+    } finally {
+      setIsProjectsLoading(false);
+    }
+  };
+
+  // 3. Fetch Employees/Team Members from Mongo Backend API
+  const fetchBackendEmployees = async () => {
+    setIsEmployeesLoading(true);
+    setEmployeesError(null);
+    try {
+      const response = await API.get('/addemployees/employees');
+      if (response.data && response.data.success) {
+        setTeamMembers(response.data.data || []);
+      }
+    } catch (err) {
+      console.error("Failed to fetch employees from backend:", err);
+      setEmployeesError("Failed to load team members");
+    } finally {
+      setIsEmployeesLoading(false);
+    }
+  };
+
+  // Fetch initial datasets
+  useEffect(() => {
+    fetchBackendTasks();
+    fetchBackendProjects();
+    fetchBackendEmployees();
+  }, []);
+
+  // Close column dropdown on outside click
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -54,127 +129,267 @@ const ProjectTasks = () => {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  // Sync structural data fields when switching to 'edit' mode
+  // Populate/Reset form state when modal toggles
   useEffect(() => {
+    const defaultProject = availableProjects.length > 0 ? availableProjects[0] : '';
+    
     if (modalConfig.isOpen && modalConfig.type === 'edit' && modalConfig.taskData) {
-      setFormFields({ ...modalConfig.taskData });
-    } else {
-      setFormFields({ name: '', assignee: '', priority: 'Medium', status: 'Pending', date: '', progress: 0 });
-    }
-  }, [modalConfig]);
+      const task = modalConfig.taskData;
+      const assigneeIds = Array.isArray(task.assignees)
+        ? task.assignees.map(a => typeof a === 'object' ? a._id : a)
+        : [];
 
-  // Handle Global Selection Checkbox toggling
+      const formattedDate = task.date ? new Date(task.date).toISOString().split('T')[0] : '';
+
+      setFormFields({
+        name: task.name || '',
+        project: task.project || defaultProject,
+        assignees: assigneeIds,
+        priority: task.priority || 'Medium',
+        status: task.status || 'Pending',
+        date: formattedDate,
+        progress: task.progress || 0,
+        description: task.description || '',
+        attachments: task.attachments || []
+      });
+    } else if (modalConfig.isOpen && modalConfig.type === 'add') {
+      setFormFields({
+        name: '',
+        project: defaultProject,
+        assignees: [],
+        priority: 'Medium',
+        status: 'Pending',
+        date: '',
+        progress: 0,
+        description: '',
+        attachments: []
+      });
+    }
+  }, [modalConfig, availableProjects]);
+
+  // Search filtering logic
+  const filteredTasks = tasks.filter(task => {
+    const query = searchQuery.toLowerCase();
+    const nameMatch = task.name?.toLowerCase().includes(query);
+    const projectMatch = task.project?.toLowerCase().includes(query);
+    const assigneeMatch = Array.isArray(task.assignees) && task.assignees.some(member => {
+      if (typeof member === 'object') {
+        return member.name?.toLowerCase().includes(query) ||
+               member.employeeId?.toLowerCase().includes(query);
+      }
+      return false;
+    });
+
+    return nameMatch || projectMatch || assigneeMatch;
+  });
+
+  // Auto-reset page pagination when filter/dataset size shrinks
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, rowsPerPage]);
+
+  const totalItemsCount = filteredTasks.length;
+  const visibleTasks = filteredTasks.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
+  // Checkbox handlers
   const handleSelectAll = (e) => {
+    const visibleIds = visibleTasks.map(t => t._id);
     if (e.target.checked) {
-      setSelectedTasks(visibleTasks.map(t => t.id));
+      setSelectedTasks(prev => Array.from(new Set([...prev, ...visibleIds])));
     } else {
-      setSelectedTasks([]);
+      setSelectedTasks(prev => prev.filter(id => !visibleIds.includes(id)));
     }
   };
 
   const handleSelectRow = (id) => {
-    setSelectedTasks(prev => prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]);
+    setSelectedTasks(prev => prev.includes(id) ? prev.filter(itemId => itemId !== id) : [...prev, id]);
   };
 
-  // Form Submission Strategy (Both Add and Edit Operations)
-  const handleSaveTask = (e) => {
+  const toggleTeamMember = (empId) => {
+    setFormFields(prev => {
+      const exists = prev.assignees.includes(empId);
+      return {
+        ...prev,
+        assignees: exists
+          ? prev.assignees.filter(id => id !== empId)
+          : [...prev.assignees, empId]
+      };
+    });
+  };
+
+  // Attachment upload & Object URL cleanup
+  const handleFileUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newFiles = files.map(file => ({
+      fileObject: file, // Keep native File instance for FormData submit
+      name: file.name,
+      url: URL.createObjectURL(file),
+      fileType: file.type
+    }));
+    setFormFields(prev => ({ ...prev, attachments: [...prev.attachments, ...newFiles] }));
+  };
+
+  const removeAttachment = (index) => {
+    setFormFields(prev => {
+      const fileToRemove = prev.attachments[index];
+      if (fileToRemove?.url && fileToRemove.url.startsWith('blob:')) {
+        URL.revokeObjectURL(fileToRemove.url); // Memory cleanup
+      }
+      return {
+        ...prev,
+        attachments: prev.attachments.filter((_, i) => i !== index)
+      };
+    });
+  };
+
+  // Submit Handler supporting standard JSON or Multipart Data
+  const handleSaveTask = async (e) => {
     e.preventDefault();
-    if (!formFields.name || !formFields.assignee || !formFields.date) {
-      alert("Please fill in all mandatory fields flagged with an asterisk (*).");
+    if (!formFields.name || !formFields.date || !formFields.project || formFields.assignees.length === 0) {
+      alert("Please fill in all mandatory fields (*), including selecting a Project and at least one Team Member.");
       return;
     }
 
-    if (modalConfig.type === 'add') {
-      const newTask = { ...formFields, id: Date.now() };
-      setTasks([newTask, ...tasks]);
-    } else if (modalConfig.type === 'edit') {
-      setTasks(tasks.map(t => t.id === modalConfig.taskData.id ? { ...formFields } : t));
+    setIsSubmitting(true);
+    try {
+      let payload;
+      let headers = {};
+
+      // Check if raw File instances need to be uploaded via Multipart
+      const hasNewFiles = formFields.attachments.some(att => att.fileObject instanceof File);
+
+      if (hasNewFiles) {
+        payload = new FormData();
+        payload.append('name', formFields.name);
+        payload.append('project', formFields.project);
+        payload.append('priority', formFields.priority);
+        payload.append('status', formFields.status);
+        payload.append('date', formFields.date);
+        payload.append('progress', formFields.progress);
+        payload.append('description', formFields.description);
+        
+        formFields.assignees.forEach(id => payload.append('assignees[]', id));
+        formFields.attachments.forEach(att => {
+          if (att.fileObject) {
+            payload.append('files', att.fileObject);
+          }
+        });
+        headers['Content-Type'] = 'multipart/form-data';
+      } else {
+        payload = formFields;
+      }
+
+      if (modalConfig.type === 'add') {
+        const response = await API.post('/tasks', payload, { headers });
+        if (response.data && response.data.success) {
+          setTasks(prev => [response.data.data, ...prev]);
+        }
+      } else if (modalConfig.type === 'edit') {
+        const taskId = modalConfig.taskData._id;
+        const response = await API.put(`/tasks/${taskId}`, payload, { headers });
+        if (response.data && response.data.success) {
+          setTasks(prev => prev.map(t => t._id === taskId ? response.data.data : t));
+        }
+      }
+
+      // Cleanup local preview Object URLs
+      formFields.attachments.forEach(att => {
+        if (att.url && att.url.startsWith('blob:')) URL.revokeObjectURL(att.url);
+      });
+
+      setModalConfig({ isOpen: false, type: 'add', taskData: null });
+    } catch (err) {
+      console.error("Error saving task:", err);
+      alert(err.response?.data?.message || "Failed to save task. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-    setModalConfig({ isOpen: false, type: 'add', taskData: null });
   };
 
-  // Inline Record Deletion Handler
-  const handleDeleteTask = (id) => {
-    if (window.confirm("Are you sure you want to permanently delete this task item?")) {
-      setTasks(tasks.filter(t => t.id !== id));
-      setSelectedTasks(prev => prev.filter(itemId => itemId !== id));
+  const handleDeleteTask = async (id) => {
+    if (window.confirm("Are you sure you want to delete this task?")) {
+      try {
+        await API.delete(`/tasks/${id}`);
+        setTasks(prev => prev.filter(t => t._id !== id));
+        setSelectedTasks(prev => prev.filter(itemId => itemId !== id));
+      } catch (err) {
+        console.error("Error deleting task:", err);
+        alert(err.response?.data?.message || "Failed to delete task from server.");
+      }
     }
   };
 
-  // Header Toolbar Functionality implementations
   const handleRefreshBoard = () => {
-    setTasks(INITIAL_TASKS);
     setSearchQuery('');
     setSelectedTasks([]);
-    alert("Board dataset refreshed to defaults.");
+    fetchBackendTasks();
+    fetchBackendProjects();
+    fetchBackendEmployees();
   };
 
   const handleDownloadDataset = () => {
-    const headers = "Task Name,Assigned To,Priority,Status,Due Date,Progress\n";
-    const csvContent = tasks.map(t => `"${t.name}","${t.assignee}","${t.priority}","${t.status}","${t.date}",${t.progress}%`).join("\n");
+    const headers = "Task Name,Project,Assigned To,Priority,Status,Due Date,Progress\n";
+    const csvContent = tasks.map(t => {
+      const assigneeNames = Array.isArray(t.assignees)
+        ? t.assignees.map(a => typeof a === 'object' ? `${a.name || 'Emp'} (${a.employeeId || 'N/A'})` : a).join('; ')
+        : '';
+      const formattedDate = t.date ? new Date(t.date).toISOString().split('T')[0] : '';
+      return `"${t.name}","${t.project}","${assigneeNames}","${t.priority}","${t.status}","${formattedDate}",${t.progress}%`;
+    }).join("\n");
+
     const blob = new Blob([headers + csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.setAttribute('href', url);
     a.setAttribute('download', 'Project_Tasks_Report.csv');
     a.click();
+    URL.revokeObjectURL(url);
   };
 
-  // Sorting/Filtering Strategy Computation
-  const filteredTasks = tasks.filter(task => 
-    task.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    task.assignee.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const totalItemsCount = filteredTasks.length;
-  const visibleTasks = filteredTasks.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+  const isAllVisibleSelected = visibleTasks.length > 0 && visibleTasks.every(t => selectedTasks.includes(t._id));
 
   return (
-    <div className="pt-workspace-shell">
-      
-
-      {/* Main Grid Application Dashboard (Image 2 & 3) */}
-      <div className="pt-dashboard-surface">
+    <div className="ProjectTask-workspace-shell">
+      <div className="ProjectTask-dashboard-surface">
         
-        {/* Core Nav and Filter Action Bar */}
-        <div className="pt-action-bar">
-          <div className="pt-left-nav-group">
-            <span className="pt-board-title">Project Tasks</span>
-            <div className="pt-search-input-wrapper">
-              <span className="pt-search-icon">🔍</span>
+        {/* Navigation Action Bar */}
+        <div className="ProjectTask-action-bar">
+          <div className="ProjectTask-left-nav-group">
+            <h2 className="ProjectTask-board-title">Project Tasks</h2>
+            <div className="ProjectTask-search-wrapper">
+              <span className="ProjectTask-search-icon">🔍</span>
               <input 
                 type="text" 
-                placeholder="Search" 
+                className="ProjectTask-search-input"
+                placeholder="Search task, project, or member..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
           
-          <div className="pt-right-nav-group">
-            {/* View Layer Visibility Management Trigger (Image 4) */}
-            <div className="pt-dropdown-anchor" ref={dropdownRef}>
+          <div className="ProjectTask-right-nav-group">
+            <div className="ProjectTask-dropdown-anchor" ref={dropdownRef}>
               <button 
                 type="button" 
-                className="pt-icon-action-btn" 
+                className="ProjectTask-btn ProjectTask-btn-outline" 
                 onClick={() => setShowColumnDropdown(!showColumnDropdown)}
-                title="Show/Hide Columns"
               >
-                ⚡ Filter Columns
+                ⚙️ Filter Columns
               </button>
               
               {showColumnDropdown && (
-                <div className="pt-column-toggle-dropdown animate-fade-in">
-                  <div className="pt-dropdown-header">Show/Hide Column</div>
-                  <div className="pt-dropdown-body-scroll">
+                <div className="ProjectTask-column-toggle-dropdown">
+                  <div className="ProjectTask-dropdown-header">Toggle Columns</div>
+                  <div className="ProjectTask-dropdown-body">
                     {Object.keys(columns).map((colKey) => (
-                      <label key={colKey} className="pt-dropdown-checkbox-row">
+                      <label key={colKey} className="ProjectTask-dropdown-checkbox-row">
                         <input 
                           type="checkbox" 
                           checked={columns[colKey]} 
                           onChange={(e) => setColumns({ ...columns, [colKey]: e.target.checked })}
                         />
-                        <span className="pt-custom-checkbox-lbl">
+                        <span>
                           {colKey.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                         </span>
                       </label>
@@ -184,16 +399,21 @@ const ProjectTasks = () => {
               )}
             </div>
 
-            {/* Core Action Suite */}
-            <button type="button" className="pt-icon-action-btn success-variant" onClick={() => setModalConfig({ isOpen: true, type: 'add', taskData: null })} title="Add New Task">✚</button>
-            <button type="button" className="pt-icon-action-btn" onClick={handleRefreshBoard} title="Refresh Table Board">🔄</button>
-            <button type="button" className="pt-icon-action-btn" onClick={handleDownloadDataset} title="Download Table Dataset">📥</button>
+            <button 
+              type="button" 
+              className="ProjectTask-btn ProjectTask-btn-primary" 
+              onClick={() => setModalConfig({ isOpen: true, type: 'add', taskData: null })}
+            >
+              ➕ Create Task
+            </button>
+            <button type="button" className="ProjectTask-btn ProjectTask-btn-icon" onClick={handleRefreshBoard} title="Refresh Dataset & Backend Data">🔄</button>
+            <button type="button" className="ProjectTask-btn ProjectTask-btn-icon" onClick={handleDownloadDataset} title="Export CSV">📥</button>
           </div>
         </div>
 
-        {/* Data Grid Table View System Container */}
-        <div className="pt-table-responsive-scroll">
-          <table className="pt-data-grid">
+        {/* Data Grid Table View */}
+        <div className="ProjectTask-table-container">
+          <table className="ProjectTask-data-grid">
             <thead>
               <tr>
                 {columns.checkbox && (
@@ -201,12 +421,13 @@ const ProjectTasks = () => {
                     <input 
                       type="checkbox" 
                       onChange={handleSelectAll} 
-                      checked={visibleTasks.length > 0 && selectedTasks.length === visibleTasks.length}
+                      checked={isAllVisibleSelected}
                     />
                   </th>
                 )}
                 {columns.taskName && <th>Task Name</th>}
-                {columns.assignedTo && <th>Assigned To</th>}
+                {columns.project && <th>Project</th>}
+                {columns.assignedTo && <th>Team Members</th>}
                 {columns.priority && <th>Priority</th>}
                 {columns.status && <th>Status</th>}
                 {columns.dueDate && <th>Due Date</th>}
@@ -215,65 +436,98 @@ const ProjectTasks = () => {
               </tr>
             </thead>
             <tbody>
-              {visibleTasks.map((task) => (
-                <tr key={task.id} className={selectedTasks.includes(task.id) ? 'row-selected' : ''}>
+              {isTasksLoading ? (
+                <tr>
+                  <td colSpan={Object.values(columns).filter(Boolean).length} className="ProjectTask-empty-row">
+                    Loading tasks from backend...
+                  </td>
+                </tr>
+              ) : tasksError ? (
+                <tr>
+                  <td colSpan={Object.values(columns).filter(Boolean).length} className="ProjectTask-empty-row" style={{ color: '#e53e3e' }}>
+                    {tasksError}
+                  </td>
+                </tr>
+              ) : visibleTasks.map((task) => (
+                <tr key={task._id} className={selectedTasks.includes(task._id) ? 'ProjectTask-row-selected' : ''}>
                   {columns.checkbox && (
                     <td>
                       <input 
                         type="checkbox" 
-                        checked={selectedTasks.includes(task.id)}
-                        onChange={() => handleSelectRow(task.id)}
+                        checked={selectedTasks.includes(task._id)}
+                        onChange={() => handleSelectRow(task._id)}
                       />
                     </td>
                   )}
-                  {columns.taskName && <td className="font-weight-medium">{task.name}</td>}
-                  {columns.assignedTo && <td>{task.assignee}</td>}
+                  {columns.taskName && (
+                    <td className="ProjectTask-font-semibold">
+                      {task.name}
+                      {task.attachments?.length > 0 && <span className="ProjectTask-attachment-indicator" title="Attachments included"> 📎</span>}
+                    </td>
+                  )}
+                  {columns.project && (
+                    <td>
+                      <span className="ProjectTask-project-tag">{task.project}</span>
+                    </td>
+                  )}
+                  {columns.assignedTo && (
+                    <td>
+                      <div className="ProjectTask-member-chips-cell">
+                        {Array.isArray(task.assignees) && task.assignees.map((member, idx) => {
+                          const displayLabel = typeof member === 'object'
+                            ? `${member.name || 'Unknown'} (${member.employeeId || 'N/A'})`
+                            : member;
+                          return (
+                            <span key={member._id || idx} className="ProjectTask-member-chip">
+                              {displayLabel}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </td>
+                  )}
                   {columns.priority && (
                     <td>
-                      <span className={`pt-priority-lbl priority-${task.priority.toLowerCase()}`}>
-                        <span className="pt-arrow-icon">{task.priority === 'High' ? '▲' : task.priority === 'Medium' ? '▲' : '▼'}</span>
+                      <span className={`ProjectTask-priority-pill ProjectTask-priority-${task.priority?.toLowerCase()}`}>
+                        {task.priority === 'High' ? '▲ ' : task.priority === 'Medium' ? '● ' : '▼ '}
                         {task.priority}
                       </span>
                     </td>
                   )}
                   {columns.status && (
                     <td>
-                      <span className={`pt-status-pill status-${task.status.toLowerCase()}`}>
+                      <span className={`ProjectTask-status-pill ProjectTask-status-${task.status?.toLowerCase()}`}>
                         {task.status}
                       </span>
                     </td>
                   )}
                   {columns.dueDate && (
-                    <td>
-                      <span className="pt-date-cell-view">📅 {task.date}</span>
-                    </td>
+                    <td>{task.date ? new Date(task.date).toLocaleDateString() : 'N/A'}</td>
                   )}
                   {columns.progress && (
                     <td>
-                      {/* Linear Progress Container rendering inline value tooltip on hover */}
-                      <div className="pt-slider-progress-module">
-                        <div className="pt-slider-bar-track">
-                          <div className="pt-slider-bar-fill" style={{ width: `${task.progress}%` }}>
-                            <span className="pt-slider-value-tooltip">{task.progress}</span>
-                          </div>
+                      <div className="ProjectTask-progress-bar-wrapper">
+                        <div className="ProjectTask-progress-bar-track">
+                          <div className="ProjectTask-progress-bar-fill" style={{ width: `${task.progress || 0}%` }}></div>
                         </div>
+                        <span className="ProjectTask-progress-text">{task.progress || 0}%</span>
                       </div>
                     </td>
                   )}
                   {columns.actions && (
                     <td>
-                      <div className="pt-actions-flex-cell">
-                        <button type="button" className="pt-cell-action-btn edit-trigger" onClick={() => setModalConfig({ isOpen: true, type: 'edit', taskData: task })} title="Modify Entry">✏️</button>
-                        <button type="button" className="pt-cell-action-btn delete-trigger" onClick={() => handleDeleteTask(task.id)} title="Purge Entry">🗑️</button>
+                      <div className="ProjectTask-actions-cell">
+                        <button type="button" className="ProjectTask-action-btn" onClick={() => setModalConfig({ isOpen: true, type: 'edit', taskData: task })} title="Edit Task">✏️</button>
+                        <button type="button" className="ProjectTask-action-btn delete" onClick={() => handleDeleteTask(task._id)} title="Delete Task">🗑️</button>
                       </div>
                     </td>
                   )}
                 </tr>
               ))}
-              {visibleTasks.length === 0 && (
+              {!isTasksLoading && visibleTasks.length === 0 && !tasksError && (
                 <tr>
-                  <td colSpan={Object.values(columns).filter(Boolean).length} className="pt-table-empty-fallback">
-                    No records found matching current system context criteria.
+                  <td colSpan={Object.values(columns).filter(Boolean).length} className="ProjectTask-empty-row">
+                    No matching task records found.
                   </td>
                 </tr>
               )}
@@ -281,92 +535,103 @@ const ProjectTasks = () => {
           </table>
         </div>
 
-        {/* Dense Pagination Control Footer Component Block */}
-        <div className="pt-table-pagination-footer">
-          <div className="pt-pagination-right-block">
-            <span className="pt-pagination-label">Items per page:</span>
+        {/* Pagination Footer */}
+        <div className="ProjectTask-pagination-footer">
+          <div className="ProjectTask-pagination-controls">
+            <span className="ProjectTask-pagination-label">Rows per page:</span>
             <select 
-              className="pt-pagination-select" 
+              className="ProjectTask-pagination-select" 
               value={rowsPerPage} 
-              onChange={(e) => { setRowsPerPage(Number(e.target.value)); setCurrentPage(1); }}
+              onChange={(e) => setRowsPerPage(Number(e.target.value))}
             >
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={25}>25</option>
             </select>
-            <span className="pt-pagination-range-text">
+            <span className="ProjectTask-pagination-range">
               {totalItemsCount === 0 ? 0 : (currentPage - 1) * rowsPerPage + 1} – {Math.min(currentPage * rowsPerPage, totalItemsCount)} of {totalItemsCount}
             </span>
-            <div className="pt-pagination-arrow-group">
-              <button 
-                type="button" 
-                disabled={currentPage === 1} 
-                onClick={() => setCurrentPage(prev => prev - 1)}
-                className="pt-pag-nav-btn"
-              >
-                ‹
-              </button>
-              <button 
-                type="button" 
-                disabled={currentPage * rowsPerPage >= totalItemsCount} 
-                onClick={() => setCurrentPage(prev => prev + 1)}
-                className="pt-pag-nav-btn"
-              >
-                ›
-              </button>
-            </div>
+            <button 
+              type="button" 
+              disabled={currentPage === 1} 
+              onClick={() => setCurrentPage(prev => prev - 1)}
+              className="ProjectTask-pag-nav-btn"
+            >
+              ‹
+            </button>
+            <button 
+              type="button" 
+              disabled={currentPage * rowsPerPage >= totalItemsCount} 
+              onClick={() => setCurrentPage(prev => prev + 1)}
+              className="ProjectTask-pag-nav-btn"
+            >
+              ›
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Dynamic Overlay System for Modals (Images 5 & 6) */}
+      {/* Modal View */}
       {modalConfig.isOpen && (
-        <div className="pt-modal-overlay">
-          <div className="pt-modal-window animate-scale-up">
-            
-            <div className="pt-modal-header">
-              <span className="pt-modal-title">
-                {modalConfig.type === 'add' ? 'New Task' : `Edit Task: ${modalConfig.taskData?.name}`}
-              </span>
+        <div className="ProjectTask-modal-overlay">
+          <div className="ProjectTask-modal-window">
+            <div className="ProjectTask-modal-header">
+              <h3 className="ProjectTask-modal-title">
+                {modalConfig.type === 'add' ? 'Create New Task' : 'Edit Task Details'}
+              </h3>
               <button 
                 type="button" 
-                className="pt-modal-close-cross" 
+                className="ProjectTask-modal-close" 
                 onClick={() => setModalConfig({ isOpen: false, type: 'add', taskData: null })}
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleSaveTask} className="pt-modal-form-body">
-              <div className="pt-form-row-grid">
+            <form onSubmit={handleSaveTask} className="ProjectTask-modal-form">
+              <div className="ProjectTask-form-grid">
                 
-                <div className="pt-input-field-group">
-                  <label className="pt-floating-label">Task Name*</label>
+                {/* Task Name */}
+                <div className="ProjectTask-form-group full-width">
+                  <label className="ProjectTask-form-label">Task Name*</label>
                   <input 
                     type="text" 
-                    className="pt-form-control-input"
+                    className="ProjectTask-form-input"
+                    placeholder="Enter descriptive task title..."
                     value={formFields.name}
                     onChange={(e) => setFormFields({ ...formFields, name: e.target.value })}
                     required
                   />
                 </div>
 
-                <div className="pt-input-field-group icon-input">
-                  <label className="pt-floating-label">Assigned To*</label>
-                  <input 
-                    type="text" 
-                    className="pt-form-control-input"
-                    value={formFields.assignee}
-                    onChange={(e) => setFormFields({ ...formFields, assignee: e.target.value })}
+                {/* Choose Project */}
+                <div className="ProjectTask-form-group">
+                  <label className="ProjectTask-form-label">Choose Project*</label>
+                  <select 
+                    className="ProjectTask-form-select"
+                    value={formFields.project}
+                    onChange={(e) => setFormFields({ ...formFields, project: e.target.value })}
                     required
-                  />
-                  <span className="pt-field-inner-icon">👤</span>
+                    disabled={isProjectsLoading}
+                  >
+                    {isProjectsLoading && <option value="">Loading projects...</option>}
+                    {!isProjectsLoading && availableProjects.length === 0 && <option value="">No projects available</option>}
+                    {!isProjectsLoading && availableProjects.map((projTitle, idx) => (
+                      <option key={idx} value={projTitle}>{projTitle}</option>
+                    ))}
+                  </select>
+                  {projectsError && (
+                    <small style={{ color: '#e53e3e', fontSize: '11px', marginTop: '4px' }}>
+                      {projectsError}
+                    </small>
+                  )}
                 </div>
 
-                <div className="pt-input-field-group">
-                  <label className="pt-floating-label">Priority*</label>
+                {/* Priority */}
+                <div className="ProjectTask-form-group">
+                  <label className="ProjectTask-form-label">Priority*</label>
                   <select 
-                    className="pt-form-control-select"
+                    className="ProjectTask-form-select"
                     value={formFields.priority}
                     onChange={(e) => setFormFields({ ...formFields, priority: e.target.value })}
                   >
@@ -376,10 +641,11 @@ const ProjectTasks = () => {
                   </select>
                 </div>
 
-                <div className="pt-input-field-group">
-                  <label className="pt-floating-label">Status*</label>
+                {/* Status */}
+                <div className="ProjectTask-form-group">
+                  <label className="ProjectTask-form-label">Status*</label>
                   <select 
-                    className="pt-form-control-select"
+                    className="ProjectTask-form-select"
                     value={formFields.status}
                     onChange={(e) => setFormFields({ ...formFields, status: e.target.value })}
                   >
@@ -389,56 +655,165 @@ const ProjectTasks = () => {
                   </select>
                 </div>
 
-                <div className="pt-input-field-group">
-                  <label className="pt-floating-label">Due Date*</label>
+                {/* Due Date */}
+                <div className="ProjectTask-form-group">
+                  <label className="ProjectTask-form-label">Due Date*</label>
                   <input 
                     type="date" 
-                    className="pt-form-control-input"
+                    className="ProjectTask-form-input"
                     value={formFields.date}
                     onChange={(e) => setFormFields({ ...formFields, date: e.target.value })}
                     required
                   />
                 </div>
 
-                <div className="pt-input-field-group label-fieldset">
-                  <fieldset className="pt-fieldset-wrapper">
-                    <legend className="pt-fieldset-legend">Progress (%)*</legend>
+                {/* Team Members Selection */}
+                <div className="ProjectTask-form-group full-width">
+                  <label className="ProjectTask-form-label">
+                    Assign Team Members (Name & ID)*
+                  </label>
+                  <div className="ProjectTask-team-selector-box">
+                    {isEmployeesLoading && (
+                      <p style={{ fontSize: '12px', color: '#718096', margin: 0 }}>
+                        Loading team members...
+                      </p>
+                    )}
+
+                    {!isEmployeesLoading && teamMembers.length === 0 && (
+                      <p style={{ fontSize: '12px', color: '#718096', margin: 0 }}>
+                        No employees found in database.
+                      </p>
+                    )}
+
+                    {!isEmployeesLoading && teamMembers.map((emp) => {
+                      const empId = emp._id;
+                      const empName = emp.name || emp.employee?.name || 'Unknown';
+                      const empCode = emp.employeeId || emp.employee?.employeeId || 'N/A';
+                      const memberLabel = `${empName} (${empCode})`;
+                      const isSelected = formFields.assignees.includes(empId);
+
+                      return (
+                        <button
+                          key={empId}
+                          type="button"
+                          className={`ProjectTask-member-tag-btn ${isSelected ? 'selected' : ''}`}
+                          onClick={() => toggleTeamMember(empId)}
+                        >
+                          {isSelected ? '✓ ' : '+ '} {memberLabel}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {employeesError && (
+                    <small style={{ color: '#e53e3e', fontSize: '11px', marginTop: '4px', display: 'block' }}>
+                      {employeesError}
+                    </small>
+                  )}
+                </div>
+
+                {/* Progress Slider */}
+                <div className="ProjectTask-form-group full-width">
+                  <div className="ProjectTask-slider-header">
+                    <label className="ProjectTask-form-label">Progress Percentage*</label>
+                    <span className="ProjectTask-slider-value">{formFields.progress}%</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="100"
+                    className="ProjectTask-form-range"
+                    value={formFields.progress}
+                    onChange={(e) => setFormFields({ ...formFields, progress: Number(e.target.value) })}
+                  />
+                </div>
+
+                {/* Description */}
+                <div className="ProjectTask-form-group full-width">
+                  <label className="ProjectTask-form-label">Description / Notes</label>
+                  <textarea 
+                    className="ProjectTask-form-textarea"
+                    rows="3"
+                    placeholder="Provide additional background or details for this task..."
+                    value={formFields.description}
+                    onChange={(e) => setFormFields({ ...formFields, description: e.target.value })}
+                  ></textarea>
+                </div>
+
+                {/* Attachments */}
+                <div className="ProjectTask-form-group full-width">
+                  <label className="ProjectTask-form-label">Upload Attachments / Images</label>
+                  <div className="ProjectTask-file-upload-dropzone">
                     <input 
-                      type="number" 
-                      min="0" 
-                      max="100"
-                      className="pt-fieldset-input"
-                      value={formFields.progress}
-                      onChange={(e) => setFormFields({ ...formFields, progress: Math.min(100, Math.max(0, Number(e.target.value))) })}
-                      required
+                      type="file" 
+                      multiple 
+                      accept="image/*,.pdf,.doc,.docx"
+                      onChange={handleFileUpload} 
+                      id="ProjectTask-file-input"
+                      className="ProjectTask-hidden-file-input"
                     />
-                  </fieldset>
+                    <label htmlFor="ProjectTask-file-input" className="ProjectTask-upload-trigger-label">
+                      📁 Click to upload or drag & drop files here
+                    </label>
+                  </div>
+
+          {formFields.attachments?.length > 0 && (
+                  <div className="ProjectTask-attachment-preview-grid">
+                    {formFields.attachments.map((file, idx) => {
+                      // Determine the correct image source
+                      const imageSrc = file.url?.startsWith('http') || file.url?.startsWith('blob')
+                        ? file.url
+                        : `${IMG_URL}${file.url?.startsWith('/') ? '' : '/'}${file.url}`;
+
+                      return (
+                        <div key={idx} className="ProjectTask-attachment-card">
+                          {file.fileType?.startsWith('image/') || file.type?.startsWith('image/') ? (
+                            <img 
+                              src={imageSrc} 
+                              alt="preview" 
+                              className="ProjectTask-attachment-img" 
+                            />
+                          ) : (
+                            <div className="ProjectTask-file-icon-placeholder">📄</div>
+                          )}
+                          <span className="ProjectTask-attachment-name" title={file.name}>{file.name}</span>
+                          <button 
+                            type="button" 
+                            className="ProjectTask-remove-attachment-btn"
+                            onClick={() => removeAttachment(idx)}
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
                 </div>
 
               </div>
 
-              <div className="pt-form-actions-footer">
-                <button 
-                  type="submit" 
-                  className={`pt-modal-btn btn-save-action ${modalConfig.type === 'edit' ? 'edit-variant-style' : ''}`}
-                >
-                  Save
-                </button>
+              {/* Actions */}
+              <div className="ProjectTask-modal-actions">
                 <button 
                   type="button" 
-                  className="pt-modal-btn btn-cancel-action"
+                  className="ProjectTask-btn ProjectTask-btn-outline"
                   onClick={() => setModalConfig({ isOpen: false, type: 'add', taskData: null })}
                 >
                   Cancel
                 </button>
+                <button 
+                  type="submit" 
+                  className="ProjectTask-btn ProjectTask-btn-primary"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Saving...' : modalConfig.type === 'add' ? 'Save Task' : 'Update Task'}
+                </button>
               </div>
 
             </form>
-
           </div>
         </div>
       )}
-
     </div>
   );
 };
