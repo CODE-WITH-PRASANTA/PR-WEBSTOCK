@@ -76,7 +76,7 @@ const BlogManagement = () => {
       setError(null);
     } catch (err) {
       console.error("Error fetching blogs:", err);
-      setError("Failed to load blogs. Please try again later.");
+      setError("Failed to load blogs. Please verify your backend server is running.");
     } finally {
       setLoading(false);
     }
@@ -97,8 +97,7 @@ const BlogManagement = () => {
   }, [activeMenu]);
 
   const handleEdit = (id) => {
-    console.log("Navigating to Edit ID:", id);
-    navigate(`/blog-post/${id}`);
+    navigate(`/admin/blog-post/${id}`);
   };
 
   const handleDelete = async (id, e) => {
@@ -162,7 +161,10 @@ const BlogManagement = () => {
       {blogs.length === 0 ? (
         <div className="BlogManagement_Empty">
           <p>No blogs found. Start creating one!</p>
-          <button onClick={() => navigate("/blog-post/new")} className="Create_Btn">
+          <button
+            onClick={() => navigate("/admin/blog-post")}
+            className="Create_Btn"
+          >
             Create First Post
           </button>
         </div>
@@ -180,8 +182,10 @@ const BlogManagement = () => {
                     src={imgSrc} 
                     alt={blog.title || "Blog post preview"} 
                     onError={(e) => {
+                      // Prevent infinite loops if placeholder fails
+                      if (e.target.src.includes("via.placeholder.com")) return;
                       e.target.onerror = null; 
-                      e.target.src = "https://via.placeholder.com/400x250?text=Image+Not+Found+On+Server";
+                      e.target.src = "https://via.placeholder.com/400x250?text=Image+Unavailable";
                     }}
                   />
                 </div>
@@ -215,7 +219,7 @@ const BlogManagement = () => {
                 <div className="BlogManagement_CardContent">
                   <span className="Category_Tag">{blog.category || "General"}</span>
                   <h3>{blog.title || "Untitled Post"}</h3>
-                  <p>{blog.quote || blog.description || blog.content?.substring(0, 100) + "..." || "No preview text available."}</p>
+                  <p>{blog.quote || blog.description || (blog.content ? blog.content.substring(0, 100) + "..." : "No preview text available.")}</p>
                   <div className="BlogManagement_Footer">
                     <small>{blog.admin || blog.author || "Admin"}</small>
                     <small>{blog.date ? new Date(blog.date).toLocaleDateString() : new Date().toLocaleDateString()}</small>
@@ -239,6 +243,7 @@ const BlogManagement = () => {
                     src={imgSrc} 
                     alt={blog.title || "Blog post preview"} 
                     onError={(e) => {
+                      if (e.target.src.includes("via.placeholder.com")) return;
                       e.target.onerror = null; 
                       e.target.src = "https://via.placeholder.com/150?text=Error";
                     }}
@@ -247,7 +252,7 @@ const BlogManagement = () => {
 
                 <div className="BlogManagement_ListContent">
                   <h3>{blog.title || "Untitled Post"}</h3>
-                  <p>{blog.quote || blog.description || blog.content?.substring(0, 120) + "..." || "No preview text available."}</p>
+                  <p>{blog.quote || blog.description || (blog.content ? blog.content.substring(0, 120) + "..." : "No preview text available.")}</p>
                   <div className="BlogManagement_ListMeta">
                     <span className="Category_Tag">{blog.category || "General"}</span>
                     <span>By {blog.admin || blog.author || "Admin"}</span>

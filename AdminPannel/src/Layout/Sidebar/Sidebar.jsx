@@ -35,19 +35,20 @@ const Sidebar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Logout Function
- const handleLogout = () => {
-  // Remove authentication
-  localStorage.removeItem("adminAuth");
+  const handleLogout = () => {
+    // Remove authentication
+    localStorage.removeItem("adminAuth");
 
-  // Clear any other storage
-  sessionStorage.clear();
+    // Clear any other storage
+    sessionStorage.clear();
 
-  // Go to login page
-  navigate("/", { replace: true });
+    // Go to login page
+    navigate("/", { replace: true });
 
-  // Force React to reload and re-check ProtectedRoute
-  window.location.reload();
-};
+    // Force React to reload and re-check ProtectedRoute
+    window.location.reload();
+  };
+
   return (
     <>
       <button
@@ -144,7 +145,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/admin/blog-post"
+            to="/admin/blog-post/1"
             className={({ isActive }) =>
               isActive
                 ? "sidebarLink active"
@@ -308,15 +309,15 @@ const Sidebar = () => {
                 </div>
               </div>
 
-              <NavLink to="/profile">
+              <NavLink to="/admin/profile">
                 Public Profile
               </NavLink>
 
-              <NavLink to="/my-profile">
+              <NavLink to="/admin/my-profile">
                 My Profile
               </NavLink>
 
-              <NavLink to="/account">
+              <NavLink to="/admin/account">
                 My Account
               </NavLink>
 

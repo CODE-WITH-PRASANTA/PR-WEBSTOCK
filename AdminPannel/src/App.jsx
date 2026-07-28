@@ -45,7 +45,7 @@ function App() {
             path="testimonial-management"
             element={<Testimonial />}
           />
-          <Route path="blog-post" element={<BlogPost />} />
+           <Route path="blog-post/:id" element={<BlogPost />} />
           <Route
             path="blog-management"
             element={<BlogManagement />}
