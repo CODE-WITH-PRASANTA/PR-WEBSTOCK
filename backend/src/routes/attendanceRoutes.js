@@ -9,8 +9,8 @@ const { protectEmployee } = require('../middleware/authEmployee');
 // These are placed BEFORE router.use(protectEmployee)
 router.get('/admin/daily-report', attendanceController.getAllAttendanceReport);
 router.put('/admin/update/:id', attendanceController.updateAttendanceEntry);
-// Admin route: Get all employees' attendance for a month
 router.get('/admin/monthly-report', attendanceController.getAllEmployeesMonthlyAttendance);
+router.post('/admin/manual-adjust', attendanceController.manualAdjustAttendance);
 
 // --- PROTECTED ROUTES (Token required) ---
 // Anything below this line is protected by protectEmployee

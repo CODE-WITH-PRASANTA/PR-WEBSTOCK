@@ -1,6 +1,9 @@
 const Attendance = require('../models/Attendance');
+const AddEmployee = require('../models/AddEmployee');
 const Shift = require('../models/Shift'); 
 const { getDistanceInMeters } = require('../utils/geoUtils');
+const mongoose = require('mongoose');
+
 
 // Configuration Constants
 const SCHOOL_LAT = 20.37694322800968; 
@@ -462,4 +465,83 @@ exports.getAllEmployeesMonthlyAttendance = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+};
+
+
+exports.manualAdjustAttendance = async (req, res) => {
+    try {
+        const { employeeId, date, status, punchInTime, punchOutTime } = req.body;
+
+        // 1. Validation
+        if (!employeeId || !date) {
+            return res.status(400).json({ success: false, message: "Employee ID and Date are required." });
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(employeeId)) {
+            return res.status(400).json({ success: false, message: `Invalid Employee ID format: ${employeeId}` });
+        }
+
+        // 2. Map incoming status format to official DB title format
+        const statusMap = {
+            'present': 'Present',
+            'absent': 'Absent',
+            'halfday': 'Half Day',
+            'late': 'Late',
+            'holiday': 'Holiday',
+            'leave': 'Leave',
+            'weekend': 'Weekend'
+        };
+        const formattedStatus = statusMap[status] || status || 'Present';
+
+        // 3. Format date to standard string "YYYY-MM-DD" used throughout your system
+        const dateStr = typeof date === 'string' ? date.split('T')[0] : new Date(date).toISOString().split('T')[0];
+
+        // 4. Safely parse punch dates
+        const parseTime = (timeVal) => {
+            if (!timeVal) return null;
+            const parsed = new Date(timeVal);
+            return isNaN(parsed.getTime()) ? null : parsed;
+        };
+
+        const parsedPunchIn = parseTime(punchInTime);
+        const parsedPunchOut = parseTime(punchOutTime);
+
+        // 5. Calculate total working minutes if both punch times exist
+        let totalWorkingMinutes = 0;
+        if (parsedPunchIn && parsedPunchOut) {
+            const diffMs = parsedPunchOut - parsedPunchIn;
+            totalWorkingMinutes = Math.max(0, Math.floor(diffMs / (1000 * 60)));
+        }
+
+        // 6. Fetch employee name to keep record self-contained
+        const employeeDoc = await AddEmployee.findById(employeeId).select('name employeeId');
+
+        // 7. Upsert matching employeeId (ObjectId) and date (String)
+        const updatedEntry = await Attendance.findOneAndUpdate(
+            {
+                employeeId: new mongoose.Types.ObjectId(employeeId),
+                date: dateStr
+            },
+            {
+                $set: {
+                    employeeId: new mongoose.Types.ObjectId(employeeId),
+                    employeeCustomId: employeeDoc?.employeeId || '',
+                    name: employeeDoc?.name || '',
+                    date: dateStr,
+                    dayStatus: formattedStatus,
+                    status: formattedStatus === 'Absent' ? 'Absent' : 'Punched Out',
+                    punchInTime: parsedPunchIn,
+                    punchOutTime: parsedPunchOut,
+                    totalWorkingMinutes
+                }
+            },
+            { new: true, upsert: true, runValidators: true }
+        );
+
+        return res.json({ success: true, data: updatedEntry });
+
+    } catch (error) {
+        console.error("Error in manualAdjustAttendance:", error);
+        return res.status(500).json({ success: false, error: error.message });
+    }
 };
