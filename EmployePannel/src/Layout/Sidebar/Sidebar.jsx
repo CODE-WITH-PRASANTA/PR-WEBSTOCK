@@ -262,7 +262,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </NavLink>
 
           {/* CHAT LINK */}
-          {/* <NavLink
+          <NavLink
             to="/employee/chat"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -270,7 +270,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiMessageSquare />
               {!collapsed && <span>Chat</span>}
             </div>
-          </NavLink> */}
+          </NavLink>
 
           {/* PAYROLL DROPDOWN CONTAINER */}
           {/* <div

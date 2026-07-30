@@ -1,168 +1,284 @@
 import React, { useState } from "react";
 import "./Chats.css";
-import { FiHome, FiPaperclip, FiSmile, FiSearch } from "react-icons/fi";
+import {
+  FiHome,
+  FiPaperclip,
+  FiSmile,
+  FiSearch,
+  FiDownload,
+  FiEye,
+  FiFileText,
+  FiUsers,
+  FiSend
+} from "react-icons/fi";
 
-const initialUsers = [
-  { id: 1, name: "William Smith", status: "left 7 mins ago", isOnline: false, avatar: "https://randomuser.me/api/portraits/women/1.jpg" },
-  { id: 2, name: "Martha Williams", status: "online", isOnline: false, dotType: "orange", avatar: "https://randomuser.me/api/portraits/men/2.jpg" },
-  { id: 3, name: "Joseph Clark", status: "online", isOnline: true, avatar: "https://randomuser.me/api/portraits/women/3.jpg" },
-  { id: 4, name: "Nancy Taylor", status: "online", isOnline: true, avatar: "https://randomuser.me/api/portraits/women/4.jpg" },
-  { id: 5, name: "Margaret Wilson", status: "online", isOnline: true, avatar: "https://randomuser.me/api/portraits/men/5.jpg" },
-  { id: 6, name: "Joseph Jones", status: "left 30 mins ago", isOnline: false, avatar: "https://randomuser.me/api/portraits/women/6.jpg" },
-  { id: 7, name: "Jane Brown", status: "left 10 hours ago", isOnline: false, avatar: "https://randomuser.me/api/portraits/men/7.jpg" },
-  { id: 8, name: "Eliza Johnson", status: "online", isOnline: true, avatar: "https://randomuser.me/api/portraits/women/8.jpg" },
-  { id: 9, name: "Mike Clark", status: "online", isOnline: true, avatar: "https://randomuser.me/api/portraits/women/9.jpg" },
-  { id: 10, name: "Ann Henry", status: "", isOnline: false, hideDot: true, avatar: "https://randomuser.me/api/portraits/women/10.jpg" }
+const projectGroup = {
+  id: "grp-1",
+  name: "Prwebstock Project Hub",
+  members: 12,
+  category: "Development Workspace",
+};
+
+const initialFiles = [
+  {
+    id: 1,
+    name: "PRWebstock_Architecture_v2.pdf",
+    type: "PDF Document",
+    size: "4.2 MB",
+    uploadedBy: "Robert Fox (Manager)",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    date: "May 24, 2026",
+    downloadUrl: "#",
+  },
+  {
+    id: 2,
+    name: "Dashboard_Design_System.fig",
+    type: "Figma File",
+    size: "18.5 MB",
+    uploadedBy: "Maria Smith",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    date: "May 22, 2026",
+    downloadUrl: "#",
+  },
+  {
+    id: 3,
+    name: "Sprint_24_Task_Breakdown.xlsx",
+    type: "Excel Sheet",
+    size: "1.1 MB",
+    uploadedBy: "William Smith",
+    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+    date: "May 20, 2026",
+    downloadUrl: "#",
+  },
+  {
+    id: 4,
+    name: "API_Endpoints_Specification.json",
+    type: "JSON Data",
+    size: "340 KB",
+    uploadedBy: "Joseph Clark",
+    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
+    date: "May 18, 2026",
+    downloadUrl: "#",
+  },
+];
+
+const initialMessages = [
+  {
+    id: 1,
+    sender: "Maria Smith",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    time: "10:10 AM",
+    text: "Hey team, I've updated the core architectural design for the Prwebstock project. Please review the docs in the file workspace below.",
+    isSelf: false,
+  },
+  {
+    id: 2,
+    sender: "Robert Fox (Manager)",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    time: "10:12 AM",
+    text: "Thanks Maria! I just uploaded the Sprint task breakdown sheet to the files list.",
+    isSelf: true,
+  },
 ];
 
 const Chats = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeUserId, setActiveUserId] = useState(1);
+  const [fileSearch, setFileSearch] = useState("");
+  const [messages, setMessages] = useState(initialMessages);
   const [messageInput, setMessageInput] = useState("");
+  const [fileList] = useState(initialFiles);
 
-  const filteredUsers = initialUsers.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredFiles = fileList.filter(
+    (file) =>
+      file.name.toLowerCase().includes(fileSearch.toLowerCase()) ||
+      file.uploadedBy.toLowerCase().includes(fileSearch.toLowerCase())
   );
 
-  return (
-    <div className="kuber-chat-page-root">
-      
-      {/* ================= BREADCRUMB HEADER ================= */}
-      <div className="chat-breadcrumb-header">
-        <div className="breadcrumb-left">
-          <h1>Chat</h1>
-        </div>
-        <div className="breadcrumb-right">
-          <FiHome className="home-nav-icon" />
-          <span className="nav-arrow">&gt;</span>
-          <span className="nav-link-lbl">Home</span>
-          <span className="nav-arrow">&gt;</span>
-          <span className="nav-current-lbl">Chat</span>
-        </div>
-      </div>
+  const handleSendMessage = () => {
+    if (!messageInput.trim()) return;
+    const newMsg = {
+      id: Date.now(),
+      sender: "Robert Fox (Manager)",
+      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      time: "Just now",
+      text: messageInput,
+      isSelf: true,
+    };
+    setMessages([...messages, newMsg]);
+    setMessageInput("");
+  };
 
-      {/* ================= MAIN INTERFACE WRAPPER ================= */}
-      <div className="chat-interface-layout">
+  const handleDownloadFile = (fileName) => {
+    alert(`Downloading ${fileName}...`);
+  };
+
+  return (
+    <div className="Chats-root">
+      
+      {/* HEADER & BREADCRUMB */}
+      <header className="Chats-header">
+        <div className="Chats-header-title">
+          <h1>{projectGroup.name}</h1>
+          <p>Collaborate with team members and manage shared project files in one place.</p>
+        </div>
+        <div className="Chats-breadcrumb">
+          <FiHome className="Chats-breadcrumb-icon" />
+          <span>/</span>
+          <span className="Chats-breadcrumb-link">Projects</span>
+          <span>/</span>
+          <span className="Chats-breadcrumb-current">Prwebstock Workspace</span>
+        </div>
+      </header>
+
+      {/* SINGLE CONTAINER LAYOUT */}
+      <div className="Chats-single-wrapper">
         
-        {/* LEFT COMPONENT: CONTACTS LIST */}
-        <div className="chat-sidebar-left">
-          <div className="sidebar-search-box">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+        {/* GROUP CHAT SECTION */}
+        <section className="Chats-chat-section">
+          <div className="Chats-chat-header">
+            <div className="Chats-chat-title">
+              <div className="Chats-group-badge-icon">
+                <FiUsers />
+              </div>
+              <div>
+                <h2>{projectGroup.name} Chat</h2>
+                <span className="Chats-group-subtitle">{projectGroup.category}</span>
+              </div>
+            </div>
+            <div className="Chats-meta-stats">
+              <FiUsers /> {projectGroup.members} Active Members
+            </div>
           </div>
 
-          <div className="sidebar-contacts-scroll">
-            {filteredUsers.map((user) => (
+          {/* MESSAGES LOG */}
+          <div className="Chats-messages-container">
+            {messages.map((msg) => (
               <div
-                key={user.id}
-                className={`contact-item-row ${activeUserId === user.id ? "selected-active" : ""}`}
-                onClick={() => setActiveUserId(user.id)}
+                key={msg.id}
+                className={`Chats-msg-wrapper ${msg.isSelf ? "self" : "incoming"}`}
               >
-                <div className="contact-avatar-holder">
-                  <img src={user.avatar} alt={user.name} />
-                </div>
-                <div className="contact-info-holder">
-                  <span className="contact-profile-name">{user.name}</span>
-                  {user.status && (
-                    <div className="contact-status-flex">
-                      {!user.hideDot && (
-                        <span className={`indicator-dot ${user.isOnline ? "green-dot" : "orange-dot"}`}></span>
-                      )}
-                      <span className="status-timeline-text">{user.status}</span>
-                    </div>
-                  )}
+                <img src={msg.avatar} alt={msg.sender} className="Chats-msg-avatar" />
+                <div className="Chats-msg-body">
+                  <div className="Chats-msg-meta">
+                    <span className="Chats-msg-sender">{msg.sender}</span>
+                    <span className="Chats-msg-time">{msg.time}</span>
+                  </div>
+                  <div className="Chats-msg-bubble">{msg.text}</div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* RIGHT COMPONENT: CONVERSATION BOX */}
-        <div className="chat-window-right">
-          
-          {/* Active User Header Banner info */}
-          <div className="chat-window-top-bar">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Maria Smith" className="active-chat-avatar" />
-            <div className="active-chat-meta">
-              <h5>Maria Smith</h5>
-              <span>2 new messages</span>
-            </div>
-          </div>
-
-          {/* Chat Messages Log Area */}
-          <div className="chat-messages-scrollarea">
-            
-            {/* Incoming Message: Maria */}
-            <div className="message-container incoming">
-              <div className="msg-bubble shadow-tint">
-                Hi Robert , how are you? How is your work going on?
-              </div>
-            </div>
-
-            {/* Outgoing Message Timestamp Row: Robert */}
-            <div className="msg-user-timestamp left-aligned">
-              <strong>Robert</strong> 10:12 AM, Today
-            </div>
-
-            {/* Outgoing Message Bubble 1: Robert */}
-            <div className="message-container outgoing">
-              <div className="msg-bubble gray-bubble">
-                Its good. We completed almost all task assign by our manager.
-              </div>
-            </div>
-
-            {/* Outgoing Message Timestamp Row 2 */}
-            <div className="msg-user-timestamp left-aligned">
-              <strong>Robert</strong> 10:12 AM, Today
-            </div>
-
-            {/* Outgoing Message Bubble 2: Robert */}
-            <div className="message-container outgoing">
-              <div className="msg-bubble gray-bubble">
-                How are you feel today? What's about vacation?.
-              </div>
-            </div>
-
-            {/* Incoming Message Timestamp Row: Maria */}
-            <div className="msg-user-timestamp right-aligned">
-              10:10 AM, Today <strong>Maria</strong>
-            </div>
-
-            {/* Incoming Message Bubble 2: Maria */}
-            <div className="message-container incoming last-msg-margin">
-              <div className="msg-bubble shadow-tint attachment-tail">
-                I am good, We think for next weekend.
-              </div>
-            </div>
-
-          </div>
-
-          {/* BOTTOM INTERACTIVE BAR FIELD */}
-          <div className="chat-bottom-control-area">
-            <div className="chat-input-outline-wrapper">
-              <input 
-                type="text" 
-                placeholder="Enter text here.." 
-                value={messageInput}
-                onChange={(e) => setMessageInput(e.target.value)}
-              />
-            </div>
-            
-            <div className="chat-action-buttons-group">
-              <button className="orange-action-btn clip-btn" title="Attach file">
+          {/* MESSAGE INPUT BAR */}
+          <div className="Chats-input-bar">
+            <input
+              type="text"
+              placeholder="Type a message to the team..."
+              value={messageInput}
+              onChange={(e) => setMessageInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+            />
+            <div className="Chats-input-actions">
+              <button className="Chats-action-btn" title="Attach Document">
                 <FiPaperclip />
               </button>
-              <button className="orange-action-btn emoji-btn" title="Add emoji">
+              <button className="Chats-action-btn" title="Insert Emoji">
                 <FiSmile />
+              </button>
+              <button className="Chats-send-btn" onClick={handleSendMessage}>
+                <span>Send</span>
+                <FiSend />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECT FILES TABLE SECTION */}
+        <section className="Chats-files-section">
+          <div className="Chats-files-header">
+            <div>
+              <h3>Project Files & Uploads</h3>
+              <p>Download and review files shared across the team</p>
+            </div>
+            <div className="Chats-files-controls">
+              <div className="Chats-search-box small">
+                <FiSearch className="Chats-search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search files..."
+                  value={fileSearch}
+                  onChange={(e) => setFileSearch(e.target.value)}
+                />
+              </div>
+              <button className="Chats-upload-btn">
+                <FiPaperclip /> Upload File
               </button>
             </div>
           </div>
 
-        </div>
+          {/* TABLE CONTAINER */}
+          <div className="Chats-table-wrapper">
+            <table className="Chats-table">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>File Name</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                  <th>Uploaded By</th>
+                  <th>Date</th>
+                  <th>Download</th>
+                  <th className="text-right">Preview</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredFiles.length > 0 ? (
+                  filteredFiles.map((file, index) => (
+                    <tr key={file.id}>
+                      <td className="Chats-cell-index">{index + 1}</td>
+                      <td className="Chats-cell-filename">
+                        <FiFileText className="Chats-file-icon" />
+                        <span>{file.name}</span>
+                      </td>
+                      <td>
+                        <span className="Chats-type-pill">{file.type}</span>
+                      </td>
+                      <td className="Chats-cell-muted">{file.size}</td>
+                      <td>
+                        <div className="Chats-uploader">
+                          <img src={file.avatar} alt={file.uploadedBy} />
+                          <span>{file.uploadedBy}</span>
+                        </div>
+                      </td>
+                      <td className="Chats-cell-muted">{file.date}</td>
+                      <td>
+                        <button
+                          className="Chats-download-btn"
+                          title="Download File"
+                          onClick={() => handleDownloadFile(file.name)}
+                        >
+                          <FiDownload /> Download
+                        </button>
+                      </td>
+                      <td className="text-right">
+                        <div className="Chats-row-actions">
+                          <button className="Chats-icon-btn view" title="Preview">
+                            <FiEye />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="8" className="Chats-empty-table">
+                      No files uploaded to this workspace yet.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
 
       </div>
     </div>
