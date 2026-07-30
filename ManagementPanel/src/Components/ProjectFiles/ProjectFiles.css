@@ -6,6 +6,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   box-sizing: border-box;
   color: #495057;
+  
 }
 
 .ProjectFiles-container * {
@@ -676,5 +677,20 @@
   .ProjectFiles-btn {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* CSS Grid implementation */
+.ProjectFiles-workspace-grid {
+  display: grid;
+  gap: 30px; /* Exact 30px gap between file box and chat box */
+  align-items: start;
+}
+
+/* Responsive adjustment for tablet/mobile screens */
+@media (max-width: 992px) {
+  .ProjectFiles-workspace-grid {
+    grid-template-columns: 1fr; /* Stacks vertically on smaller screens */
+    gap: 20px;
   }
 }

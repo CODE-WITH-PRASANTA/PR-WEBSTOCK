@@ -1,0 +1,310 @@
+/* Container & Layout */
+.ProjectChat-container {
+  display: flex;
+  height: calc(100vh - 2rem);
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.ProjectChat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+/* Header Section */
+.ProjectChat-header {
+  padding: 1rem 1.5rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProjectChat-group-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ProjectChat-header-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  background-color: #eef2ff;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f46e5;
+  flex-shrink: 0;
+}
+
+.ProjectChat-group-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.2px;
+}
+
+.ProjectChat-group-meta {
+  font-size: 0.775rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ProjectChat-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.ProjectChat-meta-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.ProjectChat-meta-description {
+  color: #64748b;
+}
+
+.ProjectChat-dot-separator {
+  color: #cbd5e1;
+}
+
+.ProjectChat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Message Feed */
+.ProjectChat-messages-feed {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background-color: #f8fafc;
+}
+
+.ProjectChat-date-separator {
+  text-align: center;
+  margin: 0.75rem 0;
+  position: relative;
+}
+
+.ProjectChat-date-separator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  z-index: 1;
+}
+
+.ProjectChat-date-separator span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #f8fafc;
+  color: #64748b;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Message Rows & Bubbles */
+.ProjectChat-message-row {
+  display: flex;
+  width: 100%;
+}
+
+.ProjectChat-message-row.me {
+  justify-content: flex-end;
+}
+
+.ProjectChat-message-row.other {
+  justify-content: flex-start;
+}
+
+.ProjectChat-message-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 65%;
+}
+
+.ProjectChat-avatar-img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.ProjectChat-message-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ProjectChat-sender-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  margin-left: 0.25rem;
+}
+
+.ProjectChat-sender-name {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.ProjectChat-sender-role {
+  font-size: 0.6875rem;
+  color: #4f46e5;
+  font-weight: 600;
+  background-color: #e0e7ff;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+}
+
+.ProjectChat-sender-time {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+.ProjectChat-message-bubble {
+  padding: 0.85rem 1.1rem;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.ProjectChat-bubble-other {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-top-left-radius: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.ProjectChat-bubble-me {
+  background-color: #4f46e5;
+  color: #ffffff;
+  border-bottom-right-radius: 0;
+}
+
+.ProjectChat-message-meta-me {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+.ProjectChat-status-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #6366f1;
+}
+
+/* Input Form Section */
+.ProjectChat-input-area {
+  padding: 1rem 1.5rem;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.ProjectChat-input-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.375rem 0.5rem 0.375rem 1.25rem;
+  border-radius: 0.625rem;
+  transition: all 0.2s ease;
+}
+
+.ProjectChat-input-form:focus-within {
+  border-color: #4f46e5;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+.ProjectChat-message-input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  font-size: 0.875rem;
+  outline: none;
+  color: #1e293b;
+  padding: 0.5rem 0;
+}
+
+.ProjectChat-message-input::placeholder {
+  color: #94a3b8;
+}
+
+.ProjectChat-send-btn {
+  padding: 0.625rem;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.ProjectChat-send-btn:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+.ProjectChat-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #94a3b8;
+}
+
+/* Base Utilities */
+.ProjectChat-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.ProjectChat-icon-btn-ghost {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ProjectChat-icon-btn-ghost:hover {
+  background-color: #f1f5f9;
+  color: #334155;
+}

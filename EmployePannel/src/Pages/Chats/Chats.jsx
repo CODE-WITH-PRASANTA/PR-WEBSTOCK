@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Chats.css";
 import {
   FiHome,
@@ -9,83 +9,253 @@ import {
   FiEye,
   FiFileText,
   FiUsers,
-  FiSend
+  FiSend,
+  FiLoader,
+  FiAlertCircle
 } from "react-icons/fi";
+import API from "../../api/axios";
+
+// Default Workspace Constants matching backend default schema
+const DEFAULT_GROUP_ID = "PR_WEBSTOCK_CORE";
 
 const projectGroup = {
-  id: "grp-1",
+  id: DEFAULT_GROUP_ID,
   name: "Prwebstock Project Hub",
   members: 12,
   category: "Development Workspace",
 };
 
-const initialFiles = [
-  {
-    id: 1,
-    name: "PRWebstock_Architecture_v2.pdf",
-    type: "PDF Document",
-    size: "4.2 MB",
-    uploadedBy: "Robert Fox (Manager)",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    date: "May 24, 2026",
-    downloadUrl: "#",
-  },
-  {
-    id: 2,
-    name: "Dashboard_Design_System.fig",
-    type: "Figma File",
-    size: "18.5 MB",
-    uploadedBy: "Maria Smith",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    date: "May 22, 2026",
-    downloadUrl: "#",
-  },
-  {
-    id: 3,
-    name: "Sprint_24_Task_Breakdown.xlsx",
-    type: "Excel Sheet",
-    size: "1.1 MB",
-    uploadedBy: "William Smith",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    date: "May 20, 2026",
-    downloadUrl: "#",
-  },
-  {
-    id: 4,
-    name: "API_Endpoints_Specification.json",
-    type: "JSON Data",
-    size: "340 KB",
-    uploadedBy: "Joseph Clark",
-    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
-    date: "May 18, 2026",
-    downloadUrl: "#",
-  },
-];
-
-const initialMessages = [
-  {
-    id: 1,
-    sender: "Maria Smith",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    time: "10:10 AM",
-    text: "Hey team, I've updated the core architectural design for the Prwebstock project. Please review the docs in the file workspace below.",
-    isSelf: false,
-  },
-  {
-    id: 2,
-    sender: "Robert Fox (Manager)",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    time: "10:12 AM",
-    text: "Thanks Maria! I just uploaded the Sprint task breakdown sheet to the files list.",
-    isSelf: true,
-  },
-];
+// Helper: Ensure persistent sender identity across sessions
+const getOrCreateSenderId = () => {
+  let senderId = localStorage.getItem("chat_sender_id");
+  if (!senderId) {
+    senderId = `user_${Math.random().toString(36).substring(2, 9)}_${Date.now()}`;
+    localStorage.setItem("chat_sender_id", senderId);
+  }
+  return senderId;
+};
 
 const Chats = () => {
+  // Search & Messaging States
   const [fileSearch, setFileSearch] = useState("");
-  const [messages, setMessages] = useState(initialMessages);
+  const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-  const [fileList] = useState(initialFiles);
+  
+  // Project Files State
+  const [fileList, setFileList] = useState([]);
+  const [isFilesLoading, setIsFilesLoading] = useState(true);
+  const [filesError, setFilesError] = useState(null);
+
+  // Chat Async & UI Status States
+  const [isChatLoading, setIsChatLoading] = useState(true);
+  const [isSending, setIsSending] = useState(false);
+  const [chatError, setChatError] = useState(null);
+
+  const messagesEndRef = useRef(null);
+  const senderId = useRef(getOrCreateSenderId()).current;
+
+  // Auto-scroll to bottom of chat feed
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Fetch project files from backend (`GET /api/project-files`)
+  const fetchProjectFiles = useCallback(async () => {
+    setIsFilesLoading(true);
+    try {
+      const response = await API.get("/project-files");
+      if (response.data && response.data.success) {
+        const rawFiles = response.data.data;
+
+        // Transform MongoDB schema objects for frontend UI table display
+        const transformedFiles = rawFiles.map((file) => ({
+          id: file._id,
+          name: file.name,
+          filename: file.filename,
+          type: file.type,
+          size: file.size,
+          uploadedBy: file.uploadedBy,
+          avatar: `https://api.dicebear.com/7.x/identicon/svg?seed=${encodeURIComponent(
+            file.uploadedBy
+          )}`,
+          date: new Date(file.date || file.createdAt).toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          }),
+          filePath: file.filePath,
+        }));
+
+        setFileList(transformedFiles);
+        setFilesError(null);
+      }
+    } catch (err) {
+      console.error("Error fetching project files:", err);
+      setFilesError(
+        err.response?.data?.message || "Failed to load project files from server."
+      );
+    } finally {
+      setIsFilesLoading(false);
+    }
+  }, []);
+
+  // Fetch messages from backend (`GET /api/chat/messages/:groupId`)
+  const fetchMessages = useCallback(async (showLoading = false) => {
+    if (showLoading) setIsChatLoading(true);
+    try {
+      const response = await API.get(`/chat/messages/${DEFAULT_GROUP_ID}`);
+      
+      if (response.data && response.data.success) {
+        const rawMessages = response.data.data;
+        
+        // Transform backend DB objects to UI representation
+        const transformedMessages = rawMessages.map((msg) => {
+          const isSelf = msg.senderId === senderId;
+          const shortId = msg.senderId ? msg.senderId.slice(-4) : "User";
+          
+          return {
+            id: msg._id,
+            sender: isSelf ? "You" : `Member (${shortId})`,
+            avatar: isSelf
+              ? "https://randomuser.me/api/portraits/men/32.jpg"
+              : `https://api.dicebear.com/7.x/identicon/svg?seed=${msg.senderId}`,
+            time: new Date(msg.createdAt).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+            text: msg.text,
+            isSelf: isSelf,
+            pending: false,
+          };
+        });
+
+        setMessages(transformedMessages);
+        setChatError(null);
+      }
+    } catch (err) {
+      console.error("Error fetching messages:", err);
+      if (showLoading) {
+        setChatError(
+          err.response?.data?.message || "Failed to load messages from server."
+        );
+      }
+    } finally {
+      if (showLoading) setIsChatLoading(false);
+    }
+  }, [senderId]);
+
+  // Initial loads and chat polling setup
+  useEffect(() => {
+    fetchMessages(true);
+    fetchProjectFiles();
+
+    // Poll every 3 seconds for chat updates
+    const pollInterval = setInterval(() => {
+      fetchMessages(false);
+    }, 3000);
+
+    return () => clearInterval(pollInterval);
+  }, [fetchMessages, fetchProjectFiles]);
+
+  // Post message to backend (`POST /api/chat/messages`)
+  const handleSendMessage = async () => {
+    const trimmedMessage = messageInput.trim();
+    if (!trimmedMessage || isSending) return;
+
+    setIsSending(true);
+
+    // Optimistic UI update
+    const tempId = `temp-${Date.now()}`;
+    const optimisticMessage = {
+      id: tempId,
+      sender: "You",
+      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      text: trimmedMessage,
+      isSelf: true,
+      pending: true,
+    };
+
+    setMessages((prev) => [...prev, optimisticMessage]);
+    setMessageInput("");
+
+    try {
+      const response = await API.post("/chat/messages", {
+        text: trimmedMessage,
+        senderId: senderId,
+        groupId: DEFAULT_GROUP_ID,
+      });
+
+      if (response.data && response.data.success) {
+        const createdMsg = response.data.data;
+
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === tempId
+              ? {
+                  id: createdMsg._id,
+                  sender: "You",
+                  avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+                  time: new Date(createdMsg.createdAt).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }),
+                  text: createdMsg.text,
+                  isSelf: true,
+                  pending: false,
+                }
+              : msg
+          )
+        );
+      }
+    } catch (err) {
+      console.error("Failed to send message:", err);
+      setMessages((prev) => prev.filter((msg) => msg.id !== tempId));
+      alert("Failed to send message. Please check your network connection.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  // Build full server static asset URL
+  const getFullFileUrl = (filePath) => {
+    if (!filePath) return "#";
+    if (filePath.startsWith("http://") || filePath.startsWith("https://")) {
+      return filePath;
+    }
+    const baseURL = API.defaults.baseURL
+      ? API.defaults.baseURL.replace(/\/api\/?$/, "")
+      : "";
+    return `${baseURL}/${filePath.replace(/^\//, "")}`;
+  };
+
+  const handleDownloadFile = (file) => {
+    const fileUrl = getFullFileUrl(file.filePath);
+    if (fileUrl !== "#") {
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.setAttribute("download", file.filename || file.name);
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      alert(`Unable to locate download link for ${file.name}`);
+    }
+  };
+
+  const handlePreviewFile = (file) => {
+    const fileUrl = getFullFileUrl(file.filePath);
+    if (fileUrl !== "#") {
+      window.open(fileUrl, "_blank", "noopener,noreferrer");
+    } else {
+      alert(`Preview unavailable for ${file.name}`);
+    }
+  };
 
   const filteredFiles = fileList.filter(
     (file) =>
@@ -93,27 +263,8 @@ const Chats = () => {
       file.uploadedBy.toLowerCase().includes(fileSearch.toLowerCase())
   );
 
-  const handleSendMessage = () => {
-    if (!messageInput.trim()) return;
-    const newMsg = {
-      id: Date.now(),
-      sender: "Robert Fox (Manager)",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      time: "Just now",
-      text: messageInput,
-      isSelf: true,
-    };
-    setMessages([...messages, newMsg]);
-    setMessageInput("");
-  };
-
-  const handleDownloadFile = (fileName) => {
-    alert(`Downloading ${fileName}...`);
-  };
-
   return (
     <div className="Chats-root">
-      
       {/* HEADER & BREADCRUMB */}
       <header className="Chats-header">
         <div className="Chats-header-title">
@@ -151,21 +302,40 @@ const Chats = () => {
 
           {/* MESSAGES LOG */}
           <div className="Chats-messages-container">
-            {messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`Chats-msg-wrapper ${msg.isSelf ? "self" : "incoming"}`}
-              >
-                <img src={msg.avatar} alt={msg.sender} className="Chats-msg-avatar" />
-                <div className="Chats-msg-body">
-                  <div className="Chats-msg-meta">
-                    <span className="Chats-msg-sender">{msg.sender}</span>
-                    <span className="Chats-msg-time">{msg.time}</span>
-                  </div>
-                  <div className="Chats-msg-bubble">{msg.text}</div>
-                </div>
+            {isChatLoading ? (
+              <div className="Chats-status-state">
+                <FiLoader className="Chats-spin-icon" />
+                <span>Loading conversation...</span>
               </div>
-            ))}
+            ) : chatError ? (
+              <div className="Chats-status-state error">
+                <FiAlertCircle />
+                <span>{chatError}</span>
+              </div>
+            ) : messages.length === 0 ? (
+              <div className="Chats-status-state">
+                <span>No messages found. Send the first message below!</span>
+              </div>
+            ) : (
+              messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`Chats-msg-wrapper ${msg.isSelf ? "self" : "incoming"} ${
+                    msg.pending ? "pending" : ""
+                  }`}
+                >
+                  <img src={msg.avatar} alt={msg.sender} className="Chats-msg-avatar" />
+                  <div className="Chats-msg-body">
+                    <div className="Chats-msg-meta">
+                      <span className="Chats-msg-sender">{msg.sender}</span>
+                      <span className="Chats-msg-time">{msg.time}</span>
+                    </div>
+                    <div className="Chats-msg-bubble">{msg.text}</div>
+                  </div>
+                </div>
+              ))
+            )}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* MESSAGE INPUT BAR */}
@@ -174,6 +344,7 @@ const Chats = () => {
               type="text"
               placeholder="Type a message to the team..."
               value={messageInput}
+              disabled={isChatLoading}
               onChange={(e) => setMessageInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
             />
@@ -184,9 +355,13 @@ const Chats = () => {
               <button className="Chats-action-btn" title="Insert Emoji">
                 <FiSmile />
               </button>
-              <button className="Chats-send-btn" onClick={handleSendMessage}>
-                <span>Send</span>
-                <FiSend />
+              <button 
+                className="Chats-send-btn" 
+                onClick={handleSendMessage}
+                disabled={!messageInput.trim() || isSending || isChatLoading}
+              >
+                <span>{isSending ? "Sending..." : "Send"}</span>
+                {isSending ? <FiLoader className="Chats-spin-icon" /> : <FiSend />}
               </button>
             </div>
           </div>
@@ -231,7 +406,25 @@ const Chats = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredFiles.length > 0 ? (
+                {isFilesLoading ? (
+                  <tr>
+                    <td colSpan="8" className="Chats-empty-table">
+                      <div className="Chats-status-state">
+                        <FiLoader className="Chats-spin-icon" />
+                        <span>Loading project files...</span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : filesError ? (
+                  <tr>
+                    <td colSpan="8" className="Chats-empty-table">
+                      <div className="Chats-status-state error">
+                        <FiAlertCircle />
+                        <span>{filesError}</span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : filteredFiles.length > 0 ? (
                   filteredFiles.map((file, index) => (
                     <tr key={file.id}>
                       <td className="Chats-cell-index">{index + 1}</td>
@@ -254,14 +447,18 @@ const Chats = () => {
                         <button
                           className="Chats-download-btn"
                           title="Download File"
-                          onClick={() => handleDownloadFile(file.name)}
+                          onClick={() => handleDownloadFile(file)}
                         >
                           <FiDownload /> Download
                         </button>
                       </td>
                       <td className="text-right">
                         <div className="Chats-row-actions">
-                          <button className="Chats-icon-btn view" title="Preview">
+                          <button
+                            className="Chats-icon-btn view"
+                            title="Preview"
+                            onClick={() => handlePreviewFile(file)}
+                          >
                             <FiEye />
                           </button>
                         </div>

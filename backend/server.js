@@ -30,7 +30,8 @@ const overtimeRoutes = require('./src/routes/overtimeRoutes');
 const addProjectRoutes = require('./src/routes/addprojectroutes');
 const estimateRoutes = require('./src/routes/estimateRoutes');
 const taskRoutes = require('./src/routes/taskRoutes');
-const projectFileRoutes = require('./src/routes/projectFileRoutes');
+const projectFileRoutes = require('./src/routes/projectFileRoutes'); 
+const chatRoutes = require('./src/routes/chatRoutes'); 
 
 
 
@@ -140,6 +141,7 @@ app.use('/api/addprojects', addProjectRoutes);
 app.use("/api/estimates", estimateRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/project-files", projectFileRoutes);
+app.use('/api/chat', chatRoutes);
 
 
 
