@@ -1,0 +1,122 @@
+.protected-route {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8fafc, #eef4ff);
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.protected-card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 45px 35px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+    animation: protectedFade 0.4s ease;
+}
+
+.protected-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #fee2e2;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+
+.protected-card h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.protected-card p {
+    margin-top: 15px;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.protected-card button,
+.protected-card a {
+    margin-top: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.protected-card button:hover,
+.protected-card a:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+@keyframes protectedFade {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .protected-card {
+        padding: 35px 25px;
+    }
+
+    .protected-card h1 {
+        font-size: 26px;
+    }
+
+    .protected-card p {
+        font-size: 15px;
+    }
+
+    .protected-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .protected-route {
+        padding: 20px;
+    }
+
+    .protected-card {
+        padding: 30px 20px;
+    }
+
+    .protected-card h1 {
+        font-size: 22px;
+    }
+
+    .protected-card p {
+        font-size: 14px;
+    }
+}

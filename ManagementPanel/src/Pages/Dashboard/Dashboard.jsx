@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../../Components/AuthContext'; // Adjust path if needed
+import { useAuth } from '../../Components/ProtectedRoute/AuthContext'; // Adjust path if needed
 import DashboardHome from '../../Components/DashboardHome/DashboardHome';
 import DashboardSection from '../../Components/DashboardSection/DashboardSection';
 import DashboardProject from '../../Components/DashboardProject/DashboardProject';

@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Auth Components
-import { AuthProvider } from "./Components/AuthContext"; // Adjust path if needed
-import ProtectedRoute from "./Components/ProtectedRoute"; // Adjust path if needed
+import { AuthProvider } from "./Components/ProtectedRoute/AuthContext"; // Adjust path if needed
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute"; // Adjust path if needed
 
 import MainLayout from "./Layout/MainLayout/MainLayout";
 

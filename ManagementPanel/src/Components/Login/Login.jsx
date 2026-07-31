@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaArrowRight } from 'react-icons/fa';
-import { useAuth } from '../AuthContext'; // Adjust path if AuthContext is located elsewhere
+import { useAuth } from '../ProtectedRoute/AuthContext'; // Adjust path if AuthContext is located elsewhere
 import './Login.css'; // Make sure path matches your CSS location
 
 const LoginPage = () => {

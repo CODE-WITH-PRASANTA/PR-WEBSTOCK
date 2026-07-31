@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Topbar.css";
+import { useNavigate } from "react-router-dom";
 
 import {
   FiMenu,
@@ -14,6 +15,8 @@ import {
 } from "react-icons/fi";
 
 const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
+
+  const navigate = useNavigate();
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
@@ -80,6 +83,19 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
   ];
 
   const renderIcon = (type, color) => {
+
+    const handleLogout = () => {
+  // Remove login data
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+
+  // Clear session if used
+  sessionStorage.clear();
+
+  // Redirect to login page
+  navigate("/login", { replace: true });
+};
+
     switch (type) {
       case "mail":
         return <FiMail style={{ color }} />;
@@ -108,7 +124,15 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
     }
   };
 
-  return (
+ const handleLogout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  sessionStorage.clear();
+
+  window.location.href = "/login";
+};
+
+return (
     <header className={`Topbar ${sidebarCollapsed ? "sidebar-collapsed" : ""}`}>
       {/* LEFT SECTION */}
       <div className="Topbar-left">
@@ -212,10 +236,14 @@ const Topbar = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 <span>Settings</span>
               </a>
               <div className="Dropdown-divider"></div>
-              <a href="/" className="logout-link">
-                <FiLogOut />
-                <span>Logout</span>
-              </a>
+              <button
+  type="button"
+  className="logout-link"
+  onClick={handleLogout}
+>
+  <FiLogOut />
+  <span>Logout</span>
+</button>
             </div>
           )}
         </div>

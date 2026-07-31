@@ -258,7 +258,28 @@
 .Topbar-profileDropdown a.logout-link:hover svg {
   color: #ef4444;
 }
+.logout-link{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 18px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:#ef4444;
+    font-size:15px;
+    text-align:left;
+    transition:.3s;
+}
 
+.logout-link:hover{
+    background:#fef2f2;
+}
+
+.logout-link svg{
+    font-size:18px;
+}
 /* ==========================================================
    NOTIFICATION DROPDOWN SPECIFIC
 ========================================================= */
