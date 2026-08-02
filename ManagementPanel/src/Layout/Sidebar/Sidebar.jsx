@@ -246,7 +246,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           )}
 
           {/* HOLIDAYS DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.holidays ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("holidays")}
           >
@@ -262,10 +262,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/holidays/add" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Add Holiday</NavLink>
               <NavLink to="/management/holidays/edit" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Edit Holiday</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* CLIENTS DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.clients ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("clients")}
           >
@@ -286,10 +286,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/clients/invoices" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Invoices</NavLink>
               <NavLink to="/management/clients/payments" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Client Payments</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* PAYROLL DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.payroll ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("payroll")}
           >
@@ -310,10 +310,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/payroll/deductions" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Deductions</NavLink>
               <NavLink to="/management/payroll/compliance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Statutory Compliance</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* DOCUMENTS DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.documents ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("documents")}
           >
@@ -331,10 +331,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/templates" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Document Templates</NavLink>
               <NavLink to="/management/signatures" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>E-Signatures</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* LEADERS LINK */}
-          <NavLink
+          {/* <NavLink
             to="/management/leaders"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -342,10 +342,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiAward />
               {!collapsed && <span>Leaders</span>}
             </div>
-          </NavLink>
+          </NavLink> */}
 
           {/* JOBS DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.jobs ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("jobs")}
           >
@@ -366,10 +366,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/jobs/pipeline" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Hiring Pipeline</NavLink>
               <NavLink to="/management/jobs/resumes" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Resumes</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* CANDIDATES DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.candidates ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("candidates")}
           >
@@ -383,10 +383,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             <div className={`submenu ${dropdowns.candidates ? "show" : ""}`}>
               <NavLink to="/candidates/shortlist" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Shortlist Candidates</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* TRAINING DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.training ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("training")}
           >
@@ -404,10 +404,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/training/attendance" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Training Attendance</NavLink>
               <NavLink to="/management/training/feedback" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Training Feedback</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* PERFORMANCE DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.performance ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("performance")}
           >
@@ -425,10 +425,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/feedback" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Feedback</NavLink>
               </div>
             
-          )}
+          )} */}
 
           {/* COMMUNICATION DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.communication ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("communication")}
           >
@@ -444,10 +444,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/notifications" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Notifications</NavLink>
              
             </div>
-          )}
+          )} */}
 
           {/* ACCOUNTS DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.accounts ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("accounts")}
           >
@@ -469,10 +469,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/accounts/summary" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Financial Summary</NavLink>
               <NavLink to="/management/accounts/tax-reports" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Tax Reports</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* REPORTS DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.reports ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("reports")}
           >
@@ -487,10 +487,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/leave" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Leave Report</NavLink>
               <NavLink to="/management/expense" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Expense Report</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* ADMINISTRATION DROPDOWN */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.administration ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("administration")}
           >
@@ -510,7 +510,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/admin/audit-logs" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Audit Logs</NavLink>
               <NavLink to="/admin/system-settings" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>System Settings</NavLink>
             </div>
-          )}
+          )} */}
 
           {/* ==================== APPS SECTION ==================== */}
           {!collapsed && <div className="menuSectionHeader">APPS</div>}
@@ -547,7 +547,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           </NavLink>
 
           {/* EMAIL DROPDOWN LINK INSIDE APPS */}
-          <div
+          {/* <div
             className={`menuItem ${!collapsed && dropdowns.email ? "dropdownOpen" : ""}`}
             onClick={() => toggleDropdown("email")}
           >
@@ -563,11 +563,8 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <NavLink to="/management/email/compose" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Compose</NavLink>
               <NavLink to="/management/email/read" className={({ isActive }) => `submenuItem ${isActive ? "activeSubmenu" : ""}`}>Read Email</NavLink>
             </div>
-          )}
-
-         
-
-          <NavLink
+          )} */}
+          {/* <NavLink
             to="/management/chat"
             className={({ isActive }) => `menuItem ${isActive ? "active" : ""}`}
           >
@@ -584,7 +581,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
               <FiSettings />
               {!collapsed && <span>Support</span>}
             </div>
-          </NavLink>
+          </NavLink> */}
 
         
         </div>
