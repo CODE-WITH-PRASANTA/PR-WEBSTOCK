@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import API from "../../api/axios";
+import API, { IMG_URL } from "../../api/axios"; // Imported IMG_URL from API configuration
 import "./BlogPost.css";
 import { Editor } from "@tinymce/tinymce-react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -31,6 +31,33 @@ const BlogPost = () => {
     tags: [],
   });
 
+  // Helper to format image URLs safely across environments
+  const getImageUrl = (imagePath) => {
+    if (!imagePath || typeof imagePath !== "string" || imagePath.trim() === "") {
+      return "https://placehold.co/100x100?text=No+Img";
+    }
+
+    const trimmed = imagePath.trim();
+
+    // Replaces legacy hardcoded local paths if present
+    let cleanPath = trimmed.replace(/http:\/\/localhost:(5000|6013)/g, "");
+
+    if (
+      cleanPath.startsWith("http://") ||
+      cleanPath.startsWith("https://") ||
+      cleanPath.startsWith("data:")
+    ) {
+      return cleanPath;
+    }
+
+    cleanPath = cleanPath.replace(/\\/g, "/").replace(/^public\//, "");
+    if (!cleanPath.startsWith("/")) {
+      cleanPath = "/" + cleanPath;
+    }
+
+    return `${IMG_URL}${cleanPath}`;
+  };
+
   const fetchBlogs = async () => {
     try {
       const res = await API.get("/blogs");
@@ -39,7 +66,7 @@ const BlogPost = () => {
         : res.data.data || [];
       setBlogs(blogData);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching blogs:", error);
     }
   };
 
@@ -47,6 +74,17 @@ const BlogPost = () => {
     try {
       const res = await API.get(`/blogs/${blogId}`);
       const blog = res.data.data || res.data;
+
+      let parsedTags = [];
+      if (Array.isArray(blog.tags)) {
+        parsedTags = blog.tags;
+      } else if (typeof blog.tags === "string") {
+        try {
+          parsedTags = JSON.parse(blog.tags);
+        } catch {
+          parsedTags = blog.tags.split(",").map((t) => t.trim()).filter(Boolean);
+        }
+      }
 
       setFormData({
         adminName: blog.adminName || "",
@@ -60,19 +98,16 @@ const BlogPost = () => {
         description: blog.description || "",
         image: null,
         media: null,
-        tags: Array.isArray(blog.tags)
-          ? blog.tags
-          : JSON.parse(blog.tags || "[]"),
+        tags: parsedTags,
       });
     } catch (err) {
-      console.log("Error fetching single blog:", err);
+      console.error("Error fetching single blog:", err);
     }
   };
 
   useEffect(() => {
     fetchBlogs();
 
-    // Check if ID is present, not "new", and matches standard 24-char MongoDB ObjectId format
     const isValidObjectId = /^[0-9a-fA-F]{24}$/.test(id);
     if (id && id !== "new" && isValidObjectId) {
       fetchSingleBlog(id);
@@ -94,9 +129,9 @@ const BlogPost = () => {
         }
       );
 
-      return res.data.image;
+      return res.data.image || res.data.url || "";
     } catch (error) {
-      console.log(error);
+      console.error("Error uploading image:", error);
       return "";
     }
   };
@@ -148,6 +183,10 @@ const BlogPost = () => {
         imagePath = await uploadImage(formData.image);
       }
 
+      if (formData.media instanceof File) {
+        mediaPath = await uploadImage(formData.media);
+      }
+
       const payload = {
         adminName: formData.adminName,
         designation: formData.designation,
@@ -157,7 +196,7 @@ const BlogPost = () => {
         publishDate: formData.publishDate,
         description: formData.description,
         ...(imagePath && { image: imagePath }),
-        media: mediaPath,
+        ...(mediaPath && { media: mediaPath }),
         tags: JSON.stringify(formData.tags),
       };
 
@@ -171,22 +210,24 @@ const BlogPost = () => {
 
       navigate("/admin/blog-management");
     } catch (error) {
-      console.log(error);
+      console.error("Error submitting blog:", error);
     }
   };
 
   const deleteBlog = async (blogId) => {
-    try {
-      await API.delete(`/blogs/${blogId}`);
-      fetchBlogs();
-    } catch (error) {
-      console.log(error);
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      try {
+        await API.delete(`/blogs/${blogId}`);
+        fetchBlogs();
+      } catch (error) {
+        console.error("Error deleting blog:", error);
+      }
     }
   };
 
   return (
     <div className="BlogPost">
-      {/* FORM */}
+      {/* FORM SECTION */}
       <div className="BlogPost_FormSection">
         <div className="BlogPost_FormHeader">
           <h2>
@@ -315,6 +356,15 @@ const BlogPost = () => {
                 skin: "oxide-dark",
                 content_css: "dark",
                 branding: false,
+                images_upload_handler: async (blobInfo) => {
+                  try {
+                    const uploadedPath = await uploadImage(blobInfo.blob());
+                    return getImageUrl(uploadedPath);
+                  } catch (err) {
+                    console.error("Editor upload error:", err);
+                    return "";
+                  }
+                },
               }}
             />
           </div>
@@ -384,7 +434,7 @@ const BlogPost = () => {
         </form>
       </div>
 
-      {/* TABLE */}
+      {/* TABLE SECTION */}
       <div className="BlogPost_TableSection">
         <div className="BlogPost_TableHeader">
           <h2>Blog List</h2>
@@ -410,13 +460,18 @@ const BlogPost = () => {
                   <td>
                     {blog.image ? (
                       <img
-                        src={`http://localhost:5000${blog.image}`}
-                        alt={blog.title}
+                        src={getImageUrl(blog.image)}
+                        alt={blog.title || "Blog thumbnail"}
                         width="60"
                         height="40"
                         style={{
                           objectFit: "cover",
                           borderRadius: "6px",
+                        }}
+                        onError={(e) => {
+                          if (e.target.src.includes("placehold.co")) return;
+                          e.target.onerror = null;
+                          e.target.src = "https://placehold.co/100x100?text=Error";
                         }}
                       />
                     ) : (
@@ -430,7 +485,9 @@ const BlogPost = () => {
                   <td>
                     {Array.isArray(blog.tags)
                       ? blog.tags.join(", ")
-                      : JSON.parse(blog.tags || "[]").join(", ")}
+                      : typeof blog.tags === "string"
+                      ? blog.tags
+                      : ""}
                   </td>
                   <td>
                     <div className="BlogPost_ActionBtns">
