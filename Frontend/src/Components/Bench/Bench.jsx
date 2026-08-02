@@ -6,9 +6,10 @@ import {
   FiUser,
   FiTag,
   FiMessageSquare,
+  FiFolder,
 } from "react-icons/fi";
 import { useParams, Link } from "react-router-dom";
-import api, { IMG_URL } from "../../api/axios"; // Imported dynamic base URL
+import api, { IMG_URL } from "../../api/axios";
 
 const Bench = () => {
   const { id } = useParams();
@@ -24,15 +25,18 @@ const Bench = () => {
 
     const trimmed = imagePath.trim();
 
+    // Strip legacy hardcoded server origins if saved in database
+    let cleanPath = trimmed.replace(/http:\/\/localhost:(5000|6013)/g, "");
+
     if (
-      trimmed.startsWith("http://") ||
-      trimmed.startsWith("https://") ||
-      trimmed.startsWith("data:")
+      cleanPath.startsWith("http://") ||
+      cleanPath.startsWith("https://") ||
+      cleanPath.startsWith("data:")
     ) {
-      return trimmed;
+      return cleanPath;
     }
 
-    let cleanPath = trimmed.replace(/\\/g, "/").replace(/^public\//, "");
+    cleanPath = cleanPath.replace(/\\/g, "/").replace(/^public\//, "");
     if (!cleanPath.startsWith("/")) {
       cleanPath = "/" + cleanPath;
     }
@@ -45,7 +49,7 @@ const Bench = () => {
       setLoading(true);
       const res = await api.get(`/blogs/${id}`);
       
-      // Support variations in response payloads (res.data vs res.data.data)
+      // Support flexible response payloads (res.data vs res.data.data)
       const data = res.data?.data || res.data;
       setBlog(data);
       setError(null);
@@ -65,8 +69,8 @@ const Bench = () => {
 
   if (loading) {
     return (
-      <div className="bench-loading">
-        <div className="spinner"></div>
+      <div className="BlogDetails_Status">
+        <div className="BlogDetails_Spinner"></div>
         <p>Loading article...</p>
       </div>
     );
@@ -74,55 +78,72 @@ const Bench = () => {
 
   if (error || !blog) {
     return (
-      <div className="bench-error">
+      <div className="BlogDetails_Status BlogDetails_Error">
         <h2>Article Not Found</h2>
         <p>{error || "The requested blog post could not be loaded."}</p>
-        <Link to="/blogs" className="back-btn">
+        <Link to="/blogs" className="BlogDetails_BackBtn">
           Back to Articles
         </Link>
       </div>
     );
   }
 
-  // Safely normalize tags into an Array whether stored as Array or CSV String
-  const normalizedTags = Array.isArray(blog.tags)
-    ? blog.tags
-    : typeof blog.tags === "string" && blog.tags.trim() !== ""
-    ? blog.tags.split(",").map((t) => t.trim())
-    : [];
+  // Safely normalize tags into an Array whether stored as Array, CSV String, or JSON String
+  const getNormalizedTags = () => {
+    if (Array.isArray(blog.tags)) return blog.tags;
+    if (typeof blog.tags === "string" && blog.tags.trim() !== "") {
+      try {
+        const parsed = JSON.parse(blog.tags);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {
+        return blog.tags.split(",").map((t) => t.trim()).filter(Boolean);
+      }
+    }
+    return [];
+  };
+
+  const normalizedTags = getNormalizedTags();
 
   return (
-    <main className="bench-page">
-      <div className="bench-container">
+    <main className="BlogDetails_Page">
+      <div className="BlogDetails_Container">
         
         {/* MAIN ARTICLE CONTENT */}
-        <article className="bench-content">
+        <article className="BlogDetails_Main">
           
           {/* ARTICLE HEADER */}
-          <header className="article-header">
+          <header className="BlogDetails_Header">
             {blog.category && (
-              <span className="category-badge">{blog.category}</span>
+              <span className="BlogDetails_CategoryTag">{blog.category}</span>
             )}
 
-            <h1 className="article-title">{blog.title || "Untitled Post"}</h1>
+            <h1 className="BlogDetails_Title">{blog.title || "Untitled Post"}</h1>
 
-            <div className="article-meta">
-              <span className="meta-item">
+            <div className="BlogDetails_Meta">
+              <span className="BlogDetails_MetaItem">
                 <FiUser /> {blog.adminName || blog.author || "Admin"}
               </span>
-              <span className="meta-dot">•</span>
-              <span className="meta-item">
+              <span className="BlogDetails_MetaDot">•</span>
+              <span className="BlogDetails_MetaItem">
                 <FiCalendar />{" "}
                 {blog.publishDate || blog.createdAt
-                  ? new Date(blog.publishDate || blog.createdAt).toLocaleDateString()
-                  : new Date().toLocaleDateString()}
+                  ? new Date(blog.publishDate || blog.createdAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : new Date().toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
               </span>
             </div>
           </header>
 
-          {/* MAIN COVER IMAGE */}
+          {/* COVER FEATURED IMAGE */}
           {(blog.image || blog.coverImage) && (
-            <figure className="featured-image">
+            <figure className="BlogDetails_FeaturedImage">
               <img
                 src={getImageUrl(blog.image || blog.coverImage)}
                 alt={blog.title || "Blog cover image"}
@@ -135,9 +156,9 @@ const Bench = () => {
             </figure>
           )}
 
-          {/* ARTICLE DESCRIPTION / BODY */}
+          {/* ARTICLE BODY */}
           <section
-            className="article-body"
+            className="BlogDetails_Body"
             dangerouslySetInnerHTML={{
               __html: blog.description || blog.content || "",
             }}
@@ -145,7 +166,7 @@ const Bench = () => {
 
           {/* IN-BODY MEDIA IMAGE */}
           {blog.media && (
-            <figure className="media-image">
+            <figure className="BlogDetails_MediaImage">
               <img
                 src={getImageUrl(blog.media)}
                 alt={blog.title || "Additional media asset"}
@@ -160,32 +181,32 @@ const Bench = () => {
 
           {/* QUOTE BLOCK */}
           {blog.quote && (
-            <blockquote className="quote-box">
-              <span className="quote-mark" aria-hidden="true">
+            <blockquote className="BlogDetails_Quote">
+              <span className="BlogDetails_QuoteMark" aria-hidden="true">
                 “
               </span>
               <p>{blog.quote}</p>
             </blockquote>
           )}
 
-          <hr className="divider" />
+          <hr className="BlogDetails_Divider" />
 
           {/* COMMENTS SECTION */}
-          <section className="comments-section">
+          <section className="BlogDetails_CommentsSection">
             <h3>
               <FiMessageSquare /> Comments
             </h3>
           </section>
 
-          {/* COMMENT FORM */}
-          <section className="reply-form">
+          {/* REPLY FORM */}
+          <section className="BlogDetails_ReplyForm">
             <h3>Leave a Reply</h3>
-            <p className="form-note">
+            <p className="BlogDetails_FormNote">
               Your email address will not be published. Required fields are marked *
             </p>
 
             <form onSubmit={(e) => e.preventDefault()}>
-              <div className="input-row">
+              <div className="BlogDetails_InputRow">
                 <input
                   type="text"
                   placeholder="Name *"
@@ -204,7 +225,7 @@ const Bench = () => {
                 required
               />
 
-              <button type="submit" className="submit-btn">
+              <button type="submit" className="BlogDetails_SubmitBtn">
                 Post Comment
               </button>
             </form>
@@ -212,11 +233,11 @@ const Bench = () => {
         </article>
 
         {/* SIDEBAR */}
-        <aside className="sidebar">
+        <aside className="BlogDetails_Sidebar">
           
           {/* SEARCH BAR */}
-          <div className="sidebar-card search-box">
-            <FiSearch className="search-icon" />
+          <div className="BlogDetails_SidebarCard BlogDetails_SearchBox">
+            <FiSearch className="BlogDetails_SearchIcon" />
             <input
               type="text"
               placeholder="Search articles..."
@@ -225,9 +246,11 @@ const Bench = () => {
           </div>
 
           {/* CATEGORIES */}
-          <div className="sidebar-card">
-            <h3>Categories</h3>
-            <ul className="category-list">
+          <div className="BlogDetails_SidebarCard">
+            <h3>
+              <FiFolder /> Category
+            </h3>
+            <ul className="BlogDetails_CategoryList">
               <li>
                 <Link to={`/blogs?category=${encodeURIComponent(blog.category || "General")}`}>
                   {blog.category || "General"}
@@ -237,26 +260,30 @@ const Bench = () => {
           </div>
 
           {/* TAGS */}
-          <div className="sidebar-card">
+          <div className="BlogDetails_SidebarCard">
             <h3>
               <FiTag /> Tags
             </h3>
-            <div className="tags">
+            <div className="BlogDetails_Tags">
               {normalizedTags.length > 0 ? (
                 normalizedTags.map((tag, index) => (
-                  <span className="tag-item" key={index}>
+                  <Link
+                    to={`/blogs?tag=${encodeURIComponent(tag)}`}
+                    className="BlogDetails_TagItem"
+                    key={index}
+                  >
                     #{tag}
-                  </span>
+                  </Link>
                 ))
               ) : (
-                <p className="no-tags">No tags assigned</p>
+                <p className="BlogDetails_NoTags">No tags assigned</p>
               )}
             </div>
           </div>
 
-          {/* SIDEBAR BANNER IMAGE */}
+          {/* AD / PROMO BANNER */}
           {(blog.image || blog.media) && (
-            <div className="sidebar-card ad-banner">
+            <div className="BlogDetails_SidebarCard BlogDetails_BannerCard">
               <img
                 src={getImageUrl(blog.image || blog.media)}
                 alt={blog.title || "Featured banner"}
