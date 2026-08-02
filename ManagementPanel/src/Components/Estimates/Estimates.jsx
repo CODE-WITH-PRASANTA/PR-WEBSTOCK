@@ -38,13 +38,18 @@ const INITIAL_FORM_STATE = {
   details: ""
 };
 
+const INITIAL_DATE_FILTERS = {
+  startDate: "",
+  endDate: ""
+};
+
 const Estimates = () => {
   // Main Data States
   const [estimates, setEstimates] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Pagination & Filtering
+  // Pagination & Search Filtering
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(25);
@@ -52,10 +57,15 @@ const Estimates = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
+  // Single Date Range Filter State (Applies to both Estimate & Expiry Dates)
+  const [dateFilters, setDateFilters] = useState(INITIAL_DATE_FILTERS);
+
   // Selection & UI Controls
   const [selectedRows, setSelectedRows] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dateFilterOpen, setDateFilterOpen] = useState(false);
   const columnDropdownRef = useRef(null);
+  const dateFilterRef = useRef(null);
 
   // Modals State
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -67,6 +77,7 @@ const Estimates = () => {
   // Column Visibility Toggle
   const [columns, setColumns] = useState({
     checkbox: true,
+    sNo: true, // Serial Number Column
     eId: true,
     clientName: true,
     mobile: true,
@@ -89,11 +100,14 @@ const Estimates = () => {
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
-  // Handle outside clicks for dropdown menu
+  // Handle outside clicks for dropdown menus
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (columnDropdownRef.current && !columnDropdownRef.current.contains(e.target)) {
         setDropdownOpen(false);
+      }
+      if (dateFilterRef.current && !dateFilterRef.current.contains(e.target)) {
+        setDateFilterOpen(false);
       }
     };
     document.addEventListener("mousedown", handleOutsideClick);
@@ -108,7 +122,9 @@ const Estimates = () => {
       const params = {
         page: currentPage,
         limit: itemsPerPage,
-        ...(debouncedSearch && { search: debouncedSearch })
+        ...(debouncedSearch && { search: debouncedSearch }),
+        ...(dateFilters.startDate && { startDate: dateFilters.startDate }),
+        ...(dateFilters.endDate && { endDate: dateFilters.endDate })
       };
 
       const response = await API.get("/estimates", { params });
@@ -119,8 +135,45 @@ const Estimates = () => {
         setTotalPages(response.data.pages || 1);
       } else {
         const fallbackData = Array.isArray(response.data) ? response.data : [];
-        setEstimates(fallbackData);
-        setTotalItems(fallbackData.length);
+        
+        // Client-side fallback filter
+        let filtered = fallbackData;
+        
+        // Universal search filter
+        if (debouncedSearch) {
+          const query = debouncedSearch.toLowerCase().trim();
+          filtered = filtered.filter((item) => {
+            return (
+              (item.mobile && item.mobile.toLowerCase().includes(query)) ||
+              (item.clientName && item.clientName.toLowerCase().includes(query)) ||
+              (item.eId && item.eId.toLowerCase().includes(query)) ||
+              (item.email && item.email.toLowerCase().includes(query)) ||
+              (item.country && item.country.toLowerCase().includes(query)) ||
+              (item.status && item.status.toLowerCase().includes(query)) ||
+              (item.details && item.details.toLowerCase().includes(query)) ||
+              (item.amount && item.amount.toString().includes(query))
+            );
+          });
+        }
+
+        // Client-side Date Range Filter (Checks if eDate or expDate falls within the range)
+        if (dateFilters.startDate || dateFilters.endDate) {
+          const start = dateFilters.startDate ? new Date(dateFilters.startDate) : null;
+          const end = dateFilters.endDate ? new Date(dateFilters.endDate) : null;
+
+          filtered = filtered.filter(item => {
+            const eDate = item.eDate ? new Date(item.eDate) : null;
+            const expDate = item.expDate ? new Date(item.expDate) : null;
+
+            const matchesEDate = eDate && (!start || eDate >= start) && (!end || eDate <= end);
+            const matchesExpDate = expDate && (!start || expDate >= start) && (!end || expDate <= end);
+
+            return matchesEDate || matchesExpDate;
+          });
+        }
+
+        setEstimates(filtered);
+        setTotalItems(filtered.length);
         setTotalPages(1);
       }
     } catch (err) {
@@ -129,7 +182,7 @@ const Estimates = () => {
     } finally {
       setLoading(false);
     }
-  }, [currentPage, itemsPerPage, debouncedSearch]);
+  }, [currentPage, itemsPerPage, debouncedSearch, dateFilters]);
 
   useEffect(() => {
     fetchEstimates();
@@ -235,17 +288,25 @@ const Estimates = () => {
   // Utility Actions
   const handleRefresh = () => {
     setSearchTerm("");
+    setDateFilters(INITIAL_DATE_FILTERS);
     setSelectedRows([]);
     setCurrentPage(1);
     fetchEstimates();
   };
 
-  // ==========================================
-  // EXCEL EXPORT FUNCTION (Replaces CSV)
-  // ==========================================
+  const handleClearDateFilters = () => {
+    setDateFilters(INITIAL_DATE_FILTERS);
+    setCurrentPage(1);
+  };
+
+  // Excel Export
   const handleDownloadExcel = async () => {
     try {
       const response = await API.get("/estimates/export/excel", { 
+        params: {
+          search: debouncedSearch,
+          ...dateFilters
+        },
         responseType: "blob" 
       });
       
@@ -286,6 +347,8 @@ const Estimates = () => {
   const startRecord = (currentPage - 1) * itemsPerPage + 1;
   const endRecord = Math.min(currentPage * itemsPerPage, totalItems);
 
+  const isDateFilterActive = dateFilters.startDate || dateFilters.endDate;
+
   return (
     <div className="estimates-layout-root">
       
@@ -313,19 +376,83 @@ const Estimates = () => {
           
           {/* Panel Toolbar */}
           <div className="estimates-panel-toolbar">
+            
+            {/* Left side holding Search & Date Filter inline */}
             <div className="estimates-toolbar-left-side">
-              <div className="estimates-panel-search-field">
-                <FiSearch className="estimates-search-embedded-ico" />
-                <input 
-                  className="estimates-search-input"
-                  type="text" 
-                  placeholder="Search client, ID, email..." 
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+              <div className="estimates-filter-inline-wrapper">
+                
+                {/* Universal Search Field */}
+                <div className="estimates-panel-search-field">
+                  <FiSearch className="estimates-search-embedded-ico" />
+                  <input 
+                    className="estimates-search-input"
+                    type="text" 
+                    placeholder="Search mobile, client name, ID, email, status..." 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+
+                {/* Date Filter Dropdown Trigger (Side-by-side) */}
+                <div style={{ position: "relative" }} ref={dateFilterRef}>
+                  <button 
+                    className={`estimates-tool-act-btn ${isDateFilterActive ? "estimates-btn-active-filter" : "estimates-btn-col-gray"}`}
+                    onClick={() => setDateFilterOpen(!dateFilterOpen)}
+                    title="Filter by Date Range"
+                  >
+                    <FiCalendar />
+                  </button>
+
+                  {/* Date Filter Popup Menu */}
+                  {dateFilterOpen && (
+                    <div className="estimates-date-filter-popup">
+                      <div className="estimates-toggle-box-title">Select Date Range</div>
+                      
+                      <div className="estimates-date-group">
+                        <div className="estimates-date-input-row">
+                          <div style={{ flex: 1 }}>
+                            <span className="estimates-date-group-label">From Date:</span>
+                            <input 
+                              type="date" 
+                              value={dateFilters.startDate}
+                              onChange={(e) => setDateFilters({ ...dateFilters, startDate: e.target.value })}
+                            />
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <span className="estimates-date-group-label">To Date:</span>
+                            <input 
+                              type="date" 
+                              value={dateFilters.endDate}
+                              onChange={(e) => setDateFilters({ ...dateFilters, endDate: e.target.value })}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="estimates-date-filter-actions">
+                        <button 
+                          type="button" 
+                          className="estimates-btn-clear-date" 
+                          onClick={handleClearDateFilters}
+                        >
+                          Reset
+                        </button>
+                        <button 
+                          type="button" 
+                          className="estimates-btn-apply-date" 
+                          onClick={() => setDateFilterOpen(false)}
+                        >
+                          Apply Filter
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
               </div>
             </div>
 
+            {/* Right side toolbar action buttons */}
             <div className="estimates-toolbar-right-side" ref={columnDropdownRef}>
               <button 
                 className="estimates-tool-act-btn estimates-btn-col-red" 
@@ -353,7 +480,6 @@ const Estimates = () => {
                 <FiRefreshCw className={loading ? "estimates-spin-anim" : ""} />
               </button>
 
-              {/* Updated Button to Export Excel */}
               <button 
                 className="estimates-tool-act-btn estimates-btn-col-green" 
                 onClick={handleDownloadExcel} 
@@ -383,7 +509,7 @@ const Estimates = () => {
                           checked={columns[colKey]} 
                           onChange={() => setColumns(prev => ({ ...prev, [colKey]: !prev[colKey] }))}
                         />
-                        <span>{colKey.replace(/([A-Z])/g, ' $1').toUpperCase()}</span>
+                        <span>{colKey === "sNo" ? "S.NO." : colKey.replace(/([A-Z])/g, ' $1').toUpperCase()}</span>
                       </label>
                     ))}
                   </div>
@@ -407,6 +533,7 @@ const Estimates = () => {
                       />
                     </th>
                   )}
+                  {columns.sNo && <th>S.No.</th>}
                   {columns.eId && <th>E. ID</th>}
                   {columns.clientName && <th>Client</th>}
                   {columns.mobile && <th>Mobile</th>}
@@ -423,21 +550,24 @@ const Estimates = () => {
               <tbody>
                 {loading && estimates.length === 0 ? (
                   <tr>
-                    <td colSpan="12" className="estimates-empty-state-cell">
+                    <td colSpan="13" className="estimates-empty-state-cell">
                       <FiLoader className="estimates-spin-anim" />
                       <span>Loading estimates data...</span>
                     </td>
                   </tr>
                 ) : estimates.length === 0 ? (
                   <tr>
-                    <td colSpan="12" className="estimates-empty-state-cell">
-                      No estimate records found.
+                    <td colSpan="13" className="estimates-empty-state-cell">
+                      No estimate records found matching your filters.
                     </td>
                   </tr>
                 ) : (
-                  estimates.map((item) => {
+                  estimates.map((item, index) => {
                     const itemId = item._id || item.id;
                     const isSelected = selectedRows.includes(itemId);
+                    // Dynamic S.No. calculation based on current pagination
+                    const serialNumber = (currentPage - 1) * itemsPerPage + index + 1;
+
                     return (
                       <tr key={itemId} className={isSelected ? "estimates-row-highlighted" : ""}>
                         {columns.checkbox && (
@@ -449,6 +579,9 @@ const Estimates = () => {
                               onChange={() => toggleSelectRow(itemId)}
                             />
                           </td>
+                        )}
+                        {columns.sNo && (
+                          <td><span className="estimates-sno-text">{serialNumber}</span></td>
                         )}
                         {columns.eId && (
                           <td><span className="estimates-id-badge">{item.eId}</span></td>
@@ -483,11 +616,11 @@ const Estimates = () => {
                         {columns.expDate && <td>{formatDateForDisplay(item.expDate)}</td>}
                         {columns.country && <td>{item.country || "USA"}</td>}
                         {columns.amount && (
-                         <td>
-                                  <span className="estimates-amount-tag">
-                                    ₹{Number(item.amount || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 })}
-                                  </span>
-                                </td>
+                          <td>
+                            <span className="estimates-amount-tag">
+                              ₹{Number(item.amount || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 })}
+                            </span>
+                          </td>
                         )}
                         {columns.status && (
                           <td>

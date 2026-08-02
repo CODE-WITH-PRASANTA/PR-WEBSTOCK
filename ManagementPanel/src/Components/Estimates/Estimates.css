@@ -866,3 +866,225 @@
     gap: 0.75rem;
   }
 }
+
+
+/* Container for the Left Side Toolbar */
+.estimates-toolbar-left-side {
+  display: flex;
+  align-items: center;
+}
+
+/* Wrapper to align Search Field and Date Filter Side-by-Side */
+.estimates-filter-inline-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between search box and date button */
+}
+
+/* Ensure Search Input field takes consistent sizing */
+.estimates-panel-search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 280px;
+}
+
+/* Ensure Date Filter Popover doesn't wrap oddly */
+.estimates-date-filter-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 310px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  z-index: 100;
+}
+
+
+/* =========================================================
+   INLINE FILTER TOOLBAR & DATE FILTER POPOVER STYLES
+   ========================================================= */
+
+/* Alignment container to keep Search & Date Button side-by-side */
+.estimates-toolbar-left-side {
+  display: flex;
+  align-items: center;
+}
+
+.estimates-filter-inline-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Active State for Date Filter Toggle Button */
+.estimates-btn-active-filter {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.estimates-btn-active-filter:hover {
+  background-color: #1d4ed8 !important;
+}
+
+/* ---------------------------------------------------------
+   POPOVER CARD CONTAINER
+   --------------------------------------------------------- */
+.estimates-date-filter-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 320px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  padding: 18px;
+  z-index: 100;
+  animation: filterBoxFadeIn 0.18s ease-out;
+}
+
+/* Smooth Entrance Animation */
+@keyframes filterBoxFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Box Header Title */
+.estimates-date-filter-popup .estimates-toggle-box-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f3f4f6;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ---------------------------------------------------------
+   DATE INPUT FIELDS & LABELS
+   --------------------------------------------------------- */
+.estimates-date-group {
+  margin-bottom: 16px;
+}
+
+.estimates-date-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.estimates-date-group-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+/* HTML <input type="date"> Custom Styling */
+.estimates-date-input-row input[type="date"] {
+  width: 100%;
+  height: 36px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #1f2937;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+
+/* Hover and Focus States */
+.estimates-date-input-row input[type="date"]:hover {
+  border-color: #9ca3af;
+  background-color: #ffffff;
+}
+
+.estimates-date-input-row input[type="date"]:focus {
+  background-color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Native Calendar Picker Icon Color (Chromium / Webkit) */
+.estimates-date-input-row input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: opacity(0.65);
+  transition: filter 0.15s ease;
+}
+
+.estimates-date-input-row input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  filter: opacity(1);
+}
+
+/* ---------------------------------------------------------
+   ACTION BUTTONS (RESET & APPLY)
+   --------------------------------------------------------- */
+.estimates-date-filter-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+/* Reset / Clear Button */
+.estimates-btn-clear-date {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.estimates-btn-clear-date:hover {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+/* Apply Filter Button */
+.estimates-btn-apply-date {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.estimates-btn-apply-date:hover {
+  background-color: #1d4ed8;
+}
+
+.estimates-btn-apply-date:active {
+  transform: translateY(1px);
+}

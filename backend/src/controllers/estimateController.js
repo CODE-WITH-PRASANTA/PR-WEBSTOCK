@@ -1,8 +1,79 @@
 const Estimate = require("../models/Estimate");
-const { Parser } = require("json2csv");
 const ExcelJS = require("exceljs");
 
-// @desc    Get paginated estimates with search, sorting & status filter
+/**
+ * Builds Mongo query matching search term (mobile, client, email, etc.)
+ * and a single date range across eDate OR expDate.
+ */
+const buildEstimateQuery = (queryParams) => {
+  const { search, status, startDate, endDate } = queryParams;
+  let query = {};
+
+  // 1. Universal Search (Mobile, Client, Email, ID, Country, Status, Details, Amount)
+  if (search) {
+    const trimmedSearch = search.trim();
+    const safeSearch = trimmedSearch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const searchRegex = new RegExp(safeSearch, "i");
+
+    query.$or = [
+      { mobile: searchRegex },
+      { clientName: searchRegex },
+      { eId: searchRegex },
+      { email: searchRegex },
+      { country: searchRegex },
+      { status: searchRegex },
+      { details: searchRegex },
+    ];
+
+    // If search value is numeric, check exact match on amount
+    const numericSearch = Number(trimmedSearch);
+    if (!isNaN(numericSearch)) {
+      query.$or.push({ amount: numericSearch });
+    }
+  }
+
+  // 2. Status Filter
+  if (status) {
+    query.status = status;
+  }
+
+  // 3. Combined Date Range Filter (Matches if eDate OR expDate is in the range)
+  if (startDate || endDate) {
+    const dateRangeCondition = {};
+
+    if (startDate) {
+      dateRangeCondition.$gte = new Date(startDate);
+    }
+
+    if (endDate) {
+      const end = new Date(endDate);
+      end.setHours(23, 59, 59, 999); // Include full end date
+      dateRangeCondition.$lte = end;
+    }
+
+    const dateOrConditions = [
+      { eDate: dateRangeCondition },
+      { expDate: dateRangeCondition },
+    ];
+
+    // Merge with existing $or condition from search keyword if present
+    if (query.$or) {
+      query = {
+        $and: [
+          { $or: query.$or },
+          { $or: dateOrConditions }
+        ]
+      };
+      if (status) query.status = status;
+    } else {
+      query.$or = dateOrConditions;
+    }
+  }
+
+  return query;
+};
+
+// @desc    Get paginated estimates with search, sorting & date filter
 // @route   GET /api/estimates
 exports.getEstimates = async (req, res, next) => {
   try {
@@ -10,26 +81,9 @@ exports.getEstimates = async (req, res, next) => {
     const limit = parseInt(req.query.limit, 10) || 25;
     const skip = (page - 1) * limit;
 
-    const { search, status, sortBy = "createdAt", order = "desc" } = req.query;
+    const { sortBy = "createdAt", order = "desc" } = req.query;
+    const query = buildEstimateQuery(req.query);
 
-    let query = {};
-
-    // Search filter across ID, eId, clientName, and email
-    if (search) {
-      const searchRegex = new RegExp(search, "i");
-      query.$or = [
-        { clientName: searchRegex },
-        { eId: searchRegex },
-        { email: searchRegex },
-      ];
-    }
-
-    // Filter by status if provided
-    if (status) {
-      query.status = status;
-    }
-
-    // Sort definition
     const sortOptions = {};
     sortOptions[sortBy] = order === "asc" ? 1 : -1;
 
@@ -43,7 +97,7 @@ exports.getEstimates = async (req, res, next) => {
       count: estimates.length,
       total,
       page,
-      pages: Math.ceil(total / limit),
+      pages: Math.ceil(total / limit) || 1,
       data: estimates,
     });
   } catch (error) {
@@ -132,75 +186,62 @@ exports.bulkDeleteEstimates = async (req, res, next) => {
   }
 };
 
-// @desc    Export Estimates as XLSX document
+// @desc    Export Estimates as XLSX document (with filters applied)
 // @route   GET /api/estimates/export/excel
 exports.exportEstimatesExcel = async (req, res, next) => {
   try {
-    // 1. Optional: Apply query filters if user exports filtered lists
-    const { search, status } = req.query;
-    let query = {};
+    const query = buildEstimateQuery(req.query);
 
-    if (search) {
-      const safeSearch = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const searchRegex = new RegExp(safeSearch, "i");
-      query.$or = [
-        { clientName: searchRegex },
-        { eId: searchRegex },
-        { email: searchRegex },
-      ];
-    }
-    if (status) query.status = status;
-
-    // Fetch data using cursor for memory efficiency with large datasets
+    // Stream query records using cursor
     const cursor = Estimate.find(query).lean().cursor();
 
-    // 2. Initialize Excel Workbook & Sheet
+    // Setup Excel Workbook
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Estimates Report");
 
-    // Define columns with widths & keys
     worksheet.columns = [
       { header: "Estimate ID", key: "eId", width: 16 },
       { header: "Client Name", key: "clientName", width: 25 },
-      { header: "Mobile", key: "mobile", width: 16 },
+      { header: "Mobile", key: "mobile", width: 18 },
       { header: "Email", key: "email", width: 28 },
       { header: "Estimate Date", key: "eDate", width: 15 },
       { header: "Expiration Date", key: "expDate", width: 15 },
       { header: "Country", key: "country", width: 12 },
       { header: "Amount ($)", key: "amount", width: 15 },
       { header: "Status", key: "status", width: 14 },
+      { header: "Details", key: "details", width: 30 },
     ];
 
-    // Style Header Row
+    // Header Styling
     const headerRow = worksheet.getRow(1);
     headerRow.font = { bold: true, color: { argb: "FFFFFF" } };
     headerRow.fill = {
       type: "pattern",
       pattern: "solid",
-      fgColor: { argb: "1F4E78" }, // Navy blue accent
+      fgColor: { argb: "1F4E78" },
     };
     headerRow.alignment = { vertical: "middle", horizontal: "center" };
 
-    // 3. Populate Rows from Cursor
+    // Stream Data Rows
     for await (const estimate of cursor) {
       const row = worksheet.addRow({
         eId: estimate.eId,
         clientName: estimate.clientName,
-        mobile: estimate.mobile,
-        email: estimate.email,
-        eDate: estimate.eDate ? new Date(estimate.eDate).toLocaleDateString() : "",
-        expDate: estimate.expDate ? new Date(estimate.expDate).toLocaleDateString() : "",
+        mobile: estimate.mobile || "",
+        email: estimate.email || "",
+        eDate: estimate.eDate ? new Date(estimate.eDate).toLocaleDateString("en-GB") : "",
+        expDate: estimate.expDate ? new Date(estimate.expDate).toLocaleDateString("en-GB") : "",
         country: estimate.country || "USA",
         amount: estimate.amount,
         status: estimate.status,
+        details: estimate.details || "",
       });
 
-      // Format Amount as Currency
       const amountCell = row.getCell("amount");
       amountCell.numFmt = '"$"#,##0.00';
     }
 
-    // 4. Set Headers & Stream Output
+    // Output XLSX File
     const filename = `Estimates_Report_${new Date().toISOString().slice(0, 10)}.xlsx`;
     res.setHeader(
       "Content-Type",
