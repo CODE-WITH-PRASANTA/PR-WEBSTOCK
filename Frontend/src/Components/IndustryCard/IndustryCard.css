@@ -311,3 +311,43 @@
     font-size: 1.15rem;
   }
 }
+/* Description Expansion Handling */
+.industry-description {
+  color: #475569;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.industry-description.expanded {
+  white-space: normal;
+}
+
+/* In-place Read More / Read Less Button */
+.industry-readmore {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 16px;
+  border: 1.5px solid #2563eb;
+  border-radius: 8px;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.readmore-icon {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.industry-readmore:hover {
+  background: #2563eb;
+  color: #ffffff;
+}

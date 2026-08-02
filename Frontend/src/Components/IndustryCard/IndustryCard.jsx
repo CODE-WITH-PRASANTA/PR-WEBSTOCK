@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FiMapPin, FiArrowRight } from "react-icons/fi";
+import { FiMapPin, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import "./IndustryCard.css";
 import api, { IMG_URL } from "../../api/axios";
 
 const IndustryCard = () => {
   const itemsPerPage = 8;
-  const navigate = useNavigate();
 
   const [industries, setIndustries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // State to track expanded descriptions by item ID
+  const [expandedCards, setExpandedCards] = useState({});
 
   // Helper to safely format image URLs across environments
   const getImageUrl = (imagePath) => {
@@ -37,13 +38,18 @@ const IndustryCard = () => {
     return `${IMG_URL}${cleanPath}`;
   };
 
-  // Truncate long descriptions to maintain uniform card heights
-  const truncateText = (text, maxLength = 120) => {
+  // Strip HTML tags for clean text rendering
+  const getCleanText = (text) => {
     if (!text) return "No description available for this industry.";
-    const cleanText = text.replace(/<[^>]+>/g, "");
-    return cleanText.length > maxLength
-      ? cleanText.substring(0, maxLength) + "..."
-      : cleanText;
+    return text.replace(/<[^>]+>/g, "");
+  };
+
+  // Toggle expanded state for an individual card
+  const toggleExpand = (id) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
   };
 
   // Fetch Industries
@@ -84,10 +90,6 @@ const IndustryCard = () => {
     }
   };
 
-  const handleCardClick = (id) => {
-    navigate(`/industry/${id}`);
-  };
-
   return (
     <section className="industry-grid-wrapper">
       {loading ? (
@@ -101,12 +103,12 @@ const IndustryCard = () => {
             {displayedItems.length > 0 ? (
               displayedItems.map((item) => {
                 const itemId = item._id || item.id;
+                const isExpanded = !!expandedCards[itemId];
+                const rawText = getCleanText(item.description);
+                const isLongText = rawText.length > 120;
+
                 return (
-                  <article
-                    key={itemId}
-                    className="industry-card"
-                    onClick={() => handleCardClick(itemId)}
-                  >
+                  <article key={itemId} className="industry-card">
                     <div className="industry-card-image-wrapper">
                       <img
                         src={getImageUrl(item.image)}
@@ -140,20 +142,32 @@ const IndustryCard = () => {
                         </div>
                       )}
 
-                      <p className="industry-description">
-                        {truncateText(item.description)}
+                      {/* DESCRIPTION WITH EXPAND / COLLAPSE IN-PLACE */}
+                      <p
+                        className={`industry-description ${
+                          isExpanded ? "expanded" : ""
+                        }`}
+                      >
+                        {isExpanded || !isLongText
+                          ? rawText
+                          : `${rawText.substring(0, 120)}...`}
                       </p>
 
-                      <button
-                        className="industry-readmore"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCardClick(itemId);
-                        }}
-                      >
-                        <span>Read More</span>
-                        <FiArrowRight className="readmore-icon" />
-                      </button>
+                      {/* READ MORE / READ LESS BUTTON */}
+                      {isLongText && (
+                        <button
+                          type="button"
+                          className="industry-readmore"
+                          onClick={() => toggleExpand(itemId)}
+                        >
+                          <span>{isExpanded ? "Read Less" : "Read More"}</span>
+                          {isExpanded ? (
+                            <FiChevronUp className="readmore-icon" />
+                          ) : (
+                            <FiChevronDown className="readmore-icon" />
+                          )}
+                        </button>
+                      )}
                     </div>
                   </article>
                 );
