@@ -8,7 +8,7 @@ const Working = () => {
     <div>
         <Improve />
         <Bench />
-        <Growth />
+        {/* <Growth /> */}
     </div>
   )
 }

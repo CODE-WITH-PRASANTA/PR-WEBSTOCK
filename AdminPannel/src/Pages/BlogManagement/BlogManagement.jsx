@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./BlogManagement.css";
-import API from "../../api/axios"; // Import our configured axios instance
+import API, { BASE_URL } from "../../api/axios"; // Imported BASE_URL directly
 
 import {
   FaThLarge,
@@ -20,39 +20,32 @@ const BlogManagement = () => {
   
   const navigate = useNavigate();
 
-  // Deep-parsing helper to guarantee images resolve correctly
+  // Helper to resolve images safely without local hardcodes
   const getImageUrl = (blog) => {
-    if (!blog) return "https://via.placeholder.com/400x250?text=No+Data";
+    if (!blog) return "https://placehold.co/400x250?text=No+Data";
 
-    // 1. Resolve raw path field variations across differing database design patterns
+    // 1. Target key possibilities
     let target = blog.image || blog.imageUrl || blog.img || blog.coverImage || blog.thumbnail || blog.cover;
     
     if (!target || typeof target !== "string" || target.trim() === "") {
-      return "https://via.placeholder.com/400x250?text=No+Image+Provided";
+      return "https://placehold.co/400x250?text=No+Image+Provided";
     }
 
     target = target.trim();
 
-    // 2. If the database stored a full absolute URL or base64 stream, return it cleanly
+    // 2. If it's already an absolute URL or base64 data stream
     if (target.startsWith("http://") || target.startsWith("https://") || target.startsWith("data:")) {
       return target;
     }
 
-    // 3. Clean up the base domain URL from your configured Axios instance
-    let backendBase = API.defaults.baseURL ? API.defaults.baseURL : "http://localhost:5000";
-    
-    // If baseURL ends with /api, strip it off so we target the server root folder
-    backendBase = backendBase.replace(/\/api\/?$/, "");
-
-    // 4. Sanitize path anomalies (e.g., turning "public\uploads/file.jpg" into "/uploads/file.jpg")
-    let cleanPath = target.replace(/\\/g, "/"); 
-    cleanPath = cleanPath.replace(/^public\//, ""); // Strip redundant root folder prefixes if saved raw
-    
+    // 3. Normalize slash paths & strip local public prefix
+    let cleanPath = target.replace(/\\/g, "/").replace(/^public\//, "");
     if (!cleanPath.startsWith("/")) {
       cleanPath = "/" + cleanPath;
     }
     
-    return `${backendBase}${cleanPath}`;
+    // Use imported BASE_URL dynamically
+    return `${BASE_URL}${cleanPath}`;
   };
 
   // Fetch blogs from backend
@@ -76,18 +69,16 @@ const BlogManagement = () => {
       setError(null);
     } catch (err) {
       console.error("Error fetching blogs:", err);
-      setError("Failed to load blogs. Please verify your backend server is running.");
+      setError("Failed to load blogs. Please verify your server connection.");
     } finally {
       setLoading(false);
     }
   }, []);
 
-  // Sync data on mount
   useEffect(() => {
     fetchBlogs();
   }, [fetchBlogs]);
 
-  // Dropdown closer listener
   useEffect(() => {
     const closeMenu = () => setActiveMenu(null);
     if (activeMenu !== null) {
@@ -182,10 +173,9 @@ const BlogManagement = () => {
                     src={imgSrc} 
                     alt={blog.title || "Blog post preview"} 
                     onError={(e) => {
-                      // Prevent infinite loops if placeholder fails
-                      if (e.target.src.includes("via.placeholder.com")) return;
+                      if (e.target.src.includes("placehold.co")) return;
                       e.target.onerror = null; 
-                      e.target.src = "https://via.placeholder.com/400x250?text=Image+Unavailable";
+                      e.target.src = "https://placehold.co/400x250?text=Image+Unavailable";
                     }}
                   />
                 </div>
@@ -243,9 +233,9 @@ const BlogManagement = () => {
                     src={imgSrc} 
                     alt={blog.title || "Blog post preview"} 
                     onError={(e) => {
-                      if (e.target.src.includes("via.placeholder.com")) return;
+                      if (e.target.src.includes("placehold.co")) return;
                       e.target.onerror = null; 
-                      e.target.src = "https://via.placeholder.com/150?text=Error";
+                      e.target.src = "https://placehold.co/150x150?text=Error";
                     }}
                   />
                 </div>
