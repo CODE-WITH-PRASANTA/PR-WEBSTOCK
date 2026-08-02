@@ -4,182 +4,285 @@
   box-sizing: border-box;
 }
 
-.admin-section {
+/* =========================
+   SECTION CONTAINER
+========================= */
+
+.Blog-Sec_Section {
   width: 100%;
-  padding: 80px 20px;
-  background: #fff;
+  padding: 80px 24px;
+  background: #fdfdfd;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-.admin-container {
-  max-width: 1700px;
-  margin: auto;
+.Blog-Sec_Container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
 
+/* Loading & Empty States */
+
+.Blog-Sec_Status {
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #666f89;
+}
+
+.Blog-Sec_Spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #eef2f8;
+  border-top: 4px solid #7a27ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.Blog-Sec_Empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8f9fc;
+  border-radius: 20px;
+  color: #09113b;
+}
+
+/* =========================
+   GRID & CARD STYLING
+========================= */
+
+.Blog-Sec_Grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 36px;
 }
 
-.admin-card {
-  background: #f5f5fa;
+.Blog-Sec_Card {
+  background: #ffffff;
+  border-radius: 20px;
   overflow: hidden;
-  transition: 0.3s ease;
+  border: 1px solid #eaeef6;
+  box-shadow: 0 10px 30px rgba(9, 17, 59, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.admin-card:hover {
+.Blog-Sec_Card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: #dcd0ff;
+  box-shadow: 0 20px 45px rgba(122, 39, 255, 0.12);
 }
 
-/* BIG IMAGE SECTION */
+/* Featured Cover Image */
 
-.admin-image {
+.Blog-Sec_ImageWrap {
   width: 100%;
-  height: 380px; /* Bigger Image */
+  height: 320px;
+  position: relative;
   overflow: hidden;
+  background: #f2f4f8;
 }
 
-.admin-image img {
+.Blog-Sec_ImageWrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: 0.4s ease;
+  transition: transform 0.5s ease;
 }
 
-.admin-card:hover .admin-image img {
-  transform: scale(1.05);
+.Blog-Sec_Card:hover .Blog-Sec_ImageWrap img {
+  transform: scale(1.06);
 }
 
-/* CONTENT */
-
-.admin-content {
-  padding: 35px;
+.Blog-Sec_Badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(9, 17, 59, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.admin-meta {
+/* Card Body Content */
+
+.Blog-Sec_Content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Meta Bar */
+
+.Blog-Sec_Meta {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
-.admin-avatar {
-  width: 34px;
-  height: 34px;
+.Blog-Sec_Avatar {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #eef2f8;
 }
 
-.admin-name {
+.Blog-Sec_Author {
   color: #7a27ff;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.admin-dot {
-  color: #9aa0b5;
+.Blog-Sec_Dot {
+  color: #c0c6d8;
+  font-size: 12px;
 }
 
-.admin-date {
+.Blog-Sec_Date {
   display: flex;
   align-items: center;
   gap: 5px;
   color: #6c7390;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.admin-content h2 {
+.Blog-Sec_MetaIcon {
+  font-size: 14px;
+}
+
+/* Title & Divider */
+
+.Blog-Sec_Title {
   font-size: 22px;
-  line-height: 1.5;
+  font-weight: 800;
+  line-height: 1.35;
   color: #09113b;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.admin-line {
-  width: 50px;
+.Blog-Sec_Divider {
+  width: 45px;
   height: 3px;
-  background: #1f195d;
-  margin-bottom: 25px;
+  background: #7a27ff;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  transition: width 0.3s ease;
 }
 
-.admin-content p {
-  font-size: 17px;
-  line-height: 2;
+.Blog-Sec_Card:hover .Blog-Sec_Divider {
+  width: 75px;
+}
+
+/* Excerpt & Button */
+
+.Blog-Sec_Excerpt {
+  font-size: 16px;
+  line-height: 1.7;
   color: #666f89;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
+  flex-grow: 1;
 }
 
-.admin-btn {
+.Blog-Sec_Btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-
-  padding: 14px 30px;
-
-  border: 1px solid #7a27ff;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border: 1.5px solid #7a27ff;
   color: #7a27ff;
   text-decoration: none;
   border-radius: 12px;
-
-  font-size: 18px;
-  transition: 0.3s ease;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.3s ease;
 }
 
-.admin-btn:hover {
+.Blog-Sec_BtnIcon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.Blog-Sec_Btn:hover {
   background: #7a27ff;
-  color: #fff;
+  color: #ffffff;
 }
 
-/* LAPTOP */
+.Blog-Sec_Btn:hover .Blog-Sec_BtnIcon {
+  transform: translate(3px, -3px);
+}
 
-@media (max-width: 1200px) {
-  .admin-container {
+/* =========================
+   RESPONSIVE LAYOUT
+========================= */
+
+@media (max-width: 1280px) {
+  .Blog-Sec_Grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
   }
 
-  .admin-image {
-    height: 340px;
+  .Blog-Sec_ImageWrap {
+    height: 280px;
   }
 }
-
-/* TABLET */
 
 @media (max-width: 768px) {
-  .admin-container {
+  .Blog-Sec_Section {
+    padding: 50px 16px;
+  }
+
+  .Blog-Sec_Grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  .admin-image {
-    height: 320px;
-  }
-
-  .admin-content {
-    padding: 25px;
-  }
-
-  .admin-btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* MOBILE */
-
-@media (max-width: 480px) {
-  .admin-section {
-    padding: 50px 15px;
-  }
-
-  .admin-image {
+  .Blog-Sec_ImageWrap {
     height: 250px;
   }
 
-  .admin-content h2 {
-    font-size: 20px;
+  .Blog-Sec_Content {
+    padding: 24px;
   }
 
-  .admin-content {
-    padding: 20px;
+  .Blog-Sec_Title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Blog-Sec_ImageWrap {
+    height: 210px;
+  }
+
+  .Blog-Sec_Btn {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
   }
 }

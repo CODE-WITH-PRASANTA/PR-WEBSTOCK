@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Admin.css";
-import API, { IMG_URL } from "../../api/axios"; // Import IMG_URL from axios instance
-import { FiCalendar, FiArrowUpRight } from "react-icons/fi";
+import API, { IMG_URL } from "../../api/axios"; // Dynamic base URL
+import { FiCalendar, FiArrowUpRight, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Admin = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Helper to format blog image URLs dynamically without hardcoded local addresses
+  // Helper to safely format blog image URLs dynamically
   const getImageUrl = (imagePath) => {
     if (!imagePath || typeof imagePath !== "string" || imagePath.trim() === "") {
       return "https://placehold.co/600x400?text=No+Image+Provided";
@@ -15,13 +16,18 @@ const Admin = () => {
 
     const trimmed = imagePath.trim();
 
-    // If already absolute or base64 data stream
-    if (trimmed.startsWith("http://") || trimmed.startsWith("https://") || trimmed.startsWith("data:")) {
-      return trimmed;
+    // Strip legacy local server strings if saved in database
+    let cleanPath = trimmed.replace(/http:\/\/localhost:(5000|6013)/g, "");
+
+    if (
+      cleanPath.startsWith("http://") ||
+      cleanPath.startsWith("https://") ||
+      cleanPath.startsWith("data:")
+    ) {
+      return cleanPath;
     }
 
-    // Normalize backslashes and strip leading public folder refs
-    let cleanPath = trimmed.replace(/\\/g, "/").replace(/^public\//, "");
+    cleanPath = cleanPath.replace(/\\/g, "/").replace(/^public\//, "");
     if (!cleanPath.startsWith("/")) {
       cleanPath = "/" + cleanPath;
     }
@@ -29,8 +35,18 @@ const Admin = () => {
     return `${IMG_URL}${cleanPath}`;
   };
 
+  // Helper to strip HTML tags for clean text previews
+  const getExcerpt = (htmlContent, length = 120) => {
+    if (!htmlContent) return "No preview description available.";
+    const cleanText = htmlContent.replace(/<[^>]+>/g, "");
+    return cleanText.length > length
+      ? cleanText.substring(0, length) + "..."
+      : cleanText;
+  };
+
   const fetchBlogs = async () => {
     try {
+      setLoading(true);
       const res = await API.get("/blogs");
 
       const blogData = Array.isArray(res.data)
@@ -40,6 +56,8 @@ const Admin = () => {
       setBlogs(blogData);
     } catch (error) {
       console.error("Error fetching blogs:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -47,64 +65,108 @@ const Admin = () => {
     fetchBlogs();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="Blog-Sec_Status">
+        <div className="Blog-Sec_Spinner"></div>
+        <p>Loading articles...</p>
+      </div>
+    );
+  }
+
   return (
-    <section className="admin-section">
-      <div className="admin-container">
-        {blogs.map((blog) => (
-          <article className="admin-card" key={blog._id || blog.id}>
-            <div className="admin-image">
-              <img
-                src={getImageUrl(blog.image)}
-                alt={blog.title || "Blog Post"}
-                onError={(e) => {
-                  if (e.target.src.includes("placehold.co")) return;
-                  e.target.onerror = null;
-                  e.target.src = "https://placehold.co/600x400?text=Image+Unavailable";
-                }}
-              />
-            </div>
+    <section className="Blog-Sec_Section">
+      <div className="Blog-Sec_Container">
+        
+        {blogs.length === 0 ? (
+          <div className="Blog-Sec_Empty">
+            <h3>No Articles Found</h3>
+            <p>Publish your first blog post to see it listed here.</p>
+          </div>
+        ) : (
+          <div className="Blog-Sec_Grid">
+            {blogs.map((blog) => (
+              <article className="Blog-Sec_Card" key={blog._id || blog.id}>
+                
+                {/* COVER IMAGE CONTAINER */}
+                <div className="Blog-Sec_ImageWrap">
+                  <img
+                    src={getImageUrl(blog.image || blog.coverImage)}
+                    alt={blog.title || "Blog Post"}
+                    onError={(e) => {
+                      if (e.target.src.includes("placehold.co")) return;
+                      e.target.onerror = null;
+                      e.target.src =
+                        "https://placehold.co/600x400?text=Image+Unavailable";
+                    }}
+                  />
+                  {blog.category && (
+                    <span className="Blog-Sec_Badge">{blog.category}</span>
+                  )}
+                </div>
 
-            <div className="admin-content">
-              <div className="admin-meta">
-                <img
-                  src="https://i.pravatar.cc/100?img=12"
-                  alt="Admin"
-                  className="admin-avatar"
-                />
+                {/* CARD BODY CONTENT */}
+                <div className="Blog-Sec_Content">
+                  
+                  {/* METADATA BAR */}
+                  <div className="Blog-Sec_Meta">
+                    <img
+                      src="https://i.pravatar.cc/100?img=12"
+                      alt={blog.adminName || "Admin"}
+                      className="Blog-Sec_Avatar"
+                    />
 
-                <span className="admin-name">
-                  {blog.adminName || blog.author || "Admin"}
-                </span>
+                    <span className="Blog-Sec_Author">
+                      <FiUser className="Blog-Sec_MetaIcon" />
+                      {blog.adminName || blog.author || "Admin"}
+                    </span>
 
-                <span className="admin-dot">•</span>
+                    <span className="Blog-Sec_Dot">•</span>
 
-                <span className="admin-date">
-                  <FiCalendar />
-                  {blog.publishDate || blog.createdAt
-                    ? new Date(blog.publishDate || blog.createdAt).toLocaleDateString()
-                    : new Date().toLocaleDateString()}
-                </span>
-              </div>
+                    <span className="Blog-Sec_Date">
+                      <FiCalendar className="Blog-Sec_MetaIcon" />
+                      {blog.publishDate || blog.createdAt
+                        ? new Date(
+                            blog.publishDate || blog.createdAt
+                          ).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })
+                        : new Date().toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                    </span>
+                  </div>
 
-              <h2>{blog.title || "Untitled Article"}</h2>
+                  {/* ARTICLE TITLE */}
+                  <h2 className="Blog-Sec_Title">
+                    {blog.title || "Untitled Article"}
+                  </h2>
 
-              <div className="admin-line"></div>
+                  {/* DECORATIVE LINE */}
+                  <div className="Blog-Sec_Divider"></div>
 
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: blog.description
-                    ? blog.description.slice(0, 150) + "..."
-                    : "No preview description available.",
-                }}
-              />
+                  {/* TEXT EXCERPT */}
+                  <p className="Blog-Sec_Excerpt">
+                    {getExcerpt(blog.description || blog.content)}
+                  </p>
 
-              <Link to={`/blog/${blog._id || blog.id}`} className="admin-btn">
-                Read More
-                <FiArrowUpRight />
-              </Link>
-            </div>
-          </article>
-        ))}
+                  {/* READ MORE BUTTON */}
+                  <Link
+                    to={`/blog/${blog._id || blog.id}`}
+                    className="Blog-Sec_Btn"
+                  >
+                    <span>Read Article</span>
+                    <FiArrowUpRight className="Blog-Sec_BtnIcon" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
