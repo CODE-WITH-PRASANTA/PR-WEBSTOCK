@@ -194,3 +194,21 @@ exports.deleteEmployee = async (req, res) => {
     });
   }
 };
+
+exports.getMasterEmployees = async (req, res) => {
+  try {
+    // Fetch ALL records from Employee model sorted by name
+    const masterEmployees = await Employee.find().sort({ name: 1 });
+
+    res.status(200).json({
+      success: true,
+      count: masterEmployees.length,
+      data: masterEmployees,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

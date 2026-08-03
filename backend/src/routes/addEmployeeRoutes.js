@@ -12,6 +12,7 @@ const {
   getEmployeeById,
   updateEmployee,
   deleteEmployee,
+  getMasterEmployees
 } = require("../controllers//addEmployeeController");
 
 // Create Employee Login
@@ -38,5 +39,6 @@ router.put(
 
 // Delete
 router.delete("/employees/:id", deleteEmployee);
+router.get("/master-employees", getMasterEmployees);
 
 module.exports = router;

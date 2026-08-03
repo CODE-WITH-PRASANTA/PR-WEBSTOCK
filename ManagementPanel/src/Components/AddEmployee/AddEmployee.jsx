@@ -34,27 +34,20 @@ const AddEmployee = () => {
 
   // Fetch your master employees list when the component mounts
   useEffect(() => {
-    const fetchMasterEmployees = async () => {
-      try {
-        // Change this route matching your actual master employee endpoint
-        const response = await API.get("/employees"); 
-        if (response.data && response.data.data) {
-          setEmployeeList(response.data.data);
-        }
-      } catch (error) {
-          console.log("Status:", error.response?.status);
-          console.log("Data:", error.response?.data);
-          console.log(error);
-
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: error.response?.data?.message || "Something went wrong.",
-          });
-        }
-    };
-    fetchMasterEmployees();
-  }, []);
+  const fetchMasterEmployees = async () => {
+    try {
+      // Call the master-employees route instead of /employees
+      const response = await API.get("/addemployees/master-employees"); 
+      
+      if (response.data && response.data.data) {
+        setEmployeeList(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  fetchMasterEmployees();
+}, []);
 
   const departmentList = [
     ...new Set(employeeList.map((emp) => emp.department)),
