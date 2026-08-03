@@ -472,7 +472,7 @@ exports.manualAdjustAttendance = async (req, res) => {
     try {
         const { employeeId, date, status, punchInTime, punchOutTime } = req.body;
 
-        // 1. Validation
+        // 1. Basic Validation
         if (!employeeId || !date) {
             return res.status(400).json({ success: false, message: "Employee ID and Date are required." });
         }
@@ -481,7 +481,7 @@ exports.manualAdjustAttendance = async (req, res) => {
             return res.status(400).json({ success: false, message: `Invalid Employee ID format: ${employeeId}` });
         }
 
-        // 2. Map incoming status format to official DB title format
+        // 2. Map incoming status format to official DB format
         const statusMap = {
             'present': 'Present',
             'absent': 'Absent',
@@ -491,12 +491,12 @@ exports.manualAdjustAttendance = async (req, res) => {
             'leave': 'Leave',
             'weekend': 'Weekend'
         };
-        const formattedStatus = statusMap[status] || status || 'Present';
+        const formattedStatus = statusMap[status?.toLowerCase()] || status || 'Present';
 
-        // 3. Format date to standard string "YYYY-MM-DD" used throughout your system
+        // 3. Format date to standard string "YYYY-MM-DD"
         const dateStr = typeof date === 'string' ? date.split('T')[0] : new Date(date).toISOString().split('T')[0];
 
-        // 4. Safely parse punch dates
+        // 4. Safely parse punch dates (returns null if empty, invalid, or absent)
         const parseTime = (timeVal) => {
             if (!timeVal) return null;
             const parsed = new Date(timeVal);
@@ -506,36 +506,62 @@ exports.manualAdjustAttendance = async (req, res) => {
         const parsedPunchIn = parseTime(punchInTime);
         const parsedPunchOut = parseTime(punchOutTime);
 
-        // 5. Calculate total working minutes if both punch times exist
+        // 5. Calculate total working minutes only if BOTH punch times exist
         let totalWorkingMinutes = 0;
         if (parsedPunchIn && parsedPunchOut) {
             const diffMs = parsedPunchOut - parsedPunchIn;
             totalWorkingMinutes = Math.max(0, Math.floor(diffMs / (1000 * 60)));
         }
 
-        // 6. Fetch employee name to keep record self-contained
+        // 6. Fetch employee info to keep record self-contained
         const employeeDoc = await AddEmployee.findById(employeeId).select('name employeeId');
 
-        // 7. Upsert matching employeeId (ObjectId) and date (String)
+        // 7. Determine main session status based on attendance state
+        let mainStatus = 'Punched Out';
+        if (formattedStatus === 'Absent') {
+            mainStatus = 'Absent';
+        } else if (formattedStatus === 'Leave') {
+            mainStatus = 'On Leave';
+        } else if (!parsedPunchIn) {
+            mainStatus = 'Not Punched In';
+        }
+
+        // 8. Construct update payload
+        const updatePayload = {
+            employeeId: new mongoose.Types.ObjectId(employeeId),
+            employeeCustomId: employeeDoc?.employeeId || '',
+            name: employeeDoc?.name || '',
+            date: dateStr,
+            dayStatus: formattedStatus,
+            status: mainStatus,
+            totalWorkingMinutes
+        };
+
+        // Set or remove punch times based on presence
+        if (parsedPunchIn) {
+            updatePayload.punchInTime = parsedPunchIn;
+        } else {
+            updatePayload.$unset = { ...updatePayload.$unset, punchInTime: 1 };
+        }
+
+        if (parsedPunchOut) {
+            updatePayload.punchOutTime = parsedPunchOut;
+        } else {
+            updatePayload.$unset = { ...updatePayload.$unset, punchOutTime: 1 };
+        }
+
+        // 9. Execute Upsert with returnDocument (Mongoose v8 compatible)
         const updatedEntry = await Attendance.findOneAndUpdate(
             {
                 employeeId: new mongoose.Types.ObjectId(employeeId),
                 date: dateStr
             },
-            {
-                $set: {
-                    employeeId: new mongoose.Types.ObjectId(employeeId),
-                    employeeCustomId: employeeDoc?.employeeId || '',
-                    name: employeeDoc?.name || '',
-                    date: dateStr,
-                    dayStatus: formattedStatus,
-                    status: formattedStatus === 'Absent' ? 'Absent' : 'Punched Out',
-                    punchInTime: parsedPunchIn,
-                    punchOutTime: parsedPunchOut,
-                    totalWorkingMinutes
-                }
-            },
-            { new: true, upsert: true, runValidators: true }
+            updatePayload,
+            { 
+                returnDocument: 'after', 
+                upsert: true, 
+                runValidators: false // Set to false to allow null/missing punch times for Absents
+            }
         );
 
         return res.json({ success: true, data: updatedEntry });
