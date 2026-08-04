@@ -1,28 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './OverTime.css';
 import API from "../../api/axios"; // Your pre-configured Axios instance
 import Swal from 'sweetalert2'; // Imported SweetAlert2 library
 
 const OverTime = () => {
+  // Helper: Get today's date formatted as YYYY-MM-DD
+  const getTodayISOString = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   // Existing & New Requests state connected to Database
   const [requests, setRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Modal & Dropdown UI states
+  // Modal UI state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
-  // Form Field states (Pre-configured for June 2026 as per your mock design)
+  // Form Field states (Dynamically defaults to Today)
   const [formData, setFormData] = useState({
-    date: '2026-06-29',
+    date: getTodayISOString(),
     hours: '1.0',
     reason: '',
   });
 
-  // Calendar setup for June 2026 mapping
-  const juneDays = Array.from({ length: 30 }, (_, i) => i + 1);
-  const startOffsetDays = [1, 2, 3, 4, 5]; // Offset spaces for Monday start if needed
+  // Reference to trigger native browser date picker directly on icon click
+  const dateInputRef = useRef(null);
 
   // Fetch overtime history on component mount
   useEffect(() => {
@@ -57,17 +64,20 @@ const OverTime = () => {
     setFormData((prev) => ({ ...prev, hours: current.toFixed(1) }));
   };
 
-  const selectCalendarDate = (day) => {
-    const formattedDay = day < 10 ? `0${day}` : day;
-    setFormData((prev) => ({ ...prev, date: `2026-06-${formattedDay}` }));
-    setIsCalendarOpen(false);
+  const openDatePicker = () => {
+    if (dateInputRef.current) {
+      if ('showPicker' in HTMLInputElement.prototype) {
+        dateInputRef.current.showPicker();
+      } else {
+        dateInputRef.current.focus();
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.date || !formData.hours || !formData.reason.trim()) return;
 
-    // Capture values for modal presentation hooks before resetting form
     const targetedDate = formData.date;
     const targetedHours = formData.hours;
 
@@ -84,7 +94,6 @@ const OverTime = () => {
         setRequests((prev) => [response.data.data, ...prev]);
         handleCloseModal();
 
-        // Elegant SweetAlert Success notification matching your requested layout
         Swal.fire({
           title: "<strong>Submission Successful!</strong>",
           icon: "success",
@@ -104,7 +113,6 @@ const OverTime = () => {
       console.error("Error submitting overtime request:", err);
       const serverErrorMessage = err.response?.data?.message || "Something went wrong while submitting your request.";
       
-      // SweetAlert Error Dialog window injection
       Swal.fire({
         title: "<strong>Submission Failed</strong>",
         icon: "error",
@@ -117,22 +125,29 @@ const OverTime = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setIsCalendarOpen(false);
-    setFormData({ date: '2026-06-29', hours: '1.0', reason: '' });
+    setFormData({ date: getTodayISOString(), hours: '1.0', reason: '' });
   };
 
-  // UI Date Helper to parse ISO DB Timestamps elegantly
+  // Safe Date Formatter preventing Timezone-based Off-by-one Day errors
   const formatDisplayDate = (dateString, variant) => {
     if (!dateString) return '';
-    const dateObj = new Date(dateString);
-    
+
+    // Handle plain YYYY-MM-DD vs full ISO string formats safely
+    const parts = dateString.split('T')[0].split('-');
+    if (parts.length < 3) return dateString;
+
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // 0-indexed month
+    const day = parseInt(parts[2], 10);
+
+    const dateObj = new Date(Date.UTC(year, month, day));
+
     if (variant === 'full') {
-      return dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      return dateObj.toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' });
     }
-    return dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return dateObj.toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' });
   };
 
-  // Helper validation to toggle Submit active styling
   const isFormValid = formData.date && formData.hours && formData.reason.trim().length > 0;
 
   return (
@@ -175,8 +190,8 @@ const OverTime = () => {
                       <h3 className="ot-card-date">{formatDisplayDate(req.date, 'full')}</h3>
                       <p className="ot-card-applied">Applied: {formatDisplayDate(req.appliedDate || req.createdAt, 'short')}</p>
                     </div>
-                    <span className={`ot-badge ${req.status.toLowerCase()}`}>
-                      {req.status}
+                    <span className={`ot-badge ${req.status ? req.status.toLowerCase() : 'pending'}`}>
+                      {req.status || 'Pending'}
                     </span>
                   </div>
                   <div className="ot-divider"></div>
@@ -200,57 +215,33 @@ const OverTime = () => {
       {isModalOpen && (
         <div className="ot-modal-overlay">
           <div className="ot-modal-window">
-            {/* Modal Header Title Ribbon */}
             <div className="ot-modal-header">
               <h3>New Overtime Request</h3>
               <button className="ot-modal-close-btn" onClick={handleCloseModal}>&times;</button>
             </div>
 
-            {/* Modal Input Configuration Form */}
             <form onSubmit={handleSubmit} className="ot-modal-body">
               
-              {/* Box Element 1: Target Calendar Action Point */}
-              <div className="ot-input-group" onClick={() => setIsCalendarOpen(!isCalendarOpen)}>
+              {/* Box Element 1: Dynamic HTML5 Calendar Integration */}
+              <div className="ot-input-group">
                 <label className="ot-input-label">Request Date*</label>
-                <div className="ot-input-inner-wrapper">
-                  <span className="ot-input-value-text">{formData.date}</span>
+                <div className="ot-input-inner-wrapper" onClick={openDatePicker} style={{ cursor: 'pointer' }}>
+                  <input
+                    ref={dateInputRef}
+                    type="date"
+                    name="date"
+                    className="ot-date-native-input"
+                    value={formData.date}
+                    onChange={handleInputChange}
+                    required
+                  />
                   <div className="ot-icons-right">
-                    <span className={`ot-calendar-icon ${isCalendarOpen ? 'active' : ''}`}>📅</span>
-                    <span className="ot-calendar-icon-alt">📅</span>
+                    <span className="ot-calendar-icon">📅</span>
                   </div>
                 </div>
-
-                {/* Simulated Custom Calendar Component Wrapper */}
-                {isCalendarOpen && (
-                  <div className="ot-custom-calendar" onClick={(e) => e.stopPropagation()}>
-                    <div className="ot-cal-header">
-                      <span className="ot-cal-month-year">2026 JUN ▾</span>
-                      <div className="ot-cal-arrows">
-                        <span>&lt;</span>
-                        <span>&gt;</span>
-                      </div>
-                    </div>
-                    <div className="ot-cal-weekdays">
-                      <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-                    </div>
-                    <div className="ot-cal-days-grid">
-                      {/* Blank offset positions matching calendar standard layout */}
-                      {startOffsetDays.map((_, idx) => <span key={`offset-${idx}`} className="ot-cal-empty"></span>)}
-                      {juneDays.map((day) => (
-                        <span
-                          key={day}
-                          className={`ot-cal-day-cell ${formData.date.endsWith(`-${day < 10 ? '0' + day : day}`) ? 'selected' : ''}`}
-                          onClick={() => selectCalendarDate(day)}
-                        >
-                          {day}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
 
-              {/* Box Element 2: Quantifiable Clock Interval Stepper */}
+              {/* Box Element 2: Quantifiable Hours Stepper */}
               <div className="ot-input-group">
                 <label className="ot-input-label">Requested Hours*</label>
                 <div className="ot-input-inner-wrapper">
@@ -275,7 +266,7 @@ const OverTime = () => {
                 </div>
               </div>
 
-              {/* Box Element 3: Text Context Container Area */}
+              {/* Box Element 3: Reason Text Area */}
               <div className="ot-input-group text-area-group">
                 <label className="ot-input-label">Reason for Overtime*</label>
                 <textarea
@@ -289,7 +280,7 @@ const OverTime = () => {
                 <span className="ot-doc-icon">📄</span>
               </div>
 
-              {/* Action Triggers Footer Group */}
+              {/* Action Buttons */}
               <div className="ot-modal-footer">
                 <button
                   type="submit"
