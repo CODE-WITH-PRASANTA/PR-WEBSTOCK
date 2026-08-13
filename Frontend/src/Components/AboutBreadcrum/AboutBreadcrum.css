@@ -1,17 +1,19 @@
-/* ===== HERO WRAPPER ===== */
-
 .about-hero {
   position: relative;
   width: 100%;
   min-height: 380px;
   box-sizing: border-box;
 
-  background:
-    radial-gradient(circle at top left, #12356b 0, #02040a 40%),
-    radial-gradient(circle at top right, #0d1b33 0, #02040a 55%),
-    #02040a;
+  /* Gradients on top, background image at the bottom layer */
+  background-image: 
+    radial-gradient(circle at top left, rgba(18, 53, 107, 0.85) 0, rgba(2, 4, 10, 0.95) 40%),
+    radial-gradient(circle at top right, rgba(13, 27, 51, 0.85) 0, rgba(2, 4, 10, 0.95) 55%),
+    url("/src/assets/Breadcrumb.webp");
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-color: #02040a;
 
   display: flex;
   align-items: center;

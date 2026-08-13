@@ -1,13 +1,9 @@
 import React from "react";
 import "./AboutBreadcrum.css";
-import PricingBanner from "../../assets/Breadcrum.webp";
 
 const About = ({ onArrowClick }) => {
   return (
-    <section
-      className="about-hero"
-      style={{ backgroundImage: `url(${PricingBanner})` }}
-    >
+    <section className="about-hero">
       <div className="about-hero-overlay" />
 
       <div className="about-hero-content">
@@ -18,7 +14,7 @@ const About = ({ onArrowClick }) => {
         </div>
 
         <h1 className="about-hero-title">
-         Leading Software & Digital Solutions
+          Leading Software & Digital Solutions
         </h1>
       </div>
 
@@ -26,6 +22,7 @@ const About = ({ onArrowClick }) => {
         className="about-scroll-indicator"
         type="button"
         onClick={onArrowClick}
+        aria-label="Scroll to content"
       >
         <span className="about-scroll-arrow">↓</span>
       </button>
