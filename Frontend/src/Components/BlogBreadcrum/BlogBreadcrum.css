@@ -6,12 +6,11 @@
   min-height: 380px;
   box-sizing: border-box;
 
+  /* Fallback gradient background while image is loading */
   background:
     radial-gradient(circle at top left, #12356b 0, #02040a 40%),
     radial-gradient(circle at top right, #0d1b33 0, #02040a 55%),
     #02040a;
-  background-size: cover;
-  background-position: center;
 
   display: flex;
   align-items: center;
@@ -24,7 +23,19 @@
   overflow: hidden;
 }
 
-/* Dark overlay */
+/* ===== HERO BACKGROUND IMAGE (LCP Target) ===== */
+.blog-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark overlay (Layered above the image, below the text) */
 .blog-hero-overlay {
   position: absolute;
   inset: 0;
@@ -32,6 +43,7 @@
               radial-gradient(circle at top right, rgba(5, 10, 30, 0.7), transparent 50%),
               rgba(0, 0, 0, 0.45);
   pointer-events: none;
+  z-index: 1;
 }
 
 /* ===== CONTENT (TEXT) ===== */

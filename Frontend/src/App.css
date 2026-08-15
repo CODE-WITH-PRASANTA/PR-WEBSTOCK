@@ -1,27 +1,57 @@
-/* ================================
-   Global Reset
-================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* =========================================
+   APP LAYOUT
+   Global reset is handled in index.html
+========================================= */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
 }
 
-/* ================================
-   Global Body Styling
-================================ */
-body {
-  font-family: "Poppins", Arial, sans-serif;
-  background-color: #f8f9fa;       /* Light clean background */
-  color: #212529;                  /* Dark readable text */
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;              /* Prevent horizontal scroll */
+.main-content {
+  flex: 1 0 auto;
+  width: 100%;
 }
 
-/* ================================
-   Scrollbar Styles (Modern Look)
-================================ */
+.page-fallback {
+  width: 100%;
+  min-height: 50vh;
+  background: transparent;
+}
+
+/* =========================================
+   MODAL / POPUP OVERLAY
+========================================= */
+
+.modal-overlay:not(:empty),
+.enquiry-modal-overlay:not(:empty),
+.popup-container:not(:empty) {
+  position: fixed !important;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+}
+
+/* Hide empty modal containers */
+
+.modal-overlay:empty,
+.enquiry-modal-overlay:empty,
+.popup-container:empty {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -37,4 +67,14 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #8a8a8a;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  * {
+    text-shadow: none !important;
+  }
 }

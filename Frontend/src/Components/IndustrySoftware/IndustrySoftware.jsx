@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./IndustrySoftware.css";
 
-import devImg from "../../assets/service-details-feature-img.webp";      // 1st big image
-import faqImg from "../../assets/service-details-faq-img.webp";      // 2nd image
+import devImg from "../../assets/service-details-feature-img.webp"; // Ensure this image is resized to ~500px width
+import faqImg from "../../assets/service-details-faq-img.webp";
 
 const faqData = [
   {
@@ -26,8 +26,8 @@ const faqData = [
     a: "Yes, we follow enterprise-level security practices including encrypted data handling, secure authentication, and safe API communication."
   },
   {
-  q: "06. Can PR Webstock customize software according to my business needs?",
-  a: "Yes! Every software we build is fully customized based on your workflow, goals, and requirements. We don’t use generic templates — everything is designed to match your exact business process."
+    q: "06. Can PR Webstock customize software according to my business needs?",
+    a: "Yes! Every software we build is fully customized based on your workflow, goals, and requirements. We don’t use generic templates — everything is designed to match your exact business process."
   },
   {
     q: "07. Will I be able to manage my software without technical knowledge?",
@@ -37,8 +37,8 @@ const faqData = [
     q: "08. Do you provide updates or new feature additions in the future?",
     a: "Yes, PR Webstock offers continuous upgrades, new modules, and feature expansions as your business grows. You can request new features anytime, and our team will handle the enhancement smoothly."
   }
-
 ];
+
 export default function SoftwareSection() {
   const [openIndex, setOpenIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,19 +48,15 @@ export default function SoftwareSection() {
   const totalPages = Math.ceil(faqData.length / faqPerPage);
 
   const startIndex = (currentPage - 1) * faqPerPage;
-  const currentFaqs = faqData.slice(
-    startIndex,
-    startIndex + faqPerPage
-  );
+  const currentFaqs = faqData.slice(startIndex, startIndex + faqPerPage);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    setOpenIndex(null); // close opened FAQ when page changes
+    setOpenIndex(null);
   };
 
   return (
     <div className="software-wrapper">
-
       {/* ---------- PART 1 : SOFTWARE DEVELOPMENT ---------- */}
       <div className="software-grid">
         <div className="software-left">
@@ -101,6 +97,10 @@ export default function SoftwareSection() {
             src={devImg}
             alt="Software Development"
             className="sw-img"
+            width="453"
+            height="356"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -108,7 +108,15 @@ export default function SoftwareSection() {
       {/* ---------- PART 2 : IMAGE + FAQ ---------- */}
       <div className="faq-grid">
         <div className="faq-left">
-          <img src={faqImg} alt="Team Work" className="faq-img" />
+          <img
+            src={faqImg}
+            alt="Team Work"
+            className="faq-img"
+            width="450"
+            height="350"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <div className="faq-right">
@@ -118,14 +126,11 @@ export default function SoftwareSection() {
                 className="faq-question"
                 onClick={() =>
                   setOpenIndex(
-                    openIndex === startIndex + index
-                      ? null
-                      : startIndex + index
+                    openIndex === startIndex + index ? null : startIndex + index
                   )
                 }
               >
                 <span>{item.q}</span>
-
                 <span className="faq-plus">
                   {openIndex === startIndex + index ? "−" : "+"}
                 </span>
@@ -153,9 +158,7 @@ export default function SoftwareSection() {
             {[...Array(totalPages)].map((_, index) => (
               <button
                 key={index}
-                className={
-                  currentPage === index + 1 ? "active" : ""
-                }
+                className={currentPage === index + 1 ? "active" : ""}
                 onClick={() => handlePageChange(index + 1)}
               >
                 {index + 1}

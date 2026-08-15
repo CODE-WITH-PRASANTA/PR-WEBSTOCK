@@ -4,64 +4,292 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>PR WEBSTOCK | Best Website, App Development & Digital Marketing Company in Bhubaneswar, Odisha</title>
-
-    <!-- Preconnect to external origins to establish early connections -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Unified Google Fonts with non-blocking swap -->
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" 
-      rel="stylesheet" 
-    />
+    <title>
+      PR WEBSTOCK | Best Website, App Development & Digital Marketing Company in Bhubaneswar, Odisha
+    </title>
 
     <link rel="canonical" href="https://prwebstock.com/" />
-    <link rel="icon" type="image/webp" href="./src/assets/PR WEBSTOCK.webp" />
 
-    <meta name="description" content="PR WEBSTOCK (OPC) PVT LTD — Bhubaneswar's most trusted Website Development, App Development, SEO, Digital Marketing & Social Media Management company." />
-    <meta name="keywords" content="PR WEBSTOCK, PR WEBSTOCK OPC PVT LTD, prwebstock.com, website development Bhubaneswar, app development company Bhubaneswar, SEO expert Bhubaneswar" />
-    <meta name="author" content="PR WEBSTOCK (OPC) PVT LTD" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="/src/assets/PR WEBSTOCK.webp"
+    />
 
-    <meta property="og:title" content="PR WEBSTOCK | Best Web, App & Digital Marketing Company in Bhubaneswar" />
-    <meta property="og:description" content="PR WEBSTOCK (OPC) PVT LTD provides Website Development, App Development, SEO, and Digital Marketing solutions in Bhubaneswar." />
-    <meta property="og:url" content="https://prwebstock.com/" />
-    <meta property="og:type" content="website" />
+    <!-- =========================================
+         GOOGLE FONT - POPPINS
+    ========================================== -->
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="PR WEBSTOCK | Web & App Development Company in Odisha" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
 
-    <meta name="geo.region" content="IN-OR" />
-    <meta name="geo.placename" content="Bhubaneswar" />
-    <meta name="geo.position" content="20.2961;85.8245" />
-    <meta name="ICBM" content="20.2961, 85.8245" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
 
-    <meta name="theme-color" content="#E94e77" />
-    <link rel="manifest" href="/manifest.json" />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
 
-    <!-- Main Entry Module -->
-    <script type="module" src="/src/main.jsx" defer></script>
+    <!-- =========================================
+         INLINE GLOBAL CSS
+         Prevents local CSS render-blocking request
+    ========================================== -->
 
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "PR WEBSTOCK (OPC) PVT LTD",
-      "url": "https://prwebstock.com/",
-      "telephone": "+91-7789801327",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Nexus Esplanade, Unit No. 32",
-        "addressLocality": "Bhubaneswar",
-        "addressRegion": "Odisha",
-        "postalCode": "751010",
-        "addressCountry": "IN"
+    <style>
+      /* =========================================
+         GLOBAL RESET
+      ========================================= */
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-    }
+
+      /* =========================================
+         HTML
+      ========================================== */
+
+      html {
+        width: 100%;
+        min-height: 100%;
+        scroll-behavior: smooth;
+      }
+
+      /* =========================================
+         BODY
+      ========================================== */
+
+      body {
+        width: 100%;
+        min-height: 100vh;
+
+        font-family: "Poppins", Arial, sans-serif;
+
+        background-color: #f8f9fa;
+        color: #212529;
+
+        line-height: 1.6;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        overflow-x: hidden;
+      }
+
+      /* =========================================
+         ROOT
+      ========================================== */
+
+      #root {
+        width: 100%;
+        min-height: 100vh;
+      }
+
+      /* =========================================
+         IMAGES
+      ========================================== */
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* =========================================
+         FORM ELEMENTS
+      ========================================== */
+
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      /* =========================================
+         LINKS
+      ========================================== */
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* =========================================
+         SCROLLBAR
+      ========================================== */
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #e9ecef;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #b1b1b1;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #8a8a8a;
+      }
+
+      /* =========================================
+         MOBILE
+      ========================================== */
+
+      @media (max-width: 768px) {
+        * {
+          text-shadow: none !important;
+        }
+      }
+    </style>
+
+    <!-- =========================================
+         META TAGS
+    ========================================== -->
+
+    <meta
+      name="description"
+      content="PR WEBSTOCK (OPC) PVT LTD — Bhubaneswar's most trusted Website Development, App Development, SEO, Digital Marketing & Social Media Management company."
+    />
+
+    <meta
+      name="keywords"
+      content="PR WEBSTOCK, PR WEBSTOCK OPC PVT LTD, prwebstock.com, website development Bhubaneswar, app development company Bhubaneswar, SEO expert Bhubaneswar"
+    />
+
+    <meta
+      name="author"
+      content="PR WEBSTOCK (OPC) PVT LTD"
+    />
+
+    <!-- =========================================
+         OPEN GRAPH
+    ========================================== -->
+
+    <meta
+      property="og:title"
+      content="PR WEBSTOCK | Best Web, App & Digital Marketing Company in Bhubaneswar"
+    />
+
+    <meta
+      property="og:description"
+      content="PR WEBSTOCK (OPC) PVT LTD provides Website Development, App Development, SEO, and Digital Marketing solutions in Bhubaneswar."
+    />
+
+    <meta
+      property="og:url"
+      content="https://prwebstock.com/"
+    />
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <!-- =========================================
+         TWITTER
+    ========================================== -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content="PR WEBSTOCK | Web & App Development Company in Odisha"
+    />
+
+    <!-- =========================================
+         LOCATION
+    ========================================== -->
+
+    <meta
+      name="geo.region"
+      content="IN-OR"
+    />
+
+    <meta
+      name="geo.placename"
+      content="Bhubaneswar"
+    />
+
+    <meta
+      name="geo.position"
+      content="20.2961;85.8245"
+    />
+
+    <meta
+      name="ICBM"
+      content="20.2961, 85.8245"
+    />
+
+    <!-- =========================================
+         THEME
+    ========================================== -->
+
+    <meta
+      name="theme-color"
+      content="#E94E77"
+    />
+
+    <!-- =========================================
+         PWA
+    ========================================== -->
+
+    <link
+      rel="manifest"
+      href="/manifest.json"
+    />
+
+    <!-- =========================================
+         STRUCTURED DATA
+    ========================================== -->
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "PR WEBSTOCK (OPC) PVT LTD",
+        "url": "https://prwebstock.com/",
+        "telephone": "+91-7789801327",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Nexus Esplanade, Unit No. 32",
+          "addressLocality": "Bhubaneswar",
+          "addressRegion": "Odisha",
+          "postalCode": "751010",
+          "addressCountry": "IN"
+        }
+      }
     </script>
   </head>
+
   <body>
     <div id="root"></div>
+
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
   </body>
 </html>
