@@ -43,6 +43,9 @@ const GetFreeDemo = lazy(() =>
 );
 const Working = lazy(() => import("./Pages/Working/Working"));
 const Projects = lazy(() => import("./Pages/Projects/Projects"));
+const TrainingCenter = lazy(() =>
+  import("./Pages/TrainingCenter/TrainingCenter")
+);
 
 function AppContent() {
   const location = useLocation();
@@ -82,13 +85,14 @@ function AppContent() {
             <Route path="/get-quote" element={<GetFreeDemo />} />
             <Route path="/blog/:id" element={<Working />} />
             <Route path="/project" element={<Projects />} />
+            <Route path="/trainingcenter" element={<TrainingCenter />} />
           </Routes>
         </Suspense>
       </main>
 
       {/* Lazy loaded layout elements wrapped in Suspense */}
       <Suspense fallback={null}>
-        <Form />  
+        <Form />
         <ContactUs />
         <Floating />
         <Footer />
