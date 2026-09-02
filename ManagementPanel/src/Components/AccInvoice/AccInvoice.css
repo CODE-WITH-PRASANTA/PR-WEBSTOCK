@@ -39,9 +39,7 @@
   min-height: 100vh;
   width: 100%;
   background: var(--paper-tint);
-  background-image:
-    radial-gradient(circle at 100% 0%, rgba(169, 120, 47, 0.06), transparent 45%),
-    radial-gradient(circle at 0% 100%, rgba(23, 35, 59, 0.04), transparent 40%);
+ 
   font-family: var(--font-sans);
   color: var(--ink);
   padding: 32px 24px 64px;
@@ -275,7 +273,6 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 5px;
-  background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 60%, var(--brass) 100%);
   border-radius: 6px 6px 0 0;
 }
 
@@ -886,41 +883,39 @@
 }
 
 .AccInvoice-print-icon { font-size: 15px; }
-
 /* ==========================================================================
    PRINT — one clean A4 page, realistic official-document look
    ========================================================================== */
-
 @media print {
   @page {
     size: A4;
-    margin: 8mm 10mm;
+    margin: 6mm 8mm;
   }
 
   html, body {
     background: #fff !important;
+    color: #111827; /* Deep charcoal for sharp text contrast */
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
     margin: 0;
     padding: 0;
+    font-size: 10px; /* Reduced from 11px for a cleaner tabular look */
+    line-height: 1.28;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Hide EVERYTHING on the page first — this catches any navbar, sidebar,
-     or app shell that lives outside this component and isn't marked
-     .no-print, since we don't control that markup from this stylesheet. */
+  /* Hide app shell / outside layout */
   body * {
     visibility: hidden;
   }
 
-  /* Reveal only the invoice card and everything inside it. */
+  /* Reveal only the invoice card */
   #printable-invoice,
   #printable-invoice * {
     visibility: visible;
   }
 
-  /* Pull the invoice out of normal flow so it's the only thing occupying
-     the printed page, starting at the top-left regardless of where it
-     sat in the DOM (behind/below a navbar, inside a padded layout, etc). */
   #printable-invoice {
     position: absolute;
     top: 0;
@@ -928,10 +923,19 @@
     width: 100%;
     max-width: 100%;
     margin: 0;
+    padding: 0;
   }
 
-  .no-print { display: none !important; }
+  .no-print { 
+    display: none !important; 
+  }
 
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Structural containers */
   .AccInvoice-container {
     min-height: 0;
     padding: 0;
@@ -942,59 +946,112 @@
   .AccInvoice-card {
     max-width: 100%;
     width: 100%;
-    box-shadow: none;
     border: none;
     border-radius: 0;
-    padding: 6px 4px 0;
+    padding: 2px 0 0;
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
-  .AccInvoice-card::before { border-radius: 0; }
+  .AccInvoice-card::before { 
+    border-radius: 0; 
+  }
 
+  /* Section flow & pagination rules */
   .AccInvoice-top-banner,
   .AccInvoice-details-grid,
   .AccInvoice-metadata-strip,
   .AccInvoice-project-summary-card,
   .AccInvoice-table-wrapper,
-  .AccInvoice-split-section,
-  .AccInvoice-payment-terms,
-  .AccInvoice-signatures-wrapper,
   .AccInvoice-info-box,
   .AccInvoice-emi-schedule-box,
   .AccInvoice-totals-box,
-  .AccInvoice-project-summary-card,
   .stamp-box,
   .signature-box {
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
-  * {
-    box-shadow: none !important;
+  .AccInvoice-split-section,
+  .AccInvoice-payment-terms,
+  .AccInvoice-signatures-wrapper {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
   }
 
-  .AccInvoice-details-grid { margin-bottom: 14px; }
-  .AccInvoice-metadata-strip { margin-bottom: 14px; }
-  .AccInvoice-project-summary-card { margin-bottom: 14px; }
-  .AccInvoice-table-wrapper { margin-bottom: 16px; }
-  .AccInvoice-split-section { margin-bottom: 16px; }
-  .AccInvoice-payment-terms { margin-bottom: 16px; padding: 12px 0; }
+  /* Compact section vertical margins */
+  .AccInvoice-details-grid { margin-bottom: 5px !important; }
+  .AccInvoice-metadata-strip { margin-bottom: 5px !important; }
+  .AccInvoice-project-summary-card { margin-bottom: 5px !important; }
+  .AccInvoice-table-wrapper { margin-bottom: 5px !important; }
+  .AccInvoice-split-section { margin-bottom: 5px !important; }
+  .AccInvoice-payment-terms { 
+    margin-bottom: 5px !important; 
+    padding: 3px 0 !important; 
+    font-size: 8.5px !important;
+    color: #4b5563 !important;
+  }
 
-  .AccInvoice-doc-type { font-size: 24px; }
-  .AccInvoice-company-heading { font-size: 17px; }
-  .final-value { font-size: 18px; }
+  /* Compact table rows & typography */
+  .AccInvoice-table-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5px !important; /* Scaled down for sleek row height */
+  }
+
+  .AccInvoice-table-wrapper table th {
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 5px !important;
+    border-bottom: 1px solid #d1d5db !important;
+  }
+
+  .AccInvoice-table-wrapper table td {
+    padding: 2.5px 5px !important;
+    border-bottom: 0.5px solid #f3f4f6 !important;
+  }
+
+  /* Subtle typography tuning */
+  .AccInvoice-doc-type { 
+    font-size: 16px !important; 
+    font-weight: 700 !important;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .AccInvoice-company-heading { 
+    font-size: 12.5px !important; 
+    font-weight: 600 !important;
+  }
+
+  .final-value { 
+    font-size: 13.5px !important; 
+    font-weight: 700 !important;
+  }
+  
+  .AccInvoice-emi-table {
+    font-size: 8.5px !important;
+  }
+
+  .AccInvoice-emi-table th,
+  .AccInvoice-emi-table td {
+    padding: 2px 4px !important;
+  }
 
   .emi-badge {
-    font-size: 9.5px;
-    padding: 2px 8px;
+    font-size: 7.5px !important;
+    font-weight: 600 !important;
+    padding: 1px 4px !important;
+    letter-spacing: 0.02em;
+    border-radius: 2px !important;
   }
 
-  .AccInvoice-emi-table {
-    font-size: 10.5px;
+  a[href]::after { 
+    content: ''; 
   }
-
-  a[href]::after { content: ''; }
 }
-
 /* ---------------------------------------------------------------------- */
 /* Responsive (screen, tablet/mobile viewers of the same document)         */
 /* ---------------------------------------------------------------------- */
