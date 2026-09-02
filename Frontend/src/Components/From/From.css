@@ -2,21 +2,160 @@
    Overlay (Blur Background)
 ========================== */
 
+/* From.css */
 .form-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 999999 !important;
+  padding: 16px;
+  pointer-events: auto !important;
+}
 
+.floating-form {
+  position: relative;
+  background: #ffffff;
+  width: 100%;
+  max-width: 440px;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: formPopupFade 0.25s ease-out;
+}
+
+@keyframes formPopupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6b7280;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
+}
 
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+.floating-form h2 {
+  color: #2563eb;
+  font-size: 22px;
+  margin: 0 0 6px 0;
+  text-align: center;
+  font-weight: 800;
+}
 
-  animation: fadeIn 1s ease;
+.floating-form h4 {
+  color: #4b5563;
+  font-size: 13px;
+  margin: 0 0 16px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.floating-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.floating-form input,
+.floating-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  background: #fff;
+  outline: none;
+}
+
+.floating-form input:focus,
+.floating-form textarea:focus {
+  border-color: #2563eb;
+}
+
+.submit-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.divider {
+  text-align: center;
+  margin: 14px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.divider span {
+  position: relative;
+  background: #fff;
+  padding: 0 8px;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.call-btn,
+.whatsapp-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.call-btn {
+  background: #2563eb;
+}
+
+.whatsapp-btn {
+  background: #22c55e;
 }
 
 /* ==========================

@@ -2,12 +2,18 @@ import React from "react";
 import "./IndustryWorkBreadcrum.css";
 import PricingBanner from "../../assets/Breadcrum.webp";
 
-const product = ({ onArrowClick }) => {
+const IndustryWorkBreadcrum = ({ onArrowClick }) => {
   return (
-    <section
-      className="product-hero"
-      style={{ backgroundImage: `url(${PricingBanner})` }}
-    >
+    <section className="product-hero">
+      {/* LCP IMAGE */}
+      <img
+        src={PricingBanner}
+        alt="Industry-Ready Web & App Solutions"
+        className="product-hero-image"
+        fetchPriority="high"
+        decoding="async"
+      />
+
       <div className="product-hero-overlay" />
 
       <div className="product-hero-content">
@@ -20,13 +26,13 @@ const product = ({ onArrowClick }) => {
         <h1 className="product-hero-title">
           Industry-Ready Web & App Solutions
         </h1>
-
       </div>
 
       <button
         className="product-scroll-indicator"
         type="button"
         onClick={onArrowClick}
+        aria-label="Scroll to next section"
       >
         <span className="product-scroll-arrow">↓</span>
       </button>
@@ -34,4 +40,4 @@ const product = ({ onArrowClick }) => {
   );
 };
 
-export default product;
+export default IndustryWorkBreadcrum;

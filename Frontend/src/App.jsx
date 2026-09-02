@@ -1,16 +1,23 @@
 import React, { lazy, Suspense, useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import "./App.css";
 import ScrollToTop from "./ScrollToTop";
 import PageLoader from "./Components/PageLoader/PageLoader";
 
-// Static critical layout components
+// Static critical layout component (Above the fold)
 import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
-import ContactUs from "./Components/Contactus/Contactus";
-import Floating from "./Components/Floating/Floating";
-import Form from "./Components/From/From";
+
+// Lazy-load below-the-fold global components
+const ContactUs = lazy(() => import("./Components/Contactus/Contactus"));
+const Footer = lazy(() => import("./Components/Footer/Footer"));
+const Floating = lazy(() => import("./Components/Floating/Floating"));
+const Form = lazy(() => import("./Components/From/From"));
 
 // Dynamic route-based lazy imports
 const Home = lazy(() => import("./Pages/Home/Home"));
@@ -21,57 +28,76 @@ const Contact = lazy(() => import("./Pages/Contact/Contact"));
 const Career = lazy(() => import("./Pages/Career/Career"));
 const Blog = lazy(() => import("./Pages/Blog/Blog"));
 const Service = lazy(() => import("./Pages/Service/Service"));
-const AppDevelopment = lazy(() => import("./Pages/AppDevelopment/AppDevelopment"));
+const AppDevelopment = lazy(() =>
+  import("./Pages/AppDevelopment/AppDevelopment")
+);
 const Seo = lazy(() => import("./Pages/Seo/Seo"));
-const DigitalMarketingPage = lazy(() => import("./Pages/DigitalMarketingPage/DigitalMarketingPage"));
-const SocialMediaManagement = lazy(() => import("./Pages/SocialMediaManagement/SocialMediaManagement"));
-const GetFreeDemo = lazy(() => import("./Pages/GetFreeDemo/GetFreeDemo"));
+const DigitalMarketingPage = lazy(() =>
+  import("./Pages/DigitalMarketingPage/DigitalMarketingPage")
+);
+const SocialMediaManagement = lazy(() =>
+  import("./Pages/SocialMediaManagement/SocialMediaManagement")
+);
+const GetFreeDemo = lazy(() =>
+  import("./Pages/GetFreeDemo/GetFreeDemo")
+);
 const Working = lazy(() => import("./Pages/Working/Working"));
 const Projects = lazy(() => import("./Pages/Projects/Projects"));
+const TrainingCenter = lazy(() =>
+  import("./Pages/TrainingCenter/TrainingCenter")
+);
 
 function AppContent() {
   const location = useLocation();
-  const [loading, setLoading] = useState(false); // Reduced artificial blocking delay
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Keep loader subtle during route transitions if desired
     setLoading(true);
-    const timeout = setTimeout(() => setLoading(false), 300);
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 200);
+
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
-  if (loading) {
-    return <PageLoader />;
-  }
-
   return (
-    <>
+    <div className="app-container">
+      <PageLoader loading={loading} />
+
       <Navbar />
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/industry-work" element={<IndustryWork />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/career" element={<Career />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/service" element={<Service />} />
-          <Route path="/services/web-development" element={<Service />} />
-          <Route path="/services/app-development" element={<AppDevelopment />} />
-          <Route path="/services/seo" element={<Seo />} />
-          <Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
-          <Route path="/services/socialmedia-management" element={<SocialMediaManagement />} />
-          <Route path="/get-quote" element={<GetFreeDemo />} />
-          <Route path="/blog/:id" element={<Working />} />
-          <Route path="/project" element={<Projects />} />
-        </Routes>
+
+      <main className="main-content">
+        <Suspense fallback={<div className="page-fallback" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/industry-work" element={<IndustryWork />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/service" element={<Service />} />
+            <Route path="/services/web-development" element={<Service />} />
+            <Route path="/services/app-development" element={<AppDevelopment />} />
+            <Route path="/services/seo" element={<Seo />} />
+            <Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
+            <Route path="/services/socialmedia-management" element={<SocialMediaManagement />} />
+            <Route path="/get-quote" element={<GetFreeDemo />} />
+            <Route path="/blog/:id" element={<Working />} />
+            <Route path="/project" element={<Projects />} />
+            <Route path="/trainingcenter" element={<TrainingCenter />} />
+          </Routes>
+        </Suspense>
+      </main>
+
+      {/* Lazy loaded layout elements wrapped in Suspense */}
+      <Suspense fallback={null}>
+        <Form />
+        <ContactUs />
+        <Floating />
+        <Footer />
       </Suspense>
-      <Form />
-      <ContactUs />
-      <Floating />
-      <Footer />
-    </>
+    </div>
   );
 }
 

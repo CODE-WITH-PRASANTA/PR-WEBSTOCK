@@ -1,0 +1,507 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --lb-primary-green: #15bf81;
+  --lb-hover-black: #121f28;
+  --lb-text-dark: #121f28;
+  --lb-text-muted: #5e6d77;
+  --lb-white: #ffffff;
+  --lb-mint-bg: #ebf6f2;
+  --lb-input-bg: #daf1e8;
+  --lb-card-bg: #f5fbf8;
+
+  /* Card Color Themes */
+  --lb-cyan: #00b4d8;
+  --lb-cyan-bg: #e0f6fc;
+  --lb-mint: #15bf81;
+  --lb-mint-bg-card: #e0f7ee;
+  --lb-orange: #ff7a30;
+  --lb-orange-bg: #ffefe5;
+}
+
+.LatestBlog-section {
+  width: 100%;
+  background-color: var(--lb-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 85px 0 0 0;
+  box-sizing: border-box;
+}
+
+.LatestBlog-inner-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header Row */
+.LatestBlog-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+.LatestBlog-heading-badge-col {
+  flex: 0 0 38%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.LatestBlog-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.LatestBlog-badge-square {
+  width: 6px;
+  height: 6px;
+  background-color: var(--lb-primary-green);
+  border-radius: 1.5px;
+}
+
+.LatestBlog-badge-text {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--lb-text-dark);
+  text-transform: uppercase;
+}
+
+.LatestBlog-header-line {
+  height: 1px;
+  background-color: #e2ece7;
+  flex-grow: 1;
+}
+
+.LatestBlog-main-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--lb-text-dark);
+  line-height: 1.25;
+  margin: 0;
+  flex: 0 0 58%;
+}
+
+/* Cards Grid */
+.LatestBlog-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 90px;
+}
+
+.LatestBlog-card {
+  background-color: var(--lb-card-bg);
+  border-radius: 24px;
+  padding: 16px;
+  border: 1px solid #ebf4f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.LatestBlog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+}
+
+.LatestBlog-card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: 18px;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.LatestBlog-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center center;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.LatestBlog-card:hover .LatestBlog-card-image {
+  transform: scale(1.08) rotate(1.2deg);
+}
+
+.LatestBlog-date-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.LatestBlog-date-badge--cyan {
+  background-color: var(--lb-cyan);
+}
+
+.LatestBlog-date-badge--mint {
+  background-color: var(--lb-mint);
+}
+
+.LatestBlog-date-badge--orange {
+  background-color: var(--lb-orange);
+}
+
+.LatestBlog-card-body {
+  padding: 22px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.LatestBlog-meta-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--lb-text-muted);
+}
+
+.LatestBlog-category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.LatestBlog-category-dot--cyan {
+  background-color: var(--lb-cyan);
+}
+
+.LatestBlog-category-dot--mint {
+  background-color: var(--lb-mint);
+}
+
+.LatestBlog-category-dot--orange {
+  background-color: var(--lb-orange);
+}
+
+.LatestBlog-category-name {
+  color: var(--lb-text-dark);
+  font-weight: 700;
+}
+
+.LatestBlog-author-name {
+  margin-left: 10px;
+}
+
+.LatestBlog-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--lb-text-dark);
+  line-height: 1.35;
+  margin: 0 0 20px 0;
+  min-height: 54px;
+}
+
+.LatestBlog-card-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e5ede9;
+  margin: auto 0 18px 0;
+}
+
+/* Continue Reading Button */
+.LatestBlog-btn-wrapper {
+  width: 100%;
+}
+
+.LatestBlog-read-btn {
+  position: relative;
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  z-index: 1;
+  transition: color 0.35s ease;
+}
+
+.LatestBlog-read-btn--cyan {
+  background-color: var(--lb-cyan-bg);
+  color: var(--lb-cyan);
+}
+.LatestBlog-read-btn--cyan::before {
+  background-color: var(--lb-cyan);
+}
+
+.LatestBlog-read-btn--mint {
+  background-color: var(--lb-mint-bg-card);
+  color: var(--lb-mint);
+}
+.LatestBlog-read-btn--mint::before {
+  background-color: var(--lb-mint);
+}
+
+.LatestBlog-read-btn--orange {
+  background-color: var(--lb-orange-bg);
+  color: var(--lb-orange);
+}
+.LatestBlog-read-btn--orange::before {
+  background-color: var(--lb-orange);
+}
+
+.LatestBlog-read-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  transform: translateX(-50%);
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: -1;
+  border-radius: 30px;
+}
+
+.LatestBlog-read-btn:hover::before {
+  width: 100%;
+}
+
+.LatestBlog-read-btn:hover {
+  color: #ffffff;
+}
+
+.LatestBlog-btn-text,
+.LatestBlog-btn-icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.LatestBlog-btn-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* =====================================================
+   BOTTOM NEWSLETTER (SINGLE STRAIGHT LINE)
+   ===================================================== */
+.LatestBlog-newsletter-section {
+  width: 100%;
+  background-color: var(--lb-mint-bg);
+  padding: 68px 0;
+  box-sizing: border-box;
+}
+
+.LatestBlog-newsletter-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.LatestBlog-newsletter-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--lb-text-dark);
+  line-height: 1.25;
+  margin: 0;
+  flex: 0 0 45%;
+}
+
+/* Horizontal Inline Form - Guaranteed Single Line */
+.LatestBlog-newsletter-form {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-end;
+  gap: 16px;
+  flex: 0 0 52%;
+}
+
+/* Input Container */
+.LatestBlog-input-container {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 220px;
+  max-width: 360px;
+  background-color: var(--lb-input-bg);
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 22px;
+  height: 56px;
+  box-sizing: border-box;
+}
+
+.LatestBlog-mail-icon {
+  color: #5e6d77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.LatestBlog-mail-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.LatestBlog-input-field {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  color: var(--lb-text-dark);
+  font-weight: 500;
+}
+
+.LatestBlog-input-field::placeholder {
+  color: #6b7a85;
+}
+
+/* Subscribe Button */
+.LatestBlog-subscribe-btn {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--lb-primary-green);
+  color: #ffffff;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 0 34px;
+  height: 56px;
+  border-radius: 40px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+.LatestBlog-subscribe-btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--lb-hover-black);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.LatestBlog-subscribe-btn:hover::before {
+  transform: translateY(100%);
+}
+
+.LatestBlog-subscribe-btn:hover {
+  box-shadow: 0 8px 24px rgba(18, 31, 40, 0.2);
+}
+
+.LatestBlog-subscribe-btn:active {
+  transform: scale(0.97);
+}
+
+.LatestBlog-subscribe-btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================
+   RESPONSIVE (ALL DEVICES)
+   ========================================= */
+@media (max-width: 1140px) {
+  .LatestBlog-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .LatestBlog-main-title {
+    font-size: 32px;
+    flex: 1 1 100%;
+  }
+  .LatestBlog-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .LatestBlog-newsletter-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .LatestBlog-newsletter-title {
+    flex: 1 1 100%;
+    font-size: 30px;
+  }
+  .LatestBlog-newsletter-form {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .LatestBlog-section {
+    padding: 60px 0 0 0;
+  }
+  .LatestBlog-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto 60px auto;
+  }
+  .LatestBlog-main-title {
+    font-size: 26px;
+  }
+  .LatestBlog-newsletter-title {
+    font-size: 24px;
+  }
+  .LatestBlog-newsletter-form {
+    width: 100%;
+    gap: 12px;
+  }
+  .LatestBlog-input-container {
+    height: 52px;
+    padding: 0 18px;
+  }
+  .LatestBlog-subscribe-btn {
+    height: 52px;
+    padding: 0 24px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .LatestBlog-newsletter-form {
+    flex-direction: column !important;
+    gap: 12px;
+  }
+  .LatestBlog-input-container,
+  .LatestBlog-subscribe-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}

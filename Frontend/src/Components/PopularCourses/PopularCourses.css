@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --pc-bg: #ebf6f2;
+  --pc-primary: #15bf81;
+  --pc-primary-hover: #0ea66e;
+  --pc-filter-bg: #dcefe8;
+  --pc-tag-bg: #daf1e8;
+  --pc-text-dark: #121f28;
+  --pc-text-muted: #5e6d77;
+  --pc-star-gold: #ffb703;
+  --pc-card-bg: #ffffff;
+  --pc-border-color: #e5ece9;
+}
+
+.PopularCourses-container {
+  width: 100%;
+  background-color: var(--pc-bg);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 70px 0 0 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.PopularCourses-inner-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header Section */
+.PopularCourses-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.PopularCourses-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--pc-text-dark);
+  margin-bottom: 8px;
+}
+
+.PopularCourses-subtitle-square {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--pc-primary);
+  border-radius: 1px;
+}
+
+.PopularCourses-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--pc-text-dark);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Filter Navigation */
+.PopularCourses-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.PopularCourses-filter-btn {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  background-color: var(--pc-filter-bg);
+  color: var(--pc-text-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: color 0.35s ease, background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  z-index: 1;
+}
+
+.PopularCourses-filter-btn:active {
+  transform: scale(0.96);
+}
+
+.PopularCourses-filter-btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--pc-primary);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.PopularCourses-filter-btn:hover::before {
+  transform: translateY(100%);
+}
+
+.PopularCourses-filter-btn:hover {
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(21, 191, 129, 0.25);
+}
+
+.PopularCourses-filter-btn--active {
+  background-color: var(--pc-primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(21, 191, 129, 0.3);
+}
+
+.PopularCourses-filter-btn--active::before {
+  display: none;
+}
+
+/* Grid Layout */
+.PopularCourses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  min-height: 480px;
+  margin-bottom: 75px;
+}
+
+/* =====================================================
+   PROFESSIONAL SMOOTH BLOOM & REVEAL ANIMATIONS
+   ===================================================== */
+
+/* Ultra-Smooth Bloom Opening Keyframes */
+@keyframes PopularCourses-smoothBloomLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-18px, 24px, 0) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes PopularCourses-smoothBloomCenter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes PopularCourses-smoothBloomRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(18px, 24px, 0) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Ultra-Smooth Fold Exit Keyframes */
+@keyframes PopularCourses-smoothFold {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 15px, 0) scale(0.96);
+  }
+}
+
+/* Apply Smooth Bloom Timing Curve */
+.PopularCourses-card--bloom-1 {
+  animation: PopularCourses-smoothBloomLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.PopularCourses-card--bloom-2 {
+  animation: PopularCourses-smoothBloomCenter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.PopularCourses-card--bloom-3 {
+  animation: PopularCourses-smoothBloomRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Apply Fold Exit */
+.PopularCourses-card--fold-1,
+.PopularCourses-card--fold-2,
+.PopularCourses-card--fold-3 {
+  animation: PopularCourses-smoothFold 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* Card Body & Presentation */
+.PopularCourses-card {
+  background-color: var(--pc-card-bg);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.PopularCourses-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+.PopularCourses-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.PopularCourses-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.PopularCourses-card:hover .PopularCourses-card-img {
+  transform: scale(1.04);
+}
+
+.PopularCourses-card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: var(--pc-primary);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Content */
+.PopularCourses-card-body {
+  padding: 20px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.PopularCourses-card-tag {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: var(--pc-tag-bg);
+  color: var(--pc-primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.PopularCourses-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--pc-text-dark);
+  line-height: 1.4;
+  margin: 0 0 16px 0;
+  min-height: 50px;
+}
+
+.PopularCourses-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--pc-text-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.PopularCourses-card-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.PopularCourses-meta-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.PopularCourses-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.PopularCourses-card-stars {
+  color: var(--pc-star-gold);
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+
+.PopularCourses-card-rating-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--pc-text-muted);
+}
+
+.PopularCourses-card-btn-wrap {
+  margin-top: auto;
+}
+
+/* Enroll Button - Top to Bottom Hover */
+.PopularCourses-card-btn {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  color: var(--pc-text-dark);
+  border: 1.5px solid var(--pc-border-color);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: color 0.35s ease, border-color 0.35s ease;
+  z-index: 1;
+}
+
+.PopularCourses-card-btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--pc-primary);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.PopularCourses-card-btn:hover::before {
+  transform: translateY(100%);
+}
+
+.PopularCourses-card-btn:hover {
+  color: #ffffff;
+  border-color: var(--pc-primary);
+}
+
+.PopularCourses-card-btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Bottom Continuous Marquee */
+.PopularCourses-marquee-bar {
+  width: 100%;
+  background-color: var(--pc-primary);
+  padding: 26px 0;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.PopularCourses-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: max-content;
+  animation: PopularCourses-marqueeScroll 22s linear infinite;
+}
+
+.PopularCourses-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.PopularCourses-marquee-text {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 750;
+  letter-spacing: 1px;
+}
+
+.PopularCourses-marquee-star {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+@keyframes PopularCourses-marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1100px) {
+  .PopularCourses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .PopularCourses-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .PopularCourses-title {
+    font-size: 28px;
+  }
+  .PopularCourses-grid {
+    grid-template-columns: 1fr;
+  }
+}

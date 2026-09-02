@@ -2,11 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-// Icons (React Icons)
-import { AiFillHeart } from "react-icons/ai";
+// React Icons
 import {
-  FaUserCircle,
-  FaShoppingCart,
   FaEnvelope,
   FaPhone,
   FaBars,
@@ -23,17 +20,12 @@ import {
   FaSearch,
   FaBullhorn,
 } from "react-icons/fa";
-import { MdCategory, MdLocalOffer } from "react-icons/md";
-import { FaHome, FaBlog, FaFire } from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
 
-import logo from "../../assets/PR-WEB-LOGO.png";
-// use the uploaded file path provided in conversation
-const uploadedImagePath = "/mnt/data/457bd679-da27-477c-9f1d-af23a1543f78.png";
-
+import logo from "../../assets/PR-WEB-LOGO.webp";
 import "./Navbar.css";
 
-// Single source of truth for the services/category list so the desktop
-// dropdown and the mobile drawer never go out of sync again.
+// Single source of truth for services
 const SERVICES = [
   { label: "Web Development", href: "/services/web-development", icon: FaLaptopCode },
   { label: "App Development", href: "/services/app-development", icon: FaMobileAlt },
@@ -68,7 +60,7 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openCat]);
 
-  // Lock body scroll when mobile menu OR quote panel open
+  // Lock body scroll when mobile menu or quote panel is open
   useEffect(() => {
     if (mobileMenuOpen || openQuotePanel) {
       document.body.style.overflow = "hidden";
@@ -80,7 +72,7 @@ const Navbar = () => {
     };
   }, [mobileMenuOpen, openQuotePanel]);
 
-  // Close mobile menu on resize > breakpoint
+  // Close mobile menu on desktop resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 992) {
@@ -131,12 +123,19 @@ const Navbar = () => {
 
           {/* Logo */}
           <div className="quote-info-logo">
-            <img src={logo} alt="Logo" />
+            <img 
+              src={logo} 
+              alt="Brand Logo" 
+              width="155" 
+              height="56" 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
 
           {/* Description */}
           <p className="quote-info-desc">
-            We provide fast & reliable quotes for temple decor, brass idols, handicrafts, pooja items and more.
+            We provide fast & reliable quotes for web development, software solutions, digital marketing, and IT consulting.
             Reach out anytime — we’re happy to help.
           </p>
 
@@ -186,12 +185,18 @@ const Navbar = () => {
         <div className="navbar-top navbar-container">
           <div className="navbar-top-row">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              <img src={logo} alt="Brand Logo" />
+              <img 
+                src={logo} 
+                alt="Brand Logo" 
+                fetchPriority="high"
+                width="155"
+                height="56"
+                decoding="async"
+              />
             </Link>
 
-            {/* mobile-only right bar (icons + mobile socials) */}
+            {/* mobile-only right bar (icons + hamburger) */}
             <div className="navbar-right-bar navbar-right-bar--mobile">
-              {/* mobile social icons (visible on small screens) */}
               <a
                 href="https://www.facebook.com/share/1Bm8zM2E5g/"
                 target="_blank"
@@ -244,7 +249,6 @@ const Navbar = () => {
             className="navbar-contact"
             role="region"
             aria-label="Contact information"
-            data-uploaded-img={uploadedImagePath}
           >
             <a
               className="contact-item contact-phone"
@@ -272,16 +276,16 @@ const Navbar = () => {
 
           {/* Desktop-only Social Media Bar */}
           <div className="navbar-right-bar navbar-right-bar--desktop social-bar">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon">
+            <a href="https://www.facebook.com/share/1Bm8zM2E5g/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon">
               <FaFacebookF />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">
+            <a href="https://www.instagram.com/prwebstock?igsh=MWs3em54aDl6NHNzcA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon">
               <FaInstagram />
             </a>
             <a href="https://wa.me/917789801327" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon">
               <FaWhatsapp />
             </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
+            <a href="https://www.linkedin.com/company/pr-webstock/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
               <FaLinkedinIn />
             </a>
           </div>
@@ -311,7 +315,7 @@ const Navbar = () => {
             <Link to="/contact">Contact</Link>
           </nav>
 
-          {/* Get Free Demo button for desktop (hidden on mobile by CSS) */}
+          {/* Get Free Demo button for desktop */}
           <div className="quote-box-wrapper">
             <button
               className="quote-box-icon-btn"
@@ -336,7 +340,7 @@ const Navbar = () => {
           <ul>
             {SERVICES.map((s) => (
               <li key={s.href}>
-                <a href={s.href}>{s.label}</a>
+                <Link to={s.href} onClick={() => setOpenCat(false)}>{s.label}</Link>
               </li>
             ))}
           </ul>
@@ -347,7 +351,14 @@ const Navbar = () => {
           <div className="drawer-inner">
             <div className="drawer-top">
               <Link to="/" onClick={closeMobileMenu} className="drawer-logo">
-                <img src={logo} alt="Logo" />
+                <img 
+                  src={logo} 
+                  alt="Logo" 
+                  width="155" 
+                  height="56" 
+                  loading="lazy" 
+                  decoding="async" 
+                />
               </Link>
               <button className="drawer-close" onClick={closeMobileMenu} aria-label="Close menu"><FaTimes /></button>
             </div>
@@ -356,7 +367,7 @@ const Navbar = () => {
             <nav className="drawer-links" style={{ marginTop: 12 }}>
               <Link to="/" onClick={closeMobileMenu}>Home</Link>
 
-              {/* Services accordion — mirrors the desktop category dropdown */}
+              {/* Services accordion */}
               <button
                 type="button"
                 className={`drawer-services-btn ${mobileServicesOpen ? "open" : ""}`}
@@ -379,9 +390,9 @@ const Navbar = () => {
                   {SERVICES.map((s, i) => {
                     const Icon = s.icon;
                     return (
-                      <a
+                      <Link
                         key={s.href}
-                        href={s.href}
+                        to={s.href}
                         onClick={closeMobileMenu}
                         className="drawer-service-item"
                         style={{ "--i": i }}
@@ -391,7 +402,7 @@ const Navbar = () => {
                         </span>
                         <span className="drawer-service-label">{s.label}</span>
                         <span className="drawer-service-arrow">›</span>
-                      </a>
+                      </Link>
                     );
                   })}
                 </div>
@@ -408,16 +419,16 @@ const Navbar = () => {
               </Link>
             </nav>
 
-            {/* social icons with stagger animation */}
+            {/* Social icons */}
             <div className="drawer-footer drawer-footer--social">
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon" onClick={closeMobileMenu}><FaFacebookF /></a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon" onClick={closeMobileMenu}><FaInstagram /></a>
+              <a href="https://www.facebook.com/share/1Bm8zM2E5g/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="social-icon" onClick={closeMobileMenu}><FaFacebookF /></a>
+              <a href="https://www.instagram.com/prwebstock?igsh=MWs3em54aDl6NHNzcA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-icon" onClick={closeMobileMenu}><FaInstagram /></a>
               <a href="https://wa.me/917789801327" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon" onClick={closeMobileMenu}><FaWhatsapp /></a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon" onClick={closeMobileMenu}><FaLinkedinIn /></a>
+              <a href="https://www.linkedin.com/company/pr-webstock/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon" onClick={closeMobileMenu}><FaLinkedinIn /></a>
             </div>
           </div>
 
-          {/* scrim to close drawer when clicking outside (mobile) */}
+          {/* Backdrop scrim */}
           <button className="drawer-scrim" onClick={closeMobileMenu} aria-hidden={!mobileMenuOpen} />
         </aside>
       </header>
