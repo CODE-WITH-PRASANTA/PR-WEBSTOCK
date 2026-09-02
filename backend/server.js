@@ -32,6 +32,7 @@ const estimateRoutes = require('./src/routes/estimateRoutes');
 const taskRoutes = require('./src/routes/taskRoutes');
 const projectFileRoutes = require('./src/routes/projectFileRoutes'); 
 const chatRoutes = require('./src/routes/chatRoutes'); 
+const invoiceRoutes = require('./src/routes/invoiceRoutes'); 
 
 // ==============================
 // Initialize App
@@ -123,6 +124,7 @@ app.use("/api/estimates", estimateRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/project-files", projectFileRoutes);
 app.use('/api/chat', chatRoutes);
+app.use('/api/invoices', invoiceRoutes);
 
 
 app.get("/", (req, res) => {
